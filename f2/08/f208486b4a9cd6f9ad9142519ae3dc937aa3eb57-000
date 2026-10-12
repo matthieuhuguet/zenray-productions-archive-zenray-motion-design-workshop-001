@@ -1,0 +1,48 @@
+{
+  "dimensions": {
+    "animation": 0.9268,
+    "image": 0.9788,
+    "colour": 1.0
+  },
+  "weakest": "animation",
+  "score": 0.9268,
+  "elements": {
+    "reference": 1,
+    "render": 1,
+    "matched": 1,
+    "unmatched": 0
+  },
+  "animation_detail": [
+    {
+      "score": 0.9268,
+      "parts": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "scale": 0.9994,
+        "brightness": 0.7221,
+        "settle": 0.9127
+      }
+    }
+  ],
+  "brightness_map": {
+    "score": 0.7221,
+    "position": 1.0,
+    "strength": 1.0,
+    "level": 0.7221,
+    "ref_level": 180.2,
+    "out_level": 173.1,
+    "ref_excess": 0.0,
+    "out_excess": 0.0,
+    "arrival_error_frames": 0.0
+  },
+  "background": {
+    "score": 1.0,
+    "dE2000": 0.0
+  },
+  "image_detail": {
+    "score": 0.9788,
+    "frames": 33,
+    "valid_share": 1.0
+  },
+  "lint_ok": true
+}
