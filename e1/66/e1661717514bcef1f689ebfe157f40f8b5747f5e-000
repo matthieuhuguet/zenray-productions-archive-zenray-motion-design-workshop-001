@@ -1,0 +1,13 @@
+{
+ "score": 0.9897,
+ "dimensions": {
+  "image": 0.9897
+ },
+ "image_detail": {
+  "ssim_mean": 0.9897,
+  "ssim_min": 0.9637,
+  "mad_mean": 0.751,
+  "frames": 87
+ },
+ "lint_ok": true
+}
