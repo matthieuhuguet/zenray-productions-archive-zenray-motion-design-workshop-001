@@ -1,0 +1,515 @@
+# R07 : serveur MCP « zenray-motion-design » pilotable par Claude (12 October 2026)
+
+Projet Assets `zenray-motion-design`, atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`. Ce document répond à la tâche R07 : il décrit la manière dont le serveur MCP `zenray-houdini` est écrit et enregistré sur ce Mac, confronte cette convention à l'état actuel du protocole et des SDK, puis propose un serveur `zenray-motion-design` avec son catalogue d'outils, leurs schémas, la commande d'enregistrement et la manière de le tester. Aucune configuration n'a été modifiée ; les seules commandes lancées sont des lectures, une interrogation des registres npm et PyPI et un test de fumée en lecture seule du serveur Houdini existant.
+
+Légende des preuves : **[M]** mesuré ou lu sur ce Mac, **[doc]** lu dans une documentation officielle citée, **[S]** supposé ou proposé, à vérifier.
+
+## 0. L'essentiel (12 October 2026)
+
+Le serveur Houdini n'utilise aucun SDK : c'est un unique fichier Python de 641 lignes qui parle JSON-RPC délimité par des retours à la ligne sur stdin et stdout, tourne sur le Python 3.9.6 livré par macOS sans aucun paquet, sert à la fois d'outil en ligne de commande et de serveur MCP (`--mcp`), et confie le vrai travail à `hython` par sous-processus ou à un pont socket ouvert dans Houdini **[M]**. Il expose aujourd'hui neuf outils préfixés `houdini_`, dont le catalogue complet pèse 5 441 caractères, et renvoie chaque résultat sous forme d'un bloc texte contenant un JSON, avec `isError` vrai quand le dictionnaire rendu porte `ok: false` **[M]**.
+
+Le serveur du motion design devrait suivre exactement cette forme, parce qu'elle a déjà survécu là où le serveur `reaper`, dépendant d'un environnement virtuel disparu, ne démarre plus **[M]**, tout en corrigeant ce que le moteur motion exige de plus : des opérations qui durent plusieurs minutes (analyse, rendu, vérification complète), qu'il faut lancer en tâche détachée, suivre par un fichier `status.json` et annuler par numéro de processus, exactement comme `reproduce.sh` de zenray-height **[S]**. Le serveur ne contiendrait aucune logique de mesure : il valide les arguments, lance la CLI `zrmd` du moteur dans l'environnement `/Users/zenray/.venvs/zenray-motion`, lit ses fichiers de sortie et les rend sous forme de JSON structuré, de chemins absolus et, sur demande seulement, de vignettes **[S]**.
+
+Treize outils préfixés `motion_` couvrent la demande, pour un catalogue visé sous 6 500 caractères, et un script de fumée plus l'inspecteur MCP en mode CLI les vérifient dans les deux sens **[S]**.
+
+## 1. Le serveur zenray-houdini tel qu'il est (12 October 2026)
+
+### 1.1 Où il vit et comment il est déclaré (12 October 2026)
+
+| Élément | Valeur | Preuve |
+|---|---|---|
+| Code | `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py` (641 lignes), plus `zrbridge.py` (pont dans Houdini), `zrsnapshot.py`, `zrcopshot.py`, `zrrevs.py`, `README.md` | [M] |
+| Déclaration Claude Code | `~/.claude.json`, clé `mcpServers` de portée utilisateur : `{"type": "stdio", "command": "python3", "args": ["/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py", "--mcp"], "env": {}}` | [M] |
+| Déclaration Codex | `~/.codex/config.toml`, bloc `[mcp_servers."zenray-houdini"]` avec `command = "python3"` et les mêmes `args` | [M] |
+| Déclaration Antigravity | `~/.gemini/config/mcp_config.json`, clé `mcpServers`, même forme que Claude | [M] lu dans `~/.claude/skills/zenray-houdini/SKILL.md`, table « Enregistrement chez les trois agents » |
+| `~/.claude/settings.json` | aucune mention du serveur | [M] |
+| `/Users/zenray/Create/Build/Tools` | aucun code du serveur Houdini ; c'est là que pointait `reaper-mcp`, dont le `.venv` n'existe plus, ce que la session actuelle confirme par l'erreur ENOENT au démarrage | [M] |
+
+### 1.2 Langage, transport et protocole (12 October 2026)
+
+- Python standard, sans dépendance, pour tourner sur `/usr/bin/python3` 3.9.6 ; l'en-tête du fichier justifie ce choix par la panne de `reaper` **[M]**.
+- Transport stdio : boucle `for line in sys.stdin`, une réponse JSON par ligne sur stdout avec `flush` **[M]**.
+- Méthodes traitées : `initialize` (renvoie `protocolVersion: "2025-06-18"`, `capabilities: {tools: {}}`, `serverInfo: {name: "zenray-houdini", version: "1.1.0"}`), `tools/list`, `tools/call`, `ping`, `shutdown` ; toute notification (message sans `id`) est ignorée, `notifications/cancelled` compris ; une méthode inconnue reçoit l'erreur `-32601` et un outil inconnu l'erreur `-32602` **[M]**.
+- Le serveur est séquentiel : une requête longue bloque toutes les suivantes, et l'annulation n'a aucun effet **[M, lu dans `_serve_mcp`]**.
+- Paramètres centralisés dans un dictionnaire `P` en tête de fichier, surchargeables par variables d'environnement (`ZR_HYTHON`, `ZR_BRIDGE_PORT`, `ZR_BRIDGE_TIMEOUT`), conformément à la loi HDA **[M]**.
+
+### 1.3 Forme des outils (12 October 2026)
+
+Chaque outil est une entrée d'une liste `TOOLS` portant `name`, `description`, `inputSchema` (JSON Schema écrit à la main) et `fn`, une fonction qui prend le dictionnaire d'arguments et rend un dictionnaire avec `ok` **[M]**. Le résultat MCP est toujours `content: [{type: "text", text: json.dumps(result, indent=1)}]` et `isError: not result.ok` ; aucun outil ne rend d'image en contenu MCP, les captures (`houdini_snapshot`, `houdini_copshot`, `houdini_texture`) écrivent des fichiers et rendent leurs chemins **[M]**. Le serveur n'emploie ni `title`, ni `outputSchema`, ni `structuredContent`, ni `annotations` **[M]**.
+
+Test de fumée rejoué pour ce document **[M]** : `initialize` puis `tools/list` répondent `zenray-houdini 1.1.0`, protocole `2025-06-18`, neuf outils (`houdini_texture`, `houdini_snapshot`, `houdini_copshot`, `houdini_search`, `houdini_recipes`, `houdini_build`, `houdini_scene`, `houdini_hom`, `houdini_height`), catalogue de 5 441 caractères. Le README annonçait cinq outils et 1 967 caractères, ce qui montre que le catalogue grossit avec le temps et qu'un budget doit être vérifié par un test, non par une phrase **[M]**.
+
+### 1.4 Comment il appelle Houdini (12 October 2026)
+
+Deux voies, choisies outil par outil **[M]** : `hython` en sous-processus (`subprocess.run([...], timeout=600)`) dont la sortie JSON est extraite malgré les avertissements de plugins imprimés sur stdout, pour tout ce qui marche Houdini fermé ; un socket nu vers `127.0.0.1:18812`, ouvert dans la session vivante par `zrbridge.py`, pour lire ou modifier la scène ouverte. Un outil en échec dit pourquoi et quelle commande lancer (« bridge unreachable… », « hython not found… »), ce qui est la règle « jamais d'échec muet » appliquée au protocole **[M]**.
+
+### 1.5 Ce que la convention apprend au motion design (12 October 2026)
+
+- Un seul fichier qui est à la fois CLI et serveur évite deux définitions du même geste, et le README du skill Houdini en fait une règle **[M]**.
+- Le serveur ne porte pas la logique métier : il est une façade sur un moteur qui s'exécute ailleurs (hython ici, la CLI `zrmd` là) **[M]** pour Houdini, **[S]** pour le motion.
+- Les limites à ne pas recopier : la boucle séquentielle, l'absence d'annulation, le `timeout=600` qui tient une requête MCP ouverte dix minutes, et l'absence de `structuredContent`, qui oblige l'agent à relire un JSON indenté dans du texte **[M]** pour le constat, **[S]** pour la correction.
+
+## 2. État de l'art d'un serveur MCP local (12 October 2026)
+
+### 2.1 Versions du protocole et des SDK (12 October 2026)
+
+| Élément | État au 12 October 2026 | Preuve |
+|---|---|---|
+| Version courante du protocole | `2026-07-28`, sans poignée de main obligatoire : chaque requête porte sa version dans `_meta`, `server/discover` rend versions, capacités et identité ; compatibilité arrière documentée avec les versions à `initialize` (`2025-11-25` et antérieures) | [doc] https://modelcontextprotocol.io/specification/versioning |
+| Version parlée par zenray-houdini | `2025-06-18` à `initialize`, qui fonctionne aujourd'hui avec Claude Code 2.1.295 installé sur ce Mac | [M] |
+| SDK TypeScript officiel | `@modelcontextprotocol/sdk` 1.32.1 (branche v1) et `@modelcontextprotocol/server` 2.3.1 (v2 découpée en paquets) | [M] registre npm |
+| SDK Python officiel | `mcp` 2.3.0, Python 3.10 ou plus | [M] PyPI |
+| FastMCP | `fastmcp` 4.1.0, Python 3.10 ou plus | [M] PyPI |
+| Inspecteur | `@modelcontextprotocol/inspector` 2.10.1, modes `--web`, `--cli`, `--tui` | [M] registre npm, [doc] https://modelcontextprotocol.net/docs/draft/tools/inspector.md |
+
+Les notes de FastMCP indiquent que l'époque `2026-07-28` retire au serveur la possibilité d'envoyer une requête au client en cours d'appel, si bien que l'échantillonnage poussé (`ctx.sample`) disparaît des connexions modernes **[doc]** https://gofastmcp.com/development/v4-notes ; notre serveur n'en a pas besoin.
+
+### 2.2 Ce que le protocole offre pour notre cas (12 October 2026)
+
+- **Schémas et sorties structurées.** Un outil déclare `name`, `title`, `description`, `inputSchema`, `outputSchema` et `annotations` ; un résultat peut porter `structuredContent` conforme à `outputSchema`, et doit alors aussi porter le même JSON sérialisé dans un bloc texte pour les clients anciens **[doc]** https://modelcontextprotocol.io/specification/2025-06-18/server/tools.
+- **Images et fichiers.** Les blocs `image` (base64 et `mimeType`), `audio`, `resource_link` (une URI `file:///…` avec nom et type) et `resource` embarquée existent ; une erreur d'exécution se rend dans le résultat avec `isError: true`, une erreur de protocole (outil inconnu, arguments invalides) par une erreur JSON-RPC **[doc]** même page.
+- **Côté Claude Code**, les images PNG, JPEG, GIF et WebP d'un résultat sont montrées au modèle, éventuellement réduites, et l'original est rangé dans le dossier `tool-results` de la session ; la sortie d'un outil est plafonnée par défaut à 25 000 jetons (`MAX_MCP_OUTPUT_TOKENS`), avec un avertissement fixe à 10 000 **[doc]** https://code.claude.com/docs/en/mcp.
+- **Progression et annulation.** Le client place un `progressToken` dans `params._meta` ; le serveur peut alors émettre `notifications/progress` avec `progressToken`, `progress` croissant, `total` et `message` facultatifs ; l'annulation est la notification `notifications/cancelled` avec `requestId` et `reason`, que le serveur devrait honorer sans répondre à la requête annulée **[doc]** https://modelcontextprotocol.io/specification/2025-06-18/basic/utilities/progress et https://modelcontextprotocol.io/specification/2025-06-18/basic/utilities/cancellation.
+- **Tâches longues.** La révision `2025-11-25` a introduit des tâches expérimentales, que `2026-07-28` déplace dans l'extension `io.modelcontextprotocol/tasks` avec `tasks/get`, `tasks/update` et `tasks/cancel` **[doc]** https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks et https://aaif.io/blog/handle-long-running-mcp-tool-calls-with-the-mcp-tasks-extension. Je n'ai pas vérifié que Claude Code 2.1.295, Codex et Antigravity annoncent cette extension ; s'appuyer dessus serait donc parier sur trois clients à la fois **[S]**.
+- **Délais.** Claude Code lit `MCP_TIMEOUT` pour le démarrage et `MCP_TOOL_TIMEOUT` pour l'exécution, ce dernier valant environ 28 heures quand il n'est pas fixé, avec un champ `timeout` par serveur en millisecondes **[doc]** https://code.claude.com/docs/en/mcp. Les délais de Codex et d'Antigravity n'ont pas été vérifiés ici **[S]**.
+
+### 2.3 SDK officiel, FastMCP ou bibliothèque standard (12 October 2026)
+
+Le SDK TypeScript (`McpServer.registerTool` avec schémas Zod et `StdioServerTransport`) et FastMCP (décorateurs, `Image`, `Context.report_progress`, sorties structurées déduites des annotations de type) gèrent la boucle, la validation, la progression et l'annulation à notre place **[doc]** https://github.com/modelcontextprotocol/typescript-sdk et https://gofastmcp.com/development/v4-notes. Ils ont en revanche trois coûts réels ici : une dépendance qui change de version majeure deux fois par an (v1 vers v2 côté TypeScript, `mcp_types` et champs en `snake_case` côté Python selon les notes FastMCP), un environnement à maintenir dont la disparition a déjà tué `reaper` **[M]**, et une seconde convention à côté de celle de Houdini **[S]**.
+
+La recommandation est donc de rester en bibliothèque standard, comme `zrhoudini.py`, mais en reprenant de l'état de l'art les quatre pièces qui manquent au serveur Houdini : `outputSchema` et `structuredContent`, `annotations`, tâches détachées avec suivi par fichier, et réponse à `notifications/cancelled` pour les rares appels synchrones longs **[S]**. Si un jour le serveur devait parler HTTP ou l'extension de tâches, FastMCP 4 dans `/Users/zenray/.venvs/zenray-motion` serait la voie de repli, la façade restant la même puisque toute la logique vit dans la CLI **[S]**.
+
+## 3. Architecture proposée (12 October 2026)
+
+### 3.1 Fichiers et processus (12 October 2026)
+
+| Élément | Proposition | Preuve |
+|---|---|---|
+| Code du serveur | `<repo>/mcp/zrmotion.py`, un fichier, CLI et `--mcp`, Python standard compatible 3.9 | [S] ; le dossier `mcp/` existe vide dans le dépôt [M] |
+| Dépôt | `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign` au moment de la rédaction ; il se trouvait encore sous `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign` quelques minutes plus tôt | [M] |
+| Moteur appelé | `/Users/zenray/.venvs/zenray-motion/bin/python -m zrmd.cli <commande> --json`, chemin lu dans `settings.json` (`paths.python`) | [M] pour le venv et la clé, [S] pour `zrmd.cli`, déclaré dans `pyproject.toml` mais pas encore écrit |
+| Interface de paramètres | `settings.json` du dépôt, section `mcp` (racines autorisées, budgets, taille des vignettes, délais), lue au démarrage ; aucun littéral dans le code | [S] |
+| Données | atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/projects/<motion_id>/` avec `versions/V_NNN/`, cache des références `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/<slug>/` | [S], aligné sur R05 section 5.6 |
+
+Le serveur ne doit jamais importer numpy, OpenCV ou librosa : il démarre en quelques dizaines de millisecondes avec le Python système et ne peut pas tomber parce que l'environnement de calcul est cassé ; dans ce cas, seuls les outils qui en ont besoin échouent, en nommant le chemin manquant **[S]**.
+
+### 3.2 Opérations courtes et tâches détachées (12 October 2026)
+
+Deux familles d'outils, séparées par leur durée attendue **[S]** :
+
+- **Synchrones**, sous un budget de 20 secondes fixé dans `settings.json` : lister, lire, lancer, suivre, synthétiser un SFX court, reformater des paramètres. Elles répondent directement.
+- **Détachées** : ingérer, analyser, produire la bible, itérer, rendre, vérifier, monter, publier. L'outil crée `projects/<motion_id>/jobs/<job_id>/`, lance `nohup <python> -m zrmd.cli … > run.log 2>&1 &`, écrit `run.pid`, et rend immédiatement `{job_id, status: "running", status_path, log_path}`. Le moteur réécrit `status.json` à chaque étape (`step`, `step_index`, `step_total`, `message`, `started`, `updated`, `exit_code`), comme `reproduce.sh` de zenray-height.
+
+Ce choix découle de trois faits : les opérations motion dépassent couramment la minute (le rendu de 68 s de film demandait environ 70 s dans l'étude **[M, lu dans R05]**), le serveur Houdini prouve qu'un appel bloquant fige tout le serveur **[M]**, et l'extension de tâches n'est pas encore une garantie chez les trois clients **[S]**. Une tâche détachée survit aussi à la fermeture de la session Claude ou à une compaction, ce qui rejoint la règle « le disque est le stockage fiable » **[S]**.
+
+Règles de suivi, reprises des pièges payés **[M, lus dans `~/.claude/rules/Toolbox1.md`, section du 11 October 2026]** : un processus se suit par son numéro (`os.kill(pid, 0)`), jamais par `pgrep -f` sur son nom ; un verrou `projects/<motion_id>/.lock` contenant le pid refuse une seconde tâche sur le même motion, et un verrou dont le pid est mort est signalé puis repris.
+
+Quand le client fournit un `progressToken`, le serveur peut émettre `notifications/progress` pendant un appel synchrone ; pour une tâche détachée, la progression se lit par `motion_job` **[S]**. Une notification `notifications/cancelled` visant un appel synchrone en cours tue son sous-processus et supprime la réponse ; elle n'annule jamais une tâche détachée, qui ne s'arrête que par `motion_job action=cancel` **[S]**. Cela suppose une boucle légèrement plus riche que celle de Houdini : un fil de lecture de stdin et un fil d'exécution, ou `selectors` sur stdin et les tubes des sous-processus, toujours en bibliothèque standard.
+
+### 3.3 Forme des résultats (12 October 2026)
+
+Chaque outil rend **[S]** :
+
+1. `structuredContent`, conforme à son `outputSchema`, toujours avec `ok`, et en cas d'échec `error` et `fix` (la commande ou le geste qui répare) ;
+2. le même objet sérialisé dans un bloc `text`, pour les clients qui ignorent `structuredContent` **[doc]** ;
+3. des blocs `resource_link` en `file:///…` vers les livrables (rendu, rapport, planche, bible), avec chemins absolus complets, conformément à la règle des chemins de Matthieu **[M, lu dans `~/.claude/rules/Tone1.md`]** ;
+4. des blocs `image` seulement si l'argument `include_images` vaut vrai : planche contact ou vignettes PNG réduites à `mcp.thumbnail_px` (proposé 768 px), au plus `mcp.max_images` (proposé 4) par réponse, pour rester loin du plafond de 25 000 jetons **[doc]** pour le plafond, **[S]** pour les valeurs.
+
+`isError` vaut vrai dès que `ok` est faux ; un argument invalide (type, énumération, motif, borne) produit l'erreur JSON-RPC `-32602` avec le chemin de l'argument fautif, grâce à un validateur JSON Schema minimal écrit en bibliothèque standard (types, `required`, `enum`, `pattern`, `minimum`, `maximum`, `additionalProperties: false`) **[S]**.
+
+### 3.4 Garde-fous (12 October 2026)
+
+- Tout chemin reçu est résolu puis doit se trouver sous une racine autorisée (`paths.workshop`, `paths.refcache`), sans lien symbolique sortant ; un `motion_id` respecte `^[a-z0-9]+(?:-[a-z0-9]+)*$`, le motif déjà imposé par Assets **[M, lu dans R06]**.
+- Aucun outil n'exécute de code arbitraire : pas d'équivalent de `houdini_hom`, puisque le moteur est notre propre code et que chaque geste a sa commande **[S]**.
+- Les fichiers de la référence ne quittent jamais le cache : une ingestion y écrit, une planche qui montre des images de la référence y reste, et l'atelier archivé par Assets ne reçoit que des nombres et nos propres rendus, conformément aux règles de droits du projet et à R05 **[S]**.
+- `motion_ingest` par URL télécharge un fichier, et `motion_publish` publie : l'agent doit obtenir l'accord de Matthieu avant de les appeler ; le schéma l'exprime par `annotations.openWorldHint: true` et, pour la publication, par un `dry_run` vrai par défaut et un `confirm` obligatoire pour l'écriture réelle **[S]**.
+- Les annotations restent des indications que le client doit tenir pour non fiables, la sécurité vivant dans le serveur **[doc]** page Tools.
+
+## 4. Catalogue proposé (12 October 2026)
+
+Treize outils, préfixe `motion_`, descriptions de une ou deux phrases. Le budget du catalogue (proposé 6 500 caractères pour `tools/list`) est vérifié par le script de fumée, puisque le serveur Houdini est passé de 1 967 à 5 441 caractères sans que personne ne le mesure **[M]** pour le constat, **[S]** pour le budget.
+
+| Outil | Rôle | Durée | Annotations | Lit ou écrit |
+|---|---|---|---|---|
+| `motion_status` | état du moteur et liste des motions | sync | readOnly, idempotent | lit |
+| `motion_read` | lire un motion, une version, un artefact | sync | readOnly, idempotent | lit |
+| `motion_ingest` | enregistrer une référence dans le cache | job | openWorld (URL) | écrit refcache |
+| `motion_analyze` | mesurer la référence | job | idempotent (cache par empreinte) | écrit analysis |
+| `motion_bible` | bible graphique et storyboard | job | idempotent | écrit bible, storyboard |
+| `motion_create` | créer un motion V_001 depuis un plan | job | non destructif | écrit versions |
+| `motion_iterate` | nouvelle version depuis une précédente | job | non destructif | écrit V_NNN suivant |
+| `motion_render` | rendre une version | job | idempotent | écrit render |
+| `motion_verify` | mesurer une version contre la référence | job | idempotent | écrit report |
+| `motion_sfx` | synthétiser un SFX en code | sync | non destructif | écrit sound |
+| `motion_edit` | monter, couper, reformater | job | non destructif | écrit une nouvelle version |
+| `motion_publish` | publier via Assets et ZenRayProgress | job | openWorld, confirm | écrit cloud |
+| `motion_job` | suivre, lire le journal, annuler | sync | destructive pour cancel | lit, tue un pid |
+
+Les schémas ci-dessous sont des propositions **[S]** ; ils reprennent la convention des versions `V_001` à `V_999` et le vecteur à quatre dimensions de R05. Le champ `job` commun aux sorties détachées vaut `{job_id, status, status_path, log_path}`.
+
+### 4.1 motion_status (12 October 2026)
+
+```json
+{
+  "name": "motion_status",
+  "title": "Motion engine status",
+  "description": "Engine health (python env, ffmpeg, pinned hyperframes, headless browser) and the list of motions with their latest version, best score and running jobs.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "properties": {
+    "check_tools": {"type": "boolean", "default": false, "description": "also run the slow doctor checks"},
+    "limit": {"type": "integer", "minimum": 1, "maximum": 200, "default": 50}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"},
+    "engine": {"type": "object"},
+    "motions": {"type": "array", "items": {"type": "object", "properties": {
+      "motion_id": {"type": "string"}, "reference": {"type": "string"},
+      "latest_version": {"type": "string"}, "best_version": {"type": "string"},
+      "score_min": {"type": "number"}, "running_jobs": {"type": "integer"}}}}}},
+  "annotations": {"readOnlyHint": true, "idempotentHint": true, "openWorldHint": false}
+}
+```
+
+### 4.2 motion_read (12 October 2026)
+
+```json
+{
+  "name": "motion_read",
+  "description": "Read one motion: versions, params, recipe, report, bible or storyboard. Returns JSON and absolute file links; images only on request.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^(V_\\d{3}|latest|best)$", "default": "latest"},
+    "part": {"type": "string", "enum": ["summary", "params", "recipe", "report", "bible", "storyboard", "analysis", "log"], "default": "summary"},
+    "include_images": {"type": "boolean", "default": false}}},
+  "annotations": {"readOnlyHint": true, "idempotentHint": true}
+}
+```
+
+### 4.3 motion_ingest (12 October 2026)
+
+```json
+{
+  "name": "motion_ingest",
+  "description": "Register a reference video in the local reference cache (never archived): SHA-256, probe, slug. Accepts a local path or a URL (download, ask the user first).",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["source"], "properties": {
+    "source": {"type": "string", "description": "absolute local path or https URL"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "trim": {"type": "object", "properties": {"start_s": {"type": "number", "minimum": 0}, "end_s": {"type": "number", "minimum": 0}}}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "job": {"type": "object"}, "slug": {"type": "string"}, "sha256": {"type": "string"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": true}
+}
+```
+
+### 4.4 motion_analyze (12 October 2026)
+
+```json
+{
+  "name": "motion_analyze",
+  "description": "Measure a cached reference: cuts and shots, camera, tracks, captions, palette, typography metrics, onsets, tempo, loudness. Numbers only, cached by fingerprint.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["slug"], "properties": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "parts": {"type": "array", "items": {"type": "string", "enum": ["shots", "camera", "tracks", "captions", "colour", "typography", "audio", "tempo", "stems"]}, "description": "default: all"},
+    "force": {"type": "boolean", "default": false}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false}
+}
+```
+
+### 4.5 motion_bible (12 October 2026)
+
+```json
+{
+  "name": "motion_bible",
+  "description": "Write the graphic bible (fonts, colours, motions, easing curves, 3D use, SFX, music tempo and structure) and the storyboard sheet from an analysis.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["slug"], "properties": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "outputs": {"type": "array", "items": {"type": "string", "enum": ["bible", "storyboard", "animatic"]}},
+    "include_images": {"type": "boolean", "default": false}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "job": {"type": "object"},
+    "bible_path": {"type": "string"}, "storyboard_path": {"type": "string"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true}
+}
+```
+
+Les planches de storyboard qui montrent des images de la référence sont écrites dans le cache, non dans l'atelier **[S]**.
+
+### 4.6 motion_create (12 October 2026)
+
+```json
+{
+  "name": "motion_create",
+  "description": "Create a new motion and its V_001 from a plan: either a reference slug (reproduce) or a storyboard plan (original). Content brand slots are replaced by our own.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "reference": {"type": "string", "description": "slug of a cached reference to reproduce"},
+    "plan_path": {"type": "string", "description": "absolute path of a storyboard plan JSON"},
+    "format": {"type": "string", "enum": ["16:9", "9:16", "1:1", "4:5"], "default": "16:9"},
+    "level": {"type": "string", "enum": ["QUICK", "FULL"], "default": "QUICK"},
+    "content": {"type": "object", "description": "replacement brand slots: texts, logo path, palette tokens"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": false}
+}
+```
+
+Un des deux champs `reference` ou `plan_path` est exigé ; le validateur le contrôle, faute de `oneOf` dans le validateur minimal **[S]**.
+
+### 4.7 motion_iterate (12 October 2026)
+
+```json
+{
+  "name": "motion_iterate",
+  "description": "Make the next version V_NNN from a parent version: apply parameter overrides by dotted path, optionally refit some shots or the sound. Never overwrites a version.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "from_version": {"type": "string", "pattern": "^(V_\\d{3}|latest|best)$", "default": "latest"},
+    "overrides": {"type": "object", "additionalProperties": true, "description": "{\"tokens.color.accent\": \"#cc7c5e\", \"timeline.shots.S05.duration_s\": 1.2}"},
+    "refit": {"type": "object", "properties": {
+      "shots": {"type": "array", "items": {"type": "string", "pattern": "^S\\d{2,3}$"}},
+      "only": {"type": "string", "enum": ["picture", "sound", "all"], "default": "all"},
+      "level": {"type": "string", "enum": ["QUICK", "FULL"], "default": "QUICK"}}},
+    "note": {"type": "string", "maxLength": 500},
+    "render": {"type": "boolean", "default": true},
+    "verify": {"type": "boolean", "default": true}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "job": {"type": "object"},
+    "version": {"type": "string", "pattern": "^V_\\d{3}$"}, "parent": {"type": "string"},
+    "version_dir": {"type": "string"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": false}
+}
+```
+
+Le numéro de version est réservé de façon atomique (création exclusive du dossier `V_NNN`) avant le lancement, pour qu'un appel concurrent ne puisse pas réutiliser le même numéro ; au-delà de `V_999`, l'outil échoue en le disant **[S]**.
+
+### 4.8 motion_render (12 October 2026)
+
+```json
+{
+  "name": "motion_render",
+  "description": "Render one version with the pinned HyperFrames CLI. profile=preview is fast; profile=verify uses one worker for bit-stable frames.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^(V_\\d{3}|latest)$", "default": "latest"},
+    "profile": {"type": "string", "enum": ["preview", "verify"], "default": "preview"},
+    "range": {"type": "object", "properties": {"start_s": {"type": "number", "minimum": 0}, "end_s": {"type": "number", "minimum": 0}}},
+    "frames_at": {"type": "array", "items": {"type": "number", "minimum": 0}, "maxItems": 64, "description": "snapshot times instead of a full render"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true}
+}
+```
+
+Les deux profils reprennent R01 : `render --fps 60 --quality looks --workers auto` pour l'aperçu, `--workers 1` pour la vérification **[M, lu dans R01]**.
+
+### 4.9 motion_verify (12 October 2026)
+
+```json
+{
+  "name": "motion_verify",
+  "description": "Measure a rendered version against its reference on rhythm, animation, picture and sound; report the minimum of the four and the worst instants. Exit code semantics kept in ok/contract_met.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^(V_\\d{3}|latest)$", "default": "latest"},
+    "dimensions": {"type": "array", "items": {"type": "string", "enum": ["rhythm", "animation", "picture", "sound"]}},
+    "include_images": {"type": "boolean", "default": false}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "job": {"type": "object"},
+    "scores": {"type": "object", "properties": {
+      "rhythm": {"type": "number"}, "animation": {"type": "number"},
+      "picture": {"type": "number"}, "sound": {"type": "number"}, "min": {"type": "number"}}},
+    "target": {"type": "number"}, "contract_met": {"type": "boolean"},
+    "worst": {"type": "array", "items": {"type": "object"}}, "report_path": {"type": "string"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true}
+}
+```
+
+La cible (0,99) se lit dans `settings.json`, jamais dans le code du vérificateur, piège déjà payé sur height **[M, lu dans R05]**. Les scores n'apparaissent dans la réponse de `motion_verify` qu'une fois la tâche finie, par `motion_job` ou `motion_read part=report` **[S]**.
+
+### 4.10 motion_sfx (12 October 2026)
+
+```json
+{
+  "name": "motion_sfx",
+  "description": "Synthesise one sound effect in code (no sample, no generative model) from a preset and parameters, or fitted to a measured event of a reference. Writes a WAV and its params JSON.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["kind"], "properties": {
+    "kind": {"type": "string", "enum": ["whoosh", "swish", "click", "tick", "pop", "impact", "riser", "downer", "glitch", "chime", "sub_drop", "noise_burst"]},
+    "params": {"type": "object", "description": "duration_s, f0_hz, sweep, attack_s, decay_s, noise_mix, filter_hz, gain_db, seed"},
+    "fit_to": {"type": "object", "properties": {
+      "slug": {"type": "string"}, "event_index": {"type": "integer", "minimum": 0}}},
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "include_audio": {"type": "boolean", "default": false}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "wav_path": {"type": "string"}, "params_path": {"type": "string"},
+    "match": {"type": "object", "description": "spectral envelope and onset distance to the fitted event, if any"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true}
+}
+```
+
+La liste `kind` est un point de départ à confronter à `MakeSound.py` du skill et à R04 ; un SFX court reste synchrone, un ajustement `fit_to` long peut basculer en tâche **[S]**. Un bloc `audio` (WAV base64) n'est joint que sur demande, puisque Claude ne l'écoute pas et qu'il coûte cher en jetons **[S]**.
+
+### 4.11 motion_edit (12 October 2026)
+
+```json
+{
+  "name": "motion_edit",
+  "description": "Edit a version into a new one: trim, reorder or drop shots, retime, swap the sound bed, or reformat to another aspect ratio with the layout rules. Output is a new V_NNN.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id", "operations"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "from_version": {"type": "string", "pattern": "^(V_\\d{3}|latest|best)$", "default": "latest"},
+    "operations": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["op"], "properties": {
+      "op": {"type": "string", "enum": ["trim", "reorder", "drop", "retime", "reformat", "sound_bed", "loudness"]},
+      "shots": {"type": "array", "items": {"type": "string"}},
+      "start_s": {"type": "number"}, "end_s": {"type": "number"},
+      "speed": {"type": "number", "minimum": 0.25, "maximum": 4},
+      "format": {"type": "string", "enum": ["16:9", "9:16", "1:1", "4:5"]},
+      "lufs": {"type": "number", "minimum": -40, "maximum": -6}}}},
+    "render": {"type": "boolean", "default": true}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": false}
+}
+```
+
+Un changement de format modifie la composition et non le rendu, puisque HyperFrames ne remodèle pas une composition à partir d'un rapport d'aspect **[M, lu dans R01]**.
+
+### 4.12 motion_publish (12 October 2026)
+
+```json
+{
+  "name": "motion_publish",
+  "description": "Publish a version: archive its composition sources through ZenRay Assets and push the render to the ZenRayProgress Motion Design gallery. dry_run lists what would be sent; real publish needs confirm=true after the user agreed.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["motion_id"], "properties": {
+    "motion_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^(V_\\d{3}|best|latest)$", "default": "best"},
+    "targets": {"type": "array", "items": {"type": "string", "enum": ["assets", "gallery"]}, "default": ["assets"]},
+    "dry_run": {"type": "boolean", "default": true},
+    "confirm": {"type": "boolean", "default": false}}},
+  "outputSchema": {"type": "object", "required": ["ok"], "properties": {
+    "ok": {"type": "boolean"}, "job": {"type": "object"},
+    "files": {"type": "array", "items": {"type": "string"}},
+    "refused": {"type": "array", "items": {"type": "string"}, "description": "reference-derived files kept local"},
+    "cloud_proof": {"type": "object"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": true}
+}
+```
+
+Le publieur appelle les outils existants plutôt que d'écrire lui-même dans le cloud : `node /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Assets/Client.mjs` pour Assets et le publieur `scripts/Motion/` que propose R06 pour la galerie **[M]** pour le client Assets, **[S]** pour le publieur. Une publication n'est déclarée réussie qu'avec une preuve cloud relue, jamais sur la seule sortie d'un script **[M, règle lue dans le CLAUDE.md global]**. Avant tout envoi, le publieur refuse tout fichier dont l'empreinte appartient au cache des références **[S]**.
+
+### 4.13 motion_job (12 October 2026)
+
+```json
+{
+  "name": "motion_job",
+  "description": "Follow a detached job: status (step, progress, message), tail of its log, wait up to N seconds, or cancel it by pid.",
+  "inputSchema": {"type": "object", "additionalProperties": false, "required": ["job_id"], "properties": {
+    "job_id": {"type": "string", "pattern": "^[a-z0-9-]+/J_\\d{8}T\\d{6}_[a-z]+$"},
+    "action": {"type": "string", "enum": ["status", "log", "wait", "cancel"], "default": "status"},
+    "wait_s": {"type": "integer", "minimum": 1, "maximum": 20, "default": 10},
+    "tail_lines": {"type": "integer", "minimum": 1, "maximum": 200, "default": 40}}},
+  "outputSchema": {"type": "object", "required": ["ok", "status"], "properties": {
+    "ok": {"type": "boolean"},
+    "status": {"type": "string", "enum": ["queued", "running", "done", "failed", "cancelled", "lost", "needs_choice", "needs_asset"]},
+    "step": {"type": "string"}, "progress": {"type": "number"}, "total": {"type": "number"},
+    "message": {"type": "string"}, "exit_code": {"type": "integer"}, "result": {"type": "object"},
+    "log_tail": {"type": "string"}}},
+  "annotations": {"readOnlyHint": false, "destructiveHint": true, "idempotentHint": true}
+}
+```
+
+`lost` signifie que le pid est mort sans `exit_code` écrit, état qui doit se voir plutôt que se confondre avec `running` ; `needs_choice` et `needs_asset` reprennent les arrêts volontaires de R05, où le moteur s'arrête au lieu d'inventer **[S]**. `wait` borne l'attente à 20 secondes pour qu'un appel ne bloque jamais le serveur ; c'est l'agent qui reboucle **[S]**.
+
+## 5. Enregistrement (12 October 2026)
+
+Rien n'est enregistré par ce document. Les commandes ci-dessous sont à lancer une fois le serveur écrit et son test de fumée vert **[S]** pour l'ordre, **[doc]** pour la syntaxe Claude Code https://code.claude.com/docs/en/mcp.
+
+```bash
+# 12 October 2026 : user-scope registration for Claude Code (stored in ~/.claude.json).
+# FR : enregistrement en portée utilisateur pour Claude Code, écrit dans ~/.claude.json.
+claude mcp add --transport stdio --scope user zenray-motion-design -- \
+  python3 /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/mcp/zrmotion.py --mcp
+claude mcp get zenray-motion-design
+```
+
+La forme écrite dans `~/.claude.json` serait identique à celle de Houdini, `{"type": "stdio", "command": "python3", "args": ["…/zrmotion.py", "--mcp"], "env": {}}` **[S, par analogie M]**. Pour Codex, un bloc `[mcp_servers."zenray-motion-design"]` avec `command = "python3"` et `args` dans `~/.codex/config.toml` ; pour Antigravity, la même entrée dans `~/.gemini/config/mcp_config.json`, chacun sauvegardé avant modification par une copie datée, comme pour Houdini **[M, lu dans le SKILL.md Houdini]**. Un agent ne voit un serveur ajouté qu'après redémarrage, première chose à vérifier quand les outils manquent **[M, même source]**.
+
+Le chemin absolu enregistré doit être stable : le dépôt a changé de place pendant la rédaction de ce document, ce qui casserait silencieusement l'enregistrement **[M]**. Deux parades sont possibles, décider l'emplacement définitif du dépôt avant d'enregistrer, ou enregistrer un lanceur fixe (par exemple `/Users/zenray/.claude/skills/zenray-motion-design/scripts/mcp.sh`) qui lit l'emplacement du dépôt dans un seul fichier de configuration **[S]**.
+
+## 6. Tester (12 October 2026)
+
+### 6.1 Script de fumée sans dépendance (12 October 2026)
+
+Sur le modèle de celui de Houdini, un script `<repo>/tests/SmokeMcp.sh` envoie par tube une suite de requêtes et vérifie les réponses avec le Python système **[S]** :
+
+```bash
+# 12 October 2026 : MCP smoke test, both directions (green on good input, red on broken input).
+# FR : test de fumée MCP dans les deux sens, vert sur une entrée bonne, rouge sur une entrée cassée.
+S=/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/mcp/zrmotion.py
+printf '%s\n' \
+ '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"smoke","version":"1"}}}' \
+ '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+ '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+ '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"motion_status","arguments":{}}}' \
+ '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"motion_nope","arguments":{}}}' \
+ '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"motion_read","arguments":{"motion_id":"../etc"}}}' \
+ '{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"motion_job","arguments":{"job_id":"none/J_20261012T000000_render"}}}' \
+ | python3 "$S" --mcp | python3 "$(dirname "$S")/../tests/check_smoke.py"
+```
+
+Contrôles attendus : `initialize` rend `zenray-motion-design` ; `tools/list` rend treize outils, chacun avec `inputSchema` de type objet, et un catalogue sous le budget de `settings.json` ; `motion_status` rend `ok` avec `structuredContent` ; l'outil inconnu rend l'erreur `-32601` ou `-32602` ; le `motion_id` hors motif rend `-32602` ; le job inconnu rend `isError` avec `status: "lost"` ou une erreur nommée ; la notification ne reçoit aucune réponse. Le test doit être vu rouge au moins une fois, par exemple en ajoutant un quatorzième outil qui fait dépasser le budget **[S]**.
+
+### 6.2 Inspecteur MCP (12 October 2026)
+
+```bash
+# 12 October 2026 : pinned inspector, CLI mode, no browser needed.
+npx -y @modelcontextprotocol/inspector@2.10.1 --cli \
+  python3 /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/mcp/zrmotion.py --mcp \
+  --method tools/list
+npx -y @modelcontextprotocol/inspector@2.10.1 --cli \
+  python3 /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/mcp/zrmotion.py --mcp \
+  --method tools/call --tool-name motion_status --tool-arg limit=5
+```
+
+Le mode `--cli` imprime la réponse JSON sur stdout et se combine avec `jq` **[doc]** https://dev.to/yigit-konur/the-ultimate-guide-to-the-mcp-inspector-by-cli-non-interactive-mode-4k6b et https://modelcontextprotocol.net/docs/draft/tools/inspector.md. Une source indique une exigence de Node 22.7.5 ou plus, une autre 22.19.0 ; Node 26.9.0 est installé, donc les deux sont satisfaites **[M]** pour la version, **[doc]** pour l'exigence. Le mode web ouvrirait un navigateur : il n'est pas nécessaire ici et ne doit pas toucher le navigateur personnel de Matthieu. Épingler la version évite la dérive que R01 a mesurée avec `npx hyperframes` non épinglé **[M, lu dans R01]**.
+
+### 6.3 Bout en bout sur une vidéo à nous (12 October 2026)
+
+Une vidéo d'essai de cinq secondes fabriquée par `ffmpeg -f lavfi -i testsrc2` et un son `sine` sert de référence de test : elle ne pose aucune question de droits et rend la chaîne `ingest`, `analyze`, `create`, `render`, `verify`, `iterate` vérifiable en moins d'une minute **[S]**. Le test passe si `motion_iterate` produit `V_002` sans toucher `V_001` (empreintes comparées), si `motion_job cancel` sur un rendu en cours rend `cancelled` et laisse un dossier de version marqué incomplet, et si `motion_publish` en `dry_run` liste les fichiers sans rien envoyer **[S]**.
+
+## 7. Décisions recommandées (12 October 2026)
+
+1. Un seul fichier `mcp/zrmotion.py` en Python standard, CLI et `--mcp`, sur le modèle de `zrhoudini.py`, façade sur la CLI `zrmd` qui seule importe les bibliothèques de calcul (12 October 2026).
+2. Toute opération de plus de 20 secondes en tâche détachée suivie par `status.json` et `motion_job`, verrou par motion, suivi par pid, jamais par `pgrep -f` (12 October 2026).
+3. Ajouter ce que le serveur Houdini n'a pas : `title`, `outputSchema`, `structuredContent` doublé en texte, `annotations`, `resource_link` vers les livrables, images seulement sur demande et bornées (12 October 2026).
+4. Treize outils `motion_` avec un budget de catalogue vérifié par test ; pas d'outil d'exécution de code arbitraire (12 October 2026).
+5. Répondre à `initialize` en `2025-06-18`, comme Houdini, et ajouter `server/discover` et la version par requête de `2026-07-28` seulement quand un client l'exige (12 October 2026).
+6. Publication en `dry_run` par défaut, `confirm` explicite, refus automatique de tout fichier issu de la référence (12 October 2026).
+7. Fixer l'emplacement du dépôt, ou un lanceur stable, avant tout enregistrement ; enregistrer ensuite chez Claude Code, Codex et Antigravity avec copie datée des configurations (12 October 2026).
+
+## 8. Questions ouvertes (12 October 2026)
+
+- Où vit définitivement le dépôt `ZenRayMotionDesign` ? Il a été déplacé de `/Users/zenray/Create/Build/Productions/GithubProductions/` vers l'atelier pendant cette recherche, et un atelier `tmp` archivé par Assets n'est peut-être pas la bonne place pour un code enregistré comme serveur permanent (12 October 2026).
+- Quelle version de protocole et quelles capacités (progression, extension de tâches) Claude Code 2.1.295, Codex et Antigravity annoncent-ils réellement ? Un journal de la requête `initialize` sur stderr, au premier lancement, le dirait en une session (12 October 2026).
+- Le service local `com.zenray.motion` proposé par R06 et ce serveur MCP doivent-ils partager la même file de tâches ? Le plus simple serait que les deux écrivent dans `projects/<motion_id>/jobs/` sous le même verrou (12 October 2026).
+- La liste des types de SFX et la forme exacte des paramètres de `motion_sfx` dépendent de R04 et de `MakeSound.py` (12 October 2026).
+- La CLI `zrmd.cli`, déclarée dans `pyproject.toml`, n'existe pas encore ; ses sous-commandes devraient être calquées une à une sur ce catalogue pour qu'un outil MCP égale une commande (12 October 2026).
+
+## 9. Blocages (12 October 2026)
+
+Aucun blocage pour la rédaction. Le serveur ne peut être écrit utilement qu'après la CLI `zrmd.cli` et l'écriture de `status.json` par le moteur, et ne doit être enregistré qu'une fois l'emplacement du dépôt fixé (12 October 2026).
+
+## 10. Sources (12 October 2026)
+
+Lues sur ce Mac :
+- `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py`, `/Users/zenray/.claude/Memory1/Houdini/MCP/README.md`, `/Users/zenray/.claude/Memory1/Houdini/MCP/zrbridge.py`
+- `/Users/zenray/.claude.json` (clé `mcpServers`), `/Users/zenray/.codex/config.toml`, `/Users/zenray/.claude/settings.json`
+- `/Users/zenray/.claude/skills/zenray-houdini/SKILL.md` (sections enregistrement et dépannage)
+- `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/pyproject.toml` et `settings.json`
+- `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R01-hyperframes.md`, `R05-zenray-height-transposition.md`, `R06-zenrayprogress-integration.md`, `R08-existing-inventory.md`
+- registres https://registry.npmjs.org/@modelcontextprotocol/sdk, https://registry.npmjs.org/@modelcontextprotocol/server, https://registry.npmjs.org/@modelcontextprotocol/inspector, https://pypi.org/pypi/mcp/json, https://pypi.org/pypi/fastmcp/json
+
+Web :
+- https://modelcontextprotocol.io/specification/2025-06-18/server/tools
+- https://modelcontextprotocol.io/specification/2025-06-18/basic/utilities/progress
+- https://modelcontextprotocol.io/specification/2025-06-18/basic/utilities/cancellation
+- https://modelcontextprotocol.io/specification/versioning
+- https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks
+- https://modelcontextprotocol.io/seps/1686-tasks
+- https://aaif.io/blog/handle-long-running-mcp-tool-calls-with-the-mcp-tasks-extension
+- https://code.claude.com/docs/en/mcp
+- https://gofastmcp.com/development/v4-notes
+- https://github.com/modelcontextprotocol/typescript-sdk
+- https://modelcontextprotocol.net/docs/draft/tools/inspector.md
+- https://dev.to/yigit-konur/the-ultimate-guide-to-the-mcp-inspector-by-cli-non-interactive-mode-4k6b

@@ -1,0 +1,1622 @@
+{
+  "date": "12 October 2026",
+  "seconds": 41.1,
+  "summary": {
+    "whoosh/nelder-mead": {
+      "median": 85.185,
+      "min": 41.51,
+      "pass99": 1,
+      "n": 8,
+      "meanSeconds": 19.2125
+    },
+    "whoosh/cma-es": {
+      "median": 98.185,
+      "min": 89.92,
+      "pass99": 3,
+      "n": 8,
+      "meanSeconds": 24.075
+    },
+    "whoosh/identity": {
+      "min": 89.91
+    },
+    "whoosh/perturbed/fStart x1.26 (third octave)": {
+      "median": 93.45,
+      "max": 96.12,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/fEnd x1.26 (third octave)": {
+      "median": 92.755,
+      "max": 96.44,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/sweep reversed": {
+      "median": 65.13,
+      "max": 99.45,
+      "fail99": 7,
+      "n": 8
+    },
+    "whoosh/perturbed/duration x1.3": {
+      "median": 73.09,
+      "max": 82.46,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/peakPos +0.15": {
+      "median": 85.87,
+      "max": 93.09,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/bandwidth x1.6": {
+      "median": 80.44999999999999,
+      "max": 85.72,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/envCurve x1.6": {
+      "median": 93.35,
+      "max": 97.58,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/gain +2 dB": {
+      "median": 95.295,
+      "max": 97.97,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/late by 50 ms": {
+      "median": 87.965,
+      "max": 97.19,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/gain/0.25": {
+      "median": 99.42
+    },
+    "whoosh/gain/0.5": {
+      "median": 99.17
+    },
+    "whoosh/gain/1.0": {
+      "median": 98.30000000000001
+    },
+    "whoosh/gain/1.5": {
+      "median": 97.02
+    },
+    "whoosh/gain/2.0": {
+      "median": 95.295
+    },
+    "whoosh/gain/3.0": {
+      "median": 90.6
+    },
+    "whoosh/shift/2.0": {
+      "median": 99.42
+    },
+    "whoosh/shift/5.0": {
+      "median": 99.35
+    },
+    "whoosh/shift/10.0": {
+      "median": 99.33500000000001
+    },
+    "whoosh/shift/20.0": {
+      "median": 98.06
+    },
+    "whoosh/shift/40.0": {
+      "median": 92.25
+    },
+    "whoosh/shift/80.0": {
+      "median": 71.85
+    },
+    "click/nelder-mead": {
+      "median": 97.93,
+      "min": 87.23,
+      "pass99": 2,
+      "n": 8,
+      "meanSeconds": 1.575
+    },
+    "click/cma-es": {
+      "median": 95.41,
+      "min": 91.18,
+      "pass99": 0,
+      "n": 8,
+      "meanSeconds": 2.2375
+    },
+    "click/identity": {
+      "min": 97.96
+    },
+    "click/perturbed/fMode x1.06 (one semitone)": {
+      "median": 35.1,
+      "max": 72.33,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/perturbed/decayMode x1.5": {
+      "median": 97.22,
+      "max": 99.43,
+      "fail99": 7,
+      "n": 8
+    },
+    "click/perturbed/noiseMix +0.3": {
+      "median": 50.095,
+      "max": 89.59,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/perturbed/noiseHp x2": {
+      "median": 97.61000000000001,
+      "max": 99.56,
+      "fail99": 5,
+      "n": 8
+    },
+    "click/perturbed/gain +2 dB": {
+      "median": 95.71,
+      "max": 95.75,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/perturbed/late by 20 ms": {
+      "median": 95.705,
+      "max": 95.75,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/gain/0.25": {
+      "median": 99.57
+    },
+    "click/gain/0.5": {
+      "median": 99.38499999999999
+    },
+    "click/gain/1.0": {
+      "median": 98.64
+    },
+    "click/gain/1.5": {
+      "median": 97.41
+    },
+    "click/gain/2.0": {
+      "median": 95.71
+    },
+    "click/gain/3.0": {
+      "median": 91.02
+    },
+    "click/shift/2.0": {
+      "median": 99.59
+    },
+    "click/shift/5.0": {
+      "median": 99.38
+    },
+    "click/shift/10.0": {
+      "median": 98.63499999999999
+    },
+    "click/shift/20.0": {
+      "median": 95.705
+    },
+    "click/shift/40.0": {
+      "median": 84.83
+    },
+    "click/shift/80.0": {
+      "median": 52.36
+    }
+  },
+  "fits": [
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "method": "nelder-mead",
+      "seconds": 22.0,
+      "evals": 432,
+      "score": 82.31,
+      "E": 4.401,
+      "floorScore": 99.62,
+      "rawScore": 81.34,
+      "paramError": {
+        "duration": -2.0,
+        "peakPos": -0.21,
+        "fStart": -4.0,
+        "fEnd": 4.4,
+        "bandwidthOct": -3.1,
+        "envCurve": -57.0,
+        "sweepCurve": -48.9,
+        "gainDb": 0.074
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -2.6692,
+        "attack": -1.2052,
+        "duration": 2.9343,
+        "brightness": 0.5763,
+        "spectralShape": 1.361,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "method": "cma-es",
+      "seconds": 27.4,
+      "evals": 591,
+      "score": 99.34,
+      "E": 0.814,
+      "floorScore": 98.97,
+      "rawScore": 98.68,
+      "paramError": {
+        "duration": -6.1,
+        "peakPos": 0.054,
+        "fStart": 5.1,
+        "fEnd": -0.2,
+        "bandwidthOct": -1.0,
+        "envCurve": -12.0,
+        "sweepCurve": -28.6,
+        "gainDb": 0.114
+      },
+      "corrected": {
+        "level": 0.1151,
+        "anchor": -0.0606,
+        "attack": 0.4803,
+        "duration": -0.0,
+        "brightness": 0.3343,
+        "spectralShape": 0.5503,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "method": "nelder-mead",
+      "seconds": 13.3,
+      "evals": 432,
+      "score": 85.82,
+      "E": 3.901,
+      "floorScore": 73.99,
+      "rawScore": 78.59,
+      "paramError": {
+        "duration": -12.1,
+        "peakPos": 0.014,
+        "fStart": -12.8,
+        "fEnd": -45.3,
+        "bandwidthOct": -1.9,
+        "envCurve": -52.3,
+        "sweepCurve": 92.6,
+        "gainDb": -1.323
+      },
+      "corrected": {
+        "level": -1.9786,
+        "anchor": -0.5783,
+        "attack": 0.0,
+        "duration": 1.7929,
+        "brightness": 2.4801,
+        "spectralShape": 1.2647,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "method": "cma-es",
+      "seconds": 16.6,
+      "evals": 591,
+      "score": 98.05,
+      "E": 1.4,
+      "floorScore": 88.26,
+      "rawScore": 95.42,
+      "paramError": {
+        "duration": -3.7,
+        "peakPos": 0.031,
+        "fStart": 30.1,
+        "fEnd": 26.3,
+        "bandwidthOct": 0.8,
+        "envCurve": 7.1,
+        "sweepCurve": -35.1,
+        "gainDb": -0.309
+      },
+      "corrected": {
+        "level": -0.4502,
+        "anchor": 0.5884,
+        "attack": 0.0,
+        "duration": -0.1768,
+        "brightness": 1.0059,
+        "spectralShape": 0.6057,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "method": "nelder-mead",
+      "seconds": 31.8,
+      "evals": 432,
+      "score": 98.57,
+      "E": 1.197,
+      "floorScore": 99.22,
+      "rawScore": 97.59,
+      "paramError": {
+        "duration": 12.0,
+        "peakPos": -0.062,
+        "fStart": 32.1,
+        "fEnd": -4.1,
+        "bandwidthOct": -0.7,
+        "envCurve": 35.5,
+        "sweepCurve": -44.7,
+        "gainDb": -0.337
+      },
+      "corrected": {
+        "level": -0.4968,
+        "anchor": 0.0,
+        "attack": -0.4333,
+        "duration": -0.3485,
+        "brightness": 0.6882,
+        "spectralShape": 0.6353,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "method": "cma-es",
+      "seconds": 35.8,
+      "evals": 591,
+      "score": 98.32,
+      "E": 1.298,
+      "floorScore": 99.33,
+      "rawScore": 97.39,
+      "paramError": {
+        "duration": -10.8,
+        "peakPos": 0.059,
+        "fStart": -4.6,
+        "fEnd": 3.9,
+        "bandwidthOct": 1.5,
+        "envCurve": -28.3,
+        "sweepCurve": 26.9,
+        "gainDb": -0.356
+      },
+      "corrected": {
+        "level": -0.6123,
+        "anchor": -0.6474,
+        "attack": 0.4743,
+        "duration": 0.2152,
+        "brightness": 0.5938,
+        "spectralShape": 0.5171,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "method": "nelder-mead",
+      "seconds": 25.2,
+      "evals": 432,
+      "score": 99.7,
+      "E": 0.543,
+      "floorScore": 99.25,
+      "rawScore": 98.84,
+      "paramError": {
+        "duration": -3.5,
+        "peakPos": 0.016,
+        "fStart": -9.7,
+        "fEnd": -1.8,
+        "bandwidthOct": 1.4,
+        "envCurve": -6.1,
+        "sweepCurve": 86.3,
+        "gainDb": -0.039
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": -0.0,
+        "brightness": 0.4269,
+        "spectralShape": 0.3348,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "method": "cma-es",
+      "seconds": 34.1,
+      "evals": 591,
+      "score": 99.5,
+      "E": 0.704,
+      "floorScore": 99.27,
+      "rawScore": 98.58,
+      "paramError": {
+        "duration": -6.5,
+        "peakPos": 0.046,
+        "fStart": -4.8,
+        "fEnd": 1.5,
+        "bandwidthOct": -0.4,
+        "envCurve": -10.1,
+        "sweepCurve": 16.6,
+        "gainDb": 0.015
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": 0.1493,
+        "attack": 0.2401,
+        "duration": -0.0,
+        "brightness": 0.4592,
+        "spectralShape": 0.4523,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "method": "nelder-mead",
+      "seconds": 13.7,
+      "evals": 432,
+      "score": 41.51,
+      "E": 9.353,
+      "floorScore": 84.44,
+      "rawScore": 0.04,
+      "paramError": {
+        "duration": 4.4,
+        "peakPos": -0.07,
+        "fStart": -64.9,
+        "fEnd": -38.3,
+        "bandwidthOct": 226.2,
+        "envCurve": 32.5,
+        "sweepCurve": -31.8,
+        "gainDb": -0.194
+      },
+      "corrected": {
+        "level": -0.0372,
+        "anchor": -0.927,
+        "attack": -1.0094,
+        "duration": -0.0,
+        "brightness": 1.1817,
+        "spectralShape": 6.4796,
+        "pitch": -6.4978
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "method": "cma-es",
+      "seconds": 15.8,
+      "evals": 591,
+      "score": 93.18,
+      "E": 2.651,
+      "floorScore": 31.99,
+      "rawScore": 0.23,
+      "paramError": {
+        "duration": -7.7,
+        "peakPos": -0.03,
+        "fStart": -23.0,
+        "fEnd": -2.8,
+        "bandwidthOct": -6.9,
+        "envCurve": -28.4,
+        "sweepCurve": -25.0,
+        "gainDb": -0.115
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": -0.2981,
+        "brightness": 1.1782,
+        "spectralShape": 1.165,
+        "pitch": 2.0482
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "method": "nelder-mead",
+      "seconds": 13.4,
+      "evals": 432,
+      "score": 91.07,
+      "E": 3.05,
+      "floorScore": 71.47,
+      "rawScore": 79.8,
+      "paramError": {
+        "duration": 9.9,
+        "peakPos": -0.066,
+        "fStart": 57.3,
+        "fEnd": -38.2,
+        "bandwidthOct": -5.9,
+        "envCurve": 56.5,
+        "sweepCurve": -23.4,
+        "gainDb": 0.172
+      },
+      "corrected": {
+        "level": 0.5003,
+        "anchor": -1.2384,
+        "attack": -0.0,
+        "duration": -0.5374,
+        "brightness": 2.3604,
+        "spectralShape": 1.2876,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "method": "cma-es",
+      "seconds": 15.3,
+      "evals": 591,
+      "score": 94.14,
+      "E": 2.452,
+      "floorScore": 90.85,
+      "rawScore": 89.05,
+      "paramError": {
+        "duration": -17.8,
+        "peakPos": 0.15,
+        "fStart": 1.8,
+        "fEnd": 14.1,
+        "bandwidthOct": -15.3,
+        "envCurve": -32.8,
+        "sweepCurve": 16.4,
+        "gainDb": 0.727
+      },
+      "corrected": {
+        "level": 0.9886,
+        "anchor": -0.9688,
+        "attack": 1.156,
+        "duration": -0.8722,
+        "brightness": 0.9389,
+        "spectralShape": 1.0569,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "method": "nelder-mead",
+      "seconds": 21.7,
+      "evals": 432,
+      "score": 84.55,
+      "E": 4.086,
+      "floorScore": 99.28,
+      "rawScore": 83.18,
+      "paramError": {
+        "duration": -3.9,
+        "peakPos": -0.189,
+        "fStart": 9.4,
+        "fEnd": -12.3,
+        "bandwidthOct": -1.6,
+        "envCurve": -60.4,
+        "sweepCurve": -12.5,
+        "gainDb": 0.389
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": -2.1449,
+        "attack": -0.242,
+        "duration": 3.2205,
+        "brightness": 0.8348,
+        "spectralShape": 0.9855,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "method": "cma-es",
+      "seconds": 31.4,
+      "evals": 591,
+      "score": 99.63,
+      "E": 0.608,
+      "floorScore": 97.27,
+      "rawScore": 98.52,
+      "paramError": {
+        "duration": 0.8,
+        "peakPos": -0.003,
+        "fStart": -15.2,
+        "fEnd": -1.9,
+        "bandwidthOct": 1.3,
+        "envCurve": 5.6,
+        "sweepCurve": -21.0,
+        "gainDb": 0.148
+      },
+      "corrected": {
+        "level": 0.0749,
+        "anchor": -0.2494,
+        "attack": 0.1344,
+        "duration": -0.0,
+        "brightness": 0.4162,
+        "spectralShape": 0.3333,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "method": "nelder-mead",
+      "seconds": 12.6,
+      "evals": 432,
+      "score": 59.26,
+      "E": 7.216,
+      "floorScore": 36.63,
+      "rawScore": 38.02,
+      "paramError": {
+        "duration": -2.4,
+        "peakPos": -0.139,
+        "fStart": 27.7,
+        "fEnd": -82.9,
+        "bandwidthOct": 70.5,
+        "envCurve": 36.7,
+        "sweepCurve": 82.3,
+        "gainDb": -0.682
+      },
+      "corrected": {
+        "level": -0.9334,
+        "anchor": -3.7496,
+        "attack": -1.0881,
+        "duration": -2.0312,
+        "brightness": 4.1483,
+        "spectralShape": 3.823,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "method": "cma-es",
+      "seconds": 16.2,
+      "evals": 591,
+      "score": 89.92,
+      "E": 3.252,
+      "floorScore": 76.5,
+      "rawScore": 82.32,
+      "paramError": {
+        "duration": -8.3,
+        "peakPos": -0.044,
+        "fStart": -30.5,
+        "fEnd": -16.0,
+        "bandwidthOct": -4.5,
+        "envCurve": -47.5,
+        "sweepCurve": -33.8,
+        "gainDb": 0.356
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -0.0,
+        "attack": 0.1616,
+        "duration": 1.3858,
+        "brightness": 2.3728,
+        "spectralShape": 1.7317,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "method": "nelder-mead",
+      "seconds": 1.6,
+      "evals": 432,
+      "score": 98.34,
+      "E": 1.292,
+      "floorScore": 99.57,
+      "rawScore": 97.66,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": -15.6,
+        "noiseMix": -0.043,
+        "decayNoiseMs": 100.3,
+        "noiseHp": 10.9,
+        "gainDb": 0.006
+      },
+      "corrected": {
+        "level": 0.0042,
+        "anchor": 0.0,
+        "attack": -0.0027,
+        "duration": 0.3853,
+        "brightness": 1.1528,
+        "spectralShape": 0.4357,
+        "pitch": -0.0438
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "method": "cma-es",
+      "seconds": 2.3,
+      "evals": 595,
+      "score": 96.47,
+      "E": 1.892,
+      "floorScore": 98.65,
+      "rawScore": 93.88,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -6.1,
+        "noiseMix": -0.132,
+        "decayNoiseMs": -65.7,
+        "noiseHp": 1.3,
+        "gainDb": 0.011
+      },
+      "corrected": {
+        "level": 0.0109,
+        "anchor": 0.0,
+        "attack": -0.0196,
+        "duration": 0.0,
+        "brightness": 1.8583,
+        "spectralShape": 0.3113,
+        "pitch": 0.1687
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "method": "nelder-mead",
+      "seconds": 1.7,
+      "evals": 432,
+      "score": 94.34,
+      "E": 2.408,
+      "floorScore": 98.81,
+      "rawScore": 87.98,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": -9.7,
+        "noiseMix": -0.04,
+        "decayNoiseMs": 44.4,
+        "noiseHp": 165.2,
+        "gainDb": -0.046
+      },
+      "corrected": {
+        "level": -0.046,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.3174,
+        "brightness": 2.2992,
+        "spectralShape": 0.6403,
+        "pitch": -0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "method": "cma-es",
+      "seconds": 2.4,
+      "evals": 595,
+      "score": 96.05,
+      "E": 2.003,
+      "floorScore": 98.14,
+      "rawScore": 88.47,
+      "paramError": {
+        "fMode": 0.0,
+        "decayModeMs": -2.3,
+        "noiseMix": -0.021,
+        "decayNoiseMs": 26.8,
+        "noiseHp": 69.8,
+        "gainDb": 0.031
+      },
+      "corrected": {
+        "level": 0.0307,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.398,
+        "brightness": 1.9157,
+        "spectralShape": 0.4205,
+        "pitch": 0.083
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "method": "nelder-mead",
+      "seconds": 1.2,
+      "evals": 300,
+      "score": 91.23,
+      "E": 3.023,
+      "floorScore": 87.84,
+      "rawScore": 68.78,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -82.0,
+        "noiseMix": -0.097,
+        "decayNoiseMs": -82.9,
+        "noiseHp": 428.2,
+        "gainDb": -0.002
+      },
+      "corrected": {
+        "level": -0.002,
+        "anchor": -0.0026,
+        "attack": -0.0583,
+        "duration": -1.9167,
+        "brightness": 0.9889,
+        "spectralShape": 2.0756,
+        "pitch": -0.4182
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "method": "cma-es",
+      "seconds": 2.2,
+      "evals": 595,
+      "score": 94.77,
+      "E": 2.312,
+      "floorScore": 96.84,
+      "rawScore": 79.32,
+      "paramError": {
+        "fMode": -0.2,
+        "decayModeMs": -10.3,
+        "noiseMix": -0.079,
+        "decayNoiseMs": -13.7,
+        "noiseHp": 40.6,
+        "gainDb": -0.175
+      },
+      "corrected": {
+        "level": -0.1754,
+        "anchor": -0.0,
+        "attack": -0.0,
+        "duration": 0.0,
+        "brightness": 2.2744,
+        "spectralShape": 0.322,
+        "pitch": -0.1931
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "method": "nelder-mead",
+      "seconds": 1.6,
+      "evals": 432,
+      "score": 97.66,
+      "E": 1.536,
+      "floorScore": 95.81,
+      "rawScore": 86.65,
+      "paramError": {
+        "fMode": 0.2,
+        "decayModeMs": 0.5,
+        "noiseMix": -0.038,
+        "decayNoiseMs": -32.2,
+        "noiseHp": -47.8,
+        "gainDb": -0.023
+      },
+      "corrected": {
+        "level": -0.0239,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": -0.0,
+        "brightness": 1.4174,
+        "spectralShape": 0.5061,
+        "pitch": 0.3077
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "method": "cma-es",
+      "seconds": 2.2,
+      "evals": 595,
+      "score": 94.54,
+      "E": 2.364,
+      "floorScore": 97.48,
+      "rawScore": 83.3,
+      "paramError": {
+        "fMode": 0.4,
+        "decayModeMs": -21.7,
+        "noiseMix": -0.057,
+        "decayNoiseMs": 19.1,
+        "noiseHp": -34.7,
+        "gainDb": -0.153
+      },
+      "corrected": {
+        "level": -0.1546,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": -0.2187,
+        "brightness": 2.1676,
+        "spectralShape": 0.6247,
+        "pitch": 0.6532
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "method": "nelder-mead",
+      "seconds": 1.6,
+      "evals": 432,
+      "score": 98.2,
+      "E": 1.346,
+      "floorScore": 0.0,
+      "rawScore": 2.75,
+      "paramError": {
+        "fMode": 0.2,
+        "decayModeMs": -50.7,
+        "noiseMix": 0.003,
+        "decayNoiseMs": 161.1,
+        "noiseHp": 9.3,
+        "gainDb": 0.002
+      },
+      "corrected": {
+        "level": 0.0022,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.3837,
+        "brightness": 0.0,
+        "spectralShape": 1.2902,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "method": "cma-es",
+      "seconds": 2.3,
+      "evals": 595,
+      "score": 93.44,
+      "E": 2.599,
+      "floorScore": 0.01,
+      "rawScore": 14.71,
+      "paramError": {
+        "fMode": -0.1,
+        "decayModeMs": 962.5,
+        "noiseMix": 0.086,
+        "decayNoiseMs": 103.6,
+        "noiseHp": -77.2,
+        "gainDb": -0.123
+      },
+      "corrected": {
+        "level": -0.1228,
+        "anchor": 0.0,
+        "attack": 0.0076,
+        "duration": 0.7831,
+        "brightness": 0.7794,
+        "spectralShape": 2.3494,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "method": "nelder-mead",
+      "seconds": 1.6,
+      "evals": 421,
+      "score": 99.84,
+      "E": 0.405,
+      "floorScore": 92.3,
+      "rawScore": 94.25,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": 12.2,
+        "noiseMix": 0.043,
+        "decayNoiseMs": -49.5,
+        "noiseHp": -52.0,
+        "gainDb": -0.02
+      },
+      "corrected": {
+        "level": -0.0205,
+        "anchor": -0.0011,
+        "attack": -0.0184,
+        "duration": -0.0,
+        "brightness": 0.0,
+        "spectralShape": 0.404,
+        "pitch": -0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "method": "cma-es",
+      "seconds": 2.2,
+      "evals": 595,
+      "score": 97.44,
+      "E": 1.606,
+      "floorScore": 98.82,
+      "rawScore": 94.42,
+      "paramError": {
+        "fMode": -0.3,
+        "decayModeMs": -23.2,
+        "noiseMix": -0.026,
+        "decayNoiseMs": 280.4,
+        "noiseHp": 250.5,
+        "gainDb": -0.022
+      },
+      "corrected": {
+        "level": -0.0227,
+        "anchor": 0.0,
+        "attack": 0.0478,
+        "duration": -0.2505,
+        "brightness": 1.2871,
+        "spectralShape": 0.5892,
+        "pitch": -0.713
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "method": "nelder-mead",
+      "seconds": 1.7,
+      "evals": 432,
+      "score": 99.92,
+      "E": 0.273,
+      "floorScore": 90.81,
+      "rawScore": 90.91,
+      "paramError": {
+        "fMode": -0.1,
+        "decayModeMs": -1.5,
+        "noiseMix": 0.021,
+        "decayNoiseMs": -61.3,
+        "noiseHp": 125.3,
+        "gainDb": -0.057
+      },
+      "corrected": {
+        "level": -0.0569,
+        "anchor": -0.0012,
+        "attack": -0.0177,
+        "duration": -0.1829,
+        "brightness": 0.0,
+        "spectralShape": 0.1455,
+        "pitch": -0.1285
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "method": "cma-es",
+      "seconds": 2.2,
+      "evals": 595,
+      "score": 91.18,
+      "E": 3.031,
+      "floorScore": 98.09,
+      "rawScore": 83.82,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -68.7,
+        "noiseMix": -0.02,
+        "decayNoiseMs": 330.6,
+        "noiseHp": -47.9,
+        "gainDb": -0.254
+      },
+      "corrected": {
+        "level": -0.2541,
+        "anchor": 0.0,
+        "attack": 0.0184,
+        "duration": -1.858,
+        "brightness": 1.8997,
+        "spectralShape": 1.4353,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "method": "nelder-mead",
+      "seconds": 1.6,
+      "evals": 432,
+      "score": 87.23,
+      "E": 3.686,
+      "floorScore": 93.27,
+      "rawScore": 80.45,
+      "paramError": {
+        "fMode": 0.2,
+        "decayModeMs": -85.7,
+        "noiseMix": 0.016,
+        "decayNoiseMs": -85.3,
+        "noiseHp": 1.2,
+        "gainDb": -0.046
+      },
+      "corrected": {
+        "level": -0.046,
+        "anchor": -0.0024,
+        "attack": -0.0385,
+        "duration": -2.955,
+        "brightness": 0.0,
+        "spectralShape": 2.1827,
+        "pitch": -0.2967
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "method": "cma-es",
+      "seconds": 2.1,
+      "evals": 595,
+      "score": 98.19,
+      "E": 1.35,
+      "floorScore": 96.28,
+      "rawScore": 91.02,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": 5.9,
+        "noiseMix": 0.028,
+        "decayNoiseMs": -50.1,
+        "noiseHp": -64.0,
+        "gainDb": -0.042
+      },
+      "corrected": {
+        "level": -0.0419,
+        "anchor": -0.0,
+        "attack": -0.0,
+        "duration": -0.3921,
+        "brightness": 0.9778,
+        "spectralShape": 0.8424,
+        "pitch": 0.0
+      }
+    }
+  ],
+  "checks": [
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "identity": 99.89,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 92.89,
+        "fEnd x1.26 (third octave)": 92.03,
+        "sweep reversed": 99.45,
+        "duration x1.3": 73.27,
+        "peakPos +0.15": 87.27,
+        "bandwidth x1.6": 76.02,
+        "envCurve x1.6": 94.32,
+        "gain +2 dB": 96.31,
+        "late by 50 ms": 92.85
+      },
+      "gain": {
+        "0.25": 99.87,
+        "0.5": 99.73,
+        "1.0": 99.07,
+        "1.5": 97.93,
+        "2.0": 96.31,
+        "3.0": 91.78
+      },
+      "shift": {
+        "2.0": 99.86,
+        "5.0": 99.72,
+        "10.0": 99.42,
+        "20.0": 98.46,
+        "40.0": 95.16,
+        "80.0": 83.76
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "identity": 99.14,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 90.33,
+        "fEnd x1.26 (third octave)": 96.44,
+        "sweep reversed": 19.24,
+        "duration x1.3": 77.57,
+        "peakPos +0.15": 83.9,
+        "bandwidth x1.6": 85.7,
+        "envCurve x1.6": 91.69,
+        "gain +2 dB": 93.73,
+        "late by 50 ms": 84.3
+      },
+      "gain": {
+        "0.25": 98.87,
+        "0.5": 98.48,
+        "1.0": 97.35,
+        "1.5": 95.76,
+        "2.0": 93.73,
+        "3.0": 88.48
+      },
+      "shift": {
+        "2.0": 99.39,
+        "5.0": 99.35,
+        "10.0": 99.35,
+        "20.0": 97.91,
+        "40.0": 90.17,
+        "80.0": 62.04
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "identity": 99.35,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 95.45,
+        "fEnd x1.26 (third octave)": 92.37,
+        "sweep reversed": 96.6,
+        "duration x1.3": 77.29,
+        "peakPos +0.15": 91.43,
+        "bandwidth x1.6": 81.02,
+        "envCurve x1.6": 93.24,
+        "gain +2 dB": 94.27,
+        "late by 50 ms": 97.19
+      },
+      "gain": {
+        "0.25": 99.12,
+        "0.5": 98.78,
+        "1.0": 97.73,
+        "1.5": 96.22,
+        "2.0": 94.27,
+        "3.0": 89.16
+      },
+      "shift": {
+        "2.0": 99.33,
+        "5.0": 99.35,
+        "10.0": 99.34,
+        "20.0": 99.06,
+        "40.0": 97.98,
+        "80.0": 93.83
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "identity": 99.87,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 96.12,
+        "fEnd x1.26 (third octave)": 92.06,
+        "sweep reversed": 95.54,
+        "duration x1.3": 72.91,
+        "peakPos +0.15": 84.4,
+        "bandwidth x1.6": 44.25,
+        "envCurve x1.6": 93.46,
+        "gain +2 dB": 95.73,
+        "late by 50 ms": 93.97
+      },
+      "gain": {
+        "0.25": 99.78,
+        "0.5": 99.56,
+        "1.0": 98.76,
+        "1.5": 97.47,
+        "2.0": 95.73,
+        "3.0": 90.95
+      },
+      "shift": {
+        "2.0": 99.88,
+        "5.0": 99.81,
+        "10.0": 99.62,
+        "20.0": 98.87,
+        "40.0": 96.03,
+        "80.0": 85.58
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "identity": 98.96,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 88.41,
+        "fEnd x1.26 (third octave)": 93.14,
+        "sweep reversed": 0.33,
+        "duration x1.3": 63.92,
+        "peakPos +0.15": 88.99,
+        "bandwidth x1.6": 85.72,
+        "envCurve x1.6": 94.09,
+        "gain +2 dB": 94.86,
+        "late by 50 ms": 76.23
+      },
+      "gain": {
+        "0.25": 98.89,
+        "0.5": 98.65,
+        "1.0": 97.84,
+        "1.5": 96.57,
+        "2.0": 94.86,
+        "3.0": 90.25
+      },
+      "shift": {
+        "2.0": 98.75,
+        "5.0": 98.17,
+        "10.0": 96.99,
+        "20.0": 93.58,
+        "40.0": 82.94,
+        "80.0": 53.76
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "identity": 99.49,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 94.01,
+        "fEnd x1.26 (third octave)": 94.94,
+        "sweep reversed": 92.21,
+        "duration x1.3": 82.46,
+        "peakPos +0.15": 93.09,
+        "bandwidth x1.6": 79.88,
+        "envCurve x1.6": 97.58,
+        "gain +2 dB": 97.97,
+        "late by 50 ms": 82.5
+      },
+      "gain": {
+        "0.25": 99.72,
+        "0.5": 99.79,
+        "1.0": 99.68,
+        "1.5": 99.06,
+        "2.0": 97.97,
+        "3.0": 94.46
+      },
+      "shift": {
+        "2.0": 99.45,
+        "5.0": 99.31,
+        "10.0": 98.6,
+        "20.0": 96.23,
+        "40.0": 88.02,
+        "80.0": 62.63
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "identity": 99.88,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 94.04,
+        "fEnd x1.26 (third octave)": 93.58,
+        "sweep reversed": 38.05,
+        "duration x1.3": 70.01,
+        "peakPos +0.15": 84.47,
+        "bandwidth x1.6": 79.54,
+        "envCurve x1.6": 92.49,
+        "gain +2 dB": 96.28,
+        "late by 50 ms": 91.63
+      },
+      "gain": {
+        "0.25": 99.86,
+        "0.5": 99.71,
+        "1.0": 99.05,
+        "1.5": 97.9,
+        "2.0": 96.28,
+        "3.0": 91.74
+      },
+      "shift": {
+        "2.0": 99.83,
+        "5.0": 99.68,
+        "10.0": 99.33,
+        "20.0": 98.21,
+        "40.0": 94.33,
+        "80.0": 81.07
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "identity": 89.91,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 70.5,
+        "fEnd x1.26 (third octave)": 7.5,
+        "sweep reversed": 10.13,
+        "duration x1.3": 34.28,
+        "peakPos +0.15": 50.29,
+        "bandwidth x1.6": 81.54,
+        "envCurve x1.6": 90.87,
+        "gain +2 dB": 87.77,
+        "late by 50 ms": 69.01
+      },
+      "gain": {
+        "0.25": 89.91,
+        "0.5": 89.91,
+        "1.0": 89.64,
+        "1.5": 88.89,
+        "2.0": 87.77,
+        "3.0": 84.45
+      },
+      "shift": {
+        "2.0": 89.69,
+        "5.0": 89.17,
+        "10.0": 88.05,
+        "20.0": 84.87,
+        "40.0": 75.13,
+        "80.0": 48.59
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "identity": 99.4,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 34.89,
+        "decayMode x1.5": 98.46,
+        "noiseMix +0.3": 89.59,
+        "noiseHp x2": 97.29,
+        "gain +2 dB": 95.49,
+        "late by 20 ms": 95.48
+      },
+      "gain": {
+        "0.25": 99.34,
+        "0.5": 99.15,
+        "1.0": 98.41,
+        "1.5": 97.18,
+        "2.0": 95.49,
+        "3.0": 90.81
+      },
+      "shift": {
+        "2.0": 99.36,
+        "5.0": 99.15,
+        "10.0": 98.41,
+        "20.0": 95.48,
+        "40.0": 84.63,
+        "80.0": 52.24
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "identity": 99.64,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.13,
+        "decayMode x1.5": 95.94,
+        "noiseMix +0.3": 30.61,
+        "noiseHp x2": 99.42,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.71
+      },
+      "gain": {
+        "0.25": 99.57,
+        "0.5": 99.39,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.59,
+        "5.0": 99.38,
+        "10.0": 98.63,
+        "20.0": 95.71,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "identity": 99.15,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 33.93,
+        "decayMode x1.5": 98.31,
+        "noiseMix +0.3": 32.84,
+        "noiseHp x2": 96.53,
+        "gain +2 dB": 95.24,
+        "late by 20 ms": 95.24
+      },
+      "gain": {
+        "0.25": 99.09,
+        "0.5": 98.9,
+        "1.0": 98.16,
+        "1.5": 96.93,
+        "2.0": 95.24,
+        "3.0": 90.58
+      },
+      "shift": {
+        "2.0": 99.11,
+        "5.0": 98.9,
+        "10.0": 98.16,
+        "20.0": 95.24,
+        "40.0": 84.41,
+        "80.0": 52.1
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "identity": 97.96,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 36.01,
+        "decayMode x1.5": 63.25,
+        "noiseMix +0.3": 72.69,
+        "noiseHp x2": 96.5,
+        "gain +2 dB": 94.11,
+        "late by 20 ms": 94.1
+      },
+      "gain": {
+        "0.25": 97.9,
+        "0.5": 97.72,
+        "1.0": 96.99,
+        "1.5": 95.78,
+        "2.0": 94.11,
+        "3.0": 89.5
+      },
+      "shift": {
+        "2.0": 97.93,
+        "5.0": 97.72,
+        "10.0": 96.98,
+        "20.0": 94.1,
+        "40.0": 83.41,
+        "80.0": 51.49
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "identity": 99.64,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 72.33,
+        "decayMode x1.5": 99.43,
+        "noiseMix +0.3": 29.72,
+        "noiseHp x2": 97.93,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.71
+      },
+      "gain": {
+        "0.25": 99.58,
+        "0.5": 99.39,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.6,
+        "5.0": 99.39,
+        "10.0": 98.64,
+        "20.0": 95.71,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "identity": 99.68,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.07,
+        "decayMode x1.5": 96.65,
+        "noiseMix +0.3": 39.61,
+        "noiseHp x2": 99.56,
+        "gain +2 dB": 95.75,
+        "late by 20 ms": 95.75
+      },
+      "gain": {
+        "0.25": 99.62,
+        "0.5": 99.43,
+        "1.0": 98.68,
+        "1.5": 97.45,
+        "2.0": 95.75,
+        "3.0": 91.06
+      },
+      "shift": {
+        "2.0": 99.64,
+        "5.0": 99.43,
+        "10.0": 98.68,
+        "20.0": 95.75,
+        "40.0": 84.87,
+        "80.0": 52.39
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "identity": 99.63,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.02,
+        "decayMode x1.5": 71.31,
+        "noiseMix +0.3": 86.12,
+        "noiseHp x2": 99.46,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.7
+      },
+      "gain": {
+        "0.25": 99.57,
+        "0.5": 99.38,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.59,
+        "5.0": 99.38,
+        "10.0": 98.64,
+        "20.0": 95.7,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "identity": 99.66,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.25,
+        "decayMode x1.5": 97.79,
+        "noiseMix +0.3": 60.58,
+        "noiseHp x2": 96.74,
+        "gain +2 dB": 95.74,
+        "late by 20 ms": 95.73
+      },
+      "gain": {
+        "0.25": 99.59,
+        "0.5": 99.41,
+        "1.0": 98.66,
+        "1.5": 97.43,
+        "2.0": 95.74,
+        "3.0": 91.05
+      },
+      "shift": {
+        "2.0": 99.62,
+        "5.0": 99.41,
+        "10.0": 98.66,
+        "20.0": 95.73,
+        "40.0": 84.85,
+        "80.0": 52.38
+      }
+    }
+  ]
+}

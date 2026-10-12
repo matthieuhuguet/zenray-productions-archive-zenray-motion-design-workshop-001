@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+# 12 October 2026, 10:45 CEST: R03 lab, event segmentation inside a mix with music (synthetic, known ground truth).
+# A code-made music bed (kick on every beat at 120 BPM, hi-hat on off-beats, a sustained chord) receives 12 SFX at
+# known, off-grid times. We measure onset recall and precision within +-15 ms with three front ends:
+# (a) raw mix, (b) mix minus the beat grid (onsets within 25 ms of a detected beat are removed),
+# (c) percussive part of HPSS + grid filter. Musical onsets on the grid are the main false positives.
+# FR : test de segmentation sur un mixage synthetique a verite connue.
+import json
+import math
+import sys
+from pathlib import Path
+
+import librosa
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import SfxRecipes as R  # noqa: E402
+
+CFG = R.load_config()
+SR = CFG["audio"]["sampleRate"]
+TOL = 0.015
+GRID_GUARD = 0.025
+
+
+def music_bed(seconds, bpm, rng):
+    t = np.arange(int(seconds * SR)) / SR
+    x = 0.08 * sum(np.sin(2 * math.pi * f * t) for f in (220.0, 277.18, 329.63))
+    beat = 60.0 / bpm
+    for k in range(int(seconds / beat)):
+        a = int(k * beat * SR)
+        n = int(0.25 * SR)
+        tt = np.arange(n) / SR
+        kick = np.sin(2 * math.pi * (50 + 100 * np.exp(-tt / 0.03)) * tt) * np.exp(-tt / 0.12)
+        x[a:a + n] += 0.6 * kick[: len(x) - a]
+        h = a + int(beat / 2 * SR)
+        if h < len(x):
+            m = min(int(0.05 * SR), len(x) - h)
+            x[h:h + m] += 0.08 * rng.standard_normal(m) * np.exp(-np.arange(m) / SR / 0.01)
+    return x
+
+
+def detect(y):
+    env = librosa.onset.onset_strength(y=y, sr=SR, hop_length=240, lag=2, max_size=3)
+    return librosa.onset.onset_detect(onset_envelope=env, sr=SR, hop_length=240, units="time", backtrack=False)
+
+
+def score(found, truth):
+    used, hits = set(), 0
+    for t in truth:
+        d = [abs(f - t) if i not in used else 9 for i, f in enumerate(found)]
+        if d and min(d) <= TOL:
+            used.add(int(np.argmin(d)))
+            hits += 1
+    return {"recall": hits / len(truth), "precision": hits / max(len(found), 1), "found": len(found)}
+
+
+def main():
+    rng = np.random.default_rng(7)
+    bpm, seconds = 120.0, 14.0
+    mix = music_bed(seconds, bpm, rng)
+    beat = 60.0 / bpm
+    truth, kinds = [], []
+    for i in range(12):
+        t = 0.6 + i * 1.07 + 0.11  # off-grid times, 1.07 s apart
+        kind = "click" if i % 2 else "whoosh"
+        schema = R.Schema(CFG["recipes"][kind])
+        p = schema.defaults()
+        p["gainDb"] = -14.0
+        body = R.RENDERERS[kind](p, 1000 + i, CFG)
+        a = int(t * SR)
+        mix[a:a + len(body)] += body[: len(mix) - a]
+        # Truth = perceptual onset: for a whoosh, where its envelope crosses 15 percent of its peak.
+        env = np.abs(librosa.util.frame(np.pad(body, (0, 480)), frame_length=480, hop_length=48)).max(axis=0)
+        truth.append(t + (np.argmax(env >= 0.15 * env.max()) * 48 / SR if kind == "whoosh" else 0.0))
+        kinds.append(kind)
+    grid_times = librosa.beat.beat_track(y=mix, sr=SR, hop_length=240, units="time")[1]
+    tempo = float(np.atleast_1d(librosa.beat.beat_track(y=mix, sr=SR, hop_length=240)[0])[0])
+    half_grid = np.sort(np.concatenate([grid_times, grid_times + beat / 2]))
+
+    def off_grid(f):
+        return np.array([x for x in f if np.min(np.abs(half_grid - x)) > GRID_GUARD])
+
+    raw = detect(mix)
+    perc = librosa.effects.percussive(mix, margin=2.0)
+    # (d) REPET-SIM style residual (Rafii and Pardo): the music repeats, the SFX do not. Nearest-neighbour median of
+    # similar frames (librosa.decompose.nn_filter) models the repeating music; the positive residual is the
+    # non-repeating layer. Events = peaks of its smoothed energy, onset = 15 percent crossing before each peak.
+    S = np.abs(librosa.stft(mix, n_fft=2048, hop_length=240))
+    rep = np.minimum(S, librosa.decompose.nn_filter(S, aggregate=np.median, metric="cosine", width=int(librosa.time_to_frames(2.0, sr=SR, hop_length=240))))
+    resid = np.maximum(S - rep, 0.0)
+    e = np.convolve((resid ** 2).sum(axis=0), np.hanning(21) / np.hanning(21).sum(), mode="same")
+    edb = 10 * np.log10(e + 1e-12)
+    peaks = librosa.util.peak_pick(edb, pre_max=40, post_max=40, pre_avg=200, post_avg=200, delta=6.0, wait=60)
+    rep_on = []
+    for k in peaks:
+        j = k
+        while j > 0 and e[j] > 0.15 * e[k]:
+            j -= 1
+        rep_on.append(j * 240 / SR)
+    rep_on = np.array(rep_on)
+    # (e) Swell detector for slow events: band 300 Hz to 10 kHz, per-bin excess over a 2 s running median (removes the
+    # stationary chord), percussive frames removed by a 9-frame vertical median (HPSS logic), then a 60 ms smoothed
+    # energy, peak picking, and an onset at the 15 percent crossing before each peak. FR : detecteur de houles lentes.
+    import scipy.ndimage as ndi
+    f = librosa.fft_frequencies(sr=SR, n_fft=2048)
+    band = (f >= 300) & (f <= 10000)
+    Sb = S[band]
+    med_t = ndi.median_filter(Sb, size=(1, int(2.0 * SR / 240)))
+    excess = np.maximum(Sb - 1.5 * med_t, 0.0)
+    harmonic_like = ndi.median_filter(excess, size=(1, 9))  # keeps sustained excess (swells), drops 1-frame hits
+    sw = np.convolve((harmonic_like ** 2).sum(axis=0), np.hanning(25) / np.hanning(25).sum(), mode="same")
+    swdb = 10 * np.log10(sw + 1e-12)
+    pk = librosa.util.peak_pick(swdb, pre_max=60, post_max=60, pre_avg=300, post_avg=300, delta=8.0, wait=150)
+    sw_on = []
+    for k in pk:
+        j = k
+        while j > 0 and sw[j] > 0.15 * sw[k]:
+            j -= 1
+        sw_on.append(j * 240 / SR)
+    sw_on = np.array(sw_on)
+    whoosh_truth = [t for t, kk in zip(truth, kinds) if kk == "whoosh"]
+    out = {
+        "date": "12 October 2026", "bpmTrue": bpm, "bpmEstimated": round(tempo, 2),
+        "raw": score(raw, truth), "rawMinusGrid": score(off_grid(raw), truth),
+        "hpssMinusGrid": score(off_grid(detect(perc)), truth),
+        "repetResidual": score(rep_on, truth),
+        "perKindRecallRepet": {k: score(rep_on, [t for t, kk in zip(truth, kinds) if kk == k])["recall"] for k in ("whoosh", "click")},
+        "repetOnsetErrorMs": [round(1000 * float(np.min(np.abs(rep_on - t))), 1) for t in truth] if len(rep_on) else [],
+        "swellDetectorOnWhooshes": score(sw_on, whoosh_truth),
+        "swellOnsetErrorMs": [round(1000 * float(np.min(np.abs(sw_on - t))), 1) for t in whoosh_truth] if len(sw_on) else [],
+        "perKindRecallRawMinusGrid": {k: score(off_grid(raw), [t for t, kk in zip(truth, kinds) if kk == k])["recall"] for k in ("whoosh", "click")},
+    }
+    (HERE / "SegmentResults.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    print(json.dumps(out, indent=1))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,194 @@
+# ZenRay Motion Design, plan d'exécution en jalons, brouillon (12 October 2026)
+
+Projet Assets `zenray-motion-design`, atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`. Ce plan accompagne `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/ARCHITECTURE-draft.md` et s'appuie sur les livrables R01 à R10 de `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/`. Il ordonne le travail en jalons dont chacun se clôt par un critère vérifiable, c'est-à-dire une commande, un seuil et un cas rouge qui prouve que le contrôle sait échouer. Les marques [M], [L] et [P] ont le sens défini en section 0 de l'architecture : mesuré, lu, proposé ou supposé. (12 October 2026)
+
+## 1. Point de départ mesuré (12 October 2026)
+
+| Élément | État | Preuve |
+|---|---|---|
+| Références | 12 vidéos dans le cache local (867 Mo), SHA-256 vérifiées 12 sur 12, son présent sur 11 (fin-4 muette à la source) | [M : R02, R08 §13.1] |
+| onekey-pro-2 | 1920 × 1080, 60 images/s, 4 080 images (68,000 s d'image, 68,053 s d'audio), stems Demucs dans le cache, kick à 88,03 BPM, premier kick du motif à 5,735 s, coupe vers la carte texte à 4,93 s sur l'entrée du kick | [M : R08 §6, `references/onekey-pro-2/audio-notes.md`] |
+| Moteur | dépôt `ZenRayMotionDesign`, trois commits, dernier `c1f3d27`, environ 1 700 lignes Python ; `settings.json`, `media`, `versions`, `shots`, `layers`, `curves`, `typography`, `effects`, `audio/events`, `emit/hyperframes`, `render`, `verify/fidelity`, `reproduce/textcard` ; `zrmd/cli.py`, `recipes/`, `mcp/` vides ou absents ; HyperFrames 0.8.149 épinglé dans `tooling/` | [M : `git log`, `wc -l`] |
+| Première tranche | `motions/onekey-s02-caption-shine`, plan S02 de 4,933 à 6,283 s (81 images), versions V_001 à V_008 | [M : `motion.json`] |
+| Scores de la tranche (vérificateur v1) | V_001 0,7798 ; V_002 0,9529 ; V_003 0,9308 ; V_004 0,9436 ; V_005 0,9396 ; V_006 0,9610 ; V_007 0,9616 ; V_008 0,9572 ; image entre 0,9577 et 0,9621 ; la sous-mesure de luminosité du reflet plafonne entre 0,69 et 0,86 | [M : `V_00N/fidelity.json`] |
+| Laboratoires | EaseFit (276 eases vraies en tête sur 324), banc de fidélité (substitution 0,998, sept défauts sous 0,99), recettes whoosh et clic (5 cibles sur 8 au-dessus de 99), Demucs sur MPS en 5,0 s pour 90,1 s | [M : R03, R04] |
+| Étude 01 | contrat v1 rejouable (v8 : mouvement 0,468, 9 coupes franches sur 13, ΔE 14,87) ; texte OCR de la référence encore présent dans un fichier archivé | [M : R08 §3 et §9] |
+
+La lecture de cette table tient en une phrase : les pièces de mesure existent et sont prouvées sur bancs, la tranche verticale tourne de bout en bout pour l'image, mais elle plafonne vers 0,96 avec un vérificateur qui n'est pas encore celui que les bancs ont validé, et le son, le rythme et la commande unique n'y sont pas encore branchés. (12 October 2026)
+
+## 2. Principe d'ordre (12 October 2026)
+
+Le plan suit la forme de la tranche verticale : un seul motion de onekey-pro-2, court, traverse toutes les couches (image, animation, son, rythme) jusqu'à la cible, par une seule commande, avant toute extension horizontale vers le film entier, d'autres références, le serveur MCP et le site. Une couche ne s'ajoute pas tant que celle du dessous ne se vérifie pas seule, et le vérificateur se fixe avant la poursuite du score, faute de quoi la boucle optimiserait une mesure que les bancs n'ont pas validée [L : doctrine « itérer et incrémenter », R05 §8]. (12 October 2026)
+
+Le motion choisi est le plan S02 de onekey-pro-2 avec trente images de poignée de part et d'autre, soit les images 266 à 407 (4,433 à 6,783 s). Ce choix tient à ce que cette fenêtre contient, en moins de deux secondes et demie, les quatre dimensions : une coupe calée sur l'entrée du kick (4,933 s), une animation d'échelle et un reflet balayé sur une carte texte, des accords hachés avant la coupe et le motif de kick ensuite, et une seconde coupe en sortie (6,283 s) [M : `reference-measures.json`, `audio-notes.md`]. Les poignées reprennent la fin de S01 et le début de S03 au niveau structurel (fond, cadence, présence des éléments), afin que les coupes se détectent sur le rendu ; les dimensions animation et image n'exigent 0,99 que sur S02, le rythme et le son sur toute la fenêtre [P]. (12 October 2026)
+
+## 3. Les jalons (12 October 2026)
+
+### J0. Décisions de Matthieu (12 October 2026)
+
+Les décisions D01 à D14 de la section 5 sont soumises en une fois, avec la recommandation de chacune. **Critère** : chaque réponse est écrite par `python3 ~/.claude/skills/zenray-feedback/scripts/feedback.py add zenray-motion-design "<règle>" --kind rule`, chaque règle porte son numéro, et `grep -cE 'D(0[1-9]|1[0-4])' /Users/zenray/.claude/Memory1/Projects/zenray-motion-design/Rules.md` compte quatorze lignes. Les jalons J1 et J2 peuvent commencer avant toutes les réponses, puisqu'ils ne dépendent que de D01, D02 et D06. (12 October 2026)
+
+### J1. Socle reproductible (12 October 2026)
+
+1. **Un seul environnement.** Le moteur, les tests et les laboratoires tournent dans `/Users/zenray/.venvs/zenray-motion` ; `EaseFit.py`, `SampleGsapEases.mjs`, la table `eases-gsap-3.14.2.json`, `SfxRecipes.py`, `SfxMetrics.py`, `LabParams.json`, `RunEaseSynthetic.py`, `RunEaseVideo.py`, `RunFidelityDemo.py` et `RunLab.py` sont versés dans `zrmd` et `tests/`, une seule copie de chaque fonction [L : R08 §13.4].
+2. **HyperFrames épinglé et prouvé.** Le dépôt épingle déjà 0.8.149 alors que le test doré recommandé par R01 n'a pas été fait : rendre la séquence PNG de V_007 et de la v8 de l'étude 01 en 0.8.147 et en 0.8.149, `--workers 1` ; puis deux rendus successifs en 0.8.149 [L : R01 §17, tests 1 et 2].
+3. **Commande `zrmd doctor`** (étape 1/8) : outils, versions, navigateur géré, environnement, sortie `--json`, code 2 si un outil manque.
+4. **Lint de droits** (section 15 de l'architecture).
+5. **Sauvetage des essais 3D** : les scripts de R10 vivent dans un scratchpad volatil (`/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/r10`) et doivent rejoindre le dépôt avant la fin de la session [L : R10 §9].
+
+**Critère** : la suite de tests est verte et redonne les chiffres connus (276 sur 324 eases, substitution 0,998, identité son au-dessus de 99,5 en médiane) ; les empreintes des PNG de 0.8.147 et 0.8.149 sont identiques ou chaque écart est expliqué dans `build.json`, et deux rendus 0.8.149 sont identiques au bit près ; `zrmd doctor` rend 0, puis 2 quand `ffmpeg` est retiré du `PATH` ; le lint de droits est vert sur V_008 et rouge sur une copie de V_008 où l'on a planté une image du cache. (12 October 2026)
+
+### J2. Contrat de fidélité v2 (12 October 2026)
+
+Écrire `zrmd verify` selon la section 8 de l'architecture : erreurs en JND, sous-dimension `0.99 ^ mean(w · e^2)`, minimum par dimension puis minimum global, masque de validité, même pipeline de codec, plafonds d'identité et planchers de codec, gardes, `fidelity.json` au schéma `zrmd/fidelity@2`, cible lue dans `settings.json`, code de sortie. Le vérificateur v1 reste comme test de non-régression [L : R08 §10]. (12 October 2026)
+
+**Critère** : sur le banc de R04, la substitution reste au-dessus de 0,99 sur toutes les dimensions et chacun des sept défauts fait tomber la dimension qu'il touche sous 0,99 ; sur le banc de R03, l'identité reste au-dessus de 0,995 en médiane et les perturbations de taille audible tombent sous 0,99 sur au moins sept cibles sur huit ; une composition témoin dont les coupes tombent sur des images connues obtient 1,0 en rythme, puis moins de 0,99 quand une coupe recule de deux images ; une cible portée à 0,5 dans `settings.json` change le code de sortie sans toucher le code ; les versions V_001 à V_008 de la tranche sont rescorées et le tableau des deux vérificateurs côte à côte est écrit dans `motions/onekey-s02-caption-shine/REPORT.md`. (12 October 2026)
+
+### J3. Tranche S02, image et animation à 0,99 (12 October 2026)
+
+Reprendre la tranche sous le vérificateur v2, avec les ajusteurs en forme close (EaseFit sur les pistes d'échelle et de luminosité, fenêtre bornée au plan), le reflet balayé décrit comme un coup L2 dont la trajectoire mesurée (centre et étalement par image) vit dans un `payload`, la police choisie par métriques et le texte de remplacement placé par son bord d'encre [L : R04 §5 et §11.2]. Si trois versions successives ne relèvent pas la dimension la plus faible d'au moins 0,002, la boucle s'arrête et une recherche de méthode de seize méthodes en quatre phases s'ouvre sur ce seul plan, conformément au skill `zenray-methodology` ; la tranche présente déjà ce symptôme sous le vérificateur v1 [M : V_002 à V_008 entre 0,93 et 0,966]. (12 October 2026)
+
+**Critère** : `zrmd verify` sur la meilleure version rend animation ≥ 0,99 et image ≥ 0,99 sur S02, après le même encodage que la référence, gardes vertes, plafonds affichés ; la même version dont on remplace l'ease d'échelle par sa voisine tombe sous 0,99 ; Matthieu valide à l'œil une planche côte à côte, la planche montrant la référence restant dans `refcache/onekey-pro-2/boards/`. (12 October 2026)
+
+### J4. Tranche S02, le son à 0,99 (12 October 2026)
+
+1. **Recaler les JND audio** par la page ABX locale de R03 §7.4, avant tout chiffre annoncé « à l'oreille ».
+2. **Mesurer la fenêtre** sur les stems : grille du kick, entrée du kick sur la coupe, gate des accords, pompage de la basse, équilibre par bande, événements d'effets ; la liste d'événements est validée par Matthieu dans une page locale.
+3. **Construire** : kick à chute de hauteur, basse pompée, nappe hachée à la cadence mesurée, harmonie originale tirée de la bibliothèque publique de `registry/music.json`, effets par recettes ajustées par CMA-ES, mixage à la sonie mesurée de la référence, crête vraie sous -1,5 dBTP.
+
+**Critère** : son ≥ 0,99 sur la fenêtre 266 à 407, plafonds d'identité affichés, seuils JND issus de la page ABX inscrits dans `settings.json` ; trois cas rouges sous 0,99 : effets coupés, effets retardés de 20 ms, gain du mixage augmenté de 2 dB ; aucun score ne compare de hauteurs note à note. Le contenu exact de l'étape 3 dépend de la décision D05. (12 October 2026)
+
+### J5. Tranche assemblée par une seule commande (12 October 2026)
+
+Écrire `zrmd reproduce` et son lanceur `/Users/zenray/.claude/skills/zenray-motion-design/scripts/motion/reproduce.sh` (huit étapes, `status.json`, codes 0 à 4, `--from V_00N`), puis reconstruire la tranche depuis un motion vide [L : R05 §5.6]. Le son entre dans la composition par la voie choisie au test A contre B de R01 (test 17.6). (12 October 2026)
+
+**Critère** : `reproduce.sh --reference onekey-pro-2 --window 266:407 --motion <id> --level FULL` sur un motion vide sort avec le code 0 et `fidelity.json` donne un minimum ≥ 0,99 sur rythme, animation, image et son ; deux exécutions depuis zéro produisent la même empreinte de `params.json` et les mêmes empreintes de PNG ; une surcharge qui retarde la carte texte de deux images fait sortir la commande avec le code 1 ; la durée de la commande est mesurée et écrite dans `REPORT.md` ; Matthieu valide à l'œil et à l'oreille. **C'est la reproduction parfaite d'un motion de bout en bout**, et rien de ce qui suit ne commence avant elle. (12 October 2026)
+
+### J6. Du motion au moteur (12 October 2026)
+
+Extraire de la tranche ce qui se réutilise : le registre `registry/*.json` (coups, transitions, typographie, classes sonores, musique, vocabulaire R09, étalonnages), `Scripts/BuildMotion1.py` avec `--verify`, le schéma `zrmd/params@2` avec signatures par coup et `payloads/`, la recuisson incrémentale par plan, les plans QUICK et FULL, les sous-commandes de `zrmd.cli` alignées une à une sur les outils MCP, puis `bible.json` et `storyboard.json` pour tout onekey-pro-2 [L : R05 §5.3 et §5.4, R07 §4]. (12 October 2026)
+
+**Critère** : `BuildMotion1.py --verify` est vert, puis rouge après une retouche manuelle de `Motion1.md` ; modifier un seul plan ne change l'empreinte d'aucun autre plan cuit ; la détection de plans retrouve les 13 coupes franches de la référence à zéro image près et liste ses coupes en trop, ce qui tranche l'écart entre 26 coupes (état du dépôt), 27 plans (étude 01) et 39 détections dont 13 franches (scdet) ; la bible couvre polices, palette par rôles, histogramme d'eases, usage de la 3D par plan, classes sonores, tempo et sections ; `grep -ri onekey zrmd/` ne rend rien, aucune constante d'une référence n'étant écrite dans le code. (12 October 2026)
+
+### J7. Le film onekey-pro-2 entier (12 October 2026)
+
+- **J7a, plans 2D** : chaque plan identifié comme carte texte, graphique, interface ou montage atteint 0,99 sur ses dimensions, par la boucle plan par plan.
+- **J7b, plans plaque et 3D** : la sonde 3D reçoit son résidu d'apparence et se réévalue sur les 23 plans notés de l'étude 01 ; chaque plan produit passe par la hiérarchie de R10 (three.js d'abord, Blender ensuite) ou sort en `needs_asset` avec sa raison.
+- **J7c, film** : rendu complet en profil vérification et mesure entière.
+
+**Critère** : le film obtient un minimum ≥ 0,99 sur les quatre dimensions à l'intérieur du masque de validité ; `maskShare` et la liste `needs_asset` figurent dans le rapport, aucun plan n'étant compté vert faute d'avoir été mesuré ; la sonde 3D améliorée récupère au moins la moitié des dix faux négatifs sans ajouter de faux positif ; les temps QUICK et FULL sont mesurés ; Matthieu valide à l'œil et à l'oreille. (12 October 2026)
+
+### J8. Serveur MCP (12 October 2026)
+
+Écrire `mcp/zrmotion.py` selon R07 et l'architecture section 12, puis l'enregistrer chez Claude Code, Codex et Antigravity avec copie datée des configurations, une fois D02 tranchée. (12 October 2026)
+
+**Critère** : le test de fumée vérifie `initialize`, treize outils, un catalogue sous le budget, l'erreur `-32602` sur un `motion_id` hors motif et l'absence de réponse à une notification, puis vire au rouge quand un quatorzième outil fait dépasser le budget ; l'inspecteur épinglé `@modelcontextprotocol/inspector@2.10.1 --cli` liste les outils ; sur une vidéo `testsrc2` fabriquée par ffmpeg, `motion_iterate` crée V_002 sans changer l'empreinte de V_001, `motion_job cancel` rend `cancelled`, `motion_publish` en `dry_run` liste les fichiers sans rien envoyer [L : R07 §6]. (12 October 2026)
+
+### J9. Onglet Motion Design du site (12 October 2026)
+
+Dérouler les lots L1 à L8 de R06 §9.7 depuis un clone propre d'`origin/main` à jour, le `main` local ayant divergé [M : R06, contrôle de reprise] : entrée et vue vide, publieur en un commit et vérificateur du catalogue, galerie et page d'un motion, service local `com.zenray.motion`, itération en mode Réglages, file dans le cloud, vue montage, déploiement. (12 October 2026)
+
+**Critère** : chaque lot porte sa preuve R06 (tests de rendu, vérificateur du catalogue rouge puis vert, refus du service en 403, 413 et 400, demande traitée au redémarrage du service) ; après déploiement, le point d'entrée servi par `https://zenray-progress.pages.dev` égale celui de `dist/index.html`, le catalogue relu par l'API réelle compte au moins un motion, et le même contrôle redonne le même résultat dix minutes plus tard. La publication publique de la tranche attend la décision D10. (12 October 2026)
+
+### J10. Montage local, formats et LOAD (12 October 2026)
+
+`zrmd edit` (couper, réordonner, retirer, retimer, changer de format, de lit sonore, de sonie), compositions 9:16 et 1:1 de la meilleure version de onekey avec leurs jetons de mise en page, LOAD par le pont Assets. (12 October 2026)
+
+**Critère** : chaque format passe le lint, garde la même empreinte de son et les mêmes indices d'image pour chaque coup ; une opération d'édition crée une version nouvelle sans changer l'empreinte de la précédente ; après un UNLOAD puis un LOAD par le pont Assets, un nouveau rendu en profil vérification redonne les mêmes empreintes de PNG. (12 October 2026)
+
+### J11. Preuve de généralisation sur deux autres références (12 October 2026)
+
+`paper-mono-code` (60 images/s, 1340 × 1080, film de lancement fait en code) puis `kardashev-0-7` (24 images/s, 1920 × 1080), choisies pour changer de cadence et de format [M : R02]. (12 October 2026)
+
+**Critère** : chacune atteint un minimum ≥ 0,99 sur les quatre dimensions dans son masque, sans aucune modification du code propre à la référence (seules des entrées nouvelles du registre, chacune avec son test vert et rouge) ; les durées QUICK et FULL sont mesurées et comparées à celles de onekey, la seconde référence devant coûter moins que la première par la croissance du registre [P]. (12 October 2026)
+
+### J12. Clôture (12 October 2026)
+
+Mise à jour du skill `zenray-motion-design` (SKILL.md, `Motion1.md` généré, lanceurs), `sync-skill.sh zenray-motion-design`, archive Assets avec preuve cloud relue, checkpoint de fin de tour, entrée du journal par le skill `progress`, règles nouvelles par `feedback.py --kind rule`. **Critère** : `BuildMotion1.py --verify` vert, les trois copies du skill identiques (`diff -rq`), preuve cloud présente pour chaque fichier admis, aucun fichier du cache dans l'archive. (12 October 2026)
+
+## 4. Dépendances et parallélisme (12 October 2026)
+
+```
+J0 --+-> J1 -> J2 -> J3 -> J4 -> J5 -> J6 -+-> J7 -> J11 -> J12
+     |                                    +-> J8 (après D02)
+     |                                    +-> J9 (après D10, D13) -> J10
+     +- D01, D02, D06 suffisent pour J1 et J2
+```
+
+Les calculs locaux se parallélisent sans demander (ajustements CMA-ES sur 16 cœurs avec `OMP_NUM_THREADS=1`, analyses par plan, rendus Eevee), à l'exception des tâches torch, une seule à la fois, et des rendus de vérification, `--workers 1` par définition [L : R03 §6.4, R01 §14, skill `ffmpeg-hardware-check`]. Le recours à plusieurs agents en parallèle reste un arbitrage à présenter : J8 et J9 peuvent avancer à côté de J7, mais chacun coûte ses propres jetons [L : doctrine du parallélisme]. (12 October 2026)
+
+## 5. Décisions à soumettre (12 October 2026)
+
+| N° | Décision | Recommandation | Bloque |
+|---|---|---|---|
+| D01 | version de HyperFrames | garder 0.8.149 si le test doré égale 0.8.147 au bit près, sinon revenir à 0.8.147 | J1 |
+| D02 | emplacement du dépôt moteur | un chemin stable hors `tmp`, par exemple `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign`, déclaré comme source Assets `application`, avec des lanceurs fixes dans le skill | J8, archivage |
+| D03 | sens du 99 % | identité de forme mesurée en JND (temps, mouvement, mise en page, couleur, métriques, son), minimum des quatre dimensions, dans le masque de validité, après le même codec ; jamais une identité de pixels sur le contenu de marque remplacé | J2 |
+| D04 | niveau L3 (clés à chaque image) pour une chorégraphie dense | refusé par défaut ; accordé plan par plan sur demande explicite | J3, J7 |
+| D05 | musique : reprise d'un patron de batterie mesuré | non : tempo, structure, énergie et texture de production (profondeur de pompage, cadence de gate, équilibre par bande) seulement, patrons tirés d'une bibliothèque publique et banale, harmonie originale | J4 |
+| D06 | modèles appris non génératifs (Demucs, DB, éventuellement CLAP) | permis pour mesurer seulement, jamais dans un rendu | J1, J4 |
+| D07 | composant dont le plafond d'identité est sous 0,99 | « terminé au plafond », écrit tel quel dans le rapport | J2 |
+| D08 | agrégation à l'intérieur du son | minimum des sous-dimensions (effets, calage, musique, mixage), plutôt que la moyenne géométrique de R03 | J2 |
+| D09 | emplacement du service `com.zenray.motion` et du publieur | dans ZenRayProgress (`scripts/Motion/`), comme le propose R06, et non dans `service/` du dépôt moteur | J9 |
+| D10 | diffusion des études tirées de publicités de tiers | archive privée par défaut ; publication publique seulement des créations originales ou sur accord explicite | J9 |
+| D11 | polices | familles ouvertes choisies par métriques ; dessiner des glyphes originaux calés sur des métriques mesurées est permis, tracer ceux de la référence ne l'est pas | J3 |
+| D12 | identifiants | identifiant local descriptif permis, `publicId` `zrmd-NNNN` seul autorisé hors du Mac ; aucune marque dans un chemin public | J9 |
+| D13 | place de l'onglet | juste après Media, dans Craft | J9 |
+| D14 | voie du son dans le rendu | décidée par le test A contre B de R01 : composition par défaut, multiplexage si l'écart dépasse une fraction de JND | J5 |
+
+## 6. Contradictions entre livrables (12 October 2026)
+
+| Sujet | Ce que disent les livrables | Résolution proposée |
+|---|---|---|
+| Version de HyperFrames | R01 recommande 0.8.149 seulement après un test doré contre 0.8.147 ; R08 hésite entre 0.8.145 (composition de l'étude) et 0.8.147 (cache) ; R10 dit 0.8.149 présente dans le cache npx alors que R01 n'y trouve que 0.8.147 ; le dépôt épingle déjà 0.8.149 (commit `c1f3d27`) | D01 et test doré en J1 |
+| Forme du score | R03 : `S = 100 · 0.99^(E^2)` et moyenne géométrique ; R04 : `1 - 0.01 · mean(e^2)` et minimum ; R05 : corrélations ≥ 0,99, SSIM sur masque, F1, ΔE médian ≤ 2 ; `fidelity.py` v1 : parties corrélées, dimensions animation, image, couleur | une seule forme `0.99 ^ mean(e^2)`, qui égale les deux premières, minimum entre dimensions ; les cibles de R05 deviennent des gardes ou des diagnostics (architecture §8) |
+| Liste des dimensions | demande : rythme, animation, son, image ; R04 : six dimensions ; R05 : quatre ; R07 nomme `picture` ce que R06 et `fidelity.py` nomment `image` ; `fidelity.py` ajoute `colour` | quatre dimensions nommées `rhythm`, `animation`, `image`, `sound`, la couleur, la mise en page, la typographie et les effets devenant des sous-dimensions de l'image |
+| Mesures sur les pixels | R05 met corrélation et SSIM sur masque dans le score image ; R04 prouve qu'elles ne voient aucun des défauts testés et les réserve aux gardes ; la tranche actuelle juge l'image au pixel sans masque (`valid_share` 1,0) | R04 l'emporte, puisque son banc est à double sens ; le plafond vers 0,96 de la tranche s'explique probablement par là [P] |
+| JND du calage sonore | R03 : 10 ms par événement et, pour la piste, « une image et 1 ms » ; R05 : attaques à 5 ms près ; R04 : une image pour le rythme | 10 ms pour un transitoire dans le score des effets, une image pour le rythme visuel, recalés par la page ABX |
+| Musique | consigne du projet et R03 : tempo, structure et énergie seulement, aucun motif rythmique distinctif ; `audio-notes.md` et l'`ARCHITECTURE.md` du dépôt : reprendre fidèlement la production, programmation de batterie comprise | D05, recommandation alignée sur la consigne |
+| Tempo de onekey | R05 et R08 : croches à 175,85 par minute (soit 87,93 BPM) ; `audio-notes.md` : kick à 88,03 BPM mesuré sur la piste séparée | trancher par une mesure sur les stems en J4 ; l'écart de 0,1 % reste sous la JND de 1 % |
+| Nombre de coupes de onekey | étude 01 : 27 plans, 39 détections dont 13 franches ; `state.json` : 26 coupes par `shots.py` | vérité connue en J6 (13 coupes franches à zéro image près, coupes en trop listées) |
+| Résolution de mesure | R05 dénonce la mesure du mouvement en 160 × 90 ; `settings.json` règle encore `analysis.shots` en 160 × 90 et `analysis.layers` en 960 × 540 | 160 × 90 acceptable pour détecter les coupes, pleine définition pour toute mesure qui entre dans un score |
+| Environnement Python | R04 recommande d'installer scipy dans `motion-design` (3.9.6) ; R03 a tourné dans `deecho-audio` ; R08 désigne `zenray-motion` (3.11) | `zenray-motion` seul |
+| Emplacement du code | R05 : code canonique dans le skill, comme `scripts/height/` ; R07 : dépôt déplacé dans l'atelier pendant la recherche ; R06 : moteur hors du site ; `state.json` : source Assets `application` | D02 |
+| Service et file des demandes | R06 : service dans ZenRayProgress et file `_requests/` dans `zenray-data` ; `ARCHITECTURE.md` du dépôt : dossier `service/` dans le moteur et `catalog.json` dans l'atelier ; R07 : tâches dans `projects/<id>/jobs/` | D09 ; catalogue dans `pages/ZenRayMotionDesign/` ; un seul dossier `motions/<id>/jobs/` sous un seul verrou pour le service et le MCP |
+| Dossier des versions | R05 : `projects/<Nom>/versions/V_00N/` ; R07 : `projects/<motion_id>/` ; R06 et le dépôt : `motions/<id>/V_NNN/` | `motions/<id>/V_NNN/`, déjà en usage |
+| Nom de la définition | R05 : `params/recipe.json` ; le dépôt : `params.json` au schéma `zrmd/motion@1` | `params.json` au schéma `zrmd/params@2`, qui reprend la recette par coups |
+| Identifiants | R06 : `zrmd-0001` neutre ; R07 : `motion_id` en kebab-case ; la tranche : `onekey-s02-caption-shine`, qui porte une marque | D12 |
+| Classes sonores | R03 : 18 classes ; R07 : 12 types `motion_sfx` aux noms différents (`swish`, `downer`, `chime`, `noise_burst`) ; R09 : 30 termes son (`ui_click`, `impact_hit`, `braam`, `logo_sting`) ; `MakeAudio.py` : 11 primitives | `registry/sfx.json` source unique, schéma MCP et vocabulaire générés depuis lui |
+| Sonie | R03 : environ -14 LUFS et -1 dBTP ; R01 : crête du mixage sous -1,5 dBTP pour ne pas déclencher l'atténuation ; R09 : -23 LUFS EBU en diffusion ; la reproduction doit égaler la sonie de la référence | reproduction : sonie mesurée de la référence ; création : -14 LUFS ; crête : -1,5 dBTP partout |
+| Voie du son | R01 : stems dans la composition par défaut ; R05 et l'étude 01 : rendu muet puis multiplexage | D14 et test 17.6 |
+| Sous-compositions | R05 les voudrait pour l'incrémental ; R01 et l'étude 01 s'en tiennent à une timeline racine unique faute de cause isolée | projet autonome par plan pour l'ajustement, timeline racine unique pour le film, test des sous-compositions laissé en option |
+| Rendus dans l'archive | R06 recommande d'exclure les rendus des versions non validées ; la tranche range `render.mp4` à la racine de chaque version, dans l'atelier surveillé | dossier `renders/` exclu de la source `workshop`, sauf versions validées |
+| Chemin de l'atelier | R06 : le résoudre par le contexte Assets après un LOAD, jamais en dur ; `settings.json` : `paths.workshop` écrit en dur | défaut dans `settings.json`, résolution par le contexte Assets quand le pont répond |
+| Durée d'un rendu de 68 s | SKILL.md et R05 : environ 70 s ; R08 : 40,2 s mesurées pour la v1 | mesurer en J7c avec le profil vérification, qui sera plus lent (un worker) |
+| Livrable R11 | l'`ARCHITECTURE.md` du dépôt cite « R11 polices », absent du dossier de recherche | à écrire ou à retirer de la référence |
+| Valeur Material 3 | R09 donne la valeur Material 3 `cubic-bezier(0.2, 0, 0, 1)` sans avoir pu lire la page | marquée `UNVERIFIED` dans le registre jusqu'à lecture |
+
+## 7. Questions ouvertes pour Matthieu (12 October 2026)
+
+1. Les décisions D01 à D14 de la section 5, en particulier D03 (sens du 99 %), D05 (musique) et D10 (diffusion publique). (12 October 2026)
+2. Le fichier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/dna-reference.json`, qui contient 36 lignes de texte de la référence dans un atelier archivé, peut-il être purgé de ce texte, et son ancienne version retirée de l'archive Assets ? (12 October 2026)
+3. Les licences de diffusion d'AnthropicSerif, d'AnthropicMono et de Vogun restent ouvertes ; la reproduction emploie-t-elle seulement des polices OFL tant qu'elles ne sont pas tranchées ? (12 October 2026)
+4. Quels formats d'adaptation sont attendus (9:16, 1:1, 4:5) ? La règle des sous-titres obligatoires en streaming s'applique-t-elle à un motion sans voix ? (12 October 2026)
+5. La licence Houdini Indie active convient-elle à un livrable 3D (résolution, usage commercial) ? (12 October 2026)
+6. Le rendu dans Docker, seule voie officielle d'identité entre machines, est-il requis pour la galerie publiée, alors que Docker est absent de ce Mac ? (12 October 2026)
+7. La ligne « jamais Inter » du `CLAUDE.md` de ZenRayProgress contredit le trio InterVariable : peut-elle être corrigée ? (12 October 2026)
+
+## 8. Blocages (12 October 2026)
+
+Aucun blocage dur n'empêche J1 et J2. Plusieurs risques réels doivent cependant être levés tôt : les scripts d'essai 3D de R10 ne vivent que dans un scratchpad volatil et seront perdus s'ils ne rejoignent pas le dépôt ; le dépôt moteur a changé de place pendant la recherche, ce qui interdit d'enregistrer le serveur MCP tant que D02 n'est pas tranchée ; le `main` local de ZenRayProgress a divergé d'`origin/main`, si bien que J9 doit partir d'un clone propre ; Docker est absent, donc l'identité au bit près ne vaut que sur ce Mac ; la machine a été saturée par d'autres agents pendant une partie des mesures de R04, ce qui rend pessimistes les temps qui en viennent. (12 October 2026)
+
+## 9. Risques principaux et parades (12 October 2026)
+
+| Risque | Signe déjà visible | Parade |
+|---|---|---|
+| La boucle optimise une mesure non validée | tranche plafonnée vers 0,96 sous le vérificateur v1, image jugée au pixel sans masque | J2 avant J3 ; vérificateur prouvé sur les deux bancs |
+| Plateau de méthode | V_002 à V_008 oscillent sans progresser | règle des trois versions sans gain, puis recherche de méthode 16 × 4 |
+| Plans non reproductibles en code | 25 assets de l'étude 01 prévus pour une génération désormais interdite ; dix plans 3D sur dix-sept manqués par la sonde | masque de validité, `needs_asset`, hiérarchie 3D de R10 |
+| Dérive d'outil | rendus de l'étude 01 faits avec deux versions sans le savoir | épinglage, test doré, `build.json` |
+| Droits | texte OCR dans un fichier archivé ; tentation de copier la production musicale | lint de droits à double sens, D05, purge |
+
+## 10. Estimation (12 October 2026)
+
+Ces durées sont des estimations, non des mesures [P] : J1 et J2, une à deux journées ; J3 à J5, deux à quatre journées selon que la recherche de méthode s'ouvre ou non ; J6, deux journées ; J7, trois à six journées selon le nombre de plans 3D ; J8, une journée ; J9, deux à quatre journées selon R06 §9.8 ; J10, une à deux journées ; J11, deux à quatre journées. Le seul chiffre qui compte avant J5 est la durée réelle d'une itération sur la tranche, que J5 mesure. (12 October 2026)

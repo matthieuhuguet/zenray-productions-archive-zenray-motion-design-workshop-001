@@ -1,0 +1,2100 @@
+{
+  "date": "12 October 2026",
+  "seconds": 67.3,
+  "summary": {
+    "whoosh/nelder-mead": {
+      "median": 83.465,
+      "min": 61.28,
+      "pass99": 0,
+      "n": 8,
+      "meanSeconds": 24.0125
+    },
+    "whoosh/cma-es": {
+      "median": 98.195,
+      "min": 96.6,
+      "pass99": 2,
+      "n": 8,
+      "meanSeconds": 34.7125
+    },
+    "whoosh/cma+nm": {
+      "median": 98.445,
+      "min": 93.71,
+      "pass99": 3,
+      "n": 8,
+      "meanSeconds": 34.85
+    },
+    "whoosh/identity": {
+      "min": 98.4
+    },
+    "whoosh/perturbed/fStart x1.26 (third octave)": {
+      "median": 93.45,
+      "max": 96.12,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/fEnd x1.26 (third octave)": {
+      "median": 92.755,
+      "max": 96.44,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/sweep reversed": {
+      "median": 70.87,
+      "max": 99.45,
+      "fail99": 7,
+      "n": 8
+    },
+    "whoosh/perturbed/duration x1.3": {
+      "median": 74.85,
+      "max": 83.26,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/peakPos +0.15": {
+      "median": 85.87,
+      "max": 93.44,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/bandwidth x1.6": {
+      "median": 80.44999999999999,
+      "max": 85.72,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/envCurve x1.6": {
+      "median": 93.775,
+      "max": 97.58,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/gain +2 dB": {
+      "median": 95.89500000000001,
+      "max": 97.97,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/perturbed/late by 50 ms": {
+      "median": 87.965,
+      "max": 97.19,
+      "fail99": 8,
+      "n": 8
+    },
+    "whoosh/gain/0.25": {
+      "median": 99.42
+    },
+    "whoosh/gain/0.5": {
+      "median": 99.17
+    },
+    "whoosh/gain/1.0": {
+      "median": 98.435
+    },
+    "whoosh/gain/1.5": {
+      "median": 97.38
+    },
+    "whoosh/gain/2.0": {
+      "median": 95.89500000000001
+    },
+    "whoosh/gain/3.0": {
+      "median": 91.345
+    },
+    "whoosh/shift/2.0": {
+      "median": 99.42
+    },
+    "whoosh/shift/5.0": {
+      "median": 99.35
+    },
+    "whoosh/shift/10.0": {
+      "median": 99.33500000000001
+    },
+    "whoosh/shift/20.0": {
+      "median": 98.06
+    },
+    "whoosh/shift/40.0": {
+      "median": 92.25
+    },
+    "whoosh/shift/80.0": {
+      "median": 71.85
+    },
+    "click/nelder-mead": {
+      "median": 92.5,
+      "min": 0.0,
+      "pass99": 2,
+      "n": 8,
+      "meanSeconds": 1.9999999999999998
+    },
+    "click/cma-es": {
+      "median": 95.575,
+      "min": 70.21,
+      "pass99": 3,
+      "n": 8,
+      "meanSeconds": 3.075
+    },
+    "click/cma+nm": {
+      "median": 98.83500000000001,
+      "min": 87.55,
+      "pass99": 4,
+      "n": 8,
+      "meanSeconds": 2.975
+    },
+    "click/identity": {
+      "min": 97.96
+    },
+    "click/perturbed/fMode x1.06 (one semitone)": {
+      "median": 35.1,
+      "max": 99.36,
+      "fail99": 7,
+      "n": 8
+    },
+    "click/perturbed/decayMode x1.5": {
+      "median": 97.22,
+      "max": 99.43,
+      "fail99": 7,
+      "n": 8
+    },
+    "click/perturbed/noiseMix +0.3": {
+      "median": 63.41,
+      "max": 89.59,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/perturbed/noiseHp x2": {
+      "median": 97.67,
+      "max": 99.56,
+      "fail99": 5,
+      "n": 8
+    },
+    "click/perturbed/gain +2 dB": {
+      "median": 95.71,
+      "max": 95.75,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/perturbed/late by 20 ms": {
+      "median": 95.705,
+      "max": 95.75,
+      "fail99": 8,
+      "n": 8
+    },
+    "click/gain/0.25": {
+      "median": 99.57
+    },
+    "click/gain/0.5": {
+      "median": 99.38499999999999
+    },
+    "click/gain/1.0": {
+      "median": 98.64
+    },
+    "click/gain/1.5": {
+      "median": 97.41
+    },
+    "click/gain/2.0": {
+      "median": 95.71
+    },
+    "click/gain/3.0": {
+      "median": 91.02
+    },
+    "click/shift/2.0": {
+      "median": 99.59
+    },
+    "click/shift/5.0": {
+      "median": 99.38
+    },
+    "click/shift/10.0": {
+      "median": 98.63499999999999
+    },
+    "click/shift/20.0": {
+      "median": 95.705
+    },
+    "click/shift/40.0": {
+      "median": 84.83
+    },
+    "click/shift/80.0": {
+      "median": 52.36
+    }
+  },
+  "fits": [
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "method": "nelder-mead",
+      "seconds": 29.1,
+      "evals": 432,
+      "score": 81.8,
+      "E": 4.471,
+      "floorScore": 99.23,
+      "rawScore": 77.14,
+      "paramError": {
+        "duration": -11.6,
+        "peakPos": -0.207,
+        "fStart": -3.6,
+        "fEnd": 1.2,
+        "bandwidthOct": -1.1,
+        "envCurve": -60.4,
+        "sweepCurve": -35.4,
+        "gainDb": 0.033
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -3.5259,
+        "attack": -1.3984,
+        "duration": 1.8083,
+        "brightness": 0.6092,
+        "spectralShape": 1.4004,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "method": "cma-es",
+      "seconds": 39.5,
+      "evals": 591,
+      "score": 98.61,
+      "E": 1.179,
+      "floorScore": 99.54,
+      "rawScore": 97.93,
+      "paramError": {
+        "duration": -9.3,
+        "peakPos": 0.073,
+        "fStart": 3.9,
+        "fEnd": -0.7,
+        "bandwidthOct": -0.1,
+        "envCurve": -25.8,
+        "sweepCurve": -24.2,
+        "gainDb": 0.127
+      },
+      "corrected": {
+        "level": 0.1269,
+        "anchor": -0.3129,
+        "attack": 0.7786,
+        "duration": 0.189,
+        "brightness": 0.3002,
+        "spectralShape": 0.7375,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "method": "cma+nm",
+      "seconds": 40.0,
+      "evals": 591,
+      "score": 99.03,
+      "E": 0.987,
+      "floorScore": 99.51,
+      "rawScore": 98.37,
+      "paramError": {
+        "duration": -8.2,
+        "peakPos": 0.06,
+        "fStart": 0.6,
+        "fEnd": -0.1,
+        "bandwidthOct": -0.1,
+        "envCurve": -19.6,
+        "sweepCurve": 2.0,
+        "gainDb": 0.151
+      },
+      "corrected": {
+        "level": 0.1266,
+        "anchor": -0.3478,
+        "attack": 0.5831,
+        "duration": 0.0,
+        "brightness": 0.267,
+        "spectralShape": 0.6524,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "method": "nelder-mead",
+      "seconds": 18.0,
+      "evals": 432,
+      "score": 88.7,
+      "E": 3.455,
+      "floorScore": 98.47,
+      "rawScore": 84.63,
+      "paramError": {
+        "duration": -9.2,
+        "peakPos": -0.025,
+        "fStart": -16.3,
+        "fEnd": -36.4,
+        "bandwidthOct": 4.8,
+        "envCurve": -48.4,
+        "sweepCurve": 92.7,
+        "gainDb": -0.889
+      },
+      "corrected": {
+        "level": -1.4231,
+        "anchor": -0.646,
+        "attack": 0.0,
+        "duration": 1.9668,
+        "brightness": 1.9915,
+        "spectralShape": 1.2875,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "method": "cma-es",
+      "seconds": 24.8,
+      "evals": 591,
+      "score": 98.89,
+      "E": 1.053,
+      "floorScore": 98.24,
+      "rawScore": 96.54,
+      "paramError": {
+        "duration": -3.9,
+        "peakPos": 0.022,
+        "fStart": -11.0,
+        "fEnd": -17.6,
+        "bandwidthOct": 2.9,
+        "envCurve": -5.2,
+        "sweepCurve": 39.2,
+        "gainDb": -0.388
+      },
+      "corrected": {
+        "level": -0.5648,
+        "anchor": 0.2861,
+        "attack": 0.0,
+        "duration": 0.0,
+        "brightness": 0.6556,
+        "spectralShape": 0.5272,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "method": "cma+nm",
+      "seconds": 25.3,
+      "evals": 591,
+      "score": 98.42,
+      "E": 1.258,
+      "floorScore": 98.28,
+      "rawScore": 95.69,
+      "paramError": {
+        "duration": -5.7,
+        "peakPos": 0.035,
+        "fStart": -7.2,
+        "fEnd": -4.3,
+        "bandwidthOct": 2.0,
+        "envCurve": -4.0,
+        "sweepCurve": 28.3,
+        "gainDb": -0.006
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": 0.3567,
+        "attack": 0.0,
+        "duration": -0.0,
+        "brightness": 0.9817,
+        "spectralShape": 0.7017,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "method": "nelder-mead",
+      "seconds": 29.0,
+      "evals": 432,
+      "score": 74.03,
+      "E": 5.469,
+      "floorScore": 99.13,
+      "rawScore": 67.97,
+      "paramError": {
+        "duration": -40.2,
+        "peakPos": 0.26,
+        "fStart": 13.0,
+        "fEnd": 13.3,
+        "bandwidthOct": -38.1,
+        "envCurve": -51.7,
+        "sweepCurve": -38.4,
+        "gainDb": -0.277
+      },
+      "corrected": {
+        "level": -0.4114,
+        "anchor": -3.2421,
+        "attack": 0.451,
+        "duration": -2.3092,
+        "brightness": 0.7844,
+        "spectralShape": 3.6169,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "method": "cma-es",
+      "seconds": 55.3,
+      "evals": 591,
+      "score": 99.56,
+      "E": 0.662,
+      "floorScore": 99.29,
+      "rawScore": 98.8,
+      "paramError": {
+        "duration": -0.4,
+        "peakPos": 0.008,
+        "fStart": -2.2,
+        "fEnd": 3.1,
+        "bandwidthOct": 1.6,
+        "envCurve": -4.9,
+        "sweepCurve": -6.2,
+        "gainDb": -0.128
+      },
+      "corrected": {
+        "level": -0.3703,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": 0.0512,
+        "brightness": 0.4539,
+        "spectralShape": 0.3048,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "method": "cma+nm",
+      "seconds": 55.8,
+      "evals": 591,
+      "score": 99.49,
+      "E": 0.71,
+      "floorScore": 99.26,
+      "rawScore": 98.75,
+      "paramError": {
+        "duration": 2.0,
+        "peakPos": -0.006,
+        "fStart": -1.1,
+        "fEnd": 3.1,
+        "bandwidthOct": 0.7,
+        "envCurve": 0.3,
+        "sweepCurve": -6.5,
+        "gainDb": -0.214
+      },
+      "corrected": {
+        "level": -0.4579,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.0186,
+        "brightness": 0.4781,
+        "spectralShape": 0.257,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "method": "nelder-mead",
+      "seconds": 32.4,
+      "evals": 432,
+      "score": 97.93,
+      "E": 1.442,
+      "floorScore": 99.12,
+      "rawScore": 96.61,
+      "paramError": {
+        "duration": -18.5,
+        "peakPos": 0.118,
+        "fStart": -8.9,
+        "fEnd": 3.0,
+        "bandwidthOct": -2.2,
+        "envCurve": -40.4,
+        "sweepCurve": 108.6,
+        "gainDb": -0.141
+      },
+      "corrected": {
+        "level": -0.121,
+        "anchor": -0.6607,
+        "attack": 0.9521,
+        "duration": 0.0,
+        "brightness": 0.4847,
+        "spectralShape": 0.6967,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "method": "cma-es",
+      "seconds": 46.1,
+      "evals": 591,
+      "score": 99.41,
+      "E": 0.766,
+      "floorScore": 99.27,
+      "rawScore": 98.49,
+      "paramError": {
+        "duration": -9.2,
+        "peakPos": 0.058,
+        "fStart": -1.3,
+        "fEnd": 1.7,
+        "bandwidthOct": -0.4,
+        "envCurve": -15.3,
+        "sweepCurve": 1.9,
+        "gainDb": -0.02
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": -0.0,
+        "attack": 0.3597,
+        "duration": -0.0,
+        "brightness": 0.4363,
+        "spectralShape": 0.5165,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "method": "cma+nm",
+      "seconds": 46.5,
+      "evals": 591,
+      "score": 99.73,
+      "E": 0.519,
+      "floorScore": 99.24,
+      "rawScore": 98.84,
+      "paramError": {
+        "duration": -0.6,
+        "peakPos": -0.003,
+        "fStart": -0.8,
+        "fEnd": -0.8,
+        "bandwidthOct": 1.3,
+        "envCurve": -4.0,
+        "sweepCurve": -3.9,
+        "gainDb": 0.072
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.0,
+        "brightness": 0.3951,
+        "spectralShape": 0.337,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "method": "nelder-mead",
+      "seconds": 17.9,
+      "evals": 432,
+      "score": 61.28,
+      "E": 6.98,
+      "floorScore": 98.45,
+      "rawScore": 47.22,
+      "paramError": {
+        "duration": 0.8,
+        "peakPos": -0.07,
+        "fStart": -65.0,
+        "fEnd": -32.2,
+        "bandwidthOct": 226.2,
+        "envCurve": 42.8,
+        "sweepCurve": -31.3,
+        "gainDb": -0.245
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -1.7337,
+        "attack": -1.1611,
+        "duration": -0.5929,
+        "brightness": 1.1975,
+        "spectralShape": 6.5253,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "method": "cma-es",
+      "seconds": 24.6,
+      "evals": 591,
+      "score": 97.63,
+      "E": 1.546,
+      "floorScore": 98.15,
+      "rawScore": 94.62,
+      "paramError": {
+        "duration": -2.2,
+        "peakPos": -0.054,
+        "fStart": -21.7,
+        "fEnd": -0.5,
+        "bandwidthOct": -2.6,
+        "envCurve": 9.4,
+        "sweepCurve": -22.7,
+        "gainDb": -0.6
+      },
+      "corrected": {
+        "level": -0.6419,
+        "anchor": -0.8138,
+        "attack": -0.3182,
+        "duration": -0.3038,
+        "brightness": 0.6057,
+        "spectralShape": 0.8698,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "method": "cma+nm",
+      "seconds": 24.8,
+      "evals": 591,
+      "score": 95.93,
+      "E": 2.033,
+      "floorScore": 98.09,
+      "rawScore": 91.9,
+      "paramError": {
+        "duration": 5.4,
+        "peakPos": -0.075,
+        "fStart": -54.1,
+        "fEnd": -5.9,
+        "bandwidthOct": 5.0,
+        "envCurve": 28.0,
+        "sweepCurve": -46.7,
+        "gainDb": -0.191
+      },
+      "corrected": {
+        "level": -0.1341,
+        "anchor": -0.3629,
+        "attack": -0.6424,
+        "duration": 0.0,
+        "brightness": 1.4991,
+        "spectralShape": 1.1497,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "method": "nelder-mead",
+      "seconds": 16.7,
+      "evals": 432,
+      "score": 82.22,
+      "E": 4.413,
+      "floorScore": 96.92,
+      "rawScore": 69.94,
+      "paramError": {
+        "duration": -10.8,
+        "peakPos": -0.011,
+        "fStart": 22.6,
+        "fEnd": -41.8,
+        "bandwidthOct": 33.0,
+        "envCurve": 45.8,
+        "sweepCurve": -35.1,
+        "gainDb": -0.468
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": -2.7203,
+        "attack": -0.0,
+        "duration": -2.0745,
+        "brightness": 2.3316,
+        "spectralShape": 1.5289,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "method": "cma-es",
+      "seconds": 25.8,
+      "evals": 591,
+      "score": 96.6,
+      "E": 1.854,
+      "floorScore": 97.25,
+      "rawScore": 91.86,
+      "paramError": {
+        "duration": -1.5,
+        "peakPos": -0.057,
+        "fStart": -7.4,
+        "fEnd": 1.4,
+        "bandwidthOct": -0.4,
+        "envCurve": 4.6,
+        "sweepCurve": 36.5,
+        "gainDb": 0.504
+      },
+      "corrected": {
+        "level": 0.689,
+        "anchor": -1.6202,
+        "attack": 0.0,
+        "duration": -0.0,
+        "brightness": 0.3995,
+        "spectralShape": 0.4232,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "method": "cma+nm",
+      "seconds": 25.8,
+      "evals": 591,
+      "score": 97.36,
+      "E": 1.631,
+      "floorScore": 97.61,
+      "rawScore": 94.14,
+      "paramError": {
+        "duration": -2.2,
+        "peakPos": -0.032,
+        "fStart": -5.8,
+        "fEnd": 0.9,
+        "bandwidthOct": -3.1,
+        "envCurve": 1.8,
+        "sweepCurve": 54.8,
+        "gainDb": 0.606
+      },
+      "corrected": {
+        "level": 0.8548,
+        "anchor": -1.2984,
+        "attack": 0.0,
+        "duration": -0.0,
+        "brightness": 0.3436,
+        "spectralShape": 0.3529,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "method": "nelder-mead",
+      "seconds": 31.3,
+      "evals": 432,
+      "score": 84.71,
+      "E": 4.063,
+      "floorScore": 99.3,
+      "rawScore": 83.27,
+      "paramError": {
+        "duration": -5.8,
+        "peakPos": -0.189,
+        "fStart": 10.3,
+        "fEnd": -12.1,
+        "bandwidthOct": -3.3,
+        "envCurve": -60.3,
+        "sweepCurve": -12.5,
+        "gainDb": 0.128
+      },
+      "corrected": {
+        "level": -0.168,
+        "anchor": -2.4614,
+        "attack": -0.3032,
+        "duration": 2.9473,
+        "brightness": 0.8153,
+        "spectralShape": 0.9891,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "method": "cma-es",
+      "seconds": 37.2,
+      "evals": 591,
+      "score": 97.42,
+      "E": 1.613,
+      "floorScore": 99.46,
+      "rawScore": 96.54,
+      "paramError": {
+        "duration": -10.3,
+        "peakPos": 0.061,
+        "fStart": -2.9,
+        "fEnd": -2.7,
+        "bandwidthOct": -2.6,
+        "envCurve": -26.4,
+        "sweepCurve": -6.7,
+        "gainDb": 0.059
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": -0.5399,
+        "attack": 1.0756,
+        "duration": 0.161,
+        "brightness": 0.7323,
+        "spectralShape": 0.7686,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "method": "cma+nm",
+      "seconds": 37.1,
+      "evals": 591,
+      "score": 93.71,
+      "E": 2.542,
+      "floorScore": 99.35,
+      "rawScore": 92.78,
+      "paramError": {
+        "duration": -11.5,
+        "peakPos": -0.008,
+        "fStart": 4.0,
+        "fEnd": -12.7,
+        "bandwidthOct": -3.7,
+        "envCurve": -47.5,
+        "sweepCurve": -19.6,
+        "gainDb": 0.14
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -1.8146,
+        "attack": 0.8584,
+        "duration": 1.2849,
+        "brightness": 0.5927,
+        "spectralShape": 0.6539,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "method": "nelder-mead",
+      "seconds": 17.7,
+      "evals": 432,
+      "score": 87.95,
+      "E": 3.574,
+      "floorScore": 93.51,
+      "rawScore": 71.13,
+      "paramError": {
+        "duration": -26.6,
+        "peakPos": 0.234,
+        "fStart": -62.6,
+        "fEnd": -15.4,
+        "bandwidthOct": -15.4,
+        "envCurve": 60.0,
+        "sweepCurve": -70.8,
+        "gainDb": -1.433
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": 0.5327,
+        "attack": -0.2975,
+        "duration": -3.2593,
+        "brightness": 0.8593,
+        "spectralShape": 1.0187,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "method": "cma-es",
+      "seconds": 24.4,
+      "evals": 591,
+      "score": 97.78,
+      "E": 1.494,
+      "floorScore": 97.9,
+      "rawScore": 94.53,
+      "paramError": {
+        "duration": -2.2,
+        "peakPos": 0.056,
+        "fStart": -0.1,
+        "fEnd": -14.0,
+        "bandwidthOct": -3.3,
+        "envCurve": 7.0,
+        "sweepCurve": -10.7,
+        "gainDb": -0.073
+      },
+      "corrected": {
+        "level": -0.3271,
+        "anchor": 0.8224,
+        "attack": 0.3129,
+        "duration": -0.5344,
+        "brightness": 0.7298,
+        "spectralShape": 0.7296,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "method": "cma+nm",
+      "seconds": 23.5,
+      "evals": 591,
+      "score": 98.47,
+      "E": 1.239,
+      "floorScore": 97.91,
+      "rawScore": 95.53,
+      "paramError": {
+        "duration": -2.5,
+        "peakPos": 0.052,
+        "fStart": -4.3,
+        "fEnd": -11.4,
+        "bandwidthOct": -1.3,
+        "envCurve": 6.7,
+        "sweepCurve": -12.7,
+        "gainDb": 0.114
+      },
+      "corrected": {
+        "level": -0.116,
+        "anchor": 0.7435,
+        "attack": 0.2667,
+        "duration": -0.4961,
+        "brightness": 0.5022,
+        "spectralShape": 0.6329,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "method": "nelder-mead",
+      "seconds": 2.4,
+      "evals": 432,
+      "score": 85.75,
+      "E": 3.911,
+      "floorScore": 96.2,
+      "rawScore": 64.02,
+      "paramError": {
+        "fMode": -0.7,
+        "decayModeMs": 452.7,
+        "noiseMix": 0.453,
+        "decayNoiseMs": -40.4,
+        "noiseHp": -24.4,
+        "gainDb": 0.287
+      },
+      "corrected": {
+        "level": 0.2875,
+        "anchor": 0.0,
+        "attack": -0.0183,
+        "duration": -0.0,
+        "brightness": 2.4078,
+        "spectralShape": 2.85,
+        "pitch": -1.1384
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "method": "cma-es",
+      "seconds": 3.2,
+      "evals": 595,
+      "score": 93.78,
+      "E": 2.528,
+      "floorScore": 98.16,
+      "rawScore": 89.5,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": 0.5,
+        "noiseMix": -0.186,
+        "decayNoiseMs": -87.3,
+        "noiseHp": -10.4,
+        "gainDb": -0.142
+      },
+      "corrected": {
+        "level": -0.142,
+        "anchor": -0.001,
+        "attack": -0.0271,
+        "duration": 0.3954,
+        "brightness": 2.4181,
+        "spectralShape": 0.5992,
+        "pitch": -0.0925
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "method": "cma+nm",
+      "seconds": 3.1,
+      "evals": 597,
+      "score": 99.31,
+      "E": 0.831,
+      "floorScore": 98.11,
+      "rawScore": 96.77,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": 9.6,
+        "noiseMix": -0.033,
+        "decayNoiseMs": -81.6,
+        "noiseHp": 25.7,
+        "gainDb": 0.001
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": -0.0005,
+        "attack": -0.0384,
+        "duration": 0.2596,
+        "brightness": 0.7453,
+        "spectralShape": 0.2541,
+        "pitch": -0.0402
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "method": "nelder-mead",
+      "seconds": 2.3,
+      "evals": 432,
+      "score": 99.07,
+      "E": 0.965,
+      "floorScore": 97.43,
+      "rawScore": 94.32,
+      "paramError": {
+        "fMode": 0.0,
+        "decayModeMs": 16.5,
+        "noiseMix": 0.008,
+        "decayNoiseMs": -42.6,
+        "noiseHp": 108.4,
+        "gainDb": -0.005
+      },
+      "corrected": {
+        "level": -0.0052,
+        "anchor": -0.0,
+        "attack": -0.0,
+        "duration": 0.0,
+        "brightness": 0.9399,
+        "spectralShape": 0.212,
+        "pitch": 0.0446
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "method": "cma-es",
+      "seconds": 3.0,
+      "evals": 595,
+      "score": 99.01,
+      "E": 0.996,
+      "floorScore": 96.42,
+      "rawScore": 92.17,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": 8.9,
+        "noiseMix": 0.003,
+        "decayNoiseMs": -62.0,
+        "noiseHp": 80.4,
+        "gainDb": -0.015
+      },
+      "corrected": {
+        "level": -0.0151,
+        "anchor": -0.0007,
+        "attack": -0.0116,
+        "duration": -0.1291,
+        "brightness": 0.9654,
+        "spectralShape": 0.1651,
+        "pitch": 0.1216
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "method": "cma+nm",
+      "seconds": 3.0,
+      "evals": 597,
+      "score": 99.74,
+      "E": 0.507,
+      "floorScore": 96.37,
+      "rawScore": 95.06,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": 22.8,
+        "noiseMix": 0.04,
+        "decayNoiseMs": -60.5,
+        "noiseHp": 35.3,
+        "gainDb": 0.005
+      },
+      "corrected": {
+        "level": 0.0049,
+        "anchor": -0.0007,
+        "attack": -0.0113,
+        "duration": -0.0,
+        "brightness": 0.4407,
+        "spectralShape": 0.2232,
+        "pitch": 0.1133
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "method": "nelder-mead",
+      "seconds": 2.2,
+      "evals": 432,
+      "score": 98.81,
+      "E": 1.09,
+      "floorScore": 91.24,
+      "rawScore": 81.8,
+      "paramError": {
+        "fMode": 0.0,
+        "decayModeMs": 6.8,
+        "noiseMix": -0.01,
+        "decayNoiseMs": -47.0,
+        "noiseHp": -65.7,
+        "gainDb": -0.034
+      },
+      "corrected": {
+        "level": -0.0341,
+        "anchor": -0.0,
+        "attack": -0.0099,
+        "duration": -0.0,
+        "brightness": 1.0419,
+        "spectralShape": 0.3177,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "method": "cma-es",
+      "seconds": 3.1,
+      "evals": 595,
+      "score": 99.16,
+      "E": 0.917,
+      "floorScore": 93.31,
+      "rawScore": 89.71,
+      "paramError": {
+        "fMode": -0.2,
+        "decayModeMs": 1.7,
+        "noiseMix": -0.015,
+        "decayNoiseMs": -73.8,
+        "noiseHp": 131.9,
+        "gainDb": 0.405
+      },
+      "corrected": {
+        "level": 0.4046,
+        "anchor": -0.0021,
+        "attack": -0.0496,
+        "duration": -0.105,
+        "brightness": 0.5709,
+        "spectralShape": 0.5213,
+        "pitch": -0.2578
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "method": "cma+nm",
+      "seconds": 3.1,
+      "evals": 597,
+      "score": 99.44,
+      "E": 0.746,
+      "floorScore": 91.92,
+      "rawScore": 87.03,
+      "paramError": {
+        "fMode": -0.2,
+        "decayModeMs": 6.7,
+        "noiseMix": -0.001,
+        "decayNoiseMs": -67.6,
+        "noiseHp": -9.1,
+        "gainDb": 0.0
+      },
+      "corrected": {
+        "level": 0.0003,
+        "anchor": -0.0017,
+        "attack": -0.0393,
+        "duration": -0.0497,
+        "brightness": 0.7437,
+        "spectralShape": 0.0,
+        "pitch": -0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "method": "nelder-mead",
+      "seconds": 0.9,
+      "evals": 170,
+      "score": 99.48,
+      "E": 0.719,
+      "floorScore": 57.44,
+      "rawScore": 64.95,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": 248.0,
+        "noiseMix": 0.076,
+        "decayNoiseMs": -77.4,
+        "noiseHp": -3.3,
+        "gainDb": 0.002
+      },
+      "corrected": {
+        "level": 0.0019,
+        "anchor": -0.0017,
+        "attack": -0.0276,
+        "duration": 0.5458,
+        "brightness": 0.0,
+        "spectralShape": 0.4396,
+        "pitch": 0.1578
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "method": "cma-es",
+      "seconds": 3.0,
+      "evals": 595,
+      "score": 92.32,
+      "E": 2.82,
+      "floorScore": 98.51,
+      "rawScore": 82.96,
+      "paramError": {
+        "fMode": 0.2,
+        "decayModeMs": -33.8,
+        "noiseMix": -0.083,
+        "decayNoiseMs": 49.4,
+        "noiseHp": 39.0,
+        "gainDb": -0.003
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": -0.2726,
+        "brightness": 2.7381,
+        "spectralShape": 0.5298,
+        "pitch": 0.3177
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "method": "cma+nm",
+      "seconds": 2.9,
+      "evals": 569,
+      "score": 98.36,
+      "E": 1.281,
+      "floorScore": 96.43,
+      "rawScore": 90.55,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -1.2,
+        "noiseMix": -0.043,
+        "decayNoiseMs": -45.8,
+        "noiseHp": 44.9,
+        "gainDb": -0.0
+      },
+      "corrected": {
+        "level": -0.0,
+        "anchor": -0.0,
+        "attack": 0.0,
+        "duration": -0.2195,
+        "brightness": 1.1832,
+        "spectralShape": 0.3322,
+        "pitch": 0.2885
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "method": "nelder-mead",
+      "seconds": 2.3,
+      "evals": 432,
+      "score": 0.0,
+      "E": 67.697,
+      "floorScore": 94.08,
+      "rawScore": 0.0,
+      "paramError": {
+        "fMode": 67.7,
+        "decayModeMs": -5.2,
+        "noiseMix": 0.205,
+        "decayNoiseMs": -0.6,
+        "noiseHp": -71.2,
+        "gainDb": -0.172
+      },
+      "corrected": {
+        "level": -0.172,
+        "anchor": -0.0,
+        "attack": -0.0,
+        "duration": -0.3349,
+        "brightness": 0.0,
+        "spectralShape": 1.7203,
+        "pitch": 67.6738
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "method": "cma-es",
+      "seconds": 3.2,
+      "evals": 595,
+      "score": 99.15,
+      "E": 0.924,
+      "floorScore": 96.13,
+      "rawScore": 93.59,
+      "paramError": {
+        "fMode": -1.5,
+        "decayModeMs": -3.3,
+        "noiseMix": 0.038,
+        "decayNoiseMs": 30.2,
+        "noiseHp": -42.9,
+        "gainDb": 0.0
+      },
+      "corrected": {
+        "level": 0.0005,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.0,
+        "brightness": 0.4696,
+        "spectralShape": 0.7162,
+        "pitch": -0.3473
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "method": "cma+nm",
+      "seconds": 2.6,
+      "evals": 495,
+      "score": 87.55,
+      "E": 3.637,
+      "floorScore": 96.78,
+      "rawScore": 81.1,
+      "paramError": {
+        "fMode": 4.3,
+        "decayModeMs": 1.3,
+        "noiseMix": 0.013,
+        "decayNoiseMs": 28.7,
+        "noiseHp": -48.6,
+        "gainDb": 0.0
+      },
+      "corrected": {
+        "level": 0.0,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 0.0684,
+        "brightness": 1.0898,
+        "spectralShape": 0.8468,
+        "pitch": 3.3647
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "method": "nelder-mead",
+      "seconds": 2.4,
+      "evals": 432,
+      "score": 98.98,
+      "E": 1.012,
+      "floorScore": 92.38,
+      "rawScore": 86.06,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": 13.1,
+        "noiseMix": -0.013,
+        "decayNoiseMs": -49.5,
+        "noiseHp": -52.2,
+        "gainDb": 0.063
+      },
+      "corrected": {
+        "level": 0.063,
+        "anchor": -0.0011,
+        "attack": -0.0161,
+        "duration": 0.4848,
+        "brightness": 0.8489,
+        "spectralShape": 0.2524,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "method": "cma-es",
+      "seconds": 3.2,
+      "evals": 595,
+      "score": 70.21,
+      "E": 5.932,
+      "floorScore": 87.39,
+      "rawScore": 3.75,
+      "paramError": {
+        "fMode": -1.0,
+        "decayModeMs": -42.1,
+        "noiseMix": 0.22,
+        "decayNoiseMs": 741.7,
+        "noiseHp": 51.4,
+        "gainDb": 1.091
+      },
+      "corrected": {
+        "level": 1.0867,
+        "anchor": 0.0013,
+        "attack": 0.0534,
+        "duration": -1.5758,
+        "brightness": 4.9746,
+        "spectralShape": 1.8536,
+        "pitch": -1.8269
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "method": "cma+nm",
+      "seconds": 3.2,
+      "evals": 597,
+      "score": 97.51,
+      "E": 1.583,
+      "floorScore": 47.31,
+      "rawScore": 66.1,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -24.0,
+        "noiseMix": 0.146,
+        "decayNoiseMs": 237.2,
+        "noiseHp": 58.2,
+        "gainDb": -0.0
+      },
+      "corrected": {
+        "level": -0.0002,
+        "anchor": 0.0,
+        "attack": 0.0421,
+        "duration": -1.5038,
+        "brightness": 0.0,
+        "spectralShape": 0.4914,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "method": "nelder-mead",
+      "seconds": 2.4,
+      "evals": 432,
+      "score": 33.17,
+      "E": 10.479,
+      "floorScore": 96.23,
+      "rawScore": 9.41,
+      "paramError": {
+        "fMode": -0.3,
+        "decayModeMs": 238.8,
+        "noiseMix": 0.227,
+        "decayNoiseMs": 29.1,
+        "noiseHp": -62.1,
+        "gainDb": -7.23
+      },
+      "corrected": {
+        "level": -7.2302,
+        "anchor": 0.0,
+        "attack": 0.0,
+        "duration": 3.5436,
+        "brightness": 6.35,
+        "spectralShape": 2.0798,
+        "pitch": -0.5754
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "method": "cma-es",
+      "seconds": 3.0,
+      "evals": 595,
+      "score": 91.27,
+      "E": 3.015,
+      "floorScore": 99.35,
+      "rawScore": 87.03,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -39.5,
+        "noiseMix": -0.037,
+        "decayNoiseMs": 545.1,
+        "noiseHp": 22.7,
+        "gainDb": 0.087
+      },
+      "corrected": {
+        "level": 0.084,
+        "anchor": 0.0001,
+        "attack": 0.0235,
+        "duration": -0.5265,
+        "brightness": 2.8426,
+        "spectralShape": 0.8512,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "method": "cma+nm",
+      "seconds": 3.0,
+      "evals": 597,
+      "score": 95.73,
+      "E": 2.083,
+      "floorScore": 99.3,
+      "rawScore": 92.95,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": -19.4,
+        "noiseMix": -0.013,
+        "decayNoiseMs": 545.1,
+        "noiseHp": 31.3,
+        "gainDb": 0.21
+      },
+      "corrected": {
+        "level": 0.2056,
+        "anchor": 0.0004,
+        "attack": 0.0245,
+        "duration": 0.0,
+        "brightness": 1.9767,
+        "spectralShape": 0.6241,
+        "pitch": -0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "method": "nelder-mead",
+      "seconds": 1.1,
+      "evals": 213,
+      "score": 86.19,
+      "E": 3.846,
+      "floorScore": 90.85,
+      "rawScore": 72.92,
+      "paramError": {
+        "fMode": 0.8,
+        "decayModeMs": -85.2,
+        "noiseMix": 0.015,
+        "decayNoiseMs": -86.3,
+        "noiseHp": -60.5,
+        "gainDb": -0.005
+      },
+      "corrected": {
+        "level": -0.005,
+        "anchor": -0.0026,
+        "attack": -0.0406,
+        "duration": -2.9167,
+        "brightness": 0.5912,
+        "spectralShape": 2.1083,
+        "pitch": 1.2196
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "method": "cma-es",
+      "seconds": 2.9,
+      "evals": 595,
+      "score": 97.37,
+      "E": 1.627,
+      "floorScore": 92.42,
+      "rawScore": 89.0,
+      "paramError": {
+        "fMode": 0.1,
+        "decayModeMs": -23.4,
+        "noiseMix": 0.054,
+        "decayNoiseMs": -80.0,
+        "noiseHp": -69.4,
+        "gainDb": -0.001
+      },
+      "corrected": {
+        "level": -0.0006,
+        "anchor": -0.0018,
+        "attack": -0.0261,
+        "duration": -1.3525,
+        "brightness": 0.0,
+        "spectralShape": 0.9048,
+        "pitch": 0.0
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "method": "cma+nm",
+      "seconds": 2.9,
+      "evals": 597,
+      "score": 99.54,
+      "E": 0.676,
+      "floorScore": 91.01,
+      "rawScore": 91.09,
+      "paramError": {
+        "fMode": -0.0,
+        "decayModeMs": 64.2,
+        "noiseMix": 0.052,
+        "decayNoiseMs": -85.4,
+        "noiseHp": -72.8,
+        "gainDb": -0.006
+      },
+      "corrected": {
+        "level": -0.0059,
+        "anchor": -0.0025,
+        "attack": -0.0442,
+        "duration": -0.0942,
+        "brightness": 0.0,
+        "spectralShape": 0.6679,
+        "pitch": 0.0
+      }
+    }
+  ],
+  "checks": [
+    {
+      "kind": "whoosh",
+      "index": 0,
+      "identity": 99.89,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 92.89,
+        "fEnd x1.26 (third octave)": 92.03,
+        "sweep reversed": 99.45,
+        "duration x1.3": 73.27,
+        "peakPos +0.15": 87.27,
+        "bandwidth x1.6": 76.02,
+        "envCurve x1.6": 94.32,
+        "gain +2 dB": 96.31,
+        "late by 50 ms": 92.85
+      },
+      "gain": {
+        "0.25": 99.87,
+        "0.5": 99.73,
+        "1.0": 99.07,
+        "1.5": 97.93,
+        "2.0": 96.31,
+        "3.0": 91.78
+      },
+      "shift": {
+        "2.0": 99.86,
+        "5.0": 99.72,
+        "10.0": 99.42,
+        "20.0": 98.46,
+        "40.0": 95.16,
+        "80.0": 83.76
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 1,
+      "identity": 99.14,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 90.33,
+        "fEnd x1.26 (third octave)": 96.44,
+        "sweep reversed": 19.24,
+        "duration x1.3": 77.57,
+        "peakPos +0.15": 83.9,
+        "bandwidth x1.6": 85.7,
+        "envCurve x1.6": 91.69,
+        "gain +2 dB": 93.73,
+        "late by 50 ms": 84.3
+      },
+      "gain": {
+        "0.25": 98.87,
+        "0.5": 98.48,
+        "1.0": 97.35,
+        "1.5": 95.76,
+        "2.0": 93.73,
+        "3.0": 88.48
+      },
+      "shift": {
+        "2.0": 99.39,
+        "5.0": 99.35,
+        "10.0": 99.35,
+        "20.0": 97.91,
+        "40.0": 90.17,
+        "80.0": 62.04
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 2,
+      "identity": 99.35,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 95.45,
+        "fEnd x1.26 (third octave)": 92.37,
+        "sweep reversed": 96.6,
+        "duration x1.3": 77.29,
+        "peakPos +0.15": 91.43,
+        "bandwidth x1.6": 81.02,
+        "envCurve x1.6": 93.24,
+        "gain +2 dB": 94.27,
+        "late by 50 ms": 97.19
+      },
+      "gain": {
+        "0.25": 99.12,
+        "0.5": 98.78,
+        "1.0": 97.73,
+        "1.5": 96.22,
+        "2.0": 94.27,
+        "3.0": 89.16
+      },
+      "shift": {
+        "2.0": 99.33,
+        "5.0": 99.35,
+        "10.0": 99.34,
+        "20.0": 99.06,
+        "40.0": 97.98,
+        "80.0": 93.83
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 3,
+      "identity": 99.87,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 96.12,
+        "fEnd x1.26 (third octave)": 92.06,
+        "sweep reversed": 95.54,
+        "duration x1.3": 72.91,
+        "peakPos +0.15": 84.4,
+        "bandwidth x1.6": 44.25,
+        "envCurve x1.6": 93.46,
+        "gain +2 dB": 95.73,
+        "late by 50 ms": 93.97
+      },
+      "gain": {
+        "0.25": 99.78,
+        "0.5": 99.56,
+        "1.0": 98.76,
+        "1.5": 97.47,
+        "2.0": 95.73,
+        "3.0": 90.95
+      },
+      "shift": {
+        "2.0": 99.88,
+        "5.0": 99.81,
+        "10.0": 99.62,
+        "20.0": 98.87,
+        "40.0": 96.03,
+        "80.0": 85.58
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 4,
+      "identity": 98.96,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 88.41,
+        "fEnd x1.26 (third octave)": 93.14,
+        "sweep reversed": 0.33,
+        "duration x1.3": 63.92,
+        "peakPos +0.15": 88.99,
+        "bandwidth x1.6": 85.72,
+        "envCurve x1.6": 94.09,
+        "gain +2 dB": 94.86,
+        "late by 50 ms": 76.23
+      },
+      "gain": {
+        "0.25": 98.89,
+        "0.5": 98.65,
+        "1.0": 97.84,
+        "1.5": 96.57,
+        "2.0": 94.86,
+        "3.0": 90.25
+      },
+      "shift": {
+        "2.0": 98.75,
+        "5.0": 98.17,
+        "10.0": 96.99,
+        "20.0": 93.58,
+        "40.0": 82.94,
+        "80.0": 53.76
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 5,
+      "identity": 99.49,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 94.01,
+        "fEnd x1.26 (third octave)": 94.94,
+        "sweep reversed": 93.9,
+        "duration x1.3": 83.26,
+        "peakPos +0.15": 93.44,
+        "bandwidth x1.6": 79.88,
+        "envCurve x1.6": 97.58,
+        "gain +2 dB": 97.97,
+        "late by 50 ms": 82.5
+      },
+      "gain": {
+        "0.25": 99.72,
+        "0.5": 99.79,
+        "1.0": 99.68,
+        "1.5": 99.06,
+        "2.0": 97.97,
+        "3.0": 94.46
+      },
+      "shift": {
+        "2.0": 99.45,
+        "5.0": 99.31,
+        "10.0": 98.6,
+        "20.0": 96.23,
+        "40.0": 88.02,
+        "80.0": 62.63
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 6,
+      "identity": 99.88,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 94.04,
+        "fEnd x1.26 (third octave)": 93.58,
+        "sweep reversed": 38.05,
+        "duration x1.3": 70.01,
+        "peakPos +0.15": 84.47,
+        "bandwidth x1.6": 79.54,
+        "envCurve x1.6": 92.49,
+        "gain +2 dB": 96.28,
+        "late by 50 ms": 91.63
+      },
+      "gain": {
+        "0.25": 99.86,
+        "0.5": 99.71,
+        "1.0": 99.05,
+        "1.5": 97.9,
+        "2.0": 96.28,
+        "3.0": 91.74
+      },
+      "shift": {
+        "2.0": 99.83,
+        "5.0": 99.68,
+        "10.0": 99.33,
+        "20.0": 98.21,
+        "40.0": 94.33,
+        "80.0": 81.07
+      }
+    },
+    {
+      "kind": "whoosh",
+      "index": 7,
+      "identity": 98.4,
+      "perturbed": {
+        "fStart x1.26 (third octave)": 87.42,
+        "fEnd x1.26 (third octave)": 91.38,
+        "sweep reversed": 47.84,
+        "duration x1.3": 76.43,
+        "peakPos +0.15": 83.33,
+        "bandwidth x1.6": 83.82,
+        "envCurve x1.6": 95.23,
+        "gain +2 dB": 96.06,
+        "late by 50 ms": 75.52
+      },
+      "gain": {
+        "0.25": 98.4,
+        "0.5": 98.4,
+        "1.0": 98.11,
+        "1.5": 97.29,
+        "2.0": 96.06,
+        "3.0": 92.42
+      },
+      "shift": {
+        "2.0": 98.14,
+        "5.0": 97.57,
+        "10.0": 96.37,
+        "20.0": 92.88,
+        "40.0": 82.23,
+        "80.0": 53.18
+      }
+    },
+    {
+      "kind": "click",
+      "index": 0,
+      "identity": 99.4,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 34.89,
+        "decayMode x1.5": 98.46,
+        "noiseMix +0.3": 89.59,
+        "noiseHp x2": 97.29,
+        "gain +2 dB": 95.49,
+        "late by 20 ms": 95.48
+      },
+      "gain": {
+        "0.25": 99.34,
+        "0.5": 99.15,
+        "1.0": 98.41,
+        "1.5": 97.18,
+        "2.0": 95.49,
+        "3.0": 90.81
+      },
+      "shift": {
+        "2.0": 99.36,
+        "5.0": 99.15,
+        "10.0": 98.41,
+        "20.0": 95.48,
+        "40.0": 84.63,
+        "80.0": 52.24
+      }
+    },
+    {
+      "kind": "click",
+      "index": 1,
+      "identity": 99.64,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.13,
+        "decayMode x1.5": 95.94,
+        "noiseMix +0.3": 30.61,
+        "noiseHp x2": 99.42,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.71
+      },
+      "gain": {
+        "0.25": 99.57,
+        "0.5": 99.39,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.59,
+        "5.0": 99.38,
+        "10.0": 98.63,
+        "20.0": 95.71,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 2,
+      "identity": 99.15,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 33.9,
+        "decayMode x1.5": 98.31,
+        "noiseMix +0.3": 0.0,
+        "noiseHp x2": 96.53,
+        "gain +2 dB": 95.24,
+        "late by 20 ms": 95.24
+      },
+      "gain": {
+        "0.25": 99.09,
+        "0.5": 98.9,
+        "1.0": 98.16,
+        "1.5": 96.93,
+        "2.0": 95.24,
+        "3.0": 90.58
+      },
+      "shift": {
+        "2.0": 99.11,
+        "5.0": 98.9,
+        "10.0": 98.16,
+        "20.0": 95.24,
+        "40.0": 84.41,
+        "80.0": 52.1
+      }
+    },
+    {
+      "kind": "click",
+      "index": 3,
+      "identity": 97.96,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 36.01,
+        "decayMode x1.5": 63.25,
+        "noiseMix +0.3": 66.6,
+        "noiseHp x2": 96.5,
+        "gain +2 dB": 94.11,
+        "late by 20 ms": 94.1
+      },
+      "gain": {
+        "0.25": 97.9,
+        "0.5": 97.72,
+        "1.0": 96.99,
+        "1.5": 95.78,
+        "2.0": 94.11,
+        "3.0": 89.5
+      },
+      "shift": {
+        "2.0": 97.93,
+        "5.0": 97.72,
+        "10.0": 96.98,
+        "20.0": 94.1,
+        "40.0": 83.41,
+        "80.0": 51.49
+      }
+    },
+    {
+      "kind": "click",
+      "index": 4,
+      "identity": 99.64,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 99.36,
+        "decayMode x1.5": 99.43,
+        "noiseMix +0.3": 88.38,
+        "noiseHp x2": 98.05,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.71
+      },
+      "gain": {
+        "0.25": 99.58,
+        "0.5": 99.39,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.6,
+        "5.0": 99.39,
+        "10.0": 98.64,
+        "20.0": 95.71,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 5,
+      "identity": 99.68,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.07,
+        "decayMode x1.5": 96.65,
+        "noiseMix +0.3": 39.61,
+        "noiseHp x2": 99.56,
+        "gain +2 dB": 95.75,
+        "late by 20 ms": 95.75
+      },
+      "gain": {
+        "0.25": 99.62,
+        "0.5": 99.43,
+        "1.0": 98.68,
+        "1.5": 97.45,
+        "2.0": 95.75,
+        "3.0": 91.06
+      },
+      "shift": {
+        "2.0": 99.64,
+        "5.0": 99.43,
+        "10.0": 98.68,
+        "20.0": 95.75,
+        "40.0": 84.87,
+        "80.0": 52.39
+      }
+    },
+    {
+      "kind": "click",
+      "index": 6,
+      "identity": 99.63,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.02,
+        "decayMode x1.5": 71.31,
+        "noiseMix +0.3": 86.12,
+        "noiseHp x2": 99.46,
+        "gain +2 dB": 95.71,
+        "late by 20 ms": 95.7
+      },
+      "gain": {
+        "0.25": 99.57,
+        "0.5": 99.38,
+        "1.0": 98.64,
+        "1.5": 97.41,
+        "2.0": 95.71,
+        "3.0": 91.02
+      },
+      "shift": {
+        "2.0": 99.59,
+        "5.0": 99.38,
+        "10.0": 98.64,
+        "20.0": 95.7,
+        "40.0": 84.83,
+        "80.0": 52.36
+      }
+    },
+    {
+      "kind": "click",
+      "index": 7,
+      "identity": 99.66,
+      "perturbed": {
+        "fMode x1.06 (one semitone)": 35.25,
+        "decayMode x1.5": 97.79,
+        "noiseMix +0.3": 60.22,
+        "noiseHp x2": 96.74,
+        "gain +2 dB": 95.74,
+        "late by 20 ms": 95.73
+      },
+      "gain": {
+        "0.25": 99.59,
+        "0.5": 99.41,
+        "1.0": 98.66,
+        "1.5": 97.43,
+        "2.0": 95.74,
+        "3.0": 91.05
+      },
+      "shift": {
+        "2.0": 99.62,
+        "5.0": 99.41,
+        "10.0": 98.66,
+        "20.0": 95.73,
+        "40.0": 84.85,
+        "80.0": 52.38
+      }
+    }
+  ]
+}

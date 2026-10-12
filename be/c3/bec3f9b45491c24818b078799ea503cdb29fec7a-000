@@ -1,0 +1,490 @@
+{
+ "replacement": {
+  "headline": "CEDAR SOLAR 4",
+  "headline_tracking_px": -4.375,
+  "headline_tracking_em": -0.06836,
+  "subtitle": "Steady. Bright. Deeply.",
+  "subtitle_tracking_px": 0.0
+ },
+ "units": {
+  "position_px1080": 1.0,
+  "ratio": 0.01,
+  "delta_e00": 1.0,
+  "glow_ratio": 0.05
+ },
+ "rows": {
+  "REF re-encoded (x264 CRF 23)": {
+   "image": {
+    "ssim_full": 0.9985654849480541,
+    "pixel_corr": 0.9992130797091185,
+    "ssim_masked": 0.9989094252705778,
+    "masked_fraction": 0.0950770399305556,
+    "ssim_lowpass_sigma4": 0.9996323128402488,
+    "ssim_lowpass_sigma8": 0.9997115025989898,
+    "ssim_lowpass_sigma16": 0.999747013482128,
+    "ssim_lowpass_sigma24": 0.9997621354201031
+   },
+   "parametric": {
+    "layout": 0.9990322071289451,
+    "motion": 0.997328788006027,
+    "color": 0.9782410736840503,
+    "typography": 0.9998387214451661,
+    "effects": 0.9984451288328456,
+    "composite_min": 0.9782410736840503
+   },
+   "jnd": {
+    "layout": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.179,
+     0.009,
+     1.15
+    ],
+    "motion": [
+     0.186,
+     0.975,
+     0.104,
+     0.269
+    ],
+    "color": [
+     0.338,
+     0.383,
+     2.499,
+     0.09,
+     2.09
+    ],
+    "typography": [
+     0.0,
+     0.0,
+     0.22
+    ],
+    "effects": [
+     0.394
+    ]
+   }
+  },
+  "SWAP (content replaced, same geometry)": {
+   "image": {
+    "ssim_full": 0.9763485158018129,
+    "pixel_corr": 0.7789634387007863,
+    "ssim_masked": 0.9999960346483472,
+    "masked_fraction": 0.09584743923611116,
+    "ssim_lowpass_sigma4": 0.9797748355378862,
+    "ssim_lowpass_sigma8": 0.9895699387568393,
+    "ssim_lowpass_sigma16": 0.9984108889640841,
+    "ssim_lowpass_sigma24": 0.9993611997348469
+   },
+   "parametric": {
+    "layout": 0.9903571428571428,
+    "motion": 0.9988499118837229,
+    "color": 0.9999987017345398,
+    "typography": 0.9676843051278037,
+    "effects": 1.0,
+    "composite_min": 0.9676843051278037
+   },
+   "jnd": {
+    "layout": [
+     3.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     0.678,
+     0.0,
+     0.0,
+     0.029
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     0.0,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.113
+    ],
+    "effects": [
+     0.0
+    ]
+   }
+  },
+  "SWAP + headline 2 frames late": {
+   "image": {
+    "ssim_full": 0.9759078462327798,
+    "pixel_corr": 0.7797432681483559,
+    "ssim_masked": 0.9999960346483472,
+    "masked_fraction": 0.09584743923611116,
+    "ssim_lowpass_sigma4": 0.9797090615837993,
+    "ssim_lowpass_sigma8": 0.989625398303611,
+    "ssim_lowpass_sigma16": 0.9983969617404035,
+    "ssim_lowpass_sigma24": 0.9993632401288534
+   },
+   "parametric": {
+    "layout": 0.9903571428571428,
+    "motion": 0.9263805803181643,
+    "color": 0.9999987017345398,
+    "typography": 0.9676843051278037,
+    "effects": 1.0,
+    "composite_min": 0.9263805803181643
+   },
+   "jnd": {
+    "layout": [
+     3.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     1.737,
+     0.0,
+     0.0,
+     5.141
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     0.0,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.113
+    ],
+    "effects": [
+     0.0
+    ]
+   }
+  },
+  "SWAP + headline power2.out instead of power3.out": {
+   "image": {
+    "ssim_full": 0.9754741481975364,
+    "pixel_corr": 0.7735665638789503,
+    "ssim_masked": 0.9999960346483472,
+    "masked_fraction": 0.09584743923611116,
+    "ssim_lowpass_sigma4": 0.97938179189162,
+    "ssim_lowpass_sigma8": 0.9894524382642417,
+    "ssim_lowpass_sigma16": 0.998353742957714,
+    "ssim_lowpass_sigma24": 0.9993373408172764
+   },
+   "parametric": {
+    "layout": 0.9903571428571428,
+    "motion": 0.9821756776483856,
+    "color": 0.9999987017345398,
+    "typography": 0.9676843051278037,
+    "effects": 1.0,
+    "composite_min": 0.9676843051278037
+   },
+   "jnd": {
+    "layout": [
+     3.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     2.67,
+     0.0,
+     0.0,
+     0.03
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     0.0,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.113
+    ],
+    "effects": [
+     0.0
+    ]
+   }
+  },
+  "SWAP + accent colour shifted": {
+   "image": {
+    "ssim_full": 0.9762782628520483,
+    "pixel_corr": 0.7735181092952342,
+    "ssim_masked": 0.9999183343211979,
+    "masked_fraction": 0.09584743923611116,
+    "ssim_lowpass_sigma4": 0.9797338971387232,
+    "ssim_lowpass_sigma8": 0.9895264596046501,
+    "ssim_lowpass_sigma16": 0.9983669093524329,
+    "ssim_lowpass_sigma24": 0.9993177798083974
+   },
+   "parametric": {
+    "layout": 0.9903539415978141,
+    "motion": 0.9988129657260287,
+    "color": 0.9456992073639704,
+    "typography": 0.9676843051278037,
+    "effects": 0.9999868081750606,
+    "composite_min": 0.9456992073639704
+   },
+   "jnd": {
+    "layout": [
+     3.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.011,
+     0.007,
+     0.066
+    ],
+    "motion": [
+     0.678,
+     0.109,
+     0.052,
+     0.033
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     5.211,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.113
+    ],
+    "effects": [
+     0.036
+    ]
+   }
+  },
+  "SWAP + headline size +4 %": {
+   "image": {
+    "ssim_full": 0.9738544439415785,
+    "pixel_corr": 0.762468511777199,
+    "ssim_masked": 0.9999960174663295,
+    "masked_fraction": 0.09974826388888891,
+    "ssim_lowpass_sigma4": 0.9786322208669398,
+    "ssim_lowpass_sigma8": 0.98615501956876,
+    "ssim_lowpass_sigma16": 0.997259555519549,
+    "ssim_lowpass_sigma24": 0.9989684169512587
+   },
+   "parametric": {
+    "layout": 0.0,
+    "motion": 0.9850727511755474,
+    "color": 0.9999987401050449,
+    "typography": 0.9632710941239684,
+    "effects": 1.0,
+    "composite_min": 0.0
+   },
+   "jnd": {
+    "layout": [
+     1.5,
+     3.0,
+     37.5,
+     4.5,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     2.443,
+     0.0,
+     0.0,
+     0.039
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     0.0,
+     0.015
+    ],
+    "typography": [
+     2.083,
+     0.062,
+     2.584
+    ],
+    "effects": [
+     0.0
+    ]
+   }
+  },
+  "SWAP + headline 8 px right (720p)": {
+   "image": {
+    "ssim_full": 0.9764051854436379,
+    "pixel_corr": 0.7808640879313011,
+    "ssim_masked": 0.9999960321531669,
+    "masked_fraction": 0.09641601562500002,
+    "ssim_lowpass_sigma4": 0.9803352346860861,
+    "ssim_lowpass_sigma8": 0.9888527555282012,
+    "ssim_lowpass_sigma16": 0.9981027043624131,
+    "ssim_lowpass_sigma24": 0.9992761534547837
+   },
+   "parametric": {
+    "layout": 0.8408928571428571,
+    "motion": 0.9988506533389763,
+    "color": 0.9999994054189948,
+    "typography": 0.9690814048694271,
+    "effects": 1.0,
+    "composite_min": 0.8408928571428571
+   },
+   "jnd": {
+    "layout": [
+     10.5,
+     0.0,
+     10.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     0.678,
+     0.0,
+     0.0,
+     0.024
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.008,
+     0.0,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.045
+    ],
+    "effects": [
+     0.0
+    ]
+   }
+  },
+  "SWAP + glow sigma +33 %": {
+   "image": {
+    "ssim_full": 0.9761342377498363,
+    "pixel_corr": 0.7787471124584474,
+    "ssim_masked": 0.9997590414004429,
+    "masked_fraction": 0.09584743923611116,
+    "ssim_lowpass_sigma4": 0.9796307434653462,
+    "ssim_lowpass_sigma8": 0.9894526319644782,
+    "ssim_lowpass_sigma16": 0.998343234169699,
+    "ssim_lowpass_sigma24": 0.9993208138504548
+   },
+   "parametric": {
+    "layout": 0.9903571428571428,
+    "motion": 0.9988241561586915,
+    "color": 0.9999987006582707,
+    "typography": 0.9676843051278037,
+    "effects": 0.647376594225209,
+    "composite_min": 0.647376594225209
+   },
+   "jnd": {
+    "layout": [
+     3.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     1.5,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "motion": [
+     0.678,
+     0.011,
+     0.015,
+     0.104
+    ],
+    "color": [
+     0.0,
+     0.0,
+     0.02,
+     0.001,
+     0.015
+    ],
+    "typography": [
+     0.0,
+     0.062,
+     3.113
+    ],
+    "effects": [
+     5.938
+    ]
+   }
+  }
+ },
+ "accent_shift_delta_e00_nominal": 5.217739735002738
+}

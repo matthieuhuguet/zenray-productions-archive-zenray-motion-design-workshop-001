@@ -1,0 +1,6 @@
+lossless {"x": ["power3.out", "power3.out", 0.0006, -0.01, 0.06], "y": ["back.inOut(1)", "cubic-bezier", 0.0433, -404.62, 808.3], "scale": ["back.out(1.70158)", "back.out(1.697)", 0.0029, 0.04, 0.1], "opacity": ["sine.inOut", "sine.inOut", 0.3024, -3240.03, 3239.21]}
+   measurement {"x": [0.3816, 0.5447], "y": [0.3757, 0.4954], "scale": [0.0013, 0.0021], "opacity": [0.0005, 0.0023]}
+x264_crf23 {"x": ["power3.out", "power3.out", 0.0006, -0.01, 0.05], "y": ["back.inOut(1)", "cubic-bezier", 0.0455, -405.98, 811.42], "scale": ["back.out(1.70158)", "back.out(1.70158)", 0.0064, 0.27, -0.09], "opacity": ["sine.inOut", "sine.inOut", 0.2997, -6714.78, 6714.23]}
+   measurement {"x": [0.4265, 0.5379], "y": [0.4149, 0.6003], "scale": [0.0014, 0.0037], "opacity": [0.0009, 0.0058]}
+x264_crf35 {"x": ["power3.out", "power3.out", 0.0007, 0.04, -0.21], "y": ["back.inOut(1)", "cubic-bezier", 0.043, -408.76, 815.46], "scale": ["back.out(1.70158)", "back.out(1.70158)", 0.0115, -0.0, 2.26], "opacity": ["css.ease-in-out", "cubic-bezier", 0.2903, -650.26, 653.44]}
+   measurement {"x": [0.4473, 0.6728], "y": [0.3754, 0.6815], "scale": [0.0021, 0.0085], "opacity": [0.0016, 0.0131]}

@@ -1,0 +1,212 @@
+# R10, la 3D dans le logiciel ZenRay Motion Design (12 October 2026)
+
+Note de recherche du projet `zenray-motion-design`. Elle évalue trois voies pour produire de la 3D dans une reproduction de motion design pilotée par HyperFrames (three.js dans la composition, Blender en tâche de fond, Houdini 22 par hython), explique comment composer leurs rendus et comment ajuster une caméra 3D aux mesures d'une référence, puis recommande une architecture. Rien n'a été installé et aucune scène existante n'a été ouverte ni modifiée : toutes les expériences ont tourné sur des scènes d'usine (`--factory-startup`) ou des compositions jetables dans le dossier de travail de session.
+
+Convention de lecture : **[mesuré]** veut dire relevé sur ce Mac le 12 October 2026 par une commande ou un script dont la sortie est citée ; **[doc]** veut dire lu dans une documentation officielle citée par URL ; **[supposé]** veut dire déduit, non vérifié ici.
+
+## 1. Ce qui est présent sur ce Mac (12 October 2026)
+
+| Élément | État | Preuve |
+|---|---|---|
+| Machine | Apple M5 Max, 48 Gio de mémoire | [mesuré] `sysctl machdep.cpu.brand_string hw.memsize` |
+| Blender | `/Applications/Blender.app`, **Blender 5.2.2 LTS**, construit le 2026-09-15 | [mesuré] `Blender --version` |
+| Ligne de commande Blender | `Blender -b --factory-startup -P script.py -- args` fonctionne, Eevee et Cycles sur Metal | [mesuré] journaux ci-dessous |
+| MCP Blender | Serveur `blender-mcp` lancé par la session (`~/.local/bin/blender-mcp`, outil `uv`), outils `mcp__blender__*` présents en différé (exécution de code `bpy`, résumés de fichiers, captures, rendu de vignette). Il exige Blender ouvert avec son module complémentaire connecté ; aucune instance de Blender ne tournait au moment de l'étude, il n'a donc pas été appelé | [mesuré] `pgrep -fl blender-mcp`, liste des outils différés de la session |
+| Houdini | `/Applications/Houdini/Current` pointe vers `Houdini22.0.368` ; `hython`, `hbatch`, `husk` présents | [mesuré] `ls .../Resources/bin` |
+| hython | `hou.applicationVersionString()` rend `22.0.368`, licence `Indie`, démarrage à froid 6,4 s (un greffon Octane se charge et se ferme au passage) | [mesuré] `time hython -c ...` |
+| MCP Houdini | Serveur `zrhoudini.py --mcp` (dépôt `Memory1/Houdini/MCP`), outils `mcp__zenray-houdini__*` présents en différé (`houdini_hom`, `houdini_build`, `houdini_snapshot`, `houdini_height`, etc.) | [mesuré] `pgrep`, liste des outils différés |
+| HyperFrames | CLI 0.8.149 dans le cache `npx`, adaptateur `three` présent dans le runtime (étude R01) | R01, [code] |
+| three.js | Révision **185** copiée localement dans la composition d'essai (`vendor/three`) | [mesuré] `REVISION = '185'` dans `three.core.js` |
+
+## 2. Voie A : three.js dans la composition HyperFrames (12 October 2026)
+
+### 2.1 Comment le temps est piloté
+
+HyperFrames ne laisse rien tourner en temps réel pendant un rendu : pour chaque image n, le producteur appelle `window.__hf.seek(n / fps)`, et l'adaptateur `three` publie ce temps dans `window.__hfThreeTime` puis émet l'événement `hf-seek` ; la scène doit dessiner exactement ce temps, à partir de `event.detail.time`, et jamais d'un état accumulé par `requestAnimationFrame` [doc] https://hyperframes.heygen.com/prompting/runtimes-and-3d, https://hyperframes.heygen.com/concepts/frame-adapters, skill officiel https://github.com/heygen-com/hyperframes/blob/v0.8.149/skills/hyperframes-animation/adapters/three.md. Trois obligations en découlent, toutes vérifiées dans l'essai : `data-duration` sur la racine, puisque l'adaptateur `three` n'infère aucune durée ; chargement des modèles, textures et environnements avant le premier seek (l'adaptateur attend `THREE.DefaultLoadingManager`, d'où l'exposition de `window.THREE`) ; taille et ratio de pixels du moteur de rendu figés (`setPixelRatio(1)`, `setSize(1920, 1080)`).
+
+Une animation glTF se pose par `AnimationMixer.setTime(time)` à chaque seek, ce qui la rend indépendante de l'ordre des images [doc] https://threejs.org/docs/#api/en/animation/AnimationMixer.
+
+### 2.2 L'essai mesuré
+
+Une scène minimale (un bloc biseauté métallique qui tourne de 90 degrés, un sol, une caméra de 50 mm en travelling avant) a été construite par script dans Blender, exportée en glTF binaire (25 Ko, export en 0,03 s), puis rendue par three.js r185 sous HyperFrames : matériau PBR métallique, environnement `RoomEnvironment` passé par PMREM, lumière directionnelle avec ombres douces `PCFSoftShadowMap` de 2048 px, tonalité ACES, profondeur de champ par `BokehPass`.
+
+| Mesure | Résultat |
+|---|---|
+| 30 images 1920 x 1080, GPU matériel | 2,2 s à 3,6 s selon le passage (capture 1,9 s à 3,1 s) [mesuré] |
+| Même rendu, GPU logiciel | 9,3 s [mesuré] |
+| Déterminisme, trois passages GPU matériel | empreinte de l'ensemble des 30 PNG **identique** (`5cc7e3e25420`) [mesuré] |
+| GPU logiciel contre matériel | pixels **différents** (`824abce3a8f9`) : un vérificateur doit donc toujours comparer sur la même voie de rendu [mesuré] |
+| Vidéo MP4 de 4 s | 5,9 s de rendu, 208 Ko [mesuré] |
+| Silhouette three.js contre Blender, même glTF et même caméra | intersection sur union de 0,9994 (image 1), 0,998 (image 15), 0,9951 (image 30) [mesuré] |
+
+Le dernier chiffre est le plus utile : la caméra glTF (focale convertie en champ vertical, `yfov` attendu 0,3996 rad pour 50 mm sur un capteur de 36 mm) traverse l'échange sans perte mesurable, si bien que Blender peut servir d'atelier de mise en place et three.js de moteur de rendu sans recaler la caméra à la main. La légère dérive en fin de mouvement (0,5 pour cent) proviendrait de l'échantillonnage de l'interpolation de rotation entre les deux moteurs [supposé].
+
+### 2.3 Ce que three.js fait bien et ce qu'il ne fait pas
+
+| Besoin | Verdict three.js | Source |
+|---|---|---|
+| Chargement glTF, animations, morphs | oui, `GLTFLoader` et `AnimationMixer` | [doc] https://threejs.org/docs/#examples/en/loaders/GLTFLoader |
+| Matériaux PBR métal et rugosité, verre simple par `MeshPhysicalMaterial` (transmission) | oui, qualité temps réel | [doc] three.js, [supposé] pour le verre, non testé |
+| Environnement HDR | oui, `RGBELoader` ou `EXRLoader` puis PMREM ; le fichier HDR doit être local et chargé avant le seek | [doc] https://threejs.org/docs/#examples/en/loaders/RGBELoader |
+| Ombres | oui, cartes d'ombres ; pas d'ombres de contact ni d'occultation globale de qualité offline | [mesuré] essai, [doc] |
+| Profondeur de champ | oui par `BokehPass`, approximative (pas de vrai flou optique physique) | [mesuré] essai, [doc] https://threejs.org/examples/#webgl_postprocessing_dof |
+| Fumée, fluides, particules physiques, réfraction réaliste | non, ou au prix d'un shader écrit à la main dont le rendu restera stylisé | [supposé] |
+| Itération | instantanée : changer un paramètre et relancer coûte 2 à 4 s pour 30 images | [mesuré] |
+
+**Piège à retenir.** Tout `Math.random` doit être graine, et aucun calcul ne doit dépendre de `setTimeout` ni d'un état gardé d'une image à l'autre, puisque le runtime n'en fige pas l'horloge (R01, section temps).
+
+## 3. Voie B : Blender en tâche de fond (12 October 2026)
+
+### 3.1 Ligne de commande
+
+`Blender -b --factory-startup -P script.py -- <arguments>` lance Blender sans interface, sans préférences ni module complémentaire de l'utilisateur, exécute le script `bpy` puis quitte [doc] https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html. Le moteur se choisit par `scene.render.engine` (`BLENDER_EEVEE` ou `CYCLES`), la transparence par `render.film_transparent = True` et une sortie PNG en `RGBA` [doc] https://docs.blender.org/manual/en/latest/render/output/properties/output.html. Un chemin de sortie relatif `//` échoue sur une scène jamais enregistrée (« cannot save ») : il faut un chemin absolu [mesuré].
+
+### 3.2 Temps mesurés
+
+| Rendu | Temps |
+|---|---|
+| Eevee, cube d'usine, 1280 x 720, PNG RGBA | 0,31 s de rendu, 0,94 s processus compris [mesuré] |
+| Eevee, scène d'essai, 1920 x 1080, 64 échantillons, premier lancement | 3,71 s (compilation des shaders comprise) [mesuré] |
+| Eevee, même scène, fond transparent, lancement suivant | 0,49 s [mesuré] |
+| Eevee, séquence de 30 images 1080p RGBA | environ 1 s par image, 40 s pour la séquence, démarrage compris [mesuré] |
+| Cycles Metal, 1080p, 32 échantillons, tout premier lancement | **8 min 12 s**, presque entièrement en chargement des 77 noyaux Metal [mesuré] |
+| Cycles Metal, 1080p, 128 échantillons, ensuite | 39,7 s puis 9,4 s une fois les noyaux en cache [mesuré] |
+| Cycles Metal, cube d'usine, 720p, 64 échantillons | 2,93 s [mesuré] |
+| Déterminisme : deux lancements identiques, Eevee puis Cycles | écart maximal de **0** par pixel dans les deux cas ; l'empreinte du fichier PNG change (métadonnées), d'où l'obligation de comparer les pixels et non les fichiers [mesuré] |
+
+Conséquence pratique : Eevee tient la boucle d'itération (une seconde par image en 1080p), Cycles ne se justifie qu'au rendu final d'un plan validé, et la première exécution de Cycles sur une machine doit être lancée à part, une fois, pour remplir le cache des noyaux, faute de quoi le premier rendu « mesure » une compilation et non une image. Cela rejoint la règle de vitesse du 9 October 2026 : déboguer en Eevee ou en vue OpenGL, réserver le rendu à chemin optique à la vérification finale.
+
+### 3.3 Le MCP Blender
+
+Il sert à inspecter et retoucher une scène ouverte par Matthieu (résumé des objets, capture de la vue, rendu de vignette). Il ne convient pas au pipeline automatique, puisqu'il dépend d'une fenêtre ouverte et d'un module connecté, alors que la ligne de commande suffit et reste reproductible. Recommandation : le pipeline appelle `Blender -b`, le MCP reste un outil d'atelier.
+
+## 4. Voie C : Houdini 22 par hython et le MCP zenray-houdini (12 October 2026)
+
+Houdini est la seule des trois voies qui produise une fumée, un feu, un fluide, une destruction ou un grand nuage de particules physiquement crédibles : Pyro pour la fumée et le feu [doc] https://www.sidefx.com/docs/houdini/pyro/index.html, POP et Vellum pour les particules et les tissus, Karma (CPU ou XPU) pour le verre et la réfraction [doc] https://www.sidefx.com/docs/houdini/solaris/karma.html.
+
+Trois chemins de rendu, du plus rapide au plus coûteux, à prendre dans cet ordre conformément au skill `zenray-houdini` : une capture OpenGL (ROP OpenGL ou flipbook, de l'ordre de 0,6 s par image selon le skill) [doc] https://www.sidefx.com/docs/houdini/nodes/out/opengl.html, https://www.sidefx.com/docs/houdini/hom/hou/FlipbookSettings.html ; Karma XPU par `husk` sur un fichier USD exporté de Solaris, qui accepte une plage d'images et la carte graphique [doc] https://www.sidefx.com/docs/houdini/ref/utils/husk.html, [mesuré] `husk --help` ; Karma CPU pour une image de vérification. Le skill rapporte un cycle complet (export, rendu Karma 2048 px, 64 échantillons) de 32 à 41 s par image après élagage du graphe (`~/.claude/skills/zenray-houdini/SKILL.md`, 1 October 2026), ce qui place Houdini dans la même classe de coût que Cycles.
+
+Une simulation se **met en cache sur disque** une fois (fichiers `.bgeo.sc` ou VDB), puis se rend image par image ; c'est la condition du déterminisme, puisqu'un rendu par image ne doit jamais relancer la simulation depuis l'image 1 [supposé, pratique courante de Houdini]. La licence relevée est **Indie** [mesuré], dont les conditions (plafond de résolution et usage commercial) sont à vérifier avant un rendu livré [supposé].
+
+Le MCP `zenray-houdini` est l'outil pour construire et régler la scène avec Matthieu ; le rendu de série se fait par `hython script.py` ou `husk`, hors interface, pour ne pas lui prendre sa session Houdini. Houdini sait aussi écrire du glTF par le ROP glTF [doc] https://www.sidefx.com/docs/houdini/nodes/out/gltf.html, utile pour envoyer une géométrie procédurale fixe à three.js, mais pas une fumée.
+
+## 5. Composer les rendus dans HyperFrames (12 October 2026)
+
+HyperFrames n'a pas d'élément « séquence d'images » natif : ses éléments temporisés sont `<video>`, `<img>`, `<audio>` et les compositions imbriquées, chacun avec `data-start`, `data-duration` et `data-track-index` [doc] https://hyperframes.heygen.com/concepts/compositions (copie locale). Trois manières d'insérer un rendu 3D hors navigateur en découlent.
+
+### 5.1 Encoder la séquence en vidéo avec canal alpha (recommandé)
+
+La séquence PNG RGBA de Blender ou de Houdini est encodée en ProRes 4444 (`.mov`) ou en VP9 avec alpha (`.webm`), puis posée en `<video class="clip">` au-dessus des calques 2D. HyperFrames extrait les images de la vidéo au temps de la composition et produit lui-même des intermédiaires pour les codecs que Chrome lit mal, ProRes compris [doc] https://hyperframes.heygen.com/guides/rendering.
+
+| Format, séquence Blender de 30 images 1080p posée sur un aplat `#204060` | Rendu HyperFrames | Taille | Écart à la composition idéale (alpha « over » calculé en Python sur les PNG source) |
+|---|---|---|---|
+| ProRes 4444, `yuva444p12le` | 6,0 s pour 30 images, 7,0 s pour 60 | 14,1 Mo | moyenne 0,03, maximum 2,4 sur 255 [mesuré] |
+| VP9 WebM, `alpha_mode=1` | 3,2 s pour 30 images | 109 Ko | moyenne 0,063, maximum 14 sur 255 aux bords [mesuré] |
+
+Le ProRes 4444 est donc l'intermédiaire de travail, presque sans perte, et le WebM une option légère pour un aperçu. Piège documenté et confirmé : `ffprobe` annonce `yuv420p` pour un WebM VP9 qui porte bien son alpha ; pour l'inspecter, il faut forcer `-c:v libvpx-vp9` avant l'entrée [doc] guides/rendering, [mesuré] `alpha_mode=1` et composition correcte.
+
+Commandes types [supposé dans leur forme exacte, mais ce sont les encodages utilisés par l'essai] :
+
+```bash
+# ProRes 4444 with alpha, from an RGBA PNG sequence rendered at the composition fps.
+ffmpeg -framerate 30 -i seq_%04d.png -c:v prores_ks -profile:v 4444 -pix_fmt yuva444p12le shot03_fx.mov
+# Light preview alternative, VP9 with alpha.
+ffmpeg -framerate 30 -i seq_%04d.png -c:v libvpx-vp9 -pix_fmt yuva420p -b:v 0 -crf 30 shot03_fx.webm
+```
+
+### 5.2 Dessiner la séquence dans un canvas par `registerFrameSource`
+
+`window.__hyperframes.registerFrameSource` accepte une fonction du temps qui dessine l'image voulue sur un hôte temporisé ; les dessins sont sérialisés et, à l'export, chaque image demandée est dessinée [doc] https://hyperframes.heygen.com/guides/frame-sources. On peut y précharger les PNG et dessiner `frames[Math.floor(t * fps + 1e-9)]`, ce qui évite tout encodage et garde l'alpha exact [supposé, non testé]. Le coût est le préchargement de toutes les images en mémoire, raisonnable pour un plan de quelques secondes et lourd au-delà.
+
+### 5.3 Synchronisation au temps de la composition
+
+Trois règles suffisent. Le rendu 3D se fait **au fps de la composition**, image 1 de la séquence posée sur l'image `round(data-start * fps)` de la composition. `data-start` se choisit sur la grille d'images, puisque le runtime quantifie le temps par plancher (`Math.floor(t * fps + 1e-9) / fps`, R01 piège 9) : un début à 6,28 s à 60 images par seconde n'apparaît qu'à l'image 377. Enfin, la durée de la séquence s'écrit dans le fichier de paramètres du plan, d'où sont tirés à la fois la plage d'images de Blender ou de Houdini et le `data-duration` du clip, de sorte qu'une seule valeur gouverne les deux moteurs (loi HDA).
+
+## 6. Ajuster une caméra 3D aux mesures d'une référence (12 October 2026)
+
+### 6.1 Ce que le moteur mesure déjà
+
+`AnalyzeCamera.py` (skill `zenray-motion-design`) suit des coins par Lucas-Kanade et ajuste, plan par plan, une **similarité 2D** par RANSAC : échelle, translation, rotation dans le plan, et la courbe temporelle de chacune ; la signature mesurée de la référence actuelle est un départ décalé qui se pose en décélérant (`power2.out`), avec des reculs de 0,29 et 0,43 (SKILL.md, 11 October 2026). Une similarité ne distingue pas un zoom optique d'un travelling avant, ni un panoramique d'une translation latérale : il lui manque la parallaxe.
+
+### 6.2 La méthode proposée, sur le modèle de zenray-height
+
+zenray-height reproduit une carte en ajustant les paramètres d'un graphe à une mesure, puis rend une corrélation chiffrée ; la caméra se traite de la même manière, en cinq étapes [supposé, à construire] :
+
+1. **Classer le mouvement** à partir des points suivis : si une homographie unique explique tous les points avec une erreur résiduelle faible, la scène est plane ou la caméra tourne sur elle-même (panoramique, zoom optique) ; si l'erreur résiduelle croît avec l'écart de profondeur entre groupes de points, il y a translation et parallaxe (travelling, orbite). OpenCV fournit `findHomography`, `findEssentialMat` et `recoverPose`.
+2. **Estimer la focale** par la taille apparente d'un objet de dimension connue (le produit modélisé), par les points de fuite des lignes droites, ou, pour un objet reconstruit en 3D, par `solvePnP` sur quelques correspondances 2D et 3D, en balayant la focale et en gardant celle qui minimise l'erreur de reprojection.
+3. **Paramétrer la caméra comme un HDA** : orbite (azimut, élévation, distance, cible), travelling (point de départ, point d'arrivée), focale, et une courbe d'accélération par canal, soit huit paramètres au plus, conformément à la règle du 30 September 2026.
+4. **Ajuster** ces paramètres en minimisant l'écart entre les trajectoires des points mesurés et celles des mêmes points reprojetés par la caméra candidate, puis l'écart de silhouette (intersection sur union) entre un rendu masque rapide et le masque de l'objet dans la référence. Le rendu masque coûte 1,9 s pour 30 images sous three.js [mesuré], ce qui permet une boucle d'optimisation de plusieurs dizaines d'essais par minute.
+5. **Vérifier** par deux nombres : erreur de reprojection médiane en pixels et intersection sur union par image, avec un seuil cible fixé par le contrat du plan.
+
+Le module de suivi de mouvement de Blender (libmv) sait résoudre une caméra 3D complète en ligne de commande par `bpy` [supposé, non testé], ce qui en ferait une seconde voie indépendante pour contrôler la première. La caméra ajustée vit ensuite dans le glTF ou dans un fichier `camera.json` (focale en mm, capteur, positions et cibles par image clé, courbes), lu par three.js, Blender et Houdini, l'essai du paragraphe 2.2 ayant prouvé que cette conversion tient à 0,995 près.
+
+## 7. Architecture recommandée (12 October 2026)
+
+### 7.1 Quel outil pour quel plan
+
+| Le plan contient | Outil | Pourquoi |
+|---|---|---|
+| Texte, aplats, formes, cartes qui basculent, faux relief, parallaxe de calques | **2D HyperFrames** (CSS, GSAP, SVG, canvas) | Itération instantanée, déterminisme natif, aucune dépendance |
+| Un ou quelques objets solides, une orbite, un travelling, PBR, reflets d'environnement, ombres simples | **three.js dans la composition** | Byte-identique d'un rendu à l'autre, 2 à 4 s pour 30 images 1080p, réglable au curseur dans la page |
+| Matériaux exigeants (verre, transmission, éclairage global, ombres de contact), géométrie lourde, rendu final de qualité « produit » | **Blender en tâche de fond** : Eevee pour itérer, Cycles pour le final | Pixels identiques d'un lancement à l'autre, une seconde par image en Eevee 1080p |
+| Fumée, feu, fluide, destruction, nuée de particules, effets procéduraux | **Houdini 22** par hython et `husk` (simulation mise en cache, puis rendu OpenGL pour itérer et Karma pour le final) | Seul outil qui simule ces phénomènes ; le skill et le MCP existent déjà |
+
+La règle de choix se lit de haut en bas : on descend d'une ligne seulement quand la ligne du dessus ne peut pas atteindre la mesure visée, et l'on ne passe jamais à un moteur hors ligne pour un plan que la 2D reproduit déjà.
+
+### 7.2 Formats d'échange
+
+| Échange | Format |
+|---|---|
+| Géométrie, matériaux, animation et caméra vers three.js | glTF binaire `.glb` [doc] https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html, export Blender [doc] https://docs.blender.org/manual/en/4.2/addons/import_export/scene_gltf2.html |
+| Caméra commune aux trois moteurs | `camera.json` du plan (focale mm, capteur mm, positions, cibles, courbes), source unique dont sont dérivés le glTF et les scripts Blender et Houdini |
+| Rendu hors navigateur vers HyperFrames | séquence PNG RGBA au fps de la composition, conservée comme source, puis ProRes 4444 `.mov` posé en `<video>` |
+| Passes utiles à la vérification | masque objet en PNG (alpha seul), éventuellement profondeur en EXR, pour mesurer silhouette et flou sans relancer le rendu couleur |
+| Simulation Houdini | cache `.bgeo.sc` ou VDB sur disque, jamais recalculé au rendu |
+
+### 7.3 Dans l'arborescence de la version
+
+Chaque version `V_NNN` porterait un dossier `3d/` contenant le script de construction (Python `bpy` ou hython, sans valeur littérale), son fichier de paramètres, les `.glb` produits et les séquences rendues, un cache indexé par l'empreinte des paramètres afin qu'un plan inchangé ne soit jamais rendu deux fois. `Cook.mjs` lancerait les rendus hors navigateur avant l'assemblage HyperFrames, en parallèle sur les cœurs disponibles pour Eevee et en série pour Cycles ou Karma, qui saturent déjà le GPU [supposé, à mesurer]. `Verify.py` comparerait les pixels décodés, jamais les fichiers, et toujours sur la même voie de rendu GPU.
+
+## 8. Limites et points non vérifiés (12 October 2026)
+
+- `registerFrameSource` pour une séquence PNG n'a pas été essayé ; seul l'encodage vidéo l'a été.
+- Le verre de three.js (`MeshPhysicalMaterial` avec transmission), l'environnement HDR par fichier `.hdr` et les ombres de contact n'ont pas été testés ; l'essai utilisait `RoomEnvironment`.
+- Aucun rendu Houdini n'a été lancé dans cette étude ; les temps cités viennent du skill `zenray-houdini`.
+- La résolution d'une caméra 3D par le suivi de Blender et la classification du mouvement par homographie sont proposées, non construites.
+- Les conditions de la licence Houdini Indie pour un livrable n'ont pas été vérifiées.
+
+## 9. Fichiers de l'essai (12 October 2026)
+
+Dossier de travail de la session, non archivé et susceptible de disparaître :
+[/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/r10](/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/r10) : `blender/build_probe_scene.py` (scène d'essai, export glTF, séquence RGBA), `blender/setup_cycles.py`, journaux `blender/log_*.txt`, compositions `hf3d/` (three.js, modes plein et masque), `hfC/` (ProRes 4444) et `hfD/` (WebM), journaux de rendu `out_*.log`, images dans `out/`.
+
+Si ces scripts doivent servir, ils sont à recopier dans `~/.claude/skills/zenray-motion-design/scripts/` ou `templates/` avant la fin de session.
+
+## 10. Sources (12 October 2026)
+
+- https://hyperframes.heygen.com/prompting/runtimes-and-3d
+- https://hyperframes.heygen.com/concepts/frame-adapters
+- https://hyperframes.heygen.com/guides/frame-sources
+- https://hyperframes.heygen.com/guides/rendering
+- https://hyperframes.heygen.com/guides/video-components
+- https://github.com/heygen-com/hyperframes/blob/v0.8.149/skills/hyperframes-animation/adapters/three.md
+- https://threejs.org/docs/#api/en/animation/AnimationMixer
+- https://threejs.org/docs/#examples/en/loaders/GLTFLoader
+- https://threejs.org/docs/#examples/en/loaders/RGBELoader
+- https://threejs.org/examples/#webgl_postprocessing_dof
+- https://github.com/mrdoob/three.js/blob/r185/examples/jsm/postprocessing/BokehPass.js
+- https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html
+- https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
+- https://docs.blender.org/manual/en/latest/render/eevee/index.html
+- https://docs.blender.org/manual/en/latest/render/output/properties/output.html
+- https://docs.blender.org/manual/en/4.2/addons/import_export/scene_gltf2.html
+- https://www.blender.org/download/lts/
+- https://github.com/ahujasid/blender-mcp
+- https://www.sidefx.com/docs/houdini/ref/utils/husk.html
+- https://www.sidefx.com/docs/houdini/solaris/karma.html
+- https://www.sidefx.com/docs/houdini/pyro/index.html
+- https://www.sidefx.com/docs/houdini/nodes/out/opengl.html
+- https://www.sidefx.com/docs/houdini/nodes/out/gltf.html
+- https://www.sidefx.com/docs/houdini/hom/hou/FlipbookSettings.html
+- Étude interne R01 : [/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R01-hyperframes.md](/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R01-hyperframes.md)
+- Skill : [/Users/zenray/.claude/skills/zenray-houdini/SKILL.md](/Users/zenray/.claude/skills/zenray-houdini/SKILL.md), [/Users/zenray/.claude/skills/zenray-motion-design/SKILL.md](/Users/zenray/.claude/skills/zenray-motion-design/SKILL.md)

@@ -1,0 +1,6 @@
+@font-face { font-family: 'ZrInter'; src: url('assets/fonts/Lexend[wght].ttf'); font-weight: 100 900; font-display: block; }
+html, body { margin: 0; padding: 0; background: #000; }
+#root { position: relative; width: 1920px; height: 1080px; overflow: hidden; isolation: isolate; }
+#bg { position: absolute; z-index: 0; inset: 0; background: #000000; filter: blur(calc(var(--zr-blur, 0) * 1px)) brightness(var(--zr-bright, 1)); will-change: transform, opacity; }
+#caption { position: absolute; z-index: 2; left: 957.53px; top: 546.05px; transform-origin: 50.0% 50.0%; translate: -50.0% -50.0%; white-space: nowrap; font-family: 'ZrInter'; font-weight: 475; font-size: 7.55px; line-height: 1; letter-spacing: 0.0em; color: #cccccc; font-variation-settings: 'wght' 475, 'opsz' 32; color: transparent; -webkit-background-clip: text; background-clip: text; filter: blur(calc(var(--zr-blur, 0) * 1px)) brightness(var(--zr-bright, 1)); will-change: transform, opacity; }
+#caption { --zr-bright: 6.9921; }

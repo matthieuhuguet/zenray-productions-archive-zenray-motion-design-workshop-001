@@ -1,0 +1,116 @@
+# ZenRay Motion Design, critique de complétude des brouillons (12 October 2026)
+
+Objet : confronter `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/ARCHITECTURE-draft.md`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/PLAN-draft.md` et les livrables `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R01` à `R10` à la demande de Matthieu, puis à l'état réel du disque relu pendant cette critique. Les marques suivent la convention des brouillons : [M] mesuré ici par une commande, [L] lu dans un fichier, [P] supposé. (12 October 2026)
+
+## 0. Constat d'ensemble (12 October 2026)
+
+Les deux brouillons sont solides sur la mesure, la définition du 99 % et l'ordre de la tranche verticale ; ils pèchent surtout parce qu'ils décrivent un dépôt figé au commit `c1f3d27`, alors que trois commits et un lot de fichiers non commités l'ont fait avancer pendant leur rédaction, et parce que plusieurs exigences explicites de Matthieu (storyboard et bible pour CHACUNE des douze vidéos, skill qui apprend seul, moisson whatships, format 4:5, enregistrement MCP chez les trois hôtes) n'ont pas de jalon propre ou n'ont qu'un jalon qui ne porte que sur onekey-pro-2. (12 October 2026)
+
+État mesuré pendant cette critique, qui contredit les brouillons sur plusieurs points [M] :
+
+| Fait | Commande | Ce que disent les brouillons |
+|---|---|---|
+| Le dépôt moteur compte six commits, le dernier `2490b84` « MCP server zenray-motion-design (stdlib, detached jobs) » | `git -C ZenRayMotionDesign log --oneline` | trois commits, dernier `c1f3d27` |
+| `zrmd/cli.py` existe (203 lignes, sous-commandes `references`, `shots`, `motions`, `motion`, `iterate`, `catalog`, `exposed`, `montage`) | `wc -l`, `grep add_parser` | « fichier absent » |
+| `mcp/zrmd_mcp.py` existe (214 lignes, dix outils : `motion_references`, `motion_shots`, `motion_list`, `motion_get`, `motion_iterate`, `motion_reproduce_textcard`, `motion_sound`, `motion_book`, `motion_catalog`, `motion_job`) | `grep '"name"'` | « dossier vide », treize outils prévus sous `mcp/zrmotion.py` |
+| Le serveur est déjà enregistré dans `~/.claude.json` sous `zenray-motion-design`, avec un chemin dans `tmp/` | lecture de `mcpServers` | enregistrement suspendu à D02 |
+| Cinq fichiers modifiés et cinq non suivis dans le dépôt (`Scripts/ReproduceCaptions.py`, `ReproduceOrb.py`, `BuildSfxParams.py`, `SampleGsapEases.mjs`, `datasets/eases/`) | `git status --short` | absents |
+| Sept motions existent (`onekey-c01` à `c05`, `onekey-s01-orb-ignition`, `onekey-s02-caption-shine`) et non une seule tranche | `ls motions` | une tranche S02 |
+| EaseFit : 280 eases vraies en tête sur 324 et 260 à moins de 1 % | `python -I tests/test_easefit.py` | 276 et 264 |
+| `test_fontmatch.py` et `test_site_surface.py` passent, avec un cas rouge chacun | exécution directe | non cités |
+| Un worktree `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-site`, branche `motion-design-tab`, existe, mais ne contient encore ni `src/motion/` ni `scripts/Motion/` | `git worktree list`, `ls` | non cité |
+| Les scripts 3D de R10 sont encore présents dans `/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/r10` | `ls -d` | « à sauver », toujours vrai |
+
+**Geste** : avant toute validation par Matthieu, régénérer les sections 3 et 12 de l'architecture et la section 1 du plan depuis `git log`, `cli.py` et `zrmd_mcp.py`, et ajouter à la table des contradictions la ligne « MCP construit en dix outils sous un autre nom que le plan à treize outils ». (12 October 2026)
+
+## 1. Ce qui manque (12 October 2026)
+
+### 1.1 Storyboard et bible pour chacune des douze vidéos (12 October 2026)
+
+La demande exige un storyboard et une bible graphique pour chaque référence ; le plan ne les produit que pour onekey-pro-2 (J6), puis pour deux autres en J11. Sur le disque, les douze dossiers `references/<slug>/analysis/` ne contiennent que `shots.json` [M], et aucun `bible.json` ni `storyboard.json` n'existe nulle part dans l'atelier [M : `find -iname '*bible*'`]. (12 October 2026)
+
+**Geste** : ajouter un jalon J6b « couverture des douze », découplé de la reproduction à 99 % : `zrmd analyze` puis `zrmd bible` et `zrmd storyboard` sur les douze, critère `ls references/*/analysis/bible.json | wc -l` égal à 12 (11 sections son, `fin-4` marquée sans son), planche de chaque storyboard rangée dans `refcache/<slug>/boards/`, chaque bible relue par le lint de droits. Ce jalon peut partir dès que les analyses de J6 existent, sans attendre J7. (12 October 2026)
+
+### 1.2 Un skill qui apprend et se met à jour (12 October 2026)
+
+Le skill `/Users/zenray/.claude/skills/zenray-motion-design/SKILL.md` date du 11 October 2026 (125 lignes) et ses quatorze scripts sont ceux de l'étude 01 [M] ; il ne connaît ni `zrmd`, ni le registre, ni le MCP. Le plan ne le met à jour qu'en J12, et rien ne décrit le mécanisme qui le fait « apprendre » entre deux références. (12 October 2026)
+
+**Geste** : définir l'apprentissage comme un geste mesurable, à savoir qu'une entrée du registre (`registry/*.json`) n'entre que avec son test vert et rouge, que `BuildMotion1.py` régénère `Motion1.md` à chaque commit qui touche le registre (crochet git ou étape finale de `zrmd reproduce`), puis que `sync-skill.sh zenray-motion-design` s'exécute. Critère : après le traitement d'une référence, le nombre d'entrées du registre augmente, `BuildMotion1.py --verify` est vert, `diff -rq` entre les trois copies du skill est vide. Mettre à jour SKILL.md dès J5, pas en J12, pour qu'une reprise ne lise pas une méthode périmée. (12 October 2026)
+
+### 1.3 Moisson future de whatships (12 October 2026)
+
+Le catalogue existe (2 454 vidéos, 66 en catégorie `motion`) [L : R02], mais aucun jalon ne décrit la moisson : choix des vidéos, cadence, quota, dédoublonnage par empreinte, file d'analyse. (12 October 2026)
+
+**Geste** : ajouter une commande `zrmd harvest --source whatships --category motion --limit N --dry-run`, qui lit `whatships-catalogue.json`, écarte les slugs déjà en cache, ne télécharge que depuis la source originale par `FetchReference.py`, et attend un accord explicite avant tout téléchargement réel (règle « Downloading any file » des consignes). Critère : `--dry-run` liste N candidats sans rien écrire ; un second passage ne retélécharge rien. Jalon après J11. (12 October 2026)
+
+### 1.4 Formats et montage (12 October 2026)
+
+La demande et R06 citent 4:5 ; J10 ne vise que 9:16 et 1:1. Le module `zrmd/emit/montage.py` existe et son test passe [M], ce que le plan ignore. (12 October 2026)
+
+**Geste** : inclure 4:5 dans J10 et partir de `montage.py` plutôt que d'un `zrmd edit` neuf ; critère supplémentaire, une composition par format sort du même `params.json` sans copie de définition (loi HDA). (12 October 2026)
+
+### 1.5 MCP pilotable par Claude, Codex et Antigravity (12 October 2026)
+
+Le serveur est enregistré chez Claude seulement [M] ; aucune entrée nommée `zenray-motion-design` n'apparaît dans `~/.codex/config.toml` [M], Antigravity n'a pas été contrôlé [non vérifié]. Le test de fumée de J8 porte sur treize outils qui n'existent pas. (12 October 2026)
+
+**Geste** : réécrire J8 sur la base de `zrmd_mcp.py` (dix outils), décider s'il faut l'étendre vers les treize de R07 ou garder dix, puis enregistrer chez Codex et Antigravity par un lanceur fixe dans le skill (`scripts/motion/mcp.sh`) qui survit au déplacement du dépôt. Critère : `initialize` et `tools/list` répondent depuis chacun des trois hôtes. (12 October 2026)
+
+### 1.6 Page de recalage visuel (12 October 2026)
+
+L'architecture §8.6 promet un pendant visuel à la page ABX audio, sans livrable ni jalon. **Geste** : l'inscrire dans J3, avant toute annonce d'un 99 « à l'œil ». (12 October 2026)
+
+### 1.7 Journal et état de reprise (12 October 2026)
+
+Ni le plan ni l'architecture ne fixent qu'un jalon clos écrit une entrée `PROGRESS.md` par le skill `progress` et met à jour `state.json` ; or `state.json` ne mentionne pas les sept motions ni le workflow de construction en cours au-delà de son runId. **Geste** : ajouter cette double écriture au critère de chaque jalon. (12 October 2026)
+
+## 2. Ce qui n'est pas vérifié (12 October 2026)
+
+| Point | Pourquoi ce n'est pas une preuve | Geste |
+|---|---|---|
+| Le vérificateur v1 rend `colour: 1.0` sur toutes les versions de toutes les motions | une sous-mesure qui n'a jamais quitté 1,0 n'a jamais viré au rouge, elle ne regarde peut-être rien [M : 21 fichiers `fidelity.json`] | planter une couleur fausse de ΔE 5 dans une copie de V_008 et exiger une baisse sous 0,99, avant J2 |
+| Aucune dimension `rhythm` ni `sound` dans un `fidelity.json` existant | le 99 % son et rythme n'a jamais été calculé sur une reproduction | J2, cas témoin rythme ; J4 son |
+| Golden test HyperFrames 0.8.147 contre 0.8.149 | le dépôt épingle 0.8.149 sans le test exigé par R01 | J1 point 2, inchangé, mais à faire avant la moindre nouvelle version |
+| Segmentation des effets sonores mesurée seulement sur un mixage synthétique | 4 clics sur 6 par le détecteur d'attaques [L : R03 §4.2] | valider sur les stems de onekey contre une liste annotée par Matthieu (J4 point 2) |
+| Sonde 3D : dix plans 3D sur dix-sept manqués | [L : R04 §10.2] | critère J7b inchangé |
+| Docker absent, identité au bit près seulement sur ce Mac | [L : PLAN §8] | décider en J0 si la galerie l'exige |
+| Antigravity et Gemini | non contrôlés | voir 1.5 |
+| Le texte de la référence est absent de l'atelier | **faux**, voir 3.1 | purge |
+
+## 3. Ce qui est contradictoire (12 October 2026)
+
+### 3.1 Texte de la référence dans l'atelier archivé (12 October 2026)
+
+`/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/onekey-pro-2/captions-original.tsv` contient cinq lignes du texte lu dans la référence, mot pour mot, à côté des motions qui les reproduisent [M : `wc -l` et lecture des premiers caractères]. L'architecture §5.2 et §15 posent que le texte lu « n'est jamais écrit », et le plan ne signale que `dna-reference.json` de l'étude 01. Le dossier `references/` vit dans l'atelier archivé par Assets. (12 October 2026)
+
+**Geste** : déplacer ce fichier vers `refcache/onekey-pro-2/` (local, jamais archivé), vérifier que les `params.json` des motions `onekey-c01` à `c05` ne portent pas ce texte (sinon le remplacer par un texte original de même boîte d'encre), puis faire du lint de droits de J1 un contrôle qui balaie aussi `references/` ; ajouter ce cas à la question ouverte 2 du plan pour la purge de l'ancienne version archivée. (12 October 2026)
+
+### 3.2 Enregistrement MCP avant D02 (12 October 2026)
+
+Le plan suspend l'enregistrement à D02, alors qu'il est fait, sur un chemin `tmp/` que D02 propose précisément de quitter. **Geste** : soit trancher D02 maintenant, soit pointer l'enregistrement vers le lanceur fixe du skill. (12 October 2026)
+
+### 3.3 Une tranche, ou sept motions (12 October 2026)
+
+Le plan pose qu'aucune extension horizontale ne commence avant J5, mais six autres motions ont déjà été ouvertes, toutes plafonnées entre 0,78 et 0,94 [M]. Cela confirme le diagnostic de plateau plus que cela ne le contredit : la même méthode répétée sur six plans produit six plateaux. **Geste** : geler les motions c01 à c05 et s01 jusqu'à J5, et les rescorer en J2 avec le vérificateur v2 pour mesurer si le plafond vient du vérificateur. (12 October 2026)
+
+### 3.4 Musique : 99 % sans reprise des notes (12 October 2026)
+
+D05 interdit la reprise du motif de batterie, tandis que J4 exige 99 % sur un score musical qui contient tempo, sections, énergie, pompage, gate et équilibre par bande. Ces deux exigences ne se contredisent que si le score musical contient implicitement le motif ; la courbe d'énergie à court terme, mesurée à une résolution inférieure au temps, en est le risque. **Geste** : fixer en J2 la résolution de la courbe d'énergie à une demi-mesure au moins, et ajouter un cas témoin, un patron de batterie générique différent au même tempo, qui doit obtenir au moins 0,99 en musique. (12 October 2026)
+
+### 3.5 « Reproduit seul » et les arrêts humains (12 October 2026)
+
+La demande veut un logiciel qui reproduit seul ; l'architecture prévoit les codes 3 `needs_choice` et 4 `needs_asset`, la validation de la liste d'événements sonores et la validation à l'œil. **Geste** : l'écrire honnêtement dans la décision D03, à savoir que « seul » vaut pour le calcul et que les arrêts sont des portes nommées, chacune comptée dans `REPORT.md`, avec un objectif chiffré de les réduire d'une référence à l'autre. (12 October 2026)
+
+## 4. Ce qui est irréaliste en l'état (12 October 2026)
+
+1. **99 % sur douze références.** Le plan n'en vise que trois (onekey, paper-mono-code, kardashev) ; trois références durent environ trois minutes (`x-anabology-*`, `yt-4Q-o_ylnVnc`), trois sont en 4K [L : R02]. **Geste** : écrire dans le plan que la cible 99 % porte sur trois références, et que les neuf autres reçoivent storyboard, bible et un score mesuré sans engagement de seuil, jusqu'à ce que J11 donne le coût réel par référence. (12 October 2026)
+2. **Plans plaque et 3D à 99 %.** Le masque de validité les retire du score image, ce qui est juste mais rend le 99 % du film entier partiellement nominal. **Geste** : afficher `maskShare` à côté de chaque 99 annoncé, en tête de `REPORT.md` et sur la carte de la galerie. (12 October 2026)
+3. **Calendrier.** La somme des estimations du plan va de 17 à 33 journées [L : PLAN §10], soit l'essentiel de la fenêtre des douze semaines où l'argent est la première carte (doctrine ZenRayProjects). **Geste** : nommer en J0 le livrable vendable ou publiable qui sort de J5 (un short original fait avec le moteur), pour que le chantier serve aussi le plancher financier et la publication quotidienne. (12 October 2026)
+4. **Atelier saturé par plusieurs agents.** Fichiers non commités dans le dépôt pendant qu'un workflow de construction tourne [M]. **Geste** : un seul écrivain par jalon, commit à chaque étape verte, verrou `motions/<id>/.lock` déjà prévu étendu au dépôt. (12 October 2026)
+
+## 5. Points couverts correctement (12 October 2026)
+
+Le téléchargement des douze vidéos est fait et vérifié (12 empreintes sur 12, dont deux posts X et une vidéo YouTube, neuf pages whatships remontées à leur source X) [L : R02]. HyperFrames est installé localement à version exacte [M : `tooling/package.json`]. La définition du 99 % en JND, minimum des dimensions, prouvée par deux bancs à double sens, est la meilleure part des brouillons et transpose fidèlement la logique de zenray-height (registre machine, base lisible générée, une commande, corrélation mesurée). L'archivage Assets, le LOAD par le pont et le moteur 3D par paliers (three.js, Blender, Houdini) sont décrits avec leurs mesures. (12 October 2026)
+
+## 6. Sources (12 October 2026)
+
+Fichiers relus : les deux brouillons, `R02-downloads.md`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/state.json`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/` (git, `cli.py`, `mcp/zrmd_mcp.py`, `tests/`), `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/*/V_*/fidelity.json`, `/Users/zenray/.claude/skills/zenray-motion-design/`, `~/.claude.json`, `~/.codex/config.toml`, worktree `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-site`. Sources externes : https://hyperframes.heygen.com/ , https://whatships.com/directory-index.json , https://modelcontextprotocol.io/specification/2025-06-18/server/tools (12 October 2026)

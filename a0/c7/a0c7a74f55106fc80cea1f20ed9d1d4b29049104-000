@@ -1,0 +1,76 @@
+# R02, téléchargement des 12 références et catalogue whatships (12 October 2026)
+
+## État vérifié lors de la reprise (12 October 2026)
+
+La première passe avait déjà téléchargé les douze vidéos ; cette reprise les a vérifiées au lieu de les retélécharger. Pour chaque dossier de `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/<slug>/`, l'empreinte SHA-256 recalculée par `shasum -a 256` est **identique** à celle de `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/<slug>/reference.json` (12 sur 12, mesuré), et `ffprobe -select_streams a` confirme une piste audio sur onze d'entre elles. Aucun `FetchReference.py` n'a donc été relancé, puisqu'aucun fichier n'était manquant ni corrompu. Le seul défaut, l'absence de son de `fin-4`, tient à la source elle-même et non au téléchargement (voir plus bas).
+
+Le cache contient aussi, dans `onekey-pro-2/stems/`, des fichiers produits par une autre tâche du projet ; ils ont été laissés intacts.
+
+## Le script réutilisable (12 October 2026)
+
+`/Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts/FetchReference.py` existe (953 lignes, bibliothèque standard, `yt-dlp`, `curl`, `ffprobe` en sous-processus) et couvre déjà tout le cahier des charges ; il n'a pas été modifié. Il prend une URL et un slug, détecte la famille (`--family auto|whatships|x|youtube|generic`), télécharge dans un dossier de transit neuf puis déplace vers `refcache/<slug>/`, calcule SHA-256 et octets, sonde par `ffprobe`, et écrit uniquement les métadonnées dans `references/<slug>/reference.json` (schéma `zenray-motion-design/reference@1`). Options utiles : `--probe` (lister les sources sans rien télécharger), `--media-id` (choisir une vidéo quand un post en contient plusieurs), `--replace`, `--json`. Il refuse de télécharger depuis `whatships.com` ou `proxy.whatships.com`, le site déclarant ne pas être un CDN de téléchargement ; seule la source originale (video.twimg.com) est utilisée. Aucun cookie de navigateur n'est jamais lu (`--no-cookies --no-cookies-from-browser`).
+
+Lancement, toujours hors du dossier téléchargé :
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts
+python3 -I FetchReference.py https://whatships.com/videos/memo/ memo
+python3 -I FetchReference.py https://x.com/anabology/status/2105325733312884869 x-anabology-2105325733312884869
+python3 -I FetchReference.py https://www.youtube.com/watch?v=4Q-o_ylnVnc yt-4Q-o_ylnVnc
+```
+
+Version de yt-dlp mesurée : 2026.08.19, suffisante pour X et YouTube ; aucune mise à jour n'a été nécessaire.
+
+## Méthode par famille (12 October 2026)
+
+**Pages whatships.com.** Le script lit la page par `curl` (agent utilisateur de bureau, HTTPS imposé), y trouve l'URL MP4 originale sur `video.twimg.com` ainsi que l'URL du post X d'origine, puis compare avec les variantes du post obtenues par l'API de syndication de X (`cdn.syndication.twimg.com/tweet-result`, jeton calculé localement, agent `Googlebot`) et par `api.fxtwitter.com`. Il garde la variante au débit nominal le plus élevé. Pour `interface`, `memo` et `motion-opus-5-5`, le post offrait une variante 3840 x 2160 à 25 128 000 bit/s plus riche que celle de la page, et c'est elle qui a été prise ; pour les six autres, la page désignait déjà la meilleure variante (10 368 000 bit/s nominal). `yt-dlp` sur l'URL de page est essayé aussi, mais la voie retenue a toujours été la page elle-même, ce qui rend son résultat sans conséquence puisque la source originale est trouvée par la page.
+
+**X.** `yt-dlp` sur l'URL du post avec le jeton invité (API GraphQL) a fonctionné du premier coup pour les deux posts d'anabology. Les deux posts citent un autre post qui contient lui aussi une vidéo ; le filtre `--match-filters id=<media>` garantit que seule la vidéo propre au post est prise, et l'autre média est consigné dans les notes sans être téléchargé. Les replis prévus, `--extractor-args "twitter:api=syndication"` puis l'API de syndication et fxtwitter, n'ont pas été nécessaires pour ces deux posts, mais ont servi à contrôler `fin-4`.
+
+**YouTube.** Conformément au skill `ytb-dlp`, le tri `-S res:1080,tbr` et le format `bv*[height<=1080]+ba/b[height<=1080]` sont fusionnés en MKV. Le premier essai a échoué en post-traitement (`ERROR: Postprocessing: Conversion failed!`) ; la parade, en restreignant aux flux DASH en HTTPS (`[protocol=https]`), a donné un MKV propre 1920 x 1080, H.264 et Opus.
+
+## Échecs et parades (12 October 2026)
+
+| Cas | Symptôme mesuré | Parade |
+|---|---|---|
+| fin-4 | aucune piste audio | quatre voies essayées (page, yt-dlp invité, yt-dlp syndication, fxtwitter) rendent le même fichier de 480 811 octets sans son ; la vidéo publiée est muette à la source, ce qui reste une déduction raisonnable plutôt qu'une certitude |
+| yt-4Q-o_ylnVnc | échec de conversion en post-traitement | restriction aux flux HTTPS DASH, second essai réussi |
+| interface, memo, motion-opus-5-5 | la page désigne une variante plus pauvre que le post | préférence automatique pour la variante 4K du post |
+| x-anabology (2 posts) | post citant un autre post vidéo | `--match-filters id=` sur le média propre |
+
+## Les 12 téléchargements (12 October 2026, valeurs ffprobe)
+
+| Slug | Durée (s) | Résolution | Cadence | Audio | Octets |
+|---|---|---|---|---|---|
+| onekey-pro-2 | 68.053 | 1920 x 1080 | 60 | AAC 48 kHz stéréo | 19 705 821 |
+| paper-mono-code | 60.587 | 1340 x 1080 | 60 | AAC 48 kHz stéréo | 11 942 487 |
+| interface | 90.091 | 3840 x 2160 | 24 | AAC 48 kHz stéréo | 136 159 302 |
+| memo | 44.536 | 3840 x 2160 | 30 | AAC 44,1 kHz stéréo | 57 886 191 |
+| fin-4 | 7.867 | 1080 x 1350 | 30 | **aucun** | 480 811 |
+| kardashev-0-7 | 67.417 | 1920 x 1080 | 24 | AAC 48 kHz stéréo | 21 758 097 |
+| motion-opus-5-5 | 30.047 | 3840 x 2160 | 30 | AAC 44,1 kHz stéréo | 13 516 889 |
+| claude-opus-5-5 | 20.053 | 1920 x 1080 | 25 | AAC 48 kHz stéréo | 13 134 325 |
+| flora-agents-on-canvas | 51.502 | 1666 x 1080 | 30 | AAC 44,1 kHz stéréo | 11 005 551 |
+| x-anabology-2105325733312884869 | 191.637 | 1920 x 1080 | 24 | AAC 48 kHz stéréo | 106 087 380 |
+| x-anabology-2106157622986748377 | 181.355 | 1280 x 720 | 24 | AAC 48 kHz stéréo | 26 591 489 |
+| yt-4Q-o_ylnVnc | 181.821 | 1920 x 1080 | 30 | Opus 48 kHz stéréo | 45 996 761 |
+
+Toutes les vidéos sont en H.264. La variante 720p du second post d'anabology est celle que le tri par résolution de yt-dlp a retenue, ce qui laisse supposer qu'aucune variante plus haute n'est exposée pour ce média ; ce point n'a pas été recontrôlé lors de la reprise.
+
+## Catalogue whatships (12 October 2026)
+
+Le site publie deux index publics qui suffisent, sans visiter les pages une à une : `https://whatships.com/directory-index.json` (fiches complètes : titre, société, produit, date de publication, catégorie, durée, post X, URL média) et `https://whatships.com/sitemap.xml`. Le nouveau script `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts/BuildWhatshipsCatalogue.py` les récupère par `curl` dans un dossier temporaire, les fusionne et écrit `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/whatships-catalogue.json` (métadonnées seules, aucun média téléchargé).
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts && python3 -I BuildWhatshipsCatalogue.py
+```
+
+Résultat mesuré : 2 454 vidéos dans l'index, 2 454 URL `/videos/` dans le sitemap, recouvrement total, publiées entre le 4 janvier 2024 et le 9 octobre 2026. Répartition par catégorie : ai 971, developer-tools 491, other 331, design 238, consumer 145, productivity 122, hardware 90, motion 66. Les adresses `/rss.xml`, `/feed.xml` et `/sitemap-index.xml` répondent 404 (mesuré), si bien qu'aucun flux n'est disponible. Pour une moisson future, la catégorie `motion` (66 vidéos) est le premier vivier à examiner.
+
+## Sources (12 October 2026)
+
+- https://whatships.com/directory-index.json
+- https://whatships.com/sitemap.xml
+- https://cdn.syndication.twimg.com/tweet-result
+- https://api.fxtwitter.com/
+- https://github.com/yt-dlp/yt-dlp

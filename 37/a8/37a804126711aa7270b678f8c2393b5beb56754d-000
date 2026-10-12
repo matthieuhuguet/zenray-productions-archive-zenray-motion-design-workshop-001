@@ -1,0 +1,27 @@
+S01 mov 0.57 sim 0.51 aff 0.52 hom 0.52 fun 0.78 lay 2 | complex or non-rigid (deformation, fluid, 3D | human: Non
+S02 mov 0.65 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Oui
+S03 mov 0.84 sim 0.63 aff 0.70 hom 0.66 fun 0.91 lay 1 | rigid 3D with depth (fundamental fits, no pl | human: Oui
+S04 mov 0.34 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Non
+S05 mov 0.79 sim 0.77 aff 0.87 hom 0.88 fun 0.95 lay 1 | 2D layer (affine)                            | human: Oui
+S06 mov 0.84 sim 0.77 aff 0.92 hom 0.91 fun 0.96 lay 1 | 2D layer (affine)                            | human: Oui
+S07 mov 0.55 sim 0.28 aff 0.41 hom 0.43 fun 0.77 lay 3 | several flat layers (2.5D parallax)          | human: Oui
+S08 mov 0.61 sim 0.87 aff 0.89 hom 0.93 fun 0.99 lay 1 | 2D layer (similarity)                        | human: Oui
+S09 mov 0.90 sim 0.71 aff 0.70 hom 0.71 fun 0.93 lay 2 | several flat layers (2.5D parallax)          | human: Oui
+S10 mov 0.56 sim 0.79 aff 0.95 hom 0.90 fun 1.00 lay 1 | 2D layer (affine)                            | human: Non
+S11 mov 0.84 sim 0.63 aff 0.79 hom 0.83 fun 0.96 lay 1 | complex or non-rigid (deformation, fluid, 3D | human: Oui
+S12 mov 0.00 sim 0.00 aff 0.00 hom 0.00 fun 0.00 lay 0 | static or near static                        | human: Non
+S13 mov 0.85 sim 0.70 aff 0.73 hom 0.78 fun 0.94 lay 2 | several flat layers (2.5D parallax)          | human: Oui
+S14 mov 0.39 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Oui
+S15 mov 0.81 sim 0.69 aff 0.70 hom 0.76 fun 0.93 lay 1 | complex or non-rigid (deformation, fluid, 3D | human: Écran incrusté sur une prise de vue
+S16 mov 0.27 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Non
+S17 mov 0.62 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Oui
+S18 mov 0.31 sim 0.62 aff 0.67 hom 0.68 fun 0.86 lay 2 | rigid 3D with depth (fundamental fits, no pl | human: Oui
+S19 mov 0.63 sim 0.82 aff 0.91 hom 0.90 fun 0.97 lay 1 | 2D layer (affine)                            | human: Écran incrusté sur une prise de vue
+S20 mov 0.77 sim 0.73 aff 0.73 hom 0.76 fun 0.92 lay 2 | several flat layers (2.5D parallax)          | human: Deux écrans incrustés sur une prise de v
+S21 mov 0.77 sim 0.84 aff 0.94 hom 0.94 fun 0.97 lay 1 | 2D layer (affine)                            | human: Écrans incrustés sur une prise de vue
+S22 mov 0.74 sim 0.11 aff 0.37 hom 0.38 fun 0.78 lay 4 | complex or non-rigid (deformation, fluid, 3D | human: Oui
+S23 mov 0.57 sim 1.00 aff 1.00 hom 1.00 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Oui
+S24 mov 0.00 sim 0.00 aff 0.00 hom 0.00 fun 0.00 lay 0 | static or near static                        | human: Oui
+S25 mov 0.81 sim 0.99 aff 0.98 hom 0.96 fun 1.00 lay 1 | 2D layer (similarity)                        | human: Oui
+S26 mov 0.00 sim 0.00 aff 0.00 hom 0.00 fun 0.00 lay 0 | static or near static                        | human: Oui
+S27 mov 0.00 sim 0.00 aff 0.00 hom 0.00 fun 0.00 lay 0 | static or near static                        | human: Non

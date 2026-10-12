@@ -1,0 +1,262 @@
+{
+ "truth": {
+  "x": [
+   "power3.out",
+   0.4,
+   0.7,
+   260.0,
+   960.0
+  ],
+  "scale": [
+   "back.out(1.70158)",
+   0.3,
+   0.55,
+   0.55,
+   1.0
+  ],
+  "opacity": [
+   "power1.out",
+   0.2,
+   0.35,
+   0.0,
+   1.0
+  ],
+  "y": [
+   "sine.inOut",
+   1.4,
+   0.8,
+   380.0,
+   340.0
+  ]
+ },
+ "fps": 60,
+ "size": [
+  1280,
+  720
+ ],
+ "lossless": {
+  "file_bytes": 277687,
+  "measurement_error": {
+   "x": {
+    "rms": 0.3816478466254082,
+    "max": 0.5447375366553047
+   },
+   "y": {
+    "rms": 0.37566319124366043,
+    "max": 0.4954331863534094
+   },
+   "scale": {
+    "rms": 0.001277193723787515,
+    "max": 0.002062424459406742
+   },
+   "opacity": {
+    "rms": 0.0004666127854417014,
+    "max": 0.0022675892857142443
+   }
+  },
+  "fits": {
+   "x": {
+    "true": "power3.out start 0.4 s, duration 0.7 s",
+    "library_best": "power3.out",
+    "library_t0_ms_err": -0.01,
+    "library_d_ms_err": 0.06,
+    "chosen": "power3.out",
+    "ties": [
+     "power3.out"
+    ],
+    "fit_rms": 0.029172886817432207,
+    "curve_max_err_rel": 0.0005751423772013758,
+    "curve_max_err_abs": 0.40259966404096303
+   },
+   "y": {
+    "true": "sine.inOut start 1.4 s, duration 0.8 s",
+    "library_best": "sine.inOut",
+    "library_t0_ms_err": 0.28,
+    "library_d_ms_err": -0.65,
+    "chosen": "sine.inOut",
+    "ties": [
+     "sine.inOut"
+    ],
+    "fit_rms": 0.04532588306902623,
+    "curve_max_err_rel": 0.009582702717287362,
+    "curve_max_err_abs": 0.38330810869149445
+   },
+   "scale": {
+    "true": "back.out(1.70158) start 0.3 s, duration 0.55 s",
+    "library_best": "back.out(1.70158)",
+    "library_t0_ms_err": 0.04,
+    "library_d_ms_err": 0.1,
+    "chosen": "back.out(1.697)",
+    "ties": [
+     "back.out(1.70158)"
+    ],
+    "fit_rms": 0.00020584793737841179,
+    "curve_max_err_rel": 0.0029042275816593137,
+    "curve_max_err_abs": 0.001306902411746691
+   },
+   "opacity": {
+    "true": "power1.out start 0.2 s, duration 0.35 s",
+    "library_best": "power1.out",
+    "library_t0_ms_err": 0.05,
+    "library_d_ms_err": -0.15,
+    "chosen": "cubic-bezier",
+    "ties": [
+     "power1.out"
+    ],
+    "fit_rms": 0.0004647850297210061,
+    "curve_max_err_rel": 0.00214097237779165,
+    "curve_max_err_abs": 0.00214097237779165
+   }
+  }
+ },
+ "x264_crf23": {
+  "file_bytes": 19871,
+  "measurement_error": {
+   "x": {
+    "rms": 0.4264758277605685,
+    "max": 0.537899716374568
+   },
+   "y": {
+    "rms": 0.4149095596886535,
+    "max": 0.6002576494332175
+   },
+   "scale": {
+    "rms": 0.0014481387332233267,
+    "max": 0.003712768173393166
+   },
+   "opacity": {
+    "rms": 0.0008470479995125553,
+    "max": 0.005808719015003183
+   }
+  },
+  "fits": {
+   "x": {
+    "true": "power3.out start 0.4 s, duration 0.7 s",
+    "library_best": "power3.out",
+    "library_t0_ms_err": -0.01,
+    "library_d_ms_err": 0.05,
+    "chosen": "power3.out",
+    "ties": [
+     "power3.out"
+    ],
+    "fit_rms": 0.0360518485804285,
+    "curve_max_err_rel": 0.0006206058871241891,
+    "curve_max_err_abs": 0.4344241209869324
+   },
+   "y": {
+    "true": "sine.inOut start 1.4 s, duration 0.8 s",
+    "library_best": "sine.inOut",
+    "library_t0_ms_err": -0.25,
+    "library_d_ms_err": 0.84,
+    "chosen": "sine.inOut",
+    "ties": [
+     "sine.inOut"
+    ],
+    "fit_rms": 0.05839907165360917,
+    "curve_max_err_rel": 0.011739140026048745,
+    "curve_max_err_abs": 0.4695656010419498
+   },
+   "scale": {
+    "true": "back.out(1.70158) start 0.3 s, duration 0.55 s",
+    "library_best": "back.out(1.70158)",
+    "library_t0_ms_err": 0.27,
+    "library_d_ms_err": -0.09,
+    "chosen": "back.out(1.70158)",
+    "ties": [
+     "back.out(1.70158)"
+    ],
+    "fit_rms": 0.00025081939123738336,
+    "curve_max_err_rel": 0.0063912344651292,
+    "curve_max_err_abs": 0.0028760555093081397
+   },
+   "opacity": {
+    "true": "power1.out start 0.2 s, duration 0.35 s",
+    "library_best": "power1.out",
+    "library_t0_ms_err": -0.52,
+    "library_d_ms_err": -0.2,
+    "chosen": "cubic-bezier",
+    "ties": [
+     "power1.out"
+    ],
+    "fit_rms": 0.0005331414825357668,
+    "curve_max_err_rel": 0.0037633643802348904,
+    "curve_max_err_abs": 0.0037633643802348904
+   }
+  }
+ },
+ "x264_crf35": {
+  "file_bytes": 16014,
+  "measurement_error": {
+   "x": {
+    "rms": 0.44733690933930237,
+    "max": 0.6728135987689825
+   },
+   "y": {
+    "rms": 0.37541554161668955,
+    "max": 0.6815427167105668
+   },
+   "scale": {
+    "rms": 0.002136494573166845,
+    "max": 0.008540638043924909
+   },
+   "opacity": {
+    "rms": 0.0015065963014940906,
+    "max": 0.013139510029354096
+   }
+  },
+  "fits": {
+   "x": {
+    "true": "power3.out start 0.4 s, duration 0.7 s",
+    "library_best": "power3.out",
+    "library_t0_ms_err": 0.04,
+    "library_d_ms_err": -0.21,
+    "chosen": "power3.out",
+    "ties": [
+     "power3.out"
+    ],
+    "fit_rms": 0.07151270621829124,
+    "curve_max_err_rel": 0.0006622414854767352,
+    "curve_max_err_abs": 0.46356903983371467
+   },
+   "y": {
+    "true": "sine.inOut start 1.4 s, duration 0.8 s",
+    "library_best": "back.inOut(1)",
+    "library_t0_ms_err": -408.76,
+    "library_d_ms_err": 815.46,
+    "chosen": "cubic-bezier",
+    "ties": [
+     "back.inOut(1)"
+    ],
+    "fit_rms": 0.3736355456264475,
+    "curve_max_err_rel": 0.04295644646011141,
+    "curve_max_err_abs": 1.7182578584044563
+   },
+   "scale": {
+    "true": "back.out(1.70158) start 0.3 s, duration 0.55 s",
+    "library_best": "back.out(1.70158)",
+    "library_t0_ms_err": 0.0,
+    "library_d_ms_err": 2.26,
+    "chosen": "back.out(1.70158)",
+    "ties": [
+     "back.out(1.70158)"
+    ],
+    "fit_rms": 0.0008452756093048995,
+    "curve_max_err_rel": 0.01152834797915651,
+    "curve_max_err_abs": 0.005187756590620429
+   },
+   "opacity": {
+    "true": "power1.out start 0.2 s, duration 0.35 s",
+    "library_best": "power1.out",
+    "library_t0_ms_err": -0.26,
+    "library_d_ms_err": -0.77,
+    "chosen": "cubic-bezier",
+    "ties": [
+     "power1.out"
+    ],
+    "fit_rms": 0.0014089717684319647,
+    "curve_max_err_rel": 0.007681499806078462,
+    "curve_max_err_abs": 0.007681499806078462
+   }
+  }
+ }
+}

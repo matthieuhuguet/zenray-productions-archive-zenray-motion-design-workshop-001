@@ -1,0 +1,79 @@
+# R09, savoir-faire du motion design de lancement et vocabulaire mesurable (12 October 2026)
+
+Ce document accompagne la base de vocabulaire `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R09-motion-vocabulary.json`, qui joue pour ZenRay Motion Design le rôle que la base documentaire Copernicus joue pour zenray-height : chaque terme y porte une définition courte, une signature observable, le détecteur à brancher dans l'analyse, une implémentation en code et des paramètres bornés, si bien que l'ajustement d'une reproduction se ramène à choisir des termes puis à régler leurs paramètres contre les mesures de la référence. La base compte 177 termes, dont 146 pour l'image et 31 pour le son (30 dans la catégorie son, plus le J cut et L cut rangé parmi les transitions).
+
+Une convention gouverne toute la lecture. Ce qui est **mesuré** l'a été le 12 October 2026 par commande et se signale comme tel ; ce qui relève de la **convention de métier** porte la source `craft` dans le JSON, et ses plages de paramètres sont des points de départ plausibles qu'il faudra confirmer sur les vidéos de référence du cache, non des vérités.
+
+## 1. Ce que recense whatships.com
+
+What Ships se présente comme un annuaire indépendant et curaté de vidéos de lancement, de démos et de présentations de produits publiées sur X, chaque fiche renvoyant au message d'origine, sans classement ni placement payant ([https://whatships.com/llms.txt](https://whatships.com/llms.txt)). Le site expose un index structuré, `search-index.json`, qui a permis de compter le catalogue plutôt que de l'estimer.
+
+**Mesuré sur [https://whatships.com/search-index.json](https://whatships.com/search-index.json), le 12 October 2026.** L'index contient 2 454 vidéos, 95 outils et 11 studios. Les vidéos se répartissent ainsi par catégorie éditoriale : AI 971, Developer tools 491, Other 331, Design 238, Consumer 145, Productivity 122, Hardware 90, Motion 66. Les comptes émetteurs les plus fréquents sont Y Combinator (186), OpenAI (52), Google (28), Runway (25), Anthropic et Perplexity (22 chacun), Figma (21), xAI (18), Nous Research (17), puis Cursor, Higgsfield et MiniMax (16), ElevenLabs (14), Framer (13), Linear (11), HeyGen, Notion et Lovable (9) ; Apple, Tesla, Stripe et Vercel y figurent aussi avec quelques entrées.
+
+**Mesuré sur un échantillon.** Soixante pages de vidéo tirées au hasard (graine fixe) donnent, d'après leur champ `duration`, une médiane de 48,5 s, un premier quartile à 31 s et un troisième à 86 s, avec quelques démos longues au-delà de quatre minutes. Un film de lancement typique tient donc entre trente secondes et une minute et demie, ce qui fixe l'ordre de grandeur des compositions HyperFrames à viser.
+
+**Studios recensés** ([https://whatships.com/studios/](https://whatships.com/studios/)) : Pixel Frame (Web3 et SaaS), Mouad, Titouan Gillet, ilker, Conrad, Rsquare, AchX, Monalog, isaac.edits, Flowjam et Ravie, soit surtout des indépendants et petits studios spécialisés dans les lancements de startups d'IA. Les créateurs Agu Seguí et Jordan Watkins apparaissent dans la catégorie Motion ; une fiche décrit d'ailleurs un film de lancement entièrement fait en code (Paper Mono), ce qui rejoint exactement la démarche de ce projet.
+
+**Outils recensés** : la liste mêle éditeurs vidéo (CapCut, Descript, VEED), outils d'enregistrement d'écran animé (Screen Studio, FocuSee, ScreenKite, Screeen), outils de motion en code ou par agent (Remotion Skills, Editframe, launchvideo.dev, Diffusion Studio) et générateurs (Runway, Pika, HeyGen). La présence de plusieurs « skills » de production vidéo pour agents montre que la voie du code est déjà fréquentée.
+
+**Styles observables, supposés d'après les titres et vignettes, à confirmer par l'analyse.** Le corpus se divise grossièrement en trois familles : la démo d'interface enregistrée puis animée (zoom sur la zone utile, curseur, clics), le film de marque typographique sur fond sombre (titres en masque, coupes sur le temps fort, logo final), et le film produit 3D pour le matériel (rotation, reflets, vue éclatée). Le site ne propose pas de filtre par style, seulement par catégorie ; un étiquetage par style serait donc à construire nous-mêmes à partir des détecteurs de la base.
+
+## 2. Grammaire des films de lancement de haut niveau
+
+### Chorégraphie et principes
+
+Les douze principes de Disney ([https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation](https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation)) restent la grille de lecture, mais un film d'interface en retient surtout cinq, que l'on peut mesurer sur des courbes de position extraites par suivi : l'anticipation, qui se voit comme un creux de signe inverse avant le départ ; le dépassement, qui se lit comme un pic au-delà de la valeur finale ; le follow-through, qui apparaît comme un décalage d'arrêt entre un parent et ses enfants ; le stagger, qui se reconnaît à la régularité des instants de départ d'une famille d'éléments ; les arcs enfin, dont la courbure se mesure par l'écart de la trajectoire à sa corde. La mise en scène (staging) complète l'ensemble : un film soigné ne montre qu'un seul pic de mouvement à la fois, ce qui se traduit par une carte de mouvement concentrée.
+
+### Familles d'ease et durées
+
+GSAP fournit les familles power0 à power4, sine, circ, expo, back, elastic, bounce et steps, avec les variantes in, out et inOut, l'ease par défaut étant `power1.out`, tandis que rough, slow et expoScale vivent dans un paquet séparé et CustomEase sert les courbes sur mesure ([https://gsap.com/docs/v3/Eases/](https://gsap.com/docs/v3/Eases/)). Les équations de référence restent celles de Robert Penner ([http://robertpenner.com/easing/](http://robertpenner.com/easing/)), dont le coefficient de dépassement 1,70158 donne environ dix pour cent d'overshoot pour `back`.
+
+Les systèmes de design donnent des durées chiffrées qui servent de bornes. IBM Carbon fixe 70 et 110 ms pour les micro-interactions, 150 et 240 ms pour les expansions et notifications, 400 et 700 ms pour les grands mouvements et l'assombrissement de fond, avec des courbes productives et expressives distinctes, par exemple `cubic-bezier(0.4, 0.14, 0.3, 1)` pour la courbe expressive standard ([https://carbondesignsystem.com/elements/motion/overview/](https://carbondesignsystem.com/elements/motion/overview/), lu le 12 October 2026). Material 3 publie aussi des jetons de durée et une courbe « emphasized » ; la page n'a pas pu être lue par extraction, si bien que la valeur `cubic-bezier(0.2, 0, 0, 1)` inscrite dans la base reste à vérifier ([https://m3.material.io/styles/motion/easing-and-duration/tokens-specs](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs)).
+
+Les films de lancement s'écartent de ces systèmes d'interface par des durées plus longues et des décélérations plus fortes : une entrée de titre dure couramment 0,6 à 1,5 s avec une ease expo ou power4, et c'est précisément cette décélération très appuyée, où plus de quatre-vingts pour cent du trajet se fait dans le premier quart du temps, qui donne la sensation de luxe. Cette affirmation relève de la convention de métier ; le détecteur `fit_curve`, qui ajuste chaque modèle d'ease sur la position normalisée et garde le meilleur par erreur quadratique, permettra de la confirmer ou de la corriger sur les références.
+
+Les correspondances `cubic-bezier` données pour les eases power sont des approximations courantes, non des équivalences exactes : un ajustement direct de la fonction puissance sera toujours plus fidèle qu'une Bézier.
+
+### Texte animé
+
+Le geste dominant est la révélation en masque, où la ligne monte depuis l'intérieur d'un cadre qui la coupe net, sans fondu ; sa signature est un bord de découpe immobile pendant que le texte translate, ce qui la distingue sans ambiguïté d'une montée avec fondu. Viennent ensuite les apparitions lettre à lettre ou mot à mot avec stagger, le flou vers le net (mesurable par la variance du laplacien sur la zone du texte), l'échelle, l'ouverture lente de l'interlettrage, le décodage de caractères aléatoires, la rotation d'un mot dans une phrase fixe et le défilement de chiffres. La base en décrit dix-neuf variantes avec leurs plages de paramètres.
+
+### Transitions et caméra
+
+La coupe franche calée sur un temps fort de la musique reste la transition la plus fréquente, et elle se vérifie simplement par l'écart entre l'instant de coupe détecté et le temps le plus proche de la grille rythmique, avec une tolérance d'une image. Le whip pan se reconnaît à un flou directionnel fort sur quatre à dix images et à un flux optique dominant dans une direction ; le zoom de transition, à une divergence radiale forte ; le match cut, à la superposition des silhouettes de part et d'autre de la coupe ; le masque, à un front géométrique net qui progresse. Les mouvements de caméra (avancée lente, orbite, parallaxe, secousse sur impact, flottement organique) se décomposent tous en composantes du flux optique global, translation, divergence et rotation, ce qui en fait des termes particulièrement faciles à mesurer.
+
+### Produit 3D, interfaces, étalonnage, typographie
+
+Les plans produit reposent sur un petit répertoire stable : rotation lente, reflet qui balaie la surface, liseré de contre-jour, vue éclatée, gros plan de matière, reflet au sol, changement de coloris, flottement. Les interfaces animées se lisent par le curseur, la réponse au clic, la frappe dans un champ, le zoom sur la zone utile, l'assombrissement du reste et l'inclinaison en perspective qui se redresse. L'étalonnage des lancements technologiques privilégie un fond très sombre, quelques accents saturés, un léger grain et du halo sur les hautes lumières, toutes grandeurs mesurables par percentiles de luminance, chroma moyenne en OKLCH et résidu de bruit. La typographie se caractérise par sa classe, sa graisse, ses rapports de taille, son interlettrage souvent légèrement négatif sur les grands titres, et un nombre de mots par carte faible, de l'ordre de un à douze.
+
+## 3. Conventions de sound design
+
+Le son d'un film de lancement suit des conventions si constantes qu'elles se prêtent bien à la synthèse en code, ce qui est heureux puisque le projet interdit de copier le moindre extrait. Un whoosh accompagne chaque transition rapide et se synthétise par un bruit filtré en passe-bande dont la fréquence centrale monte puis redescend, avec une enveloppe en cloche et un panoramique qui suit le sens du mouvement à l'image. Les clics d'interface sont des transitoires de cinq à quarante millisecondes centrés entre deux et six kilohertz, et la frappe au clavier en est une suite irrégulière synchronisée avec le texte qui se tape. Avant une révélation, une montée (bruit dont la coupure monte, ou glissando tonal avec trémolo qui accélère) crée l'attente, souvent suivie d'un bref silence, puis d'un impact ou d'une chute de grave sur l'apparition du logo, cette chute étant un sinus qui glisse par exemple de 70 à 32 Hz en un peu plus d'une seconde. La musique, enfin, porte le montage : les coupes tombent sur ses temps, elle se retire sous la voix par ducking, et un drop fait coïncider son entrée complète avec la révélation.
+
+Toutes ces conventions relèvent du métier et non d'une mesure faite ici ; leurs signatures sont toutefois définies dans la base de manière à être vérifiables par détection d'onsets, suivi du centroïde spectral, énergie par bande et suivi de hauteur. Pour la sonie finale, la recommandation EBU R128 vise -23 LUFS en diffusion ([https://tech.ebu.ch/publications/r128](https://tech.ebu.ch/publications/r128)), tandis que les plateformes sociales normalisent autour de -14 LUFS ; cette seconde valeur est une pratique répandue, non vérifiée ici sur une documentation officielle.
+
+La musique d'une référence ne s'imite jamais note à note : seuls le tempo, la structure en sections et la courbe d'énergie se reprennent, ce que reflète le terme `music_bed`, réalisé par un séquenceur de batterie, basse et nappe calé sur le tempo mesuré.
+
+## 4. Structure de la base JSON
+
+Chaque terme contient `id` (anglais, stable), `domain` (image ou sound), `category`, `name_en`, `definition_fr`, `signature`, `detector`, `implementation` (clés `gsap`, `css`, `canvas`, `three`, `synth`, `webaudio` ou `hyperframes` selon le cas), `params` (nom, minimum, maximum, valeur typique, unité, ou liste de valeurs pour une énumération) et `source`, clé d'une table d'URL en tête de fichier. Les comptes par catégorie sont : principes 13, eases 22, durées 8, texte 19, transitions 17, caméra 12, produit 3D 10, interface 14, étalonnage 13, typographie 8, structure 11, son 30. Dix termes n'ont volontairement aucun paramètre (eases à forme fixe, coupe franche, boucle), leur présence ou absence suffisant à la mesure.
+
+Le champ `detector` nomme une famille de mesures plutôt qu'une fonction existante ; les noms reviennent souvent (`fit_curve`, `optical_flow`, `scene_detect`, `ocr_track`, `onset`, `centroid`, `band_energy`, `pitch_track`, `mean_luma`), ce qui dessine la liste courte des analyseurs à écrire ou à relier aux scripts déjà présents dans `~/.claude/skills/zenray-motion-design/`.
+
+Le fichier a été produit par un script générateur qui vérifie l'unicité des identifiants et l'absence de tirets longs ; ce script est rangé dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R09-lab/BuildVocabulary.py`, à déplacer dans le skill pour régénérer la base.
+
+## 5. Usage dans la boucle de reproduction
+
+Par analogie avec zenray-height, la boucle se lit ainsi : l'analyse de la référence produit des mesures brutes ; chaque détecteur propose les termes dont la signature correspond, avec un score ; les termes retenus deviennent des paramètres HDA de la version V_00N, initialisés à leur valeur typique puis ajustés contre la mesure ; la vérification compare enfin, terme par terme, la mesure de la reproduction à celle de la référence. Les plages `min` et `max` servent de bornes à l'ajustement et empêchent un optimiseur de converger vers une valeur aberrante.
+
+## Sources
+
+- [https://whatships.com/](https://whatships.com/), [https://whatships.com/llms.txt](https://whatships.com/llms.txt), [https://whatships.com/search-index.json](https://whatships.com/search-index.json), [https://whatships.com/studios/](https://whatships.com/studios/)
+- [https://gsap.com/docs/v3/Eases/](https://gsap.com/docs/v3/Eases/)
+- [http://robertpenner.com/easing/](http://robertpenner.com/easing/)
+- [https://carbondesignsystem.com/elements/motion/overview/](https://carbondesignsystem.com/elements/motion/overview/)
+- [https://m3.material.io/styles/motion/easing-and-duration/tokens-specs](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs)
+- [https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation](https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation)
+- [https://motion.dev/docs/spring](https://motion.dev/docs/spring)
+- [https://www.youtube.com/watch?v=Fy0aCDmgnxg](https://www.youtube.com/watch?v=Fy0aCDmgnxg) (Juice it or lose it)
+- [https://tech.ebu.ch/publications/r128](https://tech.ebu.ch/publications/r128)

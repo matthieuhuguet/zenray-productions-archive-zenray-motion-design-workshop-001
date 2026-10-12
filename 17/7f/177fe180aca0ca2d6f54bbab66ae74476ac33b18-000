@@ -40,7 +40,7 @@ NEUTRAL_SUB = ["Quiet.", "Light.", "Steady.", "Bright.", "Daily.", "Simply.", "R
 BASE = {  # the reference parameters (one place); variants override a few keys
     "head": BRAND_HEAD, "sub": BRAND_SUB, "logo": "ring", "head_size": 64, "head_x": 120.0, "head_y": 360.0,
     "head_delay": 0.0, "head_ease": "power3.out", "accent": ACCENT, "glow_sigma": 18.0, "tracking_head": 0.0,
-    "tracking_sub": 0.0,
+    "tracking_sub": 0.0, "sub_x": 122.0,
 }
 
 
@@ -55,6 +55,15 @@ def draw_tracked(draw, origin, text, font, fill, tracking):
     x0, y0 = origin
     for k, ch in enumerate(text):
         draw.text((x0 + font.getlength(text[:k]) + k * tracking, y0), ch, font=font, fill=fill)
+
+
+def ink_left(text, font, tracking=0.0):
+    # 12 October 2026, 10:40 CEST: left side bearing of the ink, so a replacement is placed by its ink edge, not its pen
+    # origin ('C' and 'H' start at different distances from the origin; 2 px at 720p cost 3 layout JND in v1).
+    # FR : approche gauche de l'encre, pour placer le texte de remplacement par son bord d'encre.
+    img = Image.new("L", (4000, 300), 0)
+    draw_tracked(ImageDraw.Draw(img), (20, 50), text, font, 255, tracking)
+    return img.getbbox()[0] - 20
 
 
 def fit_words(target_text, words, font, joiner=" ", count=2, needs=None):
@@ -130,7 +139,7 @@ def render_frame(args):
     a2 = float(LIB.evaluate("power1.out", (t - 0.45) / 0.4))
     sub_layer = Image.new("L", (W * S, H * S), 0)
     fsub = ImageFont.truetype(FONT_REG, 26 * S)
-    draw_tracked(ImageDraw.Draw(sub_layer), (122 * S, 480 * S), p["sub"], fsub, 255, p["tracking_sub"] * S)
+    draw_tracked(ImageDraw.Draw(sub_layer), (p["sub_x"] * S, 480 * S), p["sub"], fsub, 255, p["tracking_sub"] * S)
     m = np.asarray(sub_layer, dtype=np.float64)[..., None] / 255.0 * a2
     img = img * (1 - m) + np.asarray(SUB, dtype=np.float64) * m
     lm = np.asarray(logo_mask(p["logo"], 150, 610, S), dtype=np.float64)[..., None] / 255.0 * a2
@@ -324,11 +333,11 @@ def measure(frames):
     lab["bg_top"] = srgb_to_lab(last[5:40, 1200:1270].reshape(-1, 3).mean(axis=0))
     lab["bg_bottom"] = srgb_to_lab(last[680:715, 1200:1270].reshape(-1, 3).mean(axis=0))
     x0, y0, x1, y1 = WINDOWS["head"]
-    sel = inks["head"] > 0.95
+    sel = cv2.erode((inks["head"] > 0.95).astype(np.uint8), np.ones((5, 5), np.uint8)) > 0  # 2 px inside: no chroma bleed
     lab["text"] = srgb_to_lab(last[y0:y1, x0:x1][sel].mean(axis=0))
     lab["accent"] = srgb_to_lab(last[disc[3]].mean(axis=0))
     x0, y0, x1, y1 = WINDOWS["logo"]
-    sel = inks["logo"] > 0.95
+    sel = cv2.erode((inks["logo"] > 0.95).astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
     lab["logo"] = srgb_to_lab(last[y0:y1, x0:x1][sel].mean(axis=0))
     out["lab"] = lab
     return out
@@ -402,8 +411,10 @@ def parametric_scores(mref, mvar):
     jnd["color"] = [ciede2000(mref["lab"][k], mvar["lab"][k]) / UNITS["delta_e00"] for k in mref["lab"]]
     # typography metrics of the headline, relative
     jnd["typography"] = [abs(mvar["cap_height"] / mref["cap_height"] - 1) / UNITS["ratio"],
-                         abs(mvar["stroke"] / mref["stroke"] - 1) / UNITS["ratio"],
-                         abs(mvar["ink_density"] / mref["ink_density"] - 1) / (5 * UNITS["ratio"])]
+                         abs(mvar["stroke"] / mref["stroke"] - 1) / UNITS["ratio"]]
+    # 12 October 2026, 10:40 CEST: ink density removed from the score (v1 gave 3.1 JND on a perfect swap: it measures
+    # the letters, not the type). Kept in the report as information only.
+    # FR : densite d'encre retiree du score, elle depend des lettres et non de la police.
     # effects: glow width, relative
     jnd["effects"] = [abs(mvar["glow"] / mref["glow"] - 1) / UNITS["glow_ratio"]]
     scores = {k: score(v) for k, v in jnd.items()}
@@ -424,14 +435,18 @@ def main():
     has = lambda s: any(c in s for c in "gjpqy") and any(c in s for c in "bdfhklt")
     sub, t_sub, _, _ = fit_words(BRAND_SUB, NEUTRAL_SUB, font_sub, count=3, needs=has)
     t_sub = t_sub / SS
-    swap = dict(BASE, head=head, sub=sub, logo="bars", tracking_head=t_head, tracking_sub=t_sub)
+    # Place the replacement lines by their ink left edge (same as the reference), in 720p units.
+    dx_head = (ink_left(BRAND_HEAD, font_head) - ink_left(head, font_head, t_head * SS)) / SS
+    dx_sub = (ink_left(BRAND_SUB, font_sub) - ink_left(sub, font_sub, t_sub * SS)) / SS
+    swap = dict(BASE, head=head, sub=sub, logo="bars", tracking_head=t_head, tracking_sub=t_sub,
+                head_x=BASE["head_x"] + dx_head, sub_x=BASE["sub_x"] + dx_sub)
     variants = {
         "SWAP (content replaced, same geometry)": swap,
         "SWAP + headline 2 frames late": dict(swap, head_delay=2 / FPS),
         "SWAP + headline power2.out instead of power3.out": dict(swap, head_ease="power2.out"),
         "SWAP + accent colour shifted": dict(swap, accent=(214, 126, 74)),
         "SWAP + headline size +4 %": dict(swap, head_size=67),
-        "SWAP + headline 8 px right (720p)": dict(swap, head_x=128.0),
+        "SWAP + headline 8 px right (720p)": dict(swap, head_x=swap["head_x"] + 8.0),
         "SWAP + glow sigma +33 %": dict(swap, glow_sigma=24.0),
     }
     ref = render(BASE)
@@ -445,11 +460,24 @@ def main():
         mvar = measure(frames)
         report["rows"][label] = {"image": image_scores(ref, frames, mref, mvar), "parametric": parametric_scores(mref, mvar)[0],
                                  "jnd": parametric_scores(mref, mvar)[1]}
+    swap_frames = None
     for label, p in variants.items():
         frames = render(p)
+        if p is swap:
+            swap_frames = frames
         mvar = measure(frames)
         scores, jnd = parametric_scores(mref, mvar)
         report["rows"][label] = {"image": image_scores(ref, frames, mref, mvar), "parametric": scores, "jnd": jnd}
+    # 12 October 2026, 10:45 CEST: same-pipeline rule. A real reference arrives H.264 4:2:0; the reproduction is
+    # measured after the same encode, so the codec floor cancels instead of counting as an error.
+    # FR : regle du meme pipeline, la reproduction passe par le meme encodage que la reference avant la mesure.
+    ref_enc = controls["REF re-encoded (x264 CRF 23)"]
+    m_ref_enc = measure(ref_enc)
+    swap_enc = encode_decode(swap_frames)
+    m_swap_enc = measure(swap_enc)
+    scores, jnd = parametric_scores(m_ref_enc, m_swap_enc)
+    report["rows"]["SWAP vs REF, both x264 CRF 23"] = {"image": image_scores(ref_enc, swap_enc, m_ref_enc, m_swap_enc),
+                                                       "parametric": scores, "jnd": jnd}
     accent_de = ciede2000(srgb_to_lab(ACCENT), srgb_to_lab((214, 126, 74)))
     report["accent_shift_delta_e00_nominal"] = accent_de
     json.dump(report, open(OUT, "w"), indent=1, default=float)

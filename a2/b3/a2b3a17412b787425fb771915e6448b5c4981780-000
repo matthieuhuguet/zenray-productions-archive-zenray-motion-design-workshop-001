@@ -1,0 +1,227 @@
+{
+ "whoosh/nelder-mead": {
+  "median": 83.465,
+  "min": 61.28,
+  "pass99": 0,
+  "n": 8,
+  "meanSeconds": 22.5625
+ },
+ "whoosh/cma-es": {
+  "median": 99.045,
+  "min": 97.79,
+  "pass99": 4,
+  "n": 8,
+  "meanSeconds": 50.75
+ },
+ "whoosh/cma+nm": {
+  "median": 98.955,
+  "min": 97.21,
+  "pass99": 4,
+  "n": 8,
+  "meanSeconds": 48.9
+ },
+ "whoosh/init+cma+nm": {
+  "median": 98.61,
+  "min": 97.84,
+  "pass99": 3,
+  "n": 8,
+  "meanSeconds": 48.15
+ },
+ "whoosh/identity": {
+  "min": 98.4
+ },
+ "whoosh/perturbed/fStart x1.26 (third octave)": {
+  "median": 93.45,
+  "max": 96.12,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/fEnd x1.26 (third octave)": {
+  "median": 92.755,
+  "max": 96.44,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/sweep reversed": {
+  "median": 70.87,
+  "max": 99.45,
+  "fail99": 7,
+  "n": 8
+ },
+ "whoosh/perturbed/duration x1.3": {
+  "median": 74.85,
+  "max": 83.26,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/peakPos +0.15": {
+  "median": 85.87,
+  "max": 93.44,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/bandwidth x1.6": {
+  "median": 80.44999999999999,
+  "max": 85.72,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/envCurve x1.6": {
+  "median": 93.775,
+  "max": 97.58,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/gain +2 dB": {
+  "median": 95.89500000000001,
+  "max": 97.97,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/perturbed/late by 50 ms": {
+  "median": 87.965,
+  "max": 97.19,
+  "fail99": 8,
+  "n": 8
+ },
+ "whoosh/gain/0.25": {
+  "median": 99.42
+ },
+ "whoosh/gain/0.5": {
+  "median": 99.17
+ },
+ "whoosh/gain/1.0": {
+  "median": 98.435
+ },
+ "whoosh/gain/1.5": {
+  "median": 97.38
+ },
+ "whoosh/gain/2.0": {
+  "median": 95.89500000000001
+ },
+ "whoosh/gain/3.0": {
+  "median": 91.345
+ },
+ "whoosh/shift/2.0": {
+  "median": 99.42
+ },
+ "whoosh/shift/5.0": {
+  "median": 99.35
+ },
+ "whoosh/shift/10.0": {
+  "median": 99.33500000000001
+ },
+ "whoosh/shift/20.0": {
+  "median": 98.06
+ },
+ "whoosh/shift/40.0": {
+  "median": 92.25
+ },
+ "whoosh/shift/80.0": {
+  "median": 71.85
+ },
+ "click/nelder-mead": {
+  "median": 92.5,
+  "min": 0.0,
+  "pass99": 2,
+  "n": 8,
+  "meanSeconds": 2.2249999999999996
+ },
+ "click/cma-es": {
+  "median": 98.935,
+  "min": 95.0,
+  "pass99": 4,
+  "n": 8,
+  "meanSeconds": 4.875
+ },
+ "click/cma+nm": {
+  "median": 98.64500000000001,
+  "min": 97.26,
+  "pass99": 2,
+  "n": 8,
+  "meanSeconds": 4.55
+ },
+ "click/init+cma+nm": {
+  "median": 98.975,
+  "min": 17.95,
+  "pass99": 4,
+  "n": 8,
+  "meanSeconds": 4.4625
+ },
+ "click/identity": {
+  "min": 97.96
+ },
+ "click/perturbed/fMode x1.06 (one semitone)": {
+  "median": 35.1,
+  "max": 99.36,
+  "fail99": 7,
+  "n": 8
+ },
+ "click/perturbed/decayMode x1.5": {
+  "median": 97.22,
+  "max": 99.43,
+  "fail99": 7,
+  "n": 8
+ },
+ "click/perturbed/noiseMix +0.3": {
+  "median": 63.41,
+  "max": 89.59,
+  "fail99": 8,
+  "n": 8
+ },
+ "click/perturbed/noiseHp x2": {
+  "median": 97.67,
+  "max": 99.56,
+  "fail99": 5,
+  "n": 8
+ },
+ "click/perturbed/gain +2 dB": {
+  "median": 95.71,
+  "max": 95.75,
+  "fail99": 8,
+  "n": 8
+ },
+ "click/perturbed/late by 20 ms": {
+  "median": 95.705,
+  "max": 95.75,
+  "fail99": 8,
+  "n": 8
+ },
+ "click/gain/0.25": {
+  "median": 99.57
+ },
+ "click/gain/0.5": {
+  "median": 99.38499999999999
+ },
+ "click/gain/1.0": {
+  "median": 98.64
+ },
+ "click/gain/1.5": {
+  "median": 97.41
+ },
+ "click/gain/2.0": {
+  "median": 95.71
+ },
+ "click/gain/3.0": {
+  "median": 91.02
+ },
+ "click/shift/2.0": {
+  "median": 99.59
+ },
+ "click/shift/5.0": {
+  "median": 99.38
+ },
+ "click/shift/10.0": {
+  "median": 98.63499999999999
+ },
+ "click/shift/20.0": {
+  "median": 95.705
+ },
+ "click/shift/40.0": {
+  "median": 84.83
+ },
+ "click/shift/80.0": {
+  "median": 52.36
+ }
+}
+total seconds 115.6

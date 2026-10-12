@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+# 12 October 2026, 09:40 CEST: R03 lab runner. Sound matching on known truths, then the score tested in both directions.
+# Steps: (1) seed floor, (2) fit known truths (Sobol + Nelder-Mead, and a compact CMA-ES), (3) perturbations must fail,
+# (4) gain and time sweeps must decrease monotonically. Writes LabResults.json next to this file.
+# FR : banc R03 ; on retrouve des parametres connus puis on prouve que le score separe un bon d'un mauvais ajustement.
+import json
+import math
+import sys
+import time
+from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
+
+import numpy as np
+from scipy.optimize import minimize
+from scipy.stats import qmc
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import SfxMetrics as M  # noqa: E402
+import SfxRecipes as R  # noqa: E402
+
+CFG = R.load_config()
+EXP = CFG["experiment"]
+
+
+def desc(kind, params, seed, shift_ms=0.0):
+    return M.describe(R.render(kind, params, seed, CFG, shift_ms), CFG)
+
+
+def objective_factory(kind, ref_desc):
+    schema = R.Schema(CFG["recipes"][kind])
+
+    def f(unit):
+        p = schema.to_physical(np.clip(unit, 0, 1))
+        # Mean E^2 over fit seeds: the optimiser sees the recipe, not one noise realisation.
+        # 12 October 2026, 10:40: objective = cloud E^2 (bias of the recipe mean, spread removed), same as the score.
+        return M.compare_cloud(ref_desc, [desc(kind, p, s) for s in EXP["fitSeeds"]], CFG)["E"] ** 2
+
+    return schema, f
+
+
+def cma_es(f, x0, sigma, budget, seed):
+    """Compact CMA-ES (Hansen, 'The CMA Evolution Strategy: A Tutorial', default parameters), box [0, 1] by clipping."""
+    rng = np.random.default_rng(seed)
+    n = len(x0)
+    lam = 4 + int(3 * math.log(n))
+    mu = lam // 2
+    w = np.log(mu + 0.5) - np.log(np.arange(1, mu + 1))
+    w /= w.sum()
+    mueff = 1.0 / (w ** 2).sum()
+    cc = (4 + mueff / n) / (n + 4 + 2 * mueff / n)
+    cs = (mueff + 2) / (n + mueff + 5)
+    c1 = 2 / ((n + 1.3) ** 2 + mueff)
+    cmu = min(1 - c1, 2 * (mueff - 2 + 1 / mueff) / ((n + 2) ** 2 + mueff))
+    damps = 1 + 2 * max(0, math.sqrt((mueff - 1) / (n + 1)) - 1) + cs
+    chin = math.sqrt(n) * (1 - 1 / (4 * n) + 1 / (21 * n * n))
+    m, C, pc, ps = np.array(x0, float), np.eye(n), np.zeros(n), np.zeros(n)
+    best_x, best_f, evals = m.copy(), f(m), 1
+    while evals + lam <= budget:
+        vals, vecs = np.linalg.eigh(C)
+        D = np.sqrt(np.maximum(vals, 1e-20))
+        z = rng.standard_normal((lam, n))
+        y = z @ (vecs * D).T
+        x = np.clip(m + sigma * y, 0, 1)
+        fx = np.array([f(xi) for xi in x])
+        evals += lam
+        order = np.argsort(fx)
+        if fx[order[0]] < best_f:
+            best_f, best_x = float(fx[order[0]]), x[order[0]].copy()
+        ysel = (x[order[:mu]] - m) / sigma
+        yw = w @ ysel
+        m = m + sigma * yw
+        invsqrt = vecs @ np.diag(1 / D) @ vecs.T
+        ps = (1 - cs) * ps + math.sqrt(cs * (2 - cs) * mueff) * invsqrt @ yw
+        hs = np.linalg.norm(ps) / math.sqrt(1 - (1 - cs) ** (2 * evals / lam)) < (1.4 + 2 / (n + 1)) * chin
+        pc = (1 - cc) * pc + hs * math.sqrt(cc * (2 - cc) * mueff) * yw
+        C = (1 - c1 - cmu) * C + c1 * (np.outer(pc, pc) + (1 - hs) * cc * (2 - cc) * C) + cmu * (ysel.T * w) @ ysel
+        sigma *= math.exp((cs / damps) * (np.linalg.norm(ps) / chin - 1))
+        if sigma < 1e-4:
+            break
+    return best_x, best_f, evals
+
+
+def descriptor_init(kind, ref, schema):
+    """Physical first guess from measured descriptors only (never from the truth)."""
+    p = schema.defaults()
+    if kind == "click":
+        p["fMode"] = ref["peakHz"]
+        # Rough guess: the -20 dB span is ln(10) = 2.3 amplitude time constants; /4.6 was used in the measured run
+        # (12 October 2026), so it is kept for reproducibility. FR : estimation grossiere, conservee telle que mesuree.
+        p["decayModeMs"] = 1000.0 * ref["spanS"] / 4.6
+    else:
+        p["duration"] = ref["spanS"] * 1.25
+        p["fStart"], p["fEnd"] = float(ref["centroidTraj"][0]), float(ref["centroidTraj"][-1])
+    p["gainDb"] = ref["levelDb"]
+    return schema.clamp(p)
+
+
+def fit_one(job):
+    kind, index, truth_unit, method = job
+    schema = R.Schema(CFG["recipes"][kind])
+    truth = schema.to_physical(truth_unit)
+    ref = desc(kind, truth, EXP["targetSeed"])
+    _, f = objective_factory(kind, ref)
+    t0 = time.time()
+    if method == "nelder-mead":
+        # Coarse Sobol start (2^gridPoints/... kept small), then Nelder-Mead from the best start.
+        starts = qmc.Sobol(len(truth_unit), seed=EXP["cmaSeed"]).random(32)
+        scores = [f(s) for s in starts]
+        x0 = starts[int(np.argmin(scores))]
+        res = minimize(f, x0, method="Nelder-Mead", options={"maxfev": EXP["nelderMeadMaxEval"], "xatol": 1e-3, "fatol": 1e-4})
+        best, evals = np.clip(res.x, 0, 1), res.nfev + 32
+    elif method == "init+cma+nm":
+        # 12 October 2026, 11:00: start from parameters read off the reference descriptors (spectral initialisation),
+        # then a narrower CMA-ES and a Nelder-Mead polish. FR : depart lu sur les descripteurs de la reference.
+        x0 = schema.to_unit(descriptor_init(kind, ref, schema))
+        x1, _, e1 = cma_es(f, x0, EXP["cmaSigma0"] / 2, 2 * EXP["cmaBudget"] // 3, EXP["cmaSeed"] + index)
+        res = minimize(f, x1, method="Nelder-Mead", options={"maxfev": EXP["cmaBudget"] // 3, "xatol": 1e-3, "fatol": 1e-4})
+        best, evals = np.clip(res.x, 0, 1), e1 + res.nfev
+    elif method == "cma+nm":
+        # Global CMA-ES on two thirds of the budget, then a local Nelder-Mead polish from its best point.
+        x0, _, e1 = cma_es(f, np.full(len(truth_unit), 0.5), EXP["cmaSigma0"], 2 * EXP["cmaBudget"] // 3, EXP["cmaSeed"] + index)
+        res = minimize(f, x0, method="Nelder-Mead", options={"maxfev": EXP["cmaBudget"] // 3, "xatol": 1e-3, "fatol": 1e-4})
+        best, evals = np.clip(res.x, 0, 1), e1 + res.nfev
+    else:
+        best, _, evals = cma_es(f, np.full(len(truth_unit), 0.5), EXP["cmaSigma0"], EXP["cmaBudget"], EXP["cmaSeed"] + index)
+    fitted = schema.to_physical(best)
+    # Held-out evaluation: new seeds for both sides, noise-ceiling corrected.
+    ref_set = [desc(kind, truth, s) for s in EXP["evalSeeds"][:1]]
+    syn_set = [desc(kind, fitted, s) for s in EXP["evalSeeds"]]
+    ev = M.compare_cloud(ref_set[0], syn_set, CFG)
+    param_err = {k: (round(100 * (fitted[k] / truth[k] - 1), 1) if CFG["recipes"][kind][k]["scale"] == "log" else round(fitted[k] - truth[k], 3)) for k in truth}
+    return {"kind": kind, "index": index, "method": method, "seconds": round(time.time() - t0, 1), "evals": int(evals),
+            "score": round(ev["score"], 2), "E": round(ev["E"], 3), "floorScore": round(ev["floorScore"], 2),
+            "rawScore": round(ev["rawScore"], 2), "paramError": param_err, "corrected": ev["corrected"]}
+
+
+def perturb(kind, params, spec):
+    p = dict(params)
+    if "swap" in spec:
+        a, b = spec["swap"]
+        p[a], p[b] = p[b], p[a]
+    elif "mul" in spec:
+        p[spec["param"]] *= spec["mul"]
+    elif "add" in spec:
+        p[spec["param"]] += spec["add"]
+    return p
+
+
+def corrected_score(kind, ref_params, syn_params, shift_ms=0.0):
+    ref = desc(kind, ref_params, EXP["targetSeed"])
+    syns = [desc(kind, syn_params, s, shift_ms) for s in EXP["evalSeeds"]]
+    return M.compare_cloud(ref, syns, CFG)
+
+
+def both_directions(job):
+    kind, index, truth_unit = job
+    schema = R.Schema(CFG["recipes"][kind])
+    truth = schema.to_physical(truth_unit)
+    out = {"kind": kind, "index": index, "identity": round(corrected_score(kind, truth, truth)["score"], 2), "perturbed": {}, "gain": {}, "shift": {}}
+    for spec in EXP["perturbations"][kind]:
+        out["perturbed"][spec["name"]] = round(corrected_score(kind, truth, perturb(kind, truth, spec), spec.get("shiftMs", 0.0))["score"], 2)
+    for g in EXP["gainSweepDb"]:
+        out["gain"][str(g)] = round(corrected_score(kind, truth, dict(truth, gainDb=truth["gainDb"] + g))["score"], 2)
+    for s in EXP["shiftSweepMs"]:
+        out["shift"][str(s)] = round(corrected_score(kind, truth, truth, s)["score"], 2)
+    return out
+
+
+def main():
+    rng = np.random.default_rng(EXP["truthSampleSeed"])
+    margin = EXP["truthUnitMargin"]
+    truths = {k: [rng.uniform(margin, 1 - margin, len(CFG["recipes"][k])) for _ in range(EXP["truthsPerClass"])] for k in ("whoosh", "click")}
+    t0 = time.time()
+    with ProcessPoolExecutor(max_workers=EXP["workers"]) as pool:
+        fits = list(pool.map(fit_one, [(k, i, u, m) for k in truths for i, u in enumerate(truths[k]) for m in ("nelder-mead", "cma-es", "cma+nm", "init+cma+nm")]))
+        checks = list(pool.map(both_directions, [(k, i, u) for k in truths for i, u in enumerate(truths[k])]))
+    summary = {}
+    for k in truths:
+        for m in ("nelder-mead", "cma-es", "cma+nm", "init+cma+nm"):
+            sc = [r["score"] for r in fits if r["kind"] == k and r["method"] == m]
+            summary[f"{k}/{m}"] = {"median": float(np.median(sc)), "min": float(np.min(sc)), "pass99": int(sum(s >= 99 for s in sc)), "n": len(sc),
+                                   "meanSeconds": float(np.mean([r["seconds"] for r in fits if r["kind"] == k and r["method"] == m]))}
+        rows = [c for c in checks if c["kind"] == k]
+        summary[f"{k}/identity"] = {"min": float(min(c["identity"] for c in rows))}
+        for name in rows[0]["perturbed"]:
+            vals = [c["perturbed"][name] for c in rows]
+            summary[f"{k}/perturbed/{name}"] = {"median": float(np.median(vals)), "max": float(np.max(vals)), "fail99": int(sum(v < 99 for v in vals)), "n": len(vals)}
+        for axis in ("gain", "shift"):
+            for key in rows[0][axis]:
+                summary[f"{k}/{axis}/{key}"] = {"median": float(np.median([c[axis][key] for c in rows]))}
+    result = {"date": "12 October 2026", "seconds": round(time.time() - t0, 1), "summary": summary, "fits": fits, "checks": checks}
+    (HERE / "LabResults.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+    print(json.dumps(summary, indent=1))
+    print("total seconds", result["seconds"])
+
+
+if __name__ == "__main__":
+    main()

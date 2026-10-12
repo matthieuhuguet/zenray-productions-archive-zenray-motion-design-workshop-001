@@ -1,0 +1,209 @@
+# R03, reproduction du son et des SFX de motion design (12 October 2026)
+
+Livrable de recherche du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Il répond à la priorité donnée par Matthieu, « le plus important c'est la reproduction du son, notamment les SFX », et propose une architecture entièrement déterministe : aucune IA générative ne fabrique un son, chaque son est une recette paramétrique en numpy et scipy dont les paramètres sont ajustés aux mesures de la référence, à la manière dont zenray-height ajuste un graphe Copernicus à une height mesurée.
+
+Banc d'essai joint, reproductible en une commande : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R03-lab/` (fichiers `LabParams.json`, `SfxRecipes.py`, `SfxMetrics.py`, `RunLab.py`, `SegmentTest.py`, `TimeDemucs.sh`, résultats `LabResults.json`, `SegmentResults.json`).
+
+## 1. Ce qui est mesuré, et ce qui reste supposé (12 October 2026)
+
+| Affirmation | Statut | Preuve |
+|---|---|---|
+| Demucs htdemucs tourne sur MPS sur ce Mac M5 Max, 90,1 s de mixage séparé en 5,0 s de temps mur (chargement compris), contre 21,8 s sur CPU | mesuré | `TimeDemucs.sh` sur l'audio de la référence `interface`, sortie et journaux dans le cache local `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/interface/r03-demucs/` (jamais archivé) ; la barre de progression MPS indique environ 40 secondes de musique par seconde |
+| Une recette de whoosh à 8 paramètres et une recette de clic à 6 paramètres se retrouvent par ajustement, 5 cibles sur 8 au-dessus de 99 dans chaque classe, médiane 98,6 à 99,0 | mesuré | `LabResults.json`, section 6 |
+| Le score sépare un bon ajustement d'un mauvais : 7 à 8 perturbations de la taille d'un seuil audible sur 8 passent sous 99, sauf le filtre du bruit d'un clic, souvent inaudible | mesuré | idem, tableaux 6.2 et 6.3 |
+| Un détecteur d'attaques classique trouve les clics dans un mixage avec musique mais rate tous les whooshes ; un détecteur de houle dédié les trouve tous à 49 à 76 ms près | mesuré sur un mixage synthétique à vérité connue | `SegmentResults.json`, section 4 |
+| S ≥ 99 correspond à un test ABX d'environ 58 pour cent de réponses justes (hasard 50) | calculé (modèle de différenciation), non validé par des écoutes | `SfxMetrics.abx_correct(1.0)` |
+| Les seuils différentiels choisis (1 dB, 10 ms, 5 pour cent de centroïde, 10 cents) sont des ordres de grandeur de la psychoacoustique | supposé, à recaler par écoutes ABX de Matthieu | section 7.4 |
+| La taxonomie de 18 classes couvre les SFX réels des références du cache | supposé tant qu'aucune référence n'a été étiquetée | section 3 |
+
+## 2. Architecture en une page (12 October 2026)
+
+Le flux reprend la forme de zenray-height : une mesure de la référence, un modèle paramétrique, un ajustement, un rendu, une vérification chiffrée, et des versions V_001 à V_999 qui ne repartent jamais de zéro.
+
+```
+reference.mp4
+  -> A0 decode     ffmpeg, 48 kHz, stereo float, loudness BS.1770 (integrated, short-term, true peak)
+  -> A1 separate   Demucs htdemucs on MPS (4 stems), then sfx_bed = drums + other, music = bass + other + drums
+  -> A2 music map  tempo, beat and downbeat grid, sections, energy curve, key (section 8)
+  -> A3 segment    two detectors on the SFX-rich stem: transient (spectral flux) and swell (excess energy)
+                   minus musical onsets that fall on the beat grid; human check of the event list in the UI
+  -> A4 describe   per event: envelope, attack, span, log-mel shape, centroid trajectory, MFCC, flatness, pitch
+  -> A5 classify   rule tree on descriptors (deterministic); optional frozen CLAP zero-shot as a second opinion
+  -> A6 fit        per event: descriptor initialisation, CMA-ES, Nelder-Mead polish, objective = cloud E^2
+  -> A7 render     sfx.json (class + parameters + time) -> numpy recipes -> stems/sfx.wav
+  -> A8 music      music.json (tempo, grid, sections, energy, key) -> code-made bed, never the melody
+  -> A9 mix        gains per section, ducking, loudness to target, true-peak limiter
+  -> A10 verify    per-event score, timing score, mix score; one JSON, one exit code; V_00N kept
+```
+
+Trois choix structurants, justifiés plus bas. D'abord la séparation ne sert qu'à **mesurer** : aucun échantillon séparé n'entre dans le rendu, ce qui respecte la règle de droits (aucun extrait audio de la référence n'est copié). Ensuite chaque SFX est un **événement** avec une classe, un instant et un jeu de paramètres, si bien qu'une version suivante corrige un paramètre d'un événement sans toucher les autres, exactement comme un nœud d'un graphe. Enfin le score est une distance perceptive exprimée en seuils différentiels, et non une corrélation de formes d'onde qui punirait deux bruits pourtant indiscernables à l'oreille.
+
+## 3. Taxonomie des SFX de motion design et recettes de synthèse (12 October 2026)
+
+Toutes les recettes partagent la même interface : `duration`, `gainDb` (niveau défini sur une RMS courte), et des paramètres propres déclarés avec min, max, échelle log ou linéaire et défaut dans un fichier de paramètres unique (loi HDA, voir `LabParams.json`). Le bruit est tiré d'une graine fixe, si bien que chaque rendu est reproductible bit à bit. Les formules s'écrivent avec t le temps depuis le début de l'événement et T sa durée.
+
+| Classe | Signature mesurable (ce qui la distingue) | Recette (numpy, scipy) | Paramètres et plages |
+|---|---|---|---|
+| whoosh | bruit en bande, montée et descente lentes (attaque > 30 ms), centroïde qui glisse, planéité élevée | bruit blanc, masque gaussien en log-fréquence dans le domaine STFT centré sur fc(t) = f0 (f1/f0)^((t/T)^s), enveloppe (t/tp)^c puis ((T-t)/(T-tp))^c | durée 0,25 à 1,2 s ; peakPos 0,25 à 0,75 ; f0 200 à 4000 Hz ; f1 200 à 8000 Hz ; largeur 0,5 à 3 octaves ; c 0,6 à 3 ; s 0,4 à 2,5 (implémentée et ajustée) |
+| swoosh | whoosh court et plus brillant, souvent avec une légère hauteur (bruit filtré résonant) | whoosh + filtre passe-bande résonant (Q 4 à 12) qui suit fc(t) | durée 0,12 à 0,4 s ; Q 4 à 12 ; mélange résonant 0 à 0,6 |
+| swipe | glissé très court, aigu, souvent stéréo (panoramique qui bouge) | whoosh court + pan(t) = p0 + (p1 - p0) t/T en loi de puissance constante | durée 0,06 à 0,25 s ; pan -1 à 1 aux deux bouts |
+| clic | attaque < 2 ms, durée < 50 ms, un mode résonant net | mode amorti sin(2π fm t) e^(-t/τm) + rafale de bruit passe-haut e^(-t/τn), mélangés par énergie | fm 1 à 8 kHz ; τm 1 à 30 ms ; mélange 0 à 1 ; τn 0,3 à 5 ms ; coupure 0,5 à 8 kHz (implémentée et ajustée) |
+| tick | clic plus court et plus aigu, quasi sans bruit, souvent répété en série régulière | clic avec mélange ≈ 0, fm 3 à 10 kHz, τm 0,5 à 5 ms ; une série = un motif rythmique de N ticks | période de répétition, nombre, gigue nulle |
+| pop | bulle : hauteur qui monte vite puis s'éteint, 30 à 120 ms | sinus à hauteur exponentielle f(t) = fa (fb/fa)^(t/T) sous enveloppe attaque 1 ms, décroissance exp | fa 200 à 800 Hz ; fb 600 à 2500 Hz ; T 30 à 120 ms |
+| blip d'interface | note courte et pure (carrée ou sinus), parfois deux notes | oscillateur sinus ou carré à bande limitée (somme d'harmoniques impairs sous Nyquist), enveloppe ADSR rapide, option seconde note à un intervalle | f 400 à 3000 Hz ; forme sinus ou carrée ; intervalle 0 à 12 demi-tons ; durée 40 à 200 ms |
+| impact | attaque franche, large bande, corps grave, queue moyenne | somme : clic large bande + sinus grave à hauteur descendante (120 vers 40 Hz) + bruit passe-bas décroissant + réverbération par convolution avec une réponse synthétique (bruit sous enveloppe exponentielle) | f début 80 à 200 Hz ; f fin 30 à 60 Hz ; queue 0,2 à 1,5 s ; mélange réverbération 0 à 0,5 (proche du `thump` existant de MakeSound.py) |
+| boom | impact très grave et long, peu de haut du spectre | sinus 30 à 60 Hz descendant + sous-harmonique + bruit grave, saturation douce tanh pour la présence | durée 0,8 à 3 s ; drive 0 à 6 dB |
+| sub drop | sinus seul qui chute d'une octave ou plus, 0,5 à 2 s | f(t) = fa (fb/fa)^((t/T)^s), phase intégrée par cumsum, enveloppe longue | fa 60 à 150 Hz ; fb 25 à 50 Hz ; s 0,5 à 2 |
+| riser | énergie et brillance qui montent jusqu'à un instant, souvent coupé net | bruit dont la coupure passe-bas monte + oscillateur en dents de scie qui monte, enveloppe (t/T)^c, arrêt sec ou coupé sur le temps | durée 1 à 8 s ; coupure finale 4 à 16 kHz ; montée de hauteur 0 à 24 demi-tons |
+| downlifter | miroir du riser : chute de brillance et de hauteur après un temps fort | riser inversé dans le temps de ses trajectoires (pas de l'échantillon) | mêmes paramètres, sens descendant |
+| glitch | fragments très courts, répétitions et sauts spectraux, décimation | train de grains de 5 à 40 ms tirés d'un générateur (clic, blip, bruit), répétitions, réduction de résolution (quantification sur b bits), sous-échantillonnage par maintien | nombre de grains 4 à 40 ; bits 3 à 10 ; facteur de maintien 1 à 16 |
+| frappe clavier | série irrégulière de clics mats, 6 à 14 par seconde | clic grave (fm 1 à 3 kHz, bruit filtré passe-bande) répété avec instants et niveaux tirés d'une loi fixe par graine | cadence, gigue 10 à 40 ms, variation de niveau 0 à 4 dB |
+| déclencheur (trigger, whoosh-to-hit) | courte montée qui se résout sur un impact | composition : riser court (0,2 à 1 s) suivi d'un impact aligné sur sa fin | paramètres des deux recettes, liés par un instant commun |
+| ding | partiels inharmoniques d'une cloche, décroissance longue | synthèse modale : somme de modes sin(2π fk t) e^(-t/τk) avec fk = f0 rk (rapports de cloche ou de barre) | f0 500 à 3000 Hz ; 3 à 8 modes ; τ 0,2 à 2 s |
+| shimmer | nappe aiguë scintillante, bruit modulé ou partiels qui scintillent | somme de partiels aigus en amplitude modulée lentement (2 à 12 Hz) + bruit passe-haut doux, délais en série | f 2 à 10 kHz ; vitesse de scintillement ; durée 0,5 à 4 s |
+| reverse | enveloppe inversée d'une queue de réverbération qui gonfle jusqu'à un temps | queue synthétique (bruit sous e^(-t/τ), filtrée) puis renversée dans le temps du résultat de **notre** synthèse | τ 0,3 à 2 s ; filtrage ; instant d'arrivée |
+
+**Le classement des 18 classes se fait par un arbre de règles sur les descripteurs**, déterministe et lisible, avec ses seuils dans le fichier de paramètres : attaque (< 5 ms transitoire, > 30 ms houle), durée à -20 dB, planéité (bruit contre tonal), proéminence d'une raie (tonal au-dessus de 15 dB), pente du centroïde (montée, descente), énergie sous 120 Hz, nombre de sous-attaques (série, glitch, clavier), périodicité des sous-attaques. Quand deux classes restent proches, la décision n'a presque pas d'importance pour le rendu, puisque l'ajustement règle ensuite les paramètres ; c'est pourquoi le classifieur peut rester simple. Un modèle discriminant gelé de type CLAP, qui compare un son à des libellés texte sans rien générer ([CLAP, arXiv:2206.04769](https://arxiv.org/abs/2206.04769)), pourrait servir de second avis local et déterministe une fois ses poids figés ; c'est une option, non une dépendance, et l'ontologie AudioSet ([Google Research](https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/)) ne couvre pas finement le vocabulaire du motion design, ce qui rend ses classes peu utiles ici.
+
+## 4. Séparation et segmentation dans un mixage avec musique (12 October 2026)
+
+### 4.1 Séparation sur Mac sans CUDA
+
+Demucs v4 (Hybrid Transformer Demucs, [Rouard, Massa, Défossez, arXiv:2211.08553](https://arxiv.org/abs/2211.08553), code [github.com/adefossez/demucs](https://github.com/adefossez/demucs)) sépare en quatre pistes, batterie, basse, autre et voix. Il n'a pas de piste SFX : sur un mixage de motion design, les clics et impacts tombent surtout dans « drums », les whooshes, risers et shimmers dans « other ». Sa version 4.1.0 et les poids htdemucs sont déjà installés dans `~/.venvs/zenray-motion` et `~/.cache/torch/hub/checkpoints`.
+
+**Mesure de cette session**, sur 90,1 s de l'audio de la référence `interface`, une seule tâche à la fois : MPS 5,0 s de temps mur (dont environ 2,3 s d'inférence d'après la barre de progression), CPU 21,8 s. Un article de blog affirme que Demucs ne fonctionne pas sur MPS et propose un portage MLX ([Medium, Olivier Andrade](https://medium.com/@andradeolivier/i-ported-demucs-to-apple-silicon-it-separates-a-7-minute-song-in-12-seconds-6c4e5cffb5c3)) ; la mesure montre le contraire sur torch 2.14.1, si bien que MLX ([htdemucs-mlx sur Hugging Face](https://huggingface.co/schism-audio/htdemucs-mlx)) n'apporterait ici qu'un gain marginal sur des clips de 30 à 90 s. Recommandation : `-d mps`, `--shifts 1`, une seule tâche torch à la fois (règle du skill ffmpeg-hardware-check).
+
+Alternatives notées et non retenues comme voie principale : Open-Unmix (plus ancien, moins bon), Spleeter (TensorFlow, ancien), et les modèles de séparation « universelle » qui isolent des événements arbitraires, plus lourds et moins stables. La séparation ne fait ici que préparer la mesure ; une erreur de séparation se voit dans le score d'un événement et se corrige par l'œil de Matthieu sur la liste d'événements.
+
+### 4.2 Segmentation : deux détecteurs, parce qu'un whoosh n'a pas d'attaque
+
+Mesure faite sur un mixage synthétique à vérité connue (`SegmentTest.py`) : une base musicale en code à 120 BPM (grosse caisse à chaque temps, charleston aux contretemps, accord tenu), et 12 SFX placés hors grille, 6 whooshes et 6 clics à -14 dB.
+
+| Détecteur | Rappel à ±15 ms | Précision | Remarque |
+|---|---|---|---|
+| flux spectral brut (librosa, réglages SuperFlux) | 0,42 | 0,09 | 55 détections, presque toutes musicales |
+| même, moins les attaques à 25 ms de la grille (temps et demi-temps) | 0,33 | 0,44 | clics 4 sur 6, whooshes 0 sur 6 |
+| HPSS percussif, moins la grille | 0,33 | 0,50 | pas mieux |
+| résidu non répétitif type REPET-SIM | 0,08 | 0,04 | échoue sur ce signal |
+| détecteur de houle (excès d'énergie sur une médiane glissante de 2 s, lissé, pic puis passage à 15 pour cent) | 6 sur 6 whooshes trouvés | 14 détections | erreur d'instant 49 à 76 ms, biais systématique |
+
+Le tempo est retrouvé exactement (120,0). Deux leçons s'en tirent. Un détecteur d'attaques ne voit pas un whoosh, puisqu'il n'en a pas, et il faut donc un détecteur de houle séparé ; le flux spectral avec suppression de vibrato vient de [Böck et Widmer, DAFx 2013](https://librosa.org/doc/main/auto_examples/plot_superflux.html). Ensuite la détection n'a pas besoin d'être précise à la milliseconde, car l'ajustement réaligne l'instant (le critère « ancre » du score) : la détection donne une fenêtre de ±100 ms, l'ajustement fixe l'instant. Le filtrage par la grille retire aussi un vrai SFX tombé sur un temps, ce qui est le cas fréquent d'un montage calé sur la musique ; la séparation Demucs doit donc précéder la détection, et la liste finale passe par une validation humaine dans l'interface, comme les feuilles de storyboard.
+
+## 5. Descripteurs par événement (12 October 2026)
+
+Implémentés dans `SfxMetrics.describe` : niveau (crête d'une RMS de 5 ms, ou d'une RMS lissée pour un son long et bruité, afin que le niveau ne dépende pas de la graine), instant d'ancrage (attaque à 15 pour cent de la crête pour un transitoire, milieu des deux passages à -6 dB pour une houle, plus stable qu'un maximum bruité), temps de montée 10 à 90 pour cent, durée à -20 dB, forme log-mel en tranches de temps (40 bandes pour un son long, 16 pour un son court, tranches d'au moins 10 ms), trajectoire du centroïde, raie dominante (moyenne de Welch, pic parabolique) et sa proéminence, centroïde, étalement, planéité. Restent à ajouter pour la classification : MFCC (moyenne et écart sur 13 coefficients, `librosa.feature.mfcc`), flux spectral moyen, bande passante à -10 dB, rapport harmonique sur bruit (autocorrélation normalisée ou YIN, `librosa.pyin` pour la hauteur des blips et des pops), enveloppe ADSR ajustée par morceaux (attaque, décroissance, maintien, relâchement).
+
+Chaque indice perceptif est mesuré une seule fois, de sorte qu'un défaut n'est jamais compté deux fois dans le score.
+
+## 6. Ajustement des paramètres à un événement mesuré (12 October 2026)
+
+### 6.1 Méthode
+
+L'état de l'art du « sound matching » emploie deux familles : les méthodes sans gradient sur un synthétiseur réel, dont CMA-ES, qui l'emporte sur la descente de gradient dans un paysage non convexe et gagne à partir d'une initialisation spectrale ([Instrumental, arXiv:2603.15905](https://arxiv.org/abs/2603.15905)), et les synthétiseurs différentiables de type DDSP ([Engel et al., arXiv:2001.04643](https://arxiv.org/abs/2001.04643) ; [DiffMoog](https://www.themoonlight.io/en/review/diffmoog-a-differentiable-modular-synthesizer-for-sound-matching) relève des difficultés d'estimation de fréquence par perte spectrale). DDSP tournerait sans GPU avec torch sur CPU ou MPS, mais il imposerait de réécrire chaque recette en torch différentiable, et le paysage reste multimodal sur la hauteur ; avec moins de dix paramètres par événement et un rendu de quelques millisecondes, CMA-ES suffit et garde les recettes en numpy. La perte STFT multi-résolution ([auraloss, Steinmetz et Reiss](https://github.com/csteinmetz1/auraloss), d'après Yamamoto et al. 2019) est calculée comme diagnostic (`mrstft_distance`) mais pas comme objectif : elle réagit à la réalisation du bruit, si bien que deux whooshes indiscernables auraient une grande distance.
+
+L'objectif retenu est le score lui-même, en version « nuage » (`compare_cloud`) : la recette est rendue avec 4 graines, l'erreur de chaque indice est le biais moyen de ces rendus contre la référence, diminué de la dispersion attendue d'un seul tirage, puis divisé par √(1 + σ²), σ étant la dispersion propre de la recette. Autrement dit, on ne demande pas à la recette de reproduire le hasard de la référence, seulement sa moyenne.
+
+### 6.2 Résultat de l'expérience (8 cibles connues par classe, graines d'évaluation jamais vues pendant l'ajustement)
+
+| Classe et méthode | Médiane S | Minimum | S ≥ 99 | Temps moyen par événement |
+|---|---|---|---|---|
+| whoosh, Sobol 32 + Nelder-Mead | 83,5 | 61,3 | 0 sur 8 | 22,6 s |
+| whoosh, CMA-ES 900 évaluations | 99,0 | 97,8 | 4 sur 8 | 50,8 s |
+| whoosh, CMA-ES puis Nelder-Mead | 99,0 | 97,2 | 4 sur 8 | 48,9 s |
+| whoosh, initialisation par descripteurs + CMA-ES + Nelder-Mead | 98,6 | 97,8 | 3 sur 8 | 48,2 s |
+| whoosh, meilleure des trois méthodes CMA | | | 5 sur 8 | |
+| clic, Sobol 32 + Nelder-Mead | 92,5 | 0,0 | 2 sur 8 | 2,2 s |
+| clic, CMA-ES | 98,9 | 95,0 | 4 sur 8 | 4,9 s |
+| clic, CMA-ES puis Nelder-Mead | 98,6 | 97,3 | 2 sur 8 | 4,6 s |
+| clic, initialisation par descripteurs + CMA-ES + Nelder-Mead | 99,0 | 18,0 | 4 sur 8 | 4,5 s |
+| clic, meilleure des trois méthodes CMA | | | 5 sur 8 | |
+
+Les erreurs de paramètres retrouvés pour le whoosh restent sous 10 pour cent sur la durée et les fréquences dans la plupart des cas, alors que les courbures (envCurve, sweepCurve) dérivent de 15 à 70 pour cent : ce sont des paramètres peu audibles, que le score laisse libres à raison. Pour le clic, la fréquence du mode est retrouvée à 0,1 pour cent près sauf une cible, où l'initialisation a pris une mauvaise raie (+18,5 pour cent, S = 18) ; Nelder-Mead seul tombe dans des minima locaux (S = 0 sur une cible). Il en ressort une recette d'ajustement : **plusieurs départs (descripteurs, centre, deux graines CMA) en parallèle, on garde le meilleur**, coût environ 4 × 50 s par whoosh sur un cœur, soit quelques minutes pour une vidéo entière avec 16 cœurs.
+
+**Le plafond est la réalisation du bruit.** Même avec les paramètres exacts, la référence n'est qu'un tirage : le score « identité » (vrais paramètres, autres graines) vaut au minimum 98,4 pour le whoosh et 98,0 pour le clic sur les 8 cibles. Une cible dont l'identité vaut 98,4 ne peut donc pas passer 99 par l'ajustement seul ; il faut le savoir pour lire le score (section 7.3).
+
+### 6.3 Le score dans les deux sens
+
+Vert attendu : identité, médiane 99,5 et plus. Rouge attendu : chaque perturbation de la taille d'un défaut audible.
+
+| Perturbation (whoosh) | Médiane S | Sous 99 | Perturbation (clic) | Médiane S | Sous 99 |
+|---|---|---|---|---|---|
+| f0 × 1,26 (tiers d'octave) | 93,5 | 8 sur 8 | mode × 1,06 (un demi-ton) | 35,1 | 7 sur 8 |
+| f1 × 1,26 | 92,8 | 8 sur 8 | décroissance du mode × 1,5 | 97,2 | 7 sur 8 |
+| balayage inversé | 70,9 | 7 sur 8 | mélange de bruit + 0,3 | 63,4 | 8 sur 8 |
+| durée × 1,3 | 74,9 | 8 sur 8 | filtre du bruit × 2 | 97,7 | 5 sur 8 |
+| crête + 15 pour cent de la durée | 85,9 | 8 sur 8 | gain + 2 dB | 95,7 | 8 sur 8 |
+| largeur de bande × 1,6 | 80,5 | 8 sur 8 | 20 ms de retard | 95,7 | 8 sur 8 |
+| courbure d'enveloppe × 1,6 | 93,8 | 8 sur 8 | | | |
+| gain + 2 dB | 95,9 | 8 sur 8 | | | |
+| 50 ms de retard | 88,0 | 8 sur 8 | | | |
+
+Balayages monotones (médianes sur 8 cibles) : gain +0,25 / 0,5 / 1 / 1,5 / 2 / 3 dB donne 99,4 / 99,2 / 98,4 / 97,4 / 95,9 / 91,3 pour le whoosh et 99,6 / 99,4 / 98,6 / 97,4 / 95,7 / 91,0 pour le clic ; retard de 2 / 5 / 10 / 20 / 40 / 80 ms donne 99,4 / 99,4 / 99,3 / 98,1 / 92,3 / 71,9 pour le whoosh et 99,6 / 99,4 / 98,6 / 95,7 / 84,8 / 52,4 pour le clic. Le whoosh tolère plus de retard que le clic, ce qui correspond à l'oreille : une houle n'a pas d'instant net. Le seul angle mort mesuré est la coupure du bruit d'un clic doublée (3 cibles sur 8 restent au-dessus de 99) ; il est probable que ce défaut soit souvent inaudible sur une rafale de 1 ms, mais seule une écoute ABX le dira.
+
+### 6.4 Deux pièges payés pendant l'expérience
+
+Le premier lancement, 16 processus Python sans `OMP_NUM_THREADS=1`, prenait 6,2 s par évaluation au lieu de 0,67 s : chaque processus ouvrait ses propres fils BLAS et la machine se noyait, soit un facteur 9. Le banc se lance désormais avec `OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1`, et il tourne en 116 s. Le second piège tient à la hauteur : la première version donnait du poids à une « raie » trouvée dans un bruit en bande étroite, qui varie au hasard d'un tirage à l'autre, et plaçait l'identité d'un whoosh à 89,9 ; le seuil tonal monté à 15 dB avec une rampe de 3 dB (proéminence mesurée : whooshes 2,4 à 8,2 dB, clics 10,4 à 30,5 dB) a supprimé ce faux indice.
+
+## 7. Un score à 99 qui a du sens à l'oreille (12 October 2026)
+
+### 7.1 Par événement
+
+Sept indices, chacun divisé par son seuil différentiel (JND) : niveau (1 dB), instant d'ancrage (10 ms, élargi à 10 pour cent de l'attaque pour une houle), attaque (25 pour cent, plancher 5 ms), durée (10 pour cent, plancher 3 ms), trajectoire de brillance (5 pour cent de centroïde), forme spectrale log-mel (2 dB d'écart moyen pondéré), hauteur (10 cents, seulement si la raie est tonale). Ils se combinent comme des distances indépendantes, E = √(Σ eₖ²), une mesure de type d′ ; le score vaut S = 100 × 0,99^(E²). Ainsi **S ≥ 99 si et seulement si E ≤ 1**, c'est-à-dire si l'ensemble des écarts reste dans un seul seuil différentiel combiné. Dans un test ABX, d′ = 1 donne environ 58 pour cent de réponses justes pour 50 au hasard (`abx_correct`, modèle de différenciation de Macmillan et Creelman) : à 99, l'auditeur devine presque.
+
+### 7.2 Pour la piste entière
+
+Score sonore = moyenne géométrique de trois scores : SFX (moyenne des S des événements, pondérée par leur sonie, un événement manquant ou en trop valant 0), timing (fraction des événements dont l'ancrage tombe à moins d'une image et 1 ms, critère déjà employé par `VerifySound.py`), mixage (section 9). La musique a son propre score (section 8). Une moyenne géométrique empêche qu'un excellent mixage cache un SFX oublié.
+
+### 7.3 Lecture honnête du 99
+
+Une référence n'est qu'un tirage, et une recette bruitée a sa propre dispersion ; le score affiche donc, à côté de S, le **plafond d'identité** de la classe (S obtenu par la recette contre elle-même avec d'autres graines). Un événement à 98,4 dont le plafond vaut 98,4 est terminé, alors qu'un événement à 98,4 dont le plafond vaut 99,8 a encore un paramètre à trouver. C'est l'équivalent de la corrélation plafond dans zenray-height.
+
+### 7.4 Recalage des seuils par l'oreille de Matthieu
+
+Les seuils sont des ordres de grandeur. Le recalage tient en une page d'atelier : pour chaque indice, des paires A, B, X fabriquées par le banc (perturbations de 0,25 à 3 seuils), Matthieu répond, et le seuil devient la perturbation qu'il détecte à 75 pour cent. Les nouvelles valeurs vont dans le bloc `jnd` du fichier de paramètres, sans toucher le code.
+
+## 8. La musique, sans imitation mélodique (12 October 2026)
+
+Ce qui se mesure et se reprend : tempo et grille de temps et de mesures, sections (intro, montée, temps fort, fin), courbe d'énergie (sonie à court terme et brillance par section), tonalité et mode, densité d'attaques par section, instants des coupures musicales. Ce qui ne se reprend jamais : la mélodie, les accords note à note, le timbre reconnaissable d'un instrument, un motif rythmique distinctif.
+
+Outils : `librosa.beat.beat_track` pour le tempo et la grille (exact ici sur la base synthétique) ; madmom et son DBN pour les temps et premiers temps, avec une plage de tempo à élargir pour les morceaux lents ([madmom](https://madmom.readthedocs.io/en/v0.16/modules/features/downbeats.html) ; l'étude [arXiv:2605.12287](https://arxiv.org/abs/2605.12287) chiffre l'échec à min_bpm 55) ; all-in-one pour tempo, temps, premiers temps et sections étiquetées en JSON ([allin1](https://github.com/mir-aidj/all-in-one)) ; Essentia pour la tonalité ([essentia.upf.edu](https://essentia.upf.edu/)), ou un profil de chroma moyen comparé aux profils de Krumhansl en numpy si l'on veut éviter une dépendance. Ces modèles sont des analyseurs discriminants, ils ne génèrent rien.
+
+Le rendu musical en code : une base construite sur la grille mesurée (pulsation, basse et nappe sur une progression générique de la tonalité mesurée, choisie dans une petite bibliothèque de progressions publiques et banales), dont la densité et la sonie suivent la courbe d'énergie section par section. Score musique = moyenne géométrique de l'écart de tempo (1 pour cent = un seuil), du calage des frontières de sections (à une demi-mesure), de la corrélation de la courbe d'énergie à court terme, et d'un indicateur de tonalité identique ou relative. Aucun score ne compare les hauteurs note à note, de sorte que la mesure elle-même n'incite jamais à copier la mélodie.
+
+## 9. Mixage final (12 October 2026)
+
+Mesure selon ITU-R BS.1770 : sonie intégrée, sonie à court terme (fenêtre de 3 s), plage de sonie, crête vraie ([EBU R 128](https://en.wikipedia.org/wiki/EBU_R_128)). Cible de livraison pour les réseaux : environ -14 LUFS intégrés, crête vraie à -1 dBTP au plus ; YouTube ne fait qu'atténuer un master trop fort, et Instagram ne publie pas de cible fixe ([Fora Soft, cibles par plateforme](https://www.forasoft.com/learn/audio-for-video/articles-audio/lufs-targets-per-platform-2026) ; [Sound On Sound](https://www.soundonsound.com/sound-advice/q-how-loud-should-master-tracks-intended-streaming)). Ces chiffres viennent de sources secondaires et sont à revérifier chaque année.
+
+Ce qui se reprend de la référence : le **rapport SFX sur musique** par section (sonie de la piste SFX séparée moins sonie de la musique), la profondeur du ducking de la musique sous les impacts, la courbe de sonie à court terme. Chaîne en code : gains par piste issus de ces mesures, ducking par enveloppe de sidechain, limiteur à anticipation (lookahead 5 ms) réglé pour -1 dBTP mesuré après suréchantillonnage ×4, puis normalisation à la cible ; `ffmpeg -af loudnorm` (deux passes) sert de contrôle indépendant. Score mixage : écart de sonie intégrée (1 LU = un seuil), corrélation des courbes à court terme, crête vraie sous le plafond (sinon échec).
+
+## 10. Décisions recommandées (12 October 2026)
+
+1. Séparer par Demucs htdemucs sur MPS, une tâche à la fois ; les pistes séparées restent dans le cache de référence et servent seulement à mesurer.
+2. Deux détecteurs d'événements (transitoire et houle), filtrage de la grille musicale après séparation, liste d'événements validée par Matthieu dans l'interface.
+3. Dix-huit recettes numpy derrière une seule interface de paramètres ; whoosh et clic sont déjà écrits et ajustés dans le banc, `MakeSound.py` du skill contient déjà impact, whoosh et tick à fusionner dans cette interface.
+4. Ajustement par CMA-ES multi-départs avec un poli Nelder-Mead, objectif = score « nuage », exécution en parallèle avec `OMP_NUM_THREADS=1`.
+5. Score événement S = 100 × 0,99^(E²), affiché avec son plafond d'identité ; score piste = moyenne géométrique SFX, timing, mixage ; score musique séparé, sans comparaison de notes.
+6. Mixage à environ -14 LUFS et -1 dBTP, rapport SFX sur musique et ducking repris de la référence.
+7. Recaler les seuils différentiels par une page ABX avant d'annoncer un 99 « à l'oreille ».
+
+## 11. Questions ouvertes (12 October 2026)
+
+- Les références du cache ont-elles surtout des SFX « designés » (couches multiples) ou simples ? Une couche multiple demande une recette composite (déclencheur) et un ajustement plus long.
+- Quelle tolérance Matthieu accepte-t-il sur un événement dont le plafond d'identité est sous 99 : terminé, ou faut-il une recette plus riche ?
+- La validation humaine de la liste d'événements doit-elle vivre dans ZenRayProgress ou dans une page d'atelier locale ?
+- Le second avis CLAP vaut-il une dépendance de plus, alors que l'arbre de règles suffit au rendu ?
+
+## 12. Blocages (12 October 2026)
+
+Aucun blocage technique. Limites connues : la segmentation n'a été mesurée que sur un mixage synthétique, pas encore sur une référence réelle annotée ; les seuils différentiels ne sont pas encore recalés à l'oreille ; seize des dix-huit recettes restent à écrire et à ajuster.
+
+## Reproduire (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R03-lab
+OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 ~/.venvs/deecho-audio/bin/python -I RunLab.py      # 116 s, LabResults.json
+OMP_NUM_THREADS=1 ~/.venvs/deecho-audio/bin/python -I SegmentTest.py                          # SegmentResults.json
+./TimeDemucs.sh <mix.wav> <output dir inside the refcache>                                      # MPS then CPU timing
+```
+
+Sources : [Demucs](https://github.com/adefossez/demucs), [HT Demucs, arXiv:2211.08553](https://arxiv.org/abs/2211.08553), [htdemucs-mlx](https://huggingface.co/schism-audio/htdemucs-mlx), [portage MLX, Medium](https://medium.com/@andradeolivier/i-ported-demucs-to-apple-silicon-it-separates-a-7-minute-song-in-12-seconds-6c4e5cffb5c3), [Instrumental, arXiv:2603.15905](https://arxiv.org/abs/2603.15905), [DDSP, arXiv:2001.04643](https://arxiv.org/abs/2001.04643), [Modulation Discovery with DDSP, arXiv:2510.06204](https://arxiv.org/abs/2510.06204), [auraloss](https://github.com/csteinmetz1/auraloss), [SuperFlux dans librosa](https://librosa.org/doc/main/auto_examples/plot_superflux.html), [CLAP, arXiv:2206.04769](https://arxiv.org/abs/2206.04769), [PANNs, arXiv:1912.10211](https://arxiv.org/abs/1912.10211), [AudioSet](https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/), [madmom](https://madmom.readthedocs.io/en/v0.16/modules/features/downbeats.html), [arXiv:2605.12287](https://arxiv.org/abs/2605.12287), [all-in-one](https://github.com/mir-aidj/all-in-one), [Essentia](https://essentia.upf.edu/), [EBU R 128](https://en.wikipedia.org/wiki/EBU_R_128), [Fora Soft](https://www.forasoft.com/learn/audio-for-video/articles-audio/lufs-targets-per-platform-2026), [Sound On Sound](https://www.soundonsound.com/sound-advice/q-how-loud-should-master-tracks-intended-streaming).

@@ -1,0 +1,389 @@
+{
+ "summary": {
+  "shots": 20,
+  "old_rms_median": 0.08907313741821271,
+  "new_rms_median": 0.019966253521626384,
+  "old_rms_max": 0.16277131196866354,
+  "new_rms_max": 0.05463699452621798,
+  "shots_new_under_0.02": 11
+ },
+ "rows": [
+  {
+   "shot": "S01",
+   "dominant": "scale",
+   "move_px": 1516.9,
+   "old_ease": "power2.inOut",
+   "old_error_all_records": 0.187,
+   "old_rms_21": 0.16277131196866354,
+   "old_best_21": "power2.inOut",
+   "new_library_best": "css.ease-out",
+   "new_rms_21": 0.007274084955120828,
+   "window_start": 0.2673233962281427,
+   "window_end": 0.620276883803779,
+   "new_chosen": "css.ease-out",
+   "new_chosen_rms": 0.007274084955120828,
+   "ties": [
+    "css.ease-out"
+   ]
+  },
+  {
+   "shot": "S02",
+   "dominant": "scale",
+   "move_px": 484.2,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.146,
+   "old_rms_21": 0.09677976501659148,
+   "old_best_21": "power2.out",
+   "new_library_best": "none",
+   "new_rms_21": 0.023034677598862966,
+   "window_start": 0.06482631663894163,
+   "window_end": 0.40267256571725435,
+   "new_chosen": "none",
+   "new_chosen_rms": 0.023034677598862966,
+   "ties": [
+    "none"
+   ]
+  },
+  {
+   "shot": "S04",
+   "dominant": "scale",
+   "move_px": 183.4,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.143,
+   "old_rms_21": 0.10351908419422341,
+   "old_best_21": "power3.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.011951277523481728,
+   "window_start": -0.08777998999665804,
+   "window_end": 0.48803019825406924,
+   "new_chosen": "circ.inOut",
+   "new_chosen_rms": 0.011951277523481728,
+   "ties": [
+    "circ.inOut"
+   ]
+  },
+  {
+   "shot": "S05",
+   "dominant": "translation",
+   "move_px": 18.4,
+   "old_ease": "sine.inOut",
+   "old_error_all_records": 0.083,
+   "old_rms_21": 0.08533770450113952,
+   "old_best_21": "none",
+   "new_library_best": "material.standard",
+   "new_rms_21": 0.019518257343620928,
+   "window_start": -0.1769169185828766,
+   "window_end": 1.506543365812931,
+   "new_chosen": "material.standard",
+   "new_chosen_rms": 0.019518257343620928,
+   "ties": [
+    "material.standard",
+    "css.ease"
+   ]
+  },
+  {
+   "shot": "S06",
+   "dominant": "rotation",
+   "move_px": 22.7,
+   "old_ease": "none",
+   "old_error_all_records": 0.048,
+   "old_rms_21": 0.016924200761884466,
+   "old_best_21": "none",
+   "new_library_best": "sine.out",
+   "new_rms_21": 0.014640955567972338,
+   "window_start": 0.03503983870850866,
+   "window_end": 3.373061139307667,
+   "new_chosen": "sine.out",
+   "new_chosen_rms": 0.014640955567972338,
+   "ties": [
+    "sine.out",
+    "css.ease",
+    "css.ease-out",
+    "css.ease-in-out",
+    "back.in(2.5)"
+   ]
+  },
+  {
+   "shot": "S07",
+   "dominant": "scale",
+   "move_px": 286.1,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.113,
+   "old_rms_21": 0.09439892080950926,
+   "old_best_21": "power2.out",
+   "new_library_best": "power1.inOut",
+   "new_rms_21": 0.012033289386058002,
+   "window_start": 0.005938047377320901,
+   "window_end": 0.5210609857239894,
+   "new_chosen": "power1.inOut",
+   "new_chosen_rms": 0.012033289386058002,
+   "ties": [
+    "power1.inOut"
+   ]
+  },
+  {
+   "shot": "S08",
+   "dominant": "scale",
+   "move_px": 74.4,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.08,
+   "old_rms_21": 0.06553998461499158,
+   "old_best_21": "power2.out",
+   "new_library_best": "expo.inOut",
+   "new_rms_21": 0.01647280660548912,
+   "window_start": -0.6171277631381837,
+   "window_end": 1.0147330254297682,
+   "new_chosen": "expo.inOut",
+   "new_chosen_rms": 0.01647280660548912,
+   "ties": [
+    "expo.inOut"
+   ]
+  },
+  {
+   "shot": "S09",
+   "dominant": "rotation",
+   "move_px": 18.3,
+   "old_ease": "none",
+   "old_error_all_records": 0.094,
+   "old_rms_21": 0.09180854820663226,
+   "old_best_21": "none",
+   "new_library_best": "circ.out",
+   "new_rms_21": 0.0170675593480048,
+   "window_start": -0.1111503032467056,
+   "window_end": 103.25166875549336,
+   "new_chosen": "circ.out",
+   "new_chosen_rms": 0.0170675593480048,
+   "ties": [
+    "circ.out"
+   ]
+  },
+  {
+   "shot": "S10",
+   "dominant": "translation",
+   "move_px": 34.3,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.065,
+   "old_rms_21": 0.05303138856717875,
+   "old_best_21": "power3.out",
+   "new_library_best": "expo.inOut",
+   "new_rms_21": 0.024962858685757892,
+   "window_start": -0.7747339455668745,
+   "window_end": 1.0939362222721136,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.012280033218244413,
+   "ties": [
+    "expo.inOut",
+    "circ.inOut",
+    "expo.out"
+   ]
+  },
+  {
+   "shot": "S11",
+   "dominant": "scale",
+   "move_px": 782.4,
+   "old_ease": "power1.out",
+   "old_error_all_records": 0.091,
+   "old_rms_21": 0.0989137430867348,
+   "old_best_21": "power1.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.0341164789140057,
+   "window_start": -107.1035713427471,
+   "window_end": 107.18214277634587,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.011638640451614056,
+   "ties": [
+    "circ.inOut"
+   ]
+  },
+  {
+   "shot": "S13",
+   "dominant": "translation",
+   "move_px": 137.6,
+   "old_ease": "power3.out",
+   "old_error_all_records": 0.05,
+   "old_rms_21": 0.05230995195917047,
+   "old_best_21": "expo.out",
+   "new_library_best": "expo.inOut",
+   "new_rms_21": 0.02608431947295159,
+   "window_start": -0.8934394708549718,
+   "window_end": 1.111247301753619,
+   "new_chosen": "expo.inOut",
+   "new_chosen_rms": 0.02608431947295159,
+   "ties": [
+    "expo.inOut",
+    "power4.inOut",
+    "power3.inOut",
+    "material.standard",
+    "power3.out"
+   ]
+  },
+  {
+   "shot": "S14",
+   "dominant": "translation",
+   "move_px": 24.0,
+   "old_ease": "power1.out",
+   "old_error_all_records": 0.067,
+   "old_rms_21": 0.0700379149019267,
+   "old_best_21": "power1.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.03892841116519787,
+   "window_start": -1.1529218837035566,
+   "window_end": 1.546666982952431,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.01817892331883893,
+   "ties": [
+    "circ.inOut",
+    "expo.inOut"
+   ]
+  },
+  {
+   "shot": "S15",
+   "dominant": "translation",
+   "move_px": 225.7,
+   "old_ease": "power1.out",
+   "old_error_all_records": 0.059,
+   "old_rms_21": 0.05192554193036319,
+   "old_best_21": "power1.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.015647235042553033,
+   "window_start": -1.4235723539841545,
+   "window_end": 1.8235200578220474,
+   "new_chosen": "circ.inOut",
+   "new_chosen_rms": 0.015647235042553033,
+   "ties": [
+    "circ.inOut"
+   ]
+  },
+  {
+   "shot": "S16",
+   "dominant": "scale",
+   "move_px": 232.3,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.086,
+   "old_rms_21": 0.09419022829966418,
+   "old_best_21": "power2.out",
+   "new_library_best": "bounce.inOut",
+   "new_rms_21": 0.05463699452621798,
+   "window_start": -0.5346613605603963,
+   "window_end": 1.0828997878192768,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.019000467312397715,
+   "ties": [
+    "bounce.inOut"
+   ]
+  },
+  {
+   "shot": "S18",
+   "dominant": "rotation",
+   "move_px": 15.5,
+   "old_ease": "power2.inOut",
+   "old_error_all_records": 0.078,
+   "old_rms_21": 0.07555745212372217,
+   "old_best_21": "power2.inOut",
+   "new_library_best": "material.standard",
+   "new_rms_21": 0.028074610419386022,
+   "window_start": 0.16616605809509943,
+   "window_end": 0.9542753930938386,
+   "new_chosen": "material.standard",
+   "new_chosen_rms": 0.028074610419386022,
+   "ties": [
+    "material.standard",
+    "css.ease"
+   ]
+  },
+  {
+   "shot": "S19",
+   "dominant": "translation",
+   "move_px": 219.0,
+   "old_ease": "power1.out",
+   "old_error_all_records": 0.111,
+   "old_rms_21": 0.10124004948165335,
+   "old_best_21": "power1.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.016988622116788567,
+   "window_start": -0.290949823703391,
+   "window_end": 0.9035029700342243,
+   "new_chosen": "circ.inOut",
+   "new_chosen_rms": 0.016988622116788567,
+   "ties": [
+    "circ.inOut"
+   ]
+  },
+  {
+   "shot": "S20",
+   "dominant": "scale",
+   "move_px": 115.8,
+   "old_ease": "power2.out",
+   "old_error_all_records": 0.068,
+   "old_rms_21": 0.07106319496456255,
+   "old_best_21": "power2.out",
+   "new_library_best": "circ.inOut",
+   "new_rms_21": 0.019966253521626384,
+   "window_start": -1.9002029369374114,
+   "window_end": 2.0747704098294455,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.009726760985051746,
+   "ties": [
+    "circ.inOut"
+   ]
+  },
+  {
+   "shot": "S21",
+   "dominant": "scale",
+   "move_px": 397.1,
+   "old_ease": "power1.in",
+   "old_error_all_records": 0.092,
+   "old_rms_21": 0.08907313741821271,
+   "old_best_21": "power1.in",
+   "new_library_best": "bounce.inOut",
+   "new_rms_21": 0.03490089768948162,
+   "window_start": -1.1755333426362955,
+   "window_end": 1.985363829525546,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.020544944129527322,
+   "ties": [
+    "bounce.inOut"
+   ]
+  },
+  {
+   "shot": "S23",
+   "dominant": "scale",
+   "move_px": 633.5,
+   "old_ease": "power1.in",
+   "old_error_all_records": 0.116,
+   "old_rms_21": 0.10898612843144849,
+   "old_best_21": "power1.in",
+   "new_library_best": "bounce.inOut",
+   "new_rms_21": 0.04168498262298128,
+   "window_start": -1.3672492695397245,
+   "window_end": 2.0144572372183176,
+   "new_chosen": "cubic-bezier",
+   "new_chosen_rms": 0.024041644747585512,
+   "ties": [
+    "bounce.inOut"
+   ]
+  },
+  {
+   "shot": "S25",
+   "dominant": "scale",
+   "move_px": 13.9,
+   "old_ease": "none",
+   "old_error_all_records": 0.055,
+   "old_rms_21": 0.02928432052432543,
+   "old_best_21": "none",
+   "new_library_best": "css.ease-out",
+   "new_rms_21": 0.01561381218900819,
+   "window_start": 0.022733067693981306,
+   "window_end": 2.396180384665485,
+   "new_chosen": "css.ease-out",
+   "new_chosen_rms": 0.01561381218900819,
+   "ties": [
+    "css.ease-out",
+    "power1.out",
+    "power1.inOut",
+    "power2.out",
+    "back.in(3.5)"
+   ]
+  }
+ ]
+}

@@ -286,3 +286,47 @@ Côté son, les onze primitives de `MakeAudio.py` et les blocs DSP de `SoundF1.p
 - Scratchpad de l'étude 01 : `/private/tmp/claude-501/-Users-zenray--claude-Memory1/e067e0eb-400b-4769-9366-225560e7a0e4/scratchpad/`.
 - Ailleurs : `/Users/zenray/.claude/skills/zenray-edit/`, `/Users/zenray/.claude/skills/interview-audio/`, `/Users/zenray/.claude/skills/video-frames-extract/`, `/Users/zenray/.claude/skills/juice-it/`, `/Users/zenray/.claude/skills/zenray-houdini/scripts/height/README.md`, `/Users/zenray/.claude/Memory1/Houdini/MCP/`, `/Users/zenray/.venvs/`, `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/`, `/Users/zenray/.cache/hyperframes/`.
 - URL relevées dans les fichiers, non consultées pour cet inventaire : https://hyperframes.heygen.com/ , https://hyperframes.heygen.com/schema/hyperframes.json , https://gsap.com/standard-license , https://whatships.com/videos/onekey-pro-2/ .
+
+## 13. Mise à jour à la reprise du run (12 October 2026)
+
+Cette section s'ajoute après la reprise du workflow `wf_00e6dd64-d65` ; elle ne réécrit pas les sections précédentes, mais corrige ce que le travail mené entre 03:00 et 09:31 a rendu périmé. Tout ce qui suit est mesuré (M) par lecture des fichiers et des empreintes, sauf mention contraire.
+
+### 13.1 Corrections des sections 6, 8 et 10 (12 October 2026)
+
+- Correction de la section 6, paragraphe sur le scratchpad volatil : le cache `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache` ne contient plus seulement son `README.md`. Il pèse 867 Mo et porte douze références, chacune dans son dossier, dont `onekey-pro-2/onekey-pro-2 [2108559602300383233].mp4`, de même SHA-256 (`d3a484f83cc5...`) que la vidéo de l'étude 01, et une copie entière du scratchpad de l'étude dans `onekey-pro-2/study01-scratch/` avec son manifeste `study01-scratch.sha256` (6 511 empreintes). `motion.json`, `scdet.log`, `shots-reference.json`, `captions-reference.json` et `dna-reference.json` y figurent sous `study01-scratch/analysis/` : le contrat v1 reste donc rejouable même si `/private/tmp` est purgé (M).
+- Correction de la section 8, ligne « Références téléchargées et mises en cache avec empreinte » : l'écart n'est plus fort mais faible. `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts/FetchReference.py` (une commande, familles whatships, X, YouTube et générique, dossier neuf, SHA-256, métadonnées seules dans `references/<slug>/reference.json`, codes de sortie 0, 1 et 2) et `BuildWhatshipsCatalogue.py` existent, et les douze `reference.json` sont écrits (M).
+- Correction des sections 7.3 et 11, question 1 : la séparation de sources par modèle est déjà faite pour l'analyse. `/Users/zenray/.venvs/zenray-motion` contient demucs 4.1.0 et torch 2.14.1, et les pistes `bass.wav`, `drums.wav`, `other.wav`, `vocals.wav` de la référence OneKey sont dans `onekey-pro-2/stems/out/htdemucs/`, dans le cache local jamais archivé (M). La question reste ouverte pour Matthieu sur le principe (un modèle de séparation n'est pas génératif, mais c'est un modèle appris), non sur la faisabilité.
+- Correction de la section 8, lignes « Une commande » et « Versions V_001 à V_999 » : un squelette de moteur existe désormais, voir 13.2. L'écart passe de total à fort pour l'orchestration et à faible pour les versions.
+
+### 13.2 Le dépôt `ZenRayMotionDesign`, squelette du moteur `zrmd` (12 October 2026)
+
+Dépôt git local `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign`, deux commits (`4ab939e` squelette, `90f38ef` événements sonores et réglages), 674 lignes, paquet Python `zrmd` 0.1.0 pour Python 3.11 et plus, point d'entrée `zrmd.cli:main` déclaré mais module `cli.py` absent (M).
+
+| Module | Rôle | Qualité constatée | Verdict |
+|---|---|---|---|
+| `settings.json` et `zrmd/settings.py` (30 l.) | interface de paramètres unique, lecture par `get("a.b")` en copie profonde | conforme à la loi HDA ; seuils de découpage et d'audio déjà sortis du code | tel quel, socle de toutes les valeurs |
+| `zrmd/media.py` (141 l.) | sonde, lecture d'images et d'audio par ffmpeg seulement, écriture WAV, SHA-256 | remplace les décodages dispersés des 14 scripts de l'étude 01 | tel quel |
+| `zrmd/versions.py` (126 l.) | dossiers V_001 à V_999, version issue du parent plus surcharges, jamais d'écrasement | répond à l'écart « paramètres écrasés » de la section 6 ; non encore relié à `Cook.mjs` | tel quel, à brancher sur la cuisson |
+| `zrmd/analyze/shots.py` (203 l.) | découpage à l'image par accord de plusieurs signaux (différence de luminance, distance d'histogramme, bords), typage des flashs et des fondus, cadence effective | remplace la fusion manuelle de scdet ; le state.json annonce 26 coupes sur OneKey (R, non rejoué ici) | tel quel, à vérifier contre les 13 coupes franches |
+| `zrmd/audio/events.py` (67 l.) | séparation harmonique et percussive, attaques, fenêtre et descripteurs par événement (enveloppe log-mel, centroïde, platitude, hauteur), nombres seulement | remplace la classe par seuils d'`AnalyzeAudio.py` ; le state.json note que les attaques sur le mixage sont polluées par la musique et qu'il faut passer sur les pistes `drums` et `other` (R) | à adapter |
+| `zrmd/sheets.py` (58 l.) | planches contact étiquetées par Pillow (ffmpeg sans drawtext) | utile au storyboard | tel quel |
+| `zrmd/emit`, `zrmd/recipes`, `zrmd/verify` | paquets vides | rien encore | à construire, en partant de `Cook.mjs`, de `MakeAudio.py` et de `Verify.py` |
+
+### 13.3 Laboratoires des recherches R03 et R04, déjà réutilisables (12 October 2026)
+
+| Fichier | Rôle | Verdict |
+|---|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R03-lab/SfxRecipes.py` (128 l.) et `LabParams.json` | recettes paramétriques de souffle et de clic, numpy et scipy, toutes valeurs dans le JSON | à verser dans `zrmd/recipes`, avec les onze primitives de `MakeAudio.py` |
+| `R03-lab/SfxMetrics.py` (304 l.) | descripteurs par événement, distances en unités de seuil perceptif, score combiné visant 99 % | à verser dans `zrmd/verify` comme dimension son ; remplace le mode fidélité que la section 10 demandait d'ajouter à `VerifySound.py` |
+| `R04-lab/EaseFit.py` (329 l.) | identification de la courbe et du minutage d'un canal animé, courbes GSAP exactes ou Bézier CSS, projection variable puis Nelder-Mead | remplace le choix parmi dix presets d'`AnalyzeCamera.py` ; à verser dans `zrmd/analyze` |
+| `R04-lab/SampleGsapEases.mjs` (53 l.) et `results/eases-gsap-3.14.2.json` | échantillons des courbes exactes de GSAP 3.14.2 | tel quel, table de référence de l'ajustement |
+| `R04-lab/RunEaseSynthetic.py`, `RunEaseVideo.py` | tests à réponse connue, sur nombres puis à travers rendu, H.264 et mesure | tel quel, comme tests du moteur (vert et rouge) |
+| `R04-lab/RunCameraRefit.py` | réajuste les 21 échantillons de caméra de l'étude 01 avec la bibliothèque exacte et une fenêtre libre | à reprendre comme migration de `MakeCamera.py` |
+| `R04-lab/Run3dProbe.py` | décide si un plan relève de la 3D en comparant similarité, affine, homographie et matrice fondamentale | à verser dans l'analyse, pour la rubrique 3D de la bible |
+| `R04-lab/RunFidelityDemo.py` (464 l.) | montre quelle mesure de fidélité atteint 99 % quand le contenu de marque est remplacé, et vire au rouge sur sept défauts contrôlés | base de la définition de 99 % (question 3 de la section 11) |
+
+Les chiffres de ces laboratoires appartiennent aux rapports R03 et R04 ; cet inventaire n'en reprend aucun, faute de les avoir rejoués (S pour leur qualité).
+
+### 13.4 Ce qui reste vrai et prioritaire (12 October 2026)
+
+Le noyau à réutiliser ne change pas : `tokens.json` et `Cook.mjs` pour la cuisson déterministe, `motion-core.js` et `motion-main.js` pour le runtime, `VerifySound.py` pour la conformité au plan, les primitives de `MakeAudio.py` et de `SoundF1.py` pour la synthèse. Ce qui manque désormais tient surtout à l'assemblage, puisque les pièces de mesure existent en trois endroits (scripts de l'étude 01, `zrmd`, laboratoires R03 et R04) : il faudrait les réunir dans `zrmd`, écrire `zrmd/cli.py` sur le patron de `Reproduce.py` de zenray-height, brancher `versions.py` sur la cuisson, et ne garder qu'une seule copie de chaque fonction pour éviter trois vérités divergentes. Les défauts de la section 9 restent ouverts, en particulier le texte OCR de la référence dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/dna-reference.json`, toujours présent dans un atelier archivé.

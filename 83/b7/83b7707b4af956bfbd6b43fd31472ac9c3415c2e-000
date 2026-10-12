@@ -1,0 +1,36 @@
+# R11, base de polices et comparateur de glyphes (12 October 2026)
+
+## Ce qui a été construit (12 October 2026)
+
+La base compte 98 familles libres et 139 fichiers, dont 89 variables, rangés dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/`, indexés dans `datasets/fonts/index.json` et reconstructibles par `datasets/fonts/Fetch.py`, dont le mode d'emploi figure dans `datasets/fonts/README.md`. Les licences sont la SIL Open Font License pour Google Fonts et Inter Display, et l'ITF Free Font License pour les quinze familles Fontshare ; aucune police commerciale ni système n'a été copiée. Le téléchargement complet prend une douzaine de secondes. (12 October 2026)
+
+Le comparateur `zrmd/analyze/fontmatch.py` reçoit une image de ligne claire sur fond sombre et la chaîne écrite. Il normalise l'encre, la recadre, mesure la hauteur d'x et la ligne de base par `line_metrics`, puis, pour chaque fichier, chaque graisse de l'axe `wght` par pas de 25 (ou la graisse propre d'un statique) et chaque interlettrage de -0,04 à +0,08 em (grille de 0,02 affinée de 0,01 autour du meilleur), il rend la chaîne au double de la taille utile, la ramène à la même hauteur d'x par une mise à l'échelle uniforme, mesure l'écart de largeur d'encre à ce moment, puis l'étire en largeur seulement jusqu'à la largeur cible, l'aligne sur la ligne de base et le bord gauche de l'encre, et calcule un score où le plus bas l'emporte : (1 moins l'IoU doux de l'encre), plus quatre fois la distance de chanfrein symétrique exprimée en hauteurs d'x, plus deux fois l'écart de largeur absolu. Les poids de ce score et les grilles vivent dans le seul dictionnaire `PARAMS`. Le calcul est réparti sur seize processus. `typography.py` a reçu des extensions compatibles : `load_font`, ainsi que les arguments `tracking_em`, `opsz` et `font` de `render_line`, dont le comportement par défaut ne change pas. (12 October 2026)
+
+## Validation dans les deux sens (12 October 2026)
+
+`tests/test_fontmatch.py`, lancé directement faute de pytest dans l'environnement, rend une ligne « Beautifully powerful » en Manrope 500 avec un interlettrage de 0,02 em, légèrement floutée pour imiter une vidéo. Le comparateur la retrouve en tête, à la graisse 525 et à l'interlettrage 0,01 em, donc dans les tolérances demandées, avec un score de 0,143 contre 0,345 pour la première autre famille (Rubik). Dans l'autre sens, une ligne en Poppins 500 est attribuée à Poppins et Manrope n'y est pas retenu, son score dépassant de plus de trente pour cent celui du premier. Les deux tests passent en une quarantaine de secondes au total. (12 October 2026)
+
+Une erreur payée en route mérite d'être notée : estimer la taille de rendu depuis la hauteur d'x détectée sur une ligne d'essai produisait, pour quelques polices, une bande d'x presque nulle et donc des images de plus de cent millions de pixels, si bien que le premier passage des tests durait neuf minutes. La taille s'estime désormais depuis la boîte du glyphe « x », avec un garde-fou sur le rapport x sur em, et l'ajustement exact se fait ensuite par l'image. (12 October 2026)
+
+## Cas réel, onekey-pro-2 à 6,1 s (12 October 2026)
+
+La ligne « Beautifully powerful », recadrée de x 506 à 1406 et de y 482 à 612 sur l'image 1920 par 1080 (l'extraction est restée dans le dossier temporaire de session), mesure une hauteur d'x de 49 pixels pour une encre large de 859 pixels. Le classement, calculé en 20 secondes sur les 139 fichiers, est le suivant (12 October 2026) :
+
+| Rang | Famille | Graisse | Interlettrage (em) | Taille (px) | Score | IoU |
+|---|---|---|---|---|---|---|
+| 1 | Lexend | 400 | -0,02 | 93,4 | 0,342 | 0,691 |
+| 2 | Lexend Deca | 400 | -0,02 | 93,4 | 0,342 | 0,691 |
+| 3 | Rubik | 425 | -0,01 | 94,2 | 0,372 | 0,664 |
+| 4 | Manrope | 550 | +0,01 | 90,7 | 0,374 | 0,658 |
+| 5 | Syne | 400 | +0,01 | 98,0 | 0,378 | 0,667 |
+| 6 | Red Hat Text | 550 | -0,01 | 97,0 | 0,392 | 0,678 |
+| 7 | Alexandria | 350 | -0,03 | 93,4 | 0,396 | 0,641 |
+| 8 | Rethink Sans | 550 | 0,00 | 98,0 | 0,404 | 0,651 |
+| 9 | Albert Sans | 625 | -0,01 | 97,0 | 0,414 | 0,628 |
+| 10 | Overpass | 625 | -0,01 | 95,1 | 0,421 | 0,632 |
+
+Le résultat chiffré, sans aucun pixel de la référence, est écrit dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/onekey-pro-2/font-match.json`. Lexend et Lexend Deca sont le même dessin à l'axe par défaut, ce qui explique leur égalité ; la proposition utile est donc Lexend 400 à -0,02 em, suivie de Rubik et de Manrope. (12 October 2026)
+
+## Limites (12 October 2026)
+
+L'IoU du meilleur candidat reste vers 0,69, alors qu'une police exacte atteint 0,88 sur la cible synthétique floutée : il est donc probable que la police d'origine soit commerciale et absente de la base, Lexend n'en étant que l'approximation libre la plus proche à ce jour. Le score ne départage pas finement deux graisses voisines (500 et 525 diffèrent de moins d'un pour cent sur la cible synthétique), si bien que la graisse se lit à 25 près et non mieux. L'interlettrage absorbe presque tout l'écart de largeur, de sorte que le terme de largeur pèse peu une fois la chasse ajustée. Les axes autres que `wght` et `opsz` (largeur, inclinaison) restent à leur défaut, les italiques ne sont pas dans la base, et le crénage suit la mise en page de Pillow, qui peut différer de celle d'un navigateur. Enfin la comparaison suppose une ligne nette et immobile ; une image prise en plein fondu ou flou de mouvement fausserait la hauteur d'x. (12 October 2026)

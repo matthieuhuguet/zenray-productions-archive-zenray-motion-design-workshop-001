@@ -1,0 +1,93 @@
+# B3 : onglet Motion Design, service local et publication (12 October 2026)
+
+Tâche B3 du flux de construction, projet Assets `zenray-motion-design`. Le plan suivi est celui de `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R06-zenrayprogress-integration.md`, à une différence près, voulue par la consigne : le service local vit dans l'atelier du moteur et non dans `scripts/Motion/` du dépôt du site. Aucun commit n'a été fait, ni dans le moteur ni dans le site ; rien n'a été fusionné ni déployé, et rien n'a été poussé sur GitHub. (12 October 2026)
+
+## 1. Ce qui fonctionne, mesuré (12 October 2026)
+
+Le service `com.zenray.motion` tourne sur `127.0.0.1:3102` sous LaunchAgent (chargé, `state = running`), répond à `status`, refuse une origine étrangère en 403, sert les rendus locaux par URL signée (200 entier, 206 en plage, 403 sur jeton altéré) et lit le catalogue local, qui compte sept motions au moment de l'essai. Une demande d'itération en mode Réglages, passée par HTTP avec le vrai moteur sur un atelier jetable, produit `V_002` avec la nouvelle taille de texte et le nouveau fond en une dizaine de secondes, tandis qu'une valeur hors bornes revient `refused` avec sa cause et ne crée aucune version. Un montage réel de deux motions de l'atelier (`onekey-s01-orb-ignition` puis `onekey-s02-caption-shine` V_008), en 9:16 et 1:1, cadrage plein cadre, a été rendu en 40,4 s : 161 images à 60 i/s, soit 2,683 s, fichiers de 1080 × 1920 et 1080 × 1080 vérifiés par `ffprobe`. (12 October 2026)
+
+Le publieur, lancé à blanc sur l'atelier réel, empaquette six motions en CMAF par copie de flux (deux segments chacun, de 15 à 363 Kio), attribue les identifiants neutres `zrmd-0001` à `zrmd-0006`, prépare 39 fichiers privés et 18 fichiers publics dont tous les chemins sont neutres, et son vérificateur de catalogue sort vert ; il signale aussi que les six motions sont bloqués à la publication réelle tant que leurs droits ne sont pas validés (section 5). Sur des dépôts nus locaux, la publication réelle écrit les segments et l'affiche sous `zrmd-0001/v001-16x9/`, puis un seul commit privé « motion catalogue » de neuf fichiers ou plus, et une seconde passe ne republie rien. (12 October 2026)
+
+L'onglet du site est en place sur la branche `motion-design-tab` du worktree `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-site`, créé depuis `origin/main` (`1bacfbc3`) après `git fetch` ; `npx vite build` et `npm run build` sont verts, et la vue forme un morceau paresseux de 32 Kio (`MotionDesignView-*.js`). (12 October 2026)
+
+## 2. Le service local (12 October 2026)
+
+Code : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/service/`, Node 22 sans dépendance. Toutes les valeurs sont dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/service/config.json`. La porte de sécurité reprend celle des ponts Assets et Freelance : boucle locale seule, liste d'origines, refus d'un appel de navigateur sans origine venu d'un autre site, en-tête `x-zr-motion-client: 1`, secret comparé à temps constant si `ZENRAY_API_SECRET` est défini, corps borné à 256 Kio, en-tête `access-control-allow-private-network` sur `OPTIONS`. (12 October 2026)
+
+| Action | Effet |
+|---|---|
+| `status` | santé, moteur, version HyperFrames épinglée (0.8.149), file, présence du publieur, studio |
+| `catalogue` | relance `zrmd.cli catalog`, rend le catalogue local avec affiches et rendus en URL signées, et les demandes ouvertes |
+| `motion` | versions d'un motion (parent, note, score, dimensions, URL signées) et paramètres exposés de la version |
+| `request` | demande d'itération : `params` lance `zrmd.cli iterate --strict --set …`, `format` rend la version dans les formats choisis par la famille montage, `instruction` est rangée en `waiting-agent` sans exécution |
+| `job`, `jobs`, `cancel` | suivi et arrêt des tâches ; une seule tâche à la fois, état persisté, `interrupted` après un redémarrage |
+| `montage`, `render` | assemble motions et clips locaux en une composition HyperFrames par format (16:9, 9:16, 1:1), rendue par `Scripts/RunHyperframes.mjs` ; le schéma est vérifié avant la file, un refus revient en 400 |
+| `timeline` | plans, calques et tweens d'une version, pour la vue montage |
+| `preview-url` | URL signée HMAC valable dix minutes vers un rendu ou une affiche |
+| `open-studio` | `RunHyperframes.mjs preview --no-open --port 3002` dans le projet de la version |
+| `publish` | lance le publieur (à blanc, ou `push: true`) |
+| `load`, `unload` | délèguent au pont Assets (3100) : `restore`, ou `unload-plan` puis `unload`, sur les fichiers `workshop:motions/<id>/…` |
+
+La file du cloud : quand le Mac dort, la page écrit `pages/ZenRayMotionDesign/_requests/<id>.json` ; le service, toutes les cinq minutes et seulement s'il est libre, synchronise un clone privé clairsemé de `zenray-data` (`/Users/zenray/Library/Application Support/ZenRayMotion/data-clone`, 243 Mo de métadonnées), soumet chaque demande sans état au même chemin que la page, et écrit seul `<id>.status.json`, en un commit par lot, recalculé depuis l'état distant après un push refusé. Le clone, la soumission et le rapport sont sérialisés pour qu'un état final soit toujours le dernier commit. (12 October 2026)
+
+Installation : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/service/install.sh` (rend `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/service/launchd/com.zenray.motion.plist.template` vers `/Users/zenray/Library/LaunchAgents/com.zenray.motion.plist`, `launchctl bootstrap`, puis prouve la réponse sur 3102) ; `install.sh --uninstall` le retire. Journaux : `/Users/zenray/Library/Application Support/ZenRayMotion/Service.log` et `Service.error.log`. (12 October 2026)
+
+## 3. Ce que le moteur a reçu (12 October 2026)
+
+Les signatures publiques n'ont pas changé ; tout est ajouté. `zrmd/versions.py` accepte un segment `@<id>` qui désigne un calque par son identifiant, et gagne `get_path`. `zrmd/exposed.py` lit `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/params/exposed.json` (au plus huit paramètres par catégorie, vérifié au chargement) et sert de porte unique avant une itération du site. `zrmd/emit/montage.py` cuit une composition par format d'après `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/params/montage.json` : chaque clip est une `<video>` dans une enveloppe, les temps sont des images entières, les fichiers sont copiés dans le projet, une timeline GSAP en pause couvre toute la durée. La CLI gagne `exposed`, `montage` et l'option `iterate --strict`. `zrmd/settings.py` accepte `ZRMD_PATH_<NOM>` pour isoler un atelier de test. (12 October 2026)
+
+Les montages s'écrivent dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-montages`, hors de l'atelier archivé, parce qu'un montage copie des clips locaux qui peuvent appartenir à des tiers ; le cache des références est refusé comme source de clip, même en local. (12 October 2026)
+
+## 4. Publication (12 October 2026)
+
+Dans le worktree du site : `scripts/Motion/PublishMotions.mjs` (entrée-sortie), `scripts/Motion/MotionPublish.mjs` (partie pure : identifiants neutres, manifeste lu par `VideoPlayer2`, fiche `.zmotion.json`, catalogue, invariants), `scripts/Motion/CheckCatalogue.mjs` (vérificateur, code de sortie et JSON), `scripts/Motion/MotionConfig.json`. La voie est celle de R06 : rendu MP4 empaqueté en CMAF par `scripts/lib/cmaf-packaging.mjs`, affiche et segments sur un shard public de la famille `motion` (`zenrayshards-motion-<hex12>`, compteur `pages/ZenRayMotionDesign/.zr-motion-shard.json`, taille de rotation lue dans `PUBLIC_SHARD`), messages de commit neutres (« motion segments », « motion catalogue »), affiche vérifiée sur jsDelivr avant l'écriture, puis un seul commit privé par `createCloudStore`. La carte des identifiants (`.zr-motion-ids.json`) et l'identifiant local restent dans des fichiers privés. (12 October 2026)
+
+Retouches de l'existant, chacune minimale : les quatre réécritures de playlists sont sorties telles quelles d'`AttachVideoCmafDashHls.mjs` vers `scripts/lib/cmaf-rewrite.mjs`, que les films importent désormais ; `createCloudStore` accepte un auteur en paramètre (défaut inchangé) ; `motion` rejoint `KINDS` et les types publics v2 dans `server/shard-naming.js` et sa copie `src/capture/shardNaming.js`. (12 October 2026)
+
+## 5. L'onglet du site (12 October 2026)
+
+Entrée « Motion Design » juste après Media dans `NAV` (`src/components/Sidebar.jsx`), libellés `nav.motion` et un bloc `motion.*` en français, anglais et japonais (`src/i18n/dict.js`), vue paresseuse par `lazyRetry` (`src/App.jsx`), lien profond par liste blanche (`?view=motion&motion=<id>&v=V_008`). Les fichiers : `src/motion/MotionDesignView.jsx` (rail intérieur Accueil, Sur ce Mac, Demandes, Montage ; catalogue lu une fois puis revalidé toutes les 30 s onglet visible, dernier catalogue valide gardé en cas d'échec passager), `MotionGallery.jsx` (pastilles tirées des données, grille), `MotionCard.jsx` (affiche 16:9, durée en bas à droite, version en bas à gauche, titre en AnthropicSerif 350, nombres en AnthropicSerif 400), `MotionPage.jsx` (lecteur `VideoPlayer2` sur le manifeste publié ou rendu local signé, onglets Fidélité, Paramètres, Historique, colonne des versions), `MotionIterationPanel.jsx` (Réglages par curseurs, Format, Consigne ; pont d'abord, file du cloud sinon ; suivi du job toutes les 1,5 s onglet visible), `MotionMontage.jsx`, `motionCatalogue.js` (modèle pur), `motion.css` ; `src/config/motion.js` porte toutes les valeurs ; `src/lib/motionBridge.js` est le client du pont. Le port 3102 entre dans `connect-src`, `media-src` et `img-src` de `public/_headers` et `vercel.json`. `docs/INDEX-ERREURS-FEATURES.md` et le routeur de `CLAUDE.md` portent la fonctionnalité. (12 October 2026)
+
+## 6. Tests et résultats, dans les deux sens (12 October 2026)
+
+| Commande | Résultat |
+|---|---|
+| `/Users/zenray/.venvs/zenray-motion/bin/python -I tests/test_site_surface.py --render` (moteur) | 28 contrôles verts, dont 11 rouges attendus (bornes, clé non exposée, couleur, texte vide, identifiant, chemin relatif, format, motion absent) ; rendu 9:16 réel de 1,75 s en 1080 × 1920 |
+| `node --test test/*.test.mjs` (service) | 9 suites vertes : porte (200, 403 origine, 403 en-tête, 403 site croisé, 204 et en-tête réseau privé, 413, 400), validation (9 refus de demande, 8 refus de montage), file unique, médias signés, moteur réel, file cloud sur dépôt nu local (rouge sur un dépôt absent), bout en bout avec le vrai moteur |
+| `npx vitest run scripts/Motion/PublishMotions.test.js` | 3 tests verts : publication sur dépôts nus, chemins publics neutres, un commit privé, deuxième passe vide, refus sans droits (code 2), vérificateur vert puis rouge après suppression d'un manifeste, invariants rouges sur un catalogue cassé |
+| `npx vitest run src/motion src/lib/motionBridge.test.js` | 18 tests verts : modèle, pont (Mac absent contre refus), repli vers la file seulement si le Mac est absent, galerie depuis une seule lecture, états vide, illisible, échec passager jamais montré comme vide, page et versions, panneau qui n'envoie que les valeurs changées |
+| `npx vitest run src/lib/titreOnglet.test.js src/lib/quotaLectures.test.js tests/hebergement.test.js` | 27 tests verts (Motion Design suit Media, lecture d'affichage hors quota, parité des en-têtes) |
+| `npx vitest run` (suite complète) | 2118 verts, 6 ignorés, 3 rouges dans `scripts/AssetsService.test.js`, des dépassements de 10 s qui rougissent aussi sans mes changements (3 rouges sur la base, essai par `git stash`) |
+| `npx vite build`, `npm run build` | verts |
+
+## 7. Fusion et déploiement, à lancer après relecture (12 October 2026)
+
+Le worktree principal `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress` est sale et en retard ; on fusionne donc depuis le worktree de la branche, par avance rapide sur `main` :
+
+```zsh
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design-site
+git add CLAUDE.md docs/INDEX-ERREURS-FEATURES.md public/_headers vercel.json scripts/AttachVideoCmafDashHls.mjs scripts/Freelance/CloudStore.mjs scripts/lib/cmaf-rewrite.mjs scripts/Motion server/shard-naming.js src/App.jsx src/capture/shardNaming.js src/components/Sidebar.jsx src/i18n/dict.js src/lib/quotaLectures.test.js src/lib/titreOnglet.test.js src/config/motion.js src/lib/motionBridge.js src/lib/motionBridge.test.js src/motion
+git -c gc.auto=0 -c maintenance.auto=false commit -m "Motion Design tab, local bridge 3102 and motion publisher (12 October 2026)"
+git fetch origin && git rebase origin/main
+npx vitest run src/motion src/lib/motionBridge.test.js scripts/Motion src/lib/titreOnglet.test.js src/lib/quotaLectures.test.js tests/hebergement.test.js && npx vite build
+git push origin HEAD:main && git merge-base --is-ancestor HEAD origin/main
+npx wrangler pages functions build --outdir=/private/tmp/zrmd-functions-check
+npx wrangler pages deploy dist --project-name zenray-progress --branch main
+curl -s https://zenray-progress.pages.dev/ | grep -o 'assets/index-[^"]*\.js' ; grep -o 'assets/index-[^"]*\.js' dist/index.html
+```
+
+Le dernier contrôle compare le point d'entrée servi à celui du build, et se refait dix minutes plus tard. Après la fusion, le chemin `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Motion/PublishMotions.mjs`, que vise `publisher.script` du service, n'existera qu'une fois ce worktree principal mis à jour ; d'ici là `status` répond `publisher: false` et l'action `publish` refuse avec sa cause. (12 October 2026)
+
+Première publication réelle, qui crée un dépôt public et relève donc de la décision D10 de Matthieu : poser `"rights": {"cleared": true}` dans `motion.json` des motions vérifiés, puis `node scripts/Motion/PublishMotions.mjs --motion <id> --push`, puis `node scripts/Motion/CheckCatalogue.mjs` (vert attendu). (12 October 2026)
+
+## 8. Limites et constats (12 October 2026)
+
+- Aucune publication réelle n'a eu lieu : elle crée un dépôt GitHub public et y pousse des rendus, ce qui demande l'accord de Matthieu (D10). L'onglet affichera donc « Aucun motion publié » en production tant qu'elle n'est pas faite ; l'onglet « Sur ce Mac » montre déjà les sept motions locaux. (12 October 2026)
+- Garde des droits : les rendus de cartes texte reproduisent les mots de la référence (« Quietly brilliant » dans les paramètres de `onekey-s02-caption-shine`), ce que la doctrine interdit dans un livrable ; le publieur refuse donc tout motion sans `rights.cleared`, et les identifiants locaux portent le nom de la marque, raison des identifiants publics neutres. (12 October 2026)
+- Le mode Format recadre la vidéo rendue (image entière ou plein cadre) ; il ne recompose pas la mise en page par format, faute de jetons de mise en page par format dans `params.json`. (12 October 2026)
+- Les paramètres exposés ne couvrent que la famille `textcard` ; une autre famille n'offre aucun curseur tant que `params/exposed.json` ne la décrit pas. (12 October 2026)
+- Non exercés en réel : `load` et `unload` (ils déplaceraient des fichiers par Assets), `open-studio`, `publish` par le service, la file cloud sur le vrai `zenray-data` (seul le clone et la lecture ont tourné, aucune demande n'y existe encore), la permission Local Network Access de Chrome pour le port 3102. (12 October 2026)
+- Non fait : le type de nœud `.zmotion.json` dans Create (D8) et l'indexation de recherche des motions. (12 October 2026)
+- La vue n'a été vérifiée que par les tests et le build, conformément à la règle du dépôt ; les couleurs de `motion.css` sont des jetons locaux en tête du fichier, comme les autres feuilles de vues, et non des entrées de `src/config/colors.js`. (12 October 2026)
+- Constat : un premier worktree placé dans l'atelier surveillé aurait été inventorié par Assets ; il a été déplacé hors de l'atelier avant tout inventaire (aucun fichier pris, vérifié par l'état du pont). (12 October 2026)
+- Constat hors périmètre : `scripts/AssetsService.test.js` rougit de façon intermittente sur des dépassements de 10 s, avec ou sans ces changements. (12 October 2026)

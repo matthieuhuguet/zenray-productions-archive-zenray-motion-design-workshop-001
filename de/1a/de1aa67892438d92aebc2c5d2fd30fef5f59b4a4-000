@@ -302,3 +302,26 @@ def compare_corrected(ref, syns, cfg):
         "corrected": {k: round(math.sqrt(v), 4) for k, v in corrected.items()},
         "bias": {k: round(v, 4) for k, v in bias.items()},
     }
+
+
+def compare_cloud(ref, syns, cfg):
+    """12 October 2026, 09:55 CEST: 'cloud' comparison, the one the lab scores with.
+    A noisy recipe is a cloud of realisations, and the reference is one draw of an unknown cloud. Per cue:
+    bias_k = mean over draws of the signed error e_k(ref, s); sigma_k^2 = half the mean squared pair error
+    between draws (the realisation spread of that cue). Normalised error e'_k = bias_k / sqrt(1 + sigma_k^2):
+    the tolerance is one JND widened by the spread the recipe itself cannot avoid. E^2 = sum e'_k^2, S as before.
+    FR : la tolerance d'un indice = un seuil differentiel elargi par la dispersion propre de la recette."""
+    cross = [compare(ref, s, cfg)["errors"] for s in syns]
+    pairs = [compare(syns[i], syns[k], cfg)["errors"] for i in range(len(syns)) for k in range(i + 1, len(syns))]
+    keys = list(cross[0])
+    bias = {k: float(np.mean([c[k] for c in cross])) for k in keys}
+    spread2 = {k: (float(np.mean([p[k] ** 2 for p in pairs])) / 2.0 if pairs else 0.0) for k in keys}
+    n = len(syns)
+    # Remove the expected squared deviation of a single reference draw plus the mean estimate (sigma^2 (1 + 1/n)),
+    # then widen the tolerance by the spread: e'^2 = max(0, bias^2 - sigma^2 (1 + 1/n)) / (1 + sigma^2).
+    norm = {k: math.copysign(math.sqrt(max(0.0, bias[k] ** 2 - spread2[k] * (1.0 + 1.0 / n)) / (1.0 + spread2[k])), bias[k]) for k in keys}
+    e2 = float(sum(v * v for v in norm.values()))
+    base = cfg["score"]["base"]
+    return {"E": math.sqrt(e2), "score": 100.0 * base ** e2, "floorScore": 100.0 * base ** float(sum(spread2.values())),
+            "rawScore": 100.0 * base ** float(sum(b * b for b in bias.values())),
+            "corrected": {k: round(v, 4) for k, v in norm.items()}, "spread": {k: round(math.sqrt(v), 4) for k, v in spread2.items()}}

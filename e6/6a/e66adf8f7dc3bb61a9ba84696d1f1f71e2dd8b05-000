@@ -1,0 +1,255 @@
+# R04 : mesurer et reproduire l'image et l'animation d'une référence de motion design (12 October 2026)
+
+Livrable de la recherche R04 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Laboratoire, scripts et résultats bruts : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R04-lab/`. Tout ce qui suit sépare ce qui a été **mesuré sur ce Mac** (repère M), ce qui est **vérifié dans une source** (repère V, avec l'adresse) et ce qui est **supposé** (repère S). (12 October 2026)
+
+## 0. L'essentiel (12 October 2026)
+
+1. La pièce la plus rentable du moteur est l'identification des courbes d'animation, parce qu'elle transforme une trajectoire mesurée en une ligne de code HyperFrames (une ease GSAP exacte, un début, une durée). Le laboratoire la prouve à réponse connue : sur 324 mouvements synthétiques à 60 images par seconde, l'ease vraie sort en tête 276 fois, et 264 mouvements sont reproduits à moins de 1 % de leur amplitude ; au-dessus de 200 pixels d'amplitude, 209 sur 216 (M, section 5). (12 October 2026)
+2. La chaîne complète rendu, encodage H.264, décodage, mesure par les pixels, ajustement retrouve la bonne ease et le bon minutage à 0,3 milliseconde près pour la position, l'échelle avec rebond et l'opacité, après deux corrections faites aujourd'hui dans `EaseFit.py` et `RunEaseVideo.py` (M, section 5.3). (12 October 2026)
+3. Sur la vraie référence OneKey Pro 2, la reprise des 20 courbes de caméra de la première étude avec la bibliothèque GSAP exacte et une fenêtre libre fait passer l'erreur médiane de 8,9 % à 2,0 % de l'amplitude (M, section 3.3). (12 October 2026)
+4. Une mesure pixel ne peut pas atteindre 99 % quand le texte et le logo de marque sont remplacés : sur le banc, une substitution parfaite plafonne à 97,6 % de SSIM et 78 % de corrélation. Le 99 % se définit donc sur des **paramètres mesurés dans les deux vidéos**, exprimés en unités de différence juste perceptible (JND) et agrégés par le minimum des dimensions ; ainsi définie, la substitution obtient 99,8 % et les sept défauts contrôlés tombent tous sous 99 %, le plus discret à 98,2 % (M, section 11.4). (12 October 2026)
+5. La détection de la 3D par la seule géométrie du mouvement est fiable quand elle répond oui (7 vrais positifs pour 1 faux positif sur la référence) mais aveugle aux plans 3D qui bougent comme un calque (10 plans manqués sur 17) ; il faut y ajouter un indice d'apparence (section 10). (12 October 2026)
+6. Tout tient en Python, numpy, OpenCV 5.0.0 et ffmpeg déjà présents, plus tesseract 5.5.2 ; trois paquets légers à ajouter (scipy, fontTools, scenedetect) et aucun GPU nécessaire (section 12). (12 October 2026)
+
+## 1. Ce qui est présent sur ce Mac (12 October 2026)
+
+| Élément | État | Repère |
+|---|---|---|
+| Python du venv `~/.venvs/motion-design` | OpenCV 5.0.0, numpy, Pillow 11.3.0 ; **scipy absent** | M |
+| `cv2.dnn.TextDetectionModel_DB` | présent dans ce build | M |
+| `cv2.saliency`, `cv2.ximgproc`, `cv2.optflow` (modules contrib) | absents | M |
+| ffmpeg | filtres `scdet`, `ssim`, `psnr`, `xpsnr`, `libvmaf`, `vmafmotion`, `blurdetect`, `mestimate`, `signalstats`, `cropdetect` présents | M |
+| tesseract | 5.5.2, leptonica 1.87.0 | M |
+| GSAP 3.14.2 | copie locale dans `R04-lab/vendor/gsap-3.14.2`, courbes échantillonnées sur 4 001 points dans `results/eases-gsap-3.14.2.json` | M |
+| Charge machine au moment des essais | moyenne de charge autour de 318, CPU à 96 %, d'autres agents tournant : les temps de calcul ci-dessous sont donc pessimistes | M |
+
+## 2. Détection des plans (12 October 2026)
+
+Trois outils se présentent, et ils ne répondent pas à la même question. Le filtre ffmpeg `scdet` calcule un score de changement de scène par image et marque les coupes au-dessus d'un seuil (V, https://ffmpeg.org/ffmpeg-filters.html#scdet) ; il est présent, ne demande aucune installation et suffit aux coupes franches, qui forment la majorité des montages de motion design. PySceneDetect (V, https://www.scenedetect.com/ et https://github.com/Breakthrough/PySceneDetect) ajoute trois détecteurs utiles : `ContentDetector` sur la différence HSV entre images, `AdaptiveDetector` qui compare cette différence à sa moyenne glissante et résiste ainsi aux plans très animés, et `ThresholdDetector` pour les fondus au noir ou au blanc. TransNetV2 (V, https://github.com/soCzech/TransNetV2 et https://arxiv.org/abs/2008.04838) est un réseau convolutif entraîné qui détecte aussi les transitions progressives ; il exige TensorFlow ou un portage PyTorch, et son coût sur le processeur de ce Mac n'a pas été mesuré, l'article annonçant des cadences élevées sur GPU (S pour le CPU). Il s'agit d'un modèle discriminatif qui n'engendre aucune image, si bien qu'il reste compatible avec la règle « aucune IA générative » ; il n'en reste pas moins une dépendance lourde.
+
+La recommandation tient en une fusion déterministe. On calcule pour chaque image une courbe de différence (HSV et luminance, à résolution réduite), on prend les pics de `scdet` et d'`AdaptiveDetector` comme coupes franches, puis on cherche les transitions progressives comme des rampes monotones de cette courbe sur 4 à 30 images. En motion design, une partie des « transitions » sont des animations continues (un volet, un zoom traversant, un raccord sur une forme) qu'aucun détecteur ne qualifie correctement ; elles se décrivent mieux comme un coup de la recette (`wipe`, `push`, `match`) que comme une coupe, et la courbe de différence doit donc être conservée dans la bible, car elle porte aussi le rythme. TransNetV2 ne s'installe que si la fusion manque des transitions sur des références réelles, preuve à l'appui (S).
+
+La vérification se fait à réponse connue : une composition HyperFrames de test avec coupes, fondus et volets à des images connues, rendue puis encodée en H.264, doit restituer chaque coupe à une image près. La première étude a déjà produit `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/params/timeline.json` (27 plans pour OneKey Pro 2), qui sert de point de comparaison (M pour l'existence du fichier).
+
+## 3. Mouvement de caméra (12 October 2026)
+
+### 3.1 Méthode (12 October 2026)
+
+Pour chaque paire d'images d'un même plan, on suit des coins (`goodFeaturesToTrack` puis `calcOpticalFlowPyrLK`, contrôle aller-retour sous 0,5 pixel), puis on ajuste par RANSAC, à tolérance égale, quatre modèles de complexité croissante : similarité (translation, rotation, échelle), affine, homographie, matrice fondamentale (V, documentation OpenCV https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html). La similarité donne directement les trois canaux d'une caméra 2D de motion design, à savoir le déplacement, le roulis et le zoom, qu'on intègre image après image puis qu'on passe à l'ajustement d'ease (section 5). Sur les fonds plats où les coins manquent, deux voies prennent le relais : l'alignement ECC (`cv2.findTransformECC`, modèles `MOTION_AFFINE` ou `MOTION_HOMOGRAPHY`), qui maximise une corrélation et tolère les aplats, et le flux optique dense DIS (`cv2.DISOpticalFlow_create`, présent dans le cœur d'OpenCV), dont on extrait la similarité par moindres carrés pondérés.
+
+### 3.2 Pièges (12 October 2026)
+
+Un élément qui s'anime à l'écran tire la caméra s'il occupe beaucoup de coins ; on retire donc d'abord les éléments détectés (section 4) ou l'on garde la couche dominante de la RANSAC séquentielle. Un zoom pur autour d'un point hors champ se confond avec un zoom plus une translation, ce qui n'est pas un défaut de reproduction tant que la trajectoire de chaque coin est rendue (S). Les bords répliqués d'une image recadrée faussent ECC ; on mesure sur une région intérieure.
+
+### 3.3 Résultat réel sur la référence OneKey Pro 2 (12 October 2026)
+
+`RunCameraRefit.py` reprend les 20 courbes de caméra de 21 échantillons produites par la première étude (`/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/camera.json`), lesquelles avaient été ajustées avec dix eases et une fenêtre imposée égale au plan entier. Avec les 59 courbes de la bibliothèque exacte et une fenêtre libre, l'erreur médiane passe de 0,089 à 0,020 de l'amplitude, l'erreur maximale de 0,163 à 0,055, et 11 plans sur 20 descendent sous 0,02 (M, `results/camera-refit.json`). Plusieurs fenêtres trouvées sont toutefois absurdes (par exemple de -107 à +107 secondes pour le plan S11) : l'ajusteur y a reconnu un segment presque linéaire, découpé au milieu d'une ease très longue. Ce n'est pas faux pour la reproduction, puisque la courbe rendue colle, mais cela ne décrit pas l'intention ; le moteur doit donc borner la fenêtre au plan plus une marge et signaler un « segment linéaire » quand la meilleure fenêtre sort de cette borne (décision 3).
+
+## 4. Détection et suivi des éléments (12 October 2026)
+
+Le motion design présente une propriété précieuse : la plupart des plans posent des éléments nets sur un fond simple. La voie la plus sûre n'est donc pas un détecteur appris mais une **soustraction de fond** : fond estimé par la médiane temporelle du plan (ou par la première image si le plan s'ouvre sur un fond nu), différence en Lab, seuil, puis composantes connexes (`cv2.connectedComponentsWithStats`), fusionnées par proximité pour regrouper les lettres d'un mot. Le suivi d'une image à l'autre se fait par appariement des boîtes (recouvrement et distance des centres), d'abord gloutonnement en numpy, puis par la méthode hongroise de scipy une fois celui-ci installé (`scipy.optimize.linear_sum_assignment`, V, https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html).
+
+Pour le texte, deux détecteurs passent par `cv2.dnn` sans GPU : EAST (V, https://arxiv.org/abs/1704.03155, modèle `frozen_east_text_detection.pb`) et DB, Differentiable Binarization (V, https://arxiv.org/abs/1911.08947, implémentation https://github.com/MhLiao/DB), que ce build expose sous `cv2.dnn.TextDetectionModel_DB` (M) et dont des poids ONNX se trouvent dans le zoo d'OpenCV (V, https://github.com/opencv/opencv_zoo ; tutoriel https://docs.opencv.org/4.x/d4/d43/tutorial_dnn_text_spotting.html). DB rend des polygones serrés et gère le texte incliné, ce qui le place devant EAST pour un titre animé (S, d'après l'article). Tesseract 5.5.2 (V, https://github.com/tesseract-ocr/tesseract) lit ensuite les caractères. **Le texte lu ne doit jamais être conservé dans la bible** : seuls servent le nombre de caractères, la casse, la présence de jambages et la géométrie, puisque le texte de marque n'est pas reproduit ; l'inventaire R08 relève justement un texte OCR de référence encore présent dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/dna-reference.json` (décision 7).
+
+La saillance sert à ordonner les éléments par importance visuelle, non à les trouver. Le module `cv2.saliency` manque dans ce build (M) ; le résidu spectral de Hou et Zhang (V, https://doi.org/10.1109/CVPR.2007.383267) s'écrit en dix lignes de numpy et suffit à ce rôle.
+
+## 5. Ajustement des courbes d'animation (12 October 2026)
+
+### 5.1 Le modèle (12 October 2026)
+
+Un canal animé (position x ou y, échelle, rotation, opacité, flou) suit `y(t) = a + b · E(clip((t - t0) / d, 0, 1))`, où `E` est une ease. Comme `a` et `b` entrent linéairement, ils se résolvent en forme close pour chaque couple (`t0`, `d`) ; on cherche ces deux paramètres sur une grille puis on affine par Nelder-Mead, technique dite de projection variable. Les eases candidates ne sont **pas retapées** : `SampleGsapEases.mjs` exécute GSAP 3.14.2 lui-même (familles power1 à power4, sine, expo, circ, bounce en in, out, inOut, back à cinq valeurs, elastic à quatre réglages, et les mots-clés CSS `ease`, `ease-in`, `ease-out`, `ease-in-out` plus deux courbes Material passées par CustomEase), si bien que l'on compare la mesure aux fonctions exactes que HyperFrames exécutera (V, https://gsap.com/docs/v3/Eases/). Le choix du modèle se fait par le critère BIC ; les candidats à moins de 2 unités du meilleur sont rendus comme ex aequo ; une Bézier cubique CSS libre (V, https://www.w3.org/TR/css-easing-1/#cubic-bezier-easing-functions) ne remplace une ease nommée que si son BIC est meilleur de plus de 6 unités, et `back.out(k)` est affiné en continu. Code : `R04-lab/EaseFit.py`.
+
+### 5.2 Test à réponse connue sur nombres (12 October 2026)
+
+`RunEaseSynthetic.py` anime un canal avec 18 eases connues, 3 amplitudes (40, 200, 800 pixels), 3 durées (0,25, 0,5, 1 seconde), 2 niveaux de bruit (0,25 et 1 pixel), échantillonne à 60 images par seconde avec un départ entre deux images, puis demande à `EaseFit` de retrouver l'ease, le début et la durée. Chiffres de la seconde passe, après la correction du support de mouvement décrite en 5.3 (M, `results/ease-synthetic.json`, première passe conservée dans `results/ease-synthetic.v1.json`) :
+
+| Groupe | Cas | Ease vraie en tête | Courbe reproduite à moins de 1 % de l'amplitude | Erreur de courbe, 95e centile |
+|---|---|---|---|---|
+| Toute la bibliothèque | 324 | 276 (240 avant correction) | 264 (253 avant) | 3,6 % |
+| Bruit 0,25 pixel | 162 | 155 | 158 | 0,76 % |
+| Bruit 1 pixel | 162 | 121 | 106 | 5,4 % |
+| Amplitude 40 pixels | 108 | 69 | 55 | 6,4 % |
+| Amplitude 200 pixels | 108 | 103 | 103 | 0,97 % |
+| Amplitude 800 pixels | 108 | 104 | 106 | 0,21 % |
+| Amplitude 200 à 800, durée 0,5 à 1 s | 144 | 139 | 140 | 0,42 % |
+| 40 Bézier aléatoires, 200 px, 0,6 s | 40 | sans objet | 28 | 4,0 % |
+
+Deux leçons en sortent. La première tient à ce que l'**erreur de courbe**, et non le nom de l'ease, est le chiffre qui compte pour la reproduction : `power3.out` et `power4.out`, ou `sine.out` et la courbe CSS `ease`, se confondent sur un petit mouvement bruité, mais le mouvement rendu reste à moins d'un pixel du vrai. La seconde fixe le domaine de confiance : au-dessus d'environ 200 pixels (en 1080p) et 0,5 seconde, l'identification est quasi certaine ; un mouvement de 40 pixels mesuré à un pixel près reste ambigu, et la bible doit alors porter la liste des ex aequo plutôt qu'un nom unique. Le début du mouvement est retrouvé à 0,19 milliseconde près en médiane, 4,9 millisecondes au 95e centile, soit bien sous une image (M, première passe).
+
+### 5.3 Test de bout en bout à travers un codec, et deux corrections (12 October 2026)
+
+`RunEaseVideo.py` rend une carte animée par quatre eases connues (x en `power3.out` sur 700 pixels, échelle en `back.out(1.70158)`, opacité en `power1.out`, y en `sine.inOut` sur 40 pixels), l'encode en FFV1 sans perte puis en H.264 aux CRF 23 et 35, la décode, mesure les canaux depuis les pixels seuls (centre de masse pondéré, aire de l'encre pour l'échelle, niveau médian du cœur pour l'opacité) et identifie chaque ease. La première exécution échouait sur deux canaux (M, `results/ease-video.v1.json`) : l'opacité sortait avec 30 % d'erreur et y avec 4,3 %. Les deux causes ont été trouvées et corrigées aujourd'hui.
+
+La première cause : les images où la carte est invisible étaient retirées des mesures, si bien que le palier de départ de l'opacité disparaissait et que l'ajusteur étirait la fenêtre à volonté. Une image invisible est une mesure d'opacité nulle, pas un trou ; `RunEaseVideo.py` la conserve désormais. La seconde : le support du mouvement (première et dernière image où le canal bouge) était fixé à 5 % du pas maximal entre deux images, or un mouvement de 40 pixels sur 0,8 seconde avance de 1,3 pixel par image contre un bruit de mesure de 0,4 pixel, de sorte que le bruit occupait tout le plan. `EaseFit.motion_support` lisse désormais le pas sur cinq images et prend pour seuil le plus grand de 5 % du pic et de quatre écarts-types du bruit estimé par la médiane des écarts absolus. Résultat après correction (M, `results/ease-video.json`) :
+
+| Encodage | x | échelle | opacité | y (40 px) |
+|---|---|---|---|---|
+| FFV1 sans perte | `power3.out`, erreur 0,06 % | `back.out(1.697)`, 0,29 % | `power1.out` en tête, Bézier retenue, 0,21 % | `sine.inOut`, 0,96 % |
+| H.264 CRF 23 | `power3.out`, 0,06 % | `back.out(1.70158)`, 0,64 % | `power1.out` en tête, 0,38 % | `sine.inOut`, 1,17 % |
+| H.264 CRF 35 | `power3.out`, 0,07 % | `back.out(1.70158)`, 1,15 % | `power1.out` en tête, 0,77 % | échec, fenêtre étirée, 4,3 % |
+
+L'erreur de mesure brute reste de 0,4 à 0,7 pixel en position et de 0,1 à 0,2 % en échelle (M). L'échec à CRF 35 sur le petit mouvement vertical montre la limite : sous un mouvement d'environ trente fois le bruit de mesure, le support se détermine mal, et c'est le cas typique d'un léger flottement d'un titre ; le moteur doit alors le marquer « faible confiance » et l'on peut contraindre `t0` par la coupe ou par les autres canaux du même élément, qui démarrent presque toujours ensemble (décision 4).
+
+### 5.4 Mesurer chaque canal (12 October 2026)
+
+| Canal | Mesure depuis les pixels | Remarque |
+|---|---|---|
+| Position | centre de masse pondéré de l'encre, ou bord gauche et ligne de base pour un texte | la ligne de base ne bouge pas quand les lettres changent, d'où sa robustesse au remplacement de contenu |
+| Échelle | racine du rapport des aires d'encre, ou rapport des hauteurs de capitale | l'aire est faussée par le flou ; préférer la hauteur quand l'élément est flou |
+| Rotation | angle de `cv2.minAreaRect` ou des moments d'ordre deux | ambigu à 180 degrés pour une forme symétrique |
+| Opacité | niveau médian du cœur de l'élément rapporté au fond et au plein | une image invisible vaut zéro (5.3) |
+| Flou | largeur de la fonction d'étalement de bord, ajustée par une erreur de Gauss (section 9) | à mesurer sur un bord droit, perpendiculaire au mouvement, pour ne pas confondre avec le flou de bougé |
+| Décalage en cascade (stagger) | régression linéaire des `t0` des éléments successifs | donne directement le paramètre `stagger` de GSAP |
+
+## 6. Identification de la police (12 October 2026)
+
+Le but n'est pas de copier la police de la référence mais d'en choisir une **ouverte**, de métriques voisines, et de régler sa taille et son approche pour que la géométrie du texte coïncide. La méthode se déroule en trois temps.
+
+On mesure d'abord, sur la dernière image stable de chaque ligne de texte, les métriques qui ne dépendent pas des mots : hauteur de capitale et hauteur d'x (médianes des sommets des composantes, robustes aux dépassements optiques), rapport des deux, épaisseur de trait par la transformée en distance (`cv2.distanceTransform`, crête médiane fois deux), contraste entre fûts et déliés, densité d'encre, chasse moyenne par caractère quand l'OCR donne le nombre de caractères, présence d'empattements (extrémités élargies sur le squelette), angle d'italique. `RunFidelityDemo.py` mesure déjà hauteur de capitale, épaisseur et densité.
+
+On restreint ensuite les candidats grâce aux métadonnées du dépôt Google Fonts (V, https://github.com/google/fonts, fichiers `METADATA.pb` par famille, catégorie et graisses), complétées par les polices du système et celles du trio ZenRay quand le brief l'autorise. Un clone clairsemé limité aux fichiers de métadonnées suffit pour le tri ; les fichiers de police ne se téléchargent que pour la vingtaine de finalistes (S pour le volume, le dépôt complet dépassant probablement le gigaoctet).
+
+On compare enfin par le rendu : chaque candidat est rendu avec fontTools et HarfBuzz (V, https://github.com/fonttools/fonttools et https://github.com/harfbuzz/uharfbuzz) aux caractères lus par l'OCR, mis à la même hauteur de capitale, puis comparé glyphe par glyphe par recouvrement des masques et distance de chanfrein ; pour les variables, on balaie l'axe de graisse jusqu'à égaler l'épaisseur mesurée. Le résultat attendu tient en un tableau : famille, graisse, taille, approche (`letter-spacing`), écart de métriques en pourcentage. Quand la référence emploie une police propriétaire, la reproduction prend la plus proche ouverte, et l'écart résiduel apparaît dans la dimension typographique du score, ce qui est honnête. Ni l'identification ni ce rendu n'utilisent de modèle génératif. Aucun essai n'a été fait ici sur une vraie référence (S pour la précision attendue).
+
+## 7. Palette et rôles de couleur (12 October 2026)
+
+La palette se mesure dans l'espace Lab, jamais en RVB : regroupement par k-moyennes (`cv2.kmeans`) des pixels de chaque plan, pondéré par la surface et la durée, puis fusion des groupes distants de moins de 2 unités CIEDE2000 (V, Sharma, Wu et Dalal 2005, https://doi.org/10.1002/col.20070). Les rôles s'attribuent par des règles déterministes : le **fond** est la couleur dominante des bords de l'image ; le **texte** est la couleur des cœurs d'encre des boîtes détectées en 4 ; l'**accent** est une couleur de forte chroma et de faible surface ; le **secondaire** est ce qui reste. Un fond en dégradé s'ajuste par moindres carrés en RVB linéaire sur le masque du fond, sous forme linéaire (angle, deux arrêts) ou radiale (centre, rayon), et l'écart résiduel décide entre les deux. La comparaison entre référence et reproduction se fait rôle par rôle en CIEDE2000 ; un écart de 1 vaut une JND, et c'est l'unité retenue au 11.
+
+## 8. Grille de mise en page (12 October 2026)
+
+Sur les images stables, on relève les bords gauches, les bords droits, les centres et les lignes de base de tous les éléments, puis on cherche leurs regroupements : un histogramme des bords gauches à un pixel près révèle les colonnes, un écart constant entre lignes de base révèle l'interlignage, et les marges se lisent comme les plus petits bords rapportés à la largeur. On exprime tout en fractions de l'image (marge de 8,3 % plutôt que 160 pixels), afin que la recette s'adapte au format 9:16 ou 1:1 sans retouche. Une grille de base (multiple de 4 ou 8 pixels) se teste en cherchant le pas qui minimise le reste des positions ; si aucun pas ne réduit le reste sous un pixel, la bible le dit au lieu d'en inventer un (S, méthode non éprouvée ici).
+
+## 9. Estimation des effets (12 October 2026)
+
+| Effet | Mesure déterministe | Paramètre rendu |
+|---|---|---|
+| Flou gaussien | profil perpendiculaire à un bord net, ajusté par `a + b · erf(x / (σ√2))` | `filter: blur()` avec σ ; le filtre ffmpeg `blurdetect` donne une alerte rapide |
+| Lueur (glow) | profil radial de luminance hors de la forme, distance où il tombe à 25 % de sa valeur au bord (fait dans `RunFidelityDemo.py`) | rayon et intensité d'un `drop-shadow` ou d'un calque flouté |
+| Grain | écart type et spectre du résidu passe-haut sur les zones plates, corrélation d'une image à la suivante | grain statique ou animé, taille, intensité, à synthétiser par bruit en code |
+| Aberration chromatique | décalage entre canaux R et B sur les bords, par corrélation croisée locale, et sa dépendance au rayon | décalage radial par canal |
+| Vignette | ajustement d'une fonction radiale de luminance sur le fond | rayon, douceur, force |
+| Dégradé | moindres carrés linéaire ou radial (section 7) | arrêts et angle CSS |
+
+Toutes ces mesures demandent de séparer l'effet du contenu ; elles se font donc sur un bord ou une zone choisis par la détection d'éléments, et chaque estimation porte sa confiance (nombre de pixels utiles, résidu d'ajustement).
+
+## 10. Détecter un usage de la 3D (12 October 2026)
+
+### 10.1 Méthode (12 October 2026)
+
+`Run3dProbe.py` suit les coins entre images d'un même plan et met en concurrence, sous la même tolérance RANSAC d'un pixel, la similarité, l'affine, l'homographie (une carte plane qui tourne en perspective) et la matrice fondamentale (toute scène rigide en profondeur) ; une RANSAC séquentielle d'homographies compte ensuite les couches planes indépendantes. Le classement suit des règles simples : si la similarité explique presque tout, calque 2D ; si seule l'homographie explique, carte plane en perspective ; si plusieurs plans expliquent ensemble plus de 85 %, parallaxe 2,5D ; si la fondamentale explique et aucune homographie, 3D rigide ; sinon déformation, fluide ou rendu 3D éclairé.
+
+### 10.2 Résultat sur OneKey Pro 2 (12 October 2026)
+
+Comparé aux notes humaines de la première étude (`/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/params/reference-scenes.json`) sur 23 plans notés oui ou non (les 4 plans d'écrans incrustés sur une prise de vue étant écartés), la sonde donne 7 vrais positifs, 1 faux positif, 5 vrais négatifs et 10 faux négatifs (M, `results/3d-probe.json` et `results/3d-probe.log`). Quand elle répond « 3D », elle a donc raison sept fois sur huit ; mais elle manque les plans où un objet rendu en 3D se déplace ou grossit comme un calque (S02, S14, S17, S23, S25 classés en similarité pure) et les plans immobiles (S24, S26). Cette cécité est structurelle : un objet 3D vu de loin qui glisse sans tourner a exactement le mouvement d'une image plate, et pour la reproduction ce n'est d'ailleurs pas grave, puisqu'un calque 2D animé suffit alors (S).
+
+Il faut cependant savoir quand l'objet tourne sur lui-même ou change d'éclairage. L'indice qui manque est un **résidu d'apparence** : après avoir recalé l'image suivante sur la précédente avec le meilleur modèle, la différence restante, normalisée par le contraste, reste faible pour un calque et grandit quand l'ombrage ou les faces changent. Ajouter ce résidu, puis une détection des reflets spéculaires qui glissent sur une surface immobile, devrait récupérer une partie des faux négatifs (S, à mesurer, décision 6). Le dossier R10 traite la reproduction de la 3D elle-même.
+
+## 11. La mesure de fidélité qui peut atteindre 99 % (12 October 2026)
+
+### 11.1 Le problème (12 October 2026)
+
+La reproduction remplace volontairement le texte, le logo et les images de marque par un contenu original de même géométrie. Toute mesure qui compare les pixels (SSIM, corrélation, PSNR, VMAF, LPIPS) compare précisément ce qui a été changé, et elle plafonne donc sous 99 % même pour une reproduction parfaite de la mise en scène. À l'inverse, une mesure trop indulgente resterait verte sur une erreur de minutage ou de couleur. Il faut une mesure qui soit verte sur la substitution de contenu et rouge sur chaque défaut réel, et cette double exigence se teste (règle « vérificateur dans les deux sens »).
+
+### 11.2 La définition retenue (12 October 2026)
+
+Le score repose sur des **paramètres mesurés de la même façon dans les deux vidéos**, jamais sur leurs pixels bruts. Chaque écart est exprimé en JND, une unité choisie pour qu'un écart de 1 soit à la limite du perceptible :
+
+| Dimension | Ce qui est mesuré | 1 JND vaut |
+|---|---|---|
+| Rythme | instants de coupe et de début de chaque mouvement | 1 image à 60 images par seconde (S, à confirmer par R03 pour l'accord avec le son) |
+| Mouvement | trajectoires des éléments et de la caméra (centre, échelle, rotation, opacité) | 1 pixel en 1080p, 1 % d'opacité ou d'échelle |
+| Mise en page | bords gauche et droit, hauteur de capitale, ligne de base, boîtes des logos et des formes, sur l'image stable | 1 pixel en 1080p |
+| Couleur | chaque rôle (fond haut et bas, texte, accent, logo) en CIEDE2000 | ΔE00 = 1 |
+| Typographie | hauteur de capitale, épaisseur de trait (la densité d'encre est exclue, section 11.4) | 1 % |
+| Effets | largeur de lueur, σ de flou, intensité de grain | 5 % |
+
+Pour chaque dimension, `score = 1 - 0,01 × moyenne(écart²)` ; un score de 0,99 signifie donc un écart quadratique moyen d'exactement une JND. Le score global est le **minimum** des dimensions, jamais leur moyenne, parce qu'une moyenne laisse une couleur fausse se cacher derrière un mouvement parfait. La justification du seuil tient en une phrase : 99 % veut dire que, dimension par dimension, l'écart moyen n'est pas perceptible.
+
+Le contenu remplacé est rendu comparable par construction : le nouveau titre est choisi parmi des mots originaux pour que sa boîte d'encre ait la même largeur et la même hauteur que celle de la référence (même présence de jambages), puis une approche sous-pixel comble l'écart restant ; le nouveau logo a la même boîte et la même aire d'encre. Le nouveau texte se place ensuite par son **bord d'encre** et non par l'origine de la plume, puisque deux lettres initiales différentes ne commencent pas à la même distance de cette origine. C'est ce que font `fit_words` et `ink_left` dans `RunFidelityDemo.py`, et ce sera le rôle du module de substitution du moteur.
+
+Une seconde règle s'impose, celle du **même pipeline** : une référence réelle arrive encodée en H.264 avec chrominance sous-échantillonnée (4:2:0), si bien que la reproduction doit passer par le même encodage, aux mêmes réglages, avant d'être mesurée ; sinon le plancher du codec est compté comme une erreur de reproduction.
+
+### 11.3 Les mesures pixel, leur place et leurs limites (12 October 2026)
+
+Les mesures pixel restent utiles comme garde-fous, à condition de les appliquer là où le contenu n'a pas changé. Le **SSIM masqué** calcule SSIM (V, Wang et al. 2004, https://doi.org/10.1109/TIP.2003.819861) hors des boîtes de contenu remplacé, élargies de la course de leur animation ; le **SSIM passe-bas** compare les deux vidéos floutées à σ = 8 à 24 pixels, ce qui garde la composition et les masses de couleur en effaçant les lettres. La corrélation de pixels et le SSIM plein ne servent qu'à information. VMAF (V, https://github.com/Netflix/vmaf, présent dans ffmpeg) mesure une dégradation d'un même contenu par un codec : il ne convient pas à la comparaison de deux contenus différents. LPIPS (V, https://github.com/richzhang/PerceptualSimilarity) et DISTS (V, https://github.com/dingkeyan93/DISTS) exigent PyTorch et des poids appris ; ils tournent sur le processeur, mais ce sont des réseaux de perception (non génératifs) dont la valeur ne se traduit pas en JND, et ils pénaliseraient eux aussi le contenu remplacé. FLIP de NVIDIA (V, https://github.com/NVlabs/flip) existe en Python sans GPU et donne une carte d'écart perceptuel interprétable, ce qui en fait un meilleur candidat de garde-fou si l'on en veut un (S). Aucune de ces trois n'a été installée ni mesurée ici.
+
+### 11.4 Le banc à double sens (12 October 2026)
+
+`RunFidelityDemo.py` rend une « référence » synthétique (dégradé, disque d'accent avec lueur en `back.out`, titre qui monte de 40 pixels en `power3.out`, sous-titre, logo, poussée de caméra en `power1.inOut`), puis une substitution de contenu (mots originaux, logo original de même boîte et même aire) et sept défauts contrôlés : la vidéo de référence ré-encodée en H.264 CRF 23, le titre retardé de 2 images, le titre en `power2.out` au lieu de `power3.out`, l'accent décalé en couleur, le titre agrandi de 4 %, le titre décalé de 8 pixels, la lueur élargie de 33 %. La substitution doit rester au-dessus de 99 % sur toutes les dimensions paramétriques, et chaque défaut doit faire tomber au moins la dimension qu'il touche sous 99 %.
+
+**Résultats (M, `R04-lab/results/fidelity-demo.json`, seconde passe ; première passe conservée dans `fidelity-demo.v1.json`).** Scores par dimension, 1,000 valant zéro écart, et minimum global :
+
+| Variante | Mise en page | Mouvement | Couleur | Typographie | Effets | **Minimum** | SSIM plein | Corrélation pixels | SSIM masqué | SSIM passe-bas σ16 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Substitution de contenu | 0,998 | 0,999 | 1,000 | 1,000 | 1,000 | **0,998** | 0,976 | 0,781 | 1,000 | 0,998 |
+| Substitution, référence et reproduction encodées H.264 CRF 23 | 0,998 | 0,999 | 0,998 | 1,000 | 1,000 | **0,998** | 0,976 | 0,785 | 0,999 | 0,998 |
+| Référence brute contre référence encodée (plancher du codec) | 0,999 | 0,997 | 0,987 | 1,000 | 0,998 | **0,987** | 0,999 | 0,999 | 0,999 | 1,000 |
+| Titre retardé de 2 images | 0,998 | 0,926 | 1,000 | 1,000 | 1,000 | **0,926** | 0,976 | 0,782 | 1,000 | 0,998 |
+| Titre en `power2.out` au lieu de `power3.out` | 0,998 | 0,982 | 1,000 | 1,000 | 1,000 | **0,982** | 0,975 | 0,775 | 1,000 | 0,998 |
+| Accent décalé de ΔE00 = 5,2 | 0,998 | 0,999 | 0,946 | 1,000 | 1,000 | **0,946** | 0,976 | 0,776 | 1,000 | 0,998 |
+| Titre agrandi de 4 % | 0,000 | 0,985 | 1,000 | 0,978 | 1,000 | **0,000** | 0,975 | 0,768 | 1,000 | 0,997 |
+| Titre décalé de 8 pixels (720p) | 0,793 | 0,999 | 1,000 | 1,000 | 1,000 | **0,793** | 0,976 | 0,777 | 1,000 | 0,998 |
+| Lueur élargie de 33 % | 0,998 | 0,999 | 1,000 | 1,000 | 0,647 | **0,647** | 0,976 | 0,781 | 1,000 | 0,998 |
+
+Le vérificateur passe donc dans les deux sens : la substitution reste à 99,8 %, avec ou sans codec commun, et chacun des sept défauts tombe sous 99 % sur la dimension qu'il touche, le plus discret (une ease voisine) à 98,2 %. Les colonnes de droite montrent pourquoi les mesures pixel ne peuvent pas servir de score : le SSIM plein plafonne à 97,6 % et la corrélation à 78 % sur une substitution parfaite, tandis que le SSIM masqué et le SSIM passe-bas restent au-dessus de 99,7 % sur **tous** les défauts, puisque ceux-ci portent justement sur le contenu masqué ou sur des détails que le flou efface. Ils restent utiles pour attraper ce que les paramètres ne regardent pas (un élément oublié, un fond faux), jamais pour juger la fidélité.
+
+Trois corrections ont été nécessaires entre la première et la seconde passe, et elles valent comme règles. La densité d'encre donnait 3,1 JND sur une substitution parfaite, car elle mesure les lettres et non la police : elle sort du score. Le titre de remplacement, placé par l'origine de la plume, débordait de 2 pixels à 720p (3 JND) : il se place par son bord d'encre. Enfin la couleur du texte fin mesurée après H.264 s'écartait de 2,5 ΔE00 à cause du débord de chrominance : on la mesure désormais 2 pixels à l'intérieur de l'encre, et la règle du même pipeline neutralise le reste, comme le montre la deuxième ligne. Avant ces corrections, la substitution plafonnait à 96,8 % et la référence ré-encodée à 97,8 % (M, `fidelity-demo.v1.json`). Le banc est synthétique ; sur une vraie référence, la qualité des mesures (détection des éléments, sections 4 et 5) deviendra la limite, et c'est elle qu'il faudra tester ensuite (S).
+
+## 12. Installation recommandée (12 October 2026)
+
+| Paquet | Rôle | Poids | Repère |
+|---|---|---|---|
+| scipy | méthode hongroise, `least_squares`, filtres | quelques dizaines de mégaoctets | S pour le poids |
+| fontTools, uharfbuzz | rendu exact des glyphes candidats | léger | S |
+| scenedetect | détecteurs `AdaptiveDetector` et `ThresholdDetector` | léger, réutilise OpenCV | S |
+| modèle DB ONNX du zoo OpenCV | détection de texte | quelques mégaoctets | S |
+| flip-evaluator (facultatif) | garde-fou perceptuel | léger | S |
+| torch, lpips, TransNetV2 | à n'installer que sur preuve d'un besoin | lourd | S |
+
+Les trois premiers vont dans le venv existant `~/.venvs/motion-design`, sans casser OpenCV ; un venv séparé ne s'impose que pour PyTorch.
+
+## 13. Ce que le laboratoire a modifié aujourd'hui (12 October 2026)
+
+`R04-lab/EaseFit.py` : support du mouvement robuste au bruit (lissage sur cinq images, seuil à quatre écarts-types) ; l'ancienne version est conservée dans `R04-lab/results/EaseFit.v1.py.bak`. `R04-lab/RunEaseVideo.py` : une image invisible devient une mesure d'opacité nulle. `R04-lab/RunFidelityDemo.py` : densité d'encre retirée du score, texte de remplacement placé par son bord d'encre, couleur des éléments fins mesurée à l'intérieur de l'encre, ligne de comparaison à codec commun ; ancienne version dans `R04-lab/results/RunFidelityDemo.v1.py.bak`. Les résultats antérieurs sont gardés à côté des nouveaux (`ease-synthetic.v1.json`, `ease-video.v1.json`). Aucun fichier hors du laboratoire et de ce livrable n'a été touché. Aucun extrait de la référence n'a été écrit sur disque par ces scripts, qui ne sortent que des nombres. (12 October 2026)
+
+## 14. Décisions recommandées (12 October 2026)
+
+1. Verser `EaseFit.py`, la table `eases-gsap-3.14.2.json` et `SampleGsapEases.mjs` dans le moteur (`zrmd/analyze`), avec `RunEaseSynthetic.py` et `RunEaseVideo.py` comme tests verts, et une variante volontairement fausse (mauvaise ease imposée) comme test rouge.
+2. Régénérer la table d'eases à chaque changement de version de GSAP dans HyperFrames, la version étant inscrite dans le fichier.
+3. Borner la fenêtre d'une ease au plan plus une marge, et nommer « segment linéaire » toute meilleure fenêtre hors borne (cas S11).
+4. Associer à chaque courbe sa confiance (amplitude rapportée au bruit, liste des ex aequo) et contraindre les débuts des canaux d'un même élément à coïncider quand la confiance est faible.
+5. Définir 99 % par le minimum des dimensions paramétriques en JND (section 11.2), mesurer la reproduction après le même encodage que la référence, placer le contenu de remplacement par son bord d'encre, garder SSIM masqué et passe-bas comme garde-fous, ne pas utiliser VMAF ni LPIPS comme score.
+6. Ajouter le résidu d'apparence à la sonde 3D et la réévaluer sur les 23 plans notés.
+7. Ne jamais conserver un texte lu par OCR : seulement nombre de caractères, casse, jambages et géométrie ; purger le texte existant de `dna-reference.json` de l'étude 01.
+8. Détection de plans par fusion `scdet` et `AdaptiveDetector`, TransNetV2 seulement sur preuve.
+9. Police : choisir une famille ouverte par métriques et rendu (section 6), jamais copier la police de la référence.
+
+## 15. Questions ouvertes (12 October 2026)
+
+1. La JND du rythme vaut-elle une image à 60 images par seconde, ou faut-il la régler sur l'écoute (accord image et son), ce qui relève de R03 ?
+2. Faut-il compter les dimensions sans contenu mesurable dans un plan (pas de texte, donc pas de typographie) comme vertes ou comme absentes du minimum ?
+3. Quelles valeurs de JND Matthieu accepte-t-il pour la couleur sur un écran 4K calibré, ΔE00 = 1 ou 2 ?
+4. Pour une police propriétaire sans équivalent ouvert proche, accepte-t-on une dimension typographique sous 99 %, ou autorise-t-on une police sous licence achetée ?
+5. Le résidu d'apparence suffira-t-il à séparer un objet 3D qui tourne d'une déformation 2D (morphing) ?
+
+## 16. Blocages (12 October 2026)
+
+Aucun blocage technique. La machine était saturée par d'autres agents (moyenne de charge entre 300 et 370) pendant une partie des essais : un premier lancement du banc de fidélité, relégué en arrière-plan, n'obtenait que 5 % d'un cœur et a été arrêté puis relancé ; la passe finale a duré 4 minutes 28. scipy manque dans le venv, sans bloquer les essais de ce rapport, écrits en numpy.
+
+## 17. Sources (12 October 2026)
+
+- ffmpeg, filtres `scdet`, `ssim`, `libvmaf`, `blurdetect` : https://ffmpeg.org/ffmpeg-filters.html
+- PySceneDetect : https://www.scenedetect.com/ et https://github.com/Breakthrough/PySceneDetect
+- TransNetV2 : https://github.com/soCzech/TransNetV2 et https://arxiv.org/abs/2008.04838
+- OpenCV, calib3d et RANSAC : https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html
+- OpenCV, détection de texte par DNN : https://docs.opencv.org/4.x/d4/d43/tutorial_dnn_text_spotting.html et https://github.com/opencv/opencv_zoo
+- EAST : https://arxiv.org/abs/1704.03155 ; DB : https://arxiv.org/abs/1911.08947 et https://github.com/MhLiao/DB
+- Tesseract : https://github.com/tesseract-ocr/tesseract
+- Résidu spectral (saillance), Hou et Zhang 2007 : https://doi.org/10.1109/CVPR.2007.383267
+- GSAP, eases : https://gsap.com/docs/v3/Eases/ ; CSS Easing Functions Level 1 : https://www.w3.org/TR/css-easing-1/
+- scipy, `linear_sum_assignment` : https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html
+- Google Fonts, dépôt et métadonnées : https://github.com/google/fonts ; fontTools : https://github.com/fonttools/fonttools ; uharfbuzz : https://github.com/harfbuzz/uharfbuzz
+- CIEDE2000, Sharma, Wu et Dalal 2005 : https://doi.org/10.1002/col.20070
+- SSIM, Wang et al. 2004 : https://doi.org/10.1109/TIP.2003.819861
+- VMAF : https://github.com/Netflix/vmaf ; LPIPS : https://github.com/richzhang/PerceptualSimilarity ; DISTS : https://github.com/dingkeyan93/DISTS ; FLIP : https://github.com/NVlabs/flip
+- HyperFrames : https://hyperframes.heygen.com/

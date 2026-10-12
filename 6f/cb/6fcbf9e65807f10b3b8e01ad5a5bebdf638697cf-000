@@ -1,0 +1,9 @@
+{"headline": "CEDAR SOLAR 4", "headline_tracking_px": -4.375, "headline_tracking_em": -0.06836, "subtitle": "Steady. Bright. Deeply.", "subtitle_tracking_px": 0.0} accent dE00 5.22
+REF re-encoded (x264 CRF 23)                         ssim 0.9986 corr 0.9992 masked 0.9989 low16 0.9997 | layou 0.999 motio 0.997 color 0.978 typog 1.000 effec 0.998 compo 0.978
+SWAP (content replaced, same geometry)               ssim 0.9763 corr 0.7790 masked 1.0000 low16 0.9984 | layou 0.990 motio 0.999 color 1.000 typog 0.968 effec 1.000 compo 0.968
+SWAP + headline 2 frames late                        ssim 0.9759 corr 0.7797 masked 1.0000 low16 0.9984 | layou 0.990 motio 0.926 color 1.000 typog 0.968 effec 1.000 compo 0.926
+SWAP + headline power2.out instead of power3.out     ssim 0.9755 corr 0.7736 masked 1.0000 low16 0.9984 | layou 0.990 motio 0.982 color 1.000 typog 0.968 effec 1.000 compo 0.968
+SWAP + accent colour shifted                         ssim 0.9763 corr 0.7735 masked 0.9999 low16 0.9984 | layou 0.990 motio 0.999 color 0.946 typog 0.968 effec 1.000 compo 0.946
+SWAP + headline size +4 %                            ssim 0.9739 corr 0.7625 masked 1.0000 low16 0.9973 | layou 0.000 motio 0.985 color 1.000 typog 0.963 effec 1.000 compo 0.000
+SWAP + headline 8 px right (720p)                    ssim 0.9764 corr 0.7809 masked 1.0000 low16 0.9981 | layou 0.841 motio 0.999 color 1.000 typog 0.969 effec 1.000 compo 0.841
+SWAP + glow sigma +33 %                              ssim 0.9761 corr 0.7787 masked 0.9998 low16 0.9983 | layou 0.990 motio 0.999 color 1.000 typog 0.968 effec 0.647 compo 0.647

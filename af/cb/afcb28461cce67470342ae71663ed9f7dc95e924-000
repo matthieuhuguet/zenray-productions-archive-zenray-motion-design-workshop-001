@@ -1,0 +1,10 @@
+#!/bin/zsh
+# 12 October 2026: R03 lab, wall-clock timing of Demucs htdemucs on MPS then CPU (one job at a time, never in parallel).
+# Output stays in the reference cache (never archived): it is derived from the reference audio.
+IN="$1"; OUT="$2"; PY=~/.venvs/zenray-motion/bin/python
+for DEV in mps cpu; do
+  S=$(date +%s.%N)
+  $PY -m demucs -n htdemucs -d $DEV --two-stems vocals -o "$OUT/$DEV" "$IN" > "$OUT/$DEV.log" 2>&1
+  RC=$?; E=$(date +%s.%N)
+  echo "$DEV rc=$RC seconds=$(echo "$E - $S" | bc)"
+done

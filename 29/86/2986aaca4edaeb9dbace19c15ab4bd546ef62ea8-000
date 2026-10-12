@@ -1,0 +1,4712 @@
+{
+ "title": "R09 motion vocabulary (12 October 2026)",
+ "version": 1,
+ "schema": {
+  "id": "identifiant stable en anglais",
+  "domain": "image ou sound",
+  "category": "famille",
+  "definition_fr": "définition courte",
+  "signature": "ce qu'on observe dans les courbes, l'image ou le son",
+  "detector": "mesure à brancher dans l'analyse (nom de méthode)",
+  "implementation": "réalisation en GSAP, CSS, canvas, three, synth ou hyperframes",
+  "params": "liste name, min, max, typical, unit",
+  "source": "clé de la table sources"
+ },
+ "sources": {
+  "disney": "https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation",
+  "penner": "http://robertpenner.com/easing/",
+  "gsap": "https://gsap.com/docs/v3/Eases/",
+  "carbon": "https://carbondesignsystem.com/elements/motion/overview/",
+  "material": "https://m3.material.io/styles/motion/easing-and-duration/tokens-specs",
+  "framer": "https://motion.dev/docs/spring",
+  "juice": "https://www.youtube.com/watch?v=Fy0aCDmgnxg",
+  "ebu": "https://tech.ebu.ch/publications/r128",
+  "whatships": "https://whatships.com/search-index.json",
+  "craft": "convention de métier, non mesurée ici: à confirmer par l'analyse des références"
+ },
+ "terms": [
+  {
+   "id": "anticipation",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Anticipation",
+   "definition_fr": "Petit mouvement inverse avant l'action principale, qui prépare l'oeil.",
+   "signature": "Courbe de position qui part d'abord dans le sens opposé (creux de 2 à 10 % de l'amplitude) avant le déplacement principal.",
+   "detector": "track_position: signe de la dérivée inversé sur les premières images",
+   "implementation": {
+    "gsap": "tl.to(el,{y:+8,duration:.12,ease:'power2.in'}).to(el,{y:-200,ease:'power3.out'})",
+    "css": "@keyframes avec étape inverse à 15 %",
+    "canvas": "interpolation par segments"
+   },
+   "params": [
+    {
+     "name": "dip_ratio",
+     "min": 0.02,
+     "max": 0.15,
+     "typical": 0.06,
+     "unit": "ratio"
+    },
+    {
+     "name": "dip_duration",
+     "min": 0.06,
+     "max": 0.25,
+     "typical": 0.12,
+     "unit": "s"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "overshoot",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Overshoot",
+   "definition_fr": "Le mouvement dépasse sa cible puis revient s'y poser.",
+   "signature": "Valeur qui dépasse la valeur finale de 2 à 15 % puis converge; un seul pic si ease back, plusieurs si elastic ou spring.",
+   "detector": "fit_curve: dépassement max relatif et nombre d'oscillations",
+   "implementation": {
+    "gsap": "ease:'back.out(1.7)'",
+    "css": "cubic-bezier(0.34,1.56,0.64,1)",
+    "canvas": "easeOutBack(t,s)"
+   },
+   "params": [
+    {
+     "name": "overshoot_ratio",
+     "min": 0.02,
+     "max": 0.2,
+     "typical": 0.08,
+     "unit": "ratio"
+    },
+    {
+     "name": "settle_time",
+     "min": 0.15,
+     "max": 0.6,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "penner"
+  },
+  {
+   "id": "follow_through",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Follow-through",
+   "definition_fr": "Les parties secondaires continuent de bouger après l'arrêt du corps principal.",
+   "signature": "Deux courbes corrélées décalées: l'élément enfant s'arrête 40 à 200 ms après le parent avec une petite oscillation.",
+   "detector": "track_multi: décalage d'arrêt entre éléments liés",
+   "implementation": {
+    "gsap": "seconde tween sur l'enfant avec delay et ease elastic.out",
+    "css": "animation-delay sur l'enfant",
+    "canvas": "ressort amorti sur l'enfant"
+   },
+   "params": [
+    {
+     "name": "lag",
+     "min": 0.04,
+     "max": 0.25,
+     "typical": 0.1,
+     "unit": "s"
+    },
+    {
+     "name": "damping",
+     "min": 0.3,
+     "max": 0.9,
+     "typical": 0.6,
+     "unit": "ratio"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "overlapping_action",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Overlapping action",
+   "definition_fr": "Les mouvements de plusieurs éléments se chevauchent au lieu de s'enchaîner bout à bout.",
+   "signature": "Intervalles d'animation qui se recouvrent de 20 à 70 % dans la timeline.",
+   "detector": "segment_animations: taux de recouvrement des intervalles actifs",
+   "implementation": {
+    "gsap": "position parameter '-=0.3' ou '<0.1'",
+    "css": "animation-delay inférieur à la durée précédente",
+    "canvas": "timeline à recouvrement"
+   },
+   "params": [
+    {
+     "name": "overlap_ratio",
+     "min": 0.2,
+     "max": 0.7,
+     "typical": 0.4,
+     "unit": "ratio"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "stagger",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Stagger",
+   "definition_fr": "Décalage régulier du départ d'une même animation sur une série d'éléments.",
+   "signature": "Départs espacés d'un intervalle constant (ou croissant/décroissant) entre éléments d'une même famille.",
+   "detector": "track_multi: régularité des instants de départ, écart type faible",
+   "implementation": {
+    "gsap": "stagger:{each:0.05,from:'start'}",
+    "css": "--i * 50ms en animation-delay",
+    "canvas": "boucle avec offset i*each"
+   },
+   "params": [
+    {
+     "name": "each",
+     "min": 0.015,
+     "max": 0.15,
+     "typical": 0.04,
+     "unit": "s"
+    },
+    {
+     "name": "from",
+     "values": [
+      "start",
+      "center",
+      "end",
+      "edges",
+      "random"
+     ],
+     "typical": "start",
+     "unit": "enum"
+    },
+    {
+     "name": "count",
+     "min": 3.0,
+     "max": 60.0,
+     "typical": 8.0,
+     "unit": "n"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "arcs",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Arcs",
+   "definition_fr": "Les trajectoires naturelles suivent des courbes plutôt que des lignes droites.",
+   "signature": "Trajectoire 2D dont la courbure n'est pas nulle; écart à la droite reliant départ et arrivée supérieur à 3 % de la distance.",
+   "detector": "track_position: déviation maximale à la corde",
+   "implementation": {
+    "gsap": "MotionPathPlugin ou x et y avec eases différentes",
+    "css": "offset-path",
+    "canvas": "Bézier quadratique"
+   },
+   "params": [
+    {
+     "name": "arc_deviation",
+     "min": 0.03,
+     "max": 0.3,
+     "typical": 0.1,
+     "unit": "ratio"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "squash_stretch",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Squash and stretch",
+   "definition_fr": "Déformation d'échelle qui conserve le volume pendant un impact ou une accélération.",
+   "signature": "scaleX et scaleY varient en sens opposé (produit proche de 1) aux pics de vitesse ou d'impact.",
+   "detector": "track_bbox: corrélation négative entre largeur et hauteur",
+   "implementation": {
+    "gsap": "scaleX:1.15,scaleY:0.87 puis retour elastic",
+    "css": "transform: scale(1.15,0.87)",
+    "canvas": "ctx.scale"
+   },
+   "params": [
+    {
+     "name": "max_deform",
+     "min": 0.03,
+     "max": 0.3,
+     "typical": 0.12,
+     "unit": "ratio"
+    },
+    {
+     "name": "recover",
+     "min": 0.1,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "s"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "slow_in_slow_out",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Slow in and slow out",
+   "definition_fr": "Accélération au départ et décélération à l'arrivée.",
+   "signature": "Profil de vitesse en cloche; vitesse nulle aux deux extrémités.",
+   "detector": "fit_curve: dérivée nulle aux bornes",
+   "implementation": {
+    "gsap": "ease:'power2.inOut'",
+    "css": "ease-in-out",
+    "canvas": "easeInOutQuad"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 1.0,
+     "max": 5.0,
+     "typical": 2.0,
+     "unit": "power"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "secondary_action",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Secondary action",
+   "definition_fr": "Mouvement d'appoint qui enrichit l'action principale sans la concurrencer.",
+   "signature": "Animation de faible amplitude (moins de 20 % de l'action principale) simultanée sur un autre calque.",
+   "detector": "segment_animations: amplitude relative des animations simultanées",
+   "implementation": {
+    "gsap": "tween parallèle de faible amplitude",
+    "css": "animation secondaire en parallèle",
+    "canvas": "oscillateur lent"
+   },
+   "params": [
+    {
+     "name": "amp_ratio",
+     "min": 0.03,
+     "max": 0.2,
+     "typical": 0.08,
+     "unit": "ratio"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "hold",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Hold",
+   "definition_fr": "Temps d'arrêt où l'image reste stable pour être lue.",
+   "signature": "Intervalle où la différence entre images consécutives est quasi nulle.",
+   "detector": "frame_diff: segments sous seuil",
+   "implementation": {
+    "gsap": "tl.to({}, {duration:hold})",
+    "css": "étape de keyframes identiques",
+    "canvas": "pas de mise à jour"
+   },
+   "params": [
+    {
+     "name": "hold",
+     "min": 0.3,
+     "max": 3.0,
+     "typical": 1.0,
+     "unit": "s"
+    },
+    {
+     "name": "read_rate",
+     "min": 3.0,
+     "max": 5.0,
+     "typical": 4.0,
+     "unit": "words_per_s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "settle",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Settle",
+   "definition_fr": "Phase finale où un élément s'immobilise après un rebond ou une oscillation amortie.",
+   "signature": "Oscillation dont l'amplitude décroît exponentiellement jusqu'au repos.",
+   "detector": "fit_curve: enveloppe exponentielle, constante de temps",
+   "implementation": {
+    "gsap": "ease:'elastic.out(1,0.4)'",
+    "css": "linear() avec points d'oscillation",
+    "canvas": "ressort amorti"
+   },
+   "params": [
+    {
+     "name": "tau",
+     "min": 0.05,
+     "max": 0.4,
+     "typical": 0.15,
+     "unit": "s"
+    },
+    {
+     "name": "cycles",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "staging",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Staging",
+   "definition_fr": "Mise en scène qui dirige l'oeil vers une seule chose à la fois.",
+   "signature": "Un seul pic de mouvement ou de contraste par instant; carte de saillance concentrée.",
+   "detector": "saliency: entropie de la carte de mouvement par image",
+   "implementation": {
+    "gsap": "dim des autres éléments (opacity:.3) pendant l'action",
+    "css": "filter: brightness sur le reste",
+    "canvas": "masque radial"
+   },
+   "params": [
+    {
+     "name": "focus_count",
+     "min": 1.0,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "n"
+    },
+    {
+     "name": "dim_level",
+     "min": 0.2,
+     "max": 0.6,
+     "typical": 0.35,
+     "unit": "ratio"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "timing_spacing",
+   "domain": "image",
+   "category": "principle",
+   "name_en": "Timing and spacing",
+   "definition_fr": "Répartition des positions d'un objet dans le temps, qui donne poids et vitesse.",
+   "signature": "Distances entre positions successives (spacing) et nombre d'images (timing).",
+   "detector": "track_position: histogramme des déplacements par image",
+   "implementation": {
+    "gsap": "durée et ease",
+    "css": "animation-duration et timing-function",
+    "canvas": "pas d'interpolation"
+   },
+   "params": [
+    {
+     "name": "frames",
+     "min": 4.0,
+     "max": 60.0,
+     "typical": 18.0,
+     "unit": "frames"
+    }
+   ],
+   "source": "disney"
+  },
+  {
+   "id": "linear",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Linear",
+   "definition_fr": "Vitesse constante, sans accélération.",
+   "signature": "Position strictement proportionnelle au temps, vitesse plate.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'none'",
+    "css": "linear",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "gsap"
+  },
+  {
+   "id": "power1_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power1 out (quad)",
+   "definition_fr": "Décélération douce, ease par défaut de GSAP.",
+   "signature": "Courbe 1-(1-t)^2.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power1.out'",
+    "css": "cubic-bezier(0.5,1,0.89,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 2.0,
+     "max": 2.0,
+     "typical": 2.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "power2_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power2 out (cubic)",
+   "definition_fr": "Décélération nette, très courante pour les entrées d'interface.",
+   "signature": "Courbe 1-(1-t)^3; 70 % du trajet fait à 33 % du temps.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power2.out'",
+    "css": "cubic-bezier(0.33,1,0.68,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 3.0,
+     "max": 3.0,
+     "typical": 3.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "power3_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power3 out (quart)",
+   "definition_fr": "Décélération forte, entrée franche puis glisse longue.",
+   "signature": "Courbe 1-(1-t)^4.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power3.out'",
+    "css": "cubic-bezier(0.25,1,0.5,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 4.0,
+     "max": 4.0,
+     "typical": 4.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "power4_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power4 out (quint)",
+   "definition_fr": "Décélération très forte, signature des films de lancement haut de gamme.",
+   "signature": "Courbe 1-(1-t)^5; plus de 80 % du trajet dans le premier quart.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power4.out'",
+    "css": "cubic-bezier(0.22,1,0.36,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 5.0,
+     "max": 5.0,
+     "typical": 5.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "power_in",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power in",
+   "definition_fr": "Accélération, utilisée pour les sorties.",
+   "signature": "Courbe t^n; vitesse maximale à la fin.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power2.in'",
+    "css": "cubic-bezier(0.32,0,0.67,0)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 2.0,
+     "max": 5.0,
+     "typical": 3.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "power_in_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Power in-out",
+   "definition_fr": "Accélère puis décélère, pour les déplacements d'un point à un autre à l'écran.",
+   "signature": "Courbe symétrique autour de t=0.5.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'power2.inOut'",
+    "css": "cubic-bezier(0.65,0,0.35,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "exponent",
+     "min": 2.0,
+     "max": 5.0,
+     "typical": 3.0,
+     "unit": "power"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "expo_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Expo out",
+   "definition_fr": "Décélération exponentielle, arrêt très doux après un départ fulgurant.",
+   "signature": "Courbe 1-2^(-10t); plus de 90 % du trajet en 25 % du temps.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'expo.out'",
+    "css": "cubic-bezier(0.16,1,0.3,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "gsap"
+  },
+  {
+   "id": "expo_in_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Expo in-out",
+   "definition_fr": "Départ et arrivée très lents, milieu fulgurant; typique des transitions zoom.",
+   "signature": "Pic de vitesse étroit au centre.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'expo.inOut'",
+    "css": "cubic-bezier(0.87,0,0.13,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "gsap"
+  },
+  {
+   "id": "circ_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Circ out",
+   "definition_fr": "Décélération circulaire, proche d'expo mais plus franche à l'arrivée.",
+   "signature": "Courbe sqrt(1-(t-1)^2).",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'circ.out'",
+    "css": "cubic-bezier(0,0.55,0.45,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "gsap"
+  },
+  {
+   "id": "sine_in_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Sine in-out",
+   "definition_fr": "Ease très douce, pour les flottements et boucles.",
+   "signature": "Courbe -(cos(pi t)-1)/2.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'sine.inOut'",
+    "css": "cubic-bezier(0.37,0,0.63,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "gsap"
+  },
+  {
+   "id": "back_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Back out",
+   "definition_fr": "Dépasse la cible puis revient, un seul pic.",
+   "signature": "Un dépassement unique; amplitude réglée par s, 1.70158 donne environ 10 %.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'back.out(1.7)'",
+    "css": "cubic-bezier(0.34,1.56,0.64,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "overshoot_s",
+     "min": 0.5,
+     "max": 4.0,
+     "typical": 1.70158,
+     "unit": "coef"
+    }
+   ],
+   "source": "penner"
+  },
+  {
+   "id": "back_in",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Back in",
+   "definition_fr": "Recule avant de partir, anticipation intégrée à l'ease.",
+   "signature": "Creux initial puis accélération.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'back.in(1.7)'",
+    "css": "cubic-bezier(0.36,0,0.66,-0.56)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "overshoot_s",
+     "min": 0.5,
+     "max": 4.0,
+     "typical": 1.70158,
+     "unit": "coef"
+    }
+   ],
+   "source": "penner"
+  },
+  {
+   "id": "elastic_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Elastic out",
+   "definition_fr": "Oscillation amortie autour de la cible.",
+   "signature": "Plusieurs dépassements décroissants; période et amplitude mesurables.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'elastic.out(1,0.3)'",
+    "css": "linear() échantillonné",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "amplitude",
+     "min": 1.0,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "coef"
+    },
+    {
+     "name": "period",
+     "min": 0.2,
+     "max": 0.6,
+     "typical": 0.3,
+     "unit": "coef"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "bounce_out",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Bounce out",
+   "definition_fr": "Rebonds successifs sur la cible comme une balle.",
+   "signature": "Plusieurs retours à la valeur finale avec rebonds de hauteur décroissante, dérivée discontinue aux contacts.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'bounce.out'",
+    "css": "linear() échantillonné",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "bounces",
+     "min": 2.0,
+     "max": 4.0,
+     "typical": 3.0,
+     "unit": "n"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "steps",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Steps",
+   "definition_fr": "Avance par paliers, effet image par image ou compteur mécanique.",
+   "signature": "Position en escalier, plateaux de durée égale.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'steps(8)'",
+    "css": "steps(8,end)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "steps",
+     "min": 2.0,
+     "max": 24.0,
+     "typical": 8.0,
+     "unit": "n"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "custom_bezier",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Custom cubic-bezier",
+   "definition_fr": "Courbe sur mesure définie par deux poignées.",
+   "signature": "Ajustement par quatre paramètres x1 y1 x2 y2 qui minimise l'erreur sur la courbe mesurée.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "CustomEase.create('id','M0,0 C0.x1,y1 x2,y2 1,1')",
+    "css": "cubic-bezier(x1,y1,x2,y2)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "x1",
+     "min": 0.0,
+     "max": 1.0,
+     "typical": 0.2,
+     "unit": "coord"
+    },
+    {
+     "name": "y1",
+     "min": -1.0,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "coord"
+    },
+    {
+     "name": "x2",
+     "min": 0.0,
+     "max": 1.0,
+     "typical": 0.2,
+     "unit": "coord"
+    },
+    {
+     "name": "y2",
+     "min": -1.0,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "coord"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "spring",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Spring",
+   "definition_fr": "Ressort physique amorti défini par raideur, amortissement et masse.",
+   "signature": "Oscillation amortie dont la fréquence et la décroissance donnent raideur et amortissement.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "CustomEase échantillonné ou boucle physique",
+    "css": "linear() échantillonné",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "stiffness",
+     "min": 100.0,
+     "max": 600.0,
+     "typical": 300.0,
+     "unit": "N_per_m"
+    },
+    {
+     "name": "damping",
+     "min": 10.0,
+     "max": 40.0,
+     "typical": 20.0,
+     "unit": "coef"
+    },
+    {
+     "name": "mass",
+     "min": 0.5,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "kg"
+    }
+   ],
+   "source": "framer"
+  },
+  {
+   "id": "material_emphasized",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Material emphasized",
+   "definition_fr": "Courbe expressive de Material 3, forte décélération.",
+   "signature": "Proche de cubic-bezier(0.2,0,0,1).",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "CustomEase cubic-bezier(0.2,0,0,1)",
+    "css": "cubic-bezier(0.2,0,0,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "material"
+  },
+  {
+   "id": "carbon_expressive",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Carbon expressive standard",
+   "definition_fr": "Courbe expressive d'IBM Carbon pour les mouvements visibles.",
+   "signature": "cubic-bezier(0.4,0.14,0.3,1).",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "CustomEase",
+    "css": "cubic-bezier(0.4,0.14,0.3,1)",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [],
+   "source": "carbon"
+  },
+  {
+   "id": "slow_mo",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Slow mo",
+   "definition_fr": "Ralentit au centre puis accélère, effet de suspension.",
+   "signature": "Plateau de vitesse faible au milieu de la course.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'slow(0.7,0.7,false)'",
+    "css": "linear() échantillonné",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "linear_ratio",
+     "min": 0.3,
+     "max": 0.9,
+     "typical": 0.7,
+     "unit": "ratio"
+    },
+    {
+     "name": "power",
+     "min": 0.3,
+     "max": 0.9,
+     "typical": 0.7,
+     "unit": "coef"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "rough",
+   "domain": "image",
+   "category": "ease",
+   "name_en": "Rough",
+   "definition_fr": "Ease bruitée, effet tremblé ou nerveux.",
+   "signature": "Courbe monotone en moyenne avec bruit haute fréquence.",
+   "detector": "fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+   "implementation": {
+    "gsap": "ease:'rough({strength:1,points:20})'",
+    "css": "linear() avec bruit",
+    "canvas": "fonction d'ease équivalente appliquée à t"
+   },
+   "params": [
+    {
+     "name": "strength",
+     "min": 0.2,
+     "max": 3.0,
+     "typical": 1.0,
+     "unit": "coef"
+    },
+    {
+     "name": "points",
+     "min": 10.0,
+     "max": 50.0,
+     "typical": 20.0,
+     "unit": "n"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "micro_duration",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Micro-interaction duration",
+   "definition_fr": "Durée d'une petite réponse d'interface (survol, clic, bascule).",
+   "signature": "Animation de 70 à 150 ms sur un élément de petite taille.",
+   "detector": "segment_animations: durée par élément",
+   "implementation": {
+    "gsap": "duration:0.1",
+    "css": "transition: 110ms"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.07,
+     "max": 0.15,
+     "typical": 0.11,
+     "unit": "s"
+    }
+   ],
+   "source": "carbon"
+  },
+  {
+   "id": "ui_transition_duration",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "UI transition duration",
+   "definition_fr": "Durée d'un changement d'état d'interface (panneau, carte, toast).",
+   "signature": "Animation de 200 à 400 ms.",
+   "detector": "segment_animations",
+   "implementation": {
+    "gsap": "duration:0.3",
+    "css": "transition: 240ms"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 0.5,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "carbon"
+  },
+  {
+   "id": "hero_duration",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Hero entrance duration",
+   "definition_fr": "Durée d'une entrée de titre ou de produit dans un film de lancement.",
+   "signature": "Animation de 0,6 à 1,5 s, souvent expo ou power4.",
+   "detector": "segment_animations",
+   "implementation": {
+    "gsap": "duration:1.0,ease:'expo.out'"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 1.8,
+     "typical": 0.9,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "shot_length",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Shot length",
+   "definition_fr": "Durée moyenne d'un plan entre deux coupes.",
+   "signature": "Distribution des intervalles entre coupes détectées.",
+   "detector": "scene_detect: intervalles entre coupes",
+   "implementation": {
+    "gsap": "durée de chaque scène de la timeline"
+   },
+   "params": [
+    {
+     "name": "asl",
+     "min": 0.4,
+     "max": 4.0,
+     "typical": 1.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "stagger_interval",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Stagger interval",
+   "definition_fr": "Intervalle entre départs d'une série.",
+   "signature": "Écart constant entre départs successifs.",
+   "detector": "track_multi",
+   "implementation": {
+    "gsap": "stagger:0.04"
+   },
+   "params": [
+    {
+     "name": "each",
+     "min": 0.015,
+     "max": 0.15,
+     "typical": 0.04,
+     "unit": "s"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "read_time",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Read time",
+   "definition_fr": "Temps d'affichage nécessaire pour lire un texte.",
+   "signature": "Durée de stabilité d'un texte rapportée à son nombre de mots.",
+   "detector": "ocr_track: durée visible / nombre de mots",
+   "implementation": {
+    "gsap": "hold calculé: words/4 + 0.5"
+   },
+   "params": [
+    {
+     "name": "words_per_s",
+     "min": 2.5,
+     "max": 5.0,
+     "typical": 3.5,
+     "unit": "rate"
+    },
+    {
+     "name": "min_hold",
+     "min": 0.6,
+     "max": 1.5,
+     "typical": 0.8,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "frame_rate",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Frame rate",
+   "definition_fr": "Cadence de la vidéo et des animations.",
+   "signature": "Nombre d'images par seconde du conteneur et cadence réelle des changements.",
+   "detector": "ffprobe et frame_diff",
+   "implementation": {
+    "hyperframes": "fps de la composition"
+   },
+   "params": [
+    {
+     "name": "fps",
+     "min": 24.0,
+     "max": 60.0,
+     "typical": 30.0,
+     "unit": "fps"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "total_length",
+   "domain": "image",
+   "category": "timing",
+   "name_en": "Total length",
+   "definition_fr": "Durée totale d'un film de lancement.",
+   "signature": "Durée du fichier. Mesure whatships, 60 vidéos tirées au hasard: médiane 48,5 s, quartiles 31 et 86 s.",
+   "detector": "ffprobe",
+   "implementation": {
+    "hyperframes": "durée de la composition"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 15.0,
+     "max": 120.0,
+     "typical": 45.0,
+     "unit": "s"
+    }
+   ],
+   "source": "whatships"
+  },
+  {
+   "id": "mask_reveal_line",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Mask reveal (line)",
+   "definition_fr": "La ligne de texte monte depuis l'intérieur d'un masque invisible.",
+   "signature": "Texte coupé net par un bord horizontal fixe pendant qu'il translate en y; aucune variation d'opacité.",
+   "detector": "ocr_track + edge: bord de découpe immobile",
+   "implementation": {
+    "gsap": "SplitText lines, mask:'lines', from y:'100%'",
+    "css": "overflow:hidden sur le parent, translateY(100%)"
+   },
+   "params": [
+    {
+     "name": "y_from",
+     "min": 0.6,
+     "max": 1.2,
+     "typical": 1.0,
+     "unit": "line_height"
+    },
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 1.2,
+     "typical": 0.8,
+     "unit": "s"
+    },
+    {
+     "name": "stagger",
+     "min": 0.05,
+     "max": 0.15,
+     "typical": 0.08,
+     "unit": "s"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "char_by_char",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Character stagger",
+   "definition_fr": "Les lettres apparaissent une à une avec un léger décalage.",
+   "signature": "Apparitions successives de glyphes à intervalle régulier de gauche à droite.",
+   "detector": "ocr_track: ordre et instants d'apparition des glyphes",
+   "implementation": {
+    "gsap": "SplitText chars, stagger:0.02",
+    "css": "span par lettre, --i delay"
+   },
+   "params": [
+    {
+     "name": "each",
+     "min": 0.01,
+     "max": 0.06,
+     "typical": 0.025,
+     "unit": "s"
+    },
+    {
+     "name": "y_from",
+     "min": 10.0,
+     "max": 60.0,
+     "typical": 24.0,
+     "unit": "px"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "word_by_word",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Word stagger",
+   "definition_fr": "Les mots apparaissent un par un.",
+   "signature": "Apparitions par blocs séparés par des espaces.",
+   "detector": "ocr_track",
+   "implementation": {
+    "gsap": "SplitText words, stagger:0.06"
+   },
+   "params": [
+    {
+     "name": "each",
+     "min": 0.04,
+     "max": 0.2,
+     "typical": 0.08,
+     "unit": "s"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "blur_in",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Blur in",
+   "definition_fr": "Le texte passe du flou au net en apparaissant.",
+   "signature": "Netteté (variance du laplacien) croissante sur la zone du texte, souvent avec opacité croissante.",
+   "detector": "sharpness_track: variance du laplacien par zone",
+   "implementation": {
+    "gsap": "from {filter:'blur(12px)',opacity:0}",
+    "css": "filter: blur()"
+   },
+   "params": [
+    {
+     "name": "blur_from",
+     "min": 4.0,
+     "max": 30.0,
+     "typical": 12.0,
+     "unit": "px"
+    },
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 1.2,
+     "typical": 0.7,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "scale_in_text",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Scale in",
+   "definition_fr": "Le texte apparaît en grandissant ou en rapetissant vers sa taille finale.",
+   "signature": "Hauteur de la boîte du texte qui converge vers sa valeur finale.",
+   "detector": "track_bbox",
+   "implementation": {
+    "gsap": "from {scale:0.85}",
+    "css": "transform: scale()"
+   },
+   "params": [
+    {
+     "name": "scale_from",
+     "min": 0.6,
+     "max": 1.4,
+     "typical": 0.9,
+     "unit": "ratio"
+    },
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 1.0,
+     "typical": 0.7,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "tracking_expand",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Tracking expand",
+   "definition_fr": "L'espacement entre lettres s'ouvre ou se resserre lentement.",
+   "signature": "Largeur de ligne qui varie à hauteur constante, glyphes de même taille.",
+   "detector": "track_bbox: largeur seule",
+   "implementation": {
+    "gsap": "letterSpacing:'0.2em'",
+    "css": "letter-spacing transition"
+   },
+   "params": [
+    {
+     "name": "tracking_from",
+     "min": -0.05,
+     "max": 0.1,
+     "typical": 0.0,
+     "unit": "em"
+    },
+    {
+     "name": "tracking_to",
+     "min": 0.0,
+     "max": 0.4,
+     "typical": 0.15,
+     "unit": "em"
+    },
+    {
+     "name": "duration",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "y_offset_rise",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Rise and fade",
+   "definition_fr": "Montée verticale courte combinée à un fondu.",
+   "signature": "Translation y de 10 à 40 px et opacité croissante simultanées.",
+   "detector": "track_position + mean_luma",
+   "implementation": {
+    "gsap": "from {y:24,opacity:0}"
+   },
+   "params": [
+    {
+     "name": "y_from",
+     "min": 8.0,
+     "max": 60.0,
+     "typical": 24.0,
+     "unit": "px"
+    },
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 0.9,
+     "typical": 0.6,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "typewriter",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Typewriter",
+   "definition_fr": "Les caractères s'ajoutent un à un avec un curseur.",
+   "signature": "Nombre de glyphes visibles en escalier, curseur clignotant à 1 à 2 Hz.",
+   "detector": "ocr_track: compte de caractères par image",
+   "implementation": {
+    "gsap": "TextPlugin ou steps",
+    "css": "steps() sur width"
+   },
+   "params": [
+    {
+     "name": "cps",
+     "min": 10.0,
+     "max": 40.0,
+     "typical": 20.0,
+     "unit": "chars_per_s"
+    },
+    {
+     "name": "caret_blink",
+     "min": 1.0,
+     "max": 2.0,
+     "typical": 1.06,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "scramble_decode",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Scramble decode",
+   "definition_fr": "Des caractères aléatoires se stabilisent vers le texte final.",
+   "signature": "Glyphes changeant à chaque image avant de se figer de gauche à droite.",
+   "detector": "ocr_track: instabilité des glyphes",
+   "implementation": {
+    "gsap": "ScrambleTextPlugin",
+    "canvas": "tirage de caractères"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "s"
+    },
+    {
+     "name": "chars",
+     "values": [
+      "upper",
+      "lower",
+      "symbols"
+     ],
+     "typical": "upper",
+     "unit": "enum"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "word_swap",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Kinetic word swap",
+   "definition_fr": "Un mot change en place dans une phrase fixe (rotation de mots).",
+   "signature": "Une zone de texte remplacée périodiquement, le reste immobile.",
+   "detector": "ocr_track: zone variable unique",
+   "implementation": {
+    "gsap": "timeline répétée, sortie y:-100% entrée y:100%"
+   },
+   "params": [
+    {
+     "name": "interval",
+     "min": 0.6,
+     "max": 2.0,
+     "typical": 1.2,
+     "unit": "s"
+    },
+    {
+     "name": "transition",
+     "min": 0.3,
+     "max": 0.6,
+     "typical": 0.4,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "counter_rollup",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Number roll-up",
+   "definition_fr": "Un nombre défile jusqu'à sa valeur finale.",
+   "signature": "Chiffres qui changent rapidement puis ralentissent jusqu'à se figer.",
+   "detector": "ocr_track numérique",
+   "implementation": {
+    "gsap": "to(obj,{val:1000,snap:'val',ease:'power3.out'})"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 3.0,
+     "typical": 1.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "highlight_sweep",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Highlight sweep",
+   "definition_fr": "Un surlignage ou une couleur balaie le texte.",
+   "signature": "Front de couleur qui traverse la ligne horizontalement à vitesse constante ou easée.",
+   "detector": "color_front_track",
+   "implementation": {
+    "gsap": "backgroundSize 0% vers 100%",
+    "css": "background-size transition"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 1.0,
+     "typical": 0.6,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "underline_draw",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Underline draw",
+   "definition_fr": "Un trait se dessine sous un mot.",
+   "signature": "Longueur d'un segment horizontal croissante.",
+   "detector": "line_detect",
+   "implementation": {
+    "gsap": "scaleX 0 vers 1, transformOrigin left",
+    "css": "stroke-dashoffset"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 0.8,
+     "typical": 0.5,
+     "unit": "s"
+    },
+    {
+     "name": "thickness",
+     "min": 2.0,
+     "max": 8.0,
+     "typical": 3.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "clip_wipe_text",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Clip-path wipe",
+   "definition_fr": "Le texte se dévoile par un rectangle qui s'agrandit latéralement.",
+   "signature": "Bord vertical net qui progresse sur le texte.",
+   "detector": "edge_front_track",
+   "implementation": {
+    "css": "clip-path: inset(0 100% 0 0) vers inset(0)",
+    "gsap": "clipPath tween"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 1.0,
+     "typical": 0.6,
+     "unit": "s"
+    },
+    {
+     "name": "direction",
+     "values": [
+      "ltr",
+      "rtl",
+      "ttb",
+      "btt"
+     ],
+     "typical": "ltr",
+     "unit": "enum"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "gradient_text_sweep",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Gradient shine",
+   "definition_fr": "Un reflet lumineux traverse le texte.",
+   "signature": "Bande claire étroite qui se déplace à travers le texte.",
+   "detector": "luma_front_track",
+   "implementation": {
+    "css": "background-clip:text, background-position animé"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 2.0,
+     "typical": 1.2,
+     "unit": "s"
+    },
+    {
+     "name": "band_width",
+     "min": 0.1,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "text_morph",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Text morph",
+   "definition_fr": "Un mot se transforme en un autre par fondu croisé avec flou ou par formes.",
+   "signature": "Deux textes superposés à opacités complémentaires, avec flou au point milieu.",
+   "detector": "ocr_track",
+   "implementation": {
+    "gsap": "crossfade + blur, ou MorphSVG sur contours"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 1.0,
+     "typical": 0.5,
+     "unit": "s"
+    },
+    {
+     "name": "blur_mid",
+     "min": 2.0,
+     "max": 12.0,
+     "typical": 6.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "outline_to_fill",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Outline to fill",
+   "definition_fr": "Le texte apparaît en contour puis se remplit.",
+   "signature": "Contours seuls puis remplissage progressif.",
+   "detector": "fill_ratio: pixels intérieurs remplis",
+   "implementation": {
+    "css": "-webkit-text-stroke puis color",
+    "gsap": "DrawSVG puis fill"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 1.5,
+     "typical": 0.8,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "line_split_stagger",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Line stagger",
+   "definition_fr": "Plusieurs lignes entrent l'une après l'autre.",
+   "signature": "Départs de lignes espacés régulièrement de haut en bas.",
+   "detector": "ocr_track lignes",
+   "implementation": {
+    "gsap": "SplitText lines, stagger:0.1"
+   },
+   "params": [
+    {
+     "name": "each",
+     "min": 0.05,
+     "max": 0.2,
+     "typical": 0.1,
+     "unit": "s"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "text_exit_up",
+   "domain": "image",
+   "category": "text",
+   "name_en": "Text exit",
+   "definition_fr": "Sortie du texte par le haut ou par masque avant la coupe.",
+   "signature": "Translation et/ou opacité décroissante dans les 200 à 400 ms qui précèdent une coupe.",
+   "detector": "ocr_track + scene_detect",
+   "implementation": {
+    "gsap": "to {y:'-100%',ease:'power2.in'}"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 0.5,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "hard_cut",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Hard cut",
+   "definition_fr": "Changement de plan instantané.",
+   "signature": "Différence d'histogramme très forte entre deux images consécutives.",
+   "detector": "scene_detect: seuil sur distance d'histogramme",
+   "implementation": {
+    "hyperframes": "fin d'une scène, début de la suivante"
+   },
+   "params": [],
+   "source": "craft"
+  },
+  {
+   "id": "cut_on_beat",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Cut on beat",
+   "definition_fr": "Coupe calée sur un temps fort de la musique.",
+   "signature": "Instant de coupe à moins d'une image d'un onset musical ou d'un temps du tempo.",
+   "detector": "scene_detect + beat_track: écart coupe à temps le plus proche",
+   "implementation": {
+    "hyperframes": "scènes calées sur la grille de beats"
+   },
+   "params": [
+    {
+     "name": "tolerance",
+     "min": 0.0,
+     "max": 0.05,
+     "typical": 0.033,
+     "unit": "s"
+    },
+    {
+     "name": "beats_per_cut",
+     "min": 1.0,
+     "max": 8.0,
+     "typical": 2.0,
+     "unit": "beats"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "whip_pan",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Whip pan",
+   "definition_fr": "Panoramique très rapide avec flou de mouvement qui enchaîne deux plans.",
+   "signature": "Flou directionnel fort (énergie spectrale anisotrope) sur 4 à 10 images, flux optique très élevé dans une direction.",
+   "detector": "optical_flow: magnitude et direction dominantes",
+   "implementation": {
+    "gsap": "x de 0 à -100vw, expo.inOut, plus filtre de flou directionnel",
+    "canvas": "flou directionnel par accumulation"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.15,
+     "max": 0.5,
+     "typical": 0.3,
+     "unit": "s"
+    },
+    {
+     "name": "blur_px",
+     "min": 20.0,
+     "max": 120.0,
+     "typical": 60.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "zoom_through",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Zoom transition",
+   "definition_fr": "Zoom très rapide qui traverse un élément pour arriver au plan suivant.",
+   "signature": "Flux optique radial (divergence positive forte), échelle exponentielle.",
+   "detector": "optical_flow: divergence",
+   "implementation": {
+    "gsap": "scale 1 vers 8, expo.in, puis plan suivant scale 0.5 vers 1, expo.out"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 0.8,
+     "typical": 0.5,
+     "unit": "s"
+    },
+    {
+     "name": "scale_max",
+     "min": 3.0,
+     "max": 20.0,
+     "typical": 8.0,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "match_cut",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Match cut",
+   "definition_fr": "Coupe entre deux plans dont la forme, la position ou le mouvement se correspondent.",
+   "signature": "Silhouettes ou centres de masse alignés de part et d'autre de la coupe (IoU élevée des masques).",
+   "detector": "scene_detect + mask_iou",
+   "implementation": {
+    "hyperframes": "même forme reprise dans le plan suivant"
+   },
+   "params": [
+    {
+     "name": "iou_min",
+     "min": 0.5,
+     "max": 0.95,
+     "typical": 0.7,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "mask_wipe",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Mask wipe",
+   "definition_fr": "Le plan suivant se révèle à travers une forme qui grandit ou balaie.",
+   "signature": "Front géométrique net séparant deux contenus, qui progresse.",
+   "detector": "edge_front_track",
+   "implementation": {
+    "css": "clip-path circle ou polygon animé",
+    "gsap": "clipPath tween"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 1.0,
+     "typical": 0.6,
+     "unit": "s"
+    },
+    {
+     "name": "shape",
+     "values": [
+      "circle",
+      "rect",
+      "diagonal",
+      "custom"
+     ],
+     "typical": "circle",
+     "unit": "enum"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "crossfade",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Crossfade",
+   "definition_fr": "Fondu enchaîné entre deux plans.",
+   "signature": "Mélange linéaire de deux images, luminance intermédiaire sur plusieurs images.",
+   "detector": "scene_detect: transition graduelle",
+   "implementation": {
+    "gsap": "opacity croisée"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 1.2,
+     "typical": 0.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "dip_to_black",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Dip to black",
+   "definition_fr": "Passage par le noir entre deux plans.",
+   "signature": "Luminance moyenne qui tombe proche de 0 puis remonte.",
+   "detector": "mean_luma",
+   "implementation": {
+    "gsap": "overlay noir opacity 0 vers 1 vers 0"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 1.0,
+     "typical": 0.4,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "flash_white",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Flash frame",
+   "definition_fr": "Une à trois images blanches ou très claires sur une coupe ou un impact.",
+   "signature": "Pic de luminance moyenne sur 1 à 3 images.",
+   "detector": "mean_luma: pic court",
+   "implementation": {
+    "gsap": "overlay blanc opacity 1 puis 0 en 0.15 s"
+   },
+   "params": [
+    {
+     "name": "frames",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "frames"
+    },
+    {
+     "name": "peak",
+     "min": 0.6,
+     "max": 1.0,
+     "typical": 0.9,
+     "unit": "luma"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "push_slide",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Push",
+   "definition_fr": "Le plan suivant pousse le précédent hors du cadre.",
+   "signature": "Translation commune des deux contenus dans la même direction.",
+   "detector": "optical_flow uniforme",
+   "implementation": {
+    "gsap": "x des deux scènes, power3.inOut"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 0.8,
+     "typical": 0.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "shared_element",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Shared element morph",
+   "definition_fr": "Un élément commun se transforme d'un plan à l'autre sans coupe.",
+   "signature": "Boîte englobante continue qui change de taille et de position à travers la transition.",
+   "detector": "track_bbox continue",
+   "implementation": {
+    "gsap": "Flip plugin",
+    "css": "View Transitions API"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 1.0,
+     "typical": 0.6,
+     "unit": "s"
+    }
+   ],
+   "source": "gsap"
+  },
+  {
+   "id": "glitch_transition",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Glitch",
+   "definition_fr": "Transition par décalages de bandes, séparation RVB et blocs.",
+   "signature": "Décalages horizontaux de bandes et canaux couleur désalignés sur quelques images.",
+   "detector": "channel_misalignment + row_shift",
+   "implementation": {
+    "canvas": "décalage de lignes et canaux",
+    "css": "pseudo-éléments décalés"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.1,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "s"
+    },
+    {
+     "name": "rgb_shift",
+     "min": 2.0,
+     "max": 20.0,
+     "typical": 6.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "smash_cut",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Smash cut",
+   "definition_fr": "Coupe brutale vers un plan contrastant, souvent avec impact sonore.",
+   "signature": "Coupe nette avec saut fort de luminance ou de couleur et onset sonore simultané.",
+   "detector": "scene_detect + onset",
+   "implementation": {
+    "hyperframes": "coupe + sfx impact"
+   },
+   "params": [],
+   "source": "craft"
+  },
+  {
+   "id": "rack_focus",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Rack focus",
+   "definition_fr": "Bascule de mise au point d'un plan à un autre de la profondeur.",
+   "signature": "Netteté qui passe d'une région à une autre.",
+   "detector": "sharpness_track régional",
+   "implementation": {
+    "css": "filter blur croisé entre calques"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 1.5,
+     "typical": 0.8,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "light_leak",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Light leak",
+   "definition_fr": "Halo coloré qui traverse l'image pendant la transition.",
+   "signature": "Zone saturée chaude qui se déplace, luminance additive.",
+   "detector": "color_blob_track",
+   "implementation": {
+    "canvas": "dégradé radial en mode screen"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 1.5,
+     "typical": 0.8,
+     "unit": "s"
+    },
+    {
+     "name": "intensity",
+     "min": 0.2,
+     "max": 0.8,
+     "typical": 0.4,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "iris",
+   "domain": "image",
+   "category": "transition",
+   "name_en": "Iris",
+   "definition_fr": "Ouverture ou fermeture circulaire.",
+   "signature": "Masque circulaire centré dont le rayon varie.",
+   "detector": "circle_detect",
+   "implementation": {
+    "css": "clip-path: circle()"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 1.0,
+     "typical": 0.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "l_cut",
+   "domain": "sound",
+   "category": "transition",
+   "name_en": "J cut and L cut",
+   "definition_fr": "Le son du plan suivant commence avant la coupe (J) ou celui du précédent continue après (L).",
+   "signature": "Onset sonore décalé de la coupe image.",
+   "detector": "onset vs scene_detect",
+   "implementation": {
+    "synth": "décalage de l'entrée audio"
+   },
+   "params": [
+    {
+     "name": "offset",
+     "min": 0.1,
+     "max": 1.0,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "push_in",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Push in",
+   "definition_fr": "Avancée lente de la caméra ou zoom continu vers le sujet.",
+   "signature": "Échelle croissante lente et monotone, divergence de flux faible et constante.",
+   "detector": "optical_flow: divergence",
+   "implementation": {
+    "gsap": "scale 1 vers 1.08 sur la durée, ease none ou sine"
+   },
+   "params": [
+    {
+     "name": "scale_per_s",
+     "min": 0.01,
+     "max": 0.08,
+     "typical": 0.03,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "pull_out",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Pull out",
+   "definition_fr": "Recul lent qui révèle le contexte.",
+   "signature": "Divergence négative lente.",
+   "detector": "optical_flow",
+   "implementation": {
+    "gsap": "scale 1.1 vers 1"
+   },
+   "params": [
+    {
+     "name": "scale_per_s",
+     "min": 0.01,
+     "max": 0.08,
+     "typical": 0.03,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "orbit",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Orbit",
+   "definition_fr": "Rotation de la caméra autour d'un objet 3D.",
+   "signature": "Parallaxe en rotation; points du sujet suivant des ellipses.",
+   "detector": "feature_track: trajectoires elliptiques",
+   "implementation": {
+    "three": "camera autour d'une cible, angle animé"
+   },
+   "params": [
+    {
+     "name": "deg_per_s",
+     "min": 5.0,
+     "max": 60.0,
+     "typical": 20.0,
+     "unit": "deg"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "parallax",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Parallax",
+   "definition_fr": "Couches à des vitesses différentes selon leur profondeur.",
+   "signature": "Flux optique en bandes de vitesses différentes.",
+   "detector": "optical_flow: clustering des vitesses",
+   "implementation": {
+    "gsap": "x différent par calque",
+    "css": "translateZ et perspective"
+   },
+   "params": [
+    {
+     "name": "layers",
+     "min": 2.0,
+     "max": 6.0,
+     "typical": 3.0,
+     "unit": "n"
+    },
+    {
+     "name": "speed_ratio",
+     "min": 0.2,
+     "max": 1.0,
+     "typical": 0.5,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "truck",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Truck",
+   "definition_fr": "Déplacement latéral de la caméra.",
+   "signature": "Flux optique horizontal uniforme.",
+   "detector": "optical_flow",
+   "implementation": {
+    "gsap": "x du conteneur"
+   },
+   "params": [
+    {
+     "name": "px_per_s",
+     "min": 20.0,
+     "max": 300.0,
+     "typical": 80.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "pedestal",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Pedestal or crane",
+   "definition_fr": "Déplacement vertical de la caméra.",
+   "signature": "Flux vertical uniforme.",
+   "detector": "optical_flow",
+   "implementation": {
+    "gsap": "y du conteneur"
+   },
+   "params": [
+    {
+     "name": "px_per_s",
+     "min": 20.0,
+     "max": 300.0,
+     "typical": 80.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "dutch_roll",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Roll",
+   "definition_fr": "Rotation de la caméra autour de l'axe de visée.",
+   "signature": "Flux rotationnel (curl) autour du centre.",
+   "detector": "optical_flow: curl",
+   "implementation": {
+    "gsap": "rotation du conteneur"
+   },
+   "params": [
+    {
+     "name": "deg",
+     "min": 1.0,
+     "max": 15.0,
+     "typical": 4.0,
+     "unit": "deg"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "camera_shake",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Camera shake",
+   "definition_fr": "Secousse brève sur un impact.",
+   "signature": "Translation et rotation bruitées de haute fréquence décroissantes, synchronisées avec un impact sonore.",
+   "detector": "global_motion: énergie haute fréquence",
+   "implementation": {
+    "gsap": "CustomWiggle ou bruit décroissant",
+    "canvas": "offset aléatoire amorti"
+   },
+   "params": [
+    {
+     "name": "amp_px",
+     "min": 2.0,
+     "max": 30.0,
+     "typical": 8.0,
+     "unit": "px"
+    },
+    {
+     "name": "freq",
+     "min": 8.0,
+     "max": 30.0,
+     "typical": 15.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "decay",
+     "min": 0.1,
+     "max": 0.6,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "juice"
+  },
+  {
+   "id": "handheld",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Handheld drift",
+   "definition_fr": "Léger flottement organique continu.",
+   "signature": "Mouvement global lent et bruité, basse fréquence.",
+   "detector": "global_motion: énergie 0,2 à 2 Hz",
+   "implementation": {
+    "gsap": "bruit de Perlin sur x y rotation"
+   },
+   "params": [
+    {
+     "name": "amp_px",
+     "min": 1.0,
+     "max": 8.0,
+     "typical": 3.0,
+     "unit": "px"
+    },
+    {
+     "name": "freq",
+     "min": 0.2,
+     "max": 1.5,
+     "typical": 0.5,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "dolly_zoom",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Dolly zoom",
+   "definition_fr": "Avancée combinée à un dézoom: le sujet garde sa taille, le fond change.",
+   "signature": "Sujet d'échelle constante, fond en divergence opposée.",
+   "detector": "optical_flow par région",
+   "implementation": {
+    "three": "fov et distance animés en sens opposés"
+   },
+   "params": [
+    {
+     "name": "fov_change",
+     "min": 10.0,
+     "max": 40.0,
+     "typical": 20.0,
+     "unit": "deg"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "depth_of_field",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Depth of field",
+   "definition_fr": "Flou de profondeur qui isole le sujet.",
+   "signature": "Netteté forte sur le sujet, faible sur le fond.",
+   "detector": "sharpness_map",
+   "implementation": {
+    "css": "blur sur calques de fond",
+    "three": "BokehPass"
+   },
+   "params": [
+    {
+     "name": "bg_blur",
+     "min": 2.0,
+     "max": 30.0,
+     "typical": 10.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "motion_blur",
+   "domain": "image",
+   "category": "camera",
+   "name_en": "Motion blur",
+   "definition_fr": "Traînée de flou sur les objets rapides.",
+   "signature": "Flou directionnel proportionnel à la vitesse, longueur de traînée par image.",
+   "detector": "blur_direction_estimate",
+   "implementation": {
+    "canvas": "accumulation de sous-images",
+    "hyperframes": "rendu sur-échantillonné"
+   },
+   "params": [
+    {
+     "name": "shutter",
+     "min": 0.25,
+     "max": 1.0,
+     "typical": 0.5,
+     "unit": "ratio"
+    },
+    {
+     "name": "samples",
+     "min": 4.0,
+     "max": 32.0,
+     "typical": 8.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "hero_turntable",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Hero turntable",
+   "definition_fr": "Le produit tourne lentement sur lui-même.",
+   "signature": "Rotation régulière de l'objet, reflets glissant sur les surfaces.",
+   "detector": "feature_track: rotation de l'objet",
+   "implementation": {
+    "three": "rotation.y animée",
+    "css": "images pré-rendues en séquence"
+   },
+   "params": [
+    {
+     "name": "deg_per_s",
+     "min": 6.0,
+     "max": 45.0,
+     "typical": 15.0,
+     "unit": "deg"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "exploded_view",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Exploded view",
+   "definition_fr": "Les pièces du produit s'écartent pour montrer leur assemblage.",
+   "signature": "Plusieurs éléments qui s'éloignent radialement d'un centre commun puis se figent.",
+   "detector": "track_multi: divergence radiale",
+   "implementation": {
+    "three": "position des pièces animée",
+    "gsap": "stagger sur les pièces"
+   },
+   "params": [
+    {
+     "name": "spread",
+     "min": 0.2,
+     "max": 2.0,
+     "typical": 0.6,
+     "unit": "object_size"
+    },
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 2.5,
+     "typical": 1.4,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "specular_sweep",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Specular sweep",
+   "definition_fr": "Un reflet lumineux glisse sur la surface du produit.",
+   "signature": "Bande de luminance élevée qui traverse l'objet sans que l'objet bouge.",
+   "detector": "luma_front_track sur le masque produit",
+   "implementation": {
+    "three": "lumière animée",
+    "css": "dégradé en mode screen masqué"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.6,
+     "max": 2.0,
+     "typical": 1.0,
+     "unit": "s"
+    },
+    {
+     "name": "width",
+     "min": 0.05,
+     "max": 0.3,
+     "typical": 0.12,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "rim_light",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Rim light",
+   "definition_fr": "Liseré lumineux qui détache le produit d'un fond sombre.",
+   "signature": "Contour clair sur la silhouette, intérieur plus sombre.",
+   "detector": "edge_luma_profile",
+   "implementation": {
+    "three": "lumière arrière",
+    "canvas": "contour flouté en screen"
+   },
+   "params": [
+    {
+     "name": "rim_width",
+     "min": 1.0,
+     "max": 10.0,
+     "typical": 3.0,
+     "unit": "px"
+    },
+    {
+     "name": "intensity",
+     "min": 0.3,
+     "max": 1.0,
+     "typical": 0.7,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "macro_detail",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Macro detail",
+   "definition_fr": "Gros plan extrême sur une matière ou un détail.",
+   "signature": "Faible profondeur de champ, texture fine dominante, objet hors cadre.",
+   "detector": "sharpness_map + scale",
+   "implementation": {
+    "three": "caméra très proche, fov serré"
+   },
+   "params": [
+    {
+     "name": "fov",
+     "min": 10.0,
+     "max": 30.0,
+     "typical": 18.0,
+     "unit": "deg"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "floor_reflection",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Floor reflection",
+   "definition_fr": "Reflet atténué du produit sur un sol brillant.",
+   "signature": "Copie verticale inversée, opacité 10 à 40 %, dégradé vers le bas.",
+   "detector": "symmetry_detect",
+   "implementation": {
+    "css": "-webkit-box-reflect ou copie scaleY(-1)"
+   },
+   "params": [
+    {
+     "name": "opacity",
+     "min": 0.08,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "color_variant_cycle",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Colorway cycle",
+   "definition_fr": "Le produit change de couleur en série pour montrer ses déclinaisons.",
+   "signature": "Teinte dominante du masque produit qui change par paliers.",
+   "detector": "hue_track sur masque",
+   "implementation": {
+    "gsap": "timeline de couleurs",
+    "css": "filter hue-rotate ou images"
+   },
+   "params": [
+    {
+     "name": "interval",
+     "min": 0.3,
+     "max": 1.5,
+     "typical": 0.6,
+     "unit": "s"
+    },
+    {
+     "name": "variants",
+     "min": 2.0,
+     "max": 8.0,
+     "typical": 4.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "levitation_float",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Float",
+   "definition_fr": "Le produit flotte avec une oscillation verticale lente.",
+   "signature": "Oscillation sinusoïdale de faible amplitude.",
+   "detector": "track_position: fréquence dominante",
+   "implementation": {
+    "gsap": "y yoyo sine.inOut repeat -1"
+   },
+   "params": [
+    {
+     "name": "amp_px",
+     "min": 4.0,
+     "max": 30.0,
+     "typical": 10.0,
+     "unit": "px"
+    },
+    {
+     "name": "period",
+     "min": 2.0,
+     "max": 6.0,
+     "typical": 3.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "silhouette_reveal",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Silhouette reveal",
+   "definition_fr": "Le produit apparaît d'abord en ombre puis s'éclaire.",
+   "signature": "Masque produit sombre dont la luminance moyenne monte progressivement.",
+   "detector": "mean_luma sur masque",
+   "implementation": {
+    "three": "intensité lumineuse animée",
+    "css": "brightness 0 vers 1"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 3.0,
+     "typical": 1.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "assembly",
+   "domain": "image",
+   "category": "product3d",
+   "name_en": "Assembly",
+   "definition_fr": "Les pièces arrivent et s'emboîtent pour former le produit.",
+   "signature": "Convergence radiale d'éléments vers un centre, souvent avec impact sonore à l'emboîtement.",
+   "detector": "track_multi: convergence",
+   "implementation": {
+    "three": "positions animées",
+    "gsap": "stagger reverse"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 2.5,
+     "typical": 1.4,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "cursor_path",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Cursor path",
+   "definition_fr": "Un curseur se déplace pour simuler l'usage.",
+   "signature": "Petit objet à forme de flèche suivant une trajectoire courbe easée.",
+   "detector": "template_match curseur + track",
+   "implementation": {
+    "gsap": "MotionPath avec power2.inOut",
+    "canvas": "sprite curseur"
+   },
+   "params": [
+    {
+     "name": "speed_px_s",
+     "min": 300.0,
+     "max": 1500.0,
+     "typical": 700.0,
+     "unit": "px"
+    },
+    {
+     "name": "dwell",
+     "min": 0.2,
+     "max": 0.8,
+     "typical": 0.4,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "click_ripple",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Click feedback",
+   "definition_fr": "Réponse visuelle au clic: enfoncement, onde ou flash.",
+   "signature": "Échelle du bouton 0,95 à 0,98 pendant 80 à 150 ms, cercle qui s'étend.",
+   "detector": "track_bbox + circle_detect",
+   "implementation": {
+    "gsap": "scale 0.96 yoyo 0.08 s",
+    "css": ":active transform"
+   },
+   "params": [
+    {
+     "name": "press_scale",
+     "min": 0.9,
+     "max": 0.99,
+     "typical": 0.96,
+     "unit": "ratio"
+    },
+    {
+     "name": "duration",
+     "min": 0.08,
+     "max": 0.2,
+     "typical": 0.12,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "hover_lift",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Hover lift",
+   "definition_fr": "L'élément survolé se soulève avec une ombre.",
+   "signature": "Translation y négative légère et ombre agrandie.",
+   "detector": "track_position + shadow_area",
+   "implementation": {
+    "css": "translateY(-2px), box-shadow"
+   },
+   "params": [
+    {
+     "name": "lift_px",
+     "min": 1.0,
+     "max": 8.0,
+     "typical": 3.0,
+     "unit": "px"
+    },
+    {
+     "name": "duration",
+     "min": 0.1,
+     "max": 0.25,
+     "typical": 0.15,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "typing_field",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Typing in field",
+   "definition_fr": "Du texte se tape dans un champ de saisie d'interface.",
+   "signature": "Caractères ajoutés à 10 à 25 par seconde dans une boîte fixe, souvent avec clics clavier sonores synchronisés.",
+   "detector": "ocr_track + onset",
+   "implementation": {
+    "gsap": "TextPlugin ou steps"
+   },
+   "params": [
+    {
+     "name": "cps",
+     "min": 8.0,
+     "max": 30.0,
+     "typical": 15.0,
+     "unit": "chars_per_s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "scroll_feed",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Scroll",
+   "definition_fr": "Défilement d'un contenu d'interface.",
+   "signature": "Flux vertical uniforme dans une région rectangulaire.",
+   "detector": "optical_flow régional",
+   "implementation": {
+    "gsap": "y du contenu, power2.inOut"
+   },
+   "params": [
+    {
+     "name": "px_per_s",
+     "min": 200.0,
+     "max": 2000.0,
+     "typical": 600.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "card_stack",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Card stack",
+   "definition_fr": "Cartes empilées qui se déploient ou se superposent.",
+   "signature": "Plusieurs rectangles décalés en échelle et en y.",
+   "detector": "rect_detect + track",
+   "implementation": {
+    "gsap": "stagger sur y et scale"
+   },
+   "params": [
+    {
+     "name": "offset_px",
+     "min": 6.0,
+     "max": 30.0,
+     "typical": 12.0,
+     "unit": "px"
+    },
+    {
+     "name": "scale_step",
+     "min": 0.02,
+     "max": 0.08,
+     "typical": 0.04,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "modal_pop",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Modal pop",
+   "definition_fr": "Une fenêtre surgissante apparaît avec un léger rebond.",
+   "signature": "Échelle 0,9 vers 1 avec overshoot faible et assombrissement du fond.",
+   "detector": "track_bbox + mean_luma fond",
+   "implementation": {
+    "gsap": "from {scale:0.92,opacity:0}, back.out(1.4)"
+   },
+   "params": [
+    {
+     "name": "scale_from",
+     "min": 0.8,
+     "max": 0.97,
+     "typical": 0.92,
+     "unit": "ratio"
+    },
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 0.45,
+     "typical": 0.3,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "toast_slide",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Toast",
+   "definition_fr": "Notification qui glisse depuis un bord puis repart.",
+   "signature": "Petit rectangle qui entre, tient 1 à 4 s, sort.",
+   "detector": "rect_detect + track",
+   "implementation": {
+    "gsap": "from {y:-40}, power3.out"
+   },
+   "params": [
+    {
+     "name": "hold",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "s"
+    },
+    {
+     "name": "distance",
+     "min": 20.0,
+     "max": 80.0,
+     "typical": 40.0,
+     "unit": "px"
+    }
+   ],
+   "source": "carbon"
+  },
+  {
+   "id": "chart_draw",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Chart draw",
+   "definition_fr": "Un graphique se trace ou ses barres montent.",
+   "signature": "Longueurs de barres ou tracé de courbe croissants.",
+   "detector": "line_detect / bar heights",
+   "implementation": {
+    "gsap": "DrawSVG ou scaleY avec stagger",
+    "css": "stroke-dashoffset"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.6,
+     "max": 2.0,
+     "typical": 1.2,
+     "unit": "s"
+    },
+    {
+     "name": "stagger",
+     "min": 0.03,
+     "max": 0.15,
+     "typical": 0.06,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "progress_fill",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Progress fill",
+   "definition_fr": "Une barre de progression se remplit.",
+   "signature": "Rectangle dont la largeur remplie croît.",
+   "detector": "bar_fill_ratio",
+   "implementation": {
+    "gsap": "scaleX 0 vers 1"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 3.0,
+     "typical": 1.2,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "spotlight_focus",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Spotlight focus",
+   "definition_fr": "Le reste de l'interface s'assombrit pour isoler une zone.",
+   "signature": "Chute de luminance hors d'une région, région inchangée.",
+   "detector": "mean_luma par région",
+   "implementation": {
+    "css": "overlay avec trou par mask",
+    "gsap": "opacity de l'overlay"
+   },
+   "params": [
+    {
+     "name": "dim",
+     "min": 0.3,
+     "max": 0.8,
+     "typical": 0.55,
+     "unit": "ratio"
+    },
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 0.6,
+     "typical": 0.35,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "ui_zoom_focus",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "UI zoom to detail",
+   "definition_fr": "La caméra zoome sur une partie de l'interface.",
+   "signature": "Échelle globale croissante centrée sur une région, ease in-out.",
+   "detector": "optical_flow divergence localisée",
+   "implementation": {
+    "gsap": "scale et transformOrigin du conteneur, power3.inOut"
+   },
+   "params": [
+    {
+     "name": "scale",
+     "min": 1.3,
+     "max": 3.0,
+     "typical": 1.8,
+     "unit": "ratio"
+    },
+    {
+     "name": "duration",
+     "min": 0.6,
+     "max": 1.5,
+     "typical": 0.9,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "device_mockup",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Device mockup",
+   "definition_fr": "L'interface est présentée dans un cadre d'appareil (téléphone, laptop, fenêtre).",
+   "signature": "Cadre arrondi stable autour d'un contenu animé.",
+   "detector": "rect_detect avec coins arrondis",
+   "implementation": {
+    "css": "conteneur à border-radius et ombre"
+   },
+   "params": [
+    {
+     "name": "radius",
+     "min": 8.0,
+     "max": 60.0,
+     "typical": 24.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "app_window_3d_tilt",
+   "domain": "image",
+   "category": "ui",
+   "name_en": "Perspective tilt",
+   "definition_fr": "L'interface est inclinée en perspective puis se redresse.",
+   "signature": "Trapèze qui redevient rectangle (homographie variable).",
+   "detector": "homography_track",
+   "implementation": {
+    "css": "perspective + rotateX/rotateY",
+    "gsap": "rotationX vers 0"
+   },
+   "params": [
+    {
+     "name": "tilt_deg",
+     "min": 5.0,
+     "max": 35.0,
+     "typical": 15.0,
+     "unit": "deg"
+    },
+    {
+     "name": "duration",
+     "min": 0.8,
+     "max": 2.0,
+     "typical": 1.2,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "palette_dominant",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Dominant palette",
+   "definition_fr": "Petit ensemble de couleurs qui domine le film.",
+   "signature": "Centres k-means sur toutes les images; parts de surface.",
+   "detector": "kmeans_palette",
+   "implementation": {
+    "css": "variables :root"
+   },
+   "params": [
+    {
+     "name": "colors",
+     "min": 2.0,
+     "max": 8.0,
+     "typical": 5.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "background_gradient",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Background gradient",
+   "definition_fr": "Fond en dégradé doux, souvent animé lentement.",
+   "signature": "Luminance et teinte variant lentement en espace, faible fréquence.",
+   "detector": "low_freq_fit",
+   "implementation": {
+    "css": "linear-gradient / radial-gradient animé"
+   },
+   "params": [
+    {
+     "name": "stops",
+     "min": 2.0,
+     "max": 5.0,
+     "typical": 3.0,
+     "unit": "n"
+    },
+    {
+     "name": "drift_s",
+     "min": 4.0,
+     "max": 20.0,
+     "typical": 10.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "mesh_gradient_drift",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Mesh gradient drift",
+   "definition_fr": "Taches de couleur floues qui dérivent lentement.",
+   "signature": "Blobs de couleur très flous en déplacement lent.",
+   "detector": "color_blob_track",
+   "implementation": {
+    "canvas": "cercles flous en mode screen",
+    "css": "filter blur sur formes"
+   },
+   "params": [
+    {
+     "name": "blobs",
+     "min": 2.0,
+     "max": 6.0,
+     "typical": 4.0,
+     "unit": "n"
+    },
+    {
+     "name": "blur",
+     "min": 60.0,
+     "max": 300.0,
+     "typical": 150.0,
+     "unit": "px"
+    },
+    {
+     "name": "speed",
+     "min": 5.0,
+     "max": 40.0,
+     "typical": 15.0,
+     "unit": "px_per_s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "contrast",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Contrast",
+   "definition_fr": "Écart entre zones claires et sombres.",
+   "signature": "Écart entre percentiles 5 et 95 de luminance.",
+   "detector": "luma_percentiles",
+   "implementation": {
+    "css": "filter contrast"
+   },
+   "params": [
+    {
+     "name": "p95_p5",
+     "min": 0.4,
+     "max": 1.0,
+     "typical": 0.8,
+     "unit": "luma"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "saturation",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Saturation",
+   "definition_fr": "Intensité des couleurs.",
+   "signature": "Moyenne de la chroma en espace OKLCH.",
+   "detector": "chroma_mean",
+   "implementation": {
+    "css": "filter saturate"
+   },
+   "params": [
+    {
+     "name": "chroma",
+     "min": 0.0,
+     "max": 0.3,
+     "typical": 0.08,
+     "unit": "oklch_c"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "color_temperature",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Color temperature",
+   "definition_fr": "Dominante chaude ou froide de l'étalonnage.",
+   "signature": "Rapport moyen des canaux rouge et bleu dans les tons moyens.",
+   "detector": "rb_ratio_midtones",
+   "implementation": {
+    "css": "overlay teinté",
+    "canvas": "matrice de couleur"
+   },
+   "params": [
+    {
+     "name": "rb_ratio",
+     "min": 0.8,
+     "max": 1.25,
+     "typical": 1.0,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "film_grain",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Grain",
+   "definition_fr": "Bruit fin animé qui donne une texture pellicule.",
+   "signature": "Bruit haute fréquence non corrélé d'une image à l'autre sur zones unies.",
+   "detector": "noise_residual",
+   "implementation": {
+    "canvas": "bruit par image en mode overlay",
+    "css": "image de bruit animée"
+   },
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.08,
+     "typical": 0.03,
+     "unit": "luma_std"
+    },
+    {
+     "name": "size",
+     "min": 1.0,
+     "max": 3.0,
+     "typical": 1.0,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "vignette",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Vignette",
+   "definition_fr": "Assombrissement progressif des bords.",
+   "signature": "Luminance radiale décroissante vers les coins.",
+   "detector": "radial_luma_profile",
+   "implementation": {
+    "css": "radial-gradient en overlay"
+   },
+   "params": [
+    {
+     "name": "strength",
+     "min": 0.05,
+     "max": 0.5,
+     "typical": 0.2,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "glow_bloom",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Glow and bloom",
+   "definition_fr": "Halo autour des zones lumineuses.",
+   "signature": "Diffusion de luminance autour des hautes lumières.",
+   "detector": "highlight_spread",
+   "implementation": {
+    "css": "filter drop-shadow ou blur en screen",
+    "canvas": "flou additif"
+   },
+   "params": [
+    {
+     "name": "radius",
+     "min": 4.0,
+     "max": 60.0,
+     "typical": 20.0,
+     "unit": "px"
+    },
+    {
+     "name": "threshold",
+     "min": 0.6,
+     "max": 0.95,
+     "typical": 0.8,
+     "unit": "luma"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "chromatic_aberration",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Chromatic aberration",
+   "definition_fr": "Séparation légère des canaux rouge et bleu vers les bords.",
+   "signature": "Décalage radial entre canaux, croissant vers les bords.",
+   "detector": "channel_misalignment",
+   "implementation": {
+    "canvas": "canaux décalés",
+    "css": "text-shadow rouge et bleu"
+   },
+   "params": [
+    {
+     "name": "shift_px",
+     "min": 0.5,
+     "max": 6.0,
+     "typical": 1.5,
+     "unit": "px"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "luminance_flash",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Exposure pulse",
+   "definition_fr": "Pulsation d'exposition sur un temps fort.",
+   "signature": "Pic bref de luminance moyenne aligné sur un onset.",
+   "detector": "mean_luma + onset",
+   "implementation": {
+    "gsap": "brightness 1.3 puis 1 en 0.2 s"
+   },
+   "params": [
+    {
+     "name": "peak",
+     "min": 1.1,
+     "max": 1.6,
+     "typical": 1.25,
+     "unit": "ratio"
+    },
+    {
+     "name": "decay",
+     "min": 0.1,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "dark_mode_base",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Dark base",
+   "definition_fr": "Fond très sombre avec accents lumineux, convention dominante des lancements tech.",
+   "signature": "Luminance médiane inférieure à 0,15.",
+   "detector": "luma_median",
+   "implementation": {
+    "css": "fond #0a0a0a à #141414"
+   },
+   "params": [
+    {
+     "name": "bg_luma",
+     "min": 0.0,
+     "max": 0.15,
+     "typical": 0.04,
+     "unit": "luma"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "noise_texture",
+   "domain": "image",
+   "category": "grade",
+   "name_en": "Static texture",
+   "definition_fr": "Texture de bruit ou de papier fixe sur le fond.",
+   "signature": "Bruit haute fréquence corrélé d'une image à l'autre.",
+   "detector": "noise_residual temporal correlation",
+   "implementation": {
+    "css": "background-image SVG feTurbulence"
+   },
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.06,
+     "typical": 0.02,
+     "unit": "luma_std"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "font_class",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Font class",
+   "definition_fr": "Famille de caractères: grotesque, géométrique, sérif, mono, display.",
+   "signature": "Mesures de glyphes: contraste de graisse, empattements, rapport hauteur d'x, chasse fixe.",
+   "detector": "glyph_metrics sur OCR",
+   "implementation": {
+    "css": "font-family par jeton"
+   },
+   "params": [
+    {
+     "name": "class",
+     "values": [
+      "grotesk",
+      "geometric",
+      "serif",
+      "mono",
+      "display"
+     ],
+     "typical": "grotesk",
+     "unit": "enum"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "font_weight",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Weight",
+   "definition_fr": "Graisse du trait.",
+   "signature": "Épaisseur moyenne du trait rapportée à la hauteur de capitale.",
+   "detector": "stroke_width_ratio",
+   "implementation": {
+    "css": "font-weight"
+   },
+   "params": [
+    {
+     "name": "weight",
+     "min": 300.0,
+     "max": 900.0,
+     "typical": 500.0,
+     "unit": "css_weight"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "type_scale",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Type scale",
+   "definition_fr": "Rapport entre tailles des titres et du texte.",
+   "signature": "Rapports des hauteurs de capitale détectées.",
+   "detector": "ocr_bbox heights",
+   "implementation": {
+    "css": "variables de taille dérivées d'une base"
+   },
+   "params": [
+    {
+     "name": "ratio",
+     "min": 1.2,
+     "max": 2.0,
+     "typical": 1.5,
+     "unit": "ratio"
+    },
+    {
+     "name": "hero_cap_px",
+     "min": 60.0,
+     "max": 300.0,
+     "typical": 140.0,
+     "unit": "px_at_1080"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "tracking",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Tracking",
+   "definition_fr": "Espacement global entre les lettres.",
+   "signature": "Espace moyen entre glyphes rapporté à la hauteur de capitale.",
+   "detector": "glyph_gaps",
+   "implementation": {
+    "css": "letter-spacing"
+   },
+   "params": [
+    {
+     "name": "tracking",
+     "min": -0.06,
+     "max": 0.3,
+     "typical": -0.02,
+     "unit": "em"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "line_height",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Leading",
+   "definition_fr": "Interlignage.",
+   "signature": "Distance entre lignes de base rapportée à la taille.",
+   "detector": "ocr_line_spacing",
+   "implementation": {
+    "css": "line-height"
+   },
+   "params": [
+    {
+     "name": "leading",
+     "min": 0.85,
+     "max": 1.4,
+     "typical": 1.0,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "text_case",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Case",
+   "definition_fr": "Casse dominante: capitales, minuscules, phrase.",
+   "signature": "Proportion de glyphes capitaux.",
+   "detector": "ocr_text",
+   "implementation": {
+    "css": "text-transform"
+   },
+   "params": [
+    {
+     "name": "case",
+     "values": [
+      "upper",
+      "sentence",
+      "lower"
+     ],
+     "typical": "sentence",
+     "unit": "enum"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "centered_title",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Centered title",
+   "definition_fr": "Titre centré dans le cadre, convention des cartes de lancement.",
+   "signature": "Centre de la boîte du texte proche du centre horizontal.",
+   "detector": "ocr_bbox center",
+   "implementation": {
+    "css": "place-items:center"
+   },
+   "params": [
+    {
+     "name": "center_tol",
+     "min": 0.0,
+     "max": 0.05,
+     "typical": 0.02,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "words_on_screen",
+   "domain": "image",
+   "category": "typography",
+   "name_en": "Words per card",
+   "definition_fr": "Nombre de mots affichés simultanément.",
+   "signature": "Compte OCR de mots par image stable.",
+   "detector": "ocr_text",
+   "implementation": {
+    "hyperframes": "une idée par carte"
+   },
+   "params": [
+    {
+     "name": "words",
+     "min": 1.0,
+     "max": 12.0,
+     "typical": 4.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "hook_open",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Hook",
+   "definition_fr": "Ouverture qui capte l'attention dans les premières secondes.",
+   "signature": "Densité de mouvement et de coupes élevée dans les 3 premières secondes.",
+   "detector": "cut_density + motion_energy sur 0 à 3 s",
+   "implementation": {
+    "hyperframes": "première scène courte et forte"
+   },
+   "params": [
+    {
+     "name": "hook_s",
+     "min": 1.0,
+     "max": 5.0,
+     "typical": 3.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "problem_reveal_payoff",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Launch arc",
+   "definition_fr": "Arc de lancement: problème ou teaser, révélation du produit, démonstration, carte de fin.",
+   "signature": "Segmentation en 3 à 5 blocs d'énergie distincte, pic à la révélation.",
+   "detector": "energy_curve segmentation",
+   "implementation": {
+    "hyperframes": "sections de la composition"
+   },
+   "params": [
+    {
+     "name": "sections",
+     "min": 3.0,
+     "max": 6.0,
+     "typical": 4.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "feature_montage",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Feature montage",
+   "definition_fr": "Suite rapide de fonctionnalités, une par plan.",
+   "signature": "Série de plans de durée semblable avec texte court chacun.",
+   "detector": "scene_detect + ocr",
+   "implementation": {
+    "hyperframes": "scènes instanciées depuis une liste"
+   },
+   "params": [
+    {
+     "name": "per_feature_s",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "s"
+    },
+    {
+     "name": "features",
+     "min": 3.0,
+     "max": 10.0,
+     "typical": 5.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "logo_end_card",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Logo end card",
+   "definition_fr": "Carte finale avec logo, souvent sur fond uni.",
+   "signature": "Image stable finale avec un objet graphique centré, durée 1,5 à 4 s.",
+   "detector": "hold + center object",
+   "implementation": {
+    "hyperframes": "scène finale"
+   },
+   "params": [
+    {
+     "name": "hold",
+     "min": 1.5,
+     "max": 4.0,
+     "typical": 2.5,
+     "unit": "s"
+    },
+    {
+     "name": "logo_width",
+     "min": 0.15,
+     "max": 0.45,
+     "typical": 0.25,
+     "unit": "frame_ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "cta_card",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Call to action",
+   "definition_fr": "Carte d'appel à l'action (adresse, date, disponible maintenant).",
+   "signature": "Texte court stable en fin de film, souvent une URL.",
+   "detector": "ocr: url ou date",
+   "implementation": {
+    "hyperframes": "scène de fin"
+   },
+   "params": [
+    {
+     "name": "hold",
+     "min": 1.5,
+     "max": 4.0,
+     "typical": 2.5,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "cut_density",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Cut density",
+   "definition_fr": "Nombre de coupes par seconde, qui donne l'énergie.",
+   "signature": "Coupes par fenêtre glissante de 2 s.",
+   "detector": "scene_detect",
+   "implementation": {
+    "hyperframes": "durée des scènes"
+   },
+   "params": [
+    {
+     "name": "cuts_per_s",
+     "min": 0.2,
+     "max": 3.0,
+     "typical": 0.8,
+     "unit": "rate"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "tempo_ramp",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Pacing ramp",
+   "definition_fr": "Accélération progressive du montage vers la révélation.",
+   "signature": "Durée des plans décroissante avant un pic.",
+   "detector": "scene_detect: pente des durées",
+   "implementation": {
+    "hyperframes": "durées décroissantes"
+   },
+   "params": [
+    {
+     "name": "ratio_per_shot",
+     "min": 0.6,
+     "max": 0.95,
+     "typical": 0.8,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "safe_margin",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Safe margin",
+   "definition_fr": "Marge où aucun texte important n'entre.",
+   "signature": "Distance minimale entre texte et bords.",
+   "detector": "ocr_bbox to frame edge",
+   "implementation": {
+    "css": "padding en vw"
+   },
+   "params": [
+    {
+     "name": "margin",
+     "min": 0.04,
+     "max": 0.12,
+     "typical": 0.07,
+     "unit": "frame_ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "negative_space",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Negative space",
+   "definition_fr": "Grandes zones vides autour du sujet.",
+   "signature": "Part de surface proche du fond uni.",
+   "detector": "bg_segmentation",
+   "implementation": {
+    "css": "mise en page centrée aérée"
+   },
+   "params": [
+    {
+     "name": "empty_ratio",
+     "min": 0.4,
+     "max": 0.9,
+     "typical": 0.7,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "aspect_ratio",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Aspect ratio",
+   "definition_fr": "Format du cadre: 16:9, 1:1, 9:16, 4:5.",
+   "signature": "Dimensions du fichier et zone active hors bandes.",
+   "detector": "ffprobe + letterbox_detect",
+   "implementation": {
+    "hyperframes": "width et height"
+   },
+   "params": [
+    {
+     "name": "ratio",
+     "min": 0.5625,
+     "max": 2.39,
+     "typical": 1.778,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "loop_seamless",
+   "domain": "image",
+   "category": "structure",
+   "name_en": "Seamless loop",
+   "definition_fr": "Fin qui raccorde parfaitement au début.",
+   "signature": "Différence entre dernière et première image très faible.",
+   "detector": "frame_diff first-last",
+   "implementation": {
+    "gsap": "repeat:-1, valeurs de départ égales aux valeurs de fin"
+   },
+   "params": [],
+   "source": "craft"
+  },
+  {
+   "id": "whoosh",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Whoosh",
+   "definition_fr": "Souffle de passage qui accompagne une transition ou un mouvement rapide.",
+   "signature": "Bruit filtré passe-bande dont la fréquence centrale monte puis descend, enveloppe en cloche de 0,2 à 1 s, souvent panoramiqué.",
+   "detector": "onset + spectral_centroid track: cloche de centroïde",
+   "implementation": {
+    "synth": "bruit rose -> passe-bande (Q 1 à 4) balayé 300 Hz -> 3 kHz -> 600 Hz, enveloppe gaussienne, pan animé",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.2,
+     "max": 1.0,
+     "typical": 0.5,
+     "unit": "s"
+    },
+    {
+     "name": "f_low",
+     "min": 150.0,
+     "max": 600.0,
+     "typical": 300.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "f_peak",
+     "min": 1500.0,
+     "max": 8000.0,
+     "typical": 3000.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "q",
+     "min": 0.7,
+     "max": 4.0,
+     "typical": 1.5,
+     "unit": "q"
+    },
+    {
+     "name": "peak_db",
+     "min": -18.0,
+     "max": -6.0,
+     "typical": -12.0,
+     "unit": "dbfs"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "swish",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Swish",
+   "definition_fr": "Whoosh très court et aigu pour les petits mouvements d'interface.",
+   "signature": "Bruit aigu de 60 à 200 ms, centroïde élevé.",
+   "detector": "onset + centroid",
+   "implementation": {
+    "synth": "bruit blanc -> passe-haut 2 kHz, enveloppe attaque 10 ms décroissance 120 ms",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.06,
+     "max": 0.25,
+     "typical": 0.12,
+     "unit": "s"
+    },
+    {
+     "name": "hp",
+     "min": 1000.0,
+     "max": 5000.0,
+     "typical": 2500.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "riser_noise",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Noise riser",
+   "definition_fr": "Montée de bruit qui crée l'attente avant une révélation.",
+   "signature": "Énergie et centroïde croissants sur 1 à 8 s, coupure nette au temps fort.",
+   "detector": "rms_slope + centroid_slope avant un onset fort",
+   "implementation": {
+    "synth": "bruit blanc -> passe-bas dont la coupure monte exponentiellement 200 Hz -> 12 kHz, gain croissant, coupure à zéro au temps fort",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 1.0,
+     "max": 8.0,
+     "typical": 2.5,
+     "unit": "s"
+    },
+    {
+     "name": "f_start",
+     "min": 100.0,
+     "max": 500.0,
+     "typical": 200.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "f_end",
+     "min": 5000.0,
+     "max": 16000.0,
+     "typical": 10000.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "gain_rise_db",
+     "min": 12.0,
+     "max": 30.0,
+     "typical": 18.0,
+     "unit": "db"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "riser_tonal",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Tonal riser",
+   "definition_fr": "Montée de hauteur continue (glissando), souvent avec trémolo.",
+   "signature": "Fréquence fondamentale croissante, souvent 1 à 2 octaves, modulation d'amplitude accélérée.",
+   "detector": "pitch_track slope",
+   "implementation": {
+    "synth": "oscillateur dent de scie détuné, fréquence exponentielle f0 -> f0*4, LFO d'amplitude 4 -> 16 Hz",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 1.0,
+     "max": 6.0,
+     "typical": 2.0,
+     "unit": "s"
+    },
+    {
+     "name": "octaves",
+     "min": 0.5,
+     "max": 3.0,
+     "typical": 2.0,
+     "unit": "oct"
+    },
+    {
+     "name": "lfo_end",
+     "min": 4.0,
+     "max": 24.0,
+     "typical": 12.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "sub_drop",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Sub drop",
+   "definition_fr": "Chute de grave profond sur le logo ou la révélation.",
+   "signature": "Sinus grave dont la fréquence descend (par exemple 80 Hz -> 30 Hz) sur 0,5 à 2 s, énergie concentrée sous 100 Hz.",
+   "detector": "pitch_track grave + band_energy 20 à 100 Hz",
+   "implementation": {
+    "synth": "sinus avec glissement exponentiel f0 -> f1, légère saturation, enveloppe attaque 5 ms décroissance 1,2 s",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "f_start",
+     "min": 50.0,
+     "max": 120.0,
+     "typical": 70.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "f_end",
+     "min": 25.0,
+     "max": 45.0,
+     "typical": 32.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 2.5,
+     "typical": 1.2,
+     "unit": "s"
+    },
+    {
+     "name": "peak_db",
+     "min": -12.0,
+     "max": -3.0,
+     "typical": -6.0,
+     "unit": "dbfs"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "impact_hit",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Impact",
+   "definition_fr": "Coup bref et puissant sur une apparition ou une coupe.",
+   "signature": "Transitoire très raide (attaque inférieure à 5 ms), large bande, décroissance 0,2 à 1,5 s.",
+   "detector": "onset strength + spectral_flatness",
+   "implementation": {
+    "synth": "couche de bruit court passe-bas + sinus 60 Hz pitché vers le bas + clic, compression",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "attack",
+     "min": 0.001,
+     "max": 0.01,
+     "typical": 0.003,
+     "unit": "s"
+    },
+    {
+     "name": "decay",
+     "min": 0.2,
+     "max": 1.5,
+     "typical": 0.6,
+     "unit": "s"
+    },
+    {
+     "name": "body_hz",
+     "min": 40.0,
+     "max": 120.0,
+     "typical": 60.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "boom",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Boom",
+   "definition_fr": "Grave d'explosion lent et résonant, plus long que l'impact.",
+   "signature": "Énergie sous 150 Hz qui décroît sur 1 à 4 s.",
+   "detector": "band_energy grave",
+   "implementation": {
+    "synth": "bruit passe-bas 150 Hz + sinus 45 Hz, réverbération longue",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "decay",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "ui_click",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "UI click",
+   "definition_fr": "Clic d'interface sur un bouton ou une sélection.",
+   "signature": "Transitoire de 5 à 30 ms, centroïde 2 à 6 kHz, aucune hauteur nette.",
+   "detector": "onset + duration + centroid",
+   "implementation": {
+    "synth": "impulsion filtrée passe-bande 3 kHz, enveloppe 15 ms, éventuellement deux impulsions (enfoncement et relâchement)",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.005,
+     "max": 0.04,
+     "typical": 0.015,
+     "unit": "s"
+    },
+    {
+     "name": "center",
+     "min": 1500.0,
+     "max": 6000.0,
+     "typical": 3000.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "peak_db",
+     "min": -24.0,
+     "max": -10.0,
+     "typical": -16.0,
+     "unit": "dbfs"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "tick",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Tick",
+   "definition_fr": "Petit tic sec pour un compteur, un défilement ou un pas.",
+   "signature": "Transitoires courts réguliers, souvent synchronisés sur des changements de chiffres.",
+   "detector": "onset periodicity",
+   "implementation": {
+    "synth": "impulsion passe-haut 4 kHz, 5 ms",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "rate",
+     "min": 4.0,
+     "max": 30.0,
+     "typical": 12.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "pop",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Pop",
+   "definition_fr": "Bulle sonore douce qui accompagne une apparition arrondie.",
+   "signature": "Sinus court à glissement montant (par exemple 400 -> 900 Hz) en 40 à 100 ms.",
+   "detector": "pitch_track court",
+   "implementation": {
+    "synth": "sinus avec glissement montant rapide, enveloppe 60 ms",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "f_start",
+     "min": 200.0,
+     "max": 600.0,
+     "typical": 400.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "f_end",
+     "min": 600.0,
+     "max": 1500.0,
+     "typical": 900.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "duration",
+     "min": 0.03,
+     "max": 0.12,
+     "typical": 0.06,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "key_typing",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Keyboard typing",
+   "definition_fr": "Frappe de touches synchronisée avec un texte qui se tape.",
+   "signature": "Suite de clics irréguliers (jitter 10 à 30 %) à 8 à 20 par seconde.",
+   "detector": "onset rate + jitter",
+   "implementation": {
+    "synth": "clics filtrés à hauteur et volume aléatoires autour d'une moyenne",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "rate",
+     "min": 6.0,
+     "max": 20.0,
+     "typical": 12.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "jitter",
+     "min": 0.05,
+     "max": 0.4,
+     "typical": 0.2,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "chime",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Notification chime",
+   "definition_fr": "Courte note cristalline pour une notification ou une validation.",
+   "signature": "Une à trois notes sinusoïdales avec harmoniques et décroissance de 0,3 à 1,5 s.",
+   "detector": "pitch_track + harmonicity",
+   "implementation": {
+    "synth": "deux sinus en tierce ou quinte, synthèse FM légère, décroissance exponentielle",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "notes",
+     "min": 1.0,
+     "max": 3.0,
+     "typical": 2.0,
+     "unit": "n"
+    },
+    {
+     "name": "decay",
+     "min": 0.3,
+     "max": 1.5,
+     "typical": 0.7,
+     "unit": "s"
+    },
+    {
+     "name": "f0",
+     "min": 600.0,
+     "max": 2000.0,
+     "typical": 1046.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "glitch_sfx",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Glitch",
+   "definition_fr": "Bruits numériques hachés accompagnant une transition glitch.",
+   "signature": "Fragments de 10 à 60 ms répétés, coupures brutales, bitcrush.",
+   "detector": "onset density très élevée + spectral_flux",
+   "implementation": {
+    "synth": "bruit et tonalités hachés, réduction de résolution, répétitions",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.1,
+     "max": 0.5,
+     "typical": 0.2,
+     "unit": "s"
+    },
+    {
+     "name": "slice",
+     "min": 0.01,
+     "max": 0.06,
+     "typical": 0.025,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "reverse_swell",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Reverse swell",
+   "definition_fr": "Son inversé qui gonfle jusqu'au temps fort (cymbale ou réverbération inversée).",
+   "signature": "Enveloppe croissante exponentielle qui s'arrête net au temps fort, spectre large.",
+   "detector": "rms_slope + coupure nette",
+   "implementation": {
+    "synth": "bruit filtré avec enveloppe exponentielle croissante, ou queue de réverbération rendue puis inversée",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.5,
+     "max": 3.0,
+     "typical": 1.2,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "shimmer",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Shimmer",
+   "definition_fr": "Scintillement aigu qui souligne un reflet ou une apparition lumineuse.",
+   "signature": "Partiels aigus (supérieurs à 4 kHz) modulés, sans attaque marquée.",
+   "detector": "band_energy aigu + modulation",
+   "implementation": {
+    "synth": "sinus aigus détunés avec trémolo rapide et réverbération",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "f",
+     "min": 3000.0,
+     "max": 10000.0,
+     "typical": 6000.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "duration",
+     "min": 0.4,
+     "max": 2.0,
+     "typical": 0.8,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "braam",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Braam",
+   "definition_fr": "Gros accord grave et cuivré de bande-annonce.",
+   "signature": "Accord grave soutenu riche en harmoniques avec attaque rapide et souvent sub.",
+   "detector": "harmonicity + band_energy 60 à 400 Hz",
+   "implementation": {
+    "synth": "dents de scie détunées à l'octave, filtre passe-bas ouvert puis refermé, saturation",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "f0",
+     "min": 40.0,
+     "max": 80.0,
+     "typical": 55.0,
+     "unit": "Hz"
+    },
+    {
+     "name": "duration",
+     "min": 1.0,
+     "max": 4.0,
+     "typical": 2.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "logo_sting",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Logo sting",
+   "definition_fr": "Signature sonore courte de 1 à 3 s sur le logo final.",
+   "signature": "Combinaison d'un impact ou sub drop et d'un élément tonal, aligné sur l'apparition du logo.",
+   "detector": "onset aligné sur scene logo",
+   "implementation": {
+    "synth": "impact + sub drop + chime, tous calés sur l'instant du logo",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 1.0,
+     "max": 3.5,
+     "typical": 2.0,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "music_bed",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Music bed",
+   "definition_fr": "Musique de fond qui porte le rythme du film.",
+   "signature": "Tempo régulier, structure en sections, énergie mesurable.",
+   "detector": "beat_track + rms par section",
+   "implementation": {
+    "synth": "séquenceur en code: grosse caisse, caisse claire, basse, nappe, sur la grille du tempo mesuré, sans reprendre la mélodie",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "bpm",
+     "min": 80.0,
+     "max": 140.0,
+     "typical": 110.0,
+     "unit": "bpm"
+    },
+    {
+     "name": "bars",
+     "min": 8.0,
+     "max": 64.0,
+     "typical": 24.0,
+     "unit": "n"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "drop",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Drop",
+   "definition_fr": "Moment où toute la musique entre après une montée ou un silence.",
+   "signature": "Saut de RMS et d'énergie grave après une montée ou un creux.",
+   "detector": "rms jump + low band jump",
+   "implementation": {
+    "synth": "toutes les pistes du séquenceur réactivées au temps fort",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "jump_db",
+     "min": 6.0,
+     "max": 20.0,
+     "typical": 10.0,
+     "unit": "db"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "pre_drop_silence",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Pre-drop silence",
+   "definition_fr": "Silence bref juste avant le temps fort de révélation.",
+   "signature": "RMS proche du plancher sur 0,1 à 1 s immédiatement suivi d'un onset fort.",
+   "detector": "rms floor then onset",
+   "implementation": {
+    "synth": "coupure du bus musique avant le temps fort",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.1,
+     "max": 1.0,
+     "typical": 0.25,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "tape_stop",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Tape stop",
+   "definition_fr": "Ralentissement brutal de la musique jusqu'à l'arrêt.",
+   "signature": "Hauteur et tempo qui chutent ensemble en 0,3 à 1,5 s.",
+   "detector": "pitch_track descente globale",
+   "implementation": {
+    "synth": "lecture du bus musique à vitesse décroissante (ré-échantillonnage)",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "duration",
+     "min": 0.3,
+     "max": 1.5,
+     "typical": 0.6,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "stutter",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Stutter",
+   "definition_fr": "Répétition hachée d'un fragment musical avant une transition.",
+   "signature": "Fragments répétés à intervalle de note (1/8, 1/16), accélérant parfois.",
+   "detector": "onset periodicity sur fragments identiques",
+   "implementation": {
+    "synth": "répétition d'une tranche du bus musique",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "division",
+     "min": 4.0,
+     "max": 32.0,
+     "typical": 16.0,
+     "unit": "note_div"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "sidechain_duck",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Ducking",
+   "definition_fr": "La musique baisse sous la voix ou sous un effet fort.",
+   "signature": "RMS de la musique qui chute de 3 à 12 dB pendant la voix ou l'effet, retour en 100 à 400 ms.",
+   "detector": "rms musique vs événements",
+   "implementation": {
+    "synth": "compresseur piloté ou automation de gain",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "depth_db",
+     "min": 3.0,
+     "max": 12.0,
+     "typical": 6.0,
+     "unit": "db"
+    },
+    {
+     "name": "release",
+     "min": 0.1,
+     "max": 0.5,
+     "typical": 0.25,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "stereo_pan_motion",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Panning follows motion",
+   "definition_fr": "Le son se déplace en stéréo dans le sens du mouvement à l'image.",
+   "signature": "Balance gauche droite qui suit la direction du flux optique.",
+   "detector": "stereo_balance vs optical_flow direction",
+   "implementation": {
+    "synth": "StereoPanner animé selon la position x de l'élément",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "pan_range",
+     "min": 0.2,
+     "max": 1.0,
+     "typical": 0.7,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "reverb_tail",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Reverb tail",
+   "definition_fr": "Queue de réverbération qui prolonge un impact ou une note.",
+   "signature": "Décroissance exponentielle longue après la fin du son direct.",
+   "detector": "decay time (RT60) estimation",
+   "implementation": {
+    "synth": "réverbération à convolution sur réponse impulsionnelle synthétique (bruit exponentiel)",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "rt60",
+     "min": 0.4,
+     "max": 4.0,
+     "typical": 1.5,
+     "unit": "s"
+    },
+    {
+     "name": "wet",
+     "min": 0.1,
+     "max": 0.5,
+     "typical": 0.25,
+     "unit": "ratio"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "loudness_target",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Loudness target",
+   "definition_fr": "Sonie intégrée du mixage final.",
+   "signature": "LUFS intégrés et vrai crête. Réseaux sociaux autour de -14 LUFS, diffusion EBU R128 à -23 LUFS.",
+   "detector": "ffmpeg ebur128",
+   "implementation": {
+    "synth": "normalisation loudnorm en fin de chaîne",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "lufs",
+     "min": -23.0,
+     "max": -9.0,
+     "typical": -14.0,
+     "unit": "lufs"
+    },
+    {
+     "name": "true_peak",
+     "min": -2.0,
+     "max": -0.5,
+     "typical": -1.0,
+     "unit": "dbtp"
+    }
+   ],
+   "source": "ebu"
+  },
+  {
+   "id": "spectral_balance",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Spectral balance",
+   "definition_fr": "Répartition de l'énergie entre graves, médiums et aigus.",
+   "signature": "Énergie par bandes (sub, grave, médium, aigu) et centroïde moyen.",
+   "detector": "band_energy + centroid",
+   "implementation": {
+    "synth": "égaliseur par bandes sur le bus final",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "centroid",
+     "min": 800.0,
+     "max": 4000.0,
+     "typical": 1800.0,
+     "unit": "Hz"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "transient_density",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "SFX density",
+   "definition_fr": "Nombre d'effets sonores ponctuels par seconde.",
+   "signature": "Onsets hors grille musicale par seconde.",
+   "detector": "onset detection minus beat grid",
+   "implementation": {
+    "synth": "planificateur d'effets calé sur les événements image",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "per_s",
+     "min": 0.3,
+     "max": 4.0,
+     "typical": 1.2,
+     "unit": "rate"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "hit_sync_image",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Audio-visual sync",
+   "definition_fr": "Alignement des effets sonores sur les événements image.",
+   "signature": "Écart entre onsets audio et événements image (coupe, impact, apparition).",
+   "detector": "onset vs scene/event times",
+   "implementation": {
+    "synth": "planification des effets aux instants mesurés",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "tolerance",
+     "min": 0.0,
+     "max": 0.04,
+     "typical": 0.02,
+     "unit": "s"
+    }
+   ],
+   "source": "craft"
+  },
+  {
+   "id": "ambience_bed",
+   "domain": "sound",
+   "category": "sound",
+   "name_en": "Room tone",
+   "definition_fr": "Ambiance continue très discrète qui évite le silence numérique.",
+   "signature": "Plancher de bruit stable à -50 à -35 dBFS.",
+   "detector": "noise floor estimation",
+   "implementation": {
+    "synth": "bruit rose très filtré à faible niveau",
+    "webaudio": "OfflineAudioContext, mêmes noeuds"
+   },
+   "params": [
+    {
+     "name": "level_db",
+     "min": -55.0,
+     "max": -35.0,
+     "typical": -45.0,
+     "unit": "dbfs"
+    }
+   ],
+   "source": "craft"
+  }
+ ],
+ "counts": {
+  "total": 177,
+  "by_domain": {
+   "image": 146,
+   "sound": 31
+  },
+  "by_category": {
+   "camera": 12,
+   "ease": 22,
+   "grade": 13,
+   "principle": 13,
+   "product3d": 10,
+   "sound": 30,
+   "structure": 11,
+   "text": 19,
+   "timing": 8,
+   "transition": 17,
+   "typography": 8,
+   "ui": 14
+  }
+ }
+}

@@ -83,7 +83,10 @@ def measure(frames):
         c = (frame - bg) / (fg - bg)
         peak = float(np.percentile(c, 99.95))
         if peak < 0.03:
-            rows.append(None)
+            # 12 October 2026, 09:50 CEST: an invisible frame is an observation (opacity 0), not a gap; dropping it
+            # removed the left plateau and let the fitter stretch the window (opacity error 30 %).
+            # FR : une image invisible est une mesure d'opacite nulle, pas un trou.
+            rows.append({"t": i / FPS, "alpha": 0.0, "invisible": True})
             continue
         support = c > 0.25 * peak
         core = c > 0.75 * peak
@@ -127,7 +130,7 @@ def main():
         meas_err = {}
         fits = {}
         for name, key in (("x", "x"), ("y", "y"), ("scale", "scale"), ("opacity", "alpha")):
-            valid = [(r["t"], r[key]) for r in rows if r is not None and (name != "scale" or r["alpha"] > 0.15)]
+            valid = [(r["t"], r[key]) for r in rows if key in r and (name != "scale" or r["alpha"] > 0.15)]
             tt = np.array([v[0] for v in valid])
             vv = np.array([v[1] for v in valid])
             truth = channel(name, tt)

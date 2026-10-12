@@ -1,0 +1,497 @@
+# ZenRay Motion Design, architecture du logiciel zrmd, brouillon de synthèse (12 October 2026)
+
+Projet Assets `zenray-motion-design`, atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`. Ce brouillon réunit les dix livrables de recherche R01 à R10 (dossier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/`), le vocabulaire `R09-motion-vocabulary.json` et l'état réel du dépôt moteur `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign` (commit `c1f3d27`), afin de fixer une seule architecture là où les livrables proposaient parfois des formes concurrentes. Les contradictions relevées et leur résolution proposée figurent dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/PLAN-draft.md`, section 6. (12 October 2026)
+
+Il complète, sans le remplacer encore, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/docs/ARCHITECTURE.md` (71 lignes, écrit le même jour pendant la construction de la première tranche) ; une fois validé par Matthieu, ce brouillon deviendrait ce fichier-là, qui ferait alors seul foi pour le code. (12 October 2026)
+
+## 0. Conventions de preuve (12 October 2026)
+
+| Marque | Sens |
+|---|---|
+| [M] | mesuré : chiffre obtenu par une commande sur ce Mac, ici ou dans le livrable cité entre parenthèses |
+| [L] | lu : constaté dans le code, un fichier de données ou une documentation citée |
+| [P] | proposé ou supposé : choix de conception non encore éprouvé, à transformer en test |
+
+Les livrables sont cités par leur numéro (R01 à R10) et leur section ; les sources externes le sont par URL, rassemblées en section 17. (12 October 2026)
+
+## 1. Ce que fait le logiciel, et où se trouve le levier (12 October 2026)
+
+zrmd prend une vidéo de motion design de référence et en tire, sans aucune IA générative pour produire une image ou un son, un storyboard, une bible graphique (polices, couleurs, mouvements, courbes d'animation, usage de la 3D, effets sonores, musique), puis une reproduction écrite en code et rendue par HyperFrames, itérée par versions V_001 à V_999, dont les effets sonores sont refaits par synthèse et dont la fidélité se mesure sur quatre dimensions, rythme, animation, image et son, avec une cible de 0,99 sur chacune [L : `state.json`, champ `goal_x`]. (12 October 2026)
+
+Le levier ne tient pas à la reproduction d'une vidéo donnée, qui reste un exercice, mais à la bibliothèque de recettes mesurées qu'elle laisse derrière elle : chaque référence traitée ajoute au registre des coups de mouvement, des courbes, des recettes sonores et des étalonnages vérifiés, de sorte que la vidéo suivante coûte moins que la précédente, exactement comme la base Copernicus a rendu la quatrième height plus rapide que la première [P, par analogie avec R05 §3]. (12 October 2026)
+
+## 2. Principes qui gouvernent toutes les pièces (12 October 2026)
+
+1. **Déterminisme.** Tout temps est un indice d'image entier dans les paramètres et devient `image / fps` à six décimales dans le HTML ; aucune horloge, aucun minuteur, aucun `requestAnimationFrame` ne porte d'état visuel ; tout aléa vient d'un générateur à graine (mulberry32 côté page, `numpy.random.default_rng(seed)` côté Python) dont la graine vit dans les paramètres [L : R01 §5 et §15, contrats C3 et C6]. (12 October 2026)
+2. **Aucune IA générative pour produire.** Les images et les sons sortent de recettes paramétriques ; des modèles discriminants figés peuvent servir à **mesurer** (séparation Demucs, détecteur de texte DB, OCR tesseract, éventuellement CLAP en second avis) et n'entrent jamais dans un rendu, sous réserve de la décision D06 du plan [L : R03 §2, R04 §4, R08 §11]. Les sous-commandes HyperFrames `tts`, `remove-background`, `transcribe`, `models`, `capture`, `publish` et `cloud` sont refusées par l'enveloppe [L : R01 §13 et §14]. (12 October 2026)
+3. **Loi HDA.** Une définition, une interface de paramètres, des instances : `settings.json` porte toutes les valeurs du moteur, le registre porte toutes les recettes, une version porte seulement ses paramètres et ses surcharges ; huit paramètres exposés au plus par catégorie sur toute interface d'itération [L : `settings.json` du dépôt, doctrine HDA du 30 September 2026]. (12 October 2026)
+4. **Mesurer, jamais copier.** La référence produit des nombres, jamais des pixels, des échantillons, des glyphes ou un logo dans un livrable ; la musique ne se reprend que par son tempo, sa structure et son énergie (section 15). (12 October 2026)
+5. **Une commande, sans agent.** La reproduction se lance par une seule commande qui écrit `status.json` à chaque étape et sort avec un code qui dit si le contrat est tenu ; l'agent, le serveur MCP et le site ne font que lancer et lire [L : R05 §4.1 et §5.6]. (12 October 2026)
+6. **Vérifier dans les deux sens.** Chaque mesure, chaque porte et chaque lint possède un cas vert connu et un cas rouge connu, et un vérificateur qui n'a jamais viré au rouge ne compte pas [L : doctrine Memory1, R03 §6.3, R04 §11.4]. (12 October 2026)
+7. **Versions immuables.** Une version écrite ne change plus ; une correction devient la version suivante, avec son parent et ses surcharges [L : `zrmd/versions.py`]. (12 October 2026)
+8. **Même pipeline.** La reproduction se mesure après le même encodage que la référence (codec, sous-échantillonnage de chrominance, réglages), aux mêmes indices d'image, en pleine définition, sinon le plancher du codec se compte comme une erreur [M : R04 §11.4, référence brute contre encodée à 0,987 sur la couleur]. (12 October 2026)
+
+## 3. Vue d'ensemble des modules (12 October 2026)
+
+```
+                 +-----------------------------+
+   site  ------> | service com.zenray.motion   |  127.0.0.1:3102, file _requests/ dans zenray-data
+ (ZenRayProgress)|  (scripts/Motion, Node)     |
+                 +--------------+--------------+
+   agent ------> mcp/zrmotion.py (Python standard, CLI et --mcp)
+                                |
+                                v
+                 +-----------------------------+
+                 | zrmd CLI (Python 3.11,      |  /Users/zenray/.venvs/zenray-motion
+                 | venv zenray-motion)         |
+                 |  ingest analyze identify    |
+                 |  bible storyboard plan fit  |
+                 |  emit render mix verify     |
+                 |  reproduce iterate edit     |
+                 +------+---------------+------+
+                        |               |
+        Scripts/RunHyperframes.mjs   moteurs 3D hors ligne
+        tooling/ HyperFrames épinglé  Blender -b, hython, husk
+        chrome-headless-shell géré
+```
+
+| Module | Rôle | État au 12 October 2026 | Origine |
+|---|---|---|---|
+| `zrmd.settings` | lecture de `settings.json` par `get("a.b")` | existe [L] | dépôt |
+| `zrmd.media` | sonde, lecture d'images et d'audio par ffmpeg, WAV, SHA-256 | existe [L] | dépôt |
+| `zrmd.versions` | dossiers V_001 à V_999, parent et surcharges, jamais d'écrasement | existe [L] | dépôt |
+| `zrmd.ingest` | mise en cache d'une référence, empreinte, `reference.json` | à verser depuis `Scripts/FetchReference.py` (953 lignes) [L] | R02 |
+| `zrmd.analyze.shots` | coupes à l'image près, fondus, flashs, cadence effective | existe, à valider contre une vérité connue [L] | dépôt, R04 §2 |
+| `zrmd.analyze.layers` | soustraction de fond, composantes, pistes d'éléments | existe [L] | dépôt, R04 §4 |
+| `zrmd.analyze.curves` | ajustement des courbes d'animation | existe, à fusionner avec `EaseFit.py` [L] | dépôt, R04 §5 |
+| `zrmd.analyze.typography`, `effects` | métriques de glyphes, balayages, lueurs, flous | existent [L] | dépôt, R04 §6 et §9 |
+| `zrmd.analyze.camera`, `palette`, `grid`, `probe3d` | caméra 2D par similarité, palette CIEDE2000 par rôles, grille, sonde 3D | à écrire depuis `AnalyzeCamera.py`, `MeasureDna.py`, `Run3dProbe.py` [L] | R04, R08 |
+| `zrmd.audio.events` | séparation harmonique et percussive, attaques, descripteurs | existe, à passer sur les pistes séparées [L] | dépôt, R03 |
+| `zrmd.audio.separate`, `music`, `describe`, `classify` | Demucs sur MPS, tempo, grille, sections, énergie, pompage, gate, arbre de règles | à écrire [P] | R03 §4 à §8 |
+| `zrmd.identify` | archétype de chaque plan, masques de validité, verdicts `needs_choice` et `needs_asset` | à écrire [P] | R05 §5.2 |
+| `zrmd.bible`, `zrmd.storyboard` | bible graphique et storyboard en JSON, planches HTML | à écrire, en reprenant la mise en page de `BuildStoryboard.py` [L] | R08 §4 |
+| `zrmd.plan` | des détecteurs aux termes du vocabulaire, puis aux coups proposés | à écrire [P] | R09 §5 |
+| `zrmd.fit` | ajusteurs en forme close, EaseFit, CMA-ES multi-départs pour le son | partiel [L] | R03 §6, R04 §5 |
+| `zrmd.recipes.picture`, `recipes.sound` | types de coups et 18 recettes sonores numpy | à écrire depuis `SfxRecipes.py`, `MakeAudio.py`, `SoundF1.py` [L] | R03 §3, R08 §7 |
+| `zrmd.emit.hyperframes` | cuisson des paramètres en projet HyperFrames autonome par format | existe [L] | dépôt, R01 §15 |
+| `zrmd.render` | appel de l'enveloppe épinglée, profils aperçu et vérification | existe [L] | dépôt, R01 §14 |
+| `zrmd.mix` | gains, ducking, limiteur, sonie | à écrire [P] | R03 §9 |
+| `zrmd.verify` | fidélité par dimension, portes, lint de droits | `fidelity.py` existe en v1, à refondre (section 8) [L] | R03 §7, R04 §11, R05 §5.5 |
+| `zrmd.reproduce` | orchestrateur, plans QUICK et FULL, `status.json`, codes de sortie | `reproduce/textcard.py` existe pour une famille [L] | R05 §5.6 |
+| `zrmd.three` | `camera.json`, Blender `-b`, hython, ProRes 4444 | à écrire [P] | R10 §5 à §7 |
+| `zrmd.cli` | sous-commandes, une par outil MCP | déclaré dans `pyproject.toml`, fichier absent [L] | R07 §8, R08 §13.2 |
+| `mcp/zrmotion.py` | serveur MCP, façade sur la CLI | dossier vide [L] | R07 §3 et §4 |
+| `Scripts/BuildMotion1.py`, `BuildVocabulary.py` | base lisible générée depuis le registre | à écrire, générateur R09 existant [L] | R05 §5.3, R09 §4 |
+
+Un seul environnement de calcul, `/Users/zenray/.venvs/zenray-motion` (Python 3.11.15, numpy, scipy, librosa, OpenCV 5.0.0, scikit-image, pyloudnorm, soundfile, demucs 4.1.0, torch 2.14.1) [M : R08 §7.3 et §13.1] ; les venvs `motion-design` et `deecho-audio`, employés par l'étude 01 et par les laboratoires R03 et R04, ne servent plus au moteur [P]. Le serveur MCP, lui, tourne sur le Python système 3.9.6 sans dépendance, pour ne jamais tomber avec l'environnement de calcul [L : R07 §3.1]. (12 October 2026)
+
+## 4. Arborescence (12 October 2026)
+
+Quatre racines, qui ne se confondent jamais : le code, l'atelier, le cache de références et le skill. (12 October 2026)
+
+```
+<repo> = dépôt git du moteur (emplacement définitif à fixer, décision D02 du plan)
+  settings.json            interface unique de paramètres (HDA)
+  pyproject.toml           paquet zrmd, entrée zrmd.cli:main
+  zrmd/                    code (section 3)
+  registry/                bibliothèque de recettes, source unique (section 6)
+    moves.json transitions.json type.json sfx.json music.json vocabulary.json
+    calibration/           eases-gsap-3.14.2.json, css-blur.json, fonts-metrics.json,
+                           synth-unit.json, codec-floor.json
+  vendor/                  gsap.min.js 3.14.2, three r185 (fichiers locaux épinglés)
+  fonts/                   polices ouvertes servies localement (OFL), jamais celles de la référence
+  tooling/                 package.json, .npmrc, package-lock.json (HyperFrames exact), npm ci
+  Scripts/                 RunHyperframes.mjs (enveloppe), BuildMotion1.py, BuildVocabulary.py
+  mcp/                     zrmotion.py, tests de fumée
+  tests/                   vert et rouge pour chaque mesure, porte et lint
+
+/Users/zenray/.claude/tmp/tmp-zenray-motion-design/      atelier, archivé par Assets
+  state.json  CLAUDE.md  AGENTS.md
+  docs/                    research/, ARCHITECTURE-draft.md, PLAN-draft.md
+  references/<slug>/       reference.json (métadonnées seules)
+  references/whatships-catalogue.json
+  analyses/<slug>/<sha12>/ index.json, shots.json, layers.json, curves.json, camera.json,
+                           palette.json, typography.json, effects.json, audio-events.json,
+                           music.json, mix.json, identify.json   (nombres seulement)
+  motions/<motion_id>/
+    motion.json  bible.json  storyboard.json
+    payloads/<sha256>.json  trajectoires denses, enveloppes, courbes (partagées entre versions)
+    jobs/<job_id>/          status.json, run.log, run.pid
+    V_NNN/
+      version.json  params.json  build.json  fidelity.json  REPORT.md  status.json  log.json
+      16x9/ 9x16/ 1x1/      un projet HyperFrames autonome par format
+      sound/                stems WAV 48 kHz, events.json
+      3d/                   scripts, paramètres, .glb, séquences, cache par empreinte
+      board/                planches de NOS rendus seulement
+      renders/              MP4 (exclus de l'archive sauf versions validées)
+  Scripts/                 FetchReference.py, BuildWhatshipsCatalogue.py (à verser dans zrmd.ingest)
+
+/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/   cache local, jamais archivé
+  <slug>/<vidéo>.mp4  stems/  frames/  boards/  calibration/  study01-scratch/
+
+/Users/zenray/.claude/skills/zenray-motion-design/            skill
+  SKILL.md  Motion1.md (généré)  scripts/motion/reproduce.sh et mcp.sh (lanceurs fixes)
+```
+
+Trois règles tiennent cette arborescence. Toute image ou tout son qui provient de la référence, planche comprise, reste dans le cache [L : R05 §5.6, R07 §3.4]. Les analyses se rangent par empreinte de la référence et par empreinte des réglages d'analyse, si bien qu'une analyse se réutilise tant que ni la vidéo ni les seuils n'ont changé [P]. Le dossier d'atelier actif se résout par le contexte Assets (`projectWorkshopPath` après un LOAD) et non par un chemin écrit en dur, la valeur `paths.workshop` de `settings.json` restant un défaut [L : R06 §5.2]. (12 October 2026)
+
+## 5. Contrats de données (12 October 2026)
+
+Chaque fichier porte un champ `schema` versionné ; un lecteur refuse un schéma inconnu en le nommant, plutôt que de lire à moitié [P]. Les identifiants et les clés sont en anglais ; les dates suivent le format maison `12 October 2026` dans les champs lisibles et ISO 8601 dans les horodatages machine [L : doctrine du 7 September 2026]. (12 October 2026)
+
+### 5.1 Référence, `references/<slug>/reference.json` (12 October 2026)
+
+Schéma existant `zenray-motion-design/reference@1`, écrit par `FetchReference.py` : `slug`, `page` (URL publique), `source` (URL du média d'origine), `family` (`whatships`, `x`, `youtube`, `generic`), `sha256`, `bytes`, `durationS`, `video` (`codec`, `width`, `height`, `fps`, `frames`, `pixFmt`), `audio` (`codec`, `sampleRate`, `channels`, `durationS` ou `null`), `cachePath` (chemin absolu dans le cache), `fetchedAt`, `notes` [L : R02]. Aucun pixel ni texte de la référence n'y figure. (12 October 2026)
+
+### 5.2 Analyse, `analyses/<slug>/<sha12>/` (12 October 2026)
+
+`index.json` lie chaque fichier à l'empreinte de la vidéo, à l'empreinte des réglages `analysis.*` et au commit du moteur ; un fichier dont l'une des trois a changé est recalculé [P].
+
+| Fichier | Contenu (nombres seulement) | Producteur |
+|---|---|---|
+| `shots.json` | coupes en indices d'image, type (franche, fondu, flash, volet), score, plans avec bornes, cadence effective | `zrmd.analyze.shots` [L] |
+| `layers.json` | pistes d'éléments : boîtes, centre, échelle, rotation, opacité, couleur de cœur, par image | `zrmd.analyze.layers` [L] |
+| `curves.json` | par canal et par élément : ease nommée ou Bézier, `t0`, `d`, `a`, `b`, BIC, ex aequo, confiance | `zrmd.analyze.curves` avec EaseFit [L] |
+| `camera.json` | par plan : similarité intégrée (translation, roulis, zoom), courbes ajustées, classement 2D, 2,5D ou 3D | `zrmd.analyze.camera` [P] |
+| `palette.json` | rôles (fond haut et bas, texte, accent, secondaire) en Lab et sRGB, dégradés ajustés | `zrmd.analyze.palette` [P] |
+| `typography.json` | hauteur de capitale et d'x, épaisseur de trait, contraste, chasse, empattements, italique, nombre de caractères et casse ; **jamais le texte lu** | `zrmd.analyze.typography` [L] |
+| `effects.json` | flou σ, lueur (rayon, intensité), grain (écart type, corrélation temporelle), aberration, vignette | `zrmd.analyze.effects` [L] |
+| `audio-events.json` | par événement : instant d'ancrage, fenêtre, enveloppe, attaque, durée à -20 dB, forme log-mel, centroïde et sa trajectoire, raie et proéminence, planéité, classe proposée, piste source | `zrmd.audio.events` et `classify` [L, P] |
+| `music.json` | tempo, phase, temps et premiers temps, sections, courbe d'énergie à court terme, tonalité, densité d'attaques, profondeur de pompage, cadence de gate, équilibre par bande | `zrmd.audio.music` [P] |
+| `mix.json` | sonie intégrée, à court terme, plage, crête vraie, rapport effets sur musique par section, profondeur de ducking | `zrmd.mix` [P] |
+| `identify.json` | archétype par plan (carte texte, graphique, plaque, montage, interface, produit 3D), masques de validité en boîtes temporisées, verdicts | `zrmd.identify` [P] |
+
+Le texte lu par OCR ne sert qu'en mémoire, pour calibrer l'interlettrage ; il n'est jamais écrit [L : R04 §4, `zrmd/reproduce/textcard.py`]. (12 October 2026)
+
+### 5.3 Bible graphique, `motions/<motion_id>/bible.json` (12 October 2026)
+
+```json
+{
+  "schema": "zrmd/bible@1",
+  "note": "12 October 2026: illustrative shape, values in angle brackets are placeholders",
+  "reference": {"slug": "onekey-pro-2", "sha256": "<sha256>", "window": {"startFrame": 0, "endFrame": 4080}},
+  "typography": [{"role": "caption", "class": "grotesk", "capHeightPx": "<px>", "strokeRatio": "<r>", "trackingEm": "<em>",
+                  "chosen": {"family": "Inter", "file": "fonts/InterVariable.ttf", "licence": "OFL-1.1", "weight": "<w>", "metricGapPct": "<pct>"}}],
+  "palette": {"roles": {"background": "<hex>", "text": "<hex>", "accent": ["<hex>"]}, "gradients": []},
+  "motion": {"easeHistogram": [{"ease": "power2.out", "share": "<0..1>"}],
+             "terms": [{"id": "mask_reveal_line", "count": "<n>", "params": {"duration": "<s>"}}],
+             "staggerS": "<s>", "heroDurationS": "<s>"},
+  "camera": {"moves": [{"shot": "S04", "term": "push_in", "ease": "power2.out"}]},
+  "threeD": [{"shot": "S14", "class": "rigid-3d", "route": "threejs", "confidence": "<0..1>"}],
+  "sound": {"sfxClasses": [{"class": "whoosh", "count": "<n>"}],
+            "music": {"bpm": "<bpm>", "sections": [], "energyCurve": "payloads/<sha>.json", "pumpDepthDb": "<db>", "gateDivision": "<n>"},
+            "mix": {"integratedLufs": "<lufs>", "truePeakDbtp": "<dbtp>", "sfxOverMusicLu": "<lu>"}},
+  "vocabularyVersion": "R09@1"
+}
+```
+
+Chaque entrée renvoie à un terme du vocabulaire (R09) et à son détecteur, de sorte que la bible se lit comme une liste de choix mesurés et non comme une description ; une page `bible.html` en est le rendu lisible, avec les courbes en petits tracés et les palettes en pastilles [P : R06 §9.4]. (12 October 2026)
+
+### 5.4 Storyboard, `motions/<motion_id>/storyboard.json` (12 October 2026)
+
+Une entrée par plan : `id` (`S01`), `startFrame`, `endFrame`, `archetype`, `terms` (identifiants du vocabulaire), `moves` proposés, `textSlots` (nombre de caractères, casse, jambages, boîte d'encre, jamais le texte), `soundEvents` (renvois aux événements), `notes` paraphrasées et originales. Deux planches en sont tirées : celle qui montre des images de la référence vit dans `refcache/<slug>/boards/`, celle de nos rendus dans `V_NNN/board/` [L : R05 §5.6, R07 §4.5]. (12 October 2026)
+
+### 5.5 Motion, `motions/<motion_id>/motion.json` (12 October 2026)
+
+```json
+{
+  "schema": "zrmd/motion-identity@1",
+  "id": "<kebab-case local id>",
+  "publicId": "zrmd-0001",
+  "title": "<titre privé>",
+  "reference": {"slug": "onekey-pro-2", "sha256": "<sha256>", "startFrame": 296, "endFrame": 377},
+  "family": "textcard",
+  "formats": ["16x9"],
+  "latest": "V_008",
+  "best": "V_007",
+  "versions": ["V_001", "V_008"],
+  "updated": "12 October 2026"
+}
+```
+
+Le fichier existant ne porte que `latest`, `versions` et `updated` [L] ; les champs ajoutés sont proposés [P]. `publicId` est le seul identifiant qui sorte vers le site et les dépôts publics, conformément à la règle anti-fuite de ZenRayProgress [L : R06 §4.2 et §9.2]. (12 October 2026)
+
+### 5.6 Version, `V_NNN/version.json`, `params.json` et `build.json` (12 October 2026)
+
+`version.json` existe déjà (`version`, `parent`, `created`, `note`, `author`, `overrides`) [L] ; on y ajoute `mode` (`fit`, `params`, `format`, `edit`, `instruction`), `request` (identifiant de demande du site), `state` (`reserved`, `cooked`, `rendered`, `verified`, `failed`) et `paramsSha256` [P]. Le numéro se réserve par création exclusive du dossier, un échec gardant son numéro [L : R07 §4.7]. (12 October 2026)
+
+`params.json` est l'unique définition de la version, la composition n'en étant qu'une cuisson. Le schéma actuel `zrmd/motion@1` porte `canvas` (largeur, hauteur, fps, nombre d'images), `fonts` (fichiers locaux), `measured` (mesures sources) et `layers`, chacun avec ses `tracks` de tweens `{start_frame, frames, from, to, ease}` [L : `V_008/params.json`]. La version proposée `zrmd/params@2` garde cette forme et ajoute trois blocs, en reprenant la recette par coups de R05 §5.4 [P] : (12 October 2026)
+
+```json
+{
+  "schema": "zrmd/params@2",
+  "canvas": {"width": 1920, "height": 1080, "fps": 60, "frames": 81},
+  "fonts": [{"family": "ZrInter", "file": "fonts/InterVariable.ttf"}],
+  "layers": [{"id": "caption", "type": "text", "z": 2, "tracks": {"scale": [{"start_frame": 7, "frames": 22, "from": 1.1894, "to": 1.0086, "ease": "cubic-bezier(0.539,0.182,0.453,0.915)"}]}}],
+  "shots": {"S02": {"startFrame": 0, "endFrame": 81,
+                    "moves": [{"type": "text_reveal", "target": "caption", "term": "scale_in_text", "sig": "<md5>"},
+                              {"type": "shine_sweep", "target": "caption", "payload": "payloads/<sha>.json", "sig": "<md5>"}]}},
+  "sound": {"events": [{"class": "whoosh", "atFrame": 18, "params": {"payload": "payloads/<sha>.json"}, "seed": 7, "sig": "<md5>"}],
+            "music": {"bpm": 88.03, "phaseS": "<s>", "sections": "payloads/<sha>.json", "progression": "<public id>"},
+            "mix": {"targetLufs": "<from reference>", "ceilingDbtp": -1.5}},
+  "content": {"slots": {"caption": {"text": "<original words>", "fitWidthPx": "<px>"}}},
+  "seed": 7
+}
+```
+
+La valeur d'exemple `bpm 88.03` vient de `references/onekey-pro-2/audio-notes.md` [M] ; le reste est illustratif. (12 October 2026)
+
+`build.json` consigne pour chaque rendu la version de HyperFrames, de Chrome, de Node, de ffmpeg et de GSAP, l'empreinte de `params.json` et de `settings.json`, les drapeaux, la cadence, le nombre d'images et l'empreinte des images PNG de vérification [L : R01 contrat C15]. (12 October 2026)
+
+### 5.7 Rapport de fidélité, `V_NNN/fidelity.json` (12 October 2026)
+
+Le rapport actuel porte `dimensions` (`animation`, `image`, `colour`), `weakest`, `score`, le détail par élément et `lint_ok` [L : `V_008/fidelity.json`]. Le schéma proposé `zrmd/fidelity@2` le remplace selon la définition de la section 8 [P] : (12 October 2026)
+
+```json
+{
+  "schema": "zrmd/fidelity@2",
+  "target": 0.99,
+  "dimensions": {
+    "rhythm":    {"score": 0.0, "parts": {"cuts": {}, "starts": {}}, "ceiling": 1.0},
+    "animation": {"score": 0.0, "parts": {"elements": [], "camera": []}, "ceiling": 0.0},
+    "image":     {"score": 0.0, "parts": {"layout": {}, "colour": {}, "typography": {}, "effects": {}}, "maskShare": 0.0},
+    "sound":     {"score": 0.0, "parts": {"sfx": {}, "sfxTiming": {}, "music": {}, "mix": {}}, "ceiling": 0.0}
+  },
+  "min": 0.0,
+  "weakest": "animation",
+  "contractMet": false,
+  "guards": {"lint": true, "maskedSsim": 0.0, "lowpassSsim": 0.0, "missingElements": 0, "truePeakOk": true, "rightsLint": true},
+  "floors": {"codec": {}, "identity": {}},
+  "worst": [{"frame": 0, "dimension": "animation", "measure": "caption.scale", "errorJnd": 0.0}],
+  "pipeline": {"referenceCodec": "h264 yuv420p", "renderReencoded": true},
+  "exitCode": 1
+}
+```
+
+### 5.8 État d'une tâche, `jobs/<job_id>/status.json` et `V_NNN/status.json` (12 October 2026)
+
+`step`, `stepIndex`, `stepTotal`, `message`, `started`, `updated`, `pid`, `exitCode` ; un processus se suit par son numéro (`os.kill(pid, 0)`), jamais par `pgrep -f` sur son nom ; un verrou `motions/<motion_id>/.lock` contenant le pid refuse une seconde tâche sur le même motion, et l'état `lost` signale un pid mort sans code écrit [L : R07 §3.2 et §4.13, `rules/Toolbox1.md` du 11 October 2026]. Le serveur MCP et le service du site partagent ce même dossier `jobs/` et ce même verrou [P : réponse à la question ouverte de R07 §8]. (12 October 2026)
+
+## 6. La bibliothèque de recettes, analogue de la base Copernicus (12 October 2026)
+
+### 6.1 Ce qui se transpose de height, et ce qui ne se transpose pas (12 October 2026)
+
+La base Copernicus2.md pèse 2 634 198 octets, mais le moteur height ne la lit jamais : 72 % de son volume décrit des nœuds, la méthode gagnante n'emploie que 16 types de nœuds sur 384, et ce qui décide tient en 66 Ko [M : R05 §0 et §3]. La leçon porte donc sur la séparation des rôles bien plus que sur le volume : un registre machine que le moteur consomme, et une base lisible que l'agent consulte, la seconde dérivant de la première pour qu'aucune donnée n'existe en deux exemplaires [L : R05 §5.3]. (12 October 2026)
+
+### 6.2 Le registre, source unique, dans `<repo>/registry/` (12 October 2026)
+
+| Fichier | Contenu | Amorce existante |
+|---|---|---|
+| `moves.json` | types de coups image (dictionnaire de R05 §5.4 : `cut`, `transition`, `camera_move`, `element_track`, `text_reveal`, `counter`, `draw`, `grade`, `ambient`, `grain`, `shine_sweep`), chacun avec ses mesures d'entrée, son ajusteur, son gabarit de cuisson, ses paramètres et plages, son niveau d'identité | `motion-core.js` (révélations, `$count`, `$draw`, `$ring`, `$along`, `$qr`) [L : R08 §4] |
+| `transitions.json` | coupe, fondu, passage au noir, flash, volet, poussée, zoom traversant, whip pan, iris, raccord, glitch, avec leur signature et leur implémentation CSS, GSAP ou shader du catalogue HyperFrames | R09, 17 termes de transition [L] |
+| `type.json` | candidats ouverts par classe et leurs métriques mesurées dans le moteur réel (hauteur de capitale et d'x, épaisseur par graisse) | Google Fonts `METADATA.pb` [L : R04 §6] |
+| `sfx.json` | 18 classes sonores, chacune avec sa signature, sa recette numpy, ses paramètres (min, max, échelle, défaut), ses seuils de classement et son plafond d'identité mesuré | `LabParams.json`, `SfxRecipes.py` (whoosh, clic écrits et ajustés), 11 primitives de `MakeAudio.py`, blocs de `SoundF1.py` [L : R03 §3, R08 §7.1] |
+| `music.json` | bibliothèque de patrons de batterie génériques, de progressions publiques et banales, de nappes et de basses, paramétrés par tempo, densité, pompage et gate, sans aucun motif tiré d'une référence | rendu musical provisoire de `MakeAudio.py` [L] |
+| `vocabulary.json` | les 177 termes de R09 (146 image, 31 son), chacun relié à un détecteur et à un coup ou une recette du registre | `R09-motion-vocabulary.json` [M : 177 termes comptés] |
+| `calibration/*.json` | courbes GSAP exactes échantillonnées (4 001 points par ease), flou CSS mesuré, métriques de polices rendues par Chrome, réponses unitaires des synthés, plancher du codec | `eases-gsap-3.14.2.json` [L : R04 §1] |
+
+Le contrat d'une entrée reprend celui de R05 : identifiant, famille, niveau d'identité, mesures d'entrée, ajusteur, gabarit de cuisson, implémentation, paramètres et plages, fichier d'étalonnage, un test vert, un test rouge, date [L : R05 §5.3]. Une table d'étalonnage se régénère à chaque changement de version de GSAP ou de HyperFrames, la version étant écrite dans le fichier [L : R04 décision 2]. (12 October 2026)
+
+### 6.3 Les niveaux d'identité (12 October 2026)
+
+| Niveau | Contenu de la recette | Statut proposé |
+|---|---|---|
+| L0 statistique | énergies par bande temporelle, graines, grain, énergie musicale | permis |
+| L1 structurel | coupes, durées, tempo, jetons de palette et de typographie | permis |
+| L2 vectoriel unique | trajectoires éparses par élément, courbes, révélations, transitions, événements sonores ajustés | permis, cœur de la méthode |
+| L3 décalque | clés à chaque image, tracés de glyphes ou de logos, resynthèse depuis le spectre de la référence | interdit pour la marque et le son ; pour une chorégraphie dense, seulement sur accord explicite de Matthieu (décision D04) |
+
+Source : R05 §5.4 [L]. (12 October 2026)
+
+### 6.4 La base lisible `Motion1.md` (12 October 2026)
+
+`Scripts/BuildMotion1.py` assemble `/Users/zenray/.claude/skills/zenray-motion-design/Motion1.md` depuis le registre et des sections écrites (méthode, doctrine, leçons de l'étude 01, dossier onekey-pro-2, résultats par version), avec un index des sections et leurs numéros de ligne, chaque ligne datée, sans tiret long, références en anglais et méthode en français ; `--verify` reconstruit dans un fichier temporaire et compare l'empreinte, rouge si quelqu'un a retouché le fichier à la main, ce qui corrige la dérive de la section 14.3 de Copernicus2.md [L : R05 §3.2 et §5.3]. Le routeur par titres de `query_copernicus2.py` se généralise en un routeur commun paramétré par `--source`, appelé par les deux skills [L : R05 §5.2, règle des deux occurrences]. (12 October 2026)
+
+## 7. La boucle mesurer, choisir, ajuster, rendre, vérifier (12 October 2026)
+
+### 7.1 Les huit étapes de `zrmd reproduce` (12 October 2026)
+
+| Étape | Ce qu'elle fait | Sortie | Arrêt possible |
+|---|---|---|---|
+| 1/8 outils | ffmpeg, ffprobe, node, version HyperFrames épinglée, navigateur géré, environnement Python | `status.json` | code 2 |
+| 2/8 entrée | empreinte et sonde ; la vidéo doit être dans le cache, jamais copiée dans l'atelier | `reference.json` | code 2 |
+| 3/8 mesurer | analyses de la section 5.2, mises en cache par empreinte | `analyses/<slug>/<sha12>/` | aucun |
+| 4/8 identifier | archétypes, masques de validité, plafonds de codec et d'identité | `identify.json`, `floors` | code 3 `needs_choice`, code 4 `needs_asset` |
+| 5/8 choisir et ajuster l'image | plan par plan, coups proposés par le registre, paramètres en forme close, mesure à des instants choisis, acceptation par porte | `params.json`, `log.json` | aucun |
+| 6/8 ajuster le son | événements, recettes, CMA-ES, musique sur la grille mesurée, mixage | `sound/`, `log_sound.json` | aucun |
+| 7/8 rendre | rendu complet en profil vérification, même encodage que la référence | `renders/`, `build.json` | aucun |
+| 8/8 vérifier | quatre dimensions, portes, pires instants, planches | `fidelity.json`, `REPORT.md`, `board/` | code 1 si le contrat n'est pas tenu, 0 sinon |
+
+Source : R05 §5.6, adaptée aux chemins réels [L, P]. La commande se lance par `nohup` avec son numéro de processus, et l'attente se fait par `while ps -p $(cat run.pid)` [L : R05 §5.6]. (12 October 2026)
+
+```bash
+# 12 October 2026: proposed single command, no agent, no MCP, no language model.
+# FR : commande unique proposée, sans agent, sans MCP, sans modèle de langage.
+M=/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/<motion_id>; mkdir -p "$M"
+nohup /Users/zenray/.claude/skills/zenray-motion-design/scripts/motion/reproduce.sh \
+  --reference onekey-pro-2 --window 296:377 --motion <motion_id> --level FULL [--from V_00N] [--only picture|sound] \
+  > "$M/run.log" 2>&1 & echo $! > "$M/run.pid"
+```
+
+### 7.2 Choisir (12 October 2026)
+
+Les détecteurs de l'analyse proposent les termes du vocabulaire dont la signature correspond, avec un score ; chaque terme retenu devient un coup du registre, initialisé à la valeur typique de ses paramètres, puis borné par leurs `min` et `max` [L : R09 §5]. Les candidats d'un plan s'essaient du plus structuré au plus fin (coupes, transitions, caméra, éléments, révélations, étalonnage, effets, grain), comme le plan de couches de height va des profils aux régions fines [L : R05 §4.2]. (12 October 2026)
+
+### 7.3 Ajuster (12 October 2026)
+
+Les paramètres se calculent en forme close sur le résidu, l'optimisation ne portant que sur quelques paramètres à la fois [L : R05 §5.5]. Pour une courbe, `y(t) = a + b · E(clip((t - t0) / d, 0, 1))`, `a` et `b` se résolvent linéairement et `t0`, `d` par grille puis Nelder-Mead, l'ease étant choisie par BIC parmi les courbes GSAP exactes, une Bézier libre ne la remplaçant que si son BIC gagne plus de 6 unités, la fenêtre étant bornée au plan plus une marge [M : R04 §5, 276 eases vraies en tête sur 324, 264 courbes à moins de 1 % de l'amplitude]. Pour un événement sonore, CMA-ES part de plusieurs points (descripteurs, centre, deux graines) avec une finition Nelder-Mead, l'objectif étant le score « nuage » du son, en parallèle sur 16 cœurs avec `OMP_NUM_THREADS=1` [M : R03 §6, 5 cibles sur 8 au-dessus de 99 par classe, facteur 9 perdu sans la variable]. Des passes d'approximation successive à 8, 4, 2 puis 1 image et 8, 4, 2 puis 1 pixel reprennent le résidu de chaque piste [P : R05 §5.5]. (12 October 2026)
+
+### 7.4 Rendre, par plan puis par film (12 October 2026)
+
+L'évaluation se fait plan par plan : chaque plan se cuit en un petit projet HyperFrames autonome, de la durée du plan plus ses poignées, et se mesure à des instants choisis puis par un rendu court, ce que fait déjà la première tranche (81 images, 4,933 à 6,283 s) [L : `V_008/params.json`]. Le film entier ne se rend qu'en fin de version, en assemblant les définitions de plans dans une composition à timeline racine unique, faute de sous-compositions éprouvées [L : R01 contrat C12, R05 §7]. Une mesure qui exige des images identiques au bit près se fait avec `--workers 1` et une séquence PNG [L : R01 §5 et §17]. (12 October 2026)
+
+### 7.5 Vérifier et accepter (12 October 2026)
+
+Un coup déterministe est gardé s'il fait gagner au moins `min_gain` au score de la dimension sur le plan touché et si la porte locale tient (erreur réduite d'au moins 3 % sur la fenêtre et la zone qu'il modifie) ; sinon son amplitude ou son décalage se réajuste une fois par moindres carrés. Un coup stochastique est gardé si sa distance de distribution baisse d'au moins 20 % sans perdre plus de 0,01 sur la part déterministe [L : R05 §5.5, repris d'`Execute.py`]. (12 October 2026)
+
+### 7.6 Quand la boucle piétine (12 October 2026)
+
+Si trois versions successives ne relèvent pas la dimension la plus faible d'au moins 0,002, la boucle s'arrête de régler et ouvre une recherche de méthode (seize méthodes de principes distincts, quatre phases, masques noir et blanc, skill `zenray-methodology`) [P, seuil à confirmer]. Le cas se présente déjà : la tranche S02 passe de 0,7798 (V_001) à 0,9616 (V_007), puis retombe à 0,9572 (V_008), les versions V_002 à V_008 oscillant entre 0,93 et 0,966 sur l'animation pendant que l'image reste entre 0,9577 et 0,9621 [M : `motions/onekey-s02-caption-shine/V_00N/fidelity.json`]. (12 October 2026)
+
+## 8. La fidélité : définition chiffrée et cible 99 % (12 October 2026)
+
+### 8.1 Le principe, tranché par deux bancs à double sens (12 October 2026)
+
+Une mesure sur les pixels ne peut pas atteindre 99 % quand le texte et le logo de marque sont remplacés : une substitution parfaite plafonne à 97,6 % de SSIM et 78 % de corrélation [M : R04 §11.4]. La fidélité se définit donc sur des **paramètres mesurés de la même façon dans les deux vidéos**, exprimés en seuils différentiels (JND), jamais sur les pixels du contenu remplacé ; ainsi définie, la substitution obtient 0,998, avec ou sans codec commun, et sept défauts contrôlés tombent tous sous 0,99, le plus discret, une ease voisine, à 0,982 [M : R04 §11.4]. Côté son, le score par événement sépare de même un bon ajustement d'un mauvais, l'identité restant au-dessus de 99,5 en médiane et les perturbations audibles tombant sous 99 sur sept ou huit cibles sur huit [M : R03 §6.3]. (12 October 2026)
+
+### 8.2 La formule (12 October 2026)
+
+Pour une mesure k, l'erreur s'exprime en JND : `e_k = |x_render - x_reference| / JND_k`. Pour une mesure stochastique, l'erreur est le biais moyen sur plusieurs graines diminué de la dispersion attendue d'un tirage, divisé par `sqrt(1 + sigma^2)` (version « nuage » de R03 §6.1). (12 October 2026)
+
+Une sous-dimension vaut `S = 0.99 ^ mean_k(w_k · e_k^2)`, les poids `w_k` valant 1 par défaut et la sonie de l'événement pour les effets sonores. Cette forme réunit les deux livrables : elle vaut `1 - 0.01 · mean(e^2)` au premier ordre, qui est la forme de R04, et elle égale la moyenne géométrique des scores `100 · 0.99^(E^2)` d'événements, qui est la forme de R03 [P, identité algébrique]. Dans les deux cas, **S ≥ 0,99 si et seulement si l'erreur quadratique moyenne ne dépasse pas une JND** [L : R03 §7.1, R04 §11.2]. (12 October 2026)
+
+Une dimension vaut le **minimum** de ses sous-dimensions, et la note globale le **minimum** des quatre dimensions, jamais une moyenne, qui laisserait une couleur fausse se cacher derrière un mouvement parfait [L : R04 §11.2, R05 §5.5]. Un événement manquant ou en trop compte pour une erreur fixée à 10 JND dans sa sous-dimension, soit un facteur 0,99^100 ≈ 0,37 sur un seul élément [P]. La cible 0,99 se lit dans `settings.json` (`fidelity.target`) et jamais dans le code du vérificateur [L : R05 §4.6 et §7]. (12 October 2026)
+
+### 8.3 Les quatre dimensions et leurs JND de départ (12 October 2026)
+
+| Dimension | Sous-dimension | Mesures | JND de départ | Origine |
+|---|---|---|---|---|
+| Rythme | coupes | instants de coupe appariés, en images | 1 image | R04 §11.2 [P] |
+| Rythme | départs | début de chaque mouvement d'élément et de caméra | 1 image | R04 §11.2 [P] |
+| Animation | éléments | courbes de position, échelle, rotation, opacité, flou sur la fenêtre de l'élément, relatives au point d'arrivée | 1 px en 1080p (proportionnel à la hauteur), 1 % d'échelle et d'opacité, 0,5 degré, 5 % de σ | R04 §11.2 [P], rotation et flou proposés ici |
+| Animation | caméra | similarité intégrée par plan (translation, roulis, zoom) | mêmes unités | R04 §3 [P] |
+| Image | mise en page | bords, hauteur de capitale, ligne de base, boîtes des formes et des logos, sur l'image stable | 1 px en 1080p | R04 §11.2 [M sur banc] |
+| Image | couleur | chaque rôle de la palette | ΔE00 = 1 | R04 §7 [M sur banc] |
+| Image | typographie | hauteur de capitale, épaisseur de trait (la densité d'encre est exclue) | 1 % | R04 §11.4 [M sur banc] |
+| Image | effets | largeur de lueur, σ de flou, intensité de grain | 5 % | R04 §11.2 [M sur banc] |
+| Son | effets | par événement : niveau, attaque, durée, trajectoire de brillance, forme log-mel, hauteur si tonal | 1 dB, 25 % (plancher 5 ms), 10 % (plancher 3 ms), 5 % de centroïde, 2 dB, 10 cents | R03 §7.1 [M sur banc] |
+| Son | calage des effets | instant d'ancrage de chaque événement | 10 ms pour un transitoire, 10 % de l'attaque pour une houle | R03 §7.1 [M sur banc] |
+| Son | musique | tempo, frontières de sections, courbe d'énergie à court terme, tonalité identique ou relative, profondeur de pompage, cadence de gate, équilibre par bande | 1 % de tempo, une demi-mesure, corrélation, présence, 1 dB, 1 image, 1 dB par bande | R03 §8 [P], pompage et gate ajoutés d'après `audio-notes.md` |
+| Son | mixage | sonie intégrée, courbe à court terme, crête vraie | 1 LU, corrélation, plafond (porte) | R03 §9 [P] |
+
+Une dimension sans contenu mesurable dans un plan (pas de texte, donc pas de typographie) sort du minimum au lieu d'y entrer comme verte, et le rapport le dit [P, question ouverte de R04 §15]. (12 October 2026)
+
+### 8.4 Plafonds, planchers et masque (12 October 2026)
+
+Chaque sous-dimension s'affiche avec deux bornes : le **plafond d'identité**, score d'une recette stochastique contre elle-même avec d'autres graines (98,4 pour le whoosh et 98,0 pour le clic au plus bas sur huit cibles) [M : R03 §6.2], et le **plancher du codec**, score de notre propre rendu sans perte contre ce même rendu encodé comme la référence [L : R05 §5.5]. Un composant dont le plafond est sous 0,99 et dont le score égale ce plafond est « terminé au plafond », ce que le rapport écrit en clair au lieu de l'arrondir (décision D07). (12 October 2026)
+
+Le **masque de validité** écarte des gardes au pixel les régions de contenu remplacé, élargies de la course de leur animation, et les plans dont l'essentiel est une plaque photographique ou un produit rendu ; sa part s'affiche dans `maskShare`, et un plan dont la part valide tombe sous un seuil réglable devient `needs_asset` plutôt qu'un score flatteur [L : R04 §11.3, R05 §5.1]. Le contenu de remplacement se place par son **bord d'encre** et se choisit pour avoir la même boîte d'encre que la référence [M : R04 §11.2, trois JND évitées]. (12 October 2026)
+
+### 8.5 Gardes, qui ne sont pas un score (12 October 2026)
+
+Le lint HyperFrames sans erreur, le SSIM masqué et le SSIM passe-bas (σ 8 à 24 px) au-dessus d'un seuil, aucun élément oublié, la crête vraie sous le plafond, et le lint de droits (section 15) sont des portes : un échec rend le contrat non tenu, quel que soit le score [L : R04 §11.3]. VMAF et LPIPS ne servent ni de score ni de garde par défaut, le premier mesurant la dégradation d'un même contenu, le second pénalisant aussi le contenu remplacé [L : R04 §11.3]. (12 October 2026)
+
+### 8.6 Recaler les JND par l'œil et l'oreille de Matthieu (12 October 2026)
+
+Les JND de départ sont des ordres de grandeur. Deux pages d'atelier locales les recalent : une page ABX audio, où des paires perturbées de 0,25 à 3 seuils lui sont présentées et où le seuil devient la perturbation détectée à 75 % [L : R03 §7.4], et son pendant visuel, paires d'images ou de courtes boucles perturbées en couleur, position et instant [P]. Les nouvelles valeurs vont dans `settings.json`, bloc `fidelity.jnd`, sans toucher le code. Un 99 « à l'oreille » ou « à l'œil » ne s'annonce qu'après ce recalage. (12 October 2026)
+
+## 9. Le rendu HyperFrames (12 October 2026)
+
+**Installation.** HyperFrames est installé localement dans `<repo>/tooling` par `npm ci` à version exacte (le dépôt épingle 0.8.149), jamais globalement et jamais par `npx` sans version, puisque l'étude 01 a rendu v1 à v6 en 0.8.145 et v7 à v8 en 0.8.147 sans le savoir [M : R01 §3 et §16]. Toute invocation passe par `Scripts/RunHyperframes.mjs`, qui vérifie la version, épingle `chrome-headless-shell` 152.0.7977.30, coupe télémétrie, mises à jour et skills tiers, ajoute `--no-open` et refuse les sous-commandes qui sortent de la machine ou emploient un modèle [L : R01 §14, dépôt]. (12 October 2026)
+
+**Contrat de composition.** Les seize règles C1 à C16 de R01 §15 s'appliquent : un projet autonome par version et par format, racine `data-composition-id="main"` avec durée et cadence, temps en images entières, timeline GSAP unique en pause enregistrée en dernier, `fromTo` à état final explicite, aucune horloge, canvas et Three.js dessinés depuis `hf-seek`, médias jamais pilotés par script, polices woff2 locales, zéro réseau, provenance dans `build.json`, sorties cuites jamais éditées dans Studio [L]. La cadence de la composition est celle de la référence (60, 30, 25 ou 24 images par seconde selon les douze références du cache) [M : R02]. (12 October 2026)
+
+**Deux profils.** Aperçu : `render --quality looks --workers auto`. Vérification : `--workers 1` et séquence PNG, après que le test de déterminisme a établi si `--no-browser-gpu` ou la coupure de la capture rapide sont nécessaires [L : R01 §14 et §17]. (12 October 2026)
+
+**Le son dans la composition.** Deux voies existent : les stems en `<audio>` dans la composition, rendus par le mixeur de HyperFrames (PCM 16 bits, AAC 192 kb/s imposé, atténuation automatique au-dessus de -1 dBTP), ou un rendu muet puis un multiplexage par ffmpeg sans réencoder l'image [L : R01 §6]. Le défaut proposé est la première, avec un mixage dont la crête vraie reste sous -1,5 dBTP et un journal de rendu sans « Audio lowered », la seconde servant au master si le test A contre B mesure un écart d'attaque ou de niveau supérieur à une fraction de JND [P : R01 §6 et test 17.6]. Le son se mesure dans tous les cas sur le fichier final et sur les stems. (12 October 2026)
+
+**Formats.** HyperFrames ne remodèle pas une composition : `--resolution` suréchantillonne au même rapport et les variables ne changent ni la taille ni la durée ; le moteur émet donc une composition par format depuis la même timeline et le même son, avec des jetons de mise en page propres à chaque format, exprimés en fractions de l'image [L : R01 §8, R04 §8]. (12 October 2026)
+
+## 10. Le son (12 October 2026)
+
+La chaîne A0 à A10 de R03 tient lieu de pipeline : décodage à 48 kHz et mesures BS.1770, séparation Demucs htdemucs sur MPS (90,1 s séparées en 5,0 s contre 21,8 s sur CPU), carte musicale, segmentation par deux détecteurs (transitoires par flux spectral, houles par excès d'énergie, les attaques musicales sur la grille étant retirées), descripteurs, classement par arbre de règles, ajustement, rendu des recettes, musique sur la grille mesurée, mixage, vérification [M : R03 §1 et §2]. Les pistes séparées servent seulement à mesurer et restent dans le cache [L : R03 §2]. La liste d'événements passe par une validation de Matthieu dans une page locale avant l'ajustement, puisque la segmentation n'a été mesurée que sur un mixage synthétique (4 clics sur 6 et aucun whoosh par un détecteur d'attaques, 6 whooshes sur 6 par le détecteur de houle, à 49 à 76 ms près) [M : R03 §4.2]. (12 October 2026)
+
+La référence onekey-pro-2 impose une précision que R03 ne prévoyait pas : sa bande son est un morceau rythmique plutôt qu'un tapis avec effets posés dessus, avec un kick à 88,03 BPM dont le premier coup du motif tombe à 5,735 s, une basse pompée par sidechain, des accords hachés en croches de 0 à 4,93 s et une coupe vers la carte texte qui tombe sur l'entrée du kick [M : `references/onekey-pro-2/audio-notes.md`]. Le score musical reçoit donc des mesures de production (profondeur de pompage, cadence de gate, équilibre par bande), tandis que la reprise d'un motif de batterie note à note reste soumise à la règle de droits (section 15 et décision D05). (12 October 2026)
+
+Le mixage final vise la sonie mesurée sur la référence pour la reproduction, environ -14 LUFS intégrés pour une création originale, et une crête vraie sous -1,5 dBTP pour ne jamais déclencher l'atténuation de HyperFrames ; `ffmpeg -af loudnorm` en deux passes sert de contrôle indépendant [L : R03 §9, R01 §6]. (12 October 2026)
+
+## 11. La 3D (12 October 2026)
+
+L'outil se choisit du haut vers le bas, et l'on ne descend d'une ligne que si la ligne du dessus n'atteint pas la mesure : 2D HyperFrames (CSS, GSAP, SVG, canvas) ; three.js r185 dans la composition (30 images 1080p en 2,2 à 3,6 s, empreinte des PNG identique sur trois passages) ; Blender 5.2.2 en ligne de commande, Eevee pour itérer (environ 1 s par image) et Cycles sur Metal pour le final (9 à 40 s par image, 8 min 12 s au tout premier lancement pour compiler les noyaux) ; Houdini 22.0.368 par hython et `husk` pour la fumée, les fluides et les particules, simulation mise en cache sur disque [M : R10 §2 à §4, §7]. (12 October 2026)
+
+Les échanges passent par un `camera.json` par plan, source unique dont dérivent le glTF et les scripts Blender et Houdini (silhouettes Blender et three.js à 0,995 au moins d'intersection sur union), et par une séquence PNG RGBA au fps de la composition, encodée en ProRes 4444 et posée en `<video>` (écart moyen de 0,03 sur 255 avec une composition idéale) [M : R10 §2.2 et §5.1]. La sonde 3D de l'analyse a raison sept fois sur huit quand elle répond « 3D » mais manque dix plans 3D sur dix-sept qui bougent comme un calque ; il lui faut un résidu d'apparence avant de piloter ce choix sans regard humain [M : R04 §10.2]. Les MCP Blender et Houdini restent des outils d'atelier, le pipeline appelant les moteurs sans interface [L : R10 §3.3 et §4]. (12 October 2026)
+
+## 12. Le serveur MCP (12 October 2026)
+
+`<repo>/mcp/zrmotion.py`, un seul fichier en Python standard, à la fois CLI et serveur `--mcp` sur stdio, calqué sur `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py` (641 lignes, neuf outils, catalogue de 5 441 caractères), sans aucune logique de mesure : il valide les arguments, lance `zrmd.cli`, lit les fichiers de sortie et rend un JSON structuré [M : R07 §1]. Il ajoute ce qui manque au serveur Houdini : `title`, `outputSchema`, `structuredContent` doublé en texte, `annotations`, `resource_link` en `file:///` vers les livrables, images seulement sur demande (au plus quatre, 768 px), tâches détachées au-delà de 20 secondes suivies par `status.json`, réponse à `notifications/cancelled` pour les rares appels synchrones longs [L : R07 §3]. (12 October 2026)
+
+| Outil MCP | Sous-commande `zrmd` | Durée |
+|---|---|---|
+| `motion_status` | `zrmd status` | synchrone |
+| `motion_read` | `zrmd read` | synchrone |
+| `motion_ingest` | `zrmd ingest` | tâche (URL : accord de Matthieu d'abord) |
+| `motion_analyze` | `zrmd analyze` | tâche |
+| `motion_bible` | `zrmd bible`, `zrmd storyboard` | tâche |
+| `motion_create` | `zrmd reproduce` (nouvelle identité, V_001) | tâche |
+| `motion_iterate` | `zrmd iterate` | tâche |
+| `motion_render` | `zrmd render` | tâche |
+| `motion_verify` | `zrmd verify` | tâche |
+| `motion_sfx` | `zrmd sfx` | synchrone, tâche si `fit_to` est long |
+| `motion_edit` | `zrmd edit` | tâche |
+| `motion_publish` | `zrmd publish` (`dry_run` par défaut, `confirm` obligatoire) | tâche |
+| `motion_job` | `zrmd job` (status, log, wait au plus 20 s, cancel) | synchrone |
+
+L'énumération des classes de `motion_sfx` se génère depuis `registry/sfx.json` au lieu d'être écrite dans le schéma, ce qui supprime l'écart entre les douze types de R07 et les dix-huit classes de R03 [P]. Le budget du catalogue (6 500 caractères proposés) se vérifie par le test de fumée, et l'enregistrement chez Claude Code, Codex et Antigravity attend que l'emplacement du dépôt ou un lanceur fixe soit arrêté, puisque le dépôt a changé de place pendant la recherche [M : R07 §5]. (12 October 2026)
+
+## 13. L'intégration au site ZenRayProgress (12 October 2026)
+
+**Rôles.** Le moteur ne connaît ni le site ni le stockage ; le dépôt ZenRayProgress porte la vue `src/motion/`, le publieur et ses vérificateurs (`scripts/Motion/`, seuls écrivains de `pages/ZenRayMotionDesign/` et de la famille de shards des motions) et le service local `com.zenray.motion` sur `127.0.0.1:3102`, qui appelle la CLI `zrmd` et parle au pont Assets [L : R06 §9.1]. Le dossier `service/` annoncé par l'architecture du dépôt moteur ne s'écrit donc pas dans ce dépôt (décision D09 du plan). (12 October 2026)
+
+**Onglet.** Entrée `motion` juste après `media` dans le sous-groupe Craft de la zone Create (`Sidebar.jsx`, tableau `NAV`), libellés en français, anglais et japonais dans `dict.js`, import paresseux par `lazyRetry` dans `App.jsx`, lien profond `?view=motion&motion=<publicId>&v=V_008` par une liste blanche des clés de `NAV`, événement `zr:motion-open`, type de nœud `.zmotion.json` pour ouvrir un motion depuis Create [L : R06 §2.3]. (12 October 2026)
+
+**Galerie façon YouTube.** Grille `repeat(auto-fill, minmax(<jeton>, 1fr))`, une colonne à 375 px avec 16 px de marge ; carte avec poster 16:9, durée en bas à droite, titre sur deux lignes en AnthropicSerif 350, version, fidélité et date en AnthropicSerif 400, méta en Inter 400 ; pastilles de filtre (Tous, étiquettes, « 99 % et plus », En cours, Demandes en attente, formats) ; rail intérieur Accueil, Références, Historique, Demandes, Montage. Tout se lit dans un seul `catalogue.json` hors quota, sans lecture par carte [L : R06 §9.3]. (12 October 2026)
+
+**Page d'un motion.** Lecteur `VideoPlayer2` sur le manifeste HLS ou DASH de la version, titre, ligne de méta, actions (Demander une itération, Ouvrir dans Assets, Ouvrir dans Create), onglets Bible, Fidélité (les quatre dimensions, la cible, le plafond, le lien vers le rapport), Paramètres et Historique, et à droite la colonne des versions à la place des suggestions [L : R06 §9.4]. (12 October 2026)
+
+**Demande d'itération.** Cinq modes : Réglages (curseurs préremplis, huit au plus par catégorie, bornes et pas lus dans la fiche), Ajuster à la référence (boucle de la section 7 jusqu'à la cible ou au budget), Format (16:9, 9:16, 1:1, 4:5), Consigne (texte libre laissé en `waiting-agent` pour un agent, jamais exécuté automatiquement) et Nouveau motion (depuis une référence déjà en cache) ; la page envoie au pont, ou dépose `pages/ZenRayMotionDesign/_requests/<requestId>.json` quand le Mac ne répond pas, puis suit les étapes nommées [L : R06 §6.3 et §9.5]. (12 October 2026)
+
+**Publication.** Le rendu vérifié s'empaquette en CMAF par copie de flux sur une famille de shards publics propre aux motions (`zenrayshards-motion-<hex12>`, compteur `.zr-motion-shard.json`), avec des chemins neutres (`publicId`, jamais un titre ni une marque), un poster jsDelivr épinglé vérifié avant écriture, et un seul commit dans `zenray-data` pour le manifeste, les playlists, la fiche, le catalogue et l'état de la demande ; la version publiée ne change plus jamais [L : R06 §4.2 et §9.2]. Le déploiement du site part d'un clone propre d'`origin/main` à jour, `npx wrangler pages deploy dist --project-name zenray-progress --branch main`, puis compare le point d'entrée servi à celui de `dist/index.html`, relit les données par l'API réelle et refait ce contrôle dix minutes plus tard [L : R06 §7, règle du 5 October 2026]. (12 October 2026)
+
+## 14. Montage local, formats et LOAD (12 October 2026)
+
+La vue Montage n'existe que lorsque le service local répond : ligne de temps de la version lue par l'action `timeline` (plans proportionnels, coupes franches, fenêtres de texte), clic sur un plan pour voir ses paramètres exposés et un aperçu par `snapshot`, bascule « Comparer à la référence » par URL locale signée dix minutes, qui ne fait jamais transiter une image de la référence par le cloud, et bouton « Studio HyperFrames » qui lance `preview --background --json` sans ouvrir de navigateur, Matthieu ouvrant lui-même l'adresse rendue [L : R06 §9.6]. Toute retouche de montage (couper, réordonner, retirer, retimer, changer de format, changer de lit sonore, régler la sonie) passe par `zrmd edit` et produit une version nouvelle ; une retouche faite dans Studio se capture comme un delta et se replie dans les paramètres d'une version suivante, la sortie cuite n'étant jamais éditée [L : R07 §4.11, R05 §5.4]. (12 October 2026)
+
+Le LOAD d'une composition déchargée passe par le pont Assets (`load-plan` puis `restore` sur les fichiers `workshop:motions/<motion_id>/...`), jamais par un second chargeur, et le moteur résout ensuite son dossier par le contexte Assets [L : R06 §5.2 et §5.3]. (12 October 2026)
+
+## 15. Droits (12 October 2026)
+
+| Règle | Contrôle |
+|---|---|
+| Aucun fichier de la référence (image, extrait audio, musique, logo, police, texte) n'entre dans un livrable ni dans l'atelier archivé | lint de droits : échoue si un fichier cuit référence le cache ou si une empreinte correspond à un dérivé de la référence, vert sur une composition propre, rouge sur une image plantée à dessein [P : R05 §5.4] |
+| La musique ne se reprend que par son tempo, sa structure et son énergie ; harmonie et mélodie sont originales, patrons de batterie et progressions tirés d'une bibliothèque publique et banale | le score musical ne compare jamais les hauteurs note à note, de sorte que la mesure n'incite pas à copier [L : R03 §8] ; la reprise d'un patron de batterie mesuré est la décision D05 |
+| Le texte lu par OCR ne s'écrit jamais ; seuls comptent nombre de caractères, casse, jambages, géométrie | recherche de chaînes OCR dans l'atelier ; purge de `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/dna-reference.json` (36 lignes de texte) [M : R08 §6] |
+| Une police de la référence ne se copie pas ; on choisit une famille ouverte par métriques et rendu | `type.json`, licence écrite dans la bible [L : R04 §6] |
+| Les planches qui montrent la référence restent dans le cache | arborescence de la section 4 |
+| Les modèles appris servent seulement à mesurer (Demucs, DB, tesseract) | décision D06 |
+| Aucune donnée ne sort par HyperFrames (`publish`, `cloud`, `feedback`, `snapshot --describe`) | refus par l'enveloppe [L : R01 §16] |
+| Téléchargement depuis la source originale seulement, jamais depuis whatships.com, aucun cookie de navigateur lu | `FetchReference.py` [L : R02] |
+| Diffusion publique d'une étude tirée d'une publicité de tiers | décision D10 de R06, reprise au plan |
+
+## 16. Archivage Assets (12 October 2026)
+
+Le projet Assets `zenray-motion-design` porte aujourd'hui deux sources, `workshop` (l'atelier) et `project-notes` (la mémoire), avec surveillance active [M : R06 §5.1]. Partent dans l'archive les paramètres, les compositions cuites, les analyses chiffrées, les rapports, la bible, le storyboard et nos propres planches ; restent hors archive le cache des références, `tooling/node_modules`, les dossiers `.hyperframes/` et `.thumbnails/`, et les rendus MP4 des versions non validées, la vidéo publiée tenant lieu de copie de référence pour les autres [L : R06 §5.3, D5]. Le dépôt du moteur s'ajoute comme troisième source `application` une fois son emplacement arrêté [L : `state.json`, champ `next`]. Une sauvegarde ne s'annonce qu'avec sa preuve cloud relue, et chaque fin de travail écrit un checkpoint avec faits, preuves et prochain geste [L : doctrine Assets du 3 October 2026]. (12 October 2026)
+
+## 17. Sources (12 October 2026)
+
+Livrables internes : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/research/R01-hyperframes.md` à `R10-3d.md` et `R09-motion-vocabulary.json` ; état mesuré : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s02-caption-shine/`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/onekey-pro-2/audio-notes.md`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/` (commit `c1f3d27`), `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/state.json`. (12 October 2026)
+
+Sources externes citées par les livrables et reprises ici :
+
+- HyperFrames : https://hyperframes.heygen.com/ , https://hyperframes.heygen.com/concepts/determinism , https://hyperframes.heygen.com/reference/html-schema , https://hyperframes.heygen.com/reference/audio-effects , https://hyperframes.heygen.com/guides/frame-sources , https://hyperframes.heygen.com/guides/rendering , https://github.com/heygen-com/hyperframes
+- GSAP : https://gsap.com/docs/v3/Eases/ , https://gsap.com/docs/v3/Eases/CustomEase ; CSS Easing : https://www.w3.org/TR/css-easing-1/
+- Mesure image : https://ffmpeg.org/ffmpeg-filters.html , https://www.scenedetect.com/ , https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html , https://doi.org/10.1002/col.20070 (CIEDE2000), https://doi.org/10.1109/TIP.2003.819861 (SSIM), https://github.com/google/fonts
+- Son : https://github.com/adefossez/demucs , https://arxiv.org/abs/2211.08553 , https://arxiv.org/abs/2603.15905 , https://librosa.org/doc/main/auto_examples/plot_superflux.html , https://en.wikipedia.org/wiki/EBU_R_128
+- 3D : https://threejs.org/docs/#api/en/animation/AnimationMixer , https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html , https://www.sidefx.com/docs/houdini/ref/utils/husk.html , https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html
+- MCP : https://modelcontextprotocol.io/specification/2025-06-18/server/tools , https://modelcontextprotocol.io/specification/versioning , https://code.claude.com/docs/en/mcp
+- Site : https://github.com/jsdelivr/jsdelivr , https://developers.cloudflare.com/pages/get-started/direct-upload/ , https://developer.chrome.com/blog/local-network-access
+- Vocabulaire : https://whatships.com/search-index.json , https://carbondesignsystem.com/elements/motion/overview/ , http://robertpenner.com/easing/

@@ -1,0 +1,21 @@
+S01 scale old power2.inOut  0.163 -> css.ease-out         0.007 window [0.27, 0.62] chosen css.ease-out
+S02 scale old power2.out    0.097 -> none                 0.023 window [0.06, 0.40] chosen none
+S04 scale old power3.out    0.104 -> circ.inOut           0.012 window [-0.09, 0.49] chosen circ.inOut
+S05 trans old none          0.085 -> material.standard    0.020 window [-0.18, 1.51] chosen material.standard
+S06 rotat old none          0.017 -> sine.out             0.015 window [0.04, 3.37] chosen sine.out
+S07 scale old power2.out    0.094 -> power1.inOut         0.012 window [0.01, 0.52] chosen power1.inOut
+S08 scale old power2.out    0.066 -> expo.inOut           0.016 window [-0.62, 1.01] chosen expo.inOut
+S09 rotat old none          0.092 -> circ.out             0.017 window [-0.11, 103.25] chosen circ.out
+S10 trans old power3.out    0.053 -> expo.inOut           0.025 window [-0.77, 1.09] chosen cubic-bezier
+S11 scale old power1.out    0.099 -> circ.inOut           0.034 window [-107.10, 107.18] chosen cubic-bezier
+S13 trans old expo.out      0.052 -> expo.inOut           0.026 window [-0.89, 1.11] chosen expo.inOut
+S14 trans old power1.out    0.070 -> circ.inOut           0.039 window [-1.15, 1.55] chosen cubic-bezier
+S15 trans old power1.out    0.052 -> circ.inOut           0.016 window [-1.42, 1.82] chosen circ.inOut
+S16 scale old power2.out    0.094 -> bounce.inOut         0.055 window [-0.53, 1.08] chosen cubic-bezier
+S18 rotat old power2.inOut  0.076 -> material.standard    0.028 window [0.17, 0.95] chosen material.standard
+S19 trans old power1.out    0.101 -> circ.inOut           0.017 window [-0.29, 0.90] chosen circ.inOut
+S20 scale old power2.out    0.071 -> circ.inOut           0.020 window [-1.90, 2.07] chosen cubic-bezier
+S21 scale old power1.in     0.089 -> bounce.inOut         0.035 window [-1.18, 1.99] chosen cubic-bezier
+S23 scale old power1.in     0.109 -> bounce.inOut         0.042 window [-1.37, 2.01] chosen cubic-bezier
+S25 scale old none          0.029 -> css.ease-out         0.016 window [0.02, 2.40] chosen css.ease-out
+{"shots": 20, "old_rms_median": 0.08907313741821271, "new_rms_median": 0.019966253521626384, "old_rms_max": 0.16277131196866354, "new_rms_max": 0.05463699452621798, "shots_new_under_0.02": 11}

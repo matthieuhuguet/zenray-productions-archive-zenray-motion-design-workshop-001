@@ -1,0 +1,433 @@
+# Build R09 motion vocabulary JSON (12 October 2026).
+# FR : génère la base de vocabulaire mesurable R09, un terme par ligne de table.
+import json, sys
+
+OUT = sys.argv[1]
+
+# Each row: id, domain, category, en, fr_def, signature, detector, impl, params
+# params: "name=min..max~typical unit; ..."
+ROWS = []
+def T(id, dom, cat, en, d, sig, det, impl, params, src="craft"):
+    ROWS.append(dict(id=id, domain=dom, category=cat, name_en=en, definition_fr=d,
+                     signature=sig, detector=det, implementation=impl, params=params, source=src))
+
+# ---------- A. Principles ----------
+P = "principle"
+T("anticipation","image",P,"Anticipation","Petit mouvement inverse avant l'action principale, qui prépare l'oeil.",
+  "Courbe de position qui part d'abord dans le sens opposé (creux de 2 à 10 % de l'amplitude) avant le déplacement principal.",
+  "track_position: signe de la dérivée inversé sur les premières images",
+  {"gsap":"tl.to(el,{y:+8,duration:.12,ease:'power2.in'}).to(el,{y:-200,ease:'power3.out'})","css":"@keyframes avec étape inverse à 15 %","canvas":"interpolation par segments"},
+  "dip_ratio=0.02..0.15~0.06 ratio; dip_duration=0.06..0.25~0.12 s","disney")
+T("overshoot","image",P,"Overshoot","Le mouvement dépasse sa cible puis revient s'y poser.",
+  "Valeur qui dépasse la valeur finale de 2 à 15 % puis converge; un seul pic si ease back, plusieurs si elastic ou spring.",
+  "fit_curve: dépassement max relatif et nombre d'oscillations",
+  {"gsap":"ease:'back.out(1.7)'","css":"cubic-bezier(0.34,1.56,0.64,1)","canvas":"easeOutBack(t,s)"},
+  "overshoot_ratio=0.02..0.2~0.08 ratio; settle_time=0.15..0.6~0.3 s","penner")
+T("follow_through","image",P,"Follow-through","Les parties secondaires continuent de bouger après l'arrêt du corps principal.",
+  "Deux courbes corrélées décalées: l'élément enfant s'arrête 40 à 200 ms après le parent avec une petite oscillation.",
+  "track_multi: décalage d'arrêt entre éléments liés",
+  {"gsap":"seconde tween sur l'enfant avec delay et ease elastic.out","css":"animation-delay sur l'enfant","canvas":"ressort amorti sur l'enfant"},
+  "lag=0.04..0.25~0.1 s; damping=0.3..0.9~0.6 ratio","disney")
+T("overlapping_action","image",P,"Overlapping action","Les mouvements de plusieurs éléments se chevauchent au lieu de s'enchaîner bout à bout.",
+  "Intervalles d'animation qui se recouvrent de 20 à 70 % dans la timeline.",
+  "segment_animations: taux de recouvrement des intervalles actifs",
+  {"gsap":"position parameter '-=0.3' ou '<0.1'","css":"animation-delay inférieur à la durée précédente","canvas":"timeline à recouvrement"},
+  "overlap_ratio=0.2..0.7~0.4 ratio","disney")
+T("stagger","image",P,"Stagger","Décalage régulier du départ d'une même animation sur une série d'éléments.",
+  "Départs espacés d'un intervalle constant (ou croissant/décroissant) entre éléments d'une même famille.",
+  "track_multi: régularité des instants de départ, écart type faible",
+  {"gsap":"stagger:{each:0.05,from:'start'}","css":"--i * 50ms en animation-delay","canvas":"boucle avec offset i*each"},
+  "each=0.015..0.15~0.04 s; from=start|center|end|edges|random~start enum; count=3..60~8 n","gsap")
+T("arcs","image",P,"Arcs","Les trajectoires naturelles suivent des courbes plutôt que des lignes droites.",
+  "Trajectoire 2D dont la courbure n'est pas nulle; écart à la droite reliant départ et arrivée supérieur à 3 % de la distance.",
+  "track_position: déviation maximale à la corde",
+  {"gsap":"MotionPathPlugin ou x et y avec eases différentes","css":"offset-path","canvas":"Bézier quadratique"},
+  "arc_deviation=0.03..0.3~0.1 ratio","disney")
+T("squash_stretch","image",P,"Squash and stretch","Déformation d'échelle qui conserve le volume pendant un impact ou une accélération.",
+  "scaleX et scaleY varient en sens opposé (produit proche de 1) aux pics de vitesse ou d'impact.",
+  "track_bbox: corrélation négative entre largeur et hauteur",
+  {"gsap":"scaleX:1.15,scaleY:0.87 puis retour elastic","css":"transform: scale(1.15,0.87)","canvas":"ctx.scale"},
+  "max_deform=0.03..0.3~0.12 ratio; recover=0.1..0.4~0.2 s","disney")
+T("slow_in_slow_out","image",P,"Slow in and slow out","Accélération au départ et décélération à l'arrivée.",
+  "Profil de vitesse en cloche; vitesse nulle aux deux extrémités.",
+  "fit_curve: dérivée nulle aux bornes",
+  {"gsap":"ease:'power2.inOut'","css":"ease-in-out","canvas":"easeInOutQuad"},
+  "exponent=1..5~2 power","disney")
+T("secondary_action","image",P,"Secondary action","Mouvement d'appoint qui enrichit l'action principale sans la concurrencer.",
+  "Animation de faible amplitude (moins de 20 % de l'action principale) simultanée sur un autre calque.",
+  "segment_animations: amplitude relative des animations simultanées",
+  {"gsap":"tween parallèle de faible amplitude","css":"animation secondaire en parallèle","canvas":"oscillateur lent"},
+  "amp_ratio=0.03..0.2~0.08 ratio","disney")
+T("hold","image",P,"Hold","Temps d'arrêt où l'image reste stable pour être lue.",
+  "Intervalle où la différence entre images consécutives est quasi nulle.",
+  "frame_diff: segments sous seuil",
+  {"gsap":"tl.to({}, {duration:hold})","css":"étape de keyframes identiques","canvas":"pas de mise à jour"},
+  "hold=0.3..3~1.0 s; read_rate=3..5~4 words_per_s","craft")
+T("settle","image",P,"Settle","Phase finale où un élément s'immobilise après un rebond ou une oscillation amortie.",
+  "Oscillation dont l'amplitude décroît exponentiellement jusqu'au repos.",
+  "fit_curve: enveloppe exponentielle, constante de temps",
+  {"gsap":"ease:'elastic.out(1,0.4)'","css":"linear() avec points d'oscillation","canvas":"ressort amorti"},
+  "tau=0.05..0.4~0.15 s; cycles=1..4~2 n","craft")
+T("staging","image",P,"Staging","Mise en scène qui dirige l'oeil vers une seule chose à la fois.",
+  "Un seul pic de mouvement ou de contraste par instant; carte de saillance concentrée.",
+  "saliency: entropie de la carte de mouvement par image",
+  {"gsap":"dim des autres éléments (opacity:.3) pendant l'action","css":"filter: brightness sur le reste","canvas":"masque radial"},
+  "focus_count=1..2~1 n; dim_level=0.2..0.6~0.35 ratio","disney")
+T("timing_spacing","image",P,"Timing and spacing","Répartition des positions d'un objet dans le temps, qui donne poids et vitesse.",
+  "Distances entre positions successives (spacing) et nombre d'images (timing).",
+  "track_position: histogramme des déplacements par image",
+  {"gsap":"durée et ease","css":"animation-duration et timing-function","canvas":"pas d'interpolation"},
+  "frames=4..60~18 frames","disney")
+
+# ---------- B. Eases ----------
+E = "ease"
+def ease(id,en,d,sig,gsap,css,params,src="gsap"):
+    T(id,"image",E,en,d,sig,"fit_curve: régression sur la position normalisée, choix du meilleur modèle par erreur RMS",
+      {"gsap":gsap,"css":css,"canvas":"fonction d'ease équivalente appliquée à t"},params,src)
+ease("linear","Linear","Vitesse constante, sans accélération.","Position strictement proportionnelle au temps, vitesse plate.","ease:'none'","linear","")
+ease("power1_out","Power1 out (quad)","Décélération douce, ease par défaut de GSAP.","Courbe 1-(1-t)^2.","ease:'power1.out'","cubic-bezier(0.5,1,0.89,1)","exponent=2..2~2 power")
+ease("power2_out","Power2 out (cubic)","Décélération nette, très courante pour les entrées d'interface.","Courbe 1-(1-t)^3; 70 % du trajet fait à 33 % du temps.","ease:'power2.out'","cubic-bezier(0.33,1,0.68,1)","exponent=3..3~3 power")
+ease("power3_out","Power3 out (quart)","Décélération forte, entrée franche puis glisse longue.","Courbe 1-(1-t)^4.","ease:'power3.out'","cubic-bezier(0.25,1,0.5,1)","exponent=4..4~4 power")
+ease("power4_out","Power4 out (quint)","Décélération très forte, signature des films de lancement haut de gamme.","Courbe 1-(1-t)^5; plus de 80 % du trajet dans le premier quart.","ease:'power4.out'","cubic-bezier(0.22,1,0.36,1)","exponent=5..5~5 power")
+ease("power_in","Power in","Accélération, utilisée pour les sorties.","Courbe t^n; vitesse maximale à la fin.","ease:'power2.in'","cubic-bezier(0.32,0,0.67,0)","exponent=2..5~3 power")
+ease("power_in_out","Power in-out","Accélère puis décélère, pour les déplacements d'un point à un autre à l'écran.","Courbe symétrique autour de t=0.5.","ease:'power2.inOut'","cubic-bezier(0.65,0,0.35,1)","exponent=2..5~3 power")
+ease("expo_out","Expo out","Décélération exponentielle, arrêt très doux après un départ fulgurant.","Courbe 1-2^(-10t); plus de 90 % du trajet en 25 % du temps.","ease:'expo.out'","cubic-bezier(0.16,1,0.3,1)","")
+ease("expo_in_out","Expo in-out","Départ et arrivée très lents, milieu fulgurant; typique des transitions zoom.","Pic de vitesse étroit au centre.","ease:'expo.inOut'","cubic-bezier(0.87,0,0.13,1)","")
+ease("circ_out","Circ out","Décélération circulaire, proche d'expo mais plus franche à l'arrivée.","Courbe sqrt(1-(t-1)^2).","ease:'circ.out'","cubic-bezier(0,0.55,0.45,1)","")
+ease("sine_in_out","Sine in-out","Ease très douce, pour les flottements et boucles.","Courbe -(cos(pi t)-1)/2.","ease:'sine.inOut'","cubic-bezier(0.37,0,0.63,1)","")
+ease("back_out","Back out","Dépasse la cible puis revient, un seul pic.","Un dépassement unique; amplitude réglée par s, 1.70158 donne environ 10 %.","ease:'back.out(1.7)'","cubic-bezier(0.34,1.56,0.64,1)","overshoot_s=0.5..4~1.70158 coef","penner")
+ease("back_in","Back in","Recule avant de partir, anticipation intégrée à l'ease.","Creux initial puis accélération.","ease:'back.in(1.7)'","cubic-bezier(0.36,0,0.66,-0.56)","overshoot_s=0.5..4~1.70158 coef","penner")
+ease("elastic_out","Elastic out","Oscillation amortie autour de la cible.","Plusieurs dépassements décroissants; période et amplitude mesurables.","ease:'elastic.out(1,0.3)'","linear() échantillonné","amplitude=1..2~1 coef; period=0.2..0.6~0.3 coef")
+ease("bounce_out","Bounce out","Rebonds successifs sur la cible comme une balle.","Plusieurs retours à la valeur finale avec rebonds de hauteur décroissante, dérivée discontinue aux contacts.","ease:'bounce.out'","linear() échantillonné","bounces=2..4~3 n")
+ease("steps","Steps","Avance par paliers, effet image par image ou compteur mécanique.","Position en escalier, plateaux de durée égale.","ease:'steps(8)'","steps(8,end)","steps=2..24~8 n")
+ease("custom_bezier","Custom cubic-bezier","Courbe sur mesure définie par deux poignées.","Ajustement par quatre paramètres x1 y1 x2 y2 qui minimise l'erreur sur la courbe mesurée.","CustomEase.create('id','M0,0 C0.x1,y1 x2,y2 1,1')","cubic-bezier(x1,y1,x2,y2)","x1=0..1~0.2 coord; y1=-1..2~1 coord; x2=0..1~0.2 coord; y2=-1..2~1 coord")
+ease("spring","Spring","Ressort physique amorti défini par raideur, amortissement et masse.","Oscillation amortie dont la fréquence et la décroissance donnent raideur et amortissement.","CustomEase échantillonné ou boucle physique","linear() échantillonné","stiffness=100..600~300 N_per_m; damping=10..40~20 coef; mass=0.5..2~1 kg","framer")
+ease("material_emphasized","Material emphasized","Courbe expressive de Material 3, forte décélération.","Proche de cubic-bezier(0.2,0,0,1).","CustomEase cubic-bezier(0.2,0,0,1)","cubic-bezier(0.2,0,0,1)","","material")
+ease("carbon_expressive","Carbon expressive standard","Courbe expressive d'IBM Carbon pour les mouvements visibles.","cubic-bezier(0.4,0.14,0.3,1).","CustomEase","cubic-bezier(0.4,0.14,0.3,1)","","carbon")
+ease("slow_mo","Slow mo","Ralentit au centre puis accélère, effet de suspension.","Plateau de vitesse faible au milieu de la course.","ease:'slow(0.7,0.7,false)'","linear() échantillonné","linear_ratio=0.3..0.9~0.7 ratio; power=0.3..0.9~0.7 coef")
+ease("rough","Rough","Ease bruitée, effet tremblé ou nerveux.","Courbe monotone en moyenne avec bruit haute fréquence.","ease:'rough({strength:1,points:20})'","linear() avec bruit","strength=0.2..3~1 coef; points=10..50~20 n")
+
+# ---------- C. Timing ----------
+C = "timing"
+T("micro_duration","image",C,"Micro-interaction duration","Durée d'une petite réponse d'interface (survol, clic, bascule).","Animation de 70 à 150 ms sur un élément de petite taille.","segment_animations: durée par élément",{"gsap":"duration:0.1","css":"transition: 110ms"},"duration=0.07..0.15~0.11 s","carbon")
+T("ui_transition_duration","image",C,"UI transition duration","Durée d'un changement d'état d'interface (panneau, carte, toast).","Animation de 200 à 400 ms.","segment_animations",{"gsap":"duration:0.3","css":"transition: 240ms"},"duration=0.2..0.5~0.3 s","carbon")
+T("hero_duration","image",C,"Hero entrance duration","Durée d'une entrée de titre ou de produit dans un film de lancement.","Animation de 0,6 à 1,5 s, souvent expo ou power4.","segment_animations",{"gsap":"duration:1.0,ease:'expo.out'"},"duration=0.5..1.8~0.9 s","craft")
+T("shot_length","image",C,"Shot length","Durée moyenne d'un plan entre deux coupes.","Distribution des intervalles entre coupes détectées.","scene_detect: intervalles entre coupes",{"gsap":"durée de chaque scène de la timeline"},"asl=0.4..4~1.5 s","craft")
+T("stagger_interval","image",C,"Stagger interval","Intervalle entre départs d'une série.","Écart constant entre départs successifs.","track_multi",{"gsap":"stagger:0.04"},"each=0.015..0.15~0.04 s","gsap")
+T("read_time","image",C,"Read time","Temps d'affichage nécessaire pour lire un texte.","Durée de stabilité d'un texte rapportée à son nombre de mots.","ocr_track: durée visible / nombre de mots",{"gsap":"hold calculé: words/4 + 0.5"},"words_per_s=2.5..5~3.5 rate; min_hold=0.6..1.5~0.8 s","craft")
+T("frame_rate","image",C,"Frame rate","Cadence de la vidéo et des animations.","Nombre d'images par seconde du conteneur et cadence réelle des changements.","ffprobe et frame_diff",{"hyperframes":"fps de la composition"},"fps=24..60~30 fps","craft")
+T("total_length","image",C,"Total length","Durée totale d'un film de lancement.","Durée du fichier. Mesure whatships, 60 vidéos tirées au hasard: médiane 48,5 s, quartiles 31 et 86 s.","ffprobe",{"hyperframes":"durée de la composition"},"duration=15..120~45 s","whatships")
+
+# ---------- D. Text animation ----------
+X = "text"
+T("mask_reveal_line","image",X,"Mask reveal (line)","La ligne de texte monte depuis l'intérieur d'un masque invisible.","Texte coupé net par un bord horizontal fixe pendant qu'il translate en y; aucune variation d'opacité.","ocr_track + edge: bord de découpe immobile",{"gsap":"SplitText lines, mask:'lines', from y:'100%'","css":"overflow:hidden sur le parent, translateY(100%)"},"y_from=0.6..1.2~1.0 line_height; duration=0.5..1.2~0.8 s; stagger=0.05..0.15~0.08 s","gsap")
+T("char_by_char","image",X,"Character stagger","Les lettres apparaissent une à une avec un léger décalage.","Apparitions successives de glyphes à intervalle régulier de gauche à droite.","ocr_track: ordre et instants d'apparition des glyphes",{"gsap":"SplitText chars, stagger:0.02","css":"span par lettre, --i delay"},"each=0.01..0.06~0.025 s; y_from=10..60~24 px","gsap")
+T("word_by_word","image",X,"Word stagger","Les mots apparaissent un par un.","Apparitions par blocs séparés par des espaces.","ocr_track",{"gsap":"SplitText words, stagger:0.06"},"each=0.04..0.2~0.08 s","gsap")
+T("blur_in","image",X,"Blur in","Le texte passe du flou au net en apparaissant.","Netteté (variance du laplacien) croissante sur la zone du texte, souvent avec opacité croissante.","sharpness_track: variance du laplacien par zone",{"gsap":"from {filter:'blur(12px)',opacity:0}","css":"filter: blur()"},"blur_from=4..30~12 px; duration=0.4..1.2~0.7 s","craft")
+T("scale_in_text","image",X,"Scale in","Le texte apparaît en grandissant ou en rapetissant vers sa taille finale.","Hauteur de la boîte du texte qui converge vers sa valeur finale.","track_bbox",{"gsap":"from {scale:0.85}","css":"transform: scale()"},"scale_from=0.6..1.4~0.9 ratio; duration=0.4..1~0.7 s","craft")
+T("tracking_expand","image",X,"Tracking expand","L'espacement entre lettres s'ouvre ou se resserre lentement.","Largeur de ligne qui varie à hauteur constante, glyphes de même taille.","track_bbox: largeur seule",{"gsap":"letterSpacing:'0.2em'","css":"letter-spacing transition"},"tracking_from=-0.05..0.1~0 em; tracking_to=0..0.4~0.15 em; duration=1..4~2 s","craft")
+T("y_offset_rise","image",X,"Rise and fade","Montée verticale courte combinée à un fondu.","Translation y de 10 à 40 px et opacité croissante simultanées.","track_position + mean_luma",{"gsap":"from {y:24,opacity:0}"},"y_from=8..60~24 px; duration=0.3..0.9~0.6 s","craft")
+T("typewriter","image",X,"Typewriter","Les caractères s'ajoutent un à un avec un curseur.","Nombre de glyphes visibles en escalier, curseur clignotant à 1 à 2 Hz.","ocr_track: compte de caractères par image",{"gsap":"TextPlugin ou steps","css":"steps() sur width"},"cps=10..40~20 chars_per_s; caret_blink=1..2~1.06 Hz","craft")
+T("scramble_decode","image",X,"Scramble decode","Des caractères aléatoires se stabilisent vers le texte final.","Glyphes changeant à chaque image avant de se figer de gauche à droite.","ocr_track: instabilité des glyphes",{"gsap":"ScrambleTextPlugin","canvas":"tirage de caractères"},"duration=0.5..2~1 s; chars=upper|lower|symbols~upper enum","gsap")
+T("word_swap","image",X,"Kinetic word swap","Un mot change en place dans une phrase fixe (rotation de mots).","Une zone de texte remplacée périodiquement, le reste immobile.","ocr_track: zone variable unique",{"gsap":"timeline répétée, sortie y:-100% entrée y:100%"},"interval=0.6..2~1.2 s; transition=0.3..0.6~0.4 s","craft")
+T("counter_rollup","image",X,"Number roll-up","Un nombre défile jusqu'à sa valeur finale.","Chiffres qui changent rapidement puis ralentissent jusqu'à se figer.","ocr_track numérique",{"gsap":"to(obj,{val:1000,snap:'val',ease:'power3.out'})"},"duration=0.8..3~1.5 s","craft")
+T("highlight_sweep","image",X,"Highlight sweep","Un surlignage ou une couleur balaie le texte.","Front de couleur qui traverse la ligne horizontalement à vitesse constante ou easée.","color_front_track",{"gsap":"backgroundSize 0% vers 100%","css":"background-size transition"},"duration=0.3..1~0.6 s","craft")
+T("underline_draw","image",X,"Underline draw","Un trait se dessine sous un mot.","Longueur d'un segment horizontal croissante.","line_detect",{"gsap":"scaleX 0 vers 1, transformOrigin left","css":"stroke-dashoffset"},"duration=0.3..0.8~0.5 s; thickness=2..8~3 px","craft")
+T("clip_wipe_text","image",X,"Clip-path wipe","Le texte se dévoile par un rectangle qui s'agrandit latéralement.","Bord vertical net qui progresse sur le texte.","edge_front_track",{"css":"clip-path: inset(0 100% 0 0) vers inset(0)","gsap":"clipPath tween"},"duration=0.4..1~0.6 s; direction=ltr|rtl|ttb|btt~ltr enum","craft")
+T("gradient_text_sweep","image",X,"Gradient shine","Un reflet lumineux traverse le texte.","Bande claire étroite qui se déplace à travers le texte.","luma_front_track",{"css":"background-clip:text, background-position animé"},"duration=0.8..2~1.2 s; band_width=0.1..0.4~0.2 ratio","craft")
+T("text_morph","image",X,"Text morph","Un mot se transforme en un autre par fondu croisé avec flou ou par formes.","Deux textes superposés à opacités complémentaires, avec flou au point milieu.","ocr_track",{"gsap":"crossfade + blur, ou MorphSVG sur contours"},"duration=0.3..1~0.5 s; blur_mid=2..12~6 px","craft")
+T("outline_to_fill","image",X,"Outline to fill","Le texte apparaît en contour puis se remplit.","Contours seuls puis remplissage progressif.","fill_ratio: pixels intérieurs remplis",{"css":"-webkit-text-stroke puis color","gsap":"DrawSVG puis fill"},"duration=0.5..1.5~0.8 s","craft")
+T("line_split_stagger","image",X,"Line stagger","Plusieurs lignes entrent l'une après l'autre.","Départs de lignes espacés régulièrement de haut en bas.","ocr_track lignes",{"gsap":"SplitText lines, stagger:0.1"},"each=0.05..0.2~0.1 s","gsap")
+T("text_exit_up","image",X,"Text exit","Sortie du texte par le haut ou par masque avant la coupe.","Translation et/ou opacité décroissante dans les 200 à 400 ms qui précèdent une coupe.","ocr_track + scene_detect",{"gsap":"to {y:'-100%',ease:'power2.in'}"},"duration=0.2..0.5~0.3 s","craft")
+
+# ---------- E. Transitions ----------
+R = "transition"
+T("hard_cut","image",R,"Hard cut","Changement de plan instantané.","Différence d'histogramme très forte entre deux images consécutives.","scene_detect: seuil sur distance d'histogramme",{"hyperframes":"fin d'une scène, début de la suivante"},"","craft")
+T("cut_on_beat","image",R,"Cut on beat","Coupe calée sur un temps fort de la musique.","Instant de coupe à moins d'une image d'un onset musical ou d'un temps du tempo.","scene_detect + beat_track: écart coupe à temps le plus proche",{"hyperframes":"scènes calées sur la grille de beats"},"tolerance=0..0.05~0.033 s; beats_per_cut=1..8~2 beats","craft")
+T("whip_pan","image",R,"Whip pan","Panoramique très rapide avec flou de mouvement qui enchaîne deux plans.","Flou directionnel fort (énergie spectrale anisotrope) sur 4 à 10 images, flux optique très élevé dans une direction.","optical_flow: magnitude et direction dominantes",{"gsap":"x de 0 à -100vw, expo.inOut, plus filtre de flou directionnel","canvas":"flou directionnel par accumulation"},"duration=0.15..0.5~0.3 s; blur_px=20..120~60 px","craft")
+T("zoom_through","image",R,"Zoom transition","Zoom très rapide qui traverse un élément pour arriver au plan suivant.","Flux optique radial (divergence positive forte), échelle exponentielle.","optical_flow: divergence",{"gsap":"scale 1 vers 8, expo.in, puis plan suivant scale 0.5 vers 1, expo.out"},"duration=0.3..0.8~0.5 s; scale_max=3..20~8 ratio","craft")
+T("match_cut","image",R,"Match cut","Coupe entre deux plans dont la forme, la position ou le mouvement se correspondent.","Silhouettes ou centres de masse alignés de part et d'autre de la coupe (IoU élevée des masques).","scene_detect + mask_iou",{"hyperframes":"même forme reprise dans le plan suivant"},"iou_min=0.5..0.95~0.7 ratio","craft")
+T("mask_wipe","image",R,"Mask wipe","Le plan suivant se révèle à travers une forme qui grandit ou balaie.","Front géométrique net séparant deux contenus, qui progresse.","edge_front_track",{"css":"clip-path circle ou polygon animé","gsap":"clipPath tween"},"duration=0.3..1~0.6 s; shape=circle|rect|diagonal|custom~circle enum","craft")
+T("crossfade","image",R,"Crossfade","Fondu enchaîné entre deux plans.","Mélange linéaire de deux images, luminance intermédiaire sur plusieurs images.","scene_detect: transition graduelle",{"gsap":"opacity croisée"},"duration=0.2..1.2~0.5 s","craft")
+T("dip_to_black","image",R,"Dip to black","Passage par le noir entre deux plans.","Luminance moyenne qui tombe proche de 0 puis remonte.","mean_luma",{"gsap":"overlay noir opacity 0 vers 1 vers 0"},"duration=0.2..1~0.4 s","craft")
+T("flash_white","image",R,"Flash frame","Une à trois images blanches ou très claires sur une coupe ou un impact.","Pic de luminance moyenne sur 1 à 3 images.","mean_luma: pic court",{"gsap":"overlay blanc opacity 1 puis 0 en 0.15 s"},"frames=1..4~2 frames; peak=0.6..1~0.9 luma","craft")
+T("push_slide","image",R,"Push","Le plan suivant pousse le précédent hors du cadre.","Translation commune des deux contenus dans la même direction.","optical_flow uniforme",{"gsap":"x des deux scènes, power3.inOut"},"duration=0.3..0.8~0.5 s","craft")
+T("shared_element","image",R,"Shared element morph","Un élément commun se transforme d'un plan à l'autre sans coupe.","Boîte englobante continue qui change de taille et de position à travers la transition.","track_bbox continue",{"gsap":"Flip plugin","css":"View Transitions API"},"duration=0.4..1~0.6 s","gsap")
+T("glitch_transition","image",R,"Glitch","Transition par décalages de bandes, séparation RVB et blocs.","Décalages horizontaux de bandes et canaux couleur désalignés sur quelques images.","channel_misalignment + row_shift",{"canvas":"décalage de lignes et canaux","css":"pseudo-éléments décalés"},"duration=0.1..0.4~0.2 s; rgb_shift=2..20~6 px","craft")
+T("smash_cut","image",R,"Smash cut","Coupe brutale vers un plan contrastant, souvent avec impact sonore.","Coupe nette avec saut fort de luminance ou de couleur et onset sonore simultané.","scene_detect + onset",{"hyperframes":"coupe + sfx impact"},"","craft")
+T("rack_focus","image",R,"Rack focus","Bascule de mise au point d'un plan à un autre de la profondeur.","Netteté qui passe d'une région à une autre.","sharpness_track régional",{"css":"filter blur croisé entre calques"},"duration=0.4..1.5~0.8 s","craft")
+T("light_leak","image",R,"Light leak","Halo coloré qui traverse l'image pendant la transition.","Zone saturée chaude qui se déplace, luminance additive.","color_blob_track",{"canvas":"dégradé radial en mode screen"},"duration=0.5..1.5~0.8 s; intensity=0.2..0.8~0.4 ratio","craft")
+T("iris","image",R,"Iris","Ouverture ou fermeture circulaire.","Masque circulaire centré dont le rayon varie.","circle_detect",{"css":"clip-path: circle()"},"duration=0.3..1~0.5 s","craft")
+T("l_cut","sound",R,"J cut and L cut","Le son du plan suivant commence avant la coupe (J) ou celui du précédent continue après (L).","Onset sonore décalé de la coupe image.","onset vs scene_detect",{"synth":"décalage de l'entrée audio"},"offset=0.1..1~0.3 s","craft")
+
+# ---------- F. Camera ----------
+K = "camera"
+T("push_in","image",K,"Push in","Avancée lente de la caméra ou zoom continu vers le sujet.","Échelle croissante lente et monotone, divergence de flux faible et constante.","optical_flow: divergence",{"gsap":"scale 1 vers 1.08 sur la durée, ease none ou sine"},"scale_per_s=0.01..0.08~0.03 ratio","craft")
+T("pull_out","image",K,"Pull out","Recul lent qui révèle le contexte.","Divergence négative lente.","optical_flow",{"gsap":"scale 1.1 vers 1"},"scale_per_s=0.01..0.08~0.03 ratio","craft")
+T("orbit","image",K,"Orbit","Rotation de la caméra autour d'un objet 3D.","Parallaxe en rotation; points du sujet suivant des ellipses.","feature_track: trajectoires elliptiques",{"three":"camera autour d'une cible, angle animé"},"deg_per_s=5..60~20 deg","craft")
+T("parallax","image",K,"Parallax","Couches à des vitesses différentes selon leur profondeur.","Flux optique en bandes de vitesses différentes.","optical_flow: clustering des vitesses",{"gsap":"x différent par calque","css":"translateZ et perspective"},"layers=2..6~3 n; speed_ratio=0.2..1~0.5 ratio","craft")
+T("truck","image",K,"Truck","Déplacement latéral de la caméra.","Flux optique horizontal uniforme.","optical_flow",{"gsap":"x du conteneur"},"px_per_s=20..300~80 px","craft")
+T("pedestal","image",K,"Pedestal or crane","Déplacement vertical de la caméra.","Flux vertical uniforme.","optical_flow",{"gsap":"y du conteneur"},"px_per_s=20..300~80 px","craft")
+T("dutch_roll","image",K,"Roll","Rotation de la caméra autour de l'axe de visée.","Flux rotationnel (curl) autour du centre.","optical_flow: curl",{"gsap":"rotation du conteneur"},"deg=1..15~4 deg","craft")
+T("camera_shake","image",K,"Camera shake","Secousse brève sur un impact.","Translation et rotation bruitées de haute fréquence décroissantes, synchronisées avec un impact sonore.","global_motion: énergie haute fréquence",{"gsap":"CustomWiggle ou bruit décroissant","canvas":"offset aléatoire amorti"},"amp_px=2..30~8 px; freq=8..30~15 Hz; decay=0.1..0.6~0.3 s","juice")
+T("handheld","image",K,"Handheld drift","Léger flottement organique continu.","Mouvement global lent et bruité, basse fréquence.","global_motion: énergie 0,2 à 2 Hz",{"gsap":"bruit de Perlin sur x y rotation"},"amp_px=1..8~3 px; freq=0.2..1.5~0.5 Hz","craft")
+T("dolly_zoom","image",K,"Dolly zoom","Avancée combinée à un dézoom: le sujet garde sa taille, le fond change.","Sujet d'échelle constante, fond en divergence opposée.","optical_flow par région",{"three":"fov et distance animés en sens opposés"},"fov_change=10..40~20 deg","craft")
+T("depth_of_field","image",K,"Depth of field","Flou de profondeur qui isole le sujet.","Netteté forte sur le sujet, faible sur le fond.","sharpness_map",{"css":"blur sur calques de fond","three":"BokehPass"},"bg_blur=2..30~10 px","craft")
+T("motion_blur","image",K,"Motion blur","Traînée de flou sur les objets rapides.","Flou directionnel proportionnel à la vitesse, longueur de traînée par image.","blur_direction_estimate",{"canvas":"accumulation de sous-images","hyperframes":"rendu sur-échantillonné"},"shutter=0.25..1~0.5 ratio; samples=4..32~8 n","craft")
+
+# ---------- G. 3D product ----------
+G = "product3d"
+T("hero_turntable","image",G,"Hero turntable","Le produit tourne lentement sur lui-même.","Rotation régulière de l'objet, reflets glissant sur les surfaces.","feature_track: rotation de l'objet",{"three":"rotation.y animée","css":"images pré-rendues en séquence"},"deg_per_s=6..45~15 deg","craft")
+T("exploded_view","image",G,"Exploded view","Les pièces du produit s'écartent pour montrer leur assemblage.","Plusieurs éléments qui s'éloignent radialement d'un centre commun puis se figent.","track_multi: divergence radiale",{"three":"position des pièces animée","gsap":"stagger sur les pièces"},"spread=0.2..2~0.6 object_size; duration=0.8..2.5~1.4 s","craft")
+T("specular_sweep","image",G,"Specular sweep","Un reflet lumineux glisse sur la surface du produit.","Bande de luminance élevée qui traverse l'objet sans que l'objet bouge.","luma_front_track sur le masque produit",{"three":"lumière animée","css":"dégradé en mode screen masqué"},"duration=0.6..2~1 s; width=0.05..0.3~0.12 ratio","craft")
+T("rim_light","image",G,"Rim light","Liseré lumineux qui détache le produit d'un fond sombre.","Contour clair sur la silhouette, intérieur plus sombre.","edge_luma_profile",{"three":"lumière arrière","canvas":"contour flouté en screen"},"rim_width=1..10~3 px; intensity=0.3..1~0.7 ratio","craft")
+T("macro_detail","image",G,"Macro detail","Gros plan extrême sur une matière ou un détail.","Faible profondeur de champ, texture fine dominante, objet hors cadre.","sharpness_map + scale",{"three":"caméra très proche, fov serré"},"fov=10..30~18 deg","craft")
+T("floor_reflection","image",G,"Floor reflection","Reflet atténué du produit sur un sol brillant.","Copie verticale inversée, opacité 10 à 40 %, dégradé vers le bas.","symmetry_detect",{"css":"-webkit-box-reflect ou copie scaleY(-1)"},"opacity=0.08..0.4~0.2 ratio","craft")
+T("color_variant_cycle","image",G,"Colorway cycle","Le produit change de couleur en série pour montrer ses déclinaisons.","Teinte dominante du masque produit qui change par paliers.","hue_track sur masque",{"gsap":"timeline de couleurs","css":"filter hue-rotate ou images"},"interval=0.3..1.5~0.6 s; variants=2..8~4 n","craft")
+T("levitation_float","image",G,"Float","Le produit flotte avec une oscillation verticale lente.","Oscillation sinusoïdale de faible amplitude.","track_position: fréquence dominante",{"gsap":"y yoyo sine.inOut repeat -1"},"amp_px=4..30~10 px; period=2..6~3.5 s","craft")
+T("silhouette_reveal","image",G,"Silhouette reveal","Le produit apparaît d'abord en ombre puis s'éclaire.","Masque produit sombre dont la luminance moyenne monte progressivement.","mean_luma sur masque",{"three":"intensité lumineuse animée","css":"brightness 0 vers 1"},"duration=0.8..3~1.5 s","craft")
+T("assembly","image",G,"Assembly","Les pièces arrivent et s'emboîtent pour former le produit.","Convergence radiale d'éléments vers un centre, souvent avec impact sonore à l'emboîtement.","track_multi: convergence",{"three":"positions animées","gsap":"stagger reverse"},"duration=0.8..2.5~1.4 s","craft")
+
+# ---------- H. UI ----------
+U = "ui"
+T("cursor_path","image",U,"Cursor path","Un curseur se déplace pour simuler l'usage.","Petit objet à forme de flèche suivant une trajectoire courbe easée.","template_match curseur + track",{"gsap":"MotionPath avec power2.inOut","canvas":"sprite curseur"},"speed_px_s=300..1500~700 px; dwell=0.2..0.8~0.4 s","craft")
+T("click_ripple","image",U,"Click feedback","Réponse visuelle au clic: enfoncement, onde ou flash.","Échelle du bouton 0,95 à 0,98 pendant 80 à 150 ms, cercle qui s'étend.","track_bbox + circle_detect",{"gsap":"scale 0.96 yoyo 0.08 s","css":":active transform"},"press_scale=0.9..0.99~0.96 ratio; duration=0.08..0.2~0.12 s","craft")
+T("hover_lift","image",U,"Hover lift","L'élément survolé se soulève avec une ombre.","Translation y négative légère et ombre agrandie.","track_position + shadow_area",{"css":"translateY(-2px), box-shadow"},"lift_px=1..8~3 px; duration=0.1..0.25~0.15 s","craft")
+T("typing_field","image",U,"Typing in field","Du texte se tape dans un champ de saisie d'interface.","Caractères ajoutés à 10 à 25 par seconde dans une boîte fixe, souvent avec clics clavier sonores synchronisés.","ocr_track + onset",{"gsap":"TextPlugin ou steps"},"cps=8..30~15 chars_per_s","craft")
+T("scroll_feed","image",U,"Scroll","Défilement d'un contenu d'interface.","Flux vertical uniforme dans une région rectangulaire.","optical_flow régional",{"gsap":"y du contenu, power2.inOut"},"px_per_s=200..2000~600 px","craft")
+T("card_stack","image",U,"Card stack","Cartes empilées qui se déploient ou se superposent.","Plusieurs rectangles décalés en échelle et en y.","rect_detect + track",{"gsap":"stagger sur y et scale"},"offset_px=6..30~12 px; scale_step=0.02..0.08~0.04 ratio","craft")
+T("modal_pop","image",U,"Modal pop","Une fenêtre surgissante apparaît avec un léger rebond.","Échelle 0,9 vers 1 avec overshoot faible et assombrissement du fond.","track_bbox + mean_luma fond",{"gsap":"from {scale:0.92,opacity:0}, back.out(1.4)"},"scale_from=0.8..0.97~0.92 ratio; duration=0.2..0.45~0.3 s","craft")
+T("toast_slide","image",U,"Toast","Notification qui glisse depuis un bord puis repart.","Petit rectangle qui entre, tient 1 à 4 s, sort.","rect_detect + track",{"gsap":"from {y:-40}, power3.out"},"hold=1..4~2 s; distance=20..80~40 px","carbon")
+T("chart_draw","image",U,"Chart draw","Un graphique se trace ou ses barres montent.","Longueurs de barres ou tracé de courbe croissants.","line_detect / bar heights",{"gsap":"DrawSVG ou scaleY avec stagger","css":"stroke-dashoffset"},"duration=0.6..2~1.2 s; stagger=0.03..0.15~0.06 s","craft")
+T("progress_fill","image",U,"Progress fill","Une barre de progression se remplit.","Rectangle dont la largeur remplie croît.","bar_fill_ratio",{"gsap":"scaleX 0 vers 1"},"duration=0.5..3~1.2 s","craft")
+T("spotlight_focus","image",U,"Spotlight focus","Le reste de l'interface s'assombrit pour isoler une zone.","Chute de luminance hors d'une région, région inchangée.","mean_luma par région",{"css":"overlay avec trou par mask","gsap":"opacity de l'overlay"},"dim=0.3..0.8~0.55 ratio; duration=0.2..0.6~0.35 s","craft")
+T("ui_zoom_focus","image",U,"UI zoom to detail","La caméra zoome sur une partie de l'interface.","Échelle globale croissante centrée sur une région, ease in-out.","optical_flow divergence localisée",{"gsap":"scale et transformOrigin du conteneur, power3.inOut"},"scale=1.3..3~1.8 ratio; duration=0.6..1.5~0.9 s","craft")
+T("device_mockup","image",U,"Device mockup","L'interface est présentée dans un cadre d'appareil (téléphone, laptop, fenêtre).","Cadre arrondi stable autour d'un contenu animé.","rect_detect avec coins arrondis",{"css":"conteneur à border-radius et ombre"},"radius=8..60~24 px","craft")
+T("app_window_3d_tilt","image",U,"Perspective tilt","L'interface est inclinée en perspective puis se redresse.","Trapèze qui redevient rectangle (homographie variable).","homography_track",{"css":"perspective + rotateX/rotateY","gsap":"rotationX vers 0"},"tilt_deg=5..35~15 deg; duration=0.8..2~1.2 s","craft")
+
+# ---------- I. Image and grade ----------
+I = "grade"
+T("palette_dominant","image",I,"Dominant palette","Petit ensemble de couleurs qui domine le film.","Centres k-means sur toutes les images; parts de surface.","kmeans_palette",{"css":"variables :root"},"colors=2..8~5 n","craft")
+T("background_gradient","image",I,"Background gradient","Fond en dégradé doux, souvent animé lentement.","Luminance et teinte variant lentement en espace, faible fréquence.","low_freq_fit",{"css":"linear-gradient / radial-gradient animé"},"stops=2..5~3 n; drift_s=4..20~10 s","craft")
+T("mesh_gradient_drift","image",I,"Mesh gradient drift","Taches de couleur floues qui dérivent lentement.","Blobs de couleur très flous en déplacement lent.","color_blob_track",{"canvas":"cercles flous en mode screen","css":"filter blur sur formes"},"blobs=2..6~4 n; blur=60..300~150 px; speed=5..40~15 px_per_s","craft")
+T("contrast","image",I,"Contrast","Écart entre zones claires et sombres.","Écart entre percentiles 5 et 95 de luminance.","luma_percentiles",{"css":"filter contrast"},"p95_p5=0.4..1~0.8 luma","craft")
+T("saturation","image",I,"Saturation","Intensité des couleurs.","Moyenne de la chroma en espace OKLCH.","chroma_mean",{"css":"filter saturate"},"chroma=0..0.3~0.08 oklch_c","craft")
+T("color_temperature","image",I,"Color temperature","Dominante chaude ou froide de l'étalonnage.","Rapport moyen des canaux rouge et bleu dans les tons moyens.","rb_ratio_midtones",{"css":"overlay teinté","canvas":"matrice de couleur"},"rb_ratio=0.8..1.25~1 ratio","craft")
+T("film_grain","image",I,"Grain","Bruit fin animé qui donne une texture pellicule.","Bruit haute fréquence non corrélé d'une image à l'autre sur zones unies.","noise_residual",{"canvas":"bruit par image en mode overlay","css":"image de bruit animée"},"amount=0.01..0.08~0.03 luma_std; size=1..3~1 px","craft")
+T("vignette","image",I,"Vignette","Assombrissement progressif des bords.","Luminance radiale décroissante vers les coins.","radial_luma_profile",{"css":"radial-gradient en overlay"},"strength=0.05..0.5~0.2 ratio","craft")
+T("glow_bloom","image",I,"Glow and bloom","Halo autour des zones lumineuses.","Diffusion de luminance autour des hautes lumières.","highlight_spread",{"css":"filter drop-shadow ou blur en screen","canvas":"flou additif"},"radius=4..60~20 px; threshold=0.6..0.95~0.8 luma","craft")
+T("chromatic_aberration","image",I,"Chromatic aberration","Séparation légère des canaux rouge et bleu vers les bords.","Décalage radial entre canaux, croissant vers les bords.","channel_misalignment",{"canvas":"canaux décalés","css":"text-shadow rouge et bleu"},"shift_px=0.5..6~1.5 px","craft")
+T("luminance_flash","image",I,"Exposure pulse","Pulsation d'exposition sur un temps fort.","Pic bref de luminance moyenne aligné sur un onset.","mean_luma + onset",{"gsap":"brightness 1.3 puis 1 en 0.2 s"},"peak=1.1..1.6~1.25 ratio; decay=0.1..0.4~0.2 s","craft")
+T("dark_mode_base","image",I,"Dark base","Fond très sombre avec accents lumineux, convention dominante des lancements tech.","Luminance médiane inférieure à 0,15.","luma_median",{"css":"fond #0a0a0a à #141414"},"bg_luma=0..0.15~0.04 luma","craft")
+T("noise_texture","image",I,"Static texture","Texture de bruit ou de papier fixe sur le fond.","Bruit haute fréquence corrélé d'une image à l'autre.","noise_residual temporal correlation",{"css":"background-image SVG feTurbulence"},"amount=0.01..0.06~0.02 luma_std","craft")
+
+# ---------- J. Typography ----------
+Y = "typography"
+T("font_class","image",Y,"Font class","Famille de caractères: grotesque, géométrique, sérif, mono, display.","Mesures de glyphes: contraste de graisse, empattements, rapport hauteur d'x, chasse fixe.","glyph_metrics sur OCR",{"css":"font-family par jeton"},"class=grotesk|geometric|serif|mono|display~grotesk enum","craft")
+T("font_weight","image",Y,"Weight","Graisse du trait.","Épaisseur moyenne du trait rapportée à la hauteur de capitale.","stroke_width_ratio",{"css":"font-weight"},"weight=300..900~500 css_weight","craft")
+T("type_scale","image",Y,"Type scale","Rapport entre tailles des titres et du texte.","Rapports des hauteurs de capitale détectées.","ocr_bbox heights",{"css":"variables de taille dérivées d'une base"},"ratio=1.2..2~1.5 ratio; hero_cap_px=60..300~140 px_at_1080","craft")
+T("tracking","image",Y,"Tracking","Espacement global entre les lettres.","Espace moyen entre glyphes rapporté à la hauteur de capitale.","glyph_gaps",{"css":"letter-spacing"},"tracking=-0.06..0.3~-0.02 em","craft")
+T("line_height","image",Y,"Leading","Interlignage.","Distance entre lignes de base rapportée à la taille.","ocr_line_spacing",{"css":"line-height"},"leading=0.85..1.4~1.0 ratio","craft")
+T("text_case","image",Y,"Case","Casse dominante: capitales, minuscules, phrase.","Proportion de glyphes capitaux.","ocr_text",{"css":"text-transform"},"case=upper|sentence|lower~sentence enum","craft")
+T("centered_title","image",Y,"Centered title","Titre centré dans le cadre, convention des cartes de lancement.","Centre de la boîte du texte proche du centre horizontal.","ocr_bbox center",{"css":"place-items:center"},"center_tol=0..0.05~0.02 ratio","craft")
+T("words_on_screen","image",Y,"Words per card","Nombre de mots affichés simultanément.","Compte OCR de mots par image stable.","ocr_text",{"hyperframes":"une idée par carte"},"words=1..12~4 n","craft")
+
+# ---------- K. Composition and structure ----------
+S = "structure"
+T("hook_open","image",S,"Hook","Ouverture qui capte l'attention dans les premières secondes.","Densité de mouvement et de coupes élevée dans les 3 premières secondes.","cut_density + motion_energy sur 0 à 3 s",{"hyperframes":"première scène courte et forte"},"hook_s=1..5~3 s","craft")
+T("problem_reveal_payoff","image",S,"Launch arc","Arc de lancement: problème ou teaser, révélation du produit, démonstration, carte de fin.","Segmentation en 3 à 5 blocs d'énergie distincte, pic à la révélation.","energy_curve segmentation",{"hyperframes":"sections de la composition"},"sections=3..6~4 n","craft")
+T("feature_montage","image",S,"Feature montage","Suite rapide de fonctionnalités, une par plan.","Série de plans de durée semblable avec texte court chacun.","scene_detect + ocr",{"hyperframes":"scènes instanciées depuis une liste"},"per_feature_s=1..4~2 s; features=3..10~5 n","craft")
+T("logo_end_card","image",S,"Logo end card","Carte finale avec logo, souvent sur fond uni.","Image stable finale avec un objet graphique centré, durée 1,5 à 4 s.","hold + center object",{"hyperframes":"scène finale"},"hold=1.5..4~2.5 s; logo_width=0.15..0.45~0.25 frame_ratio","craft")
+T("cta_card","image",S,"Call to action","Carte d'appel à l'action (adresse, date, disponible maintenant).","Texte court stable en fin de film, souvent une URL.","ocr: url ou date",{"hyperframes":"scène de fin"},"hold=1.5..4~2.5 s","craft")
+T("cut_density","image",S,"Cut density","Nombre de coupes par seconde, qui donne l'énergie.","Coupes par fenêtre glissante de 2 s.","scene_detect",{"hyperframes":"durée des scènes"},"cuts_per_s=0.2..3~0.8 rate","craft")
+T("tempo_ramp","image",S,"Pacing ramp","Accélération progressive du montage vers la révélation.","Durée des plans décroissante avant un pic.","scene_detect: pente des durées",{"hyperframes":"durées décroissantes"},"ratio_per_shot=0.6..0.95~0.8 ratio","craft")
+T("safe_margin","image",S,"Safe margin","Marge où aucun texte important n'entre.","Distance minimale entre texte et bords.","ocr_bbox to frame edge",{"css":"padding en vw"},"margin=0.04..0.12~0.07 frame_ratio","craft")
+T("negative_space","image",S,"Negative space","Grandes zones vides autour du sujet.","Part de surface proche du fond uni.","bg_segmentation",{"css":"mise en page centrée aérée"},"empty_ratio=0.4..0.9~0.7 ratio","craft")
+T("aspect_ratio","image",S,"Aspect ratio","Format du cadre: 16:9, 1:1, 9:16, 4:5.","Dimensions du fichier et zone active hors bandes.","ffprobe + letterbox_detect",{"hyperframes":"width et height"},"ratio=0.5625..2.39~1.778 ratio","craft")
+T("loop_seamless","image",S,"Seamless loop","Fin qui raccorde parfaitement au début.","Différence entre dernière et première image très faible.","frame_diff first-last",{"gsap":"repeat:-1, valeurs de départ égales aux valeurs de fin"},"","craft")
+
+# ---------- L. Sound ----------
+A = "sound"
+def snd(id,en,d,sig,det,synth,params,src="craft"):
+    T(id,"sound",A,en,d,sig,det,{"synth":synth,"webaudio":"OfflineAudioContext, mêmes noeuds"},params,src)
+snd("whoosh","Whoosh","Souffle de passage qui accompagne une transition ou un mouvement rapide.",
+    "Bruit filtré passe-bande dont la fréquence centrale monte puis descend, enveloppe en cloche de 0,2 à 1 s, souvent panoramiqué.",
+    "onset + spectral_centroid track: cloche de centroïde",
+    "bruit rose -> passe-bande (Q 1 à 4) balayé 300 Hz -> 3 kHz -> 600 Hz, enveloppe gaussienne, pan animé",
+    "duration=0.2..1~0.5 s; f_low=150..600~300 Hz; f_peak=1500..8000~3000 Hz; q=0.7..4~1.5 q; peak_db=-18..-6~-12 dbfs")
+snd("swish","Swish","Whoosh très court et aigu pour les petits mouvements d'interface.",
+    "Bruit aigu de 60 à 200 ms, centroïde élevé.","onset + centroid",
+    "bruit blanc -> passe-haut 2 kHz, enveloppe attaque 10 ms décroissance 120 ms",
+    "duration=0.06..0.25~0.12 s; hp=1000..5000~2500 Hz")
+snd("riser_noise","Noise riser","Montée de bruit qui crée l'attente avant une révélation.",
+    "Énergie et centroïde croissants sur 1 à 8 s, coupure nette au temps fort.","rms_slope + centroid_slope avant un onset fort",
+    "bruit blanc -> passe-bas dont la coupure monte exponentiellement 200 Hz -> 12 kHz, gain croissant, coupure à zéro au temps fort",
+    "duration=1..8~2.5 s; f_start=100..500~200 Hz; f_end=5000..16000~10000 Hz; gain_rise_db=12..30~18 db")
+snd("riser_tonal","Tonal riser","Montée de hauteur continue (glissando), souvent avec trémolo.",
+    "Fréquence fondamentale croissante, souvent 1 à 2 octaves, modulation d'amplitude accélérée.","pitch_track slope",
+    "oscillateur dent de scie détuné, fréquence exponentielle f0 -> f0*4, LFO d'amplitude 4 -> 16 Hz",
+    "duration=1..6~2 s; octaves=0.5..3~2 oct; lfo_end=4..24~12 Hz")
+snd("sub_drop","Sub drop","Chute de grave profond sur le logo ou la révélation.",
+    "Sinus grave dont la fréquence descend (par exemple 80 Hz -> 30 Hz) sur 0,5 à 2 s, énergie concentrée sous 100 Hz.","pitch_track grave + band_energy 20 à 100 Hz",
+    "sinus avec glissement exponentiel f0 -> f1, légère saturation, enveloppe attaque 5 ms décroissance 1,2 s",
+    "f_start=50..120~70 Hz; f_end=25..45~32 Hz; duration=0.5..2.5~1.2 s; peak_db=-12..-3~-6 dbfs")
+snd("impact_hit","Impact","Coup bref et puissant sur une apparition ou une coupe.",
+    "Transitoire très raide (attaque inférieure à 5 ms), large bande, décroissance 0,2 à 1,5 s.","onset strength + spectral_flatness",
+    "couche de bruit court passe-bas + sinus 60 Hz pitché vers le bas + clic, compression",
+    "attack=0.001..0.01~0.003 s; decay=0.2..1.5~0.6 s; body_hz=40..120~60 Hz")
+snd("boom","Boom","Grave d'explosion lent et résonant, plus long que l'impact.",
+    "Énergie sous 150 Hz qui décroît sur 1 à 4 s.","band_energy grave",
+    "bruit passe-bas 150 Hz + sinus 45 Hz, réverbération longue",
+    "decay=1..4~2 s")
+snd("ui_click","UI click","Clic d'interface sur un bouton ou une sélection.",
+    "Transitoire de 5 à 30 ms, centroïde 2 à 6 kHz, aucune hauteur nette.","onset + duration + centroid",
+    "impulsion filtrée passe-bande 3 kHz, enveloppe 15 ms, éventuellement deux impulsions (enfoncement et relâchement)",
+    "duration=0.005..0.04~0.015 s; center=1500..6000~3000 Hz; peak_db=-24..-10~-16 dbfs")
+snd("tick","Tick","Petit tic sec pour un compteur, un défilement ou un pas.",
+    "Transitoires courts réguliers, souvent synchronisés sur des changements de chiffres.","onset periodicity",
+    "impulsion passe-haut 4 kHz, 5 ms",
+    "rate=4..30~12 Hz")
+snd("pop","Pop","Bulle sonore douce qui accompagne une apparition arrondie.",
+    "Sinus court à glissement montant (par exemple 400 -> 900 Hz) en 40 à 100 ms.","pitch_track court",
+    "sinus avec glissement montant rapide, enveloppe 60 ms",
+    "f_start=200..600~400 Hz; f_end=600..1500~900 Hz; duration=0.03..0.12~0.06 s")
+snd("key_typing","Keyboard typing","Frappe de touches synchronisée avec un texte qui se tape.",
+    "Suite de clics irréguliers (jitter 10 à 30 %) à 8 à 20 par seconde.","onset rate + jitter",
+    "clics filtrés à hauteur et volume aléatoires autour d'une moyenne",
+    "rate=6..20~12 Hz; jitter=0.05..0.4~0.2 ratio")
+snd("chime","Notification chime","Courte note cristalline pour une notification ou une validation.",
+    "Une à trois notes sinusoïdales avec harmoniques et décroissance de 0,3 à 1,5 s.","pitch_track + harmonicity",
+    "deux sinus en tierce ou quinte, synthèse FM légère, décroissance exponentielle",
+    "notes=1..3~2 n; decay=0.3..1.5~0.7 s; f0=600..2000~1046 Hz")
+snd("glitch_sfx","Glitch","Bruits numériques hachés accompagnant une transition glitch.",
+    "Fragments de 10 à 60 ms répétés, coupures brutales, bitcrush.","onset density très élevée + spectral_flux",
+    "bruit et tonalités hachés, réduction de résolution, répétitions",
+    "duration=0.1..0.5~0.2 s; slice=0.01..0.06~0.025 s")
+snd("reverse_swell","Reverse swell","Son inversé qui gonfle jusqu'au temps fort (cymbale ou réverbération inversée).",
+    "Enveloppe croissante exponentielle qui s'arrête net au temps fort, spectre large.","rms_slope + coupure nette",
+    "bruit filtré avec enveloppe exponentielle croissante, ou queue de réverbération rendue puis inversée",
+    "duration=0.5..3~1.2 s")
+snd("shimmer","Shimmer","Scintillement aigu qui souligne un reflet ou une apparition lumineuse.",
+    "Partiels aigus (supérieurs à 4 kHz) modulés, sans attaque marquée.","band_energy aigu + modulation",
+    "sinus aigus détunés avec trémolo rapide et réverbération",
+    "f=3000..10000~6000 Hz; duration=0.4..2~0.8 s")
+snd("braam","Braam","Gros accord grave et cuivré de bande-annonce.",
+    "Accord grave soutenu riche en harmoniques avec attaque rapide et souvent sub.","harmonicity + band_energy 60 à 400 Hz",
+    "dents de scie détunées à l'octave, filtre passe-bas ouvert puis refermé, saturation",
+    "f0=40..80~55 Hz; duration=1..4~2 s")
+snd("logo_sting","Logo sting","Signature sonore courte de 1 à 3 s sur le logo final.",
+    "Combinaison d'un impact ou sub drop et d'un élément tonal, aligné sur l'apparition du logo.","onset aligné sur scene logo",
+    "impact + sub drop + chime, tous calés sur l'instant du logo",
+    "duration=1..3.5~2 s")
+snd("music_bed","Music bed","Musique de fond qui porte le rythme du film.",
+    "Tempo régulier, structure en sections, énergie mesurable.","beat_track + rms par section",
+    "séquenceur en code: grosse caisse, caisse claire, basse, nappe, sur la grille du tempo mesuré, sans reprendre la mélodie",
+    "bpm=80..140~110 bpm; bars=8..64~24 n")
+snd("drop","Drop","Moment où toute la musique entre après une montée ou un silence.",
+    "Saut de RMS et d'énergie grave après une montée ou un creux.","rms jump + low band jump",
+    "toutes les pistes du séquenceur réactivées au temps fort",
+    "jump_db=6..20~10 db")
+snd("pre_drop_silence","Pre-drop silence","Silence bref juste avant le temps fort de révélation.",
+    "RMS proche du plancher sur 0,1 à 1 s immédiatement suivi d'un onset fort.","rms floor then onset",
+    "coupure du bus musique avant le temps fort",
+    "duration=0.1..1~0.25 s")
+snd("tape_stop","Tape stop","Ralentissement brutal de la musique jusqu'à l'arrêt.",
+    "Hauteur et tempo qui chutent ensemble en 0,3 à 1,5 s.","pitch_track descente globale",
+    "lecture du bus musique à vitesse décroissante (ré-échantillonnage)",
+    "duration=0.3..1.5~0.6 s")
+snd("stutter","Stutter","Répétition hachée d'un fragment musical avant une transition.",
+    "Fragments répétés à intervalle de note (1/8, 1/16), accélérant parfois.","onset periodicity sur fragments identiques",
+    "répétition d'une tranche du bus musique",
+    "division=4..32~16 note_div")
+snd("sidechain_duck","Ducking","La musique baisse sous la voix ou sous un effet fort.",
+    "RMS de la musique qui chute de 3 à 12 dB pendant la voix ou l'effet, retour en 100 à 400 ms.","rms musique vs événements",
+    "compresseur piloté ou automation de gain",
+    "depth_db=3..12~6 db; release=0.1..0.5~0.25 s")
+snd("stereo_pan_motion","Panning follows motion","Le son se déplace en stéréo dans le sens du mouvement à l'image.",
+    "Balance gauche droite qui suit la direction du flux optique.","stereo_balance vs optical_flow direction",
+    "StereoPanner animé selon la position x de l'élément",
+    "pan_range=0.2..1~0.7 ratio")
+snd("reverb_tail","Reverb tail","Queue de réverbération qui prolonge un impact ou une note.",
+    "Décroissance exponentielle longue après la fin du son direct.","decay time (RT60) estimation",
+    "réverbération à convolution sur réponse impulsionnelle synthétique (bruit exponentiel)",
+    "rt60=0.4..4~1.5 s; wet=0.1..0.5~0.25 ratio")
+snd("loudness_target","Loudness target","Sonie intégrée du mixage final.",
+    "LUFS intégrés et vrai crête. Réseaux sociaux autour de -14 LUFS, diffusion EBU R128 à -23 LUFS.","ffmpeg ebur128",
+    "normalisation loudnorm en fin de chaîne",
+    "lufs=-23..-9~-14 lufs; true_peak=-2..-0.5~-1 dbtp","ebu")
+snd("spectral_balance","Spectral balance","Répartition de l'énergie entre graves, médiums et aigus.",
+    "Énergie par bandes (sub, grave, médium, aigu) et centroïde moyen.","band_energy + centroid",
+    "égaliseur par bandes sur le bus final",
+    "centroid=800..4000~1800 Hz")
+snd("transient_density","SFX density","Nombre d'effets sonores ponctuels par seconde.",
+    "Onsets hors grille musicale par seconde.","onset detection minus beat grid",
+    "planificateur d'effets calé sur les événements image",
+    "per_s=0.3..4~1.2 rate")
+snd("hit_sync_image","Audio-visual sync","Alignement des effets sonores sur les événements image.",
+    "Écart entre onsets audio et événements image (coupe, impact, apparition).","onset vs scene/event times",
+    "planification des effets aux instants mesurés",
+    "tolerance=0..0.04~0.02 s")
+snd("ambience_bed","Room tone","Ambiance continue très discrète qui évite le silence numérique.",
+    "Plancher de bruit stable à -50 à -35 dBFS.","noise floor estimation",
+    "bruit rose très filtré à faible niveau",
+    "level_db=-55..-35~-45 dbfs")
+
+data = {
+  "title": "R09 motion vocabulary (12 October 2026)",
+  "version": 1,
+  "schema": {
+    "id": "identifiant stable en anglais",
+    "domain": "image ou sound",
+    "category": "famille",
+    "definition_fr": "définition courte",
+    "signature": "ce qu'on observe dans les courbes, l'image ou le son",
+    "detector": "mesure à brancher dans l'analyse (nom de méthode)",
+    "implementation": "réalisation en GSAP, CSS, canvas, three, synth ou hyperframes",
+    "params": "liste name, min, max, typical, unit",
+    "source": "clé de la table sources"
+  },
+  "sources": {
+    "disney": "https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation",
+    "penner": "http://robertpenner.com/easing/",
+    "gsap": "https://gsap.com/docs/v3/Eases/",
+    "carbon": "https://carbondesignsystem.com/elements/motion/overview/",
+    "material": "https://m3.material.io/styles/motion/easing-and-duration/tokens-specs",
+    "framer": "https://motion.dev/docs/spring",
+    "juice": "https://www.youtube.com/watch?v=Fy0aCDmgnxg",
+    "ebu": "https://tech.ebu.ch/publications/r128",
+    "whatships": "https://whatships.com/search-index.json",
+    "craft": "convention de métier, non mesurée ici: à confirmer par l'analyse des références"
+  },
+  "terms": []
+}
+
+def parse_params(s):
+    out = []
+    for p in [x.strip() for x in s.split(";") if x.strip()]:
+        name, rest = p.split("=",1)
+        rng, rest2 = rest.split("~",1)
+        typ, unit = rest2.rsplit(" ",1) if " " in rest2 else (rest2, "")
+        if ".." not in rng:
+            out.append({"name":name,"values":rng.split("|"),"typical":typ,"unit":unit}); continue
+        lo, hi = rng.split("..")
+        def num(v):
+            try: return float(v)
+            except ValueError: return v
+        if "|" in lo or "|" in hi:
+            out.append({"name":name,"values":(lo+"|"+hi).split("|"),"typical":typ,"unit":unit})
+        else:
+            out.append({"name":name,"min":num(lo),"max":num(hi),"typical":num(typ),"unit":unit})
+    return out
+
+ids=set()
+for r in ROWS:
+    assert r["id"] not in ids, r["id"]; ids.add(r["id"])
+    r["params"]=parse_params(r["params"])
+    data["terms"].append(r)
+data["counts"]={"total":len(ROWS),
+  "by_domain":{d:sum(1 for r in ROWS if r["domain"]==d) for d in ("image","sound")},
+  "by_category":{c:sum(1 for r in ROWS if r["category"]==c) for c in sorted({r["category"] for r in ROWS})}}
+txt=json.dumps(data,ensure_ascii=False,indent=1)
+assert "—" not in txt and "–" not in txt
+open(OUT,"w").write(txt)
+print(data["counts"])

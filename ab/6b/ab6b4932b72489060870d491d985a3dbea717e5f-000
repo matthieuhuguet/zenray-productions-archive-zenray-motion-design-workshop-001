@@ -53,8 +53,8 @@
     "tonalFft": 16384,
     "tonalNeighbourOct": 0.3333,
     "tonalNeighbourMinBins": 6,
-    "tonalRampDb": 6.0,
-    "tonalThresholdDb": 12.0,
+    "tonalRampDb": 3.0,
+    "tonalThresholdDb": 15.0,
     "levelWindowMs": 5.0,
     "tonalFMin": 40.0,
     "tonalSegment": 4096,
@@ -175,12 +175,12 @@
     "targetSeed": 101,
     "seedFloorSeeds": 20,
     "seedFloorFirst": 1000,
-    "nelderMeadMaxEval": 600,
-    "cmaBudget": 1200,
+    "nelderMeadMaxEval": 400,
+    "cmaBudget": 900,
     "cmaSigma0": 0.2,
     "cmaSeed": 7,
     "gridPoints": 7,
-    "workers": 8,
+    "workers": 16,
     "perturbations": {
       "whoosh": [
         {
@@ -281,7 +281,8 @@
     "fitSeeds": [
       202,
       203,
-      204
+      204,
+      205
     ],
     "evalSeeds": [
       303,
