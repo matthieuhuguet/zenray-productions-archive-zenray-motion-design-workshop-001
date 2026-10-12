@@ -1,0 +1,21 @@
+{
+ "score": 0.3501,
+ "dimensions": {
+  "silhouette": 0.3501
+ },
+ "detail": {
+  "silhouette_iou": 0.3501,
+  "silhouette_iou_min": 0.0,
+  "ssim": 0.8553,
+  "frames": 94
+ },
+ "measured": {
+  "aspect": 1.5685,
+  "frame_rgb": [
+   132.0,
+   46.0,
+   9.0
+  ],
+  "valid_frames": 88
+ }
+}

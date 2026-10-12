@@ -1,0 +1,116 @@
+// 12 October 2026, 13:10 CEST (13:45: extruded rounded body, per-frame screen): parametric 3D device (three.js r185) driven by HyperFrames seek.
+// Everything comes from params.json (window.ZR_DEVICE): device geometry and materials (HDA controls), the screen
+// (measured orb wallpaper drawn on a canvas texture, plus an original label), and the per-frame placement measured
+// on the reference (centre and on-screen width), converted here into a camera-space position so the projected
+// device matches the measurement. No reference pixel is used.
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+window.THREE = THREE;
+const D = window.ZR_DEVICE;
+const W = D.canvas.width, H = D.canvas.height, FPS = D.canvas.fps;
+const C = D.device;
+
+const canvas = document.getElementById("stage");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = C.exposure;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(D.background);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = C.environment;
+
+const camera = new THREE.PerspectiveCamera(D.camera.fov, W / H, 0.01, 100);
+camera.position.set(0, 0, 0);
+const focalPx = (H / 2) / Math.tan(THREE.MathUtils.degToRad(D.camera.fov) / 2);
+
+// Rounded rectangle outline (width w, height h, corner radius r), centred: the corner radius is a free control,
+// unlike a rounded box whose radius is capped by half the depth.
+function roundedRect(w, h, r) {
+  const s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+  r = Math.min(r, w / 2, h / 2);
+  s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+  s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+  s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+  return s;
+}
+// Device body: extruded rounded rectangle with a bevel, metallic frame colour from the measurement.
+const bodyGeo = new THREE.ExtrudeGeometry(roundedRect(1 - 2 * C.bevel, C.aspect - 2 * C.bevel, C.radius - C.bevel),
+  { depth: C.depth, bevelEnabled: true, bevelSize: C.bevel, bevelThickness: C.bevel, bevelSegments: 6, curveSegments: 24 });
+bodyGeo.translate(0, 0, -C.depth / 2);
+const body = new THREE.Mesh(bodyGeo, new THREE.MeshPhysicalMaterial({ color: new THREE.Color(...C.frame_rgb.map((v) => v / 255)),
+  metalness: C.metalness, roughness: C.roughness, clearcoat: C.clearcoat, clearcoatRoughness: 0.2 }));
+// Screen: flat rounded rectangle inset by the bezel, UVs normalised to its bounds.
+const screenCanvas = document.createElement("canvas");
+screenCanvas.width = C.screen_px[0]; screenCanvas.height = C.screen_px[1];
+const screenTex = new THREE.CanvasTexture(screenCanvas);
+screenTex.colorSpace = THREE.SRGBColorSpace;
+const sw = 1 - 2 * C.bezel, sh = C.aspect - 2 * C.bezel;
+const screenGeo = new THREE.ShapeGeometry(roundedRect(sw, sh, Math.max(0.001, C.radius - C.bezel)), 24);
+{ const pos = screenGeo.attributes.position, uv = screenGeo.attributes.uv;
+  for (let i = 0; i < pos.count; i++) uv.setXY(i, pos.getX(i) / sw + 0.5, pos.getY(i) / sh + 0.5); }
+const screen = new THREE.Mesh(screenGeo, new THREE.MeshBasicMaterial({ map: screenTex, toneMapped: false }));
+screen.position.z = C.depth / 2 + C.bevel + 0.001;
+const device = new THREE.Group();
+device.add(body); device.add(screen);
+scene.add(device);
+
+// Screen picture per frame: the measured colour grid of that frame (bilinear), then the optional original label.
+const G = D.screen.grids;
+let drawn = -1;
+function drawScreen(f) {
+  const idx = Math.max(0, Math.min(G.length - 1, Math.round(f)));
+  if (idx === drawn) return;
+  drawn = idx;
+  const ctx = screenCanvas.getContext("2d"), w = screenCanvas.width, h = screenCanvas.height;
+  const g = G[idx], n = g.length, m = g[0].length;
+  const img = ctx.createImageData(w, h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const gx = x / (w - 1) * (m - 1), gy = y / (h - 1) * (n - 1), x0 = Math.floor(gx), y0 = Math.floor(gy);
+    const x1 = Math.min(m - 1, x0 + 1), y1 = Math.min(n - 1, y0 + 1), ux = gx - x0, uy = gy - y0, o = (y * w + x) * 4;
+    for (let c = 0; c < 3; c++) {
+      img.data[o + c] = (g[y0][x0][c] * (1 - ux) + g[y0][x1][c] * ux) * (1 - uy) + (g[y1][x0][c] * (1 - ux) + g[y1][x1][c] * ux) * uy;
+    }
+    img.data[o + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  if (D.screen.label) {
+    ctx.fillStyle = D.screen.label_color;
+    ctx.font = `${Math.round(h * D.screen.label_size)}px ${D.screen.label_font}`;
+    ctx.textAlign = "center";
+    ctx.fillText(D.screen.label, w / 2, h * D.screen.label_y);
+  }
+  screenTex.needsUpdate = true;
+}
+
+// Placement: on-screen width (px) and centre (px) per frame -> distance and lateral offset in camera space.
+function place(f) {
+  const T = D.track, i = Math.max(0, Math.min(T.length - 1, f)), a = Math.floor(i), b = Math.min(T.length - 1, a + 1), u = i - a;
+  const lerp = (k) => T[a][k] * (1 - u) + T[b][k] * u;
+  const wpx = lerp("w"), cx = lerp("cx"), cy = lerp("cy");
+  const z = focalPx * 1.0 / wpx;
+  device.position.set((cx - W / 2) / focalPx * z, -(cy - H / 2) / focalPx * z, -z);
+  device.rotation.set(THREE.MathUtils.degToRad(lerp("rx")), THREE.MathUtils.degToRad(lerp("ry")), THREE.MathUtils.degToRad(lerp("rz")));
+}
+
+const key = new THREE.DirectionalLight(0xffffff, C.key_light);
+key.position.set(...C.key_dir);
+scene.add(key);
+
+function renderAt(time) {
+  place(Math.max(0, time) * FPS);
+  drawScreen(Math.max(0, time) * FPS);
+  renderer.render(scene, camera);
+}
+
+window.__hf = window.__hf || {};
+window.__hf.buildReady = window.__hf.buildReady || {};
+window.__hf.buildReady["zr-device"] = Promise.resolve();
+window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+renderAt(0);
