@@ -1,0 +1,154 @@
+# Bible graphique de la référence motion-opus-5-5 (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Film d'interface sur fond crème : une conversation avec un assistant fabrique une vidéo de lancement, et la caméra virtuelle glisse d'un panneau à l'autre ; mots en serif et pastilles rouges qui surgissent, nuée d'icônes, compteur qui s'emballe, puis carte de fin sobre. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 30,05 s |
+| Format | 3840 x 2160 |
+| Cadence du fichier | 30,000 images par seconde |
+| Cadence du contenu | 30,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 9 plans et 8 coupes, soit 16,1 coupes par minute ; un plan dure 3,77 s en médiane et 3,32 s en moyenne, du plus court (0,90 s) au plus long (6,33 s), avec un coefficient de variation de 0,47. 0 plans durent moins d'une demi-seconde et 5 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 0 %, et celle des coupes tombant sur une attaque sonore 62 %. Le plan médian dure 7,69 temps. Le détecteur avait trouvé 2 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 6 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| graphique | 76,9 % |
+| carte texte | 23,1 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 7 plans sur 9, soit 78 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : carte texte 23,1 %, graphique 76,9 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#f1f2e9` | 98,4 % | 95,1 | 4,5 |
+| `#e83107` | 1,2 % | 51,0 | 91,2 |
+| `#f3dbcf` | 0,5 % | 89,1 | 10,8 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#ecece2` (100 %) |
+| texte | `#e3e1d2` (35 %), `#d5cfc9` (33 %), `#bfbeb5` (22 %) |
+| accent | `#e73a10` (13 %) |
+
+## Typographie
+
+31 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 14,0 à 127,0 pixels, médiane 22,0 ; la densité de trait médiane vaut 0,344. On compte 7 lignes en capitales et 24 en bas de casse, et 0 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#8c8981`, `#9a9991`, `#bbbcb7`, `#bbbcb9`, `#c3c4c0`, `#c8c8c1`, `#c9c9c2`, `#c9cac4`.
+
+Police libre la plus proche (comparateur `zrmd.analyze.fontmatch`, ligne de S07, texte lu en mémoire et jamais écrit) : Geist 575, approche -0,02 em, score 0,305 ; Work Sans 525, approche -0,05 em, score 0,307 ; Switzer 575, approche 0,00 em, score 0,320.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `elastic.inOut(1,0.3)` | 11 |
+| `material.standard` | 11 |
+| `expo.out` | 10 |
+| `expo.inOut` | 9 |
+| `none` | 9 |
+| `bounce.inOut` | 8 |
+| `circ.out` | 6 |
+| `circ.in` | 6 |
+| `bounce.in` | 6 |
+| `back.inOut(1.70158)` | 5 |
+| `circ.inOut` | 5 |
+| `power2.in` | 3 |
+| `material.decelerate` | 3 |
+| `elastic.inOut(1,0.45)` | 3 |
+
+Un mouvement d'élément dure 0,46 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| roulis | 7 |
+| zoom avant | 6 |
+| panoramique | 5 |
+| travelling vertical | 4 |
+| zoom arrière | 2 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche (relevée à l'œil) | 3 |
+| poussée | 2 |
+| ouverture | 1 |
+| zoom traversant | 1 |
+| coupe franche après passage au blanc | 1 |
+| fondu enchaîné | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 0,0 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 4 |
+| calque 2D déformé (affine) | 2 |
+| calque 2D | 2 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 1 |
+
+## Son
+
+Sonie intégrée -27,1 LUFS, centroïde spectral médian 1144 Hz, part harmonique 88 %. Le détecteur d'attaques relève 148 événements (attaque médium 133, impact grave 15) et le détecteur de houles 0 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 12,52 s | attaque médium | -30,8 dB |
+| 15,71 s | attaque médium | -21,1 dB |
+| 17,64 s | attaque médium | -21,5 dB |
+| 20,34 s | attaque médium | -24,6 dB |
+| 20,95 s | attaque médium | -32,0 dB |
+| 22,90 s | attaque médium | -32,5 dB |
+| 24,00 s | attaque médium | -22,9 dB |
+| 24,86 s | attaque médium | -31,8 dB |
+| 25,22 s | attaque médium | -25,1 dB |
+| 26,80 s | attaque médium | -27,0 dB |
+| 27,17 s | attaque médium | -24,1 dB |
+| 27,91 s | attaque médium | -21,0 dB |
+
+## Musique
+
+Tempo estimé 122,5 BPM, 29 temps détectés, régularité de la grille 0,063 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 30,05 s | -33,1 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 4,03 s | carte texte | Carte titre crème : un titre en serif noir s'écrit en deux lignes à gauche, une étoile rouge à droite et une petite mention apparaît dessous. |
+| S02 | 4,03 s | 6,33 s | graphique | Gros plan sur une interface de conversation claire : une demande est tapée, envoyée, puis des lignes d'état défilent avec une barre de progression rouge. |
+| S03 | 10,37 s | 2,67 s | graphique | La caméra glisse vers un panneau vidéo où une phrase se compose mot à mot, certains mots dans des pastilles rouges, puis la ligne file vers la gauche. |
+| S04 | 13,03 s | 3,77 s | graphique | Un gros bouton rond rouge est cliqué, devient bleu, et un compteur en grands chiffres rouges monte pendant qu'une gerbe d'icônes jaillit en arc. |
+| S05 | 16,80 s | 4,23 s | graphique | Retour à la conversation : une nouvelle demande est tapée, puis une liste de capacités s'affiche avec un mot surligné qui change. |
+| S06 | 21,03 s | 0,90 s | graphique | Un grand rectangle rouge porte deux mots, puis des logos en tuiles viennent l'entourer. |
+| S07 | 21,93 s | 1,23 s | graphique | Un mot en serif au centre d'une couronne d'icônes d'applications qui tourne puis s'efface. |
+| S08 | 23,17 s | 3,87 s | graphique | Une question se construit mot à mot sur un dégradé rouge en cercle, le dernier mot dans une pastille rouge, puis deux formes rouges fusionnent en logotype à côté d'un nom. |
+| S09 | 27,03 s | 2,87 s | carte texte | Carte de fin crème : titre en serif, étoile rouge, adresse en dessous, immobile. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

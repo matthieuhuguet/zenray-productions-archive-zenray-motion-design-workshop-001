@@ -1,0 +1,65 @@
+{
+ "fps": 30.0,
+ "cadence": {
+  "fps": 30.0,
+  "factor": 1,
+  "duplicate_ratio": 0.142
+ },
+ "frames": 897,
+ "duration": 29.9,
+ "width": 3840,
+ "height": 2160,
+ "cuts": [
+  {
+   "frame": 631,
+   "t": 21.033333333333335,
+   "kind": "hard",
+   "score": 38.395,
+   "jump": 0.2087,
+   "spread": 0.5149999856948853,
+   "mad": 0.207,
+   "chi": 0.2011,
+   "ecr": 0.737
+  },
+  {
+   "frame": 658,
+   "t": 21.933333333333334,
+   "kind": "dissolve",
+   "start_frame": 650,
+   "end_frame": 665,
+   "score": 2.495
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start_frame": 0,
+   "end_frame": 631,
+   "start": 0.0,
+   "end": 21.033333333333335,
+   "duration": 21.033333333333335,
+   "enter": "start",
+   "enter_score": null
+  },
+  {
+   "id": "S02",
+   "start_frame": 631,
+   "end_frame": 658,
+   "start": 21.033333333333335,
+   "end": 21.933333333333334,
+   "duration": 0.9,
+   "enter": "hard",
+   "enter_score": 38.395
+  },
+  {
+   "id": "S03",
+   "start_frame": 658,
+   "end_frame": 897,
+   "start": 21.933333333333334,
+   "end": 29.9,
+   "duration": 7.966666666666667,
+   "enter": "dissolve",
+   "enter_score": 2.495
+  }
+ ]
+}

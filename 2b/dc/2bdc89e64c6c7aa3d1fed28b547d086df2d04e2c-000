@@ -1,0 +1,10 @@
+{
+ "date": "12 October 2026",
+ "method": "Revue à l'œil de la planche (une image tous les quarts de seconde) ; descriptions paraphrasées, sans texte affiché ni nom de marque.",
+ "reference": "Affiche verticale animée en boucle courte : un grand titre gris clair sous un ruban de dégradé pastel, un petit schéma de flux en boîtes dont la surbrillance passe d'un nœud à l'autre, et un paragraphe fixe en bas.",
+ "add_cuts": [],
+ "remove_cuts": [],
+ "shots": [
+  {"t": 3.0, "content": "graphic", "text": "Plan unique fixe : sur un fond blanc coiffé d'un dégradé pastel en vague, le titre reste immobile tandis qu'un point lumineux parcourt le schéma et colore successivement une boîte en bleu, une barre en violet puis une boîte en vert."}
+ ]
+}

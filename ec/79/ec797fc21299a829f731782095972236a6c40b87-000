@@ -1,0 +1,177 @@
+{
+ "date": "12 October 2026",
+ "source": "onekey-pro-2 [2108559602300383233].mp4",
+ "time_s": 6.1,
+ "text": "Beautifully powerful",
+ "crop_box_1920x1080": {
+  "x0": 506,
+  "y0": 482,
+  "x1": 1406,
+  "y1": 612
+ },
+ "target": {
+  "x_height_px": 49.0,
+  "ink_width_px": 859.0
+ },
+ "seconds": 19.9,
+ "files_searched": 139,
+ "score": "w_iou*(1-IoU) + w_chamfer*chamfer_xh + w_width*|width_err|, lower is better",
+ "weights": {
+  "w_iou": 1.0,
+  "w_chamfer": 4.0,
+  "w_width": 2.0
+ },
+ "ranking": [
+  {
+   "rank": 1,
+   "family": "Lexend",
+   "style": "Variable",
+   "weight": 400.0,
+   "tracking_em": -0.02,
+   "size_px": 93.41,
+   "score": 0.3423,
+   "detail": {
+    "iou": 0.6905,
+    "chamfer_xh": 0.00761,
+    "width_err": 0.00116
+   },
+   "file": "fonts/files/Lexend/Lexend[wght].ttf"
+  },
+  {
+   "rank": 2,
+   "family": "Lexend Deca",
+   "style": "Variable",
+   "weight": 400.0,
+   "tracking_em": -0.02,
+   "size_px": 93.41,
+   "score": 0.3423,
+   "detail": {
+    "iou": 0.6905,
+    "chamfer_xh": 0.00761,
+    "width_err": 0.00116
+   },
+   "file": "fonts/files/LexendDeca/LexendDeca[wght].ttf"
+  },
+  {
+   "rank": 3,
+   "family": "Rubik",
+   "style": "Variable",
+   "weight": 425.0,
+   "tracking_em": -0.01,
+   "size_px": 94.23,
+   "score": 0.37229,
+   "detail": {
+    "iou": 0.6641,
+    "chamfer_xh": 0.00852,
+    "width_err": -0.00116
+   },
+   "file": "fonts/files/Rubik/Rubik[wght].ttf"
+  },
+  {
+   "rank": 4,
+   "family": "Manrope",
+   "style": "Variable",
+   "weight": 550.0,
+   "tracking_em": 0.01,
+   "size_px": 90.74,
+   "score": 0.37384,
+   "detail": {
+    "iou": 0.6581,
+    "chamfer_xh": 0.00739,
+    "width_err": -0.00116
+   },
+   "file": "fonts/files/Manrope/Manrope[wght].ttf"
+  },
+  {
+   "rank": 5,
+   "family": "Syne",
+   "style": "Variable",
+   "weight": 400.0,
+   "tracking_em": 0.01,
+   "size_px": 98.0,
+   "score": 0.37771,
+   "detail": {
+    "iou": 0.6674,
+    "chamfer_xh": 0.00719,
+    "width_err": 0.00815
+   },
+   "file": "fonts/files/Syne/Syne[wght].ttf"
+  },
+  {
+   "rank": 6,
+   "family": "Red Hat Text",
+   "style": "Variable",
+   "weight": 550.0,
+   "tracking_em": -0.01,
+   "size_px": 97.01,
+   "score": 0.39168,
+   "detail": {
+    "iou": 0.6784,
+    "chamfer_xh": 0.00822,
+    "width_err": 0.01863
+   },
+   "file": "fonts/files/RedHatText/RedHatText[wght].ttf"
+  },
+  {
+   "rank": 7,
+   "family": "Alexandria",
+   "style": "Variable",
+   "weight": 350.0,
+   "tracking_em": -0.03,
+   "size_px": 93.41,
+   "score": 0.39592,
+   "detail": {
+    "iou": 0.6408,
+    "chamfer_xh": 0.0086,
+    "width_err": -0.00116
+   },
+   "file": "fonts/files/Alexandria/Alexandria[wght].ttf"
+  },
+  {
+   "rank": 8,
+   "family": "Rethink Sans",
+   "style": "Variable",
+   "weight": 550.0,
+   "tracking_em": 0.0,
+   "size_px": 98.0,
+   "score": 0.40372,
+   "detail": {
+    "iou": 0.6509,
+    "chamfer_xh": 0.00957,
+    "width_err": 0.00815
+   },
+   "file": "fonts/files/RethinkSans/RethinkSans[wght].ttf"
+  },
+  {
+   "rank": 9,
+   "family": "Albert Sans",
+   "style": "Variable",
+   "weight": 625.0,
+   "tracking_em": -0.01,
+   "size_px": 97.01,
+   "score": 0.41448,
+   "detail": {
+    "iou": 0.6284,
+    "chamfer_xh": 0.01014,
+    "width_err": -0.00116
+   },
+   "file": "fonts/files/AlbertSans/AlbertSans[wght].ttf"
+  },
+  {
+   "rank": 10,
+   "family": "Overpass",
+   "style": "Variable",
+   "weight": 625.0,
+   "tracking_em": -0.01,
+   "size_px": 95.11,
+   "score": 0.42103,
+   "detail": {
+    "iou": 0.6318,
+    "chamfer_xh": 0.01029,
+    "width_err": -0.00582
+   },
+   "file": "fonts/files/Overpass/Overpass[wght].ttf"
+  }
+ ],
+ "errors": []
+}

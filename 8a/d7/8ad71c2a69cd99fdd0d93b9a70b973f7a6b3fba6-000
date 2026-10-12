@@ -1,0 +1,92 @@
+# Bible graphique de la référence fin-4 (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Affiche verticale animée en boucle courte : un grand titre gris clair sous un ruban de dégradé pastel, un petit schéma de flux en boîtes dont la surbrillance passe d'un nœud à l'autre, et un paragraphe fixe en bas. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 7,87 s |
+| Format | 1080 x 1350 |
+| Cadence du fichier | 30,000 images par seconde |
+| Cadence du contenu | 15,00 images par seconde |
+| Son | non |
+
+## Rythme de montage
+
+La référence compte 1 plans et 0 coupes, soit 0,0 coupes par minute ; un plan dure 7,87 s en médiane et 7,87 s en moyenne, du plus court (7,87 s) au plus long (7,87 s), avec un coefficient de variation de 0,00. 0 plans durent moins d'une demi-seconde et 1 plus de trois secondes. Le détecteur avait trouvé 0 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 0 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| graphique | 100,0 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 0 plans sur 1, soit 0 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : graphique 100,0 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#fbfbfb` | 67,1 % | 98,6 | 0,2 |
+| `#dbd9e3` | 15,9 % | 87,2 | 4,9 |
+| `#bab7bf` | 6,4 % | 75,0 | 4,3 |
+| `#dab4be` | 4,6 % | 76,9 | 15,1 |
+| `#90928f` | 4,0 % | 60,4 | 1,9 |
+| `#de8c8e` | 2,0 % | 66,8 | 33,8 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#fbfbfb` (100 %) |
+| texte | `#e0e2dc` (100 %) |
+| accent | `#de8c8e` (100 %) |
+
+## Typographie
+
+4 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 9,0 à 77,0 pixels, médiane 19,5 ; la densité de trait médiane vaut 0,333. On compte 2 lignes en capitales et 2 en bas de casse, et 0 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#d7d7d7`, `#d8d8d8`, `#dfdfe0`, `#f3f9df`.
+
+Appariement de police faible sur la ligne de S01 (meilleur score 3,407, au-delà du seuil 0,60) : aucune police libre de la base ne ressemble assez au dessin mesuré, la plus proche étant Hubot Sans 400 ; la police se choisira à l'œil.
+
+## Mouvements et courbes
+
+Aucune courbe n'a passé le filtre de qualité ; les mouvements de cette référence sont trop bruités ou trop petits pour une identification fiable à cette résolution d'analyse.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| fixe | 1 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| ouverture | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 0,0 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 1 |
+
+## Son
+
+La référence n'a pas de piste sonore.
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 7,87 s | graphique | Plan unique fixe : sur un fond blanc coiffé d'un dégradé pastel en vague, le titre reste immobile tandis qu'un point lumineux parcourt le schéma et colore successivement une boîte en bleu, une barre en violet puis une boîte en vert. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

@@ -1,0 +1,16 @@
+{
+ "date": "12 October 2026",
+ "method": "Revue à l'œil des planches (une image tous les quarts de seconde) ; descriptions paraphrasées, sans texte affiché ni nom de marque.",
+ "reference": "Démonstration en capture d'écran : une application de canevas sombre et un assistant conversationnel clair travaillent côte à côte, la caméra virtuelle zoome sur les zones utiles, puis un petit logotype s'enroule et disparaît sur le noir.",
+ "add_cuts": [{"t": 21.5, "kind": "zoom"}],
+ "remove_cuts": [],
+ "shots": [
+  {"t": 5.0, "content": "plate", "plate_kind": "image", "text": "Capture d'écran d'un canevas sombre : une image de tulipe et une carte en dégradé jaune rose apparaissent, puis une boîte de dialogue s'ouvre en gros plan et le bureau se dévoile avec plusieurs fenêtres."},
+  {"t": 12.0, "content": "plate", "plate_kind": "image", "text": "Zoom sur une application claire d'assistant : la fenêtre s'ouvre, le curseur va vers la zone de saisie."},
+  {"t": 17.0, "content": "plate", "plate_kind": "image", "text": "Un long message d'instructions apparaît dans la zone de saisie, puis la conversation se déroule sur fond blanc et une miniature sombre du canevas surgit à droite."},
+  {"t": 30.0, "content": "plate", "plate_kind": "image", "text": "Écran partagé : la conversation défile à gauche pendant qu'à droite, sur le canevas sombre, de nouvelles cartes d'images s'ajoutent une à une."},
+  {"t": 42.5, "content": "plate", "plate_kind": "image", "text": "Zoom sur le canevas : deux grandes cartes, la tulipe et une variante en dégradé, avec le curseur qui s'en approche."},
+  {"t": 44.2, "content": "plate", "plate_kind": "image", "text": "Dézoom vers l'écran partagé complet, court plan de transition."},
+  {"t": 46.0, "content": "graphic", "text": "Un petit logotype blanc à quatre pétales sur le noir se tord, rétrécit et disparaît, puis le noir tient jusqu'à la fin."}
+ ]
+}

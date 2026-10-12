@@ -1,0 +1,246 @@
+# Bible graphique de la référence interface (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Film de marque en prises de vue réelles, chaud et intime : une succession de moments du quotidien (transports, laverie, jardin, douche, rue, réunion, lit, concert, atelier) reliés par un petit objet porté au doigt, avec quelques bulles d'interface discrètes et un final sur l'objet posé et des titres en serif italique. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 90,09 s |
+| Format | 3840 x 2160 |
+| Cadence du fichier | 24,000 images par seconde |
+| Cadence du contenu | 24,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 75 plans et 74 coupes, soit 49,3 coupes par minute ; un plan dure 0,83 s en médiane et 1,20 s en moyenne, du plus court (0,25 s) au plus long (6,71 s), avec un coefficient de variation de 0,92. 15 plans durent moins d'une demi-seconde et 6 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 15 %, et celle des coupes tombant sur une attaque sonore 61 %. Le plan médian dure 1,59 temps. Le détecteur avait trouvé 72 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 2 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 89,6 % |
+| montage | 6,2 % |
+| carte texte | 4,2 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 69 plans sur 75, soit 92 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 95,8 %, carte texte 4,2 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#050506` | 37,4 % | 1,5 | 0,2 |
+| `#32261d` | 6,9 % | 16,2 | 9,1 |
+| `#263433` | 4,5 % | 20,4 | 6,1 |
+| `#714c37` | 3,8 % | 35,8 | 22,8 |
+| `#383631` | 3,6 % | 22,7 | 3,5 |
+| `#565143` | 2,4 % | 34,5 | 8,9 |
+| `#80684e` | 2,2 % | 45,8 | 19,2 |
+| `#44261d` | 2,1 % | 18,9 | 17,2 |
+| `#b3a99c` | 2,1 % | 69,8 | 8,4 |
+| `#a4765a` | 2,0 % | 53,7 | 26,6 |
+| `#80867d` | 1,9 % | 55,2 | 6,0 |
+| `#514037` | 1,8 % | 28,7 | 9,9 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#050707` (100 %) |
+| accent | `#aa6e47` (8 %), `#ba6441` (4 %), `#925841` (2 %), `#62681c` (2 %) |
+| texte | `#babbba` (4 %) |
+
+## Typographie
+
+4 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 13,0 à 56,5 pixels, médiane 56,0 ; la densité de trait médiane vaut 0,087. On compte 1 lignes en capitales et 3 en bas de casse, et 100 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#babbba`.
+
+Appariement de police faible sur la ligne de S75 (meilleur score 0,882, au-delà du seuil 0,60) : aucune police libre de la base ne ressemble assez au dessin mesuré, la plus proche étant Urbanist 375 ; la police se choisira à l'œil.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `css.ease-out` | 11 |
+| `none` | 10 |
+| `material.accelerate` | 7 |
+| `sine.inOut` | 6 |
+| `material.decelerate` | 6 |
+| `sine.out` | 6 |
+| `bounce.inOut` | 5 |
+| `css.ease` | 4 |
+| `circ.inOut` | 4 |
+| `circ.out` | 3 |
+| `css.ease-in` | 3 |
+| `power2.out` | 2 |
+| `back.inOut(3.5)` | 2 |
+| `back.in(2.5)` | 2 |
+
+Un mouvement d'élément dure 0,64 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| panoramique | 26 |
+| roulis | 26 |
+| fixe | 25 |
+| zoom arrière | 24 |
+| travelling vertical | 23 |
+| zoom avant | 16 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 53 |
+| fondu enchaîné | 14 |
+| coupe franche vers un noir | 3 |
+| coupe franche après passage au noir | 2 |
+| ouverture | 1 |
+| raccord sur forme ou mouvement | 1 |
+| coupe franche (relevée à l'œil) | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 95,8 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| plusieurs couches en parallaxe (2,5D) | 23 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 20 |
+| immobile | 15 |
+| calque 2D | 10 |
+| scène 3D rigide en profondeur | 4 |
+| calque 2D déformé (affine) | 2 |
+| calque 2D dont l'apparence change (rendu éclairé ou 3D possible) | 1 |
+
+## Son
+
+Sonie intégrée -24,4 LUFS, centroïde spectral médian 2707 Hz, part harmonique 80 %. Le détecteur d'attaques relève 547 événements (attaque médium 526, clic aigu 21) et le détecteur de houles 8 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 5,36 s | attaque médium | -17,3 dB |
+| 34,71 s | attaque médium | -31,6 dB |
+| 46,70 s | attaque médium | -29,6 dB |
+| 52,95 s | clic aigu | -31,6 dB |
+| 53,13 s | attaque médium | -24,7 dB |
+| 53,30 s | attaque médium | -25,6 dB |
+| 67,86 s | attaque médium | -23,9 dB |
+| 78,39 s | attaque médium | -23,3 dB |
+| 78,47 s | attaque médium | -20,2 dB |
+| 79,28 s | attaque médium | -25,2 dB |
+| 80,78 s | attaque médium | -31,9 dB |
+| 81,77 s | attaque médium | -30,8 dB |
+
+Houles : 0,12 s (montée 0,40 s), 4,36 s (montée 0,41 s), 5,16 s (montée 0,56 s), 11,77 s (montée 0,60 s), 16,82 s (montée 0,52 s), 50,52 s (montée 0,38 s), 72,32 s (montée 0,36 s), 76,60 s (montée 0,21 s).
+
+## Musique
+
+Tempo estimé 114,3 BPM, 171 temps détectés, régularité de la grille 0,098 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 5,80 s | -23,6 dB |
+| 2 | 5,80 s | 10,05 s | -25,7 dB |
+| 3 | 10,05 s | 16,85 s | -31,3 dB |
+| 4 | 16,85 s | 34,25 s | -28,8 dB |
+| 5 | 34,25 s | 55,35 s | -29,4 dB |
+| 6 | 55,35 s | 60,50 s | -31,2 dB |
+| 7 | 60,50 s | 75,95 s | -28,5 dB |
+| 8 | 75,95 s | 79,55 s | -28,4 dB |
+| 9 | 79,55 s | 87,10 s | -36,0 dB |
+| 10 | 87,10 s | 90,10 s | -60,4 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 0,50 s | plaque 3D ou prise de vue | Un jeune homme dans une rame de métro regarde son téléphone, couleurs chaudes. |
+| S02 | 0,50 s | 0,67 s | plaque 3D ou prise de vue | Un visage endormi dans la pénombre bleue, en plan très serré. |
+| S03 | 1,17 s | 0,79 s | plaque 3D ou prise de vue | Une jeune femme debout sur une plage consulte son téléphone, une petite bulle d'interface apparaît à côté d'elle. |
+| S04 | 1,96 s | 0,50 s | plaque 3D ou prise de vue | Un homme sur une pelouse regarde son téléphone pendant qu'un ballon traverse le premier plan, bulle d'interface. |
+| S05 | 2,46 s | 0,83 s | plaque 3D ou prise de vue | Deux personnes baignées d'une lumière bleue intense, une bulle d'interface s'affiche près d'elles. |
+| S06 | 3,29 s | 0,25 s | montage | Très gros plan sur un œil qui s'ouvre, reflets de lumière. |
+| S07 | 3,54 s | 0,58 s | plaque 3D ou prise de vue | Raccord flou de l'œil vers le hublot rond d'une machine à laver turquoise. |
+| S08 | 4,12 s | 0,62 s | plaque 3D ou prise de vue | Hublot d'une machine à laver qui tourne dans une laverie turquoise. |
+| S09 | 4,75 s | 0,83 s | plaque 3D ou prise de vue | Un homme à table dans un café, une bulle d'interface s'affiche au-dessus de ses mains. |
+| S10 | 5,58 s | 0,92 s | plaque 3D ou prise de vue | Une femme pousse un enfant sur une balançoire dans un parc, bulle d'interface. |
+| S11 | 6,50 s | 0,79 s | plaque 3D ou prise de vue | Deux silhouettes à contre-jour devant un coucher de soleil sur la mer, bulle d'interface. |
+| S12 | 7,29 s | 0,42 s | montage | Transition sombre, reflets d'une vitre de train qui défile, puis un visage. |
+| S13 | 7,71 s | 0,38 s | montage | Une jeune femme dans un wagon, le visage éclairé par l'écran de son téléphone. |
+| S14 | 8,08 s | 0,33 s | montage | Une jeune femme près de la mer, regard baissé, ciel gris. |
+| S15 | 8,42 s | 0,38 s | montage | La même jeune femme sur fond de montagnes au crépuscule. |
+| S16 | 8,79 s | 0,88 s | plaque 3D ou prise de vue | Une jeune femme dans une gare animée, regard vers la caméra. |
+| S17 | 9,67 s | 0,79 s | plaque 3D ou prise de vue | Entrée par le noir sur une femme dans la brume d'un parc. |
+| S18 | 10,46 s | 2,17 s | plaque 3D ou prise de vue | Une femme marche dans un parc brumeux au lever du jour, la caméra la suit. |
+| S19 | 12,62 s | 2,67 s | plaque 3D ou prise de vue | Un homme dort sur le côté dans un lit, lumière chaude du matin. |
+| S20 | 15,29 s | 1,38 s | plaque 3D ou prise de vue | Une main portant une bague touche une branche de feuillage. |
+| S21 | 16,67 s | 0,46 s | montage | Gros plan sur la bague à un doigt, puis un homme âgé dans un jardin. |
+| S22 | 17,12 s | 1,83 s | plaque 3D ou prise de vue | Un homme âgé jardine au milieu des plantes, lumière douce. |
+| S23 | 18,96 s | 0,96 s | plaque 3D ou prise de vue | Un arroseur automatique arrose un jardin potager, contre-jour. |
+| S24 | 19,92 s | 1,04 s | plaque 3D ou prise de vue | Une main ouverte sous un jet d'eau devant un mur carrelé vert. |
+| S25 | 20,96 s | 2,29 s | plaque 3D ou prise de vue | Un homme torse nu sous la douche dans une salle de bains carrelée. |
+| S26 | 23,25 s | 1,00 s | plaque 3D ou prise de vue | Une main baguée tient la laisse d'un chien, plan serré dans la rue. |
+| S27 | 24,25 s | 0,79 s | plaque 3D ou prise de vue | Un petit chien trotte sur un trottoir mouillé, caméra au ras du sol. |
+| S28 | 25,04 s | 0,54 s | plaque 3D ou prise de vue | Une main baguée dans la poche d'une veste kaki. |
+| S29 | 25,58 s | 1,21 s | plaque 3D ou prise de vue | Une femme promène son chien dans une rue d'immeubles en briques. |
+| S30 | 26,79 s | 0,25 s | montage | Une étudiante écrit sur une feuille dans une salle, très bref. |
+| S31 | 27,04 s | 3,00 s | plaque 3D ou prise de vue | Deux étudiantes à une table, l'une écrit pendant que l'autre la regarde. |
+| S32 | 30,04 s | 1,29 s | plaque 3D ou prise de vue | Plan large de la salle d'étude avec ses tables et ses lampes. |
+| S33 | 31,33 s | 0,25 s | montage | Un vélo chargé de fleurs passe dans une rue, très bref. |
+| S34 | 31,58 s | 0,46 s | montage | Le vélo aux fleurs roule le long d'un trottoir. |
+| S35 | 32,04 s | 0,46 s | montage | Même vélo aux fleurs, autre moment du passage. |
+| S36 | 32,50 s | 0,71 s | plaque 3D ou prise de vue | Le panier de fleurs du vélo en gros plan dans la rue. |
+| S37 | 33,21 s | 1,83 s | plaque 3D ou prise de vue | Un livreur à vélo boit en roulant devant des façades. |
+| S38 | 35,04 s | 0,54 s | plaque 3D ou prise de vue | Une femme lit sur un banc dans un hall aux murs orangés, très bref. |
+| S39 | 35,58 s | 3,29 s | plaque 3D ou prise de vue | Une femme pensive, la main près de la bouche, en plan serré. |
+| S40 | 38,88 s | 3,67 s | plaque 3D ou prise de vue | Un homme rit en parlant à table dans un restaurant aux banquettes vertes. |
+| S41 | 42,54 s | 0,83 s | plaque 3D ou prise de vue | Un versant de montagne rocheux dans les nuages. |
+| S42 | 43,38 s | 1,62 s | plaque 3D ou prise de vue | Un randonneur avec un sac à dos orange fait une pause dans un pierrier. |
+| S43 | 45,00 s | 0,79 s | plaque 3D ou prise de vue | Des mains feuillettent des papiers sur une table de réunion. |
+| S44 | 45,79 s | 1,00 s | plaque 3D ou prise de vue | Des personnes en costume se lèvent autour d'une table de verre. |
+| S45 | 46,79 s | 0,25 s | montage | Une poignée de main devant une fenêtre et des plantes, très bref. |
+| S46 | 47,04 s | 0,58 s | plaque 3D ou prise de vue | La poignée de main vue de plus près. |
+| S47 | 47,62 s | 0,79 s | plaque 3D ou prise de vue | Un poing serré sur une table de réunion, une main baguée à côté. |
+| S48 | 48,42 s | 0,46 s | montage | La main sur la table et la tension des participants, très bref. |
+| S49 | 48,88 s | 0,46 s | montage | Un homme en costume derrière une table avec une vitre, très bref. |
+| S50 | 49,33 s | 1,12 s | plaque 3D ou prise de vue | Une femme seule à une table de réunion qui relit un document. |
+| S51 | 50,46 s | 0,71 s | plaque 3D ou prise de vue | Une personne remplit un lave-vaisselle, vue de l'intérieur. |
+| S52 | 51,17 s | 1,04 s | plaque 3D ou prise de vue | Une femme passe derrière un comptoir de cuisine carrelé de rouge. |
+| S53 | 52,21 s | 1,58 s | plaque 3D ou prise de vue | Gros plan sur des mains baguées qui se frôlent contre une hanche. |
+| S54 | 53,79 s | 0,67 s | plaque 3D ou prise de vue | Un couple s'embrasse dans un lit, plan serré. |
+| S55 | 54,46 s | 0,33 s | montage | Une main ouvre un tiroir de bois, très bref. |
+| S56 | 54,79 s | 0,92 s | plaque 3D ou prise de vue | Un tiroir rempli de câbles et de petits objets qu'une main fouille. |
+| S57 | 55,71 s | 0,83 s | plaque 3D ou prise de vue | Le couple s'embrasse dans le lit, plus près. |
+| S58 | 56,54 s | 1,04 s | plaque 3D ou prise de vue | Une femme allongée dans des draps blancs, vue de profil. |
+| S59 | 57,58 s | 0,46 s | montage | Pénombre bleue puis rayonnages de livres. |
+| S60 | 58,04 s | 1,12 s | plaque 3D ou prise de vue | Rayonnages d'une bibliothèque éclairés en bleu-vert. |
+| S61 | 59,17 s | 2,12 s | plaque 3D ou prise de vue | Très gros plan sur la peau et le nez d'un visage endormi. |
+| S62 | 61,29 s | 1,71 s | plaque 3D ou prise de vue | Une personne allongée sur un canapé, la tête renversée, main baguée sur la joue. |
+| S63 | 63,00 s | 1,00 s | plaque 3D ou prise de vue | Une personne allongée sur un lit dans une chambre éclairée par une lampe. |
+| S64 | 64,00 s | 1,21 s | plaque 3D ou prise de vue | Un homme torse nu se rase devant un miroir. |
+| S65 | 65,21 s | 0,92 s | plaque 3D ou prise de vue | L'homme vu de face avec de la mousse à raser sur le visage. |
+| S66 | 66,12 s | 3,17 s | plaque 3D ou prise de vue | Une main baguée passe sur une joue rasée, puis l'homme se regarde. |
+| S67 | 69,29 s | 2,92 s | plaque 3D ou prise de vue | Une femme dans une foule de concert éclairée de violet et de vert. |
+| S68 | 72,21 s | 0,58 s | plaque 3D ou prise de vue | Des mains levées dans une salle de concert sous des lumières colorées. |
+| S69 | 72,79 s | 0,54 s | plaque 3D ou prise de vue | Des mains baguées tapent sur un clavier d'ordinateur. |
+| S70 | 73,33 s | 0,71 s | plaque 3D ou prise de vue | Un homme seul dans un bureau aux murs couverts de notes. |
+| S71 | 74,04 s | 0,62 s | plaque 3D ou prise de vue | Plusieurs personnes au travail dans le même bureau, plan large. |
+| S72 | 74,67 s | 0,83 s | plaque 3D ou prise de vue | Un atelier sombre avec des bocaux et des outils sur un établi. |
+| S73 | 75,50 s | 4,08 s | plaque 3D ou prise de vue | Des mains sur un établi, puis l'artisan qui travaille, mise au point qui glisse. |
+| S74 | 79,58 s | 6,71 s | plaque 3D ou prise de vue | Un petit objet rond posé sur une table de bois en contre-jour, des titres en italique serif apparaissent puis s'effacent au-dessus. |
+| S75 | 86,29 s | 3,79 s | carte texte | Carte de fin noire, une ligne en serif italique centrée qui s'éteint. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

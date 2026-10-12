@@ -1,0 +1,122 @@
+{
+ "fps": 30.0,
+ "cadence": {
+  "fps": 30.0,
+  "factor": 1,
+  "duplicate_ratio": 0.241
+ },
+ "frames": 1543,
+ "duration": 51.43333333333333,
+ "width": 1666,
+ "height": 1080,
+ "cuts": [
+  {
+   "frame": 328,
+   "t": 10.933333333333334,
+   "kind": "dissolve",
+   "start_frame": 320,
+   "end_frame": 335,
+   "score": 5.097
+  },
+  {
+   "frame": 389,
+   "t": 12.966666666666667,
+   "kind": "hard",
+   "score": 19.352,
+   "jump": 0.0611,
+   "spread": 0.5109999775886536,
+   "mad": 0.0607,
+   "chi": 0.0941,
+   "ecr": 0.945
+  },
+  {
+   "frame": 1246,
+   "t": 41.53333333333333,
+   "kind": "dissolve",
+   "start_frame": 1238,
+   "end_frame": 1253,
+   "score": 4.212
+  },
+  {
+   "frame": 1315,
+   "t": 43.833333333333336,
+   "kind": "dissolve",
+   "start_frame": 1307,
+   "end_frame": 1322,
+   "score": 3.946
+  },
+  {
+   "frame": 1344,
+   "t": 44.8,
+   "kind": "hard",
+   "score": 40.0,
+   "jump": 0.5308,
+   "spread": 0.9380000233650208,
+   "mad": 0.5308,
+   "chi": 0.4494,
+   "ecr": 0.993
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start_frame": 0,
+   "end_frame": 328,
+   "start": 0.0,
+   "end": 10.933333333333334,
+   "duration": 10.933333333333334,
+   "enter": "start",
+   "enter_score": null
+  },
+  {
+   "id": "S02",
+   "start_frame": 328,
+   "end_frame": 389,
+   "start": 10.933333333333334,
+   "end": 12.966666666666667,
+   "duration": 2.033333333333333,
+   "enter": "dissolve",
+   "enter_score": 5.097
+  },
+  {
+   "id": "S03",
+   "start_frame": 389,
+   "end_frame": 1246,
+   "start": 12.966666666666667,
+   "end": 41.53333333333333,
+   "duration": 28.566666666666666,
+   "enter": "hard",
+   "enter_score": 19.352
+  },
+  {
+   "id": "S04",
+   "start_frame": 1246,
+   "end_frame": 1315,
+   "start": 41.53333333333333,
+   "end": 43.833333333333336,
+   "duration": 2.3,
+   "enter": "dissolve",
+   "enter_score": 4.212
+  },
+  {
+   "id": "S05",
+   "start_frame": 1315,
+   "end_frame": 1344,
+   "start": 43.833333333333336,
+   "end": 44.8,
+   "duration": 0.9666666666666667,
+   "enter": "dissolve",
+   "enter_score": 3.946
+  },
+  {
+   "id": "S06",
+   "start_frame": 1344,
+   "end_frame": 1543,
+   "start": 44.8,
+   "end": 51.43333333333333,
+   "duration": 6.633333333333334,
+   "enter": "hard",
+   "enter_score": 40.0
+  }
+ ]
+}

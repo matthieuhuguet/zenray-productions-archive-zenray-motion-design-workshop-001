@@ -1,0 +1,194 @@
+# Bible graphique de la référence onekey-pro-2 (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Film produit sombre et lumineux pour un appareil de poche : rendus 3D en macro sur fond noir, cartes texte minimales blanches sur noir, quelques prises de vue de mains et de personnes dans une pénombre bleutée, et un final sur un grand titre volumétrique. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 68,05 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 60,000 images par seconde |
+| Cadence du contenu | 60,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 30 plans et 29 coupes, soit 25,6 coupes par minute ; un plan dure 1,66 s en médiane et 2,27 s en moyenne, du plus court (0,63 s) au plus long (6,00 s), avec un coefficient de variation de 0,65. 0 plans durent moins d'une demi-seconde et 5 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 10 %, et celle des coupes tombant sur une attaque sonore 59 %. Le plan médian dure 2,44 temps. Le détecteur avait trouvé 26 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 3 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 77,3 % |
+| carte texte | 11,9 % |
+| graphique | 10,8 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 24 plans sur 30, soit 80 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 77,3 %, carte texte 11,9 %, graphique 10,8 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#040404` | 60,4 % | 1,1 | 0,3 |
+| `#1f2128` | 9,5 % | 12,8 | 5,3 |
+| `#2a3746` | 6,0 % | 22,6 | 10,8 |
+| `#465668` | 3,8 % | 35,9 | 12,6 |
+| `#848890` | 2,4 % | 56,4 | 5,0 |
+| `#c2c4c7` | 2,2 % | 79,0 | 1,6 |
+| `#0f0d1d` | 1,9 % | 4,3 | 11,1 |
+| `#5f6a7a` | 1,5 % | 44,4 | 10,2 |
+| `#464549` | 1,4 % | 29,5 | 2,7 |
+| `#231d44` | 1,3 % | 13,5 | 28,0 |
+| `#a3a7ad` | 0,9 % | 68,4 | 3,7 |
+| `#390e0c` | 0,9 % | 10,7 | 23,9 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#010101` (89 %), `#171e29` (8 %), `#0e0b1b` (3 %) |
+| texte | `#cdcdcd` (14 %) |
+| accent | `#ae4b2f` (4 %), `#c84523` (4 %), `#dd7225` (3 %), `#033003` (3 %) |
+
+## Typographie
+
+11 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 28,0 à 67,0 pixels, médiane 58,5 ; la densité de trait médiane vaut 0,282. On compte 6 lignes en capitales et 5 en bas de casse, et 100 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#939295`, `#bfbfbf`, `#cdcdcd`, `#cecece`, `#cfcfcf`, `#fafafa`.
+
+Police libre la plus proche (comparateur `zrmd.analyze.fontmatch`, ligne de S02, texte lu en mémoire et jamais écrit) : Epilogue 625, approche -0,03 em, score 0,296 ; Cabinet Grotesk 550, approche 0,00 em, score 0,301 ; Rubik 400, approche -0,01 em, score 0,311.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `css.ease-out` | 11 |
+| `none` | 9 |
+| `material.standard` | 8 |
+| `circ.inOut` | 6 |
+| `back.inOut(1.70158)` | 6 |
+| `sine.inOut` | 5 |
+| `circ.in` | 5 |
+| `sine.out` | 5 |
+| `back.out(3.5)` | 4 |
+| `expo.out` | 4 |
+| `bounce.out` | 4 |
+| `power1.inOut` | 4 |
+| `back.inOut(3.5)` | 4 |
+| `css.ease-in` | 4 |
+
+Un mouvement d'élément dure 0,57 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| zoom arrière | 17 |
+| roulis | 17 |
+| travelling vertical | 11 |
+| panoramique | 9 |
+| zoom avant | 4 |
+| fixe | 4 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 15 |
+| coupe franche après passage au noir | 7 |
+| coupe franche vers un noir | 4 |
+| transition par mouvement rapide (filé) | 2 |
+| ouverture | 1 |
+| coupe franche (relevée à l'œil) | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 77,3 % du temps, dont 16 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| calque 2D déformé (affine) | 9 |
+| immobile | 9 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 4 |
+| calque 2D | 4 |
+| scène 3D rigide en profondeur | 3 |
+| plusieurs couches en parallaxe (2,5D) | 1 |
+
+## Son
+
+Sonie intégrée -9,0 LUFS, centroïde spectral médian 3165 Hz, part harmonique 93 %. Le détecteur d'attaques relève 284 événements (attaque médium 282, clic aigu 2) et le détecteur de houles 4 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 0,12 s | attaque médium | -40,1 dB |
+| 0,29 s | attaque médium | -37,1 dB |
+| 1,31 s | attaque médium | -26,8 dB |
+| 10,51 s | attaque médium | -4,9 dB |
+| 11,53 s | attaque médium | -10,4 dB |
+| 13,74 s | attaque médium | -11,9 dB |
+| 22,77 s | attaque médium | -9,9 dB |
+| 29,57 s | attaque médium | -4,6 dB |
+| 31,96 s | attaque médium | -9,9 dB |
+| 41,84 s | attaque médium | -4,9 dB |
+| 44,73 s | attaque médium | -8,5 dB |
+| 46,11 s | attaque médium | -10,2 dB |
+
+Houles : 1,96 s (montée 0,23 s), 28,70 s (montée 0,21 s), 53,08 s (montée 0,37 s), 63,88 s (montée 0,54 s).
+
+## Musique
+
+Tempo estimé 88,2 BPM, 90 temps détectés, régularité de la grille 0,067 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 5,05 s | -25,1 dB |
+| 2 | 5,05 s | 26,90 s | -11,3 dB |
+| 3 | 26,90 s | 29,90 s | -22,8 dB |
+| 4 | 29,90 s | 62,35 s | -12,0 dB |
+| 5 | 62,35 s | 68,10 s | -36,2 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 4,93 s | plaque 3D ou prise de vue | Une sphère lumineuse naît au centre du noir, grossit jusqu'à devenir l'écran de l'appareil, puis l'appareil recule, se pose dans une main et un grand titre gris s'éclaire derrière lui. |
+| S02 | 4,93 s | 1,35 s | carte texte | Courte phrase blanche, petite et centrée sur fond noir, qui reste presque immobile. |
+| S03 | 6,28 s | 1,17 s | plaque 3D ou prise de vue | Macro en lumière de studio grise sur la tranche métallique de l'appareil et ses boutons, une légende apparaît en bas. |
+| S04 | 7,45 s | 1,28 s | plaque 3D ou prise de vue | Gros plan sur le bord inférieur et le port de l'appareil, lente poussée de caméra, la légende reste en bas. |
+| S05 | 8,73 s | 1,47 s | plaque 3D ou prise de vue | Trois appareils de finitions différentes, vus par la tranche, flottent sur le noir puis se resserrent en pile. |
+| S06 | 10,20 s | 1,45 s | plaque 3D ou prise de vue | Macro sur un coin cuivré dont l'écran diffuse un paysage orange, légende centrée au premier plan. |
+| S07 | 11,65 s | 1,60 s | plaque 3D ou prise de vue | La caméra longe le bord arrondi cuivré, le fond d'écran en strates orange défile en grand. |
+| S08 | 13,25 s | 0,68 s | plaque 3D ou prise de vue | Vue rasante sur la vitre de l'écran avec un horizon orange, légende et petite mention au centre. |
+| S09 | 13,93 s | 0,67 s | plaque 3D ou prise de vue | Autre angle rasant sur la surface vitrée, plus sombre, la légende persiste. |
+| S10 | 14,60 s | 1,28 s | plaque 3D ou prise de vue | Le paysage orange remplit l'image puis l'appareil pivote face caméra en reculant. |
+| S11 | 15,88 s | 2,00 s | plaque 3D ou prise de vue | Une puce en couches lumineuses flotte sur le noir, des faisceaux verts montent, une légende s'inscrit dessous puis s'éteint. |
+| S12 | 17,88 s | 1,72 s | plaque 3D ou prise de vue | Travelling au-dessus d'une carte électronique sombre où plusieurs puces carrées s'allument, légende en bas. |
+| S13 | 19,60 s | 2,97 s | plaque 3D ou prise de vue | L'appareil vu par la tranche devant un fond bleu gris, un doigt vient toucher le côté et deux mots apparaissent de part et d'autre. |
+| S14 | 22,57 s | 0,63 s | plaque 3D ou prise de vue | Prise de vue par-dessus l'épaule d'une personne qui tient l'appareil dans une pièce sombre. |
+| S15 | 23,20 s | 2,20 s | plaque 3D ou prise de vue | Main tenant l'appareil au-dessus d'une table sombre, l'écran affiche une validation verte, légende en bas. |
+| S16 | 25,40 s | 4,13 s | carte texte | Carte texte sur noir : trois phrases courtes se succèdent au centre, séparées par un bref instant vide. |
+| S17 | 29,53 s | 2,27 s | plaque 3D ou prise de vue | Petite carte posée sur un tissu sombre, un trait de lumière bleue balaie le bas de l'image, légende en bas. |
+| S18 | 31,80 s | 2,77 s | plaque 3D ou prise de vue | Une main pose l'appareil sur un socle de recharge incurvé, lumière froide, légende en bas. |
+| S19 | 34,57 s | 2,03 s | plaque 3D ou prise de vue | Une main tient l'appareil dont l'écran montre une interface claire, fond violet sombre, la caméra tourne autour. |
+| S20 | 36,60 s | 2,80 s | plaque 3D ou prise de vue | Une personne tient l'appareil et une carte de sauvegarde face caméra, légende et petite mention en bas. |
+| S21 | 39,40 s | 4,85 s | plaque 3D ou prise de vue | Une main présente l'écran de l'appareil devant un ordinateur portable qui affiche un code à scanner, légende en bas. |
+| S22 | 44,25 s | 5,95 s | plaque 3D ou prise de vue | Après une entrée par le noir, une main approche l'appareil d'un téléphone posé, la scène bleutée est éclairée par l'écran, légende en bas. |
+| S23 | 50,20 s | 1,48 s | plaque 3D ou prise de vue | Rendu rapproché de l'appareil cuivré qui bascule, l'écran montre un anneau lumineux et un solde. |
+| S24 | 51,68 s | 2,37 s | plaque 3D ou prise de vue | L'appareil tourne sur lui-même puis se stabilise au centre du noir, légende sous lui. |
+| S25 | 54,05 s | 1,32 s | graphique | Mise en page en deux colonnes : titre à gauche, deux appareils debout à droite sur fond noir. |
+| S26 | 55,37 s | 2,63 s | carte texte | Carte texte sur noir : une phrase puis une autre, petites et centrées, en fondu. |
+| S27 | 58,00 s | 1,53 s | plaque 3D ou prise de vue | Grandes lettres en relief faites de fumée claire, l'appareil sombre debout au centre sur un sol réfléchissant. |
+| S28 | 59,53 s | 1,27 s | plaque 3D ou prise de vue | Même composition, version argent, la fumée s'agite autour des lettres. |
+| S29 | 60,80 s | 1,20 s | plaque 3D ou prise de vue | Même composition, version cuivre, flammes orangées dans les lettres. |
+| S30 | 62,00 s | 6,00 s | graphique | Un petit logotype se dessine au centre du noir, d'abord orange puis blanc, et l'image s'éteint. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

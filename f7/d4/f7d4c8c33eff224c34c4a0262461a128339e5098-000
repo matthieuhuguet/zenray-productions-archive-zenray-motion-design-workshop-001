@@ -1,0 +1,192 @@
+# Bible graphique de la référence claude-opus-5-5 (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Montage en raccords de forme : chaque plan, photographie macro, gravure ou illustration, place un bord courbe à la même hauteur de l'image, si bien qu'un horizon unique semble traverser des matières très différentes, avant un titre sobre sur fond nuit. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 20,05 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 25,000 images par seconde |
+| Cadence du contenu | 25,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 37 plans et 36 coupes, soit 108,0 coupes par minute ; un plan dure 0,44 s en médiane et 0,54 s en moyenne, du plus court (0,20 s) au plus long (3,48 s), avec un coefficient de variation de 1,01. 22 plans durent moins d'une demi-seconde et 1 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 22 %, et celle des coupes tombant sur une attaque sonore 33 %. Le plan médian dure 1,11 temps. Le détecteur avait trouvé 36 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 0 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 42,8 % |
+| montage | 34,6 % |
+| carte texte | 17,4 % |
+| graphique | 5,2 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 31 plans sur 37, soit 84 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 76,2 %, graphique 6,4 %, carte texte 17,4 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#0f1113` | 35,5 % | 5,0 | 1,2 |
+| `#e8ddce` | 4,0 % | 88,7 | 9,0 |
+| `#e5e4e1` | 3,3 % | 90,5 | 1,5 |
+| `#1a0f11` | 3,2 % | 5,5 | 5,1 |
+| `#d7c18c` | 3,0 % | 78,8 | 29,6 |
+| `#697f89` | 2,7 % | 51,9 | 10,0 |
+| `#38638a` | 2,4 % | 40,4 | 26,4 |
+| `#162732` | 2,4 % | 14,8 | 10,0 |
+| `#c4b090` | 2,3 % | 72,8 | 19,3 |
+| `#bb4f24` | 1,9 % | 47,4 | 61,0 |
+| `#3c5e71` | 1,7 % | 38,1 | 16,0 |
+| `#2d1415` | 1,7 % | 10,0 | 13,3 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#161717` (61 %), `#181115` (5 %), `#eaddc5` (4 %), `#e7ded4` (4 %) |
+| accent | `#ba4a25` (18 %), `#d4a629` (5 %), `#bd7d21` (5 %), `#d2964f` (5 %) |
+| texte | `#acbdc4` (17 %), `#8baed4` (3 %), `#beab7f` (3 %), `#92998b` (1 %) |
+
+## Typographie
+
+8 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 6,0 à 159,0 pixels, médiane 30,5 ; la densité de trait médiane vaut 0,255. On compte 0 lignes en capitales et 8 en bas de casse, et 38 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#60808d`, `#888a7f`, `#8baed4`, `#bca77c`, `#bda97c`, `#bfab7c`, `#c6b07c`, `#fcfeff`.
+
+Appariement de police faible sur la ligne de S30 (meilleur score 1,167, au-delà du seuil 0,60) : aucune police libre de la base ne ressemble assez au dessin mesuré, la plus proche étant Clash Display 700 ; la police se choisira à l'œil.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `none` | 7 |
+| `sine.out` | 4 |
+| `elastic.inOut(1,0.3)` | 3 |
+| `sine.inOut` | 2 |
+| `back.inOut(1.70158)` | 2 |
+| `power1.out` | 1 |
+| `css.ease-out` | 1 |
+| `power2.inOut` | 1 |
+| `back.inOut(2.5)` | 1 |
+| `elastic.inOut(1,0.45)` | 1 |
+| `power3.inOut` | 1 |
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| fixe | 25 |
+| travelling vertical | 7 |
+| zoom avant | 6 |
+| roulis | 5 |
+| panoramique | 4 |
+| zoom arrière | 2 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 35 |
+| ouverture | 1 |
+| fondu enchaîné | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 76,2 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 27 |
+| calque 2D | 6 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 2 |
+| scène 3D rigide en profondeur | 1 |
+| plusieurs couches en parallaxe (2,5D) | 1 |
+
+## Son
+
+Sonie intégrée -16,4 LUFS, centroïde spectral médian 1887 Hz, part harmonique 99 %. Le détecteur d'attaques relève 57 événements (attaque médium 57) et le détecteur de houles 1 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 1,27 s | attaque médium | -23,8 dB |
+| 4,93 s | attaque médium | -18,1 dB |
+| 5,19 s | attaque médium | -19,5 dB |
+| 6,53 s | attaque médium | -17,4 dB |
+| 6,97 s | attaque médium | -22,0 dB |
+| 7,59 s | attaque médium | -18,0 dB |
+| 8,27 s | attaque médium | -16,9 dB |
+| 8,53 s | attaque médium | -19,7 dB |
+| 11,64 s | attaque médium | -13,0 dB |
+| 12,24 s | attaque médium | -12,3 dB |
+| 15,11 s | attaque médium | -11,8 dB |
+| 17,02 s | attaque médium | -30,1 dB |
+
+Houles : 15,54 s (montée 0,56 s).
+
+## Musique
+
+Tempo estimé 151,9 BPM, 44 temps détectés, régularité de la grille 0,123 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 3,95 s | -36,4 dB |
+| 2 | 3,95 s | 8,30 s | -22,5 dB |
+| 3 | 8,30 s | 16,15 s | -15,1 dB |
+| 4 | 16,15 s | 20,10 s | -22,6 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 1,24 s | plaque 3D ou prise de vue | Courbe d'une planète vue de l'espace, liseré orange et bleu sur le noir, très lente poussée. |
+| S02 | 1,24 s | 1,04 s | plaque 3D ou prise de vue | Bord d'un objet doré et bosselé, en macro, sur fond étoilé ; le bord reprend la courbe du plan précédent. |
+| S03 | 2,28 s | 1,04 s | plaque 3D ou prise de vue | Grand arc orange uni sur fond noir, avec une minuscule silhouette posée sur la crête. |
+| S04 | 3,32 s | 0,44 s | montage | Dôme de matière brune et grumeleuse sur fond blanc, coupe rapide. |
+| S05 | 3,76 s | 0,24 s | montage | Surface orange vif bombée sous un ciel turquoise, très bref. |
+| S06 | 4,00 s | 0,24 s | montage | Sphère craquelée blanche et bleue sur fond sombre, très bref. |
+| S07 | 4,24 s | 0,52 s | graphique | Arc tracé en traits blancs sur fond bleu, comme un plan technique. |
+| S08 | 4,76 s | 0,60 s | plaque 3D ou prise de vue | Surface lunaire en noir et blanc, bord courbe en haut de la matière. |
+| S09 | 5,36 s | 0,52 s | plaque 3D ou prise de vue | Bord d'une feuille verte en macro sur fond crème. |
+| S10 | 5,88 s | 0,56 s | plaque 3D ou prise de vue | Bord dentelé sombre d'une matière organique devant un fond bleu clair. |
+| S11 | 6,44 s | 0,60 s | plaque 3D ou prise de vue | Perles rouges alignées sur une surface magenta bombée, fond noir. |
+| S12 | 7,04 s | 0,52 s | plaque 3D ou prise de vue | Bord d'une céramique ornée d'une frise, vue en macro. |
+| S13 | 7,56 s | 0,56 s | plaque 3D ou prise de vue | Courbe d'une terre ocre dessinée, avec de petits personnages tracés sur le bord. |
+| S14 | 8,12 s | 0,60 s | plaque 3D ou prise de vue | Illustration ancienne de chevaux au galop au-dessus d'un arc vert. |
+| S15 | 8,72 s | 0,32 s | montage | Horizon cuivré flou, un premier mot blanc apparaît en petit au-dessus de la courbe. |
+| S16 | 9,04 s | 0,40 s | montage | Surface rouge texturée bombée, le mot reste à la même place. |
+| S17 | 9,44 s | 0,32 s | montage | Matière fluorescente verte et violette, le mot persiste, très bref. |
+| S18 | 9,76 s | 0,44 s | montage | Gravure en noir et blanc d'un sol couvert de motifs, le mot au-dessus. |
+| S19 | 10,20 s | 0,48 s | montage | Bord d'une sphère bleu acier avec un reflet violet, le mot au-dessus. |
+| S20 | 10,68 s | 0,72 s | plaque 3D ou prise de vue | Ciel rouge orangé sur une crête sombre, deux nouveaux mots remplacent le premier. |
+| S21 | 11,40 s | 0,32 s | montage | Tissu à motifs rouges sous un fond de jean bleu, les mots au centre. |
+| S22 | 11,72 s | 0,32 s | montage | Bandes colorées jaunes et magenta, comme une image thermique, très bref. |
+| S23 | 12,04 s | 0,44 s | montage | Dentelle blanche sur fond noir, les mots au centre. |
+| S24 | 12,48 s | 0,28 s | montage | Bord rose et noir sur fond violet, un mot en serif plus grand prend le relais. |
+| S25 | 12,76 s | 0,24 s | montage | Traits bleus au crayon sur papier bleu clair, le mot au centre. |
+| S26 | 13,00 s | 0,32 s | montage | Crête de matière dorée et velue sur fond noir. |
+| S27 | 13,32 s | 0,32 s | montage | Crête blanche et rugueuse comme de la neige sur fond noir. |
+| S28 | 13,64 s | 0,28 s | montage | Matière crème tachée de brun, le mot en surimpression. |
+| S29 | 13,92 s | 0,32 s | montage | Strates noires sur fond jaune, comme une coupe géologique. |
+| S30 | 14,24 s | 0,24 s | montage | Collage de formes plates colorées sous le mot, très bref. |
+| S31 | 14,48 s | 0,28 s | montage | Coupe de cellules végétales vertes en microscopie. |
+| S32 | 14,76 s | 0,28 s | montage | Bord rouge granuleux sur noir constellé. |
+| S33 | 15,04 s | 0,52 s | graphique | Dessin au trait d'un arc et de lignes rouges sur papier clair, comme un diagramme, puis une version griffonnée. |
+| S34 | 15,56 s | 0,20 s | montage | Fourrure blanche en contre-jour sur noir, très bref. |
+| S35 | 15,76 s | 0,20 s | montage | Lamelles rouges en éventail sous le mot, très bref. |
+| S36 | 15,96 s | 3,48 s | carte texte | Carte titre sur fond nuit avec une lueur bleue en bas : un nom de produit en serif, puis un logotype qui remonte lentement vers le haut du cadre. |
+| S37 | 19,44 s | 0,56 s | plaque 3D ou prise de vue | Retour à la courbe de planète du début, en fondu, qui clôt la boucle. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

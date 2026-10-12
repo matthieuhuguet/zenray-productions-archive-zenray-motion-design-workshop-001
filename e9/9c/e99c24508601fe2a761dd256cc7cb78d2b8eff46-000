@@ -1,0 +1,159 @@
+# Bible graphique de la référence flora-agents-on-canvas (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+Démonstration en capture d'écran : une application de canevas sombre et un assistant conversationnel clair travaillent côte à côte, la caméra virtuelle zoome sur les zones utiles, puis un petit logotype s'enroule et disparaît sur le noir. (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 51,50 s |
+| Format | 1666 x 1080 |
+| Cadence du fichier | 30,000 images par seconde |
+| Cadence du contenu | 30,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 7 plans et 6 coupes, soit 7,0 coupes par minute ; un plan dure 6,63 s en médiane et 7,35 s en moyenne, du plus court (0,97 s) au plus long (20,00 s), avec un coefficient de variation de 0,84. 0 plans durent moins d'une demi-seconde et 4 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 17 %, et celle des coupes tombant sur une attaque sonore 67 %. Le plan médian dure 13,01 temps. Le détecteur avait trouvé 5 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 1 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 87,1 % |
+| graphique | 12,9 % |
+
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 5 plans sur 7, soit 71 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 87,1 %, graphique 12,9 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#020202` | 52,8 % | 0,5 | 0,0 |
+| `#f7f7f6` | 39,1 % | 97,2 | 0,5 |
+| `#b0b0b0` | 3,2 % | 71,9 | 0,3 |
+| `#24221d` | 1,5 % | 13,2 | 3,8 |
+| `#3b87b7` | 1,2 % | 53,7 | 32,8 |
+| `#40413e` | 1,0 % | 27,5 | 2,0 |
+| `#c2d257` | 0,3 % | 80,9 | 62,0 |
+| `#d4bf76` | 0,3 % | 77,5 | 39,2 |
+| `#e3ac98` | 0,3 % | 74,7 | 25,1 |
+| `#484d44` | 0,2 % | 32,1 | 6,7 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#010101` (79 %), `#fafaf9` (21 %) |
+| accent | `#3c88b7` (25 %), `#c2d257` (6 %) |
+
+## Typographie
+
+Aucune ligne de texte mesurable dans les plans carte texte ou graphique.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `expo.out` | 5 |
+| `css.ease` | 4 |
+| `sine.inOut` | 3 |
+| `sine.out` | 2 |
+| `material.decelerate` | 2 |
+| `bounce.out` | 2 |
+| `back.inOut(3.5)` | 2 |
+| `back.inOut(2.5)` | 2 |
+| `bounce.in` | 2 |
+| `back.in(3.5)` | 2 |
+| `back.in(1.70158)` | 2 |
+| `power4.out` | 2 |
+| `elastic.inOut(1,0.3)` | 1 |
+| `power1.out` | 1 |
+
+Un mouvement d'élément dure 1,08 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| panoramique | 6 |
+| zoom avant | 5 |
+| roulis | 4 |
+| zoom arrière | 2 |
+| travelling vertical | 1 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| fondu enchaîné | 3 |
+| ouverture | 1 |
+| coupe franche après passage au blanc | 1 |
+| zoom traversant | 1 |
+| coupe franche vers un noir | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 87,1 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 4 |
+| calque 2D | 3 |
+
+## Son
+
+Sonie intégrée -16,5 LUFS, centroïde spectral médian 2406 Hz, part harmonique 35 %. Le détecteur d'attaques relève 313 événements (attaque médium 306, clic aigu 7) et le détecteur de houles 7 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 0,25 s | attaque médium | -7,8 dB |
+| 0,47 s | attaque médium | -23,6 dB |
+| 3,06 s | attaque médium | -13,7 dB |
+| 6,87 s | attaque médium | -15,1 dB |
+| 8,14 s | attaque médium | -25,9 dB |
+| 8,41 s | attaque médium | -15,4 dB |
+| 11,95 s | attaque médium | -17,6 dB |
+| 12,19 s | attaque médium | -29,5 dB |
+| 16,54 s | attaque médium | -16,7 dB |
+| 18,05 s | attaque médium | -16,2 dB |
+| 23,12 s | attaque médium | -6,7 dB |
+| 30,25 s | attaque médium | -16,7 dB |
+
+Houles : 0,28 s (montée 0,42 s), 2,27 s (montée 0,47 s), 6,25 s (montée 0,24 s), 8,15 s (montée 0,32 s), 14,38 s (montée 0,23 s), 16,29 s (montée 0,31 s), 20,29 s (montée 0,33 s).
+
+## Musique
+
+Tempo estimé 117,7 BPM, 100 temps détectés, régularité de la grille 0,037 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 6,30 s | -21,9 dB |
+| 2 | 6,30 s | 14,25 s | -28,3 dB |
+| 3 | 14,25 s | 21,65 s | -27,7 dB |
+| 4 | 21,65 s | 30,50 s | -28,9 dB |
+| 5 | 30,50 s | 51,55 s | -22,4 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 10,93 s | plaque 3D ou prise de vue | Capture d'écran d'un canevas sombre : une image de tulipe et une carte en dégradé jaune rose apparaissent, puis une boîte de dialogue s'ouvre en gros plan et le bureau se dévoile avec plusieurs fenêtres. |
+| S02 | 10,93 s | 2,03 s | plaque 3D ou prise de vue | Zoom sur une application claire d'assistant : la fenêtre s'ouvre, le curseur va vers la zone de saisie. |
+| S03 | 12,97 s | 8,57 s | plaque 3D ou prise de vue | Un long message d'instructions apparaît dans la zone de saisie, puis la conversation se déroule sur fond blanc et une miniature sombre du canevas surgit à droite. |
+| S04 | 21,53 s | 20,00 s | plaque 3D ou prise de vue | Écran partagé : la conversation défile à gauche pendant qu'à droite, sur le canevas sombre, de nouvelles cartes d'images s'ajoutent une à une. |
+| S05 | 41,53 s | 2,30 s | plaque 3D ou prise de vue | Zoom sur le canevas : deux grandes cartes, la tulipe et une variante en dégradé, avec le curseur qui s'en approche. |
+| S06 | 43,83 s | 0,97 s | plaque 3D ou prise de vue | Dézoom vers l'écran partagé complet, court plan de transition. |
+| S07 | 44,80 s | 6,63 s | graphique | Un petit logotype blanc à quatre pétales sur le noir se tord, rétrécit et disparaît, puis le noir tient jusqu'à la fin. |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

@@ -1,0 +1,7 @@
+# OneKey Pro 2 : premières mesures du son (12 October 2026)
+
+- Séparation Demucs htdemucs sur MPS : 21 s pour 68 s ; pistes dans le cache local, jamais archivées. (12 October 2026)
+- La bande son est un morceau rythmique, pas un tapis musical avec SFX posés dessus : de 0 à 4,93 s, des accords hachés en croches (gate) ; à 4,93 s, la coupe vers « carte texte » tombe sur l'entrée du kick. (12 October 2026)
+- Kick mesuré sur la piste drums filtrée sous 150 Hz : 88,03 BPM (période 0,6816 s), premier kick du motif à 5,735 s, kick avec chute de hauteur, basse pompée par sidechain à chaque temps, coupure 16 à 28 s (pont sans kick). (12 October 2026)
+- Les coupes image ne tombent pas sur la grille du kick : écart à la double croche jusqu'à 76 ms, sans biais ; le montage suit la phrase, pas le temps. (12 October 2026)
+- Conséquence pour la reproduction : reprendre fidèlement la production (programmation de batterie, kick à chute de hauteur, pompage, gate en croches, équilibre spectral par bande, tempo, sections) avec une harmonie et une mélodie originales ; la mesure de fidélité du son porte sur la grille d'attaques, les enveloppes, le pompage et le spectre par bande, jamais sur la chroma. (12 October 2026)

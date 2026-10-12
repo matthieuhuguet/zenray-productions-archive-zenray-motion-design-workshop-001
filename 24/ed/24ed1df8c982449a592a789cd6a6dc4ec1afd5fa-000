@@ -1,0 +1,467 @@
+{
+ "date": "12 October 2026",
+ "method": "Revue à l'œil de la liste des plans, d'une tuile début, milieu, fin par plan et des pics de différence non retenus par le détecteur ; descriptions paraphrasées, sans texte affiché ni nom de marque.",
+ "reference": "Film de marque en prises de vue réelles, chaud et intime : une succession de moments du quotidien (transports, laverie, jardin, douche, rue, réunion, lit, concert, atelier) reliés par un petit objet porté au doigt, avec quelques bulles d'interface discrètes et un final sur l'objet posé et des titres en serif italique.",
+ "add_cuts": [
+  {
+   "t": 3.54,
+   "kind": "match"
+  },
+  {
+   "t": 8.417,
+   "kind": "hard"
+  }
+ ],
+ "remove_cuts": [],
+ "shots": [
+  {
+   "t": 0.25,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un jeune homme dans une rame de métro regarde son téléphone, couleurs chaudes."
+  },
+  {
+   "t": 0.8,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un visage endormi dans la pénombre bleue, en plan très serré."
+  },
+  {
+   "t": 1.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une jeune femme debout sur une plage consulte son téléphone, une petite bulle d'interface apparaît à côté d'elle."
+  },
+  {
+   "t": 2.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme sur une pelouse regarde son téléphone pendant qu'un ballon traverse le premier plan, bulle d'interface."
+  },
+  {
+   "t": 2.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Deux personnes baignées d'une lumière bleue intense, une bulle d'interface s'affiche près d'elles."
+  },
+  {
+   "t": 3.4,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Très gros plan sur un œil qui s'ouvre, reflets de lumière."
+  },
+  {
+   "t": 3.8,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Raccord flou de l'œil vers le hublot rond d'une machine à laver turquoise."
+  },
+  {
+   "t": 4.4,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Hublot d'une machine à laver qui tourne dans une laverie turquoise."
+  },
+  {
+   "t": 5.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme à table dans un café, une bulle d'interface s'affiche au-dessus de ses mains."
+  },
+  {
+   "t": 6.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme pousse un enfant sur une balançoire dans un parc, bulle d'interface."
+  },
+  {
+   "t": 6.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Deux silhouettes à contre-jour devant un coucher de soleil sur la mer, bulle d'interface."
+  },
+  {
+   "t": 7.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Transition sombre, reflets d'une vitre de train qui défile, puis un visage."
+  },
+  {
+   "t": 7.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une jeune femme dans un wagon, le visage éclairé par l'écran de son téléphone."
+  },
+  {
+   "t": 8.25,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une jeune femme près de la mer, regard baissé, ciel gris."
+  },
+  {
+   "t": 8.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "La même jeune femme sur fond de montagnes au crépuscule."
+  },
+  {
+   "t": 9.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une jeune femme dans une gare animée, regard vers la caméra."
+  },
+  {
+   "t": 10.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Entrée par le noir sur une femme dans la brume d'un parc."
+  },
+  {
+   "t": 11.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme marche dans un parc brumeux au lever du jour, la caméra la suit."
+  },
+  {
+   "t": 14.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme dort sur le côté dans un lit, lumière chaude du matin."
+  },
+  {
+   "t": 16.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main portant une bague touche une branche de feuillage."
+  },
+  {
+   "t": 16.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Gros plan sur la bague à un doigt, puis un homme âgé dans un jardin."
+  },
+  {
+   "t": 18.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme âgé jardine au milieu des plantes, lumière douce."
+  },
+  {
+   "t": 19.4,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un arroseur automatique arrose un jardin potager, contre-jour."
+  },
+  {
+   "t": 20.4,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main ouverte sous un jet d'eau devant un mur carrelé vert."
+  },
+  {
+   "t": 22.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme torse nu sous la douche dans une salle de bains carrelée."
+  },
+  {
+   "t": 23.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main baguée tient la laisse d'un chien, plan serré dans la rue."
+  },
+  {
+   "t": 24.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un petit chien trotte sur un trottoir mouillé, caméra au ras du sol."
+  },
+  {
+   "t": 25.3,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main baguée dans la poche d'une veste kaki."
+  },
+  {
+   "t": 26.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme promène son chien dans une rue d'immeubles en briques."
+  },
+  {
+   "t": 26.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une étudiante écrit sur une feuille dans une salle, très bref."
+  },
+  {
+   "t": 28.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Deux étudiantes à une table, l'une écrit pendant que l'autre la regarde."
+  },
+  {
+   "t": 30.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Plan large de la salle d'étude avec ses tables et ses lampes."
+  },
+  {
+   "t": 31.45,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un vélo chargé de fleurs passe dans une rue, très bref."
+  },
+  {
+   "t": 31.8,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Le vélo aux fleurs roule le long d'un trottoir."
+  },
+  {
+   "t": 32.25,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Même vélo aux fleurs, autre moment du passage."
+  },
+  {
+   "t": 32.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Le panier de fleurs du vélo en gros plan dans la rue."
+  },
+  {
+   "t": 34.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un livreur à vélo boit en roulant devant des façades."
+  },
+  {
+   "t": 35.3,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme lit sur un banc dans un hall aux murs orangés, très bref."
+  },
+  {
+   "t": 37.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme pensive, la main près de la bouche, en plan serré."
+  },
+  {
+   "t": 40.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme rit en parlant à table dans un restaurant aux banquettes vertes."
+  },
+  {
+   "t": 43.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un versant de montagne rocheux dans les nuages."
+  },
+  {
+   "t": 44.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un randonneur avec un sac à dos orange fait une pause dans un pierrier."
+  },
+  {
+   "t": 45.4,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Des mains feuillettent des papiers sur une table de réunion."
+  },
+  {
+   "t": 46.3,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Des personnes en costume se lèvent autour d'une table de verre."
+  },
+  {
+   "t": 46.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une poignée de main devant une fenêtre et des plantes, très bref."
+  },
+  {
+   "t": 47.3,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "La poignée de main vue de plus près."
+  },
+  {
+   "t": 48.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un poing serré sur une table de réunion, une main baguée à côté."
+  },
+  {
+   "t": 48.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "La main sur la table et la tension des participants, très bref."
+  },
+  {
+   "t": 49.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme en costume derrière une table avec une vitre, très bref."
+  },
+  {
+   "t": 49.9,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme seule à une table de réunion qui relit un document."
+  },
+  {
+   "t": 50.8,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une personne remplit un lave-vaisselle, vue de l'intérieur."
+  },
+  {
+   "t": 51.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme passe derrière un comptoir de cuisine carrelé de rouge."
+  },
+  {
+   "t": 53.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Gros plan sur des mains baguées qui se frôlent contre une hanche."
+  },
+  {
+   "t": 54.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un couple s'embrasse dans un lit, plan serré."
+  },
+  {
+   "t": 54.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main ouvre un tiroir de bois, très bref."
+  },
+  {
+   "t": 55.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un tiroir rempli de câbles et de petits objets qu'une main fouille."
+  },
+  {
+   "t": 56.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Le couple s'embrasse dans le lit, plus près."
+  },
+  {
+   "t": 57.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme allongée dans des draps blancs, vue de profil."
+  },
+  {
+   "t": 57.8,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Pénombre bleue puis rayonnages de livres."
+  },
+  {
+   "t": 58.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Rayonnages d'une bibliothèque éclairés en bleu-vert."
+  },
+  {
+   "t": 60.2,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Très gros plan sur la peau et le nez d'un visage endormi."
+  },
+  {
+   "t": 62.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une personne allongée sur un canapé, la tête renversée, main baguée sur la joue."
+  },
+  {
+   "t": 63.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une personne allongée sur un lit dans une chambre éclairée par une lampe."
+  },
+  {
+   "t": 64.6,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme torse nu se rase devant un miroir."
+  },
+  {
+   "t": 65.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "L'homme vu de face avec de la mousse à raser sur le visage."
+  },
+  {
+   "t": 67.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une main baguée passe sur une joue rasée, puis l'homme se regarde."
+  },
+  {
+   "t": 70.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Une femme dans une foule de concert éclairée de violet et de vert."
+  },
+  {
+   "t": 72.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Des mains levées dans une salle de concert sous des lumières colorées."
+  },
+  {
+   "t": 73.05,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Des mains baguées tapent sur un clavier d'ordinateur."
+  },
+  {
+   "t": 73.7,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un homme seul dans un bureau aux murs couverts de notes."
+  },
+  {
+   "t": 74.35,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Plusieurs personnes au travail dans le même bureau, plan large."
+  },
+  {
+   "t": 75.1,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un atelier sombre avec des bocaux et des outils sur un établi."
+  },
+  {
+   "t": 77.5,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Des mains sur un établi, puis l'artisan qui travaille, mise au point qui glisse."
+  },
+  {
+   "t": 83.0,
+   "content": "plate",
+   "plate_kind": "image",
+   "text": "Un petit objet rond posé sur une table de bois en contre-jour, des titres en italique serif apparaissent puis s'effacent au-dessus."
+  },
+  {
+   "t": 88.0,
+   "content": "textcard",
+   "text": "Carte de fin noire, une ligne en serif italique centrée qui s'éteint."
+  }
+ ]
+}
