@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+# 12 October 2026, 03:25 CEST: R03 lab, parametric SFX recipes (whoosh, click) in numpy and scipy only.
+# Definitions only: every number comes from LabParams.json (single HDA interface), passed in as `cfg`.
+# FR : recettes paramétriques ; aucune valeur en dur, tout vient de LabParams.json.
+import json
+import math
+from pathlib import Path
+
+import numpy as np
+from scipy import signal
+
+HERE = Path(__file__).resolve().parent
+
+
+def load_config(path=None):
+    return json.loads(Path(path or HERE / "LabParams.json").read_text(encoding="utf-8"))
+
+
+class Schema:
+    """Parameter schema of one recipe. Maps the unit cube [0, 1]^d to physical values (log or linear scale)."""
+
+    def __init__(self, spec):
+        self.spec = spec
+        self.names = list(spec)
+
+    def to_physical(self, unit):
+        out = {}
+        for name, value in zip(self.names, np.clip(np.asarray(unit, dtype=float), 0.0, 1.0)):
+            s = self.spec[name]
+            if s["scale"] == "log":
+                lo, hi = math.log(s["min"]), math.log(s["max"])
+                out[name] = float(math.exp(lo + value * (hi - lo)))
+            else:
+                out[name] = float(s["min"] + value * (s["max"] - s["min"]))
+        return out
+
+    def to_unit(self, params):
+        unit = []
+        for name in self.names:
+            s, v = self.spec[name], params[name]
+            if s["scale"] == "log":
+                lo, hi = math.log(s["min"]), math.log(s["max"])
+                unit.append((math.log(max(v, 1e-12)) - lo) / (hi - lo))
+            else:
+                unit.append((v - s["min"]) / (s["max"] - s["min"]))
+        return np.clip(np.array(unit), 0.0, 1.0)
+
+    def defaults(self):
+        return {name: float(self.spec[name]["default"]) for name in self.names}
+
+    def clamp(self, params):
+        return {name: float(min(max(params[name], self.spec[name]["min"]), self.spec[name]["max"])) for name in self.names}
+
+
+def short_rms_peak(x, sr, window_ms):
+    # Peak of the short-term RMS (window_ms): the level definition shared by every recipe.
+    win = max(1, int(round(sr * window_ms / 1000.0)))
+    energy = np.convolve(x * x, np.ones(win) / win, mode="same")
+    return float(np.sqrt(energy.max())) if energy.size else 0.0
+
+
+def set_level(x, sr, gain_db, window_ms):
+    peak = short_rms_peak(x, sr, window_ms)
+    return x * (10.0 ** (gain_db / 20.0) / peak) if peak > 0 else x
+
+
+def render_whoosh(p, seed, cfg):
+    """Band-pass noise whose centre glides from fStart to fEnd, under a rise and fall envelope.
+
+    The band is a Gaussian in log-frequency (FWHM = bandwidthOct octaves), applied to white noise in the
+    STFT domain so the whole recipe stays vectorised. fc(t) = fStart * (fEnd / fStart) ** ((t / T) ** sweepCurve).
+    Envelope: (t / tp) ** envCurve before the peak tp = peakPos * T, ((T - t) / (T - tp)) ** envCurve after.
+    """
+    sr = cfg["audio"]["sampleRate"]
+    syn = cfg["synthesis"]
+    n_fft, hop = syn["whooshFft"], syn["whooshHop"]
+    total = int(round(p["duration"] * sr))
+    rng = np.random.default_rng(seed)
+    noise = rng.standard_normal(total + n_fft)
+    freqs, times, spec = signal.stft(noise, fs=sr, nperseg=n_fft, noverlap=n_fft - hop)
+    u = np.clip(times / p["duration"], 0.0, 1.0) ** p["sweepCurve"]
+    centre = p["fStart"] * (p["fEnd"] / p["fStart"]) ** u
+    sigma_oct = p["bandwidthOct"] / 2.3548
+    with np.errstate(divide="ignore"):
+        distance = np.log2(np.maximum(freqs[:, None], 1e-9) / centre[None, :])
+    mask = np.exp(-0.5 * (distance / sigma_oct) ** 2)
+    mask[0, :] = 0.0
+    _, shaped = signal.istft(spec * mask, fs=sr, nperseg=n_fft, noverlap=n_fft - hop)
+    shaped = shaped[:total]
+    t = np.arange(total) / sr
+    tp = p["peakPos"] * p["duration"]
+    rise = np.clip(t / tp, 0.0, 1.0) ** p["envCurve"]
+    fall = np.clip((p["duration"] - t) / (p["duration"] - tp), 0.0, 1.0) ** p["envCurve"]
+    envelope = np.where(t < tp, rise, fall)
+    # Level on a smoothed RMS: the peak of a short noisy envelope would make the level depend on the seed.
+    # FR : niveau mesuré sur une RMS lissée, sinon il dépendrait de la graine du bruit.
+    return set_level(shaped * envelope, sr, p["gainDb"], syn["whooshLevelSmoothMs"])
+
+
+def render_click(p, seed, cfg):
+    """One damped resonant mode plus a decaying high-passed noise burst, mixed by energy.
+
+    mode(t) = sin(2 pi fMode t) exp(-t / decayMode); burst(t) = HP_noiseHp(noise) exp(-t / decayNoise);
+    x = sqrt(1 - noiseMix) mode / ||mode|| + sqrt(noiseMix) burst / ||burst||.
+    """
+    sr = cfg["audio"]["sampleRate"]
+    syn = cfg["synthesis"]
+    total = int(round(syn["clickSeconds"] * sr))
+    t = np.arange(total) / sr
+    mode = np.sin(2.0 * math.pi * p["fMode"] * t) * np.exp(-t / (p["decayModeMs"] / 1000.0))
+    rng = np.random.default_rng(seed)
+    sos = signal.butter(2, min(p["noiseHp"], 0.45 * sr), btype="highpass", fs=sr, output="sos")
+    burst = signal.sosfilt(sos, rng.standard_normal(total)) * np.exp(-t / (p["decayNoiseMs"] / 1000.0))
+    mix = min(max(p["noiseMix"], 0.0), 1.0)
+    x = math.sqrt(1.0 - mix) * mode / (np.linalg.norm(mode) or 1.0) + math.sqrt(mix) * burst / (np.linalg.norm(burst) or 1.0)
+    return set_level(x, sr, p["gainDb"], syn["levelWindowMs"])
+
+
+RENDERERS = {"whoosh": render_whoosh, "click": render_click}
+
+
+def render(kind, params, seed, cfg, shift_ms=0.0):
+    """Render one event inside a buffer with pre-roll and tail, optionally delayed by shift_ms."""
+    sr = cfg["audio"]["sampleRate"]
+    body = RENDERERS[kind](params, seed, cfg)
+    pre = int(round((cfg["audio"]["preRollSeconds"] + shift_ms / 1000.0) * sr))
+    tail = int(round(cfg["audio"]["tailSeconds"] * sr))
+    return np.concatenate([np.zeros(pre), body, np.zeros(tail)])

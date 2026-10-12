@@ -1,0 +1,165 @@
+# 12 October 2026, 04:45 CEST: real-data probe of "is this shot made with 3D motion?" on the OneKey Pro 2 reference
+# (read-only, numbers out, no frame saved). For every pair of frames inside a shot, corners are tracked with
+# Lucas-Kanade and a forward-backward check; on the moving tracks four motion models compete under the same RANSAC
+# tolerance: similarity (2D layer), affine, homography (a flat card turning in perspective) and fundamental matrix
+# (any rigid 3D scene). Sequential homography RANSAC counts the independent motion layers (2.5D parallax).
+# FR : sonde réelle de l'usage de la 3D par plan : modèles concurrents sur les points en mouvement, et nombre de couches.
+# Run: ~/.venvs/motion-design/bin/python -I Run3dProbe.py <reference.mp4>
+import json
+import math
+import os
+import sys
+
+import cv2
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+TIMELINE = "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/params/timeline.json"
+NOTES = "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/params/reference-scenes.json"
+WIDTH, STEP, TAU, GUARD = 960, 2, 1.0, 3  # analysis width, frame step, RANSAC tolerance (px at WIDTH), frames near cuts
+MOVING_PX = 0.5
+
+
+def track(prev, cur):
+    pts = cv2.goodFeaturesToTrack(prev, maxCorners=1200, qualityLevel=0.005, minDistance=6, blockSize=7)
+    if pts is None or len(pts) < 40:
+        return None, None
+    nxt, st, _ = cv2.calcOpticalFlowPyrLK(prev, cur, pts, None, winSize=(21, 21), maxLevel=4)
+    back, st2, _ = cv2.calcOpticalFlowPyrLK(cur, prev, nxt, None, winSize=(21, 21), maxLevel=4)
+    fb = np.linalg.norm((back - pts).reshape(-1, 2), axis=1)
+    ok = (st.ravel() == 1) & (st2.ravel() == 1) & (fb < 0.5)
+    return pts.reshape(-1, 2)[ok], nxt.reshape(-1, 2)[ok]
+
+
+def ratio_affine(M, a, b):
+    pred = a @ M[:, :2].T + M[:, 2]
+    return float(np.mean(np.linalg.norm(pred - b, axis=1) < TAU))
+
+
+def ratio_h(Hm, a, b):
+    pred = cv2.perspectiveTransform(a.reshape(-1, 1, 2), Hm).reshape(-1, 2)
+    return float(np.mean(np.linalg.norm(pred - b, axis=1) < TAU))
+
+
+def ratio_f(Fm, a, b):
+    ah = np.hstack([a, np.ones((len(a), 1))])
+    bh = np.hstack([b, np.ones((len(b), 1))])
+    l2 = ah @ Fm.T
+    l1 = bh @ Fm
+    num = np.abs(np.sum(bh * l2, axis=1))
+    d = num / np.maximum(np.hypot(l2[:, 0], l2[:, 1]), 1e-9) + num / np.maximum(np.hypot(l1[:, 0], l1[:, 1]), 1e-9)
+    return float(np.mean(d / 2 < TAU))
+
+
+def layers(a, b, max_layers=4, min_points=12):
+    remaining = np.arange(len(a))
+    count, explained = 0, 0
+    while count < max_layers and len(remaining) >= min_points:
+        Hm, mask = cv2.findHomography(a[remaining], b[remaining], cv2.RANSAC, TAU, maxIters=2000, confidence=0.995)
+        if Hm is None:
+            break
+        inl = mask.ravel().astype(bool)
+        if inl.sum() < min_points:
+            break
+        count += 1
+        explained += int(inl.sum())
+        remaining = remaining[~inl]
+        if explained >= 0.85 * len(a):
+            break
+    return count, explained / len(a)
+
+
+def pair_stats(a, b):
+    flow = np.linalg.norm(b - a, axis=1)
+    moving = flow > MOVING_PX
+    if moving.sum() < 30:
+        return None
+    a, b = a[moving], b[moving]
+    out = {"n": int(len(a)), "flow_median": float(np.median(flow[moving]))}
+    S, _ = cv2.estimateAffinePartial2D(a, b, method=cv2.RANSAC, ransacReprojThreshold=TAU, maxIters=2000)
+    A, _ = cv2.estimateAffine2D(a, b, method=cv2.RANSAC, ransacReprojThreshold=TAU, maxIters=2000)
+    Hm, _ = cv2.findHomography(a, b, cv2.RANSAC, TAU, maxIters=2000, confidence=0.995)
+    Fm, _ = cv2.findFundamentalMat(a, b, cv2.FM_RANSAC, TAU, 0.995)
+    out["sim"] = ratio_affine(S, a, b) if S is not None else 0.0
+    out["aff"] = ratio_affine(A, a, b) if A is not None else 0.0
+    out["hom"] = ratio_h(Hm, a, b) if Hm is not None else 0.0
+    out["fun"] = ratio_f(Fm[:3], a, b) if Fm is not None and Fm.shape[0] >= 3 else 0.0
+    out["layers"], out["layers_explained"] = layers(a, b)
+    return out
+
+
+def classify(s):
+    if s["moving_pairs_fraction"] < 0.2:
+        return "static or near static"
+    if s["sim"] >= 0.85:
+        return "2D layer (similarity)"
+    if s["aff"] >= 0.85:
+        return "2D layer (affine)"
+    if s["hom"] >= 0.85 and s["hom"] - s["aff"] >= 0.10:
+        return "flat card in perspective (homography)"
+    if s["layers"] >= 2 and s["layers_explained"] >= 0.85:
+        return "several flat layers (2.5D parallax)"
+    if s["fun"] >= 0.85 and s["hom"] < 0.70:
+        return "rigid 3D with depth (fundamental fits, no plane does)"
+    return "complex or non-rigid (deformation, fluid, 3D render with lighting)"
+
+
+def main():
+    video = sys.argv[1]
+    shots = json.load(open(TIMELINE))["shots"]
+    notes = json.load(open(NOTES))["shots"]
+    cap = cv2.VideoCapture(video)
+    fps = cap.get(cv2.CAP_PROP_FPS) or 60.0
+    per_shot = {s["id"]: [] for s in shots}
+    pairs_total = {s["id"]: 0 for s in shots}
+
+    def shot_of(t):
+        for s in shots:
+            if s["start"] <= t < s["end"]:
+                return s
+        return shots[-1]
+
+    prev, prev_id, index = None, None, -1
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        index += 1
+        if index % STEP:
+            continue
+        t = index / fps
+        shot = shot_of(t)
+        near = min(t - shot["start"], shot["end"] - t) < GUARD * STEP / fps
+        h = int(round(frame.shape[0] * WIDTH / frame.shape[1]))
+        gray = cv2.cvtColor(cv2.resize(frame, (WIDTH, h), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY)
+        if prev is not None and shot["id"] == prev_id and not near:
+            pairs_total[shot["id"]] += 1
+            a, b = track(prev, gray)
+            if a is not None:
+                stats = pair_stats(a, b)
+                if stats:
+                    per_shot[shot["id"]].append(stats)
+        prev, prev_id = gray, shot["id"]
+    cap.release()
+    rows = {}
+    for s in shots:
+        recs = per_shot[s["id"]]
+        total = max(pairs_total[s["id"]], 1)
+        med = lambda k: float(np.median([r[k] for r in recs])) if recs else 0.0
+        row = {"start": s["start"], "end": s["end"], "pairs": pairs_total[s["id"]], "moving_pairs": len(recs),
+               "moving_pairs_fraction": len(recs) / total, "sim": med("sim"), "aff": med("aff"), "hom": med("hom"),
+               "fun": med("fun"), "layers": med("layers"), "layers_explained": med("layers_explained"),
+               "tracks_median": med("n"), "flow_median_px": med("flow_median")}
+        row["class"] = classify(row)
+        note = notes.get(s["id"], {}).get("needs3d", "")
+        row["human_note_3d"] = note.split(":")[0].split(".")[0].strip()
+        rows[s["id"]] = row
+    json.dump({"video_frames_read": index + 1, "fps": fps, "width": WIDTH, "step": STEP, "tau_px": TAU,
+               "shots": rows}, open(os.path.join(HERE, "results", "3d-probe.json"), "w"), indent=1)
+    for sid, r in rows.items():
+        print(f"{sid} mov {r['moving_pairs_fraction']:.2f} sim {r['sim']:.2f} aff {r['aff']:.2f} hom {r['hom']:.2f} "
+              f"fun {r['fun']:.2f} lay {r['layers']:.0f} | {r['class'][:44]:44s} | human: {r['human_note_3d'][:40]}")
+
+
+if __name__ == "__main__":
+    main()

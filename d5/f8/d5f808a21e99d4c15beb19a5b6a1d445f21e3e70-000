@@ -1,0 +1,33 @@
+{
+  "project": "zenray-motion-design",
+  "updated": "12 October 2026",
+  "goal_x": "Engine zrmd: reference video in, storyboard + graphic bible + versioned HyperFrames motions (V_001..V_999) + code-synthesised SFX + fidelity report out; onekey-pro-2 reproduced at fidelity >= 0.99 on the measured dimensions (rhythm, animation curves, SFX onsets and spectral envelopes, layout, colour, typography metrics), brand content swapped for original; MCP server; Motion Design tab in ZenRayProgress (YouTube-like gallery, motion page, iteration request); local editor with format adaptation and LOAD; skill updated; archived in Assets with cloud proof.",
+  "status": "research running, usage limit reached",
+  "reference_cache": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache (local only, never archived)",
+  "previous_study": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01",
+  "next": [
+    "Read workflow wf_00e6dd64-d65 results (docs/research, ARCHITECTURE-draft, PLAN-draft, CRITIC); if stopped, resume with resumeFromRunId",
+    "SFX events on drums/other stems instead of full mix (music notes every 0.17 s polluted onsets)",
+    "Write ARCHITECTURE.md, register repo as Assets source 'application'",
+    "Vertical slice: one onekey motion end to end (analysis, HyperFrames emit, SFX synthesis, verify)"
+  ],
+  "workflows": [
+    {
+      "name": "zrmd-research",
+      "runId": "wf_00e6dd64-d65",
+      "taskId": "wuhvyl0jq",
+      "started": "12 October 2026",
+      "transcriptDir": "/Users/zenray/.claude/projects/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/subagents/workflows/wf_00e6dd64-d65",
+      "script": "/Users/zenray/.claude/projects/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/workflows/scripts/zrmd-research-wf_00e6dd64-d65.js",
+      "deliverables": "docs/research/R01..R10, docs/ARCHITECTURE-draft.md, docs/PLAN-draft.md, docs/CRITIC.md"
+    }
+  ],
+  "rule_resume": "If a workflow stops: Workflow({scriptPath, resumeFromRunId}) with the runId below, never a fresh run (12 October 2026)",
+  "done": [
+    "CLAUDE.md rule (commit bafbfea6)",
+    "Assets project zenray-motion-design bound to session 7e78b89b",
+    "repo ZenRayMotionDesign (commit 4ab939e): media, settings, versions, shots (26 cuts on onekey), sheets, audio/events",
+    "12 references downloaded (refcache), metadata in references/",
+    "venv ~/.venvs/zenray-motion with demucs (MPS); onekey stems in refcache/onekey-pro-2/stems/out/htdemucs"
+  ]
+}

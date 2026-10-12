@@ -1,0 +1,90 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "flora-agents-on-canvas",
+  "page_url": "https://whatships.com/videos/flora-agents-on-canvas/",
+  "media_url": "https://video.twimg.com/amplify_video/2090588730029428736/vid/avc1/1666x1080/fj9WvkL7tf7QQFoz.mp4",
+  "date": "12 October 2026",
+  "file_name": "flora-agents-on-canvas [2090588730029428736].mp4",
+  "sha256": "f00c0ba8bf13f9f3092762a9a5855242b940f00b22551b25f35172573f9b0886",
+  "bytes": 11005551,
+  "duration_s": 51.502,
+  "video_codec": "h264",
+  "width": 1666,
+  "height": 1080,
+  "fps": 30.0,
+  "audio_codec": "aac",
+  "sample_rate_hz": 44100,
+  "channels": 2,
+  "notes": [
+    "Method: curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)."
+  ],
+  "has_audio": true,
+  "family": "whatships",
+  "method": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+  "source_post_url": "https://x.com/weberwongwong/status/2090590073540481107",
+  "media_id": "2090588730029428736",
+  "source_format_id": null,
+  "title": "Flora AI — agents now live on the canvas",
+  "brand": "Flora AI",
+  "product": "Flora AI",
+  "category": "ai",
+  "published_at": "2026-08-21T00:01:29.000Z",
+  "listed_duration_s": 51,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 1709538,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 1576249,
+    "nb_frames": 1543,
+    "avg_frame_rate": "30/1",
+    "r_frame_rate": "30/1",
+    "time_base": "1/60000",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 51.433
+  },
+  "audio": {
+    "profile": "LC",
+    "bit_rate": 128016,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": 51.502
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/flora-agents-on-canvas/flora-agents-on-canvas [2090588730029428736].mp4",
+  "attempts": [
+    {
+      "step": "page: curl and parse",
+      "ok": true,
+      "detail": "videoUrl=https://video.twimg.com/amplify_video/2090588730029428736/vid/avc1/1666x1080/fj9WvkL7tf7QQFoz.mp4; post=https://x.com/weberwongwong/status/2090590073540481107; 5 media URL(s) on the page (the rest belong to related cards)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --url https://whatships.com/videos/flora-agents-on-canvas/"
+    },
+    {
+      "step": "page: yt-dlp probe on the page URL (no download)",
+      "ok": true,
+      "detail": "extractor Generic, 1 format(s), hosts ['proxy.whatships.com']",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --dump-single-json --simulate -- https://whatships.com/videos/flora-agents-on-canvas/"
+    },
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "1 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2090590073540481107&lang=en&token=52fs6fm1ft'"
+    },
+    {
+      "step": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+      "ok": true,
+      "detail": "1666x1080 h264 30.0 fps, audio aac, 11005551 bytes",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-flora-agents-on-canvas-20261012-031119/01/flora-agents-on-canvas [2090588730029428736].mp4' --url https://video.twimg.com/amplify_video/2090588730029428736/vid/avc1/1666x1080/fj9WvkL7tf7QQFoz.mp4"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:19+02:00"
+}

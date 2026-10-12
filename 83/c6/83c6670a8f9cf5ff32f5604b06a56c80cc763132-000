@@ -1,0 +1,468 @@
+# R05 : transposer zenray-height au motion design (12 October 2026)
+
+> Tâche R05 du workflow de recherche `zrmd-research` du projet Assets `zenray-motion-design`, écrite le 12 October 2026. Aucun fichier n'a été modifié hors de ce livrable ; les commandes lancées se limitent à des lectures, des comptages, des téléchargements de pages de documentation dans le scratchpad de la session et deux recalculs faits sur des images déjà présentes (section 4.6). (12 October 2026)
+
+> Marqueurs employés dans tout le document : **[mesuré]** chiffre obtenu par une commande ou lu dans un fichier de mesure cité ; **[lu]** constaté en lisant le code ou une documentation citée ; **[proposé]** choix de conception recommandé ici, non testé ; **[supposé]** hypothèse plausible que rien n'a encore vérifiée. (12 October 2026)
+
+## 0. L'essentiel (12 October 2026)
+
+zenray-height ne reproduit pas une height parce qu'il dispose d'une base de 2,6 Mo, mais parce qu'il applique une boucle courte et têtue : il mesure la référence, déduit chaque couche par un calcul fermé sur le résidu, la construit pour de vrai dans Copernicus, la mesure en pleine résolution et ne la garde que si elle paie, à la fois globalement et là où elle agit **[lu]**. La base Copernicus2.md a servi à trouver cette méthode et sert encore à guider l'agent, alors que le moteur ne la lit jamais : 72 % de ses 2 634 198 octets décrivent les 384 nœuds COP et la bibliothèque de Substance Designer, la méthode gagnante n'emploie que 16 types de nœuds COP, et ce qui décide (méthode, doctrine, leçons, registre, dictionnaire, dossier, résultats) tient en 66 Ko **[mesuré]**. (12 October 2026)
+
+Transposée au motion design, la leçon porte donc sur la boucle bien plus que sur le volume : une recette ordonnée de coups mesurés (coupes, transitions, caméra, trajectoires, révélations de texte, étalonnage, événements SFX, grille de tempo, lit musical, mixage), cuite en une composition HyperFrames déterministe, évaluée plan par plan à des instants mesurés, gardée coup par coup quand elle paie, vérifiée dans les deux sens et lancée par une seule commande sans agent ni modèle de langage **[proposé]**. (12 October 2026)
+
+- La base devient un registre machine `registry/*.json`, source unique dont dérivent les parties générées d'une base lisible `Motion1.md`, routée par titres comme Copernicus2.md et assemblée par un constructeur capable de se vérifier **[proposé]**. (12 October 2026)
+- Le graphe devient `params/recipe.json`, liste ordonnée de coups par plan, signée coup par coup, dont les données lourdes vivent dans `payloads/` et que `Cook.mjs` cuit en une composition à timeline GSAP unique et en pause **[proposé ; Cook.mjs existe, lu]**. (12 October 2026)
+- La métrique devient un vecteur à quatre dimensions (rythme, animation, image, son), chacune scindée en part déterministe jugée à l'identité et en part stochastique jugée à la distribution avec un plancher calculé ; le 99 % se lit sur la plus faible des quatre, à l'intérieur d'un masque de validité qui écarte le contenu de marque remplacé **[proposé]**. (12 October 2026)
+- L'équivalent de `reproduce.sh` est `scripts/motion/reproduce.sh --input <vidéo> --name <Nom> [--level QUICK|FULL]`, qui écrit `versions/V_00N/`, réécrit `status.json` à chaque coup, sort avec un code qui dit si le contrat est tenu et s'arrête sur `needs_choice` ou `needs_asset` plutôt que d'inventer **[proposé]**. (12 October 2026)
+- Cinq pièges déjà payés sur height menacent l'existant motion : mesurer à résolution réduite (le mouvement y est mesuré en 160 × 90), juger un coup sur un score global sans porte locale, juger un bruit au pixel, reconstruire et rendre tout le film à chaque essai, écrire la cible en dur dans le vérificateur **[lu]**. (12 October 2026)
+
+## 1. Ce qui a été lu (12 October 2026)
+
+| Pièce | Chemin absolu | Usage dans ce livrable | Date |
+|---|---|---|---|
+| Porte d'entrée height | `/Users/zenray/.claude/skills/zenray-houdini/SKILL.md` (lignes 1 à 160 : entrée unique, méthodes v2 et v1, dépréciations, priorités) | commande, surveillance, pièges | 12 October 2026 |
+| Base documentaire | `/Users/zenray/.claude/skills/zenray-houdini/Copernicus2.md` (sections 0, 1, 2, 3 par échantillon, 8.2.9 à 8.3.3, 8.5.0, 8.5.1, 8.5.24 à 8.5.26, 9, 10, début de 11, 12, 13, 14) | format, méthode, métriques | 12 October 2026 |
+| Code canonique | `/Users/zenray/.claude/skills/zenray-houdini/scripts/height/` (22 fichiers Python lus en entier, `README.md`, `reproduce.sh`, `noise_unit_bands.json`) | mécanisme | 12 October 2026 |
+| Passerelle Houdini | `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py` (passages ciblés) | exécution sans MCP | 12 October 2026 |
+| Constructeurs et preuves | `/Users/zenray/.claude/tmp/tmp-zenray-height/Scripts/BuildCopernicus2.py`, `BuildCopReference.py`, `BuildGuideDigest.py`, `BuildRegistry.py`, `TestIncremental.py`, `TestParallelRegions.py`, `TestFileData.py`, dossier `checks/` | construction, double sens | 12 October 2026 |
+| Mémoire projet | `/Users/zenray/.claude/Memory1/Projects/zenray-height/Project1.md`, `Rules.md`, passages ciblés de `FEEDBACK.md` | règles | 12 October 2026 |
+| Un projet réel | `/Users/zenray/.claude/tmp/tmp-zenray-height/projects/MosaicHeight17s/` (`status.json`, `report.json`, `log.json` des passes H1 et H2) | trajectoire chiffrée | 12 October 2026 |
+| Existant motion | `/Users/zenray/.claude/skills/zenray-motion-design/` (SKILL.md, Verify.py, Cook.mjs, motion-core.js, AnalyzeReference.py, AnalyzeCamera.py, AnalyzeAudio.py, exemples) et `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/verify/report-v8.json` | écarts | 12 October 2026 |
+| HyperFrames et GSAP | documentation en ligne (section 10) et CLI `hyperframes` 0.8.147 du cache npx `/Users/zenray/.npm/_npx/702923228c2ce1e6/`, dont j'ai lu les chaînes d'aide sans l'exécuter | contrat de composition | 12 October 2026 |
+
+L'inventaire complet de l'existant relève de R08, l'étude approfondie de HyperFrames de R01, le son de R03, l'image et l'animation de R04, le vocabulaire de R09 et la 3D de R10 ; ce document s'y réfère sans les répéter. (12 October 2026)
+
+## 2. zenray-height en une page (12 October 2026)
+
+La méthode courante, dite v2, explique la height de référence couche après couche. Une couche est soit une structure réglée par des mesures (profil du joint en fonction de la distance, tables par carreau, plans et coins par rangée), soit une forme propre à l'image dont la position est mesurée puis transportée sous forme vectorielle (régions postérisées du résidu, lignes de crête, éclats), soit une matière statistique calibrée par bande, soit enfin une correction globale ajustée par moindres carrés (égaliseur de fréquences, courbe d'histogramme, raccord de bord) **[lu : Copernicus2.md §1 et §12, Methods.py, Recipe.py]**. Chaque candidate est réellement construite dans un réseau Copernicus de la scène ouverte, exportée en PNG 16 bits de 2048 px, mesurée en pleine résolution, et gardée seulement si elle paie **[lu : Execute.py]**. (12 October 2026)
+
+| Height | Corrélation à 2048 px | SSIM | Durée | Source | Date |
+|---|---|---|---|---|---|
+| Ceramic Wall Tiles | 0,9976 | 0,975 | non relevée | Copernicus2.md §14.2 **[mesuré]** | 12 October 2026 |
+| Louisiana Bayou window | 0,9914 | 0,947 | non relevée | Copernicus2.md §14.2 **[mesuré]** | 12 October 2026 |
+| Louisiana Bayou whitepaint | 0,9920 | 0,944 | non relevée | Copernicus2.md §14.2 **[mesuré]** | 12 October 2026 |
+| Louisiana Bayou tile | 0,9978 | 0,959 | non relevée | Copernicus2.md §14.2 **[mesuré]** | 12 October 2026 |
+| Vidéo de démonstration, niveau FULL | 0,9975 | non relevé | 9,6 min | Project1.md **[mesuré]** | 12 October 2026 |
+| Vidéo de démonstration, niveau QUICK | 0,9851 | non relevé | 3,6 min | Copernicus2.md §1.6 **[mesuré]** | 12 October 2026 |
+| MosaicHeight17s, niveau FULL | 0,9961 | 0,9726 | 11 min 22 s | `report.json` et `status.json` du projet **[mesuré]** | 12 October 2026 |
+
+La méthode ne reconstruit pas le grain d'un pixel, qui coûterait environ 2,5 millions de polygones par passe, c'est-à-dire l'image elle-même sous une autre forme ; elle refuse aussi une vidéo qui ne montre qu'un rendu éclairé, faute de height à mesurer, et s'arrête alors sur `needs_choice` **[lu : §14.2 et §1.6]**. Le verdict final associe les chiffres et un zoom ×3 relu à l'œil, le dernier mot revenant à Matthieu **[lu : SKILL.md, entrée unique]**. (12 October 2026)
+
+## 3. La base documentaire Copernicus2.md (12 October 2026)
+
+### 3.1 Emplacement, taille et format (12 October 2026)
+
+- Emplacement : `/Users/zenray/.claude/skills/zenray-houdini/Copernicus2.md`, source de vérité de la data de reproduction de height depuis le 11 October 2026, `Copernicus1.md` devenant l'historique **[lu]**. (12 October 2026)
+- Taille : 2 634 198 octets comptés par Python (2 634 197 selon `ls`, l'écart tenant au saut de ligne final), 20 936 lignes, quinze sections numérotées de 0 à 14 **[mesuré]**. (12 October 2026)
+- Format : un seul fichier Markdown, titres de `##` à `#####`, index des sections avec leurs numéros de ligne en tête ; 18 986 des 18 999 lignes non vides portent leur date et le fichier ne contient aucun tiret cadratin ni demi-cadratin **[mesuré]**. Les parties de référence sont en anglais, la méthode et la doctrine en français ; toute affirmation inférée porte `UNVERIFIED` et tout seuil conçu sur place `PROPOSED` **[lu]**. (12 October 2026)
+- Une entrée de nœud COP suit toujours le même gabarit : résumé, vue d'ensemble, entrées, sorties, puis chaque paramètre avec libellé, nom interne, type, défaut et menu, les paramètres vus en live mais absents de l'aide, les nœuds liés et la source (exemple : `Blur cop/blur`, ligne 962) **[lu]**. (12 October 2026)
+
+| § | Titre abrégé | Octets | Part | Nature | Date |
+|---|---|---|---|---|---|
+| 0 | Index des sections | 1 505 | 0,1 % | généré | 12 October 2026 |
+| 1 | Méthode courante (1.1 à 1.6) | 14 525 | 0,6 % | écrit dans la boucle principale | 12 October 2026 |
+| 2 | Doctrine, niveaux d'identité, mesurer ou copier | 4 200 | 0,2 % | écrit | 12 October 2026 |
+| 3 | Référence des nœuds COP | 1 071 614 | 40,7 % | généré depuis l'aide locale et l'introspection | 12 October 2026 |
+| 4 | Page SideFX pour les utilisateurs de Designer | 6 939 | 0,3 % | écrit | 12 October 2026 |
+| 5 | Référence des nœuds de Substance Designer | 823 986 | 31,3 % | rédigé par un sous-agent | 12 October 2026 |
+| 6 | Painter, Javier Perez, techniques professionnelles | 212 098 | 8,1 % | rédigé par un sous-agent | 12 October 2026 |
+| 7 | Guides locaux Copernicus et HeightField | 98 900 | 3,8 % | généré | 12 October 2026 |
+| 8 | État de l'art, métriques, 22 méthodes | 160 113 | 6,1 % | rédigé par un sous-agent | 12 October 2026 |
+| 9 | Leçons des méthodes dépréciées | 4 236 | 0,2 % | écrit | 12 October 2026 |
+| 10 | Registre de la recherche de méthode (16 × 4) | 26 010 | 1,0 % | généré depuis les journaux | 12 October 2026 |
+| 11 | Catalogue des familles de matériaux | 192 287 | 7,3 % | rédigé par un sous-agent | 12 October 2026 |
+| 12 | Dictionnaire des couches | 5 700 | 0,2 % | écrit | 12 October 2026 |
+| 13 | Dossier de référence céramique | 5 559 | 0,2 % | écrit | 12 October 2026 |
+| 14 | Résultats (14.2 et 14.3) | 5 899 | 0,2 % | écrit | 12 October 2026 |
+
+Les sections 3 et 5, qui disent ce qui existe, pèsent 72 % du fichier, tandis que les sections qui décident (1, 2, 9, 10, 12, 13 et 14) pèsent ensemble 66 129 octets, soit 2,5 % **[mesuré]**. (12 October 2026)
+
+### 3.2 Construction (12 October 2026)
+
+- Assemblage : `/Users/zenray/.claude/tmp/tmp-zenray-height/Scripts/BuildCopernicus2.py` suit un plan de quatorze entrées (numéro, titre, fichier, mode) ; il colle neuf sections écrites dans la boucle principale (`dataset/sections/`, 169 977 octets) et cinq parties produites ailleurs (`dataset/parts/`, 2 458 132 octets), décale les titres de chaque partie pour que son premier niveau devienne `###`, remplace les tirets longs par des virgules, puis calcule en deux passes l'index des sections avec leurs numéros de ligne **[lu, mesuré]**. L'en-tête interdit d'éditer à la main les parties générées (3, 5, 6, 7, 8 et 11), qu'on régénère **[lu]**. (12 October 2026)
+- Partie 3 : `BuildCopReference.py` lit l'archive d'aide locale `nodes.zip` (dossier `cop/`, 372 pages) et une introspection live des types de nœuds de la session ouverte (`/Users/zenray/.claude/tmp/tmp-zenray-height/dataset/cop_nodetypes_live.json`, 384 types, 1 023 936 octets), condense chaque description à sa première phrase et signale les paramètres vus en live mais absents de l'aide **[lu, mesuré]**. (12 October 2026)
+- Partie 7 : `BuildGuideDigest.py` condense les guides Copernicus et HeightField de l'aide installée de Houdini **[lu]**. (12 October 2026)
+- Parties 5, 6, 8 et 11 : quatre sous-agents lancés en arrière-plan, chacun avec son livrable sur disque, son modèle et son transcript notés dans `/Users/zenray/.claude/tmp/tmp-zenray-height/state.json` ; leurs sources web sont citées par URL et paraphrasées, avec un niveau de preuve par affirmation **[lu]**. (12 October 2026)
+- Section 10 : `BuildRegistry.py` l'écrit depuis les journaux de la recherche de méthode (`methods/<méthode>/log.json`) et des verdicts **[lu]**. (12 October 2026)
+- Dérive constatée : la section 14.3, benchmark de la mosaïque, n'existe que dans la copie du skill ; ni `dataset/sections/14_results.md` ni la copie d'atelier `dataset/Copernicus2.md` (2 632 213 octets, empreinte différente) ne la contiennent, si bien qu'une régénération la perdrait **[mesuré]**. Une base assemblée ne doit donc jamais être retouchée en aval de son constructeur, et la base motion aura besoin d'un contrôle qui reconstruit puis compare **[proposé]**. (12 October 2026)
+
+### 3.3 Usage, et ce que le moteur n'en lit pas (12 October 2026)
+
+- Pour l'agent : le routeur `/Users/zenray/.claude/skills/zenray-houdini/scripts/query_copernicus2.py "<mots>" --show` analyse les titres à chaque appel, si bien qu'aucun index ne peut vieillir, et rend les sections correspondantes avec leurs numéros de ligne, bornées à 120 lignes par défaut **[lu]**. La porte d'entrée du SKILL.md ordonne de lire 14.2, puis 1.4, 1.5 et 1.6 sans ouvrir le fichier entier, et une table « index mapping » relie chaque besoin à sa section et à sa commande **[lu]**. (12 October 2026)
+- Pour le code : aucun script du moteur ne lit Copernicus2.md **[mesuré : recherche dans `scripts/height/`]**. Le savoir y est compilé sous trois formes, à savoir les types de couches de `Recipe.py` (un par ligne du dictionnaire de la section 12), les fabriques de couches et l'ordre des plans (`Methods.py`, `Execute.default_plan`, `RunPasses.plan_for`), enfin un seul fichier de données d'étalonnage, `noise_unit_bands.json`, qui donne l'énergie par bande du bruit fractal de Copernicus à amplitude unité, indépendamment du matériau **[lu]**. (12 October 2026)
+- Pour la méthode : la base a rendu possible la recherche de méthode (seize principes, quatre phases, section 10) et la traduction des recettes Designer et Painter vers des nœuds réels, mais la méthode gagnante n'emploie que 16 types de nœuds COP sur 384 : `remap`, `sopimport`, `blur`, `ramp`, `channelextract`, `rasterizegeo`, `constant`, `xform2d`, `streakblur`, `rop_image`, `null`, `maskfromcurves`, `layerproperties`, `layerfromcurves`, `fractalnoise` et `blend` **[mesuré : recherche dans `Recipe.py`, `ZrhCop.py`, `StashFast.py`]**. (12 October 2026)
+- Le moteur compte 22 fichiers Python, 3 435 lignes et 161 582 octets avec son lanceur et son étalonnage, soit le même ordre de grandeur que le skill motion actuel (14 scripts et 3 gabarits, 207 757 octets) **[mesuré]**. Ce qui manque au motion n'est donc ni le code ni le volume documentaire, mais la boucle de mesure, d'ajustement et d'acceptation. (12 October 2026)
+
+## 4. Le mécanisme pièce par pièce (12 October 2026)
+
+### 4.1 Une commande, aucun agent, aucun modèle (12 October 2026)
+
+1. `reproduce.sh` remplace son propre processus par `/Users/zenray/.venvs/shorts/bin/python -I .../Reproduce.py "$@"`, l'environnement isolé ne fournissant que numpy et Pillow **[lu]**. (12 October 2026)
+2. `Reproduce.py` fixe `ZRH_WORK` sur le dossier du projet, réécrit `status.json` à chaque étape et à chaque couche, et imprime une ligne `STEP` par étape ; passé huit minutes, on relit `status.json` au lieu d'attendre, et l'attente se fait par numéro de processus **[lu]**. (12 October 2026)
+3. Les ordres à Houdini partent par `Run.hom`, qui lance `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py` en ligne de commande (`hom <code> live`) ; ce script ouvre une connexion locale sur le port 18812, où la passerelle `zrbridge`, chargée au démarrage de Houdini par `123.py` et `456.py`, exécute le code HOM. Le même fichier sait servir de serveur MCP avec `--mcp`, mais `Reproduce.py` ne l'emploie jamais ainsi **[lu]**. (12 October 2026)
+4. Dans Houdini, le code envoyé exécute `Recipe.py`, qui (re)construit `/obj/ZRH_<Nom>` et exporte l'image ; ajustements, mesures et décisions tournent dans le Python externe **[lu]**. (12 October 2026)
+5. Chaque décision est une comparaison de nombres à des seuils écrits dans le code (gain minimal de 0,001 puis 0,0005, porte locale à 0,97, rapport de couture de 1,3, entre autres), et aucun appel à un modèle n'existe dans la chaîne **[lu : code relu, et FEEDBACK.md du 12 October 2026 à 01:10]**. (12 October 2026)
+6. Codes de sortie : 2 si la passerelle ne répond pas, 3 si la vidéo ne présente pas de panneau net (`needs_choice`), 0 sinon, y compris quand 0,99 n'est pas atteint, puisque le rapport ne transforme pas la cible en échec **[lu]**. (12 October 2026)
+7. Sorties : `report.json`, `REPORT.md`, `zoom3_reference_vs_result.png`, planches `board/Evolution.html` par passe, dossiers `versions/final/<Nom>_H1` et `<Nom>_H2` avec une image et un panneau par couche acceptée, recette légère `recipe_current.json`, données lourdes dans `payloads/` **[lu]**. (12 October 2026)
+
+Trois moments demandent encore un humain ou un agent : le choix du panneau quand la vidéo est ambiguë (`needs_choice`, lecture de la planche des candidats puis relance avec `--frame` et `--crop`), le verdict à l'œil, et la décision de doctrine sur le niveau L3, que Matthieu a tranchée en demandant 0,99 **[lu : SKILL.md et Copernicus2.md §1.4]**. (12 October 2026)
+
+### 4.2 Choisir les nœuds (12 October 2026)
+
+Le moteur ne choisit jamais parmi 384 nœuds pendant l'exécution, car le choix se fait à trois étages, dont seul le dernier tourne à chaque projet **[lu]**. (12 October 2026)
+
+- Étage de conception : la recherche de méthode (seize méthodes de principes distincts, quatre phases chacune, construites et mesurées pour de vrai) a montré que la statistique pure plafonne entre 0,07 et 0,40 de corrélation, que la structure seule plafonne vers 0,68, et que les régions vectorielles multi-échelles atteignent 0,971 ; la règle gloutonne M01 a été retenue comme règle de décision **[mesuré : registre §10]**. Le dictionnaire de la section 12 fixe ensuite, pour chaque trait observé dans le résidu, la mesure qui le décrit, le type de couche, la chaîne de nœuds et le niveau d'identité **[lu]**. (12 October 2026)
+- Étage du code : chaque type de couche est une chaîne fixe de nœuds réels dans `Recipe.Builder`. Les `regions` sont des polygones mesurés, lus par `sopimport`, rendus par `rasterizegeo` en profondeur minimum, extraits par `channelextract` et adoucis par `blur` ; les `lines` passent par `layerfromcurves` avec une rampe de profil ; le `noise` est un `fractalnoise` dont l'amplitude vient de la table d'étalonnage ; l'`eq` enchaîne `layerproperties` (bord en enroulement), `blur`, des `remap` en échelle et des `blend` en addition ; le `seam` fond l'image avec une copie décalée par `xform2d` en enroulement ; le `hist` est un `remap` à rampe mesurée **[lu]**. (12 October 2026)
+- Étage d'exécution : un plan ordonné propose les candidates du plus structuré au plus fin, `Fit.py` tire leurs paramètres de mesures et jamais de pixels, et la détection de trame (`Lattice.py`, autocorrélation des profils moyens) fixe les cellules, si bien que sur une mosaïque, détectée en 10 × 1 cellules, les couches par carreau sont essayées puis rejetées **[mesuré : `log.json` de MosaicHeight17s_H1]**. (12 October 2026)
+
+### 4.3 Ajuster le graphe (12 October 2026)
+
+- La recette est une liste JSON ordonnée de couches, chacune avec son type, ses paramètres mesurés, son opération (`base` ou `add`), un poids, un éventuel `fade` et une note ; les données lourdes (polygones, courbes) s'écrivent une seule fois dans `payloads/<md5>.json` et la couche n'en garde que la référence, avec une signature md5 **[lu : `Execute.light_recipe`]**. (12 October 2026)
+- La construction est incrémentale : `Recipe.build` compare les signatures rangées dans les données utilisateur du réseau à celles de la nouvelle recette, garde le préfixe commun, détruit le reste et ne crée que les couches nouvelles, une boîte réseau par couche jusqu'au nœud `OUT_height` ; une reconstruction complète prenait 80 s par essai, une passe fine ne prend plus que 4 à 5 s dans Houdini **[lu ; mesuré : Copernicus2.md §1.4]**. (12 October 2026)
+- Ajuster consiste à poser une couche dont les paramètres sont calculés en forme close sur le résidu. Les seules optimisations sont des moindres carrés à un ou quelques paramètres : l'amplitude d'une couche réajustée une fois quand la porte locale échoue, les poids de l'égaliseur, les plans par rangée ; s'y ajoute la courbe de transfert d'histogramme à 17 quantiles **[lu : Execute.py, FitEqualizer.py, Fit.py]**. (12 October 2026)
+- Les données mesurées vivent hors de la scène, en `.bgeo.sc` lus par des nœuds File, depuis que des nœuds stash avaient mis 30,8 millions de points dans le fichier `.hip` **[lu : §1.4]**. Sur la mosaïque, la recette légère pèse 10 800 octets, mais ses `payloads` pèsent 762 Mo en 24 fichiers et sa géométrie 138 Mo **[mesuré : `ls`, `du`]** : la légèreté est celle de la recette, non celle des données, qui deviennent aux passes fines l'image sous une autre forme. (12 October 2026)
+
+### 4.4 Mesurer (12 October 2026)
+
+- `Measure.measure` travaille en pleine résolution (`work_res` 2048, réduction par moyenne exacte de blocs) et rend l'erreur moyenne, l'erreur quadratique, la corrélation de Pearson, le SSIM (sigma 1,5), moyennes et écarts types, la distance de Wasserstein des histogrammes, la corrélation et le rapport d'énergie de six bandes en différence de gaussiennes (de 1 à 64 px), la corrélation après flou de 32 px, l'anisotropie, le rapport d'énergie des gradients, l'IoU des masques noir et blanc aux seuils absolus de la référence (quantiles 10 à 90), l'IoU des lignes et des sillons, l'écart moyen par carreau et deux indices de structure et de détail **[lu]**. (12 October 2026)
+- Le score de classement vaut 0,4 × Pearson + 0,2 × SSIM + 0,2 × corrélation moyenne des bandes + 0,2 × IoU moyen des masques ; il ne sert qu'à départager, jamais de porte unique **[lu : `Methods.score`]**. (12 October 2026)
+- Les portes (`Measure.gates`) relèvent l'erreur des vignettes 64 × 64 en pourcentage de l'étendue, la corrélation et l'erreur du profil de joint moyen, les rapports d'énergie par bande, la distance du résidu fin et son rapport d'écart type, enfin l'erreur quadratique et son plancher √2 σ quand la part fine est aléatoire **[lu]**. (12 October 2026)
+- Une couche déterministe est acceptée si le score dépasse le meilleur de `min_gain` et si la porte locale tient, c'est-à-dire si l'erreur baisse d'au moins 3 % sur les pixels qu'elle modifie ; une couche statistique est acceptée si la distance des énergies des bandes fines baisse d'au moins 20 % sans perdre plus de 0,01 de corrélation, parce qu'un bruit correct fait baisser les mesures au pixel par construction **[lu : Execute.py]**. (12 October 2026)
+- La base color se juge à l'écart de couleur moyen ΔE76 en Lab, à la corrélation et au SSIM de luminance, et une couche n'y est gardée que si l'écart baisse d'au moins 0,05 **[lu : ExecuteBC.py, MeasureColor.py]**. (12 October 2026)
+
+### 4.5 Itérer : passes successives, plans QUICK et FULL, reprise (12 October 2026)
+
+- Dans un plan, chaque candidate est essayée une fois, plus un éventuel réajustement d'amplitude. Une passe de régions quantifie le résidu en 8 niveaux (16 aux passes au pixel), si bien que la passe suivante à la même échelle divise à peu près l'erreur restante : c'est une approximation successive, répétée tant qu'elle paie, jusqu'à 8 passes à 4 px, 3 à 2 px et 4 à 1 px dans le plan L3 **[lu : RunPasses.py, §1.4]**. (12 October 2026)
+- Sur la mosaïque, la corrélation passe de 0,051 avec le profil de joint seul à 0,240, 0,389 et 0,602 avec les régions de 32, 16 et 8 px, à 0,833 avec celles de 4 px, à 0,940 après six passes successives à 4 px, puis à 0,956 et 0,986 avec les passes à 2 et 1 px ; la seconde moitié gagne 0,991 par les passes au pixel et 0,996 par l'égaliseur, plus grand gain de la fin (0,0049), tandis que l'histogramme final est rejeté ; 30 candidates sur 37 sont gardées et le graphe compte 172 nœuds **[mesuré : `log.json` H1 et H2, Copernicus2.md §14.3]**. (12 October 2026)
+- Une reprise reconstruit le graphe depuis `recipe_current.json` d'un dossier précédent puis continue le plan (`run(..., resume=...)`) **[lu]**. Quand le résultat plafonne malgré les réglages, on itère sur la méthode et non sur ses réglages, avec seize méthodes, quatre phases et des masques noir et blanc (skill `zenray-methodology`) ; l'ancienne boucle M01 plafonnait à 0,047 parce que des familles aléatoires ne placent jamais une forme unique au bon endroit **[lu : §9.1]**. (12 October 2026)
+
+| Plan | Contenu | Gain minimal | Candidates | Mesure connue | Date |
+|---|---|---|---|---|---|
+| QUICK | les onze couches de base (profil de joint, profils de côté, table, plan et coins par rangée, régions de 32, 16 et 8 px, lignes, éclats, régions de 4 px), deux passes de plus à 4 px, égaliseur | 0,001 | 14 | vidéo de démonstration : 0,9851 en 3,6 min **[mesuré]** | 12 October 2026 |
+| L3, première moitié de FULL | les onze de base, passes à 8 et 4 px, lignes et éclats fins, cinq passes de plus à 4 px, passes à 2 et 1 px, histogramme | 0,001 | 30 | mosaïque : 0,9863 en 538 s **[mesuré]** | 12 October 2026 |
+| L5, seconde moitié de FULL, reprise de L3 | cinq passes au pixel (flou de 0,5 px, 16 niveaux, zones de 6 puis 3 px), égaliseur, histogramme | 0,0005 | 7 | mosaïque : 0,9961 en 123 s **[mesuré]** | 12 October 2026 |
+| L2, L4, EQ, L6 | plans nommés pour s'arrêter à 4 px, faire les seules passes au pixel, finir un résultat existant, ou ajouter des passes et un second égaliseur | 0,001 ou 0,0005 | variable | employés sur la fenêtre et le blanc peint **[lu]** | 12 October 2026 |
+
+### 4.6 Se vérifier dans les deux sens (12 October 2026)
+
+- Identification vidéo : verte sur une vidéo de présentation de maps, où le panneau est trouvé à t = 2 s au pixel près et la base color à 4 s ; rouge sur un rendu éclairé, où aucun choix automatique n'est fait et où la commande s'arrête sur `needs_choice` **[lu : §1.6]**. (12 October 2026)
+- Construction incrémentale : `TestIncremental.py` construit huit couches, essaie une neuvième volontairement fausse (poids 0,37), puis construit dix couches en incrémental et en reconstruction complète. Recalculé aujourd'hui depuis les images conservées dans `/Users/zenray/.claude/tmp/tmp-zenray-height/checks/incremental/` : écart maximal de 0,0 entre l'incrémental et la reconstruction complète, de 0,0 entre les données lues en fichiers et en stash, et de 0,353 entre l'essai faux et le résultat **[mesuré, recalculé le 12 October 2026]**. (12 October 2026)
+- Découpage parallèle : `TestParallelRegions.py` compare à l'octet près les polygones du découpage série et du découpage sur 16 cœurs, résultat publié à 4,2 s contre 30,6 s **[lu : §1.4 ; test non relancé]**. (12 October 2026)
+- Étalonnage : un Blur de Copernicus de taille R équivaut à une gaussienne de sigma R/2 avec une erreur nulle ; à R = 0,5 px il vaut sigma 0,1 et non 0,25, les poids de l'égaliseur perdaient leur sens et la porte a rejeté la couche (0,9949 tombé à 0,7535), preuve que l'acceptation vire au rouge sur un cas cassé **[lu : §1.5]**. (12 October 2026)
+- Porte locale : elle est née d'un cas rouge que le score global laissait passer (des traits ajoutaient 0,12 là où la référence demandait 0,06), et sur la mosaïque la couche `side_profiles` apportait 0,0119 au score global avant d'être rejetée par elle **[lu : §1.4 ; mesuré : `log.json`]**. (12 October 2026)
+- Mesure de la mesure : la note calculée à 1024 px surestimait l'identité (0,998 annoncé contre 0,980 en pleine résolution) ; le vérificateur a été audité, puis corrigé en moyenne exacte de blocs à 2048 px **[lu : commentaire de `Measure.P`, §1.5]**. (12 October 2026)
+- Raccord : le seuil devient relatif quand la référence raccorde déjà (céramique, rapport naturel de 1,41 à 1,45, aucune couche de raccord) et reste absolu sinon (fenêtre, 5,60 ramené à 1,23 par une bande de 4 px) **[lu : §1.5, MakeTileable.py]**. (12 October 2026)
+- Ce qui manque encore : aucun test automatique ne fait échouer `Measure` sur une height volontairement cassée, la cible de 0,99 n'est pas un code de sortie, et le mode sans interface (hython) n'a pas été testé **[lu]**. (12 October 2026)
+
+### 4.7 Project1.md et Rules.md, ce qui s'en transpose (12 October 2026)
+
+- Rules.md fixe la commande unique sans agent, MCP ni modèle, la mesure toujours en pleine résolution, et prévoit qu'une carte PBR qui ne passe pas 0,99 avec le protocole général justifie un workflow dédié `zenray-<carte>`, l'effort allant sinon vers une collection de matériaux à vendre **[lu]**. Transposé : une dimension qui ne passe pas 0,99 avec le protocole général, le son par exemple, reçoit un protocole dédié plutôt qu'une torsion du protocole commun, et la galerie V_001 à V_999 joue le rôle de la collection **[proposé]**. (12 October 2026)
+- Rules.md rejette aussi l'apprentissage par récit au profit d'une documentation courte, essentielle, dans le vocabulaire anglais des tutoriels **[lu]** ; la base motion devrait donc employer les mots anglais du métier (ease, stagger, overshoot, whoosh, riser) avec une définition française courte **[proposé]**. (12 October 2026)
+- Project1.md dit où est quoi (code dans le skill, méthode dans Copernicus2.md, chaque projet dans `projects/<Nom>/`), donne les durées mesurées et nomme les limites : grain d'un pixel, rendu éclairé sans height, graphes perdus si la scène n'est pas enregistrée mais reconstructibles depuis leur recette, hython non testé **[lu]**. (12 October 2026)
+
+### 4.8 Limites et anomalies relevées (12 October 2026)
+
+- Les graphes vivent dans la scène Louisiana Bayou ouverte : il faut un Houdini en interface, et un graphe disparaît si la scène n'est pas enregistrée, même s'il se reconstruit depuis sa recette **[lu]**. (12 October 2026)
+- `Tidy.py` et la ligne qui le décrit dans `README.md` portent la date du « 13 October 2026 », postérieure au jour où le fichier a été modifié (12 October 2026 à 01:50) **[mesuré : `ls`]** ; une ligne datée corrective est à ajouter, sans réécrire l'ancienne. (12 October 2026)
+- `Reproduce.py` numérote deux étapes « 6/7 » (raccord et base color) ; c'est cosmétique **[lu]**. (12 October 2026)
+
+## 5. La transposition terme à terme (12 October 2026)
+
+### 5.1 Ce qui tient, et les cinq différences qui obligent à adapter (12 October 2026)
+
+La transposition tient parce que le motion design comporte, comme une height, une part déterministe qu'on peut mesurer puis placer (instants des coupes, trajectoires, mises en page, couleurs, métriques typographiques, attaques sonores) et une part stochastique qu'on ne peut reproduire qu'en distribution (grain, dérives, souffles, queues de réverbération) ; la règle « mesurer, calculer en forme close, construire, mesurer, garder si ça paie » s'applique donc sans changer de principe **[proposé]**. Elle oblige cependant à cinq adaptations. (12 October 2026)
+
+1. Un axe et un canal de plus : le temps et le son ajoutent des événements et des trajectoires, mais le temps se découpe en plans comme l'espace se découpe en carreaux, si bien que la structure par plan joue le rôle de la trame et que les tables par plan jouent celui des tables par rangée **[proposé]**. (12 October 2026)
+2. Le contenu de marque est remplacé par du contenu original (objectif du projet dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/state.json`) : l'identité visée est celle de la forme, jamais celle des glyphes, logos et images, d'où un masque de validité qui écarte ces zones des mesures au pixel, exactement comme le résidu est mis à zéro hors du masque valide de la céramique **[proposé]**. (12 October 2026)
+3. La composition n'est pas additive : des éléments s'occultent, se fondent et se masquent, de sorte qu'on ne somme pas des couches de pixels. L'ajustement se fait donc dans l'espace des paramètres mesurés (instants, trajectoires, descripteurs), l'image servant de porte et non de cible d'ajustement **[proposé]**. (12 October 2026)
+4. Le coût d'évaluation change d'échelle : un rendu complet de 68 s demande environ 70 s et 27 captures ponctuelles environ 20 s **[lu : SKILL.md motion, mesures du 10 October 2026]**, contre 4 à 5 s par passe fine dans Houdini ; il faut donc évaluer localement, par plan et à des instants choisis, et ne rendre le film entier qu'en fin de version **[proposé]**. (12 October 2026)
+5. La référence est elle-même dégradée (H.264, chrominance sous-échantillonnée, définition de diffusion), ce qui impose un plancher à mesurer avant tout travail, comme les références de Louisiana Bayou agrandies de 1254 à 2048 px n'avaient aucun vrai détail au pixel **[proposé ; analogie lue en §1.5]**. (12 October 2026)
+
+### 5.2 Table de correspondance (12 October 2026)
+
+| zenray-height | zenray-motion-design | Pièce existante à reprendre | Statut | Date |
+|---|---|---|---|---|
+| Référence height 16 bits de 2048 px et son masque valide | Vidéo dans le cache local, images à pleine définition et pleine cadence, audio à 48 kHz, et masque de validité spatio-temporel (zones de marque remplacées, contenu photographique ou 3D non reproductible en code) | `AnalyzeReference.py`, `ExtractCaptions.py`, `MeasureDna.py` | à refondre, la mesure du mouvement étant faite en 160 × 90 **[lu]** | 12 October 2026 |
+| `Identify.py` (panneau, `needs_choice`) | Identification : découpage en plans, archétype de chaque plan, verdict reproductible ou `needs_asset` | détection de scène et fusion manuelle des micro-coupes en v1 **[lu]** | à écrire | 12 October 2026 |
+| `prepare` (recadrage, carré, 2048 px) | Préparation : empreinte SHA-256, sonde, conformation de cadence et de taille, dérivés numériques rangés dans le cache | `reference.json` du cache (R02) | partiel | 12 October 2026 |
+| `Lattice.py` (période par autocorrélation) | Grilles : tempo et phase par autocorrélation de l'enveloppe d'attaques, cadence des coupes rapportée aux temps, grille de mise en page, échelle typographique | `AnalyzeAudio.py` (tempo) **[lu]** | partiel | 12 October 2026 |
+| `Fit.py` (mesures vers paramètres, jamais de pixels) | Ajusteurs : mesures vers paramètres de coups, jamais d'images ni d'échantillons | `AnalyzeCamera.py` et `MakeCamera.py` (similitude et ease) **[lu]** | partiel | 12 October 2026 |
+| `Methods.py` (fabriques `L_*`, registre des 16 méthodes) | Fabriques de coups `M_*` et registre des méthodes motion | aucune | à écrire | 12 October 2026 |
+| `RunPasses.py` (plans nommés) | Plans QUICK, FULL et passes nommées | aucune | à écrire | 12 October 2026 |
+| `Execute.py` (boucle gloutonne, porte locale, journal) | Même boucle, menée plan par plan et fenêtre par fenêtre | aucune | à écrire | 12 October 2026 |
+| `Recipe.py` (types de couches vers nœuds, boîtes réseau) | `Cook.mjs` : types de coups vers éléments HTML, tweens GSAP et jetons CSS, un groupe commenté par coup | `Cook.mjs`, gabarit `index.html` **[lu]** | à étendre | 12 October 2026 |
+| `ZrhCop.py` (bibliothèque de nœuds) | `motion-core.js` : préréglages de révélation, compteur, tracé, aléatoire à graine | `motion-core.js` **[lu]** | existe | 12 October 2026 |
+| Recette légère, `payloads/`, signatures, construction incrémentale | `params/recipe.json`, `payloads/<empreinte>.json` (trajectoires, courbes, enveloppes), signature par coup, cuisson et mesure du seul plan modifié | `params/*.json` écrits à la main **[lu]** | à refondre | 12 October 2026 |
+| Réseau `/obj/ZRH_<Nom>` | Dossier `composition/` : `index.html` à timeline GSAP unique, en pause, enregistrée dans `window.__timelines` | `composition/` de motion-01 | existe | 12 October 2026 |
+| Export `rop_image` en PNG 16 bits | `hyperframes snapshot --at` pour les essais, `render` en fin de version, images sans perte pour la mesure, audio WAV en flottant | `snapshot`, `render` **[lu]** | existe | 12 October 2026 |
+| `Measure.py` | Mesures par dimension : temps, mouvement, image, typographie, son | `Verify.py`, `VerifySound.py` | à refondre | 12 October 2026 |
+| `Methods.score` (classement) | Score de classement par dimension | aucune | à écrire | 12 October 2026 |
+| Portes A à J (§8.3) | Portes par dimension, déterministes et stochastiques | `CONTRACT` de `Verify.py` | à refondre | 12 October 2026 |
+| Porte locale (3 %, moindres carrés) | Porte locale par plan et par fenêtre, réajustement fermé de l'amplitude ou du décalage temporel | aucune | à écrire | 12 October 2026 |
+| Couches statistiques jugées par énergie de bande | Dérive ambiante, grain et bruit des SFX jugés par distribution, avec plancher | `ambient.json` calibré à la main **[lu]** | à refondre | 12 October 2026 |
+| `FitEqualizer.py` (égaliseur de fréquences) | Égaliseurs finaux ajustés par moindres carrés : décalage global entre image et son, égalisation spectrale du mixage, netteté ou flou de mouvement s'ils se mesurent | aucune | **[supposé]** | 12 October 2026 |
+| `hist` (courbe de transfert à 17 quantiles) | Étalonnage par plan (courbe de transfert de luminance et de chroma) et niveau sonore par plan | `MakeColorScript.py` (teinte par plan) **[lu]** | partiel | 12 October 2026 |
+| `MakeTileable.py`, `SeamCheck.py` | Raccords : boucle de la dernière image vers la première, sutures audio aux coupes, saut au point de raccord comparé aux sauts intérieurs | aucune | à écrire | 12 October 2026 |
+| `ExecuteBC.py` (base color, ΔE) | Passe son séparée sur la même grille de temps : structure de tempo et d'énergie, événements SFX, texture, mixage | `MakeAudio.py`, `MakeSound.py`, `VerifySound.py` **[lu]** | partiel | 12 October 2026 |
+| `EvolutionBoard.py`, zoom ×3 | Planche d'évolution par version, bande des pires instants (référence contre rendu), courbes superposées, spectrogrammes par événement, tous internes | `BuildAnimaticSheet.py`, `BuildStoryboard.py` | partiel | 12 October 2026 |
+| `report.json`, `REPORT.md`, `status.json`, `run.log`, `run.pid` | Les mêmes fichiers, par version `V_00N` | `verify/report-vN.json` | partiel | 12 October 2026 |
+| `noise_unit_bands.json` | Dossier `calibration/` : courbes d'ease échantillonnées dans le moteur réel, flou CSS mesuré, métriques de polices, réponses unitaires des synthés, plancher du codec | eases réécrites en Python dans `AnalyzeCamera.EASES`, jamais confrontées à GSAP **[lu]** | à écrire | 12 October 2026 |
+| `query_copernicus2.py` | Routeur commun paramétré par `--source`, appelé par les deux skills (règle des deux occurrences) | `query_copernicus2.py` | à généraliser | 12 October 2026 |
+| `BuildCopernicus2.py`, `BuildCopReference.py` | `BuildMotion1.py`, `BuildHyperFramesReference.py` (catalogue en JSON, documentation, introspection du moteur) | aucune | à écrire | 12 October 2026 |
+| `zrhoudini.py`, port 18812, Houdini ouvert | CLI `hyperframes` épinglée et navigateur headless géré, aucune application à garder ouverte ; serveur MCP (R07) en fine couche sur la même CLI | `npx hyperframes`, 0.8.147 en cache **[mesuré]** | existe | 12 October 2026 |
+| `/obj/ZRH_Data` (`.bgeo.sc`) | `payloads/` en JSON, sans aucun pixel ni échantillon de la référence | aucune | à écrire | 12 October 2026 |
+| Niveaux L0 à L3, doctrine « mesurer, jamais copier » | Même échelle pour le motion et le son (section 5.4) | règles de droits du projet **[lu]** | à écrire | 12 October 2026 |
+| Interface HDA, huit paramètres par catégorie | Variables de composition typées, huit par catégorie au plus, jetons pour le reste | `tokens.json` **[lu]** | partiel | 12 October 2026 |
+| Recherche de méthode 16 × 4 et son registre | Même protocole sur quatre à six plans types de onekey-pro-2 | skill `zenray-methodology` | à mener | 12 October 2026 |
+
+### 5.3 La base documentaire devient un registre machine et une base Motion1.md (12 October 2026)
+
+Le constat de la section 3 commande la forme : la base height se lit par l'agent et se compile dans le code, mais elle ne se lit jamais à l'exécution. La base motion doit donc séparer ce que la machine consomme de ce que le lecteur consulte, et faire dériver le second du premier pour qu'aucune donnée n'existe en deux exemplaires **[proposé]**. (12 October 2026)
+
+- Registre machine, source unique : `/Users/zenray/.claude/skills/zenray-motion-design/registry/` avec `moves.json` (types de coups), `transitions.json`, `type.json` (familles typographiques et métriques), `sfx.json` (classes, recettes de synthèse, plages de paramètres), `vocabulary.json` (termes de R09, chacun relié à une signature mesurable et à un coup), et `calibration/*.json` **[proposé]**. (12 October 2026)
+- Contrat d'une entrée du registre : identifiant, famille, niveau d'identité, mesures d'entrée, ajusteur, gabarit de cuisson, implémentation (GSAP, CSS, bloc du catalogue HyperFrames, synthèse), paramètres et plages, fichier d'étalonnage, un test vert et un test rouge, date **[proposé]**. (12 October 2026)
+- Base lisible : `/Users/zenray/.claude/skills/zenray-motion-design/Motion1.md`, assemblée par `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/Scripts/BuildMotion1.py`, qui écrit directement à cet emplacement et offre `--verify` (reconstruction dans un fichier temporaire puis comparaison d'empreinte, rouge si quelqu'un a retouché le fichier à la main), ce qui corrige la dérive de la section 14.3 **[proposé]**. (12 October 2026)
+- Routage : un routeur par titres identique à `query_copernicus2.py`, une porte « entrée unique » en tête du SKILL.md motion, une table « index mapping » besoin, section et commande **[proposé]**. (12 October 2026)
+- Format : chaque ligne datée, aucun tiret long, références en anglais, méthode en français, marqueurs `UNVERIFIED` et `PROPOSED`, comme Copernicus2.md **[proposé]**. (12 October 2026)
+
+| § Copernicus2 | § Motion1 proposé | Contenu | Source et constructeur | Date |
+|---|---|---|---|---|
+| 0 Index | 0 Index | sections et numéros de ligne | généré par `BuildMotion1.py` | 12 October 2026 |
+| 1 Méthode courante | 1 Méthode courante | étapes pour un agent, commande unique, surveillance | écrit | 12 October 2026 |
+| 2 Doctrine | 2 Doctrine | niveaux d'identité du motion et du son, frontière mesurer ou copier, droits | écrit | 12 October 2026 |
+| 3 Nœuds COP (40,7 %) | 3 Référence HyperFrames et GSAP | attributs du schéma HTML, commandes de la CLI, blocs et composants du catalogue (355 entrées listées dans son index en ligne), eases GSAP et CustomEase, extensions | généré : `catalog --json`, pages de documentation, introspection du moteur | 12 October 2026 |
+| 4 Page SideFX pour Designer | 4 Équivalences After Effects et Cinema 4D vers HyperFrames | vocabulaire de l'outil qui a produit la plupart des références | écrit, sources citées | 12 October 2026 |
+| 5 Nœuds Designer (31,3 %) | 5 Effets et préréglages d'After Effects avec leurs équivalents | une entrée par effet, niveau de preuve | rédigé par un sous-agent | 12 October 2026 |
+| 6 Painter, Perez, pros | 6 Savoir-faire AAA du motion et du sound design | principes, durées, conventions sonores | R09 | 12 October 2026 |
+| 7 Guides locaux | 7 Guides HyperFrames locaux | skills du dépôt, déterminisme, sources d'images, chaînes d'effets, transitions | généré | 12 October 2026 |
+| 8 État de l'art et métriques | 8 État de l'art et métriques image, mouvement, son | méthodes et mesures | R03 et R04 | 12 October 2026 |
+| 9 Leçons dépréciées | 9 Leçons de motion-01 | versions v1 à v8, ce qui se garde et ce qui ne revient pas | écrit (section 7 de ce document) | 12 October 2026 |
+| 10 Registre 16 × 4 | 10 Registre de la recherche de méthode motion | méthodes, phases, chiffres | généré depuis les journaux | 12 October 2026 |
+| 11 Familles de matériaux | 11 Familles de plans | énoncé typographique, héros produit, démonstration d'interface, compteur, signature de logo, transition rythmée, chacune avec signatures mesurables et recette ordonnée | sous-agent puis mesures | 12 October 2026 |
+| 12 Dictionnaire des couches | 12 Dictionnaire des coups | trait observé, mesure, coup, implémentation, niveau | généré depuis `registry/moves.json` | 12 October 2026 |
+| 13 Dossier céramique | 13 Dossier onekey-pro-2 | mesures déjà relevées (68,053 s, 60 images/s, 39 coupes dont 13 franches, 27 plans, encre de 88,5 px, croches à 175,85 par minute), déplacées depuis le SKILL.md motion | écrit | 12 October 2026 |
+| 14 Résultats | 14 Résultats par version `V_00N` | chiffres par dimension | généré depuis les `report.json` | 12 October 2026 |
+
+La taille n'est pas un objectif : sur height, ce qui décide tenait en 66 Ko, et le volume de référence n'a d'utilité que s'il permet de trouver une méthode et de traduire un vocabulaire d'outil en implémentation réelle **[mesuré pour height ; proposé pour motion]**. (12 October 2026)
+
+Le vocabulaire est déjà riche côté outils : GSAP fournit les familles `none`, `power1` à `power4`, `back`, `bounce`, `circ`, `elastic`, `expo`, `sine` et `steps`, l'EasePack (`rough`, `slow`, `expoScale`) et les extras `CustomEase`, `CustomBounce` et `CustomWiggle`, et `CustomEase` accepte un chemin SVG en courbes de Bézier cubiques, ce qui permet de transporter une courbe mesurée comme Copernicus transporte un profil mesuré dans une rampe **[lu : documentation GSAP]**. Depuis la version 3.13 du 29 April 2025, les extensions autrefois payantes sont gratuites **[lu : billet GSAP 3.13]**. HyperFrames associe de son côté des adjectifs à des eases (smooth à `power2.out`, snappy à `power4.out`, bouncy à `back.out`, springy à `elastic.out`, dramatic à `expo.out`, dreamy à `sine.inOut`) et des durées types (0,2, 0,4 et 0,6 s, puis 1 à 2 s) **[lu : page Vocabulary]** ; le registre devrait stocker la signature mesurée de chacun (forme de la courbe, dépassement, temps d'établissement) pour qu'une courbe mesurée sur la référence retrouve son mot dans la bible graphique **[proposé]**. (12 October 2026)
+
+La recherche du catalogue HyperFrames se fait par mots par défaut et par le sens seulement après l'acceptation explicite d'un téléchargement de 33 Mo (modèle d'embeddings `bge-small-en-v1.5`) **[lu]** ; le moteur ne doit dépendre ni de ce modèle optionnel ni d'aucune recherche floue, et retrouver un bloc par la distance entre descripteurs mesurés, comme la méthode M17 de Copernicus2.md §8.5 le propose pour des recettes **[proposé]**. (12 October 2026)
+
+### 5.4 Le graphe devient une recette de coups cuite en composition HyperFrames (12 October 2026)
+
+La recette est l'unique définition, la composition n'en est qu'une cuisson régénérable, comme le réseau `/obj/ZRH_<Nom>` se reconstruit depuis `recipe_current.json` **[proposé]**. Les fichiers `choreography.json`, `camera.json` ou `ambient.json` de motion-01 deviennent des sorties générées, sur le modèle déjà adopté par `camera.json`, dont l'en-tête dit de modifier les règles et jamais le fichier **[lu]**. (12 October 2026)
+
+```json
+{
+  "note": "12 October 2026 : illustrative recipe shape; values in angle brackets are placeholders, the camera move and the tempo come from onekey-motion-01 measures",
+  "schema": "zrmd.recipe/1",
+  "reference": {"sha256": "<sha256>", "fps": 60, "size": [1920, 1080], "durationS": 68.053},
+  "grids": {"cuts": {"payload": "payloads/<hash>.json"}, "tempo": {"eighthPerMinute": 175.85, "phaseS": "<s>"}},
+  "shots": {
+    "S04": [
+      {"type": "camera_move", "target": "captions", "ease": "power2.out", "from": {"scale": 1.1998}, "sig": "<md5>"},
+      {"type": "text_reveal", "target": "#caption-S04-a", "startS": "<s>", "durS": "<s>", "preset": "rise", "ease": "<ease>", "sig": "<md5>"},
+      {"type": "sfx_event", "class": "whoosh", "atS": "<s>", "params": {"payload": "payloads/<hash>.json"}, "sig": "<md5>"}
+    ]
+  }
+}
+```
+
+- Contrat de cuisson : la racine porte `data-composition-id`, chaque élément temporisé porte `class="clip"`, `data-start` et `data-duration`, et `data-track-index` ne sert qu'à l'affichage dans Studio ; la timeline GSAP se crée en pause et s'enregistre dans `window.__timelines` sous l'identifiant de la composition ; `fromTo` est préférable quand les deux bornes comptent, parce qu'il reste fiable après un saut arrière ou aléatoire ; on anime transformations et opacité, et les médias se règlent par attributs et non depuis GSAP **[lu : pages Data attributes et Animate with GSAP]**. (12 October 2026)
+- Déterminisme : le moteur calcule le temps par arithmétique entière (`time = floor(frame) / fps`), cherche chaque image sans jamais lire l'horloge, et interdit `Date.now`, l'aléatoire sans graine et les chargements pendant le rendu ; taille et cadence sont fixées avant l'image 0 ; un rendu dans Docker épingle Chromium, polices et FFmpeg pour l'identité entre machines **[lu : page Deterministic Rendering]**. motion-01 respecte déjà cette discipline (aucun `Date`, aucun `Math.random`, générateur mulberry32 à graine, GSAP 3.14.2 copié localement) **[lu]**. (12 October 2026)
+- Groupes : un `<section>` par plan, un groupe commenté par coup portant `data-move` et `data-sig`, et un `composition/build-manifest.json` qui liste les signatures par plan, rôle que jouent les données utilisateur du réseau Houdini **[proposé]**. (12 October 2026)
+- Incrémental : ne recuire et ne remesurer que les plans dont une signature a changé. Des sous-compositions par plan (`data-composition-src`, chemins résolus depuis la racine du projet, timeline propre, `data-playback-start`) le permettraient proprement **[lu : page Compositions]**, mais motion-01 les a abandonnées après un défaut de temps local dont la cause n'a pas été isolée **[lu]** : à retester avant d'en dépendre **[proposé]**. (12 October 2026)
+- Relecture : `hyperframes keyframes --json` rend les tweens GSAP détectés et peut produire une image en pelure d'oignon d'un élément **[lu : chaînes d'aide de la CLI 0.8.147]** ; comparer cette liste à la recette ferme la boucle entre ce qui a été écrit et ce qui tourne **[proposé]**. Un coup implémenté par une source d'images (`window.__hyperframes.registerFrameSource`) n'apparaît pas comme clés éditables **[lu : page Frame sources]**, d'où le manifeste comme seconde preuve **[proposé]**. (12 October 2026)
+- Interface et Studio : les variables de composition sont typées (`string`, `number`, `color`, `boolean`, `enum`, `font`, `image`) **[lu : page Variables]** et forment l'interface HDA, huit par catégorie au plus ; une retouche faite dans Studio se capture comme un delta clairsemé à clés `hfId.prop.path` (mode de surcharge du SDK) **[lu : page Embedded Override Mode]**, puis se replie dans la recette sous la forme d'une version suivante, jamais perdue **[proposé]**. (12 October 2026)
+
+Le dictionnaire des coups, analogue de la table 12.1 de Copernicus2.md, se compose ainsi, toutes les lignes étant **[proposé]** sauf la colonne des pièces existantes, qui est **[lu]** : (12 October 2026)
+
+| Trait observé (référence moins rendu) | Mesure qui le décrit | Coup | Implémentation | Niveau | Pièce existante | Date |
+|---|---|---|---|---|---|---|
+| coupe franche absente ou décalée | score de scène d'au moins 15 lu sur la référence, instant quantifié à l'image | `cut` | bornes `data-start` et `data-duration` du plan | L1 | détection de scène dans `AnalyzeReference.py` et `Verify.py` | 12 October 2026 |
+| transition douce (fondu, passage au noir, volet) | profil de luminance et de structure à travers la frontière : durée, forme, direction | `transition` | bloc de transition CSS ou shader du catalogue, durée et ease mesurées | L1 à L2 | aucune | 12 October 2026 |
+| zoom, travelling ou rotation du cadre | similitude par paire d'images (Lucas-Kanade, RANSAC), totaux par plan, courbe de progression | `camera_move` | tween GSAP sur `#cam-SXX`, ease la plus proche ou CustomEase | L1 à L2 | `AnalyzeCamera.py`, `MakeCamera.py` | 12 October 2026 |
+| élément qui apparaît, se déplace ou grandit | boîte et centre suivis image par image, opacité | `element_track` | `fromTo` ou clés GSAP, MotionPath pour un arc | L2 | aucune, `choreography.json` étant écrit à la main | 12 October 2026 |
+| texte qui se révèle | premier instant lu par OCR, croissance de la boîte d'encre, flou, ordre des lettres | `text_reveal` | préréglages de `motion-core.js` (rise, fade, blur, wipe, sweep, split, typewriter), découpe par lettre | L2 | `motion-core.js`, `ExtractCaptions.py` | 12 October 2026 |
+| nombre qui défile | chiffres lus par OCR au cours du temps | `counter` | opération `$count` | L2 | `motion-core.js` | 12 October 2026 |
+| trait qui se dessine | progression du squelette du trait | `draw` | opération `$draw` ou décalage de tiret du contour | L2 | `motion-core.js` | 12 October 2026 |
+| teinte ou luminosité d'un plan | couleurs dominantes par k-moyennes, Lab moyen par image | `grade` | jetons de couleur, filtre ou calque teinté animé | L1 | `MeasureDna.py`, `MakeColorScript.py` | 12 October 2026 |
+| vie résiduelle sans position remarquable | énergie du mouvement résiduel par bande temporelle | `ambient` | dérive à graine dont l'amplitude vient de l'étalonnage | L0 | `ambient.json` | 12 October 2026 |
+| grain, scintillement | énergie temporelle à haute fréquence | `grain` | bruit à graine dans une source d'images ou une chaîne `data-vfx-chain` | L0 | aucune | 12 October 2026 |
+| attaque sonore | flux spectral, classe (grave, clic, souffle, tonal), enveloppe | `sfx_event` | recette de synthèse de la classe, paramètres ajustés (R03) | L2 | `AnalyzeAudio.py`, `MakeAudio.py` | 12 October 2026 |
+| pulsation | tempo et phase par autocorrélation | `tempo_grid` | grille partagée par les coupes et le lit musical | L1 | `AnalyzeAudio.py` | 12 October 2026 |
+| énergie musicale | niveau tous les 0,25 s, sections | `music_bed` | lit synthétisé sans mélodie de la référence | L0 à L1 | musique provisoire de `MakeAudio.py` | 12 October 2026 |
+| niveau global | sonie intégrée et par plan | `mix` | gains par piste, limiteur | L1 | `VerifySound.py` | 12 October 2026 |
+
+Les niveaux d'identité se transposent eux aussi, et leur frontière doit être écrite avant le premier coup **[proposé]**. (12 October 2026)
+
+| Niveau | Ce que la recette contient | Ce qu'elle reproduit | Statut proposé | Date |
+|---|---|---|---|---|
+| L0 statistique | énergies par bande temporelle, graines, textures de bruit, énergie musicale | la vie et la matière, pas les positions | permis | 12 October 2026 |
+| L1 structurel | grille des coupes, durées, tempo, jetons de palette et de typographie, tables par plan | la charpente, au temps et à la mise en page près | permis | 12 October 2026 |
+| L2 vectoriel unique | trajectoires éparses par élément avec leurs courbes, révélations, transitions, événements SFX ajustés | la place et le temps de chaque forme unique | permis, cœur de la méthode | 12 October 2026 |
+| L3 décalque | clés à chaque image, tracés de logos, de glyphes ou d'objets, resynthèse audio depuis le spectre de la référence | la référence presque image par image | interdit pour la marque et le son ; pour une chorégraphie dense, seulement sur accord explicite de Matthieu | 12 October 2026 |
+
+- Interdit : tout élément de composition qui charge la vidéo, une image extraite, une piste ou un échantillon audio de la référence, une police extraite ou un logo tracé ; toute table d'échantillons (images, vignettes, forme d'onde, spectrogramme) ; toute resynthèse audio à partir de la transformée de la référence. C'est l'équivalent exact de l'interdit height, « un nœud qui lit l'image de référence » **[proposé ; règle height lue en §2.2]**. (12 October 2026)
+- Permis : listes d'instants, trajectoires éparses et courbes d'ease (CustomEase en chemin SVG), jetons de couleur mesurés, métriques typographiques mesurées qui servent à choisir et régler une police sous licence libre, descripteurs et paramètres de synthèse d'un événement, tempo, structure et énergie de la musique **[proposé]**. (12 October 2026)
+- À décider par Matthieu : la densité maximale des clés de trajectoire, au-delà de laquelle on entre en L3, et le dessin de glyphes originaux faits pour atteindre des métriques mesurées (section 9) **[proposé]**. (12 October 2026)
+- Contrôle de droits dans les deux sens : un lint qui échoue si la composition référence un fichier du cache de référence ou un fichier dont l'empreinte correspond à un dérivé de la référence, vert sur une composition propre, rouge sur une image plantée à dessein **[proposé]**. (12 October 2026)
+
+### 5.5 L'ajustement et la métrique (12 October 2026)
+
+Le résidu se calcule par dimension et non sur la seule image, parce qu'une composition n'est pas une somme de couches **[proposé]**. (12 October 2026)
+
+- Rythme : écarts d'instants entre événements appariés (coupes franches au seuil de la référence, apparitions, attaques), comptés en images, avec les événements manquants et en trop **[proposé]**. (12 October 2026)
+- Animation : courbes de position, d'échelle, de rotation et d'opacité par élément et par caméra ; l'appariement vient de la recette, chaque coup `element_track` portant l'identifiant de la piste de référence qu'il reproduit, et notre rendu se mesure avec les mêmes outils que la référence, jamais en relisant nos propres paramètres **[proposé]**. (12 October 2026)
+- Image : à l'intérieur du masque de validité, corrélation et SSIM en pleine définition, IoU des masques d'éléments aux seuils absolus de la référence, ΔE des couleurs dominantes par plan, métriques typographiques (hauteur d'encre, hauteur de capitale, épaisseur de fût, chasse, interligne) **[proposé]**. (12 October 2026)
+- Son : instants d'attaque, enveloppes par événement, descripteurs spectraux, tempo et phase, sonie par plan, dont le détail relève de R03 **[proposé]**. (12 October 2026)
+
+Les paramètres se calculent en forme close, l'optimisation ne portant que sur quelques paramètres à la fois, faute de quoi chaque essai coûterait un rendu **[proposé]**. (12 October 2026)
+
+- Coupes : instants du détecteur de scène quantifiés en indices d'image ; caméra : totaux de la similitude par plan, puis l'ease la plus proche d'une famille, ou une CustomEase tirée des échantillons quand l'écart dépasse la tolérance, `AnalyzeCamera.py` calculant déjà cet écart sous le nom `easeError` **[lu, proposé]**. (12 October 2026)
+- Trajectoires : suivi de l'élément, puis réduction des clés par tolérance décroissante (Douglas-Peucker en pixels et en images), chaque clé portant son ease ; révélations : premier instant lu par OCR et croissance de la boîte d'encre, d'où la durée, le préréglage et le décalage entre lettres **[proposé]**. (12 October 2026)
+- Couleurs : k-moyennes par plan et courbe de transfert par quantiles, comme la couche `hist` ; SFX : attaque et enveloppe mesurées directement, puis petite recherche sur deux à cinq paramètres spectraux par classe ; tempo : autocorrélation de l'enveloppe d'attaques, comme `Lattice.py` le fait pour la trame **[proposé]**. (12 October 2026)
+- Approximation successive : comme les passes à 8, 4, 2 puis 1 px, des passes à tolérance de 8, 4, 2 puis 1 image et de 8, 4, 2 puis 1 px reprennent le résidu de chaque piste, chacune gardée seulement si elle paie ; une piste qui porte une clé à chaque image relève de L3 **[proposé]**. (12 October 2026)
+
+La règle d'acceptation reprend celle d'`Execute.py`, avec ses deux branches **[proposé]**. (12 October 2026)
+
+- Coup déterministe : gain d'au moins `min_gain` du score de classement de la dimension sur le plan touché, et porte locale tenue (erreur réduite d'au moins 3 % sur la fenêtre et la zone que le coup modifie) ; sinon, l'amplitude ou le décalage temporel se réajuste une fois par moindres carrés et le coup est remesuré **[proposé]**. (12 October 2026)
+- Coup stochastique : distance de distribution réduite d'au moins 20 % sans perdre plus de 0,01 sur la part déterministe **[proposé]**. (12 October 2026)
+
+Les mesures elles-mêmes se transposent presque mot pour mot **[proposé]**. (12 October 2026)
+
+- Bandes temporelles : séries de luminance par cellule d'une grille de 8 × 8, différences de gaussiennes en temps (de 1 à 32 images en cinq bandes), corrélation et rapport d'énergie par bande ; c'est l'analogue exact des bandes spatiales de `Measure.py`, qui sépare un grain jugé à l'énergie d'un mouvement jugé à la corrélation **[proposé]**. (12 October 2026)
+- Seuils absolus : lus une fois sur la référence (score de coupe 15, seuil de flux, seuils d'encre) et jamais recalculés sur le rendu, puisqu'un seuil recalculé donnerait un masque parfait à une amplitude fausse **[proposé ; doctrine lue en §8.3.2]**. (12 October 2026)
+- Planchers : deux rendus de notre composition à graines différentes donnent la variabilité propre des couches stochastiques, deux occurrences d'une même classe de SFX dans la référence donnent celle de la classe, et notre rendu sans perte réencodé avec les réglages du codec de la référence donne la perte du codec, au-dessous de laquelle on ne poursuit rien **[proposé]**. (12 October 2026)
+
+| Dimension | Part déterministe, identité exigée | Part stochastique, identité de distribution | Cible proposée pour 99 % | Date |
+|---|---|---|---|---|
+| Rythme | instants des coupes franches et des événements visuels, durées des plans | micro-variations de cadence | F1 des événements appariés à une image près d'au moins 0,99 | 12 October 2026 |
+| Animation | courbes par élément et par caméra (corrélation, décalage, écart à l'ease) | énergie de la dérive par bande temporelle | corrélation d'au moins 0,99 par courbe sur sa fenêtre, décalage d'au plus une image, rapport d'énergie entre 0,9 et 1,1 | 12 October 2026 |
+| Image | sur le masque valide : corrélation et SSIM en pleine définition, IoU des boîtes, ΔE des jetons par plan, rapport de hauteur d'encre | grain, textures | corrélation d'au moins 0,99 sur le masque, ΔE médian d'au plus 2, rapport d'encre entre 0,99 et 1,01 | 12 October 2026 |
+| Son | attaques, enveloppes par événement, tempo et phase, sonie par plan | enveloppe spectrale des souffles et des queues | attaques à 5 ms près pour 99 % des événements, enveloppes d'au moins 0,99, distance spectrale d'au plus 1,5 fois la ligne de base propre, tempo à 0,1 près, sonie à 0,5 LU près | 12 October 2026 |
+
+- Agrégation : la note globale est le minimum des quatre dimensions, chacune publiée avec sa ligne d'échec, jamais une moyenne qui cacherait une dimension faible **[proposé]**. Le contrat s'écrit dans le code, se lit dans l'analyse de la référence (jamais en dur) et sort en code de sortie, ce que `Reproduce.py` height ne fait pas encore **[proposé ; lu pour height]**. (12 October 2026)
+- Toutes ces cibles sont à étalonner : comme les seuils de la section 8.3 de Copernicus2.md, elles valent hypothèses de travail tant que la ligne de base propre et le plancher du codec n'ont pas été mesurés sur onekey-pro-2 **[proposé]**. (12 October 2026)
+
+### 5.6 L'équivalent de reproduce.sh (12 October 2026)
+
+```bash
+# 12 October 2026 : proposed single command for the motion protocol (no agent, no MCP, no language model).
+# FR : commande unique proposée pour le protocole motion, sans agent, sans MCP, sans modèle de langage.
+W=/Users/zenray/.claude/tmp/tmp-zenray-motion-design/projects/<Name>; mkdir -p $W
+nohup /Users/zenray/.claude/skills/zenray-motion-design/scripts/motion/reproduce.sh \
+  --input /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/<slug>/<video>.mp4 \
+  --name <Name> --level FULL [--from V_00N] [--shots S01,S05] [--only picture|sound] \
+  > $W/run.log 2>&1 & echo $! > $W/run.pid
+```
+
+| Étape | Ce qu'elle fait | Sortie | Arrêt possible | Date |
+|---|---|---|---|---|
+| 1/8 outils | vérifie ffmpeg, ffprobe, node, la CLI `hyperframes` épinglée, le navigateur headless géré et l'environnement Python | `status.json` | code 2 | 12 October 2026 |
+| 2/8 entrée | empreinte SHA-256 et sonde ; exige que la vidéo soit dans le cache local, jamais copiée dans l'atelier | `reference.json` | code 2 | 12 October 2026 |
+| 3/8 analyse | coupes, plans, grilles, caméra, pistes, légendes, palette, typographie, attaques, tempo, sonie ; mise en cache par empreinte | `analysis/*.json`, des nombres seulement | aucun | 12 October 2026 |
+| 4/8 identification | archétype de chaque plan, masques de validité, verdict reproductible | `identify.json` et sa planche | code 3 `needs_choice`, code 4 `needs_asset` | 12 October 2026 |
+| 5/8 image | plan par plan, coups proposés par le plan, mesurés à des instants choisis, gardés s'ils paient | `moves/`, `log.json`, `recipe_current.json` | aucun | 12 October 2026 |
+| 6/8 son | grille de tempo, SFX par événement, lit musical limité au tempo, à la structure et à l'énergie, mixage | `sound/`, `log_sound.json` | aucun | 12 October 2026 |
+| 7/8 rendu | rendu complet, multiplexage sans réencoder l'image, images sans perte pour la mesure | `render/<Name>_V_00N.mp4` | aucun | 12 October 2026 |
+| 8/8 rapport | quatre dimensions et leur minimum, portes, pires instants, planches | `report.json`, `REPORT.md`, `board/Evolution.html` | code 1 si le contrat n'est pas tenu, 0 sinon | 12 October 2026 |
+
+- Versions : chaque lancement crée `projects/<Nom>/versions/V_00N/` avec N calculé (le suivant libre), trois chiffres dès V_001, jamais d'écrasement ; `--from V_00N` reprend la recette d'une version précédente comme `resume` reprend H1 ; les `payloads` se partagent au niveau du projet et se dédupliquent par empreinte, puisque deux versions voisines partagent presque tous leurs coups **[proposé]**. (12 October 2026)
+- Surveillance : comme pour height, lancement par `nohup` avec numéro de processus, un Monitor sur `run.log` filtré par `^STEP|accepted|rejected|error|Traceback`, attente par `while ps -p $(cat run.pid)` et jamais par `pgrep -f`, relecture de `status.json` au-delà de huit minutes **[proposé ; règle lue dans le SKILL.md height]**. (12 October 2026)
+- Confidentialité des planches : les planches qui montrent des images de la référence restent dans le cache local, jamais archivé ; l'atelier, archivé par Assets, ne garde que des nombres et nos propres rendus. Sur height, les planches contenaient la référence, mais c'étaient des planches générées pour Matthieu, non des films tiers **[proposé]**. (12 October 2026)
+- Interfaces : le serveur MCP (R07) et le site (R06) lisent `status.json` et `report.json`, lancent la commande et n'y prennent aucune décision, sur le modèle de `zrhoudini.py`, qui est à la fois une CLI et un serveur MCP autour du même code **[proposé ; lu pour zrhoudini.py]**. (12 October 2026)
+- Emplacement du code : comme `scripts/height/`, le code canonique vit dans le skill (sauvegardé par le dépôt git de `~/.claude`) ; si un dépôt logiciel dédié est créé, le `reproduce.sh` du skill n'en est qu'un lanceur, afin qu'une seule définition existe **[proposé]**. (12 October 2026)
+
+| Niveau | Contenu proposé | Mesure | Durée | Date |
+|---|---|---|---|---|
+| QUICK | coups structurels (coupes, transitions par type mesuré, caméra par plan, temps et préréglages des légendes, étalonnage par plan), une passe de raffinement sur les plans les plus faibles, SFX par préréglage de classe aux attaques mesurées, lit réduit au tempo, égaliseurs finaux de synchronisation et de sonie | captures aux instants choisis et rendu d'aperçu en 720p | à mesurer **[supposé : quelques minutes]** | 12 October 2026 |
+| FULL | QUICK, puis trajectoires d'éléments par passes successives, SFX ajustés événement par événement, énergie du lit musical, dérive ambiante et grain, rendu complet à 60 images/s et vérification entière | rendu complet et images sans perte | à mesurer ; briques connues : 27 captures en environ 20 s, soit 0,74 s par instant, et 68 s de film rendues en environ 70 s **[lu : SKILL.md motion]** | 12 October 2026 |
+
+Réemplois directs, à condition de les réaligner sur ce modèle : `AnalyzeCamera.py` et `MakeCamera.py` pour la caméra, `AnalyzeAudio.py`, `MakeAudio.py`, `MakeSound.py` et `VerifySound.py` pour le son, `ExtractCaptions.py` et `MeasureDna.py` pour les légendes et la palette, `Cook.mjs`, `motion-core.js` et le gabarit pour la cuisson, `BuildStoryboard.py` et `BuildAnimaticSheet.py` pour les planches, `Verify.py` à refondre **[lu]**. (12 October 2026)
+
+## 6. Pièges payés sur height qui valent ici (12 October 2026)
+
+| Piège payé | Preuve height | Forme qu'il prend ici | Garde-fou proposé | Date |
+|---|---|---|---|---|
+| Mesure à résolution réduite qui surestime l'identité | 0,998 à 1024 px contre 0,980 à 2048 px **[lu]** | mouvement mesuré en 160 × 90, OCR et palette en 1280 × 720, légendes à 10 images/s **[lu]** | mesures déterministes en 1920 × 1080 et à 60 images/s sur les mêmes indices d'image ; réduction réservée aux énergies grossières | 12 October 2026 |
+| Score global qui accepte une couche localement fausse | traits à 0,12 au lieu de 0,06 ; `side_profiles` à +0,0119 rejetée par la porte locale **[lu, mesuré]** | mouvement de caméra qui améliore la corrélation globale mais décale une légende | porte locale par plan et par fenêtre | 12 October 2026 |
+| Bruit correct puni au pixel | un détail aléatoire correct ajoute σ² d'erreur (§8.3.1) **[lu]** | souffle, grain, dérive jugés à la forme d'onde ou au pixel | jugement par distribution et plancher calculé | 12 October 2026 |
+| Proportions mesurées au lieu des positions | boucle M01 plafonnée à 0,047 **[lu]** | énergie de mouvement globale de motion-01, 0,468 et 0,567 à la v8 **[mesuré antérieurement]** | mesurer puis placer instants et positions des formes uniques | 12 October 2026 |
+| Nombre de nœuds pris pour une méthode | itérations de exactement 64 nœuds, dépréciées **[lu]** | un nombre fixe de tweens ou d'éléments par passe | budget issu de la mesure | 12 October 2026 |
+| Reconstruction complète à chaque essai | 80 s par essai avant l'incrémental **[lu]** | rendu complet de 68 s, environ 70 s, à chaque coup essayé | cuisson et mesure du seul plan touché, à des instants choisis | 12 October 2026 |
+| Données lourdes dans la scène | 30,8 millions de points dans le `.hip` **[lu]** | trajectoires denses écrites dans `index.html`, qui alourdissent Chrome | `payloads` référencés par empreinte | 12 October 2026 |
+| Chemin relatif perdu dans un autre répertoire | Houdini ne trouvait pas les fichiers **[lu]** | chemins de compositions imbriquées résolus depuis la racine du projet **[lu : doc]**, rendu lancé ailleurs | chemins absolus pour les outils, chemins de projet pour HyperFrames | 12 October 2026 |
+| Attente par `pgrep -f` qui se trouve elle-même | attente sans fin **[lu]** | même risque sur un rendu long | attente par numéro de processus | 12 October 2026 |
+| Primitive non étalonnée | Blur R = sigma R/2, R = 0,5 donnant sigma 0,1 **[lu]** | eases réécrites en Python, flou CSS, rendu des polices, réponse des synthés | étalonner chaque primitive dans le moteur réel, avec un test vert et un test rouge | 12 October 2026 |
+| Couche par carreau qui marche au joint | saut au bord onze fois le saut intérieur **[lu]** | table par plan qui change au milieu d'une transition douce | fondu ou maintien des tables à travers les transitions mesurées | 12 October 2026 |
+| Formes coupées par le bord | traits et éclats écartés à 8 px du bord (`off_border`) **[lu]** | élément qui entre ou sort du cadre, événement au début ou à la fin du film | mesure tronquée signalée et exclue du réglage | 12 October 2026 |
+| Dernier écart dû au crénelage | `rasterizegeo` sans filtre **[lu]** | anticrénelage de Chrome, H.264 et chrominance 4:2:0 de la référence | plancher du codec mesuré, jamais poursuivi | 12 October 2026 |
+| Résidu poursuivi hors du masque valide | bande défectueuse de la céramique **[lu]** | contenu de marque remplacé, plans photo ou 3D | masque de validité, résidu mis à zéro dehors, rapport séparé | 12 October 2026 |
+| Rendu éclairé sans height | arrêt `needs_choice` **[lu]** | plan dont l'essentiel est une image produit ou une 3D | arrêt `needs_asset`, jamais d'invention (R10) | 12 October 2026 |
+| Chiffre qui monte sans ressemblance | EQUIV de 0,7728 à 0,7831, rejeté à l'œil **[lu]** | corrélation qui monte avec une chorégraphie fausse | verdict à l'œil et à l'oreille sur planche | 12 October 2026 |
+| Table lue pile sur sa clé | clés placées un demi-pas avant chaque identifiant **[lu]** | instant posé pile sur une frontière d'image ; `snapshot --at` qui capture l'instant exact sans le caler sur une image **[lu : CLI]** ; ffmpeg `fps=1` qui échantillonne à n + 0,5 s **[lu : SKILL.md motion]** | instants quantifiés en indices d'image, mesures aux mêmes indices | 12 October 2026 |
+| Résidu signé coupé à l'export | le PNG coupe les valeurs négatives **[lu]** | vidéo de différence, WAV en 16 bits | résidus calculés en flottant, en mémoire | 12 October 2026 |
+| Douglas-Peucker sur une boucle fermée | boucle écrasée en deux points **[lu]** | réduction de clés sur une dérive en boucle | couper la boucle à son point le plus éloigné | 12 October 2026 |
+| Base retouchée en aval de son constructeur | section 14.3 absente des sources **[mesuré]** | base motion corrigée à la main après assemblage | `--verify` qui reconstruit et compare | 12 October 2026 |
+
+## 7. Écarts de l'étude motion-01 au regard de ce modèle (12 October 2026)
+
+- Le vérificateur écrit la cible en dur (durée 68,053 s, 60 images/s, 1920 × 1080), ce qui viole la loi HDA et rend `Verify.py` propre à une seule référence **[lu]**. (12 October 2026)
+- Son contrat se situe un ordre de grandeur sous la cible : corrélation de mouvement 0,45, corrélation de rang 0,50, 60 % des coupes, 70 % des légendes, ΔE médian 25, rapport d'encre de 0,85 à 1,15 ; la v8 passe avec 0,468, 0,567, 9 coupes sur 13, 25 légendes sur 30, ΔE 14,87 et un rapport d'encre de 0,89 **[mesuré antérieurement, lu dans `report-v8.json`]**. Ces chiffres ne se comparent pas au 99 % visé. (12 October 2026)
+- Le mouvement se mesure en 160 × 90 (`AnalyzeReference.py`), et le contrôle des coupes ne compte que le rappel des coupes de la référence, sans pénaliser les coupes en trop **[lu]**. (12 October 2026)
+- La chorégraphie est écrite à la main, à l'exception de `camera.json`, généré depuis les mesures ; aucune boucle d'acceptation, aucune porte locale, aucune évaluation incrémentale n'existe **[lu]**. (12 October 2026)
+- `AnalyzeCamera.py` emploie RANSAC sans graine explicite d'OpenCV et réécrit les eases en Python sans les confronter à GSAP **[lu]** ; il faut vérifier que deux analyses de la même vidéo donnent un JSON identique à l'octet, et poser `cv2.setRNGSeed` sinon **[supposé]**. (12 October 2026)
+- Les sous-compositions par plan ont été abandonnées sans cause isolée, ce qui bloque aujourd'hui l'évaluation incrémentale par plan **[lu]**. (12 October 2026)
+- Acquis à garder : discipline de déterminisme du gabarit, GSAP copié localement, test du son dans les deux sens (une piste décalée de 100 ms échoue, à 106 ms mesurés), image jamais réencodée au multiplexage (empreintes image par image), caméra générée depuis les mesures avec son écart à l'ease **[lu]**. (12 October 2026)
+
+## 8. Décisions recommandées (12 October 2026)
+
+1. Reprendre la boucle de height et non sa taille : mesurer, calculer en forme close, construire, mesurer, garder si ça paie, sans optimisation en boîte noire sur des rendus dans la boucle **[proposé]**. (12 October 2026)
+2. Faire du registre `registry/*.json` la source unique dont dérivent les parties générées de `Motion1.md`, avec un constructeur muni de `--verify` **[proposé]**. (12 October 2026)
+3. Faire de `params/recipe.json` l'unique définition ; `choreography.json` et ses voisins deviennent des sorties générées, et toute retouche manuelle passe par une surcharge datée qui devient une version **[proposé]**. (12 October 2026)
+4. Évaluer plan par plan à des instants choisis, rendre le film entier seulement en fin de version, et mesurer en pleine définition sur les mêmes indices d'image que la référence **[proposé]**. (12 October 2026)
+5. Adopter la métrique à quatre dimensions, séparer part déterministe et part stochastique, poser le masque de validité et les planchers, prendre le minimum des quatre comme note globale, et inscrire le contrat dans le code avec un code de sortie **[proposé]**. (12 October 2026)
+6. Écrire la doctrine L0 à L3 du motion et du son avant le premier coup, en laissant L3 hors du défaut **[proposé]**. (12 October 2026)
+7. Étalonner chaque primitive dans le moteur réel (eases GSAP, flou CSS, polices, synthés, codec), avec un test vert et un test rouge chacune **[proposé]**. (12 October 2026)
+8. Écrire `scripts/motion/reproduce.sh` avec `status.json`, codes de sortie de 0 à 4, versions V_001 à V_999 calculées et reprise depuis une version précédente **[proposé]**. (12 October 2026)
+9. Mener une recherche de méthode de seize méthodes en quatre phases sur quatre à six plans types de onekey-pro-2 avant de figer le plan FULL **[proposé]**. (12 October 2026)
+10. Garder les planches qui montrent la référence dans le cache local et n'archiver dans l'atelier que des nombres et nos rendus **[proposé]**. (12 October 2026)
+
+## 9. Questions ouvertes (12 October 2026)
+
+1. Le « 99 % » demandé par Matthieu vaut-il accord pour le niveau L3 en motion (clés denses mesurées), comme sa demande de 0,99 a valu accord pour L3 sur height ? Logos, images produit et glyphes resteraient exclus dans tous les cas. (12 October 2026)
+2. Matthieu parle de polices « customisées reproduites en svg » : dessiner des glyphes originaux qui atteignent des métriques mesurées paraît permis, alors que tracer les glyphes de la référence relève de L3, et le statut juridique d'un dessin de caractères varie selon les pays **[supposé, non vérifié ici]**. Quelle règle retient-il ? (12 October 2026)
+3. Un plan non reproductible en code (rendu produit, photographie) doit-il arrêter la commande sur `needs_asset` et passer par la 3D (R10), ou sortir du masque avec une note de fidélité séparée ? (12 October 2026)
+4. Le contenu de marque étant remplacé, Matthieu entend-il bien le 99 % comme une identité de forme (temps, mouvement, mise en page, couleur, métriques, son) et non de pixels sur ces zones ? (12 October 2026)
+5. Le défaut des sous-compositions de motion-01 vient-il de l'outil ou de l'usage ? L'incrémental par plan en dépend, de même que la possibilité de rendre une seule fenêtre de temps, que je n'ai pas trouvée documentée. (12 October 2026)
+6. Combien coûtent réellement un essai par plan avec captures et un niveau FULL complet ? Rien n'est mesuré, et les plans doivent l'être avant d'être figés. (12 October 2026)
+7. Le rendu dans Docker, qui assure l'identité entre machines, est-il requis pour la galerie publiée ? (12 October 2026)
+8. Le code canonique vit-il dans le skill, comme `scripts/height/`, ou dans un dépôt logiciel dédié dont le skill ne serait qu'un lanceur ? (12 October 2026)
+
+## 10. Sources (12 October 2026)
+
+Sources en ligne, lues le 12 October 2026 et paraphrasées : (12 October 2026)
+
+- HyperFrames, accueil : https://hyperframes.heygen.com/ (12 October 2026)
+- HyperFrames, index de la documentation : https://hyperframes.heygen.com/llms.txt (12 October 2026)
+- HyperFrames, Deterministic Rendering : https://hyperframes.heygen.com/concepts/determinism (12 October 2026)
+- HyperFrames, Time elements with data attributes : https://hyperframes.heygen.com/concepts/data-attributes (12 October 2026)
+- HyperFrames, Compositions : https://hyperframes.heygen.com/concepts/compositions (12 October 2026)
+- HyperFrames, Animate with GSAP : https://hyperframes.heygen.com/guides/gsap-animation (12 October 2026)
+- HyperFrames, Frame sources : https://hyperframes.heygen.com/guides/frame-sources (12 October 2026)
+- HyperFrames, Reuse a design with variables : https://hyperframes.heygen.com/concepts/variables (12 October 2026)
+- HyperFrames, HTML schema reference : https://hyperframes.heygen.com/reference/html-schema (12 October 2026)
+- HyperFrames, Embedded Override Mode : https://hyperframes.heygen.com/sdk/guides/embedded-override-mode (12 October 2026)
+- HyperFrames, How catalog search works : https://hyperframes.heygen.com/developers/catalog-search (12 October 2026)
+- HyperFrames, index du catalogue (355 entrées comptées) : https://hyperframes.heygen.com/_llms/catalog/catalog.txt (12 October 2026)
+- HyperFrames, Vocabulary that changes output : https://hyperframes.heygen.com/prompting/vocabulary (12 October 2026)
+- GSAP, Eases : https://gsap.com/docs/v3/Eases/ (12 October 2026)
+- GSAP, CustomEase : https://gsap.com/docs/v3/Eases/CustomEase (12 October 2026)
+- GSAP 3.13, extensions devenues gratuites, 29 April 2025 : https://gsap.com/blog/3-13/ (12 October 2026)
+- Webflow, annonce de la gratuité de GSAP : https://webflow.com/blog/gsap-becomes-free (12 October 2026)
+
+Sources secondaires, citées à travers Copernicus2.md §8 et non relues ici : Lefebvre et Poulin 2000, https://graphicsinterface.org/wp-content/uploads/gi2000-12.pdf ; MATch, https://match.csail.mit.edu/ ; DiffMat, https://github.com/mit-gfx/diffmat ; DISTS, https://arxiv.org/abs/2004.07728. (12 October 2026)
+
+Sources locales : tous les chemins de la section 1, plus la CLI `hyperframes` 0.8.147 dans `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/` (chaînes d'aide des modules `snapshot`, `keyframes`, `catalog`, `beats`, `compare`, `grade-compare`, `timeline`, lues sans exécuter la CLI). (12 October 2026)

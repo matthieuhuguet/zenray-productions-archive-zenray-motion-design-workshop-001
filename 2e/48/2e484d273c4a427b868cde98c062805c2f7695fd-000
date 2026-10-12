@@ -1,0 +1,90 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "claude-opus-5-5",
+  "page_url": "https://whatships.com/videos/claude-opus-5-5/",
+  "media_url": "https://video.twimg.com/amplify_video/2102432417352929280/vid/avc1/1920x1080/yilx3O9YWu7w9vaX.mp4",
+  "date": "12 October 2026",
+  "file_name": "claude-opus-5-5 [2102432417352929280].mp4",
+  "sha256": "5be14a89e5222349a04c61ac0af4e695640df40bc3813c66c5f6adc4e2736edb",
+  "bytes": 13134325,
+  "duration_s": 20.053,
+  "video_codec": "h264",
+  "width": 1920,
+  "height": 1080,
+  "fps": 25.0,
+  "audio_codec": "aac",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "notes": [
+    "Method: curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)."
+  ],
+  "has_audio": true,
+  "family": "whatships",
+  "method": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+  "source_post_url": "https://x.com/claudeai/status/2102435511222890900",
+  "media_id": "2102432417352929280",
+  "source_format_id": null,
+  "title": "Claude Opus 5.5 — first model in the Claude 5.5 family",
+  "brand": "Anthropic",
+  "product": "Claude Opus 5.5",
+  "category": "ai",
+  "published_at": "2026-09-22T16:31:01.000Z",
+  "listed_duration_s": 20,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 5239757,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 5118190,
+    "nb_frames": 500,
+    "avg_frame_rate": "25/1",
+    "r_frame_rate": "25/1",
+    "time_base": "1/2500000",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 20.0
+  },
+  "audio": {
+    "profile": "LC",
+    "bit_rate": 128102,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": 20.053
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/claude-opus-5-5/claude-opus-5-5 [2102432417352929280].mp4",
+  "attempts": [
+    {
+      "step": "page: curl and parse",
+      "ok": true,
+      "detail": "videoUrl=https://video.twimg.com/amplify_video/2102432417352929280/vid/avc1/1920x1080/yilx3O9YWu7w9vaX.mp4; post=https://x.com/claudeai/status/2102435511222890900; 5 media URL(s) on the page (the rest belong to related cards)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --url https://whatships.com/videos/claude-opus-5-5/"
+    },
+    {
+      "step": "page: yt-dlp probe on the page URL (no download)",
+      "ok": true,
+      "detail": "extractor Generic, 1 format(s), hosts ['proxy.whatships.com']",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --dump-single-json --simulate -- https://whatships.com/videos/claude-opus-5-5/"
+    },
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "1 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2102435511222890900&lang=en&token=53gzurctczd'"
+    },
+    {
+      "step": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+      "ok": true,
+      "detail": "1920x1080 h264 25.0 fps, audio aac, 13134325 bytes",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-claude-opus-5-5-20261012-031117/01/claude-opus-5-5 [2102432417352929280].mp4' --url https://video.twimg.com/amplify_video/2102432417352929280/vid/avc1/1920x1080/yilx3O9YWu7w9vaX.mp4"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:17+02:00"
+}

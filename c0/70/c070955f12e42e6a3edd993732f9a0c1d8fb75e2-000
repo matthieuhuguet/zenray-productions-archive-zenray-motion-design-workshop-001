@@ -1,0 +1,90 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "kardashev-0-7",
+  "page_url": "https://whatships.com/videos/kardashev-0-7/",
+  "media_url": "https://video.twimg.com/amplify_video/2107147500797018112/vid/avc1/1920x1080/LhbwKANR59_ntZMS.mp4",
+  "date": "12 October 2026",
+  "file_name": "kardashev-0-7 [2107147500797018112].mp4",
+  "sha256": "35b0f99992acfb6f012bfe0080956038b45285e817d67fd4bec722c2cb27efba",
+  "bytes": 21758097,
+  "duration_s": 67.417,
+  "video_codec": "h264",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24.0,
+  "audio_codec": "aac",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "notes": [
+    "Method: curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)."
+  ],
+  "has_audio": true,
+  "family": "whatships",
+  "method": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+  "source_post_url": "https://x.com/MLCatttt/status/2107147690450817259",
+  "media_id": "2107147500797018112",
+  "source_format_id": null,
+  "title": "Introducing Kardashev-0.7",
+  "brand": "Banbury Road",
+  "product": "Kardashev-0.7",
+  "category": "ai",
+  "published_at": "2026-10-05T16:35:32.000Z",
+  "listed_duration_s": 67,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 2581921,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 2447699,
+    "nb_frames": 1618,
+    "avg_frame_rate": "49704960/2071043",
+    "r_frame_rate": "24/1",
+    "time_base": "1/1228800",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 67.417
+  },
+  "audio": {
+    "profile": "LC",
+    "bit_rate": 128000,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": 67.413
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/kardashev-0-7/kardashev-0-7 [2107147500797018112].mp4",
+  "attempts": [
+    {
+      "step": "page: curl and parse",
+      "ok": true,
+      "detail": "videoUrl=https://video.twimg.com/amplify_video/2107147500797018112/vid/avc1/1920x1080/LhbwKANR59_ntZMS.mp4; post=https://x.com/MLCatttt/status/2107147690450817259; 5 media URL(s) on the page (the rest belong to related cards)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --url https://whatships.com/videos/kardashev-0-7/"
+    },
+    {
+      "step": "page: yt-dlp probe on the page URL (no download)",
+      "ok": true,
+      "detail": "extractor Generic, 1 format(s), hosts ['proxy.whatships.com']",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --dump-single-json --simulate -- https://whatships.com/videos/kardashev-0-7/"
+    },
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "1 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2107147690450817259&lang=en&token=53vssf7wwa'"
+    },
+    {
+      "step": "curl page source (original X media URL from the page), equal to the best variant of the post (nominal 10368000 bit/s)",
+      "ok": true,
+      "detail": "1920x1080 h264 24.0 fps, audio aac, 21758097 bytes",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-kardashev-0-7-20261012-031102/01/kardashev-0-7 [2107147500797018112].mp4' --url https://video.twimg.com/amplify_video/2107147500797018112/vid/avc1/1920x1080/LhbwKANR59_ntZMS.mp4"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:02+02:00"
+}

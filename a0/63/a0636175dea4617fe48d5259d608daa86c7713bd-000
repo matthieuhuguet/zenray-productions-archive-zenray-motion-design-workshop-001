@@ -1,0 +1,288 @@
+# R08 : inventaire de l'existant à réutiliser (12 October 2026)
+
+Projet Assets `zenray-motion-design`, atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`. Ce document recense ce que la première étude (`zenray-motion-design-01`, référence OneKey Pro 2) et le reste du Mac apportent déjà au futur moteur, afin que la construction parte de l'existant plutôt que d'une page blanche, comme le veut la loi HDA de la bibliothèque. Aucun fichier n'a été modifié hors de celui-ci : les contrôles rejoués l'ont été sur une copie placée dans le scratchpad de la session, `/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/r08-*`.
+
+Chaque chiffre porte sa provenance. **M** signifie mesuré par moi le 12 October 2026, **R** relu dans un rapport ou un fichier existant, **S** supposé ou estimé, que rien n'a encore vérifié.
+
+## 1. L'essentiel (12 October 2026)
+
+La première étude a laissé une chaîne complète et déterministe (mesure de la référence, paramètres JSON, gabarit cuit par `Cook.mjs`, rendu HyperFrames, vérification chiffrée, couche sonore faite en code), et cette chaîne fonctionne encore : la cuisson rejouée sur une copie redonne la composition à l'octet près, le lint ne relève aucune erreur, et le vérificateur rejoué sur le rendu v8 retrouve exactement ses chiffres en dix-neuf secondes (M).
+
+Elle reste pourtant très loin d'une reproduction à 99 %, pour trois raisons qui se mesurent. Ses contrôles sont des approximations globales (énergie de mouvement, lecture OCR, palette, hauteur d'encre) jugées contre des seuils de 0,45 à 0,70, si bien que la v8 passe avec une corrélation de mouvement de 0,468 et une similarité structurelle de 0,449 (M). Dix de ses douze fichiers de paramètres ont été écrits à la main, alors que zenray-height obtient les siens par une boucle d'ajustement sur mesure (M, lecture du code). Ses effets sonores enfin sont placés sur les événements du film produit et non sur ceux de la référence, de sorte que 14 % seulement des attaques de la référence trouvent un effet à 50 ms près (M).
+
+Le réemploi le plus rentable garde donc le squelette (cuisson, runtime GSAP, analyses, vérificateur du son, primitives de synthèse) et refond ce qui fait aujourd'hui de l'étude une instance OneKey plutôt qu'une définition : gabarit de 27 plans écrit à la main, durées, sections musicales et sélecteurs codés en dur, emplacements d'assets prévus pour une génération que la nouvelle cible interdit.
+
+## 2. Ce qui a été lu, rejoué ou laissé de côté (12 October 2026)
+
+| Nature | Contenu | Provenance |
+|---|---|---|
+| Lu en entier | `SKILL.md` (125 lignes), 14 scripts (2 967 lignes), 3 gabarits (701 lignes), 12 fichiers de paramètres d'exemple | `/Users/zenray/.claude/skills/zenray-motion-design/` |
+| Lu en entier | `state.json`, 8 rapports image, 3 rapports son, 2 listes d'événements, 9 rapports de lint, 4 fichiers d'analyse | `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/` |
+| Lu en entier | `Project1.md`, `Rules.md`, `Project.json`, `FileMap.md`, `ConversationIndex.md` | `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design-01/` |
+| Parcouru | derniers prompts du FEEDBACK de l'étude 01, prompt d'origine du nouveau projet | `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design-01/FEEDBACK.md`, `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design/FEEDBACK.md` |
+| Parcouru | skills interview-audio, video-frames-extract, juice-it, zenray-edit, zenray-houdini (height, MCP), venvs, cache npm, ZenRayProgress (noms de fichiers seulement) | chemins cités en section 7 |
+| Rejoué sur copie | `Cook.mjs`, lint HyperFrames 0.8.147, `Verify.py` sur v8, SSIM, enveloppes sonores, effets contre attaques, coupes de la timeline | scratchpad de la session |
+| Non regardé | les rendus vidéo eux-mêmes et les vignettes de référence, conformément à la consigne | aucun |
+
+Les copies du skill dans `/Users/zenray/.claude/Memory1/Skills/zenray-motion-design` et `/Users/zenray/.codex/skills/zenray-motion-design` sont identiques à la source, et les scripts, gabarits et paramètres de l'atelier 01 sont identiques à ceux du skill (M, `diff -rq` et `cmp`).
+
+## 3. Ce qui marche réellement, chiffres à l'appui (12 October 2026)
+
+### 3.1 Chaîne et reproductibilité (12 October 2026)
+
+| Contrôle | Résultat | Preuve |
+|---|---|---|
+| Cuisson déterministe | `Cook.mjs` rejoué sur une copie : 27 plans, 30 légendes, 107 enregistrements de chorégraphie, 23 emplacements, 18 mouvements de caméra, 104 jetons CSS ; les six fichiers produits sont identiques à ceux de `composition/`, ligne d'horodatage exceptée | M |
+| Cohérence paramètres et composition | la composition actuelle est bien la cuisson des paramètres actuels (même empreinte) | M |
+| Lint HyperFrames | 0 erreur, 28 avertissements (27 `nested_structure_needs_subcomposition`, 1 `composition_file_too_large`) avec HyperFrames 0.8.147 ; le dernier lint stocké, sur la v3, donnait 0 erreur et 26 avertissements | M, R |
+| Vérificateur image rejoué sur v8 | chiffres identiques au rapport stocké (0,468 ; 0,567 ; 9 coupes sur 13 ; 25 légendes sur 30 ; 0,2 s ; ΔE 14,87 ; encre 0,89), 19,3 s d'horloge, 147 s de processeur | M |
+| Vitesse de rendu | 68 s à 60 images/s rendues en 40,2 s (capture 32,5 s, encodage 7,2 s, 8 workers, capture par screenshot, GPU) pour la v1 ; le skill annonce environ 70 s, sans doute pour les versions plus lourdes | R (`renders/render-v1.log`), S |
+| Contrôle rouge du son | une piste décalée de 100 ms échoue (106 ms mesurés), comme attendu | R (`Project1.md`) |
+| Contrôle rouge de l'image | v1, v2 et v7 échouent réellement, le vérificateur sait donc virer au rouge | R |
+
+### 3.2 Historique du contrat image, v1 à v8 (12 October 2026)
+
+Seuils du contrat, écrits en tête de `Verify.py` : durée à 0,10 s près, corrélation image à image d'au moins 0,45, corrélation de rang par plan d'au moins 0,50, 60 % des coupes franches retrouvées à 0,10 s près, 70 % des légendes lues par l'OCR, écart médian des légendes d'au plus 0,25 s, ΔE CIE76 médian d'au plus 25, rapport d'encre compris entre 0,85 et 1,15 (R).
+
+| Version | Verdict | Mouvement (image, rang) | Coupes franches | Légendes lues | Écart médian | ΔE médian | Encre |
+|---|---|---|---|---|---|---|---|
+| v1 | échec | 0,378 ; 0,362 | 6 sur 13 | 26 sur 30 | 0,15 s | 10,12 | 0,941 |
+| v2 | échec | 0,491 ; 0,462 | 8 sur 13 | 26 sur 30 | 0,10 s | 10,25 | 0,916 |
+| v3 | réussite | 0,502 ; 0,561 | 9 sur 13 | 25 sur 30 | 0,10 s | 10,25 | 0,967 |
+| v4 | réussite | 0,502 ; 0,572 | 9 sur 13 | 23 sur 30 | 0,10 s | 11,21 | 0,967 |
+| v5 | réussite | 0,503 ; 0,560 | 9 sur 13 | 23 sur 30 | 0,10 s | 11,21 | 0,967 |
+| v6 | réussite | 0,503 ; 0,560 | 9 sur 13 | 23 sur 30 | 0,10 s | 10,25 | 0,967 |
+| v7 animatique | échec | 0,393 ; 0,423 | 5 sur 13 | 29 sur 30 | 0,10 s | 15,24 | 0,916 |
+| v8 animatique | réussite | 0,468 ; 0,567 | 9 sur 13 | 25 sur 30 | 0,20 s | 14,87 | 0,890 |
+
+Source : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/verify/report-v1.json` à `report-v8.json` (R), v8 confirmée par réexécution (M).
+
+### 3.3 Mesures complémentaires faites pour cet inventaire (12 October 2026)
+
+| Mesure | Résultat | Lecture |
+|---|---|---|
+| Coupes de la timeline contre détections de la référence | 12 des 13 coupes franches tombent à 0,2 image au plus d'un début de plan ; la treizième, à 13,93 s (score 21,7), tombe au milieu du plan S10 (13,25 à 14,60 s), à 40 images du début de plan le plus proche, et la timeline n'y place aucune coupe ; 3 débuts de plan (1,90 ; 3,20 ; 4,90 s) n'ont aucune détection à moins d'une image, ce sont des transitions douces | M. Le rythme est juste dans les paramètres ; il se perd au rendu, où 9 coupes franches sur 13 seulement se détectent |
+| SSIM de luminance, 640 × 360, rendu contre référence | v6 : 0,430 ; v8 : 0,449 | M. Valeur gonflée par les nombreux fonds noirs communs (S) ; base de départ pour la dimension image |
+| Corrélation des enveloppes de niveau (RMS par 0,25 s, en dB) avec la référence | effets v1 : 0,111 ; effets v2 : 0,108 ; musique provisoire : 0,649 ; mixage v2 : 0,615 ; niveau moyen du mixage -25,3 dB contre -14,2 dB pour la référence | M. L'énergie suit à peu près la musique, à 11 dB sous la référence |
+| Effets v2 (130 événements) contre attaques de la référence (325) | à 17 ms : précision 0,17, rappel 0,06 ; à 50 ms : précision 0,48, rappel 0,14, rappel sur les 50 attaques les plus fortes 0,10 ; à 100 ms : précision 0,74, rappel 0,19 | M. Effets v1 (53 événements) : précision 0,49 et rappel 0,07 à 50 ms. Les attaques de la référence mêlent musique et effets, ce rappel est donc une borne basse (S) |
+| Ajustement des courbes de caméra | 20 plans mobiles sur 27 ; écart quadratique au meilleur des 10 presets GSAP : minimum 0,048, médiane 0,086, maximum 0,187 | R (`analysis/camera.json`) |
+| Analyse du son de la référence | 325 attaques (125 souffles, 101 clics, 88 notes ou accents, 11 impacts graves), 199 temps, croche à 175,85 BPM, 16 coupes sur 27 tombent sur une attaque | R (`analysis/audio.json`) |
+
+### 3.4 Ce que ces chiffres veulent dire (12 October 2026)
+
+Le contrat a rempli son office de garde-fou, puisqu'il a fait échouer trois versions réellement moins bonnes, mais il n'a jamais mesuré la ressemblance : il mesure qu'un rendu possède à peu près le même rythme d'énergie et la même palette dominante que la référence. Matthieu l'a dit à sa manière le 11 October 2026 à 16:27, après une v6 pourtant validée par le contrat, en écrivant qu'il avait l'impression que l'étude n'arrivait pas « à reproduire le flow avec un vrai motion design » (R, FEEDBACK de l'étude 01). Une réussite au contrat v1 ne prouve donc rien sur la cible de 99 % ; elle prouve seulement que le vérificateur tourne, qu'il est reproductible et qu'il sait échouer.
+
+Le son appelle la même prudence. `VerifySound.py` établit que chaque effet part à moins d'une image de l'instant prévu (8,0 ms au pire sur 53 événements, puis 10,0 ms sur 55), mais l'instant prévu est celui du plan de l'étude ; aucun script ne compare un effet produit à l'effet correspondant de la référence, ni par sa date, ni par son enveloppe spectrale (M, lecture du code).
+
+## 4. Inventaire des scripts du skill (12 October 2026)
+
+Tous les scripts vivent dans `/Users/zenray/.claude/skills/zenray-motion-design/scripts/`, avec une copie identique dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/Scripts/`. Les scripts Python tournent sous `/Users/zenray/.venvs/motion-design/bin/python -I` (Python 3.9.6, numpy 2.0.2, OpenCV 5.0.0, Pillow 11.3.0, M). Le verdict emploie quatre mots : **tel quel**, **à adapter** (même rôle, paramètres à sortir), **à refondre** (le rôle reste, le code change), **à retirer du moteur** (garder comme exemple ou abandonner).
+
+| Script | Rôle | Entrées et sorties | Dépendances | Qualité constatée | Verdict |
+|---|---|---|---|---|---|
+| `AnalyzeReference.py` (96 l.) | courbes de luminance et d'énergie de mouvement à 60 images/s, lecture du journal `scdet`, planche PNG | vidéo, journal scdet ; `motion.json`, `motion.png` | ffmpeg, Pillow | propre, en flux, déterministe ; résolution figée à 160 × 90 | tel quel, comme une mesure parmi d'autres |
+| `ExtractCaptions.py` (107 l.) | OCR de chaque image, fusion des lignes revues à 0,25 s près en fenêtres de légende | images à 10 images/s ; `captions.json` | tesseract 5.5.2 (`--psm 11`), 16 processus | utile pour les boîtes et les temps ; rate les textes sur dégradé ; taille d'image figée à 1280 × 720 (ligne 14) | à adapter (taille en paramètre ; texte de la référence jamais conservé) |
+| `MeasureDna.py` (132 l.) | palette, accents, boîte d'encre des légendes et énergie par plan | images, plans, légendes, courbes, journal scdet ; `dna-reference.json` | Pillow | exige un fichier `--shots` écrit à la main ; seuil de 110 qui suppose un texte clair sur fond sombre | à adapter (plans automatiques, texte sombre sur fond clair) |
+| `Verify.py` (297 l.) | contrat de vérification image et rapport JSON | rendu, dossier d'analyse, timeline ; `report.json`, code de sortie | ffmpeg, tesseract, Pillow, modules ci-dessus | reproductible (M) ; contrat dans le code ; cible 68,053 s, 60 images/s et 1920 × 1080 en dur (lignes 219 et 220) ; argument `--reference-frames` obligatoire mais jamais lu (ligne 205) ; ΔE CIE76 | à refondre en évaluateur par dimension (0 à 1, cible 0,99), en gardant ses outils (Pearson, Spearman, Lab, OCR) et le contrat v1 comme test de non-régression |
+| `Cook.mjs` (195 l.) | cuisson des paramètres et du gabarit en composition HyperFrames | `params/*.json`, `template/` ; `composition/index.html`, `styles.css`, `tokens.css`, `timeline-data.js`, `motion-*.js` | Node seul | déterministe (M) ; contrôles utiles (plans contigus, jeton inconnu qui arrête la cuisson) ; table des placements dans le code (lignes 128 à 141) ; étiquettes en français (ligne 121) ; suppose les blocs `@shot:SXX` écrits à la main | à adapter : c'est le noyau à généraliser (placements dans les jetons, sortie par version, plusieurs compositions) |
+| `AnalyzeAudio.py` (173 l.) | tempo par autocorrélation, attaques par flux spectral, classe grossière, niveau par 0,25 s et par plan | vidéo, timeline ; `audio.json`, `audio.png` (des nombres seulement) | numpy, Pillow, ffmpeg | tempo stable (175,85 BPM sur la référence, 175,83 sur la musique de l'étude, R) ; classes par seuils, étiquettes françaises en données (lignes 63 à 70) ; aucune séparation musique et effets | à adapter : garder tempo et niveau, remplacer la classe par des descripteurs d'enveloppe par événement |
+| `AnalyzeCamera.py` (161 l.) | mouvement global de chaque plan : coins suivis par Lucas-Kanade, similarité par RANSAC, meilleure courbe parmi 10 presets | vidéo, timeline ; `camera.json` | OpenCV, numpy | solide pour la caméra ; ne voit ni les éléments ni leurs courbes propres ; seuil fixe de 12 px | à adapter, comme base du suivi par élément et de l'ajustement de Bézier |
+| `MakeCamera.py` (42 l.) | transforme le mouvement mesuré en départ inverse puis retour à la composition | `analysis/camera.json`, `params/camera-rules.json` ; `params/camera.json` | aucune | simple et lisible ; heuristique de l'inverse, pas de clés intermédiaires | à refondre en courbes clés ajustées sur la trajectoire mesurée |
+| `MakeColorScript.py` (43 l.) | une teinte par plan pour les emplacements de l'animatique | `dna-reference.json`, timeline ; `params/color-script.json` | aucune | n'a de sens que pour des emplacements | à retirer du moteur (garder la fonction `pick` de couleur dominante) |
+| `MakeSound.py` (145 l.) | son v1 en code : coup grave, souffle, tic | timeline, `sound.json`, jetons ; WAV, liste d'événements | bibliothèque standard | déterministe (graine 7), paramètres dans `sound.json` | à retirer du moteur, remplacé par `MakeAudio.py` ; garder comme test |
+| `MakeAudio.py` (325 l.) | son v2 : 11 effets synthétisés (thump, whoosh, click, tick, key, blip, pulse, ding, chime, impact, riser), musique provisoire, mixage | timeline, chorégraphie, jetons, `audio.json` ; `sfx-v2.wav`, `music-temp-v1.wav`, `mix-v2.wav`, événements | numpy | primitives réutilisables ; niveaux, sections, accords, instants héros et sélecteurs OneKey en dur (lignes 17 à 23, 154 à 177) | à refondre : primitives vers une bibliothèque de synthèse paramétrique ajustée par événement de la référence |
+| `VerifySound.py` (142 l.) | format, durée, saturation, départ de chaque événement, image inchangée par hachage | MP4 ou WAV, événements ; rapport, code de sortie | bibliothèque standard, ffmpeg | méthode de départ relative au niveau précédent, témoin rouge réussi | tel quel pour la conformité au plan ; ajouter un mode fidélité à la référence |
+| `BuildStoryboard.py` (725 l.) | storyboard HTML détaillé, deux CSV, contrôles | paramètres, notes, analyses, rendu ; `storyboard.html`, CSV, `checks.json` | Pillow, tesseract, ffmpeg | mise en page soignée (règle des 375 px) ; actes, durées, 4080 images et pastilles de la référence en dur (lignes 21, 58 à 73, 278, 281, 430) ; clés JSON françaises (ligne 718) | à refondre en générateur générique piloté par un JSON de storyboard |
+| `BuildAnimaticSheet.py` (384 l.) | fiche de l'animatique : référence seconde par seconde, cartes de plan, inventaire, prompts de génération | paramètres, analyses, rapports, rendu ; `animatique.html`, trois CSV | ffmpeg | utile pour la lecture seconde par seconde ; noms de rapports, 68 s et 27 plans en dur (lignes 111 à 115, 132, 241) ; section de génération désormais hors périmètre | à adapter pour la partie lecture, à retirer pour la partie génération |
+
+| Gabarit | Rôle | Qualité constatée | Verdict |
+|---|---|---|---|
+| `templates/index.html` (438 l.) | graphe de scène des 27 plans OneKey et feuille de style | 221 usages de jetons mais 191 valeurs en px écrites en dur (M) ; `data-duration="68"` en dur sur la racine (ligne 196) ; dessins SVG légitimement dans le gabarit | à retirer du moteur comme définition ; à garder comme instance d'exemple |
+| `templates/motion-core.js` (214 l.) | runtime : résolution des jetons `@groupe.clé`, 8 apparitions de légende, opérations `$set`, `$draw`, `$ring`, `$count`, `$along`, `$qr`, générateur pseudo-aléatoire graine | aucune date ni `Math.random`, rendu déterministe ; vocabulaire d'opérations court mais propre | tel quel, comme amorce de la bibliothèque de composants de mouvement |
+| `templates/motion-main.js` (49 l.) | timeline racine unique : chorégraphie, dérives, caméra, légendes | simple et correct | tel quel, à revoir si les sous-compositions redeviennent possibles |
+
+## 5. Les paramètres et leur origine (12 October 2026)
+
+Douze fichiers, 94 797 octets, identiques dans le skill (`examples/onekey-motion-01/params/`) et dans l'atelier 01 (M). La colonne « produit par » vient de la lecture du code : seuls deux fichiers sont écrits par un script.
+
+| Fichier | Contenu | Produit par | Verdict |
+|---|---|---|---|
+| `tokens.json` | méta (1920 × 1080, 60 images/s, 68 s), 40 couleurs, typographie, mise en page, dispositif, effets, mouvement | main, à partir des couleurs mesurées | structure à garder telle quelle (groupes, nommage) |
+| `timeline.json` | 27 plans en temps absolu, 30 légendes (texte original, placement, taille, remplissage, apparition) | main, temps des plans tirés de scdet puis fusionnés | modèle à garder ; temps à exprimer aussi en images |
+| `choreography.json` | 107 enregistrements `[cible, décalage, durée, courbe, from, to]` | main | modèle à garder ; valeurs à produire par ajustement |
+| `ambient.json` | une dérive par plan (15 plans) | main, amplitude calée sur l'énergie | à remplacer par des mouvements mesurés |
+| `camera.json` | 18 mouvements (16 sur le contenu, 2 sur les légendes) | `MakeCamera.py` | généré ; méthode à refondre |
+| `camera-rules.json` | plans exclus, plans à légendes, borne d'échelle | main | à garder si `MakeCamera` survit |
+| `color-script.json` | une teinte par plan pour les emplacements | `MakeColorScript.py` | hors périmètre d'une reproduction complète |
+| `reference-scenes.json` | lecture paraphrasée de la référence, par seconde (68) et par plan (27) | main | à garder comme format de description, jamais comme copie |
+| `sound.json` | réglages du son v1 et type de chaque coupe | main | remplacé par une bible sonore mesurée |
+| `assets.json` | 42 assets : 25 emplacements à produire, 12 faits en code, 3 provisoires, 2 à faire ; sources CODE 14, Flow vidéo 12, rendu 3D 7, Flow image 6, à fournir 2, sous licence 1 | main | inventaire à garder ; voie de génération à abandonner |
+| `storyboard-notes.json` | cadrage, description de référence et d'étude par plan | main | à générer depuis l'analyse |
+| `visual-checks.json` | sept légendes relues à l'œil, liées au rendu v6 | main | périmé pour la v8, selon la règle du 11 October 2026 |
+
+## 6. Ateliers, données et caches hérités (12 October 2026)
+
+**L'atelier de l'étude 01**, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01`, compte `Scripts` (14 fichiers, 188 Ko), `params` (12, 124 Ko), `template` (3, 48 Ko), `composition` (122 fichiers dont 103 vignettes, 2,1 Mo), `analysis` (4, 140 Ko), `verify` (14, 132 Ko), `storyboard` (131, 2,1 Mo) et `renders` (18, 301 Mo) (M). Les rendus portent des noms à plat, de `zenray-motion-design-01-v1.mp4` à `zenray-motion-design-01-v8-animatic.mp4`, plus `zenray-motion-design-01-animatique-v1.mp4` (image v8 et mixage v2, 48,2 Mo) et quatre WAV de 13 Mo (M). Il n'existe aucun dossier de version : les paramètres sont écrasés à chaque passe, si bien que ceux des versions v1 à v7 ne se retrouvent plus localement, l'atelier n'étant pas un dépôt git et l'historique local de HyperFrames ne gardant qu'une base et six modifications, toutes du 10 October 2026 entre 23:19 et 23:44 (M, `/Users/zenray/.cache/hyperframes/history/10a58b45-ea59-4691-a025-ebb218429ff3/log.jsonl`).
+
+**Les données de la référence vivent dans un scratchpad volatil**, celui de la session du 10 October 2026, `/private/tmp/claude-501/-Users-zenray--claude-Memory1/e067e0eb-400b-4769-9366-225560e7a0e4/scratchpad/`. On y trouve la vidéo `ref-dl/onekey-pro-2-reference.mp4` (19 705 821 octets, SHA-256 `d3a484f83cc53df16e80507cfc8af83b8d21fa68f1b947c803decd0c2e272343`, H.264 1920 × 1080 à 60 images/s, 4080 images et 68,000 s pour l'image, AAC 48 kHz stéréo de 68,053 s, M), 680 images à 10 images/s et 68 à 1 image/s, `motion.json`, `scdet.log` (39 détections dont 13 franches), `shots-reference.json`, `captions-reference.json`, `dna-reference.json`, des notes de documentation HyperFrames (`docs/hf-*.md`, 28 Ko) et l'archive `npm/gsap-3.14.2.tgz` (M). La page source relevée dans le FEEDBACK est https://whatships.com/videos/onekey-pro-2/ (R, non consultée). Comme `Verify.py` a besoin de `motion.json` et de `scdet.log`, que seul ce dossier contient, le contrat v1 ne pourrait plus être rejoué si `/private/tmp` était purgé ; le cache prévu à cet effet, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache`, ne contient encore que son `README.md` (M).
+
+**L'hygiène des droits est presque tenue**, avec une exception mesurée : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/dna-reference.json` contient 36 lignes de texte de la référence lues par l'OCR, alors que ce dossier figure dans le `FileMap.md` d'un atelier surveillé et archivé par Assets (M). Les légendes, elles, ont été remplacées par un texte original le 11 October 2026, et aucune image de la référence n'est dans l'atelier (R).
+
+**La composition HyperFrames** épingle `hyperframes@0.8.145` dans `composition/package.json`, alors que le cache npm contient 0.8.147 et que le lint rejoué annonce cette version (M). GSAP 3.14.2 est copié dans `composition/vendor/gsap.min.js` (72 779 octets), dont l'en-tête renvoie à https://gsap.com/standard-license (M, URL relevée dans le fichier, non consultée). Les polices copiées sont InterVariable, Vogun Medium, AnthropicSerif et AnthropicMono ; la licence de diffusion des deux dernières familles et de Vogun reste ouverte depuis le 11 October 2026 (R, `Project1.md`).
+
+## 7. Ce qui existe ailleurs sur le Mac et peut servir (12 October 2026)
+
+### 7.1 Skills (12 October 2026)
+
+| Skill | Pièce réutilisable | Usage dans le moteur | Verdict |
+|---|---|---|---|
+| `zenray-edit` | `scripts/SoundF1.py` : réverbération par réponse impulsionnelle de bruit amorti, gonflement inversé, corps une octave plus bas, finition (passe-haut, passe-bas, anti-clic, saturation douce, normalisation), toutes valeurs dans un dictionnaire `P` | blocs DSP de la synthèse des effets | à extraire en fonctions ; numpy, scipy, soundfile |
+| `zenray-edit` | `references/SoundDesign.md` : 3 variantes proches ou 9 variantes ouvertes, contrôles (pic, clics, durée, énergie au-dessus de 5 kHz, LUFS, hauteurs par FFT, ressemblance spectrale entre 300 et 1500 Hz) | protocole de vérification d'un effet | tel quel |
+| `zenray-edit` | `scripts/zr-design.mjs` et `templates/designs/index.json` : registre à identifiants parlants, 9 entrées pour une capacité visée de 1000, `catalog.html` | modèle du catalogue de la galerie de mouvements | à adapter |
+| `zenray-edit` | `scripts/RenderComposition.cjs`, `templates/export.json` : export contraint par dimensions, facteur, format et poids | adaptation de format des images fixes | à adapter |
+| `zenray-edit` | `scripts/UniformTurnWarp.py` : angle par corrélation de phase | mesure de rotation d'un objet dans un plan | à adapter si besoin |
+| `zenray-edit` (projet lié) | `/Users/zenray/.claude/tmp/tmp-poisson-gloss-matthieu-poterie-aix-8-octobre-2026/Scripts/FinalMontage3.py` : légendes lettre par lettre calées sur le tempo, `easeOutBack`, effets décalés de leur attaque mesurée | montage simple et compensation d'attaque | à reprendre comme recette |
+| `interview-audio` | `scripts/interview_audio.py process` : fondus puis normalisation par pic ou LUFS, ordre canonique, piège du `loudnorm` qui sort en 192 kHz | finition du mixage | tel quel ; la partie téléchargement de musique est hors périmètre |
+| `video-frames-extract` | une seule passe sans découpage, nombre attendu `floor(durée / pas) + 1`, quatre contrôles (compte, continuité, dimensions, images tronquées) | extraction exacte à l'image | tel quel |
+| `juice-it` | taxonomie des effets (son d'abord, courbes, écrasement et étirement, particules, secousse décroissante, personnalité), variation de hauteur des sons répétés | vocabulaire de la bible et du catalogue | tel quel, comme référence de vocabulaire |
+| `zenray-houdini` | `/Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py` (641 l.) : serveur MCP en bibliothèque standard, double face ligne de commande et MCP, catalogue court | modèle du serveur MCP | à copier en patron |
+| `zenray-houdini` | `/Users/zenray/.claude/Memory1/Houdini/MCP/zrrevs.py` : révisions sur disque, navigation précédente et suivante, preuve par version | modèle des versions V_001 à V_999 | à adapter |
+| `zenray-houdini` | `scripts/query_copernicus2.py` sur `Copernicus2.md` (2 634 197 octets) : routeur de requêtes par section | modèle du jeu documentaire du mouvement | à adapter |
+| `zenray-houdini` | `Storyboard1.md` : images clés et validation avant tout calcul lourd | règle de travail | tel quel |
+| `zenray-houdini` | `short-editor/short_editor.py` (627 l.) : éditeur vidéo en un fichier HDA, bloc `PARAMS`, letterbox 4:5, sous-titres | adaptation de format, montage local | à adapter |
+| `zenray-assets` | LOAD et UNLOAD (`references/AssetsV2History.md`, section 10), upload (`references/Upload.md`), sous-titres obligatoires en streaming (section du 11 October 2026) | publication et chargement local des mouvements | tel quel, R06 tranche |
+| `ffmpeg-hardware-check`, `zenray-methodology`, `debug-par-la-preuve`, `ytb-dlp` | réglage du parallélisme, seize méthodes en quatre phases, preuve du symptôme, téléchargement | conduite des itérations et téléchargement des références | tel quel |
+
+### 7.2 zenray-height, le modèle à transposer (12 October 2026)
+
+R05 en fait l'étude détaillée ; cet inventaire n'en garde que la correspondance avec l'existant du motion design, pour montrer ce qui manque.
+
+| Pièce de zenray-height (`/Users/zenray/.claude/skills/zenray-houdini/scripts/height/`) | Équivalent dans l'étude 01 | Écart |
+|---|---|---|
+| `Reproduce.py` et `reproduce.sh` : une commande, `status.json` mis à jour à chaque couche | aucun ; enchaînement manuel décrit dans `SKILL.md` ; `state.json` tenu à la main | total |
+| `Identify.py` : trouve et recadre l'objet à reproduire | découpage par scdet puis fusion à la main | fort |
+| `Recipe.py`, `ZrhCop.py` : recette construite en vrai graphe, une boîte par couche | `Cook.mjs` et le gabarit | faible pour la cuisson, fort pour la bibliothèque de composants |
+| `Fit.py`, `Methods.py`, `FitEqualizer.py` : ajustement mesuré de chaque couche | aucun ; chorégraphie écrite à la main | total |
+| `Measure.py`, `MeasureColor.py`, `RefLib.py` | `AnalyzeReference.py`, `MeasureDna.py`, `AnalyzeCamera.py`, `AnalyzeAudio.py` | moyen |
+| `RunPasses.py` : plans `QUICK`, `L2` à `L6`, porte de score | aucun ; itérations v1 à v8 menées à la main | total |
+| `EvolutionBoard.py` : planche de l'évolution | `BuildStoryboard.py`, `BuildAnimaticSheet.py` | moyen |
+| preuves `TestIncremental.py`, `TestParallelRegions.py` | aucune ; déterminisme de la cuisson prouvé aujourd'hui seulement (M) | fort |
+| `Copernicus2.md` (2,6 Mo) et son routeur | notes HyperFrames de 28 Ko dans un scratchpad volatil | total |
+
+### 7.3 Environnements Python (12 October 2026)
+
+| Environnement | Python | Paquets utiles | Usage |
+|---|---|---|---|
+| `/Users/zenray/.venvs/motion-design` | 3.9.6 | numpy 2.0.2, OpenCV 5.0.0, Pillow 11.3.0 | celui des scripts actuels ; limité (pas de scipy ni de librosa) |
+| `/Users/zenray/.venvs/zenray-motion` | 3.11.15 | numpy 2.4.6, scipy 1.17.1, librosa 0.11.0, OpenCV 5.0.0, scikit-image 0.26.0, pyloudnorm, soundfile 0.14.0, Pillow 12.3.0, numba 0.68.0 | créé le 12 October 2026 vers 02:53, encore modifié à 03:01 (M) ; candidat naturel du moteur : séparation harmonique et percussive, descripteurs spectraux, SSIM |
+| `/Users/zenray/.venvs/deecho-audio` | 3.11 | audio_separator, onnxruntime, torch, librosa | séparation de sources par modèle, seulement si Matthieu l'accepte pour l'analyse |
+| `/Users/zenray/.venvs/asr-ja` | 3.12 | mlx_whisper, parakeet_mlx, librosa | détection d'une voix off éventuelle |
+| `/Users/zenray/.venvs/shorts` | 3.14 | numpy, Pillow, fonttools | `short_editor.py`, zenray-height |
+| `dfn3`, `resemble-enhance`, `voicefixer`, `wpe-audio` | 3.11 | amélioration de la voix | sans usage prévu |
+
+### 7.4 HyperFrames déjà en cache (12 October 2026)
+
+La version 0.8.147 est dans `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes` et le navigateur sans fenêtre dans `/Users/zenray/.cache/hyperframes/chrome/chrome-headless-shell/mac_arm-152.0.7977.30` (201 Mo) (M), ce qui devrait permettre un rendu sans réseau (S, non essayé). Les descriptions ci-dessous viennent des modules du paquet en cache ; R01 en fait l'étude (https://hyperframes.heygen.com/).
+
+| Commande | Ce que dit le paquet | Intérêt |
+|---|---|---|
+| `render` | rendu en MP4, WebM, MOV, GIF, HLS ou suite d'images PNG | sortie des versions et des formats |
+| `snapshot` | capture d'images clés pour la vérification visuelle (`--against` selon le skill) | planches de comparaison locales |
+| `compare` | rendu de variantes sur une seule planche | comparaison de versions |
+| `keyframes` | inspection des clés GSAP, CSS, chemins, diagnostics en pelure d'oignon | contrôle des courbes |
+| `beats` | détection des temps d'une piste musicale | contre-mesure du tempo |
+| `normalize-audio` | normalisation LUFS absolue ou calée sur un autre clip | finition du son |
+| `grade-compare`, `benchmark`, `lint`, `check`, `catalog`, `media-treatment` | étalonnage comparé, vitesse, contrôles, blocs du registre, superpositions | outillage |
+| `tts`, `remove-background` | modèles locaux d'IA qui fabriquent une voix ou un détourage | à écarter de la production (règle sans IA générative) |
+| `transcribe` | transcription au mot près par un modèle local | analyse seulement, pour établir ou écarter une voix off |
+| `events` | télémétrie anonyme, désactivable par `DO_NOT_TRACK` | à désactiver |
+
+### 7.5 Outils et applications (12 October 2026)
+
+- ffmpeg 8.1.2 avec libvmaf, SVT-AV1, x264, x265, dav1d, VPX et VideoToolbox ; filtres `libvmaf`, `ssim`, `psnr`, `xpsnr`, `msad`, `corr`, `identity`, `scdet`, `ebur128`, `astats`, `aspectralstats`, `signalstats`, `freezedetect`, `blackdetect` ; sans libass ni libfreetype, donc sans incrustation de texte par ffmpeg (M).
+- tesseract 5.5.2, ImageMagick 7.1.2-27, yt-dlp 2026.08.19, Node v26.9.0 et npm 11.19.1, Python système 3.9.6 ; sox, aubio et essentia absents (M).
+- Blender 5.2.2 LTS dans `/Applications/Blender.app`, Houdini 22.0.368 (applications FX, Core, Indie et Apprentice présentes, `hython` disponible, licence active non vérifiée), REAPER et Logic Pro installés (M).
+
+### 7.6 Serveurs MCP déjà configurés (12 October 2026)
+
+- `zenray-houdini` : `python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py --mcp`, patron direct du futur serveur (M).
+- `blender` : `/Users/zenray/.local/bin/blender-mcp`, outil uv, utile pour la 3D (M).
+- `reaper` : cassé, il pointe vers `/Users/zenray/Create/Build/Tools/reaper-mcp/.venv/bin/python`, chemin absent (M ; l'en-tête de `zrhoudini.py` relevait déjà la même panne).
+
+### 7.7 ZenRayProgress, à confirmer par R06 (12 October 2026)
+
+Dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress`, les noms de fichiers suivants laissent attendre des briques réutilisables, sans que je les aie lues : `src/components/Gallery.jsx`, `GalleryView.jsx`, `VideoPlayer2.jsx`, `ShareVideoPage.jsx`, `MediaViewer.jsx`, `src/media/playerControls.jsx`, `hlsTranscoder.js`, `remuxPlayer.js`, `src/media/subtitles/`, `src/zenraymedia/formats.js` (contrats de sortie avec zones de sécurité, lu en tête), `docs/VIDEO-PIPELINE-CANONICAL.md` (MSE par défaut depuis le 16 July 2026, lu en tête) et `docs/ZENRAYGALLERY.md` (M pour l'existence, S pour l'usage).
+
+## 8. Écarts entre l'existant et la nouvelle cible (12 October 2026)
+
+| Exigence de la cible | Existant | Écart | Ce qui se réutilise |
+|---|---|---|---|
+| Une commande, une référence en entrée, storyboard, bible, versions, effets et rapport en sortie | 14 scripts lancés à la main, fichiers d'entrée écrits à la main | total | patron `Reproduce.py` et `status.json` |
+| Références téléchargées et mises en cache avec empreinte | une vidéo dans un scratchpad volatil, sans manifeste | fort | yt-dlp, `README.md` du refcache, empreinte mesurée ici |
+| Découpage en plans exact à l'image | 12 coupes franches sur 13 à 0,2 image dans la timeline (M), mais fusion manuelle et transitions douces invisibles à scdet | moyen | lecteurs scdet existants |
+| Storyboard de chaque vidéo | générateurs propres à OneKey, descriptions écrites à la main | fort | mise en page, CSV, lecture seconde par seconde |
+| Bible graphique (polices, couleurs, mouvements, courbes, 3D, SFX, musique) | couleurs mesurées et tailles en jetons ; police estimée à l'œil ; courbes limitées à 10 presets ; aucune bible sonore | fort | `MeasureDna.py`, `AnalyzeCamera.py`, `AnalyzeAudio.py` |
+| Mesure des animations élément par élément, courbes ajustées | similitude globale par plan et énergie ; écart de courbe médian 0,086 | total | suivi Lucas-Kanade et RANSAC comme base |
+| Paramètres obtenus par ajustement | 2 fichiers sur 12 générés, 107 enregistrements écrits à la main | total | méthode `Fit.py` de zenray-height |
+| Fidélité de 99 % par dimension mesurée | contrat de substitution, seuils de 0,45 à 0,70 ; v8 à 0,468, SSIM 0,449 | total | outils de `Verify.py`, filtres ffmpeg `libvmaf` et `ssim`, `VerifySound.py` |
+| Effets refaits par synthèse et ajustés aux mesures | 11 primitives en code, placées sur nos événements ; rappel de 0,14 à 50 ms ; aucune enveloppe spectrale comparée | fort | primitives de `MakeAudio.py`, blocs de `SoundF1.py`, librosa |
+| Musique : tempo, structure et énergie seulement | tempo juste (175,83 contre 175,85 BPM), sections écrites à la main, enveloppe corrélée à 0,65, niveau 11 dB trop bas | moyen | `render_music`, tempo et niveau d'`AnalyzeAudio.py`, normalisation d'interview-audio |
+| Image sans IA générative, 3D comprise | 25 assets sur 42 prévus pour Flow, Veo ou un rendu 3D ; 3D limitée au CSS `preserve-3d` | total pour ces plans | Blender et Houdini avec leurs MCP (R10) |
+| Versions V_001 à V_999 | rendus v1 à v8 à plat, paramètres écrasés | total | `zrrevs.py` |
+| Galerie en vue YouTube | rien côté moteur | total | composants de ZenRayProgress (R06) |
+| Serveur MCP pilotable par Claude | aucun | total | `zrhoudini.py` |
+| Montage, adaptation de format, LOAD local | composition figée à 1920 × 1080 (`html` et `body` en px) | total | `formats.js`, `short_editor.py`, LOAD et UNLOAD d'Assets |
+| Loi HDA et code en anglais | 191 valeurs en px dans le gabarit, constantes OneKey dans cinq scripts, clés JSON françaises | moyen | `tokens.json` et `Cook.mjs` comme socle |
+| Droits | texte OCR de la référence dans un dossier archivé | à corriger | refcache local jamais archivé |
+| Reproductibilité des contrôles | analyses de référence seulement dans `/private/tmp` | risque | copie vers le refcache par R02 |
+
+## 9. Défauts relevés dans l'existant (12 October 2026)
+
+1. `Verify.py`, lignes 219 et 220 : durée cible 68,053 s, 60 images/s et 1920 × 1080 écrits en dur ; 68,053 s est d'ailleurs la durée de la piste audio, l'image de la référence durant 68,000 s (M).
+2. `Verify.py`, ligne 205 : `--reference-frames` est obligatoire mais n'est jamais lu (M).
+3. `Verify.py`, lignes 22 à 34 : le contrat vit dans le code et non dans un fichier de paramètres, contrairement à la loi HDA (M).
+4. `templates/index.html`, ligne 196 : `data-duration="68"` en dur, alors que `tokens.meta.durationSeconds` existe (M).
+5. `BuildStoryboard.py`, lignes 58 à 73 : les sept actes, leurs temps et leurs textes sont codés en dur, et quatre de ces textes décrivent encore l'outil (un message et un titre anglais sur le code, le lint, le rendu hors ligne), contrairement à la règle du 11 October 2026 ; ils figurent toujours dans `storyboard/storyboard.html` (M, recherche dans le fichier).
+6. `BuildStoryboard.py`, lignes 21, 278, 281 et 430 : 4080 images, 68,0 s et les pastilles de couleur de la référence en dur ; ligne 718 : clés JSON `contrôle`, `réussi`, `détail`, contraires à la règle du 7 September 2026 sur les identifiants anglais (M).
+7. `BuildAnimaticSheet.py`, lignes 111 à 115, 132 et 241 : noms des rapports v8, 68 s et 27 plans en dur ; lignes 18 à 23 : sources de la génération par Flow, désormais hors périmètre (M).
+8. `MakeAudio.py`, lignes 17 à 23 et 154 à 177 : niveaux, sections, accords, instants du titre héros et sélecteurs propres à OneKey en dur (M).
+9. `MeasureDna.py` exige un fichier de plans écrit à la main, qui n'existe que dans le scratchpad volatil (M).
+10. `params/visual-checks.json` est lié au rendu v6 alors que le rendu courant est la v8 : selon la règle du 11 October 2026, ces relectures ne comptent plus (M).
+11. `analysis/dna-reference.json` contient 36 lignes de texte OCR de la référence dans un atelier archivé (M).
+12. `Rules.md` de l'étude 01 porte encore la règle d'une génération d'assets après validation, que la cible du 12 October 2026 remplace par une production entièrement en code (R).
+
+## 10. Recommandations de réemploi (12 October 2026)
+
+Le moteur devrait partir du couple formé par `tokens.json` et `Cook.mjs`, dont le déterminisme est désormais prouvé, et du runtime `motion-core.js`, dont le vocabulaire d'opérations forme une amorce naturelle de bibliothèque de composants ; le gabarit OneKey, lui, descend au rang d'instance d'exemple, puisque chaque nouvelle référence devra produire sa propre scène à partir de composants réutilisables plutôt que d'un fichier de 438 lignes écrit plan par plan.
+
+Les analyses existantes se gardent comme premières mesures, à condition d'en sortir les constantes et de leur adjoindre ce qui manque pour viser 99 % : suivi par élément, ajustement de courbes de Bézier plutôt que choix parmi dix presets, coupes exprimées en images, descripteurs spectraux par événement après séparation des parties percussives et harmoniques, que librosa fournit sans modèle génératif dans `/Users/zenray/.venvs/zenray-motion`. Le vérificateur image se refond en évaluateur par dimension, noté de 0 à 1, en conservant le contrat v1 comme test de non-régression et en lui ajoutant les filtres `ssim` et `libvmaf` de ffmpeg pour les dimensions où le contenu est comparable.
+
+Côté son, les onze primitives de `MakeAudio.py` et les blocs DSP de `SoundF1.py` forment la base d'une bibliothèque de synthèse paramétrique, dont chaque paramètre serait ajusté sur un événement de la référence ; `VerifySound.py` reste tel quel pour la conformité au plan et reçoit un second mode qui compare dates, enveloppes et niveaux à la référence.
+
+| Décision | Pièces concernées |
+|---|---|
+| Garder tel quel | `AnalyzeReference.py`, `VerifySound.py`, `motion-core.js`, `motion-main.js`, structure de `tokens.json`, `timeline.json` et `choreography.json`, skills `video-frames-extract`, `interview-audio`, `juice-it` |
+| Adapter | `Cook.mjs`, `ExtractCaptions.py`, `MeasureDna.py`, `AnalyzeAudio.py`, `AnalyzeCamera.py`, `BuildAnimaticSheet.py` (lecture), `SoundF1.py`, `zr-design.mjs`, `zrrevs.py`, `short_editor.py` |
+| Refondre | `Verify.py`, `MakeAudio.py`, `MakeCamera.py`, `BuildStoryboard.py` |
+| Retirer du moteur | `MakeColorScript.py`, `MakeSound.py`, gabarit OneKey (en exemple), section de génération par Flow et Gemini, emplacements à générer |
+| Déplacer | analyses et vidéo de référence vers `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache`, avec empreinte ; texte OCR de la référence hors de tout dossier archivé |
+
+## 11. Questions ouvertes (12 October 2026)
+
+1. Une séparation de sources par modèle (`audio_separator` dans `/Users/zenray/.venvs/deecho-audio`), utilisée seulement pour analyser la référence et jamais dans un livrable, est-elle acceptable, ou la séparation harmonique et percussive classique de librosa suffit-elle ?
+2. Faut-il retirer de l'archive Assets de l'étude 01 le fichier `analysis/dna-reference.json`, qui contient du texte de la référence ?
+3. Comment définir 99 % sur une dimension dont le contenu est volontairement remplacé (image, texte), et comment agréger les dimensions en un score ? R04 et R05 devraient y répondre.
+4. Quelles polices utiliser, sachant que la licence de diffusion d'AnthropicSerif, d'AnthropicMono et de Vogun reste ouverte, et que « des polices reproduites en SVG » ne peut pas vouloir dire recopier le dessin d'une police de la référence ?
+5. Quels formats l'adaptation doit-elle couvrir (9:16, 1:1, 4:5) ?
+6. La règle des sous-titres obligatoires pour toute vidéo en streaming s'applique-t-elle à un mouvement sans voix ?
+7. Quelle licence Houdini est active pour un rendu 3D sans filigrane ?
+8. Quelle version de HyperFrames épingler, 0.8.145 comme la composition ou 0.8.147 comme le cache ?
+
+## 12. Sources (12 October 2026)
+
+- Skill : `/Users/zenray/.claude/skills/zenray-motion-design/SKILL.md`, `scripts/`, `templates/`, `examples/onekey-motion-01/params/`.
+- Atelier 01 : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/state.json`, `verify/`, `analysis/`, `params/`, `storyboard/`, `composition/`, `renders/render-v1.log`, `verify-lint-*.json`.
+- Mémoire : `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design-01/Project1.md`, `Rules.md`, `FEEDBACK.md` ; `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design/FEEDBACK.md` ; `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/state.json`.
+- Scratchpad de l'étude 01 : `/private/tmp/claude-501/-Users-zenray--claude-Memory1/e067e0eb-400b-4769-9366-225560e7a0e4/scratchpad/`.
+- Ailleurs : `/Users/zenray/.claude/skills/zenray-edit/`, `/Users/zenray/.claude/skills/interview-audio/`, `/Users/zenray/.claude/skills/video-frames-extract/`, `/Users/zenray/.claude/skills/juice-it/`, `/Users/zenray/.claude/skills/zenray-houdini/scripts/height/README.md`, `/Users/zenray/.claude/Memory1/Houdini/MCP/`, `/Users/zenray/.venvs/`, `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/`, `/Users/zenray/.cache/hyperframes/`.
+- URL relevées dans les fichiers, non consultées pour cet inventaire : https://hyperframes.heygen.com/ , https://hyperframes.heygen.com/schema/hyperframes.json , https://gsap.com/standard-license , https://whatships.com/videos/onekey-pro-2/ .

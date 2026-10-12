@@ -1,0 +1,146 @@
+# 12 October 2026, 03:45 CEST (rerun 04:40 CEST with the variable-projection bezier): known-answer test of EaseFit. Each case animates one channel with a known GSAP ease,
+# samples it at 60 fps with a sub-frame start, adds Gaussian measurement noise, then asks EaseFit to recover the ease,
+# the start and the duration. The figure that matters for reproduction is the curve error: how far the re-rendered
+# move (identified ease + timing) lands from the true move, as a fraction of the amplitude.
+# FR : test à réponse connue de l'identification d'ease ; l'erreur de courbe relative est le chiffre qui compte.
+# Run: ~/.venvs/motion-design/bin/python -I RunEaseSynthetic.py
+import json
+import math
+import os
+import sys
+import time
+from concurrent.futures import ProcessPoolExecutor
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import EaseFit as F  # noqa: E402
+
+LIBRARY_PATH = os.path.join(HERE, "results", "eases-gsap-3.14.2.json")
+OUT = os.path.join(HERE, "results", "ease-synthetic.json")
+FPS = 60.0
+TRUE_EASES = ["none", "power1.out", "power2.out", "power3.out", "power4.out", "power2.in", "power2.inOut",
+              "power3.inOut", "sine.out", "sine.inOut", "expo.out", "expo.inOut", "circ.out", "back.out(1.70158)",
+              "elastic.out(1,0.3)", "bounce.out", "css.ease", "material.standard"]
+AMPLITUDES = [40.0, 200.0, 800.0]
+DURATIONS = [0.25, 0.5, 1.0]
+NOISES = [0.25, 1.0]
+BEZIER_CASES = 40
+
+_LIB = None
+
+
+def lib():
+    global _LIB
+    if _LIB is None:
+        _LIB = F.EaseLibrary(LIBRARY_PATH)
+    return _LIB
+
+
+def run_case(case):
+    library = lib()
+    rng = np.random.default_rng(case["seed"])
+    t0 = 0.2 + rng.uniform(0, 1 / FPS)
+    duration, amplitude, noise = case["duration"], case["amplitude"], case["noise"]
+    t = np.arange(0, t0 + duration + 0.35, 1 / FPS)
+    if case["kind"] == "library":
+        truth = lambda tt: 100 + amplitude * library.evaluate(case["ease"], (tt - t0) / duration)
+    else:
+        bz = case["bezier"]
+        truth = lambda tt: 100 + amplitude * F.cubic_bezier(np.clip((tt - t0) / duration, 0, 1), *bz)
+    y = truth(t) + rng.normal(0, noise, len(t))
+    started = time.time()
+    result = F.identify(t, y, library, with_bezier=True)
+    elapsed = time.time() - started
+    chosen, best = result["chosen"], result["library_best"]
+    dense = np.linspace(t0 - 0.05, t0 + duration + 0.05, 600)
+    err_chosen = F.predict(dense, chosen, library) - truth(dense)
+    err_best = F.predict(dense, best, library) - truth(dense)
+    inside = (t >= t0 - 1 / FPS) & (t <= t0 + duration + 1 / FPS)
+    err_frames = F.predict(t[inside], chosen, library) - truth(t[inside])  # what a same-fps, same-phase render shows
+    row = {
+        "kind": case["kind"], "ease": case.get("ease"), "bezier": case.get("bezier"), "amplitude": amplitude,
+        "duration": duration, "noise": noise, "chosen": chosen["name"], "chosen_family": chosen["family"],
+        "library_best": best["name"], "ties": result["ties"], "t0_error_ms": (best["t0"] - t0) * 1000,
+        "d_error_ms": (best["d"] - duration) * 1000,
+        "max_err_rel_chosen": float(np.abs(err_chosen).max() / amplitude),
+        "rms_err_rel_chosen": float(math.sqrt(np.mean(err_chosen ** 2)) / amplitude),
+        "max_err_px_chosen": float(np.abs(err_chosen).max()),
+        "max_err_rel_library": float(np.abs(err_best).max() / amplitude),
+        "frame_err_px_max": float(np.abs(err_frames).max()), "frame_err_rel_max": float(np.abs(err_frames).max() / amplitude),
+        "seconds": elapsed,
+    }
+    if case["kind"] == "bezier":
+        row["bezier_fit"] = chosen.get("bezier")
+    return row
+
+
+def summarise(rows, label):
+    n = len(rows)
+    if n == 0:
+        return {}
+    exact = sum(1 for r in rows if r["kind"] == "library" and r["library_best"] == r["ease"])
+    tied = sum(1 for r in rows if r["kind"] == "library" and r["ease"] in r["ties"])
+    rel = sorted(r["max_err_rel_chosen"] for r in rows)
+    t0e = sorted(abs(r["t0_error_ms"]) for r in rows if r["kind"] == "library" and r["library_best"] == r["ease"])
+    pct = lambda v, q: v[min(len(v) - 1, int(q * (len(v) - 1) + 0.5))] if v else None
+    return {
+        "label": label, "cases": n, "exact_top1": exact, "true_in_ties": tied,
+        "curve_max_err_rel_median": pct(rel, 0.5), "curve_max_err_rel_p95": pct(rel, 0.95),
+        "curve_max_err_rel_max": rel[-1], "cases_under_1pct": sum(1 for v in rel if v <= 0.01),
+        "cases_under_1pct_library_best": sum(1 for r in rows if r["max_err_rel_library"] <= 0.01),
+        "frames_under_1pct": sum(1 for r in rows if r["frame_err_rel_max"] <= 0.01),
+        "frame_err_px_p95": pct(sorted(r["frame_err_px_max"] for r in rows), 0.95),
+        "chosen_bezier": sum(1 for r in rows if r["chosen_family"] == "bezier"),
+        "t0_abs_err_ms_median": pct(t0e, 0.5), "t0_abs_err_ms_p95": pct(t0e, 0.95),
+        "seconds_mean": sum(r["seconds"] for r in rows) / n,
+    }
+
+
+def main():
+    cases, seed = [], 1000
+    for ease in TRUE_EASES:
+        for amplitude in AMPLITUDES:
+            for duration in DURATIONS:
+                for noise in NOISES:
+                    seed += 1
+                    cases.append({"kind": "library", "ease": ease, "amplitude": amplitude, "duration": duration,
+                                  "noise": noise, "seed": seed})
+    rng = np.random.default_rng(7)
+    for i in range(BEZIER_CASES):
+        bz = [float(rng.uniform(0.05, 0.95)), float(rng.uniform(-0.3, 1.3)), float(rng.uniform(0.05, 0.95)),
+              float(rng.uniform(-0.3, 1.3))]
+        cases.append({"kind": "bezier", "bezier": bz, "amplitude": 200.0, "duration": 0.6, "noise": 0.5,
+                      "seed": 5000 + i})
+    started = time.time()
+    with ProcessPoolExecutor(max_workers=16) as pool:
+        rows = list(pool.map(run_case, cases, chunksize=4))
+    library_rows = [r for r in rows if r["kind"] == "library"]
+    summary = {
+        "all_library": summarise(library_rows, "18 GSAP or CSS eases x 3 amplitudes x 3 durations x 2 noises"),
+        "noise_0.25px": summarise([r for r in library_rows if r["noise"] == 0.25], "noise 0.25 px"),
+        "noise_1px": summarise([r for r in library_rows if r["noise"] == 1.0], "noise 1 px"),
+        "amp_40px": summarise([r for r in library_rows if r["amplitude"] == 40.0], "amplitude 40 px"),
+        "amp_200px": summarise([r for r in library_rows if r["amplitude"] == 200.0], "amplitude 200 px"),
+        "amp_800px": summarise([r for r in library_rows if r["amplitude"] == 800.0], "amplitude 800 px"),
+        "amp_200_800_duration_0.5_1": summarise([r for r in library_rows if r["amplitude"] >= 200.0 and r["duration"] >= 0.5],
+                                                 "amplitude >= 200 px and duration >= 0.5 s"),
+        "bezier_random": summarise([r for r in rows if r["kind"] == "bezier"], "40 random cubic-beziers, 200 px, 0.6 s, 0.5 px noise"),
+        "wall_seconds": time.time() - started,
+    }
+    confusions = {}
+    for r in library_rows:
+        if r["library_best"] != r["ease"]:
+            key = f"{r['ease']} -> {r['library_best']}"
+            confusions[key] = confusions.get(key, 0) + 1
+    summary["confusions"] = dict(sorted(confusions.items(), key=lambda kv: -kv[1]))
+    worst = sorted(rows, key=lambda r: -r["max_err_rel_chosen"])[:8]
+    summary["worst_cases"] = [{k: r[k] for k in ("kind", "ease", "amplitude", "duration", "noise", "chosen",
+                                                  "max_err_rel_chosen", "max_err_px_chosen")} for r in worst]
+    json.dump({"summary": summary, "rows": rows}, open(OUT, "w"), indent=1)
+    print(json.dumps(summary, indent=1)[:6000])
+
+
+if __name__ == "__main__":
+    main()

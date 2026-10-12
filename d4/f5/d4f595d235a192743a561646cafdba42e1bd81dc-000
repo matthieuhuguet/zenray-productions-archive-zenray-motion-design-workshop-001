@@ -1,0 +1,103 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "fin-4",
+  "page_url": "https://whatships.com/videos/fin-4/",
+  "media_url": "https://video.twimg.com/amplify_video/2107924825880825856/vid/avc1/1080x1350/HGTugr05mCbw5f8k.mp4",
+  "date": "12 October 2026",
+  "file_name": "fin-4 [2107924825880825856].mp4",
+  "sha256": "69a2953c6d2980fea14c6ec78b55e2d4bd2d796d9159da045878cabb7f8b1795",
+  "bytes": 480811,
+  "duration_s": 7.867,
+  "video_codec": "h264",
+  "width": 1080,
+  "height": 1350,
+  "fps": 30.0,
+  "audio_codec": null,
+  "sample_rate_hz": null,
+  "channels": null,
+  "notes": [
+    "Method: curl page source (original X media URL from the page), equal to the best variant of the post (10368000 bit/s).",
+    "WARNING: no audio stream."
+  ],
+  "has_audio": false,
+  "family": "whatships",
+  "method": "curl page source (original X media URL from the page), equal to the best variant of the post (10368000 bit/s)",
+  "source_post_url": "https://x.com/destraynor/status/2107925197210951788",
+  "media_id": "2107924825880825856",
+  "source_format_id": null,
+  "title": "Introducing Fin 4",
+  "brand": "Intercom",
+  "product": "Fin 4",
+  "category": "productivity",
+  "published_at": "2026-10-07T20:05:05.000Z",
+  "listed_duration_s": 8,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 488960,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 484073,
+    "nb_frames": 236,
+    "avg_frame_rate": "30/1",
+    "r_frame_rate": "30/1",
+    "time_base": "1/3000000",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 7.867
+  },
+  "audio": null,
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/fin-4/fin-4 [2107924825880825856].mp4",
+  "attempts": [
+    {
+      "step": "page: curl and parse",
+      "ok": true,
+      "detail": "videoUrl=https://video.twimg.com/amplify_video/2107924825880825856/vid/avc1/1080x1350/HGTugr05mCbw5f8k.mp4; post=https://x.com/destraynor/status/2107925197210951788; 5 media URL(s) on the page (the rest belong to related cards)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --url https://whatships.com/videos/fin-4/"
+    },
+    {
+      "step": "page: yt-dlp probe on the page URL (no download)",
+      "ok": true,
+      "detail": "extractor Generic, 1 format(s), hosts ['proxy.whatships.com']",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --dump-single-json --simulate -- https://whatships.com/videos/fin-4/"
+    },
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "1 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2107925197210951788&lang=en&token=53y8q1e9eb3'"
+    },
+    {
+      "step": "curl page source (original X media URL from the page), equal to the best variant of the post (10368000 bit/s)",
+      "ok": false,
+      "detail": "1080x1350 h264 30.0 fps, audio None, 480811 bytes; problems: no audio stream",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-fin-4-20261012-030758/01/fin-4 [2107924825880825856].mp4' --url https://video.twimg.com/amplify_video/2107924825880825856/vid/avc1/1080x1350/HGTugr05mCbw5f8k.mp4"
+    },
+    {
+      "step": "yt-dlp on the post (guest token, GraphQL)",
+      "ok": false,
+      "detail": "1080x1350 h264 30.0 fps, audio None, 480811 bytes; problems: no audio stream",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 -S res,tbr -f 'bv*+ba/b' --retries 10 --fragment-retries 10 --concurrent-fragments 16 --match-filters id=2107924825880825856 --paths /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-fin-4-20261012-030758/02 --output 'fin-4 [%(id)s].%(ext)s' --print 'after_move:%(.{id,format_id,width,height,tbr,url,webpage_url,filepath,title,uploader,upload_date})j' -- https://x.com/destraynor/status/2107925197210951788"
+    },
+    {
+      "step": "yt-dlp on the post (syndication API)",
+      "ok": false,
+      "detail": "1080x1350 h264 30.0 fps, audio None, 480811 bytes; problems: no audio stream",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 -S res,tbr -f 'bv*+ba/b' --retries 10 --fragment-retries 10 --concurrent-fragments 16 --match-filters id=2107924825880825856 --extractor-args twitter:api=syndication --paths /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-fin-4-20261012-030758/03 --output 'fin-4 [%(id)s].%(ext)s' --print 'after_move:%(.{id,format_id,width,height,tbr,url,webpage_url,filepath,title,uploader,upload_date})j' -- https://x.com/destraynor/status/2107925197210951788"
+    },
+    {
+      "step": "curl best MP4 variant from api.fxtwitter.com",
+      "ok": false,
+      "detail": "1080x1350 h264 30.0 fps, audio None, 480811 bytes; problems: no audio stream",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-fin-4-20261012-030758/04/fin-4 [2107924825880825856].mp4' --url 'https://video.twimg.com/amplify_video/2107924825880825856/vid/avc1/1080x1350/HGTugr05mCbw5f8k.mp4?tag=29'"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:07:58+02:00"
+}

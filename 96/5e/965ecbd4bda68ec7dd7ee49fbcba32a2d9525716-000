@@ -1,0 +1,56 @@
+# 12 October 2026, 04:05 CEST: real-data check. The first study (AnalyzeCamera.py) fitted each shot's camera progress
+# with a 10-ease list and a window forced to the whole shot. This refits the same 21-sample curves of the OneKey Pro 2
+# reference (numbers only, read from the first study's camera.json) with the exact GSAP library and a free window.
+# FR : réajustement des courbes de caméra mesurées de la première étude, fenêtre libre et bibliothèque GSAP exacte.
+# Run: ~/.venvs/motion-design/bin/python -I RunCameraRefit.py
+import json
+import math
+import os
+import sys
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import EaseFit as F  # noqa: E402
+
+CAMERA = "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/analysis/camera.json"
+OLD_EASES = ["none", "power1.in", "power1.out", "power1.inOut", "power2.in", "power2.out", "power2.inOut",
+             "power3.out", "expo.out", "sine.inOut"]
+# The first study's formulas match GSAP's (power1.in = t^2, power2.out = 1-(1-t)^3, power3.out = 1-(1-t)^4),
+# so its ease names and the library names are directly comparable.
+
+
+def main():
+    lib = F.EaseLibrary(os.path.join(HERE, "results", "eases-gsap-3.14.2.json"))
+    shots = json.load(open(CAMERA))["shots"]
+    u = np.linspace(0, 1, 21)
+    rows = []
+    for sid, s in shots.items():
+        if s.get("static") or not s.get("curve"):
+            continue
+        p = np.asarray(s["curve"], dtype=np.float64)
+        old = min((math.sqrt(np.mean((lib.evaluate(n, u) - p) ** 2)), n) for n in OLD_EASES)
+        res = F.identify(u, p, lib, with_bezier=True)
+        best = res["library_best"]
+        chosen = res["chosen"]
+        rows.append({"shot": sid, "dominant": s["dominant"], "move_px": s["movePx"], "old_ease": s["ease"],
+                     "old_error_all_records": s["easeError"], "old_rms_21": old[0], "old_best_21": old[1],
+                     "new_library_best": best["name"], "new_rms_21": best["rms"],
+                     "window_start": best["t0"], "window_end": best["t0"] + best["d"],
+                     "new_chosen": chosen["name"], "new_chosen_rms": chosen["rms"], "ties": res["ties"][:5]})
+    old = sorted(r["old_rms_21"] for r in rows)
+    new = sorted(r["new_rms_21"] for r in rows)
+    summary = {"shots": len(rows), "old_rms_median": old[len(old) // 2], "new_rms_median": new[len(new) // 2],
+               "old_rms_max": old[-1], "new_rms_max": new[-1],
+               "shots_new_under_0.02": sum(1 for v in new if v <= 0.02)}
+    json.dump({"summary": summary, "rows": rows}, open(os.path.join(HERE, "results", "camera-refit.json"), "w"), indent=1)
+    for r in rows:
+        print(f"{r['shot']} {r['dominant'][:5]:5s} old {r['old_best_21']:13s} {r['old_rms_21']:.3f} -> "
+              f"{r['new_library_best']:20s} {r['new_rms_21']:.3f} window [{r['window_start']:.2f}, {r['window_end']:.2f}]"
+              f" chosen {r['new_chosen']}")
+    print(json.dumps(summary))
+
+
+if __name__ == "__main__":
+    main()

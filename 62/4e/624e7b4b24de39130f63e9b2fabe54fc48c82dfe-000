@@ -1,0 +1,91 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "interface",
+  "page_url": "https://whatships.com/videos/interface/",
+  "media_url": "https://video.twimg.com/amplify_video/2108225966556540928/vid/avc1/3840x2160/8396tAidC1c3Nho1.mp4",
+  "date": "12 October 2026",
+  "file_name": "interface [2108225966556540928].mp4",
+  "sha256": "b12c3c7096b077044314d80a86c54aa7b29eec038eef41a47a95bd060590f03b",
+  "bytes": 136159302,
+  "duration_s": 90.091,
+  "video_codec": "h264",
+  "width": 3840,
+  "height": 2160,
+  "fps": 24.0,
+  "audio_codec": "aac",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "notes": [
+    "The post offers a richer MP4 than the page (nominal 25128000 bit/s); it was preferred.",
+    "Method: curl best MP4 variant from the original post."
+  ],
+  "has_audio": true,
+  "family": "whatships",
+  "method": "curl best MP4 variant from the original post",
+  "source_post_url": "https://x.com/carloAI/status/2108226291107602580",
+  "media_id": "2108225966556540928",
+  "source_format_id": null,
+  "title": "Interface, the primary hardware for the agent era",
+  "brand": "Interface",
+  "product": "Interface",
+  "category": "hardware",
+  "published_at": "2026-10-08T16:01:31.000Z",
+  "listed_duration_s": 90,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 12090868,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 11957988,
+    "nb_frames": 2162,
+    "avg_frame_rate": "972900000/40537519",
+    "r_frame_rate": "24/1",
+    "time_base": "1/9000000",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 90.083
+  },
+  "audio": {
+    "profile": "LC",
+    "bit_rate": 128000,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": 90.091
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/interface/interface [2108225966556540928].mp4",
+  "attempts": [
+    {
+      "step": "page: curl and parse",
+      "ok": true,
+      "detail": "videoUrl=https://video.twimg.com/amplify_video/2108225966556540928/vid/avc1/1920x1080/JZoecGl6P8hDbrfV.mp4; post=https://x.com/carloAI/status/2108226291107602580; 5 media URL(s) on the page (the rest belong to related cards)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --url https://whatships.com/videos/interface/"
+    },
+    {
+      "step": "page: yt-dlp probe on the page URL (no download)",
+      "ok": true,
+      "detail": "extractor Generic, 1 format(s), hosts ['proxy.whatships.com']",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --dump-single-json --simulate -- https://whatships.com/videos/interface/"
+    },
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "1 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2108226291107602580&lang=en&token=53z6rxz6eh2'"
+    },
+    {
+      "step": "curl best MP4 variant from the original post",
+      "ok": true,
+      "detail": "3840x2160 h264 24.0 fps, audio aac, 136159302 bytes",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --retry-delay 2 --max-time 3600 --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36' --output '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-interface-20261012-031102/01/interface [2108225966556540928].mp4' --url https://video.twimg.com/amplify_video/2108225966556540928/vid/avc1/3840x2160/8396tAidC1c3Nho1.mp4"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:02+02:00"
+}

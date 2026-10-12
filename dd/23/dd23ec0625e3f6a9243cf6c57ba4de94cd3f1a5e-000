@@ -1,0 +1,144 @@
+# 12 October 2026, 03:55 CEST: end-to-end known-answer test: render a card animated with known GSAP eases (position,
+# scale with overshoot, opacity, a late vertical move), encode it like a web video (H.264 yuv420p), decode it, measure
+# the channels from pixels only, and identify each ease with EaseFit. It proves the chain render -> codec -> measure
+# -> fit, not only the fitter on clean numbers.
+# FR : test de bout en bout : rendu connu, encodage H.264, mesure depuis les pixels, identification des eases.
+# Run: ~/.venvs/motion-design/bin/python -I RunEaseVideo.py
+import json
+import math
+import os
+import subprocess
+import sys
+from concurrent.futures import ProcessPoolExecutor
+
+import numpy as np
+from PIL import Image, ImageDraw
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import EaseFit as F  # noqa: E402
+
+LIB = F.EaseLibrary(os.path.join(HERE, "results", "eases-gsap-3.14.2.json"))
+WORK = os.path.join(HERE, "results", "ease-video")
+W, H, SS, FPS, SECONDS = 1280, 720, 4, 60, 3.0
+BG, FG = 18.0, 236.0
+CARD_W, CARD_H, CARD_R = 240.0, 150.0, 24.0
+# Truth, written once: (ease, start, duration, from, to) per channel.
+TRUTH = {
+    "x": ("power3.out", 0.40, 0.70, 260.0, 960.0),
+    "scale": ("back.out(1.70158)", 0.30, 0.55, 0.55, 1.0),
+    "opacity": ("power1.out", 0.20, 0.35, 0.0, 1.0),
+    "y": ("sine.inOut", 1.40, 0.80, 380.0, 340.0),
+}
+
+
+def channel(name, t):
+    ease, start, duration, a, b = TRUTH[name]
+    return a + (b - a) * LIB.evaluate(ease, (np.asarray(t) - start) / duration)
+
+
+def render(index):
+    t = index / FPS
+    x, y = float(channel("x", t)), float(channel("y", t))
+    s, alpha = float(channel("scale", t)), float(channel("opacity", t))
+    w, h, r = CARD_W * s, CARD_H * s, CARD_R * s
+    mask = Image.new("L", (W * SS, H * SS), 0)
+    ImageDraw.Draw(mask).rounded_rectangle(
+        [(x - w / 2) * SS, (y - h / 2) * SS, (x + w / 2) * SS, (y + h / 2) * SS], radius=r * SS, fill=255)
+    coverage = np.asarray(mask.resize((W, H), Image.BOX), dtype=np.float64) / 255.0
+    frame = BG + (FG - BG) * alpha * coverage
+    return np.clip(np.round(frame), 0, 255).astype(np.uint8).tobytes()
+
+
+def encode(frames, path, crf):
+    args = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "gray", "-s", f"{W}x{H}", "-r", str(FPS),
+            "-i", "-"]
+    if crf is None:
+        args += ["-c:v", "ffv1", path]
+    else:
+        args += ["-c:v", "libx264", "-preset", "medium", "-crf", str(crf), "-pix_fmt", "yuv420p", path]
+    proc = subprocess.Popen(args, stdin=subprocess.PIPE)
+    for f in frames:
+        proc.stdin.write(f)
+    proc.stdin.close()
+    if proc.wait() != 0:
+        raise SystemExit("ffmpeg encode failed")
+
+
+def decode(path):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-f", "rawvideo", "-pix_fmt", "gray", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.uint8).reshape(-1, H, W).astype(np.float64)
+
+
+def measure(frames):
+    # Background and fill are measured from the video itself (codec range scaling cancels out).
+    bg = float(np.median(np.concatenate([frames[:, :8, :].ravel(), frames[:, -8:, :].ravel()])))
+    fg = float(np.percentile(frames, 99.9))
+    base_area = CARD_W * CARD_H - (4 - math.pi) * CARD_R ** 2
+    xs = np.arange(W)[None, :]
+    ys = np.arange(H)[:, None]
+    rows = []
+    for i, frame in enumerate(frames):
+        c = (frame - bg) / (fg - bg)
+        peak = float(np.percentile(c, 99.95))
+        if peak < 0.03:
+            rows.append(None)
+            continue
+        support = c > 0.25 * peak
+        core = c > 0.75 * peak
+        alpha = float(np.median(c[core])) if core.any() else peak
+        weight = np.where(support, c, 0.0)
+        total = weight.sum()
+        cx = float((weight * xs).sum() / total)
+        cy = float((weight * ys).sum() / total)
+        area = float(np.where(c > 0.02 * peak, c, 0.0).sum() / max(alpha, 1e-6))
+        rows.append({"t": i / FPS, "x": cx, "y": cy, "alpha": alpha, "scale": math.sqrt(max(area, 0) / base_area)})
+    return rows
+
+
+def fit_channel(t, values, name):
+    result = F.identify(t, values, LIB, with_bezier=True)
+    chosen, best = result["chosen"], result["library_best"]
+    ease, start, duration, a, b = TRUTH[name]
+    dense = np.linspace(start - 0.05, start + duration + 0.05, 600)
+    truth = channel(name, dense)
+    err = F.predict(dense, chosen, LIB) - truth
+    amp = abs(b - a)
+    return {"true": f"{ease} start {start} s, duration {duration} s",
+            "library_best": best["name"], "library_t0_ms_err": round((best["t0"] - start) * 1000, 2),
+            "library_d_ms_err": round((best["d"] - duration) * 1000, 2), "chosen": chosen["name"],
+            "ties": result["ties"][:6], "fit_rms": best["rms"],
+            "curve_max_err_rel": float(np.abs(err).max() / amp), "curve_max_err_abs": float(np.abs(err).max())}
+
+
+def main():
+    os.makedirs(WORK, exist_ok=True)
+    count = int(SECONDS * FPS)
+    with ProcessPoolExecutor(max_workers=16) as pool:
+        frames = list(pool.map(render, range(count), chunksize=4))
+    report = {"truth": TRUTH, "fps": FPS, "size": [W, H]}
+    for label, crf in (("lossless", None), ("x264_crf23", 23), ("x264_crf35", 35)):
+        path = os.path.join(WORK, f"card-{label}.{'mkv' if crf is None else 'mp4'}")
+        encode(frames, path, crf)
+        decoded = decode(path)
+        rows = measure(decoded)
+        t_all = np.arange(count) / FPS
+        meas_err = {}
+        fits = {}
+        for name, key in (("x", "x"), ("y", "y"), ("scale", "scale"), ("opacity", "alpha")):
+            valid = [(r["t"], r[key]) for r in rows if r is not None and (name != "scale" or r["alpha"] > 0.15)]
+            tt = np.array([v[0] for v in valid])
+            vv = np.array([v[1] for v in valid])
+            truth = channel(name, tt)
+            meas_err[name] = {"rms": float(np.sqrt(np.mean((vv - truth) ** 2))), "max": float(np.abs(vv - truth).max())}
+            fits[name] = fit_channel(tt, vv, name)
+        report[label] = {"file_bytes": os.path.getsize(path), "measurement_error": meas_err, "fits": fits}
+        print(label, json.dumps({k: (v["library_best"], v["chosen"], round(v["curve_max_err_rel"], 4),
+                                     v["library_t0_ms_err"], v["library_d_ms_err"]) for k, v in fits.items()}))
+        print("   measurement", json.dumps({k: (round(v["rms"], 4), round(v["max"], 4)) for k, v in meas_err.items()}))
+    json.dump(report, open(os.path.join(HERE, "results", "ease-video.json"), "w"), indent=1)
+
+
+if __name__ == "__main__":
+    main()

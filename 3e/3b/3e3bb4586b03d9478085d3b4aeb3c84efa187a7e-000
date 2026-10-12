@@ -1,0 +1,79 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "x-anabology-2105325733312884869",
+  "page_url": "https://x.com/anabology/status/2105325733312884869",
+  "media_url": "https://video.twimg.com/amplify_video/2105324983178219522/vid/avc1/1920x1080/uDu9-HjrfOw6-gN0.mp4?tag=29",
+  "date": "12 October 2026",
+  "file_name": "x-anabology-2105325733312884869 [2105324983178219522].mp4",
+  "sha256": "0f58193d98274772cbfd7ba0a70f704d88b93e7fbc1ab6df61396c2a71cadb95",
+  "bytes": 106087380,
+  "duration_s": 191.637,
+  "video_codec": "h264",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24.0,
+  "audio_codec": "aac",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "notes": [
+    "Other video in the quoted post, not downloaded: media 2103533196721704960, 306.416 s.",
+    "Method: yt-dlp on the post (guest token, GraphQL)."
+  ],
+  "has_audio": true,
+  "family": "x",
+  "method": "yt-dlp on the post (guest token, GraphQL)",
+  "source_post_url": "https://x.com/anabology/status/2105325733312884869",
+  "media_id": "2105324983178219522",
+  "source_format_id": "http-10368",
+  "title": "anabology - Gave Claude another 12 hours to one up this..  Woke up to.. The Clody... #1",
+  "brand": "anabology",
+  "product": null,
+  "category": null,
+  "published_at": "2026-09-30T15:55:44.000Z",
+  "listed_duration_s": null,
+  "container": "mov,mp4,m4a,3gp,3g2,mj2",
+  "overall_bit_rate": 4428672,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": 4295782,
+    "nb_frames": 4598,
+    "avg_frame_rate": "24/1",
+    "r_frame_rate": "24/1",
+    "time_base": "1/1228800",
+    "color_space": null,
+    "color_transfer": null,
+    "color_primaries": null,
+    "color_range": null,
+    "sample_aspect_ratio": "1:1",
+    "duration_s": 191.583
+  },
+  "audio": {
+    "profile": "LC",
+    "bit_rate": 128000,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": 191.637
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/x-anabology-2105325733312884869/x-anabology-2105325733312884869 [2105324983178219522].mp4",
+  "attempts": [
+    {
+      "step": "x-metadata: syndication JSON",
+      "ok": true,
+      "detail": "2 video(s)",
+      "command": "curl --silent --show-error --location --fail --proto =https --proto-redir =https --retry 3 --max-time 60 --user-agent Googlebot --url 'https://cdn.syndication.twimg.com/tweet-result?id=2105325733312884869&lang=en&token=53q2qb6y5qe'"
+    },
+    {
+      "step": "yt-dlp on the post (guest token, GraphQL)",
+      "ok": true,
+      "detail": "1920x1080 h264 24.0 fps, audio aac, 106087380 bytes",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 -S res,tbr -f 'bv*+ba/b' --retries 10 --fragment-retries 10 --concurrent-fragments 16 --match-filters id=2105324983178219522 --paths /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-x-anabology-2105325733312884869-20261012-031120/01 --output 'x-anabology-2105325733312884869 [%(id)s].%(ext)s' --print 'after_move:%(.{id,format_id,width,height,tbr,url,webpage_url,filepath,title,uploader,upload_date})j' -- https://x.com/anabology/status/2105325733312884869"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:20+02:00"
+}

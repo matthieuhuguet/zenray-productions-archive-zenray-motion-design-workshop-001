@@ -1,0 +1,304 @@
+#!/usr/bin/env python3
+# 12 October 2026, 03:50 CEST: R03 lab, per-event descriptors, distances in JND units and the 99 percent score.
+# Each perceptual cue is measured once (level, time anchor, attack, duration, brightness trajectory, spectral shape,
+# pitch) so that one defect is never counted twice. Then E = sqrt(sum e_k^2), a d'-like combined distance under
+# independent cues, and S = 100 * base ** (E ** 2): S >= 99 exactly when E <= 1 (one JND, all cues combined).
+# FR : chaque indice perceptif est mesuré une seule fois ; S >= 99 si et seulement si E <= 1.
+import math
+from functools import lru_cache
+
+import librosa
+import numpy as np
+
+
+@lru_cache(maxsize=8)
+def mel_bank(sr, n_fft, bands, fmin, fmax):
+    return librosa.filters.mel(sr=sr, n_fft=n_fft, n_mels=bands, fmin=fmin, fmax=fmax)
+
+
+def envelope(x, sr, window_ms, hop_ms):
+    """Short-term RMS in linear amplitude and its time axis (centred boxcar windows)."""
+    win = max(1, int(round(sr * window_ms / 1000.0)))
+    hop = max(1, int(round(sr * hop_ms / 1000.0)))
+    padded = np.concatenate([np.zeros(win // 2), x * x, np.zeros(win)])
+    cums = np.concatenate([[0.0], np.cumsum(padded)])
+    starts = np.arange(0, len(x), hop)
+    energy = (cums[starts + win] - cums[starts]) / win
+    return np.sqrt(np.maximum(energy, 0.0)), starts / sr
+
+
+def smooth_power(env, hop_s, window_s):
+    """Hann smoothing of a power envelope; returns an amplitude envelope again."""
+    n = max(3, int(round(window_s / hop_s)) | 1)
+    kernel = np.hanning(n)
+    kernel /= kernel.sum()
+    return np.sqrt(np.convolve(env * env, kernel, mode="same"))
+
+
+def power_spectrogram(x, n_fft, hop):
+    window = np.hanning(n_fft)
+    padded = np.concatenate([np.zeros(n_fft // 2), x, np.zeros(n_fft)])
+    count = 1 + (len(padded) - n_fft) // hop
+    frames = np.lib.stride_tricks.as_strided(padded, shape=(count, n_fft), strides=(padded.strides[0] * hop, padded.strides[0]))
+    return (np.abs(np.fft.rfft(frames * window, axis=1)) ** 2).T, np.arange(count) * hop
+
+
+def crossing_before(values, times, threshold, stop):
+    """Interpolated time of the first upward crossing of `threshold`, searched up to index `stop`."""
+    hits = np.nonzero(values[: stop + 1] >= threshold)[0]
+    index = int(hits[0]) if hits.size else int(stop)
+    if index <= 0:
+        return float(times[0])
+    a, b = values[index - 1], values[index]
+    frac = 0.0 if b == a else (threshold - a) / (b - a)
+    return float(times[index - 1] + np.clip(frac, 0.0, 1.0) * (times[index] - times[index - 1]))
+
+
+def parabolic_peak(values, index):
+    if 0 < index < len(values) - 1:
+        a, b, c = values[index - 1], values[index], values[index + 1]
+        den = a - 2 * b + c
+        return 0.5 * (a - c) / den if den != 0 else 0.0
+    return 0.0
+
+
+def time_bins(matrix, frame_times, start, end, bins):
+    """Average frames into `bins` equal slices of the active span [start, end] (normalised time)."""
+    edges = np.linspace(start, end, bins + 1)
+    data = np.atleast_2d(matrix)
+    out = np.zeros((data.shape[0], bins))
+    for k in range(bins):
+        sel = (frame_times >= edges[k]) & (frame_times < edges[k + 1])
+        if not sel.any():
+            sel = np.array([np.argmin(np.abs(frame_times - 0.5 * (edges[k] + edges[k + 1])))])
+        out[:, k] = data[:, sel].mean(axis=1)
+    return out
+
+
+def tonal_line(x, sr, span_start, span_end, an):
+    """Dominant spectral line of the active segment: frequency (Welch average of zero-padded segments,
+    parabolic peak) and local prominence against its neighbourhood (+-1/3 octave, line bins excluded).
+    Averaging matters: one periodogram of noise already shows random peaks about 10 dB above the median."""
+    margin = 0.005
+    a, b = max(0, int((span_start - margin) * sr)), min(len(x), int((span_end + margin) * sr) + 1)
+    seg = x[a:b]
+    length = max(min(an["tonalSegment"], len(seg)), 2)
+    step = max(1, length // 2)
+    n_fft = max(an["tonalFft"], 1 << int(math.ceil(math.log2(length))))
+    window = np.hanning(length)
+    starts = range(0, max(len(seg) - length, 0) + 1, step)
+    spec = np.mean([np.abs(np.fft.rfft(seg[i:i + length] * window, n_fft)) ** 2 for i in starts], axis=0)
+    freqs = np.fft.rfftfreq(n_fft, 1.0 / sr)
+    band = (freqs >= an["tonalFMin"]) & (freqs <= an["fMax"])
+    k = int(np.argmax(np.where(band, spec, 0.0)))
+    shift = parabolic_peak(np.log(spec + 1e-30), k)
+    peak_hz = float((k + shift) * sr / n_fft)
+    ratio = 2.0 ** an["tonalNeighbourOct"]
+    lo, hi = peak_hz / ratio, peak_hz * ratio
+    width = max(an["tonalNeighbourMinBins"], 1)
+    idx = np.arange(len(spec))
+    neighbour = ((freqs >= lo) & (freqs <= hi)) | (np.abs(idx - k) <= 4 * width)
+    neighbour &= np.abs(idx - k) > width
+    prominence = float(10 * np.log10((spec[k] + 1e-30) / (np.median(spec[neighbour]) + 1e-30))) if neighbour.any() else 0.0
+    centroid = float((freqs[band] * spec[band]).sum() / (spec[band].sum() + 1e-30))
+    spread = float(np.sqrt((((freqs[band] - centroid) ** 2) * spec[band]).sum() / (spec[band].sum() + 1e-30)))
+    flatness = float(np.exp(np.mean(np.log(spec[band] + 1e-30))) / (np.mean(spec[band]) + 1e-30))
+    return peak_hz, prominence, centroid, spread, flatness
+
+
+def describe(x, cfg):
+    """Descriptors of one isolated event (numbers only, never audio)."""
+    sr = cfg["audio"]["sampleRate"]
+    an = cfg["analysis"]
+    floor = cfg["audio"]["floorAmplitude"]
+    rough, rough_t = envelope(x, sr, an["long"]["envWindowMs"], an["long"]["envHopMs"])
+    rough_db = 20 * np.log10(rough + floor)
+    above = np.nonzero(rough_db >= rough_db.max() - an["spanDb"])[0]
+    rough_span = rough_t[above[-1]] - rough_t[above[0]] if above.size else 0.0
+    is_short = rough_span < an["shortEventSeconds"]
+    res = an["short"] if is_short else an["long"]
+    env, env_t = envelope(x, sr, res["envWindowMs"], res["envHopMs"])
+    hop_s = res["envHopMs"] / 1000.0
+    if not is_short:
+        # Long events are mostly noise-like: smooth the envelope so level, anchor and span do not follow the seed.
+        env = smooth_power(env, hop_s, max(res["smoothMs"] / 1000.0, res["smoothSpanFraction"] * rough_span))
+    env_db = 20 * np.log10(env + floor)
+    if is_short:
+        level_env, _ = envelope(x, sr, an["levelWindowMs"], res["envHopMs"])
+        level_db = float(20 * np.log10(level_env.max() + floor))
+    else:
+        level_db = float(env_db.max())
+    peak_i = int(np.argmax(env))
+    peak = env[peak_i]
+    peak_t = float(env_t[peak_i] + parabolic_peak(env_db, peak_i) * hop_s)
+    onset_t = crossing_before(env, env_t, an["onsetFraction"] * peak, peak_i)
+    t10 = crossing_before(env, env_t, 0.1 * peak, peak_i)
+    t90 = crossing_before(env, env_t, 0.9 * peak, peak_i)
+    attack_s = max(t90 - t10, hop_s)
+    active = np.nonzero(env_db >= env_db[peak_i] - an["spanDb"])[0]
+    span_start, span_end = float(env_t[active[0]]), float(env_t[active[-1]])
+    span = max(span_end - span_start, hop_s)
+    anchor_kind = "peak" if attack_s * 1000.0 >= an["swellAttackMs"] else "onset"
+    # Robust instant of a swell: middle of the two crossings at peak - swellCenterDb (steep slopes, little jitter),
+    # instead of the arg-max of a flat, noisy top. FR : milieu des deux passages a -6 dB, plus stable que le maximum.
+    level_cut = env[peak_i] * 10 ** (-an["swellCenterDb"] / 20.0)
+    left = np.nonzero(env[: peak_i + 1] < level_cut)[0]
+    right = np.nonzero(env[peak_i:] < level_cut)[0]
+    t_left = crossing_before(env, env_t, level_cut, peak_i) if left.size else float(env_t[0])
+    if right.size:
+        k = peak_i + int(right[0])
+        a_, b_ = env[k - 1], env[k]
+        frac = 0.0 if a_ == b_ else (a_ - level_cut) / (a_ - b_)
+        t_right = float(env_t[k - 1] + np.clip(frac, 0.0, 1.0) * (env_t[k] - env_t[k - 1]))
+    else:
+        t_right = float(env_t[-1])
+    centre_t = 0.5 * (t_left + t_right)
+
+    power, starts = power_spectrogram(x, res["nFft"], res["hop"])
+    frame_t = starts / sr
+    # Time bins no shorter than minBinMs: the ear does not follow a brightness trajectory inside 10 ms.
+    bins = int(np.clip(round(span * 1000.0 / an["minBinMs"]), 1, res["timeBins"]))
+    freqs = np.fft.rfftfreq(res["nFft"], 1.0 / sr)
+    mel = mel_bank(sr, res["nFft"], res["melBands"], res["fMin"], an["fMax"]) @ power
+    mel_db = 10 * np.log10(time_bins(mel, frame_t, span_start, span_end, bins) + floor ** 2)
+    band = (freqs >= res["fMin"]) & (freqs <= an["fMax"])
+    binned = time_bins(power[band], frame_t, span_start, span_end, bins)
+    centroid_traj = (freqs[band][:, None] * binned).sum(axis=0) / (binned.sum(axis=0) + 1e-30)
+    peak_hz, prominence, centroid, spread, flatness = tonal_line(x, sr, span_start, span_end, an)
+    return {
+        "resolution": "short" if is_short else "long",
+        "levelDb": level_db,
+        "onsetS": onset_t,
+        "peakS": centre_t,
+        "rawPeakS": peak_t,
+        "anchorKind": anchor_kind,
+        "attackS": attack_s,
+        "spanS": span,
+        "centroidTraj": centroid_traj,
+        "melShape": np.maximum(mel_db - mel_db.max(), -an["melFloorDb"]),
+        "peakHz": peak_hz,
+        "prominenceDb": prominence,
+        "centroidHz": centroid,
+        "spreadHz": spread,
+        "flatness": flatness,
+        "envelopeDb": env_db,
+        "envelopeTimes": env_t,
+    }
+
+
+def anchor_of(desc, kind):
+    return desc["peakS"] if kind == "peak" else desc["onsetS"]
+
+
+def tonal_weight(prominence_db, an):
+    """0 below (threshold - ramp), 1 above the threshold: a continuous switch, so the objective stays smooth."""
+    return float(np.clip((prominence_db - (an["tonalThresholdDb"] - an["tonalRampDb"])) / an["tonalRampDb"], 0.0, 1.0))
+
+
+def brightness_error(ref_traj, syn_traj):
+    """RMS log ratio of two centroid trajectories, resampled to a common number of points if needed."""
+    if len(ref_traj) != len(syn_traj):
+        grid = np.linspace(0.0, 1.0, max(len(ref_traj), len(syn_traj)))
+        ref_traj = np.interp(grid, np.linspace(0.0, 1.0, len(ref_traj)), ref_traj)
+        syn_traj = np.interp(grid, np.linspace(0.0, 1.0, len(syn_traj)), syn_traj)
+    return float(np.sqrt(np.mean(np.log(np.maximum(syn_traj, 1.0) / np.maximum(ref_traj, 1.0)) ** 2)))
+
+
+def compare(ref, syn, cfg):
+    """Errors in JND units for each cue, combined distance E and score S (the reference sets the anchor kind)."""
+    j, an = cfg["jnd"], cfg["analysis"]
+    kind = ref["anchorKind"]
+    # Tolerances: Weber fractions, with an absolute floor where Weber's law breaks down for very short sounds,
+    # and a timing tolerance that widens with the attack (a slow swell has no sharp instant to align).
+    anchor_tol = max(j["anchorMs"], j["anchorAttackFraction"] * ref["attackS"] * 1000.0)
+    attack_tol = max(j["attackRatio"] * ref["attackS"], j["attackMinMs"] / 1000.0)
+    duration_tol = max(j["durationRatio"] * ref["spanS"], j["durationMinMs"] / 1000.0)
+    e = {
+        "level": (syn["levelDb"] - ref["levelDb"]) / j["levelDb"],
+        "anchor": (anchor_of(syn, kind) - anchor_of(ref, kind)) * 1000.0 / anchor_tol,
+        "attack": (syn["attackS"] - ref["attackS"]) / attack_tol,
+        "duration": (syn["spanS"] - ref["spanS"]) / duration_tol,
+        "brightness": brightness_error(ref["centroidTraj"], syn["centroidTraj"]) / math.log1p(j["centroidRatio"]),
+    }
+    if ref["resolution"] == syn["resolution"] and ref["melShape"].shape == syn["melShape"].shape:
+        # Mean absolute dB difference, weighted by how far the louder of the two sits above the floor:
+        # quiet cells are noisy estimates and are masked by the loud ones anyway.
+        weight = np.maximum(ref["melShape"], syn["melShape"]) + an["melFloorDb"]
+        diff = np.abs(ref["melShape"] - syn["melShape"])
+        e["spectralShape"] = float((weight * diff).sum() / (weight.sum() + 1e-30)) / j["melShapeDb"]
+    else:
+        e["spectralShape"] = j["kindMismatchE"]  # one is short and the other long: not the same kind of event
+    weight = tonal_weight(ref["prominenceDb"], an)
+    e["pitch"] = weight * 1200.0 * math.log2(max(syn["peakHz"], 1.0) / max(ref["peakHz"], 1.0)) / j["pitchCents"]
+    e2 = float(sum(v * v for v in e.values()))
+    score = 100.0 * cfg["score"]["base"] ** e2
+    return {"errors": {k: round(v, 4) for k, v in e.items()}, "E": math.sqrt(e2), "E2": e2, "score": score}
+
+
+def mrstft_distance(x, y, x_anchor, y_anchor, cfg):
+    """Multi-resolution STFT distance (spectral convergence + log magnitude), after aligning the anchors.
+    Diagnostic only: it reacts to the noise realisation, so it is not part of the score."""
+    sr = cfg["audio"]["sampleRate"]
+    shift = int(round((y_anchor - x_anchor) * sr))
+    if shift > 0:
+        y = y[shift:]
+    elif shift < 0:
+        y = np.concatenate([np.zeros(-shift), y])
+    n = max(len(x), len(y))
+    x = np.pad(x, (0, n - len(x)))
+    y = np.pad(y, (0, n - len(y)))
+    eps = cfg["analysis"]["mrstftEps"]
+    total = 0.0
+    for size in cfg["analysis"]["mrstftSizes"]:
+        sx, _ = power_spectrogram(x, size, size // 4)
+        sy, _ = power_spectrogram(y, size, size // 4)
+        mx, my = np.sqrt(sx), np.sqrt(sy)
+        total += np.linalg.norm(mx - my) / (np.linalg.norm(mx) + 1e-30) + np.mean(np.abs(np.log(mx + eps) - np.log(my + eps)))
+    return float(total / len(cfg["analysis"]["mrstftSizes"]))
+
+
+def envelope_correlation(a, b, kind):
+    """Pearson correlation of the dB envelopes on a common grid starting at each anchor (diagnostic)."""
+    floor_db = a["levelDb"] - 50.0
+    hop = a["envelopeTimes"][1] - a["envelopeTimes"][0]
+    length = max(a["spanS"], b["spanS"]) + 0.02
+    grid = np.arange(-0.01, length, hop)
+    ya = np.interp(anchor_of(a, kind) + grid, a["envelopeTimes"], np.maximum(a["envelopeDb"], floor_db))
+    yb = np.interp(anchor_of(b, kind) + grid, b["envelopeTimes"], np.maximum(b["envelopeDb"], floor_db))
+    if np.std(ya) == 0 or np.std(yb) == 0:
+        return 0.0
+    return float(np.corrcoef(ya, yb)[0, 1])
+
+
+def abx_correct(d_prime):
+    """Expected proportion correct in an ABX test for a combined distance d' (differencing model,
+    Macmillan and Creelman): Pc = Phi(d/sqrt2) Phi(d/sqrt6) + Phi(-d/sqrt2) Phi(-d/sqrt6)."""
+    phi = lambda z: 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+    a, b = phi(d_prime / math.sqrt(2.0)), phi(d_prime / math.sqrt(6.0))
+    return a * b + (1.0 - a) * (1.0 - b)
+
+
+def compare_corrected(ref, syns, cfg):
+    """Noise-ceiling corrected comparison of one reference against N realisations of a recipe (different seeds).
+    For each cue: corrected = max(0, mean_s e(ref, s)^2 - mean_pairs e(s, t)^2). The second term is what two
+    realisations of the same recipe already differ by (the realisation floor), so what remains estimates the
+    squared systematic error, the only part a parameter can fix. Returns corrected E and S, plus the floor.
+    FR : on retire ce que deux tirages de la meme recette different deja ; il reste l'erreur systematique."""
+    cross = [compare(ref, s, cfg)["errors"] for s in syns]
+    pairs = [compare(syns[i], syns[k], cfg)["errors"] for i in range(len(syns)) for k in range(i + 1, len(syns))]
+    keys = list(cross[0])
+    cross_ms = {k: float(np.mean([c[k] ** 2 for c in cross])) for k in keys}
+    self_ms = {k: float(np.mean([p[k] ** 2 for p in pairs])) if pairs else 0.0 for k in keys}
+    bias = {k: float(np.mean([c[k] for c in cross])) for k in keys}
+    corrected = {k: max(0.0, cross_ms[k] - self_ms[k]) for k in keys}
+    e2 = float(sum(corrected.values()))
+    floor_e2 = float(sum(self_ms.values()))
+    raw_e2 = float(sum(cross_ms.values()))
+    base = cfg["score"]["base"]
+    return {
+        "E": math.sqrt(e2), "score": 100.0 * base ** e2,
+        "floorE": math.sqrt(floor_e2), "floorScore": 100.0 * base ** floor_e2,
+        "rawE": math.sqrt(raw_e2), "rawScore": 100.0 * base ** raw_e2,
+        "corrected": {k: round(math.sqrt(v), 4) for k, v in corrected.items()},
+        "bias": {k: round(v, 4) for k, v in bias.items()},
+    }

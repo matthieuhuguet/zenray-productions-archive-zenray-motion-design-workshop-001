@@ -1,0 +1,415 @@
+# R06 : intégration de ZenRay Motion Design au site ZenRayProgress (12 October 2026)
+
+Projet Assets `zenray-motion-design`, atelier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`. Ce document répond à la tâche R06 du flux de recherche : il décrit, fichier et ligne à l'appui, la manière dont le site déclare et route ses vues, lit et publie ses vidéos, range les projets dans ZenRay Assets et confie une action au Mac, puis il propose un plan d'implémentation de l'onglet Motion Design. Aucun fichier du dépôt n'a été modifié : les seules commandes lancées sont des lectures (`git status`, `git show origin/main:<fichier>`, `git ls-remote`, `lsof`, lecture de l'état local d'Assets et du paquet HyperFrames installé).
+
+Convention de provenance, reprise de R08 : **M** signifie mesuré par une commande le 12 October 2026, **R** relu dans le code ou un document (fichier et lignes donnés), **S** supposé ou estimé, que rien n'a encore vérifié.
+
+Repère de version (M). Les numéros de ligne renvoient à `origin/main` tel que le Mac le connaît, commit `ff3649c1` du 12 October 2026 à 02:56. Le worktree principal `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress` se trouve en retard de 23 commits sur cette référence et porte 11 fichiers modifiés et 26 fichiers non suivis ; pour tous les fichiers cités ici, son contenu est identique à `origin/main`, à l'exception de `VideoPlayer2.jsx` dont les dix lignes de différence (menu audio) ne touchent aucune ligne citée. Il s'ensuit que l'implémentation devra partir d'un worktree propre créé depuis `origin/main` après `git fetch`, et jamais de ce worktree principal.
+
+## 1. L'essentiel (12 October 2026)
+
+La barre latérale de gauche est une liste unique, `NAV`, dont chaque entrée porte une clé de vue, et `App.jsx` monte la vue correspondante par un rendu conditionnel précédé d'un import paresseux ; ajouter Motion Design revient donc à une ligne dans `NAV`, trois libellés de traduction, un import et une ligne de rendu, auxquels s'ajoutent un test et, si l'on veut qu'un motion s'ouvre depuis Create, un type de nœud `.zmotion.json` calqué sur `.zmedia.json` (R).
+
+Les vidéos se lisent toutes par un lecteur unique, `VideoPlayer2`, qui préfère le HLS ou le DASH quand le manifeste en porte (playlists servies depuis le dépôt privé `zenray-data` par `/api/hls`, segments publics servis par jsDelivr sur un commit épinglé) et retombe sinon sur la vidéo brute chiffrée lue par un Service Worker (R). La voie de publication la plus proche du besoin est l'empaquetage CMAF ajouté du 10 au 12 octobre pour les films, `AttachVideoCmafDashHls.mjs`, qu'il faudra toutefois paramétrer avant de l'employer pour les motions, parce qu'il écrit le nom du fichier dans les chemins et les messages de commit d'un dépôt public, qu'il partage un compteur de shard avec l'ouvrier des films et qu'il commite le manifeste séparément de tout index (R).
+
+Le site sait déjà faire exécuter une action par le Mac : deux ponts locaux bâtis sur le même patron (Assets sur le port 3100, Freelance sur le port 3101), et un fichier de demande déposé dans `zenray-data` que le moteur Freelance relit à chaque passe (R). La demande d'itération d'un motion reprend ce double patron, avec un service `com.zenray.motion` sur `127.0.0.1:3102` quand le Mac répond et une file `_requests/` dans `zenray-data` quand il dort.
+
+Le catalogue des motions vivrait dans un arbre dédié, `pages/ZenRayMotionDesign/`, écrit par le seul service du Mac, dans le même commit que les manifestes qu'il cite, et lu par la galerie en une seule requête hors quota ; l'arbre `pages/ZenRayAssets/zenray-motion-design/` reste la propriété exclusive du service Assets, qui y archive les sources de composition.
+
+## 2. Barre latérale et routage des vues (12 October 2026)
+
+### 2.1 La déclaration des entrées (12 October 2026)
+
+`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/components/Sidebar.jsx`, lignes 134 à 204, exporte `NAV`, un tableau d'objets `{ key, label, labelKey, zone, zoneKey, sgroupe }` (R). La clé `key` est celle que reçoit `setView`, `label` sert de repli et de titre d'onglet par `libelleDeVue` (lignes 208 à 211), `labelKey` désigne la traduction `nav.*`, `zone` la section repliable (Create, Gallery, Learn, Apps, Système) et `sgroupe` l'intertitre léger de la zone Create (Craft, QuickTools), ajouté le 5 septembre sans déplacer aucune entrée.
+
+L'ordre actuel de Craft est le suivant : `pages` (135), `progress` (138), `assets` (142), `plan` (144), `postkit` (147), `media` (150), `notes` (154), `audio` (159), `shelf` (160), `ref-library` (164), `houdini` (167) ; QuickTools commence à `timer` (172) et finit à `freelance` (182) ; les galeries viennent du registre `POINTER_GALLERIES` (190), puis Learn (196), Apps (197 à 199) et Système (200 à 203) (R).
+
+La boucle de rendu (lignes 279 à 305) affiche un intertitre à chaque changement de zone ou de sous-groupe, et le clic (ligne 299) appelle `setView(n.key)` pour toute entrée, sauf `audio` et `notes` qui délèguent à des fonctions d'ouverture. Le repli des zones est mémorisé sous la clé `zr:navCollapsed` (lignes 10 et 215). Les libellés viennent de `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/i18n/dict.js`, blocs `nav` aux lignes 29 (français), 134 (anglais) et 239 (japonais), avec repli sur le français puis sur la clé brute (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/i18n/useT.js`) (R).
+
+### 2.2 Le routage d'une vue (12 October 2026)
+
+Dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/App.jsx` (R) :
+
+| Lignes | Rôle |
+|---|---|
+| 105 à 128 | imports paresseux, tous par `lazyRetry` (obligatoire depuis le 12 juillet, `docs/INDEX-ERREURS-FEATURES.md` lignes 105 et 106) |
+| 190 | état `view` : `?view=assets` est le seul lien profond accepté ; sinon `resolveInitialView(localStorage)` |
+| 196 à 200 | titre d'onglet (`libelleDeVue`, `titreOnglet`) et persistance (`persistView`, clé `zr:view`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/viewPersistence.js` lignes 5 à 15) |
+| 240 à 243 | navigation découplée : l'événement `zr:navigate` porte une clé de vue et appelle `setView` |
+| 298 à 302 | `zr:media-open` bascule sur `media` ; MediaApp écoute le même événement pour charger le document |
+| 365 | la classe de thème `zr-dark` est posée sur le conteneur racine de l'application |
+| 415 et 428 | marges de scène, et liste des vues qui n'ont pas l'enveloppe de verre `.zr-stage` (pages, skills, plan, media, timer, houdini) |
+| 429 à 477 | rendu conditionnel, par exemple `progress` (452), `postkit` (453), `assets` (454), `media` (461), `freelance` (475) |
+
+Le test `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/titreOnglet.test.js` exige que les clés de Create aient un libellé (lignes 31 à 35), que `NAV` compte plus de douze entrées (lignes 48 à 51) et qu'aucun libellé ne porte de tiret long (lignes 16 à 22) (R).
+
+### 2.3 Ajouter l'entrée « Motion Design » (12 October 2026)
+
+Je recommande de placer l'entrée juste après `media`, dans Craft (S, choix de goût qui revient à Matthieu). ZenRayMedia et Motion Design transforment tous deux des compositions HTML en médias publiables, le premier en posts et articles, le second en vidéos rendues par HyperFrames, si bien qu'ils forment une paire de studios ; l'insertion ne déplace aucune frontière de sous-groupe. L'autre place défendable serait après `houdini` (ligne 167), parmi les outils procéduraux.
+
+Les retouches nécessaires, sans écrire de code à ce stade :
+
+1. `Sidebar.jsx`, après la ligne 150 : `{ key: 'motion', label: 'Motion Design', labelKey: 'nav.motion', zone: 'Create', zoneKey: 'nav.zoneCreate', sgroupe: 'Craft' }`, avec son commentaire daté en anglais puis en français.
+2. `dict.js` : `motion: 'Motion Design'` après `media` dans les blocs français (ligne 45) et anglais (ligne 150), `motion: 'モーションデザイン'` dans le bloc japonais (ligne 255).
+3. `App.jsx` : `const LazyMotionDesignView = lazyRetry(() => import('./motion/MotionDesignView.jsx'))` à côté des lignes 107 à 109, puis `{view === 'motion' && <React.Suspense …><LazyMotionDesignView t={t} /></React.Suspense>}` à côté de la ligne 453.
+4. `App.jsx` ligne 190 : accepter `?view=motion&motion=<id>&v=V_008`, en remplaçant le cas particulier de `assets` par une liste blanche de clés présentes dans `NAV`, afin qu'une valeur arbitraire ne devienne jamais une vue.
+5. Un écouteur `zr:motion-open` jumeau de celui des lignes 298 à 302, pour ouvrir un motion depuis Create.
+6. Le type de nœud `.zmotion.json`, déclaré dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/create/node.js` (expression `LEAF_EXT_RE` ligne 4 et `typeOfPath` lignes 9 à 35), dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/server/extensionsNoeuds.js` (`EXTENSIONS_NOEUDS`, lignes 22 à 34, que le test du registre compare à toutes les autres copies) et dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/create/registry.jsx` (lignes 116 et 117, puis une entrée de `REGISTRY` dont le rendu imite `ZMediaRenderer`, lignes 97 à 114).
+7. Ajouter `motion` à la liste du test `titreOnglet.test.js` (ligne 33) et écrire les tests de la nouvelle vue.
+
+Je déconseille d'ajouter `motion` à la liste de la ligne 428 : la galerie peut vivre dans l'enveloppe `.zr-stage` standard, son rail intérieur compris, ce qui évite un second verre à régler.
+
+## 3. La lecture des vidéos (12 October 2026)
+
+`resolveMediaViewerRoute` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/media/mediaViewerRoute.js`, lignes 58 à 100) choisit un seul moteur par manifeste, et `VideoViewerAdapter.jsx` (lignes 12 à 31) le monte ; `isUnifiedVideoManifest` (lignes 30 à 39) n'exige qu'un champ `master` pour le type `hls` (R).
+
+| Manifeste | Moteur | Octets | Chemin de lecture | Référence |
+|---|---|---|---|---|
+| `master` présent (types `hls` ou `video-raw`) | `VideoPlayer2` avec hls.js, Safari natif en repli | playlists dans `zenray-data`, segments CMAF sur un shard public | `/api/hls?path=` pour les playlists, jsDelivr épinglé pour les segments | `VideoPlayer2.jsx` lignes 69 à 77 et 165 à 253 ; `server/hls.js` lignes 16 à 69 |
+| `mpd` seul (type `dash`) | `VideoPlayer2` avec dash.js | idem, `<BaseURL>` jsDelivr | `/api/hls?path=<…>.mpd` | mêmes lignes |
+| `video-raw` sans `master` ni `mpd` | Service Worker de plage et déchiffrement AES-GCM | parts de 95 Mo sur des shards privés | fichier virtuel `/zr-stream/<id>`, jeton `/api/raw-token`, lectures comptées dans le quota REST | `VideoPlayer2.jsx` lignes 258 à 288 ; `src/lib/vidStream.js` ; `public/zr-stream-sw.js` |
+| `youtube` | IFrame API, contrôles natifs | YouTube | aucun stockage | `VideoPlayer2.jsx` lignes 305 et suivantes |
+| `mse-av` | `StreamVideoMSE` | shards | lecture par fragments | `mediaViewerRoute.js` lignes 85 à 90 |
+| MP4 simple | `StreamVideo` par `/api/stream`, chemin déprécié | shard | réponse plafonnée par l'hébergeur | `mediaViewerRoute.js` lignes 92 à 95 |
+
+Les chemins complets sont `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/components/VideoPlayer2.jsx`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/server/hls.js`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/vidStream.js` et `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/public/zr-stream-sw.js`.
+
+Quatre faits gouvernent l'usage pour les motions. Le premier tient au cache : `/api/hls` garde une playlist une heure en mémoire et un jour en périphérie (`s-maxage=86400`, `server/hls.js` lignes 31 à 34 et 64 à 66), et jsDelivr garde une URL épinglée sur un commit « effectivement pour toujours » contre douze heures pour une branche ([jsDelivr](https://github.com/jsdelivr/jsdelivr)) ; une version publiée doit donc être immuable, et toute correction devient une nouvelle version à un nouveau chemin (R). Le deuxième tient à la taille : jsDelivr ne sert pas un fichier GitHub de plus de 20 Mo ([jsDelivr](https://github.com/jsdelivr/jsdelivr)), contrainte déjà inscrite dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/config/chunkPolicy.js` (`CDN_SERVE_MAX` ligne 22, `CDN_CHUNK` ligne 37) (R). Le troisième tient à la vignette : le poster d'une vidéo est toujours une URL jsDelivr publique épinglée, jamais `/api/raw-proxy`, règle épinglée du projet `zenray-progress` vérifiée par `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/CheckFilmPosters.mjs` (R). Le quatrième tient au quota : la tuile vidéo de Create relit chaque manifeste par l'API contents (`src/create/Pages.jsx` ligne 712 sur `origin/main`), ce que la galerie des motions doit éviter en lisant poster, durée, titre et version dans un catalogue unique (R).
+
+## 4. Publier une vidéo produite sur le Mac (12 October 2026)
+
+### 4.1 Les voies qui existent (12 October 2026)
+
+| Voie | Commande ou geste | Ce qu'elle produit | Référence (R) |
+|---|---|---|---|
+| Dépôt dans Create, site servi par le serveur local | glisser une vidéo | `POST /api/transcode-local`, puis `scripts/video-hls.mjs --push` (HLS AES-128 sur `zenray-vid-public-NN`, clé par `/api/hls-key`), progression en flux SSE | `src/capture/universalCapture.js` lignes 493 à 525 ; `scripts/local-server.mjs` lignes 105 à 135 |
+| Repli depuis le site publié | commande copiée par `/api/upload-cmd` | la même commande, à coller dans le Terminal | `server/upload-cmd.js` |
+| Archive privée chiffrée | `node scripts/upload-mapped-git.mjs <plan.json>` | manifeste `video-raw`, parts AES-GCM privées, Git seul | référence `Upload.md` du skill `zenray-assets` |
+| Diffusion HLS et DASH | `node scripts/AttachVideoCmafDashHls.mjs --source <mp4> --manifest <clone>/pages/…/<nom>.media.json --manifest-clone <clone>` | segments CMAF et poster sur `zenray-vid-public-NN`, playlists dans `.streams/<vidId>/`, champs `master`, `mpd`, `poster`, `hlsDashVerified` | `scripts/AttachVideoCmafDashHls.mjs` lignes 149 à 157, 180 à 183, 226, 241, 276 à 279, 305 et 336 |
+| Lien YouTube non répertorié | `createYoutubeLinkNode(url, dest)` | nœud de référence, aucun stockage | `src/lib/youtubeLink.js` |
+
+Les fichiers se trouvent sous `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/` (`src/capture/universalCapture.js`, `scripts/local-server.mjs`, `server/upload-cmd.js`, `scripts/upload-mapped-git.mjs`, `scripts/AttachVideoCmafDashHls.mjs`, `src/lib/youtubeLink.js`), et la référence d'upload sous `/Users/zenray/.claude/skills/zenray-assets/references/Upload.md`. Le flux des films, décrit dans `/Users/zenray/.claude/skills/zenray-assets/SKILL.md` (section du 11 October 2026), enchaîne archive chiffrée, empaquetage CMAF, sous-titres, vérification cloud puis déchargement local (R). Une divergence reste ouverte : `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/docs/VIDEO-PIPELINE-CANONICAL.md` annonce depuis le 16 juillet que le dépôt depuis l'interface écrit du `mse-av`, alors que le code du serveur local lance `video-hls.mjs` (R, non tranché).
+
+L'empaquetage CMAF ne peut se lancer qu'à partir d'un manifeste présent dans le clone, mais il l'ajoute lui-même au commit (`git add` du manifeste avec les playlists, lignes 296 à 300), ce qui permet de lui confier un manifeste neuf de type `hls` (R).
+
+### 4.2 La voie recommandée pour un motion (12 October 2026)
+
+Un motion se rend en MP4 H.264 avec son AAC, se vérifie sur ce MP4, puis s'empaquette en CMAF par copie de flux, sans réencodage, comme les films. Cette voie demande cependant six aménagements, qui relèvent de la loi HDA (une définition paramétrée, plusieurs instances) plutôt que d'un script nouveau :
+
+1. Un nom public neutre. `vidId` commence par le nom du fichier de manifeste (lignes 181 à 183), passe dans les messages de commit du dépôt public (lignes 208 et 217) et dans ses chemins (ligne 226) ; les motions doivent porter un identifiant comme `zrmd-0001`, jamais le titre humain ni la marque de la référence, conformément à la règle P0 anti-fuite du dépôt (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/CLAUDE.md`, lignes 491 à 530).
+2. Une famille de shards publics propre aux motions, avec son compteur dans `pages/ZenRayMotionDesign/.zr-motion-shard.json`. Le compteur actuel `pages/.zr-vid-drive.json` et le verrou `GitShards.shard-lock` appartiennent à l'ouvrier des films, qui tourne en voies parallèles (skill `zenray-assets`, sections du 12 October 2026) ; les partager créerait deux écrivains sur le même fichier. `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/lib/public-shard.mjs` porte déjà ses réglages dans un seul objet `PUBLIC_SHARD` (lignes 8 à 16) : il suffit de passer cet objet en paramètre d'`allocatePublicShard` (ligne 41).
+3. Un seul commit dans `zenray-data` pour le manifeste de version, ses playlists, la fiche `.zmotion.json`, le catalogue et l'état de la demande. Le dépôt pose lui-même cette condition : un manifeste écrit dans le même commit que son contenu n'est pas une seconde vérité, un index reconstruit à part en est une (`CLAUDE.md` lignes 336 à 344). Cela suppose d'extraire d'`AttachVideoCmafDashHls.mjs` une fonction de bibliothèque qui rend la liste des fichiers à écrire, la commande actuelle restant l'instance des films, puis d'écrire ce lot par `createCloudStore` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Freelance/CloudStore.mjs`, lignes 16 à 80), qui recalcule tout depuis l'état distant le plus frais quand un push est refusé.
+4. Un poster pris à l'instant du plan héros, fourni par le moteur, toujours vérifié sur le CDN avant l'écriture du manifeste (`isPublicPosterUrl` et `verifyPublicPoster` de `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/lib/film-poster.mjs`).
+5. Un seul appel d'indexation (`index-add`) en fin de publication, pour que le motion se retrouve par la recherche, conformément à la règle d'un appel unique par passage (`docs/INDEX-ERREURS-FEATURES.md`, lignes 124 à 146).
+6. Les tailles importées de `src/config/chunkPolicy.js`, alors qu'`AttachVideoCmafDashHls.mjs` redéfinit aujourd'hui `CDN_CHUNK` et `PUBLIC_VIDEO_SHARD_BIN_BYTES` en dur (lignes 16 et 17), contre la règle de la source unique (`CLAUDE.md` lignes 65 à 73).
+
+HyperFrames 0.8.147 sait rendre directement du HLS (`--format hls --output stream/`, M, chaîne présente dans le paquet installé sous `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/`), mais je ne le recommande pas, puisque la vérification travaille sur le MP4 et que les playlists devraient de toute façon être réécrites vers jsDelivr et `/api/hls`. La commande `npx hyperframes publish` héberge le projet chez HeyGen (README du paquet installé) et ne doit pas servir de publication.
+
+Pour une étude qu'on ne veut pas rendre lisible par URL, la voie privée reste l'archive `video-raw` par `upload-mapped-git.mjs`, lisible seulement avec le code du drive, le poster demeurant public selon la règle. Le choix entre public et privé, qui touche aux études dérivées de publicités de tiers, revient à Matthieu (décision D10).
+
+## 5. ZenRay Assets : rangement cloud, page Assets, LOAD et UNLOAD (12 October 2026)
+
+### 5.1 Le rangement d'un projet dans le cloud (12 October 2026)
+
+Le dossier cloud d'un projet est `pages/ZenRayAssets/<id>`, racine fixée par `cloudRoot` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/AssetsConfig.json`, ligne 23) et imposée par `normalizeWorkspaceProject` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/projectWorkspace.js`, lignes 25 à 45, identifiant conforme à `^[a-z0-9]+(?:-[a-z0-9]+)*$`, ligne 6) (R). Chaque source y reçoit `pages/ZenRayAssets/<id>/sources/<namespace>/<sourceId>/<chemin relatif>` (`sourceCloudFolder` et `workspaceCloudPath`, lignes 47 à 55) ; chaque fichier y devient un manifeste `.file.json` privé dont les morceaux nommés par empreinte vivent sur des dépôts publics `zenray-productions-archive-*`, par `archive-folder.mjs` que le service lance (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/AssetsService.mjs`, lignes 866 à 888) (R).
+
+Le même dossier porte `.workspace.json` (instantané complet) et `.context.md` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/AssetsCloudPublisher.mjs`, lignes 90 et 112), tandis que l'index léger de tous les projets est `pages/.zr-assets-workspaces-index.json` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/assetsWorkspaceCatalogue.js`, ligne 3), dont `summarizeWorkspaceProject` (lignes 17 à 40) refuse tout dossier qui ne serait pas `pages/ZenRayAssets/<id>` ; l'ancien registre `pages/.zr-assets-workspaces.json` n'est relu qu'en migration (R).
+
+État mesuré du projet (M, `/Users/zenray/Library/Application Support/ZenRayAssets/Projects.json` et `Project-zenray-motion-design.json`) : dossier `pages/ZenRayAssets/zenray-motion-design`, source `workshop` (espace `tmp`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design`, `keep` faux) et source `project-notes` (espace `memory`, `/Users/zenray/.claude/Memory1/Projects/zenray-motion-design`, `keep` vrai), surveillance active, quatorze fichiers inventoriés. Le cache des références `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache` n'appartient à aucune source et n'est donc jamais archivé.
+
+### 5.2 La lecture de la page Assets (12 October 2026)
+
+`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/components/assets/AssetsWorkspaceView.jsx` crée le client du pont (ligne 25), fixe ses réglages (ligne 26 : sondage toutes les 1,5 s, délai d'opération d'une heure) et lit le cloud par `readCloud` (lignes 28 à 41), qui passe par `urlLectureAffichage`, donc hors quota (R). `refresh` (lignes 127 à 160) lit en parallèle l'ancien registre, l'index léger, l'index de recherche et l'état du pont local (`readLocalWorkspaces`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/assetsWorkspaceBridge.js` lignes 6 à 31) ; quand le pont ne répond pas, le `.workspace.json` du projet choisi se relit avec `fresh=1` (`workspaceSnapshotRequest`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/assetsWorkspaceViewModel.js` lignes 11 à 16).
+
+La liste des fichiers réunit l'inventaire vivant du Mac, dont chaque fichier porte un état (`deriveWorkspaceFileStatus`, `projectWorkspace.js` ligne 66 : local seulement, en attente, modifié, sauvegardé, vérifié), et les fichiers cloud déduits des chemins de l'index sous le dossier du projet (`cloudWorkspaceFiles`, `assetsWorkspaceViewModel.js` lignes 18 à 29, état `cloud-only`, fichiers cachés et playlists exclus) (R).
+
+LOAD, UNLOAD et RECOVER passent par `runJob` (`AssetsWorkspaceView.jsx` lignes 242 à 275) : la page demande `restore`, `unload` ou `recover` au pont, puis relit `status` toutes les 1,5 s jusqu'à l'état `done` ou `error`, avec une notification `notifyProgress` (R). Les plans `load-plan` et `unload-plan` décrivent l'opération avant de la lancer (`AssetsService.mjs` lignes 1743 à 1758), et le service range chaque opération dans sa file (`enqueue`, ligne 653, verrou `writer.lock` ou `workspace-<id>.lock`). Après un LOAD, le répertoire de travail actif devient `<workspace.path>/sources/tmp/<sourceId>` (`projectWorkshopPath`, `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/projectContextIndex.js` lignes 18 à 23) : le moteur des motions doit résoudre son dossier par cette fonction et l'état du pont, jamais en écrivant le chemin TMP en dur.
+
+### 5.3 Ce que cela implique pour les motions (12 October 2026)
+
+L'archive et la diffusion sont deux preuves distinctes, comme le rappelle le skill `zenray-assets` : la source de composition de chaque version (paramètres, gabarit, composition cuite, rapports de vérification) part seule dans l'archive dès qu'elle se pose dans l'atelier surveillé, tandis que la vidéo regardable vient de la publication CMAF. Les rendus MP4 de la première étude pèsent 11,4 à 14,2 Mo pour 68 s et les animatiques 46 à 52 Mo (M, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/renders/`) ; les laisser dans l'atelier doublerait chaque version publiée, d'où la recommandation d'exclure `motions/*/V_*/renders/` de la source `workshop` et de garder le flux publié comme copie de référence (décision D5). Le LOAD dont la vue montage a besoin passe par le pont Assets (`load-plan` puis `restore` sur les identifiants de fichiers `workshop:motions/<id>/…`), jamais par un second chargeur.
+
+## 6. Faire exécuter une action du site par le Mac (12 October 2026)
+
+### 6.1 Les mécanismes existants (12 October 2026)
+
+| Mécanisme | Adresse | Fichiers (R) | Sens et usage |
+|---|---|---|---|
+| Pont Assets | `POST http://127.0.0.1:3100/api/assets-workspace` | LaunchAgent `com.zenray.assets` par `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Assets/Daemon.mjs`, qui lance `scripts/local-server.mjs` (route lignes 101 et 102) ; `AssetsService.mjs` `request` ligne 1402, `handleHttp` lignes 1792 à 1830 ; client navigateur `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/projectBridge.js` (lignes 4 à 55) ; client Node `requestAssets` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Assets/BridgeClient.mjs`, lignes 9 à 22) | inventaire, archive, LOAD, UNLOAD, conversations, aperçus |
+| Pont Freelance | `POST http://localhost:3101/api/freelance-engine` | `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Freelance/Main.mjs`, `Service.mjs` lignes 70 à 114 ; client `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/freelanceBridge.js` (ligne 6) | « Rechercher maintenant » ; le moteur écrit ensuite ses résultats par Git (`CloudStore.mjs`) |
+| Fichier de demande dans `zenray-data` | `freelance/my-searches.json` | `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/docs/FREELANCE-ENGINE.md` (section du 5 October 2026) | la page écrit, le moteur relit à la passe suivante, même après un Mac endormi |
+| Relais du journal | `GET http://127.0.0.1:47831/journal`, `/events`, `/activity`, `/status` | `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/relay/journal-relay.mjs` (lignes 23 à 41 et 200 à 271) | lecture en direct sur le Mac, repli distant `/api/journal` ailleurs |
+| Transcodeur local | `/api/transcode-local`, `/api/transcode-events`, `/api/transcode-status` | `scripts/local-server.mjs` lignes 105 à 135 | seulement quand la page est servie par le serveur local |
+| API PostKit | `http://127.0.0.1:8787` | `src/postkit/` | produit séparé dont la vue ne parle qu'à l'API |
+
+La « file de commandes » existante est celle du service Assets : chaque opération y devient un job (`queued`, `running`, `done`, `error`, `interrupted`) que la page suit par `status`. Le journal `cmdlog` (`server/cmdlog.js`) n'est qu'un anneau en mémoire des écritures Git, anonymisé, et ne transporte aucune commande (R).
+
+### 6.2 Le modèle de sécurité commun (12 October 2026)
+
+Les deux ponts écoutent sur la boucle locale seulement (`scripts/local-server.mjs` ligne 228), refusent une adresse distante qui n'est pas la boucle locale (`AssetsService.mjs` ligne 1794), refusent une origine absente de la liste (`AssetsConfig.json` lignes 6 à 16, qui inclut `https://zenray-progress.pages.dev`, et `AssetsService.mjs` ligne 1797), refusent une requête de navigateur sans origine venue d'un autre site (ligne 1798), exigent un en-tête client (`x-zr-assets-client: 2`, ligne 1808), comparent `x-zr-auth` à temps constant seulement si `ZENRAY_API_SECRET` est défini, bornent le corps à 256 Kio (ligne 1822) et répondent à `OPTIONS` avec `access-control-allow-private-network: true` (ligne 1804) (R). Le démon Assets lance son serveur avec un secret vide (`Daemon.mjs` ligne 28), si bien que le pont Assets ne vérifie pas le code du drive et repose sur la boucle locale, l'origine et l'en-tête (R).
+
+Chrome a remplacé le contrôle préalable « Private Network Access » par une permission « Local Network Access » que l'utilisateur accorde une fois par site ([Chrome for Developers, 9 June 2025](https://developer.chrome.com/blog/local-network-access) ; [intention d'expédition](https://groups.google.com/a/chromium.org/g/blink-dev/c/cwu_RUmBpzY/m/hk8YuZDWHgAJ)) ; une source secondaire situe l'invite à partir de Chrome 142 ([University of Illinois](https://help.uillinois.edu/TDClient/37/uic/KB/ArticleDet?ID=2993)). Le skill `zenrayprogress-context` constate que le Chrome du Mac joint déjà le relais local depuis le site publié, ce qui laisse supposer que la permission est accordée à `zenray-progress.pages.dev` (S).
+
+La politique de sécurité de contenu, encore en mode rapport seul, ne liste que `http://127.0.0.1:47831` dans `connect-src` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/public/_headers` ligne 11 et `vercel.json`) : les ports 3100 et 3101 y manquent déjà, et le port du service des motions devra y entrer dans les deux fichiers, dont `tests/hebergement.test.js` contrôle la parité (R).
+
+### 6.3 L'interface « demander une itération » (12 October 2026)
+
+Je recommande un service distinct, `com.zenray.motion`, sur le port 3102 (libre, M par `lsof`), bâti sur le patron Freelance plutôt que greffé au démon Assets : un rendu HyperFrames occupe le processeur environ 70 s pour 68 s de film (R, skill `zenray-motion-design`), et le démon Assets ne doit pas redémarrer tant qu'une archive écrit (skill `zenray-assets`, section du 9 October 2026), de sorte qu'un service séparé isole les redémarrages, les journaux et les verrous. Le client navigateur emploie une origine absolue, comme `freelanceBridge.js`, parce que le serveur de développement Vite renvoie tout `/api` vers le port 3100 (`vite.config.js` ligne 11).
+
+Le service exposerait les actions suivantes, toutes validées par schéma :
+
+| Action | Effet |
+|---|---|
+| `status` | santé, file, moteur détecté, version de HyperFrames, dernière publication |
+| `catalogue` | vue locale, versions en cours et non publiées comprises |
+| `request` | crée une demande (`params`, `fit`, `format`, `instruction`, `new-from-reference`) et, si le mode est déterministe, la lance |
+| `job` | état et étapes d'une demande |
+| `cancel` | interrompt une demande en file ou en cours |
+| `timeline` | plans, coupes et fenêtres de légendes d'une version, pour la vue montage |
+| `snapshot` | images d'une version à des instants donnés, par `npx hyperframes snapshot` |
+| `preview-url` | URL d'aperçu signée HMAC et valable dix minutes (rendu local, image de référence), sur le modèle d'`AssetsService.mjs` lignes 1527 à 1532 et 1832 à 1854 |
+| `open-studio` | lance `npx hyperframes preview --background --json --port <p>` et rend l'adresse du studio |
+| `publish` | publie une version rendue et vérifiée, en un commit |
+| `load` | délègue le chargement au pont Assets par `requestAssets` |
+
+Le déroulé d'une demande serait le suivant :
+
+1. La page envoie `request` au pont ; si le pont ne répond pas, elle écrit `pages/ZenRayMotionDesign/_requests/<requestId>.json` par `saveJsonWithRetry` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/saveJson.js`, ligne 22) et affiche « en attente du Mac ».
+2. Le service valide la demande : identifiant de motion, version de base existante, clés de paramètres dans la liste exposée (au plus huit par catégorie, avec bornes et pas), texte borné, aucun chemin dans la charge utile ; un refus s'affiche avec sa cause.
+3. Il réserve le numéro de version suivant sous verrou (`V_001` à `V_999`, jamais réutilisé, un échec gardant son numéro avec l'état `failed`).
+4. Il appelle le moteur : copie des paramètres de la base, surcharges, cuisson, lint, rendu, couche sonore, vérification de fidélité.
+5. Il publie en un commit (section 4.2), indexe une fois, demande au pont Assets l'archive des fichiers de la version, puis écrit `<requestId>.status.json`.
+6. La page suit `job` toutes les 1,5 s tant que l'onglet est visible, ou relit l'état cloud toutes les 30 s avec `fresh=1` quand le Mac n'est pas joignable, puis ouvre la nouvelle version.
+
+Les modes `params`, `fit` et `format` s'exécutent sans aucun modèle de langage, conformément au souhait de Matthieu de limiter ce recours ; le mode `instruction` range la consigne libre et la laisse en état `waiting-agent`, jusqu'à ce qu'un agent la traite par le serveur MCP du moteur. La page ne crée de fichier que dans `_requests/`, et le service est le seul écrivain de tout le reste, ce qui garantit un seul écrivain par fichier.
+
+## 7. Déploiement et vérification (12 October 2026)
+
+Le projet Pages est en envoi direct, sans fournisseur Git, si bien qu'un `git push` ne publie rien (`CLAUDE.md` lignes 172 à 186) ; la production est la branche `main` (skill `zenrayprogress-context`, section du 11 October 2026), et la documentation de Cloudflare précise que la branche de production se fixe à la création du projet, que `--branch` désigne sinon un aperçu, et que wrangler devine la branche dans un dépôt Git ([Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/), [commandes Pages](https://developers.cloudflare.com/workers/wrangler/commands/pages/)) (R). D'où la séquence, à dérouler depuis un worktree propre :
+
+1. `git fetch`, puis `git merge-base --is-ancestor <commit> origin/main` : on ne déploie que depuis `origin/main` à jour (règle du 5 October 2026, doctrine `SilentBugs1.md`).
+2. Tests : les fichiers concernés, puis la suite (`npx vitest run`) ; la configuration de la CI exclut quatre tests propres au Mac (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/vitest.pages.config.js`).
+3. `npx vite build`, puis `npx wrangler pages functions build --outdir=<dossier temporaire>`, qui assemble les fonctions sans rien publier (`CLAUDE.md` lignes 267 à 277).
+4. `npx wrangler pages deploy dist --project-name zenray-progress --branch main`, lancé hors bac à sable puisque celui-ci coupe le réseau (`CLAUDE.md` lignes 205 et 206).
+5. Comparer le point d'entrée `assets/index-*.js` de `dist/index.html` et celui que sert `https://zenray-progress.pages.dev` (`CLAUDE.md` lignes 208 à 214), relire les données par l'API réelle avec un script de fumée calqué sur `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/scripts/Freelance/CheckProduction.mjs`, puis refaire ce contrôle dix minutes plus tard.
+6. `git push`.
+
+Le navigateur de l'agent ne sert jamais de preuve sur ce projet (`CLAUDE.md` lignes 20 à 28) : la preuve technique est le build, les tests et les vérificateurs, et Matthieu regarde lui-même dans son navigateur. Les 500 constructions mensuelles du plan gratuit ne concerneraient pas l'envoi direct, déduction appuyée sur un compteur resté à zéro et non sur la documentation (`CLAUDE.md` lignes 247 à 260, S).
+
+## 8. Les règles du projet à respecter (12 October 2026)
+
+Données, quota et caches (R) : lire pour afficher par `urlLectureAffichage`, réserver `urlLectureEdition` et `readJson` aux lectures suivies d'une écriture (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/urlLecture.js` ; `CLAUDE.md` lignes 30 à 63), et inscrire la galerie dans `PARCOURS_DE_VOLUME` de `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/lib/quotaLectures.test.js` (lignes 18 à 27) ; réserver `fresh=1` aux petits états vivants (`urlLecture.js` lignes 25 à 27) et ne revalider qu'onglet visible, au plus toutes les 30 s (`docs/INDEX-ERREURS-FEATURES.md` ligne 60) ; ne jamais sonder un onglet caché, et servir toute réponse d'API de plus de 100 Ko avec un `ETag` en `no-cache`, jamais en `no-store` (`CLAUDE.md` lignes 130 à 163) ; ne jamais avaler une erreur d'`apiPost`, qui lève désormais une `ErreurApi` (`CLAUDE.md` lignes 59 à 63) ; tenir compte de ce qu'un fichier de plus d'1 Mio se lit vide par l'API contents ([GitHub](https://docs.github.com/en/rest/repos/contents) ; `docs/INDEX-ERREURS-FEATURES.md` ligne 273), d'où un catalogue visé sous 300 Ko et écrit par Git ; passer par Git et non par des boucles REST dès cent fichiers (`CLAUDE.md` lignes 431 à 444) ; garder un seul écrivain Git par arbre pendant un lot (`scripts/lib/clone-lock.mjs`, skill `zenray-assets` du 12 October 2026) ; ne jamais mettre en cache un échec passager, et versionner les clés de cache (`zrvcard6:` après `zrvcard5:`, skill `zenrayprogress-context`).
+
+Vidéo et stockage (R) : tailles de `src/config/chunkPolicy.js` et nulle part ailleurs (`CLAUDE.md` lignes 65 à 90) ; jsDelivr épinglé sur un commit, jamais `@main` ; poster public jsDelivr épinglé (règle épinglée du projet) ; `-tag:v hvc1` pour tout HEVC ; piste audio nommée par sa langue (règle épinglée ; pour un son de motion sans langue, l'étiquette `und` donne « Audio » dans `cmaf-packaging.mjs`) ; aucun nom humain dans un dépôt public, chemins, commits ou README (`CLAUDE.md` lignes 491 à 530) ; nommage des shards (`docs/INDEX-ERREURS-FEATURES.md` lignes 21 à 29, `server/shard-naming.js` lignes 24 à 36).
+
+Interface (R) : polices par jetons seulement, `var(--zr-police-sans)` qui sert le fichier `InterVariable.woff2` sous le nom de famille `Inter` (`/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/fonts.css` lignes 85 et 102 à 108), `var(--zr-police-serif)` qui sert AnthropicSerif variable de 100 à 900 (lignes 155 à 161), à 350 pour les titres de contenu et à 400 pour tous les nombres visibles, et `var(--zr-police-mono)` pour les identifiants et les chemins ; graisses à 400, 500 au plus (`CLAUDE.md` lignes 479 à 481) ; 12 px au minimum sur ordinateur (`CLAUDE.md` ligne 475) et échelle `--zr-ui-*` (`fonts.css` lignes 52 à 61). La ligne « jamais Inter » du `CLAUDE.md` du dépôt (lignes 471 à 473) date d'avant le passage à Inter du 16 août et contredit le code comme la doctrine globale : je suis le code et la doctrine globale, et je propose de corriger cette ligne (question Q6). Les jetons de graisse `--zr-poids-sans`, `--zr-poids-serif` et `--zr-poids-nombres` que demande la doctrine globale n'existent pas encore dans `fonts.css` et seraient à poser une fois. Les couleurs d'interface vivent dans `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/src/config/colors.js` et nulle part ailleurs (`CLAUDE.md` lignes 92 à 111), les couleurs de palette d'une bible étant des données et non de l'interface. Les icônes se vérifient contre `src/components/Icon.jsx`, qui retombe en silence sur `doc` pour un nom inconnu : `film`, `play.rectangle` et `clock` existent, les autres sont à ajouter en partant de SF Symbols (M). L'enveloppe `.zr-stage` porte un `backdrop-filter` (`index.html` ligne 235), donc toute surface fixe posée dedans doit sortir par un portail vers `document.body` en recopiant la classe `zr-dark` (`App.jsx` ligne 365, doctrine `SilentBugs1.md`). Aucun composant défini en ligne, l'état actif signalé par une classe et non par un survol (`CLAUDE.md` lignes 113 à 128), `lazyRetry` pour tout import paresseux, trois langues, et aucun tiret long dans un libellé.
+
+Méthode (R) : lire `docs/INDEX-ERREURS-FEATURES.md` avant tout code, demander avant de coder quand un choix d'architecture existe (lignes 9 et 10), vérifier par l'empirique, tester chaque vérificateur dans les deux sens, tenir l'index des erreurs et le routeur du `CLAUDE.md` à jour à chaque fonctionnalité, écrire une règle de projet par `feedback.py add <id> "<règle>" --kind rule` et jamais à la main, dater chaque commentaire de code, l'anglais d'abord. La règle de la Roadmap affichée dans l'application (`CLAUDE.md` lignes 446 à 463) date de l'époque Vercel et pourrait être caduque (question Q4).
+
+## 9. Plan d'implémentation (12 October 2026)
+
+### 9.1 La répartition des rôles (12 October 2026)
+
+Le moteur (analyse de la référence, cuisson, rendu, vérification, serveur MCP) reste un outil local dont R06 ne fixe pas l'emplacement. Le dépôt ZenRayProgress porterait trois choses : la vue `src/motion/`, le publieur et ses vérificateurs (`scripts/Motion/`), seuls autorisés à écrire dans `pages/ZenRayMotionDesign/` et dans la famille de shards des motions, et le service local `com.zenray.motion`, qui orchestre la file, appelle le moteur en ligne de commande et parle au pont Assets par `requestAssets`. Le site ne parle qu'au service et au cloud, le service parle au moteur et au cloud, et le moteur ne connaît ni le site ni les conventions de stockage (S, à confronter au brouillon d'architecture).
+
+### 9.2 Le contrat de données dans le cloud (12 October 2026)
+
+L'arbre proposé est le suivant, dans le dépôt privé `zenray-data` :
+
+| Chemin | Écrivain | Contenu |
+|---|---|---|
+| `pages/ZenRayMotionDesign/catalogue.json` | service | index léger lu par la galerie |
+| `pages/ZenRayMotionDesign/<motionId>/<motionId>.zmotion.json` | service | fiche du motion : référence, bible, paramètres exposés, versions |
+| `pages/ZenRayMotionDesign/<motionId>/versions/<motionId>-v008-16x9.media.json` | service | manifeste lisible par `VideoPlayer2`, une version et un format |
+| `pages/ZenRayMotionDesign/<motionId>/versions/.streams/<slug>/` | service | playlists HLS et DASH réécrites vers jsDelivr |
+| `pages/ZenRayMotionDesign/<motionId>/versions/<motionId>-v008.verify.json` | service | rapport chiffré de fidélité, nombres seulement |
+| `pages/ZenRayMotionDesign/_requests/<requestId>.json` | page ou service | demande, créée une fois, jamais modifiée |
+| `pages/ZenRayMotionDesign/_requests/<requestId>.status.json` | service | état et étapes de la demande |
+| `pages/ZenRayMotionDesign/.zr-motion-shard.json` | service | compteur de la famille de shards publics |
+
+Le catalogue :
+
+```json
+{
+  "schemaVersion": 1,
+  "kind": "zenray-motion-catalogue",
+  "updatedAt": "2026-10-12T09:41:07.000Z",
+  "motionCount": 1,
+  "motions": [
+    {
+      "id": "zrmd-0001",
+      "title": "Étude 01, révélation d'un objet",
+      "zmotion": "pages/ZenRayMotionDesign/zrmd-0001/zrmd-0001.zmotion.json",
+      "reference": { "refId": "ref-0001", "label": "Publicité produit, 68 s", "durationSec": 68.053, "fps": 60, "width": 1920, "height": 1080, "shots": 27 },
+      "tags": ["typographie", "interface", "3d-css", "transitions"],
+      "aspects": ["16x9"],
+      "status": "iterating",
+      "versionCount": 8,
+      "pendingRequests": 0,
+      "latest": {
+        "version": "V_008",
+        "media": "pages/ZenRayMotionDesign/zrmd-0001/versions/zrmd-0001-v008-16x9.media.json",
+        "poster": "https://cdn.jsdelivr.net/gh/matthieuhuguet/<shard>@<commit>/<slug>/poster.jpg",
+        "durationSec": 68.05,
+        "fps": 60,
+        "width": 1920,
+        "height": 1080,
+        "publishedAt": "2026-10-12T09:41:07.000Z",
+        "fidelity": { "overall": 0.962, "rhythm": 0.981, "animation": 0.944, "sound": 0.991, "image": 0.931, "target": 0.99, "verdict": "below-target" }
+      },
+      "best": { "version": "V_006", "overall": 0.971 },
+      "updatedAt": "2026-10-12T09:41:07.000Z"
+    }
+  ]
+}
+```
+
+La fiche `.zmotion.json`, abrégée :
+
+```json
+{
+  "schemaVersion": 1,
+  "kind": "zenray-motion",
+  "id": "zrmd-0001",
+  "title": "Étude 01, révélation d'un objet",
+  "createdAt": "2026-10-12T08:00:00.000Z",
+  "updatedAt": "2026-10-12T09:41:07.000Z",
+  "reference": { "refId": "ref-0001", "label": "Publicité produit, 68 s", "link": "https://exemple.invalid/reference", "sha256": "<empreinte du fichier local>", "durationSec": 68.053, "fps": 60, "width": 1920, "height": 1080, "shots": 27, "hardCuts": 13 },
+  "bible": {
+    "fonts": [{ "role": "titre", "family": "<famille identifiée>", "weight": 350, "licence": "à vérifier" }],
+    "palette": ["#000000", "#ffffff", "#d8d8d8"],
+    "accents": ["#8b3b16", "#4d74bc"],
+    "easings": [{ "name": "power2.out", "share": 0.62 }],
+    "threeD": "css-3d",
+    "sound": { "bpm": 175.85, "onsets": { "souffle": 125, "clic": 101, "accent": 88, "impact": 11 }, "lufs": -18.5 },
+    "music": { "policy": "tempo, structure et énergie seulement" }
+  },
+  "parameters": {
+    "mouvement": [{ "key": "motion.speed", "label": "Vitesse", "min": 0.5, "max": 2, "step": 0.01, "default": 1 }],
+    "couleur": [],
+    "son": []
+  },
+  "versions": [
+    {
+      "version": "V_008",
+      "parent": "V_007",
+      "state": "published",
+      "createdAt": "2026-10-12T09:39:00.000Z",
+      "request": "req-20261012-094100-a1b2c3",
+      "mode": "params",
+      "changes": { "motion.speed": [1, 1.1] },
+      "paramsSha256": "<empreinte des paramètres>",
+      "composition": { "workshopPath": "motions/zrmd-0001/V_008", "assetsCloudFolder": "pages/ZenRayAssets/zenray-motion-design/sources/tmp/workshop/motions/zrmd-0001/V_008", "hyperframes": "0.8.147", "gsap": "3.14.2" },
+      "renders": [{ "aspect": "16x9", "media": "pages/ZenRayMotionDesign/zrmd-0001/versions/zrmd-0001-v008-16x9.media.json", "poster": "<URL jsDelivr épinglée>", "durationSec": 68.05, "bytes": 13863214, "sha256": "<empreinte du MP4>" }],
+      "fidelity": { "overall": 0.962, "rhythm": 0.981, "animation": 0.944, "sound": 0.991, "image": 0.931, "report": "pages/ZenRayMotionDesign/zrmd-0001/versions/zrmd-0001-v008.verify.json" }
+    }
+  ]
+}
+```
+
+Le manifeste de version reprend la forme que `VideoPlayer2` lit déjà : `type: "hls"`, `master`, `mpd`, `poster`, `duration`, `publicRepo`, `commitPublic`, `hlsDashVerified`, `streamingProtocols`, `audio`, auquel s'ajoute un bloc `motion` (`id`, `version`, `aspect`, chemin de la fiche, empreinte du MP4). La demande porte `schemaVersion`, `kind`, `id`, `motionId`, `baseVersion`, `mode`, `overrides`, `aspects`, `instructions`, `createdAt` et `origin`, et son état porte `state` (`queued`, `running`, `rendered`, `verified`, `published`, `failed`, `refused`, `waiting-agent`), la version produite, les étapes datées avec leurs mesures, et l'erreur éventuelle.
+
+Les invariants, que le vérificateur `scripts/Motion/CheckCatalogue.mjs` contrôlerait en rouge et vert :
+
+1. Les identifiants sont neutres (`^zrmd-[0-9]{4}$`, `^V_[0-9]{3}$`) ; le titre humain ne vit que dans les fichiers privés.
+2. Le catalogue, la fiche, le manifeste et l'état d'une publication partent dans le même commit, et chaque chemin cité par le catalogue existe dans l'arbre de ce commit.
+3. Tout poster est une URL jsDelivr publique épinglée, vérifiée avant écriture.
+4. Les versions sont en ajout seul ; une version publiée ne change jamais, une correction devient une version nouvelle.
+5. Les nombres sont des nombres, les durées en secondes, les fidélités entre 0 et 1.
+6. Aucun fichier cloud ne contient d'image, de son, de texte ou de logo de la référence : la référence se réduit à des mesures, un libellé et un lien. Les images de référence ne s'affichent que dans la vue montage locale, par URL signée du service.
+7. Le catalogue reste sous 300 Ko ; au-delà d'1 Mio il se découperait, ce qui n'a pas lieu d'être tant qu'il compte moins de quelques centaines de motions (S).
+
+### 9.3 Les composants à créer (12 October 2026)
+
+Les chemins s'entendent sous `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/`.
+
+| Fichier | Rôle | Réutilise |
+|---|---|---|
+| `src/motion/MotionDesignView.jsx` | conteneur ; lit le catalogue ; route interne galerie, page, montage par `?motion=` et `?v=` | `urlLectureAffichage`, `usePersistedState`, `lazyRetry` |
+| `src/motion/motionCatalogue.js` et son test | lecture, validation de schéma sur le modèle d'`isWorkspaceCatalogue`, cache local à clé versionnée `zrmd:catalogue:v1` relu puis revalidé | `assetsWorkspaceCatalogue.js` |
+| `src/motion/MotionGallery.jsx` et son test | grille façon YouTube, `repeat(auto-fill, minmax(<jeton>, 1fr))`, une colonne à 375 px avec 16 px de marge | `.zr-stage` |
+| `src/motion/MotionCard.jsx` | poster 16:9, durée en bas à droite, titre sur deux lignes, version, fidélité, date | posters jsDelivr du catalogue, aucune lecture par carte |
+| `src/motion/MotionFilterChips.jsx` | pastilles tirées des données présentes : Tous, étiquettes, « 99 % et plus », En cours, Demandes en attente, formats | classes `.zr-chip` et `.zr-chip-accent` (`index.html` lignes 291 et 292) |
+| `src/motion/MotionRail.jsx` | rail intérieur à la manière du guide de YouTube : Accueil, Références, Historique, Demandes, Montage (Mac seulement) ; capsule segmentée sur téléphone | `src/components/Segmente.jsx` |
+| `src/motion/MotionPage.jsx` | lecteur, titre, ligne de méta, actions, onglets Bible, Fidélité, Paramètres, Historique | `VideoViewerAdapter.jsx`, `VideoPlayer2.jsx` |
+| `src/motion/MotionVersionList.jsx` | colonne des versions avec leurs posters et leurs états, à la place de la colonne « À suivre » | données de la fiche |
+| `src/motion/MotionIterationPanel.jsx` et son test | demande d'itération : mode, curseurs (huit au plus par catégorie), consigne, format, envoi au pont ou à la file | `notifyProgress`, `saveJsonWithRetry` |
+| `src/motion/MotionMontage.jsx` | vue montage locale (section 9.6) | pont des motions, pont Assets |
+| `src/lib/motionBridge.js` et son test | client du service local ; à la troisième instance du même patron, factoriser un `createLocalBridge({ origin, path, clientHeader })` partagé avec les deux ponts existants | `freelanceBridge.js`, `projectBridge.js` |
+| `src/config/motion.js` | toutes les valeurs : chemins cloud, port, délais de sondage, taille de carte, nombre de pastilles | loi HDA |
+| `scripts/Motion/PublishVersion.mjs` et son test | publication en un commit (section 4.2) | `cmaf-packaging.mjs`, `public-shard.mjs`, `CloudStore.mjs`, `film-poster.mjs` |
+| `scripts/Motion/Service.mjs`, `Main.mjs`, `Daemon.mjs`, `MotionConfig.json` et leurs tests | service local et LaunchAgent | patron de `scripts/Freelance/` |
+| `scripts/Motion/CheckCatalogue.mjs`, `scripts/Motion/CheckProduction.mjs` | vérificateurs, sortie `--json` et code de sortie | `scripts/Freelance/CheckProduction.mjs` |
+
+Les retouches de l'existant sont `Sidebar.jsx`, `dict.js`, `App.jsx`, `node.js`, `extensionsNoeuds.js`, `registry.jsx`, `colors.js` (couleurs d'état des motions), `fonts.css` (jetons de graisse), `quotaLectures.test.js`, `titreOnglet.test.js`, `public/_headers` et `vercel.json` (port du service), `server/shard-naming.js` (type `motion` dans `KINDS` et `V2_PUBLIC_TYPES`, lignes 24 et 36, si la décision D3 retient une famille v2), `docs/INDEX-ERREURS-FEATURES.md` et le routeur du `CLAUDE.md`.
+
+La carte suit les jetons existants : titre en `var(--zr-police-serif)` à 350, durée, version et pourcentage en `var(--zr-police-serif)` à 400, méta en `var(--zr-police-sans)` à 400, aucune taille sous 12 px sur ordinateur. Les états vides et d'erreur nomment leur cause : catalogue absent (« aucun motion publié »), catalogue illisible, service local injoignable ; un échec passager ne s'affiche jamais comme une absence (`docs/INDEX-ERREURS-FEATURES.md` ligne 248). Un aperçu animé au survol, comme sur YouTube, attendrait un second lot, puisqu'il coûterait une lecture de flux par carte survolée (S).
+
+### 9.4 La page d'un motion (12 October 2026)
+
+La page reprend la disposition de la page de lecture de YouTube. À gauche, le lecteur 16:9 monte `VideoPlayer2` avec le manifeste de la version, lu par `urlLectureAffichage` ; sous le lecteur viennent le titre, la ligne de méta (version, durée, date, fidélité) et les actions : « Demander une itération », « Ouvrir dans Assets » (`?view=assets&project=zenray-motion-design`, déjà accepté par `App.jsx` ligne 190 et par `AssetsWorkspaceView.jsx`), « Ouvrir dans Create » (`?folder=pages/ZenRayMotionDesign/<id>`, lignes 284 à 296 d'`App.jsx`) et le partage `/watch` que le lecteur offre déjà. Quatre onglets suivent : Bible (polices et état de leur licence, palette en pastilles, courbes d'animation dessinées en petits tracés, usage de la 3D, classes de sons, tempo), Fidélité (rythme, animation, son, image, avec la cible et le lien vers le rapport), Paramètres (valeurs exposées de la version, en lecture), Historique (ce qui a changé de version en version, tiré de `changes`). À droite, la colonne des versions remplace la colonne de suggestions, avec un poster et un état par version.
+
+### 9.5 La demande d'itération (12 October 2026)
+
+Le panneau propose cinq modes : Réglages (curseurs préremplis avec les valeurs de la version de base, huit au plus par catégorie selon la doctrine HDA, bornes et pas pris dans la fiche), Ajuster à la référence (boucle d'ajustement du moteur jusqu'à la cible ou au nombre maximal d'essais, à la manière de zenray-height), Format (16:9, 9:16, 1:1, 4:5, chaque format devenant un rendu de la même version), Consigne (texte libre pour un agent, sans exécution automatique) et Nouveau motion (depuis une référence déjà présente dans le cache local, la mise en cache d'une vidéo exigeant la permission explicite de Matthieu, selon le skill `zenray-motion-design`). L'envoi suit la section 6.3, la progression s'affiche par étapes nommées (validation, cuisson, lint, rendu, son, vérification, empaquetage, publication) dans une notification `notifyProgress`, et chaque échec garde son étape et son message. Les curseurs écrivent les paramètres JSON du motion par le service, jamais le CSS du site.
+
+### 9.6 La vue montage locale (12 October 2026)
+
+La vue montage n'existe que lorsque le service des motions répond ; ailleurs, l'onglet explique qu'il faut le Mac et que les demandes restent possibles par la file. Elle montre la ligne de temps de la version (plans proportionnels à leur durée, coupes franches marquées, fenêtres de légendes), lue par l'action `timeline` ; le clic sur un plan affiche ses paramètres exposés et un aperçu rapide par `snapshot`, que le skill `zenray-motion-design` mesure à environ 20 s pour 27 instants (R) ; une bascule « Comparer à la référence » met côte à côte le rendu et la référence, par URL signée et sans jamais rien envoyer dans le cloud. Le bouton « Studio HyperFrames » lance le studio du paquet, qui sert par défaut `http://localhost:3002/#project/<nom>` (README du paquet installé, M), et l'ouvre dans un nouvel onglet ; je ne recommande pas de l'incruster dans la page tant que le comportement d'une `iframe` vers la boucle locale sous Local Network Access n'est pas vérifié (S). Le sélecteur de formats lance les rendus de la même version, et « Charger sur le Mac » délègue au pont Assets quand la composition n'est plus présente après un UNLOAD.
+
+### 9.7 Les lots de travail et leurs preuves (12 October 2026)
+
+| Lot | Contenu | Preuve |
+|---|---|---|
+| L0 | décisions de la section 10 | réponses de Matthieu consignées par `feedback.py` |
+| L1 | entrée de la barre latérale, vue vide, lecture d'un catalogue de démonstration | tests de rendu (catalogue, vide, erreur), `titreOnglet.test.js`, `quotaLectures.test.js`, `npx vite build` |
+| L2 | publieur en un commit, vérificateur du catalogue | vérificateur rouge sur un catalogue cassé (manifeste manquant, poster par proxy, taille excessive), vert après publication d'une version ; un `HEAD` jsDelivr à 200 par couple dépôt et commit ; lecture du catalogue par l'API réelle |
+| L3 | galerie et page d'un motion | tests (cartes, filtrage par pastilles, lien profond), build ; lecture vérifiée par Matthieu dans son navigateur |
+| L4 | service local et LaunchAgent | tests du service : origine refusée (403), en-tête absent (403), en-tête réseau privé sur `OPTIONS`, corps trop gros (413), action inconnue (400), refus de validation ; état du LaunchAgent |
+| L5 | itération en mode Réglages de bout en bout | une demande depuis la page produit une version publiée, catalogue et état dans le même commit (vérificateur vert), et un paramètre hors bornes est refusé avec sa cause |
+| L6 | file dans le cloud | une demande écrite service arrêté est traitée au redémarrage |
+| L7 | vue montage | ligne de temps conforme aux paramètres (test), aperçu produit, adresse du studio rendue, LOAD passé par le pont Assets |
+| L8 | déploiement | point d'entrée identique, vérificateur de production vert, second contrôle dix minutes plus tard |
+
+### 9.8 Les estimations (12 October 2026)
+
+Une itération d'un motion de 68 s en 1080p à 60 images par seconde coûterait de l'ordre de deux à trois minutes (S) : la cuisson prend moins d'une seconde et le rendu environ 70 s (R, skill `zenray-motion-design`), la vérification a été rejouée en 19 s (R, R08), et l'empaquetage par copie suivi de l'envoi d'environ 14 Mo devrait tenir en quelques secondes sur la ligne mesurée à environ 10,8 Mo/s en montée (R, skill `zenray-assets` du 12 October 2026). Le développement des lots L1 à L8 représenterait de deux à quatre journées de travail effectif, L7 étant le plus incertain (S).
+
+## 10. Décisions, questions ouvertes et constats hors périmètre (12 October 2026)
+
+Décisions recommandées, chacune à valider avant d'écrire du code, conformément à la règle « demander avant de coder » :
+
+1. D1, placement de l'entrée juste après Media, dans Craft.
+2. D2, arbre dédié `pages/ZenRayMotionDesign/` ; l'arbre `pages/ZenRayAssets/zenray-motion-design/` reste au seul service Assets.
+3. D3, diffusion CMAF publique en clair dans une famille de shards propre aux motions, nommée selon la convention v2 (`zenrayshards-motion-<hex12>`, avec `motion` ajouté aux types publics de `shard-naming.js`), avec son propre compteur, et des chemins neutres.
+4. D4, publication en un seul commit, par extraction d'une fonction de bibliothèque hors d'`AttachVideoCmafDashHls.mjs`.
+5. D5, rendus exclus de la source `workshop` d'Assets, ou seulement ceux des versions validées.
+6. D6, service distinct `com.zenray.motion` sur le port 3102, plutôt qu'une route du démon Assets.
+7. D7, pont d'abord et file dans le cloud en repli ; seuls les modes déterministes s'exécutent automatiquement, la consigne libre attend un agent.
+8. D8, type de nœud `.zmotion.json` pour ouvrir un motion depuis Create et le retrouver par la recherche.
+9. D9, publication de toutes les versions avec leur score, ou seulement de celles qui atteignent un seuil.
+10. D10, visibilité des études dérivées de publicités de tiers : diffusion publique ou archive privée seulement.
+
+Questions ouvertes : Q1, la place définitive dans la barre latérale ; Q2, la publication des études ; Q3, la définition du seuil « validé », 0,99 sur quelles dimensions et avec quelle agrégation ; Q4, la Roadmap de l'application (`zenray-content`, `build/tasks.json`) est-elle encore à tenir ; Q5, l'état de la permission Local Network Access de Chrome pour `zenray-progress.pages.dev` ; Q6, la correction de la ligne « jamais Inter » du `CLAUDE.md` du dépôt ; Q7, l'emplacement du moteur, dépôt séparé ou `scripts/Motion/`, qui dépend du brouillon d'architecture.
+
+Constats hors périmètre, relevés en lisant le code et à soumettre à Matthieu sans rien corriger ici :
+
+1. Fuite de noms dans les dépôts publics des films : `vidId` commence par le nom du manifeste (`AttachVideoCmafDashHls.mjs` lignes 181 à 183) et passe dans les messages de commit (lignes 208 et 217) et les chemins (ligne 226) des dépôts `zenray-vid-public-NN` ; les dossiers `.streams` du clone `/Users/zenray/.claude/tmp/tmp-movies-series-upload/ManifestClone/pages/Movies_Series-yl1x/.streams/` portent des titres de films en clair (M). C'est contraire à la règle P0 anti-fuite du dépôt.
+2. Segments de films en clair sur des dépôts publics : l'empaquetage CMAF ne chiffre rien (`scripts/lib/cmaf-packaging.mjs`, fonction `packageCmafDashHls` à partir de la ligne 114, sans chiffrement ni clé ; R, non vérifié en ligne), ce qui rendrait des films de tiers lisibles par quiconque connaît l'URL, avec le risque juridique qui s'y attache.
+3. Constantes de taille redéfinies en dur dans `AttachVideoCmafDashHls.mjs` (lignes 16 et 17) au lieu d'être importées de `chunkPolicy.js`.
+4. `connect-src` de la politique de sécurité sans les ports 3100 et 3101.
+5. Divergence entre `docs/VIDEO-PIPELINE-CANONICAL.md` et le code du dépôt de vidéo par l'interface, et ligne « discipline de chaque carte » du `CLAUDE.md` du dépôt qui cite encore `vercel deploy --prod`.
+
+## Sources (12 October 2026)
+
+- HyperFrames, site : https://hyperframes.heygen.com/
+- HyperFrames, dépôt : https://github.com/heygen-com/hyperframes
+- HyperFrames 0.8.147, README local : `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/README.md` (port du studio 3002, `render`, `publish`)
+- Chrome, Local Network Access : https://developer.chrome.com/blog/local-network-access
+- Intention d'expédition Local Network Access : https://groups.google.com/a/chromium.org/g/blink-dev/c/cwu_RUmBpzY/m/hk8YuZDWHgAJ
+- Source secondaire sur Chrome 142 : https://help.uillinois.edu/TDClient/37/uic/KB/ArticleDet?ID=2993
+- jsDelivr, limites et cache : https://github.com/jsdelivr/jsdelivr
+- GitHub, limites de l'API contents : https://docs.github.com/en/rest/repos/contents
+- Cloudflare Pages, envoi direct : https://developers.cloudflare.com/pages/get-started/direct-upload/
+- Wrangler, commandes Pages : https://developers.cloudflare.com/workers/wrangler/commands/pages/
+- Code et documents du dépôt : `/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/` au commit `ff3649c1` ; skills `/Users/zenray/.claude/skills/zenrayprogress-context/SKILL.md`, `/Users/zenray/.claude/skills/zenray-assets/SKILL.md`, `/Users/zenray/.claude/skills/zenray-motion-design/SKILL.md` ; règles `/Users/zenray/.claude/Memory1/Projects/zenray-progress/Rules.md`.

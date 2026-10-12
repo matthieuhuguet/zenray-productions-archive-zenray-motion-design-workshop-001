@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "date": "12 October 2026",
+    "purpose": "R03 lab: recover known SFX recipe parameters by sound matching, and check the 99 percent score in both directions",
+    "note": "Single parameter interface (HDA). Scripts read every value from here; no value is written twice."
+  },
+  "audio": {
+    "sampleRate": 48000,
+    "preRollSeconds": 0.04,
+    "tailSeconds": 0.06,
+    "floorAmplitude": 1e-07
+  },
+  "synthesis": {
+    "whooshFft": 1024,
+    "whooshHop": 256,
+    "clickSeconds": 0.09,
+    "levelWindowMs": 5.0,
+    "whooshLevelSmoothMs": 30.0
+  },
+  "analysis": {
+    "fMax": 16000.0,
+    "long": {
+      "nFft": 1024,
+      "hop": 240,
+      "envWindowMs": 5.0,
+      "envHopMs": 1.0,
+      "timeBins": 8,
+      "smoothMs": 30.0,
+      "smoothSpanFraction": 0.15,
+      "melBands": 40,
+      "fMin": 40.0
+    },
+    "short": {
+      "nFft": 256,
+      "hop": 48,
+      "envWindowMs": 1.0,
+      "envHopMs": 0.25,
+      "timeBins": 4,
+      "melBands": 16,
+      "fMin": 100.0
+    },
+    "shortEventSeconds": 0.12,
+    "onsetFraction": 0.15,
+    "spanDb": 20.0,
+    "melFloorDb": 50.0,
+    "swellAttackMs": 30.0,
+    "mrstftSizes": [
+      256,
+      1024,
+      4096
+    ],
+    "mrstftEps": 1e-07,
+    "tonalFft": 16384,
+    "tonalNeighbourOct": 0.3333,
+    "tonalNeighbourMinBins": 6,
+    "tonalRampDb": 6.0,
+    "tonalThresholdDb": 12.0,
+    "levelWindowMs": 5.0,
+    "tonalFMin": 40.0,
+    "tonalSegment": 4096,
+    "swellCenterDb": 6.0,
+    "minBinMs": 10.0
+  },
+  "jnd": {
+    "levelDb": 1.0,
+    "anchorMs": 10.0,
+    "attackRatio": 0.25,
+    "durationRatio": 0.1,
+    "centroidRatio": 0.05,
+    "melShapeDb": 2.0,
+    "pitchCents": 10.0,
+    "kindMismatchE": 3.0,
+    "attackMinMs": 5.0,
+    "durationMinMs": 3.0,
+    "anchorAttackFraction": 0.1
+  },
+  "score": {
+    "base": 0.99,
+    "passThreshold": 99.0
+  },
+  "recipes": {
+    "whoosh": {
+      "duration": {
+        "min": 0.25,
+        "max": 1.2,
+        "scale": "log",
+        "default": 0.6
+      },
+      "peakPos": {
+        "min": 0.25,
+        "max": 0.75,
+        "scale": "lin",
+        "default": 0.5
+      },
+      "fStart": {
+        "min": 200.0,
+        "max": 4000.0,
+        "scale": "log",
+        "default": 900.0
+      },
+      "fEnd": {
+        "min": 200.0,
+        "max": 8000.0,
+        "scale": "log",
+        "default": 2500.0
+      },
+      "bandwidthOct": {
+        "min": 0.5,
+        "max": 3.0,
+        "scale": "log",
+        "default": 1.5
+      },
+      "envCurve": {
+        "min": 0.6,
+        "max": 3.0,
+        "scale": "log",
+        "default": 1.5
+      },
+      "sweepCurve": {
+        "min": 0.4,
+        "max": 2.5,
+        "scale": "log",
+        "default": 1.0
+      },
+      "gainDb": {
+        "min": -30.0,
+        "max": 0.0,
+        "scale": "lin",
+        "default": -12.0
+      }
+    },
+    "click": {
+      "fMode": {
+        "min": 1000.0,
+        "max": 8000.0,
+        "scale": "log",
+        "default": 3000.0
+      },
+      "decayModeMs": {
+        "min": 1.0,
+        "max": 30.0,
+        "scale": "log",
+        "default": 6.0
+      },
+      "noiseMix": {
+        "min": 0.0,
+        "max": 1.0,
+        "scale": "lin",
+        "default": 0.4
+      },
+      "decayNoiseMs": {
+        "min": 0.3,
+        "max": 5.0,
+        "scale": "log",
+        "default": 1.2
+      },
+      "noiseHp": {
+        "min": 500.0,
+        "max": 8000.0,
+        "scale": "log",
+        "default": 2000.0
+      },
+      "gainDb": {
+        "min": -30.0,
+        "max": 0.0,
+        "scale": "lin",
+        "default": -12.0
+      }
+    }
+  },
+  "experiment": {
+    "truthsPerClass": 8,
+    "truthSampleSeed": 20261012,
+    "truthUnitMargin": 0.15,
+    "targetSeed": 101,
+    "seedFloorSeeds": 20,
+    "seedFloorFirst": 1000,
+    "nelderMeadMaxEval": 600,
+    "cmaBudget": 1200,
+    "cmaSigma0": 0.2,
+    "cmaSeed": 7,
+    "gridPoints": 7,
+    "workers": 8,
+    "perturbations": {
+      "whoosh": [
+        {
+          "name": "fStart x1.26 (third octave)",
+          "param": "fStart",
+          "mul": 1.26
+        },
+        {
+          "name": "fEnd x1.26 (third octave)",
+          "param": "fEnd",
+          "mul": 1.26
+        },
+        {
+          "name": "sweep reversed",
+          "swap": [
+            "fStart",
+            "fEnd"
+          ]
+        },
+        {
+          "name": "duration x1.3",
+          "param": "duration",
+          "mul": 1.3
+        },
+        {
+          "name": "peakPos +0.15",
+          "param": "peakPos",
+          "add": 0.15
+        },
+        {
+          "name": "bandwidth x1.6",
+          "param": "bandwidthOct",
+          "mul": 1.6
+        },
+        {
+          "name": "envCurve x1.6",
+          "param": "envCurve",
+          "mul": 1.6
+        },
+        {
+          "name": "gain +2 dB",
+          "param": "gainDb",
+          "add": 2.0
+        },
+        {
+          "name": "late by 50 ms",
+          "shiftMs": 50.0
+        }
+      ],
+      "click": [
+        {
+          "name": "fMode x1.06 (one semitone)",
+          "param": "fMode",
+          "mul": 1.06
+        },
+        {
+          "name": "decayMode x1.5",
+          "param": "decayModeMs",
+          "mul": 1.5
+        },
+        {
+          "name": "noiseMix +0.3",
+          "param": "noiseMix",
+          "add": 0.3
+        },
+        {
+          "name": "noiseHp x2",
+          "param": "noiseHp",
+          "mul": 2.0
+        },
+        {
+          "name": "gain +2 dB",
+          "param": "gainDb",
+          "add": 2.0
+        },
+        {
+          "name": "late by 20 ms",
+          "shiftMs": 20.0
+        }
+      ]
+    },
+    "gainSweepDb": [
+      0.25,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      3.0
+    ],
+    "shiftSweepMs": [
+      2.0,
+      5.0,
+      10.0,
+      20.0,
+      40.0,
+      80.0
+    ],
+    "fitSeeds": [
+      202,
+      203,
+      204
+    ],
+    "evalSeeds": [
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310
+    ]
+  }
+}

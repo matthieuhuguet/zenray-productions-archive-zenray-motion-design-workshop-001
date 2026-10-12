@@ -1,0 +1,53 @@
+// 12 October 2026, 03:20 CEST: sample every GSAP 3.14.2 ease (core, EasePack free plugins excluded) and a few CSS
+// cubic-bezier keywords through CustomEase, on a dense grid, so the Python fitter compares measured motion with the
+// exact functions the renderer will execute, not with re-typed formulas.
+// FR : échantillonne les eases exactes de GSAP 3.14.2 (copie locale) pour l'ajustement en Python.
+// Run: node SampleGsapEases.mjs <out.json>
+import { createRequire } from "module";
+import { writeFileSync } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+const dist = path.join(here, "vendor", "gsap-3.14.2", "package", "dist");
+const { gsap } = require(path.join(dist, "gsap.min.js"));
+const { CustomEase } = require(path.join(dist, "CustomEase.min.js"));
+gsap.registerPlugin(CustomEase);
+
+// Interface: the list of eases is the only parameter of this sampler. Families with a shape parameter (back, elastic)
+// are sampled on a short grid; the fitter can refine back(k) with its closed form.
+const FAMILIES = ["power1", "power2", "power3", "power4", "sine", "expo", "circ", "bounce"];
+const KINDS = ["in", "out", "inOut"];
+const BACK = [0.5, 1.0, 1.70158, 2.5, 3.5];
+const ELASTIC = [[1, 0.3], [1, 0.45], [1.2, 0.3], [1.5, 0.4]];
+const CSS = {
+  "css.ease": "0.25,0.1,0.25,1",
+  "css.ease-in": "0.42,0,1,1",
+  "css.ease-out": "0,0,0.58,1",
+  "css.ease-in-out": "0.42,0,0.58,1",
+  "material.standard": "0.4,0,0.2,1",
+  "material.decelerate": "0,0,0.2,1",
+  "material.accelerate": "0.4,0,1,1",
+};
+const N = 4001;
+
+const names = ["none"];
+for (const f of FAMILIES) for (const k of KINDS) names.push(`${f}.${k}`);
+for (const b of BACK) for (const k of KINDS) names.push(`back.${k}(${b})`);
+for (const [a, p] of ELASTIC) for (const k of KINDS) names.push(`elastic.${k}(${a},${p})`);
+
+const grid = Array.from({ length: N }, (_, i) => i / (N - 1));
+const eases = {};
+for (const name of names) {
+  const fn = gsap.parseEase(name);
+  if (typeof fn !== "function") throw new Error(`unknown ease ${name}`);
+  eases[name] = grid.map((u) => fn(u));
+}
+for (const [name, bezier] of Object.entries(CSS)) {
+  const fn = CustomEase.create(name.replace(/[^a-z0-9]/gi, "_"), bezier);
+  eases[name] = grid.map((u) => fn(u));
+}
+const out = process.argv[2] || path.join(here, "results", "eases-gsap-3.14.2.json");
+writeFileSync(out, JSON.stringify({ gsap: gsap.version, samples: N, grid, eases, css: CSS }));
+console.log(`gsap ${gsap.version}: ${Object.keys(eases).length} eases, ${N} samples each -> ${out}`);

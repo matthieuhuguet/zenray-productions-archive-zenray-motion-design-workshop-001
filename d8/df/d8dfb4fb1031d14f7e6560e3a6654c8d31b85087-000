@@ -1,0 +1,953 @@
+#!/usr/bin/env python3
+# 12 October 2026, 03:25 CEST
+# FetchReference.py: download one motion-design reference video, best quality with audio,
+# into a new, empty cache folder, then write its metadata (never the media) to reference.json.
+# FR : télécharge une vidéo de référence (meilleure qualité, avec le son) dans un dossier neuf
+# du cache local, puis écrit ses seules métadonnées dans reference.json.
+#
+# Security: downloaded files are untrusted data. They are hashed and read by ffprobe only,
+# never executed or imported. Run this script with `python3 -I` from its own Scripts folder.
+# Rights: the media stays in the local cache for analysis only; nothing from it is published.
+#
+# Usage:
+#   python3 -I FetchReference.py URL SLUG [--family auto|whatships|x|youtube|generic]
+#       [--height 1080] [--media-id ID] [--note TEXT] [--probe] [--replace] [--json]
+# Exit codes: 0 done, 2 done with a warning (no audio, or below the target height), 1 failed.
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import html
+import json
+import math
+import re
+import shlex
+import shutil
+import subprocess
+import sys
+import urllib.parse
+from pathlib import Path
+
+# Parameter interface: every tunable value lives here and only here (HDA rule).
+CONFIG = {
+    "cache_root": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache",
+    "refs_root": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references",
+    "page_user_agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                        "(KHTML, like Gecko) Chrome/140.0 Safari/537.36"),
+    # The X syndication endpoint answers this agent; yt-dlp sends the same one.
+    "syndication_user_agent": "Googlebot",
+    "x_syndication_url": "https://cdn.syndication.twimg.com/tweet-result",
+    "fxtwitter_url": "https://api.fxtwitter.com/status/{tweet_id}",
+    # Sort by resolution, then bitrate. On X this picks the single progressive MP4 (video and
+    # audio in one file) instead of yt-dlp's default HLS pair. The 10368 kbit/s label of that MP4
+    # is nominal: measured on onekey-pro-2 (12 October 2026), both decode to identical frames and
+    # samples (same MD5), about 2.3 Mbit/s. The gain is simplicity, not quality.
+    "x_format_sort": "res,tbr",
+    "x_output": "{slug} [%(id)s].%(ext)s",
+    "direct_output": "{slug} [{media_id}].{ext}",
+    # YouTube follows the ytb-dlp skill conventions (merge to mkv, title [id] file name).
+    "youtube_height": 1080,
+    "youtube_format_sort": "res:{height},tbr",
+    "youtube_merge_format": "mkv",
+    "youtube_output": "%(title)s [%(id)s].%(ext)s",
+    "http_timeout_s": 60,
+    "download_timeout_s": 3600,
+    "probe_timeout_s": 300,
+    "ffprobe_timeout_s": 120,
+    "retries": 3,
+    "ytdlp_retries": 10,
+    "ytdlp_concurrent_fragments": 16,
+    "stderr_tail_chars": 600,
+    "title_max_chars": 160,
+    # Never download through these hosts: whatships.com states it is not a download CDN.
+    "never_download_hosts": ["proxy.whatships.com", "whatships.com", "www.whatships.com"],
+    # Signed, IP-bound stream URLs are not worth storing in reference.json.
+    "ephemeral_media_hosts": ["googlevideo.com"],
+}
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"]
+SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,120}$", re.I)
+TWEET_ID_RE = re.compile(r"/status(?:es)?/(\d+)")
+MEDIA_ID_RE = re.compile(r"/(?:amplify_video|ext_tw_video)/(\d+)/")
+RESOLUTION_RE = re.compile(r"/(\d{2,5})x(\d{2,5})/")
+MEDIA_EXTENSIONS = {".mp4", ".mkv", ".webm", ".mov", ".m4v", ".ts", ".m4a", ".mp3", ".opus"}
+YTDLP_BASE = ["yt-dlp", "--ignore-config", "--no-cookies", "--no-cookies-from-browser",
+              "--socket-timeout", "30"]
+# Generic scan: every way a page can carry a video (tags, files, streaming hosts, embeds).
+SOURCE_PATTERNS = {
+    "video_tag_src": r"<video\b[^>]*?\ssrc=\"([^\"]+)\"",
+    "source_tag_src": r"<source\b[^>]*?\ssrc=\"([^\"]+)\"",
+    "iframe_src": r"<iframe\b[^>]*?\ssrc=\"([^\"]+)\"",
+    "mp4": r"https?://[^\s\"'<>\\]+?\.mp4(?:\?[^\s\"'<>\\]*)?",
+    "m3u8": r"https?://[^\s\"'<>\\]+?\.m3u8(?:\?[^\s\"'<>\\]*)?",
+    "mux": r"https?://stream\.mux\.com/[A-Za-z0-9]+",
+    "cloudflare_stream": (r"https?://(?:customer-[a-z0-9]+\.cloudflarestream\.com|"
+                          r"(?:iframe\.)?videodelivery\.net)/[A-Za-z0-9]+"),
+    "vimeo": r"https?://player\.vimeo\.com/video/\d+",
+    "youtube_embed": r"https?://(?:www\.)?youtube(?:-nocookie)?\.com/embed/[A-Za-z0-9_-]{11}",
+}
+
+
+class StepError(Exception):
+    """One strategy failed; the message says why."""
+
+
+class Journal:
+    # Every attempt is kept, success or not, so reference.json explains how the file was obtained.
+    def __init__(self):
+        self.entries = []
+
+    def add(self, step, ok, detail="", command=None):
+        entry = {"step": step, "ok": bool(ok), "detail": detail}
+        if command:
+            entry["command"] = command
+        self.entries.append(entry)
+        print(f"[{'ok' if ok else 'FAIL'}] {step}: {detail}", file=sys.stderr)
+
+
+def human_date(day):
+    # English date with the month in full, as the project rules require: 12 October 2026.
+    return f"{day.day} {MONTHS[day.month - 1]} {day.year}"
+
+
+def tail(text, limit=None):
+    limit = limit or CONFIG["stderr_tail_chars"]
+    flat = " ".join((text or "").split())
+    return flat[-limit:]
+
+
+def run(cmd, timeout):
+    # Runs a tool with captured output; never a shell, never a downloaded file.
+    printable = " ".join(shlex.quote(part) for part in cmd)
+    print(f"$ {printable}", file=sys.stderr)
+    try:
+        done = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+        return done.returncode, done.stdout, done.stderr.decode("utf-8", "replace"), printable
+    except subprocess.TimeoutExpired as error:
+        err = error.stderr.decode("utf-8", "replace") if isinstance(error.stderr, bytes) else ""
+        return 124, error.stdout or b"", err + " [timeout]", printable
+    except FileNotFoundError as error:
+        return 127, b"", str(error), printable
+
+
+def host_of(url):
+    return (urllib.parse.urlsplit(url).hostname or "").lower()
+
+
+def host_matches(host, suffixes):
+    return any(host == s or host.endswith("." + s) for s in suffixes)
+
+
+def detect_family(url):
+    host = host_of(url)
+    if host_matches(host, ["whatships.com"]):
+        return "whatships"
+    if host_matches(host, ["x.com", "twitter.com"]):
+        return "x"
+    if host_matches(host, ["youtube.com", "youtu.be"]):
+        return "youtube"
+    return "generic"
+
+
+def tool_version(cmd):
+    code, out, err, _ = run(cmd, 30)
+    text = (out.decode("utf-8", "replace") or err).strip().splitlines()
+    return text[0].strip() if code == 0 and text else None
+
+
+# ---------------------------------------------------------------- HTTP through curl
+
+def curl_get(url, accept=None, user_agent=None):
+    cmd = ["curl", "--silent", "--show-error", "--location", "--fail",
+           "--proto", "=https", "--proto-redir", "=https",
+           "--retry", str(CONFIG["retries"]), "--max-time", str(CONFIG["http_timeout_s"]),
+           "--user-agent", user_agent or CONFIG["page_user_agent"]]
+    if accept:
+        cmd += ["--header", f"Accept: {accept}"]
+    cmd += ["--url", url]
+    code, out, err, printable = run(cmd, CONFIG["http_timeout_s"] * (CONFIG["retries"] + 1) + 15)
+    if code != 0:
+        raise StepError(f"curl exit {code}: {tail(err)}")
+    return out, printable
+
+
+def curl_download(url, dest):
+    if host_matches(host_of(url), CONFIG["never_download_hosts"]):
+        raise StepError(f"refused: {host_of(url)} is not a download source")
+    cmd = ["curl", "--silent", "--show-error", "--location", "--fail",
+           "--proto", "=https", "--proto-redir", "=https",
+           "--retry", str(CONFIG["retries"]), "--retry-delay", "2",
+           "--max-time", str(CONFIG["download_timeout_s"]),
+           "--user-agent", CONFIG["page_user_agent"], "--output", str(dest), "--url", url]
+    code, _out, err, printable = run(cmd, CONFIG["download_timeout_s"] + 60)
+    if code != 0 or not dest.is_file() or dest.stat().st_size == 0:
+        raise StepError(f"curl exit {code}: {tail(err)}")
+    return printable
+
+
+# ---------------------------------------------------------------- yt-dlp
+
+def ytdlp_json(url, extra=None):
+    cmd = YTDLP_BASE + (extra or []) + ["--dump-single-json", "--simulate", "--", url]
+    code, out, err, printable = run(cmd, CONFIG["probe_timeout_s"])
+    if code != 0 or not out.strip():
+        raise StepError(f"yt-dlp exit {code}: {tail(err)}")
+    try:
+        return json.loads(out.decode("utf-8", "replace")), printable
+    except ValueError as error:
+        raise StepError(f"yt-dlp JSON unreadable: {error}")
+
+
+def ytdlp_download(url, workdir, extra, output_template):
+    fields = "%(.{id,format_id,width,height,tbr,url,webpage_url,filepath,title,uploader,upload_date})j"
+    cmd = (YTDLP_BASE + extra + ["--paths", str(workdir), "--output", output_template,
+                                 "--print", f"after_move:{fields}", "--", url])
+    code, out, err, printable = run(cmd, CONFIG["download_timeout_s"] + 60)
+    info = None
+    for line in reversed(out.decode("utf-8", "replace").splitlines()):
+        line = line.strip()
+        if line.startswith("{"):
+            try:
+                info = json.loads(line)
+                break
+            except ValueError:
+                continue
+    path = Path(info["filepath"]) if info and info.get("filepath") else None
+    if path is None or not path.is_file():
+        found = [p for p in workdir.iterdir() if p.is_file() and p.suffix.lower() in MEDIA_EXTENSIONS]
+        path = found[0] if len(found) == 1 else None
+    if code != 0 or path is None or path.stat().st_size == 0:
+        raise StepError(f"yt-dlp exit {code}, no media file: {tail(err)}")
+    if workdir.resolve() not in path.resolve().parents:
+        raise StepError(f"unexpected output path {path}")
+    return path, info or {}, printable
+
+
+# ---------------------------------------------------------------- X helpers
+
+def js_radix_string(value, radix=36):
+    # Port of V8 Number.prototype.toString(radix) for doubles (DoubleToRadixCString).
+    # Checked against node on 15 tweet ids (12 October 2026).
+    digits = "0123456789abcdefghijklmnopqrstuvwxyz"
+    if value == 0:
+        return "0"
+    negative = value < 0
+    value = abs(value)
+    integer = math.floor(value)
+    fraction = value - integer
+    delta = max(0.5 * (math.nextafter(value, math.inf) - value), math.nextafter(0.0, 1.0))
+    frac = []
+    if fraction >= delta:
+        while True:
+            fraction *= radix
+            delta *= radix
+            digit = int(fraction)
+            frac.append(digit)
+            fraction -= digit
+            if (fraction > 0.5 or (fraction == 0.5 and (digit & 1))) and fraction + delta > 1:
+                while True:  # round up, carrying into earlier digits
+                    if not frac:
+                        integer += 1
+                        break
+                    last = frac.pop()
+                    if last + 1 < radix:
+                        frac.append(last + 1)
+                        break
+                break
+            if fraction < delta:
+                break
+    head = []
+    while integer / radix >= 2 ** 53:
+        integer /= radix
+        head.append("0")
+    integer = int(integer)
+    while True:
+        integer, rem = divmod(integer, radix)
+        head.append(digits[rem])
+        if integer == 0:
+            break
+    text = "".join(reversed(head)) + ("." + "".join(digits[d] for d in frac) if frac else "")
+    return ("-" if negative else "") + text
+
+
+def syndication_token(tweet_id):
+    # Same token as the public embed: ((id / 1e15) * PI).toString(36) without zeros and dots.
+    return js_radix_string((int(tweet_id) / 1e15) * math.pi, 36).replace("0", "").replace(".", "")
+
+
+def media_id_of(urls):
+    for url in urls:
+        match = MEDIA_ID_RE.search(url or "")
+        if match:
+            return match.group(1)
+    return None
+
+
+def pixels_of(url):
+    match = RESOLUTION_RE.search(url or "")
+    return int(match.group(1)) * int(match.group(2)) if match else 0
+
+
+def best_mp4(variants):
+    mp4 = [v for v in variants if "mp4" in (v.get("content_type") or "") or ".mp4" in (v.get("url") or "")]
+    if not mp4:
+        return None
+    return max(mp4, key=lambda v: (v.get("bitrate") or 0, pixels_of(v.get("url"))))
+
+
+def same_media_url(a, b):
+    def bare(url):
+        parts = urllib.parse.urlsplit(url or "")
+        return (parts.hostname or "", parts.path)
+    return bare(a) == bare(b)
+
+
+def media_from_syndication(data):
+    media = []
+    blocks = ((True, data.get("mediaDetails")), (False, (data.get("quoted_tweet") or {}).get("mediaDetails")))
+    for own, details in blocks:
+        for detail in details or []:
+            info = detail.get("video_info") or {}
+            variants = [{"url": v.get("url"), "bitrate": v.get("bitrate") or 0,
+                         "content_type": v.get("content_type")} for v in info.get("variants") or [] if v.get("url")]
+            if variants:
+                millis = info.get("duration_millis")
+                media.append({"media_id": media_id_of([v["url"] for v in variants]), "own": own,
+                              "duration_s": millis / 1000.0 if millis else None, "variants": variants})
+    return media
+
+
+def media_from_fxtwitter(data):
+    media = []
+    tweet = data.get("tweet") or {}
+    blocks = ((True, tweet.get("media")), (False, (tweet.get("quote") or {}).get("media")))
+    for own, block in blocks:
+        for video in (block or {}).get("videos") or []:
+            variants = [{"url": v.get("url"), "bitrate": v.get("bitrate") or 0,
+                         "content_type": v.get("content_type")} for v in video.get("variants") or [] if v.get("url")]
+            if not variants and video.get("url"):
+                variants = [{"url": video["url"], "bitrate": 0, "content_type": video.get("format")}]
+            if variants:
+                media.append({"media_id": media_id_of([v["url"] for v in variants]), "own": own,
+                              "duration_s": video.get("duration"), "variants": variants})
+    return media
+
+
+def media_from_ytdlp(data):
+    entries = data.get("entries") if data.get("_type") == "playlist" else [data]
+    media = []
+    for entry in entries or []:
+        variants = [{"url": f.get("url"), "bitrate": int((f.get("tbr") or 0) * 1000),
+                     "content_type": "video/mp4" if (f.get("protocol") or "").startswith("http") else "hls"}
+                    for f in entry.get("formats") or [] if f.get("url")]
+        media.append({"media_id": str(entry.get("id")), "own": None,
+                      "duration_s": entry.get("duration"), "variants": variants})
+    return media
+
+
+def x_metadata(tweet_id, journal):
+    # Lists the videos of a post (own and quoted) without downloading anything.
+    try:
+        query = urllib.parse.urlencode({"id": tweet_id, "lang": "en", "token": syndication_token(tweet_id)})
+        body, cmd = curl_get(f"{CONFIG['x_syndication_url']}?{query}", user_agent=CONFIG["syndication_user_agent"])
+        data = json.loads(body.decode("utf-8", "replace"))
+        media = media_from_syndication(data)
+        if not media:
+            raise StepError("no video in the syndication JSON")
+        journal.add("x-metadata: syndication JSON", True, f"{len(media)} video(s)", cmd)
+        author = (data.get("user") or {}).get("screen_name")
+        return media, {"source": "syndication", "author": author, "created_at": data.get("created_at"),
+                       "text": data.get("text")}
+    except (StepError, ValueError) as error:
+        journal.add("x-metadata: syndication JSON", False, str(error))
+    try:
+        body, cmd = curl_get(CONFIG["fxtwitter_url"].format(tweet_id=tweet_id))
+        data = json.loads(body.decode("utf-8", "replace"))
+        media = media_from_fxtwitter(data)
+        if not media:
+            raise StepError("no video in the fxtwitter JSON")
+        journal.add("x-metadata: api.fxtwitter.com", True, f"{len(media)} video(s)", cmd)
+        tweet = data.get("tweet") or {}
+        return media, {"source": "fxtwitter", "author": (tweet.get("author") or {}).get("screen_name"),
+                       "created_at": tweet.get("created_at"), "text": tweet.get("text")}
+    except (StepError, ValueError) as error:
+        journal.add("x-metadata: api.fxtwitter.com", False, str(error))
+    try:
+        data, cmd = ytdlp_json(f"https://x.com/i/status/{tweet_id}")
+        media = media_from_ytdlp(data)
+        journal.add("x-metadata: yt-dlp JSON", bool(media), f"{len(media)} video(s), own or quoted unknown", cmd)
+        return media, {"source": "yt-dlp", "author": data.get("uploader_id"), "text": data.get("title")}
+    except StepError as error:
+        journal.add("x-metadata: yt-dlp JSON", False, str(error))
+    return [], {}
+
+
+# ---------------------------------------------------------------- page parsing
+
+def astro_decode(node):
+    # Astro island props wrap every value as [type, value]; 0 is plain or object, 1 is array.
+    if isinstance(node, list) and len(node) == 2 and isinstance(node[0], int):
+        kind, value = node
+        if kind == 1 and isinstance(value, list):
+            return [astro_decode(item) for item in value]
+        return astro_decode(value) if isinstance(value, (dict, list)) else value
+    if isinstance(node, dict):
+        return {key: astro_decode(value) for key, value in node.items()}
+    if isinstance(node, list):
+        return [astro_decode(item) for item in node]
+    return node
+
+
+def walk(node):
+    if isinstance(node, dict):
+        yield node
+        for value in node.values():
+            yield from walk(value)
+    elif isinstance(node, list):
+        for item in node:
+            yield from walk(item)
+
+
+def normalize_page(url):
+    parts = urllib.parse.urlsplit(url or "")
+    host = (parts.hostname or "").lower()
+    return (host[4:] if host.startswith("www.") else host), parts.path.rstrip("/")
+
+
+def unwrap_proxy(url):
+    # The site plays videos through its own proxy; the original URL sits in ?url=.
+    parts = urllib.parse.urlsplit(url)
+    if host_matches((parts.hostname or "").lower(), ["proxy.whatships.com"]):
+        inner = urllib.parse.parse_qs(parts.query).get("url")
+        if inner:
+            return inner[0], True
+    return url, False
+
+
+def parse_page(text, page_url):
+    slug = urllib.parse.urlsplit(page_url).path.rstrip("/").split("/")[-1]
+    found = {"props_video": None, "video_object": None, "candidates": []}
+    for raw in re.findall(r'props="([^"]*)"', text):
+        decoded = html.unescape(raw)
+        if '"videoUrl"' not in decoded:
+            continue
+        try:
+            data = astro_decode(json.loads(decoded))
+        except ValueError:
+            continue
+        video = data.get("video") if isinstance(data, dict) else None
+        if isinstance(video, dict) and video.get("slug") == slug:
+            found["props_video"] = video
+    for block in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', text, re.S):
+        try:
+            data = json.loads(block)
+        except ValueError:
+            continue
+        for node in walk(data):
+            if node.get("@type") == "VideoObject" and normalize_page(node.get("url")) == normalize_page(page_url):
+                found["video_object"] = node
+    unescaped = html.unescape(text)
+    seen = set()
+    for kind, pattern in SOURCE_PATTERNS.items():
+        for match in re.findall(pattern, unescaped, re.I):
+            url = match if isinstance(match, str) else match[0]
+            original, proxied = unwrap_proxy(url)
+            if original in seen:
+                continue
+            seen.add(original)
+            found["candidates"].append({"kind": kind, "url": original, "via_site_proxy": proxied})
+    return found
+
+
+# ---------------------------------------------------------------- media inspection
+
+def ffprobe(path):
+    cmd = ["ffprobe", "-v", "error", "-print_format", "json", "-show_format", "-show_streams", "-i", str(path)]
+    code, out, err, _ = run(cmd, CONFIG["ffprobe_timeout_s"])
+    if code != 0:
+        raise StepError(f"ffprobe exit {code}: {tail(err)}")
+    return json.loads(out.decode("utf-8", "replace"))
+
+
+def rate(text):
+    try:
+        num, den = (float(x) for x in str(text).split("/"))
+        return round(num / den, 3) if den else None
+    except ValueError:
+        return None
+
+
+def as_int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def as_float(value):
+    try:
+        return round(float(value), 3)
+    except (TypeError, ValueError):
+        return None
+
+
+def summarize(probe):
+    streams = probe.get("streams") or []
+    video = next((s for s in streams if s.get("codec_type") == "video"
+                  and not (s.get("disposition") or {}).get("attached_pic")), None)
+    audio = next((s for s in streams if s.get("codec_type") == "audio"), None)
+    fmt = probe.get("format") or {}
+    summary = {
+        "duration_s": as_float(fmt.get("duration")),
+        "container": fmt.get("format_name"),
+        "overall_bit_rate": as_int(fmt.get("bit_rate")),
+        "has_video": video is not None,
+        "has_audio": audio is not None,
+        "stream_count": len(streams),
+    }
+    if video:
+        summary.update({
+            "video_codec": video.get("codec_name"), "width": as_int(video.get("width")),
+            "height": as_int(video.get("height")), "fps": rate(video.get("avg_frame_rate")),
+            "video": {
+                "profile": video.get("profile"), "pix_fmt": video.get("pix_fmt"),
+                "bit_rate": as_int(video.get("bit_rate")), "nb_frames": as_int(video.get("nb_frames")),
+                "avg_frame_rate": video.get("avg_frame_rate"), "r_frame_rate": video.get("r_frame_rate"),
+                "time_base": video.get("time_base"), "color_space": video.get("color_space"),
+                "color_transfer": video.get("color_transfer"), "color_primaries": video.get("color_primaries"),
+                "color_range": video.get("color_range"), "sample_aspect_ratio": video.get("sample_aspect_ratio"),
+                "duration_s": as_float(video.get("duration")),
+            },
+        })
+    if audio:
+        summary.update({
+            "audio_codec": audio.get("codec_name"), "sample_rate_hz": as_int(audio.get("sample_rate")),
+            "channels": as_int(audio.get("channels")),
+            "audio": {"profile": audio.get("profile"), "bit_rate": as_int(audio.get("bit_rate")),
+                      "channel_layout": audio.get("channel_layout"), "sample_fmt": audio.get("sample_fmt"),
+                      "duration_s": as_float(audio.get("duration"))},
+        })
+    return summary
+
+
+def sha256_of(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def stream_hashes(path):
+    # SHA-256 of each stream's packets (container ignored): stable even when a new mkv merge
+    # writes a new random segment id, so a re-download can be compared to this record.
+    cmd = ["ffmpeg", "-v", "error", "-i", str(path), "-map", "0", "-c", "copy",
+           "-f", "streamhash", "-hash", "sha256", "-"]
+    code, out, err, _ = run(cmd, CONFIG["ffprobe_timeout_s"])
+    if code != 0:
+        return {"error": tail(err)}
+    hashes = {}
+    for line in out.decode("utf-8", "replace").splitlines():
+        parts = line.strip().split(",")
+        if len(parts) == 3 and "=" in parts[2]:
+            hashes[f"{parts[0]}:{parts[1]}"] = parts[2].split("=", 1)[1]
+    return hashes
+
+
+def measured_fields(summary):
+    # One definition of the measured part of reference.json, shared by download and refresh.
+    return {
+        "duration_s": summary.get("duration_s"), "video_codec": summary.get("video_codec"),
+        "width": summary.get("width"), "height": summary.get("height"), "fps": summary.get("fps"),
+        "audio_codec": summary.get("audio_codec"), "sample_rate_hz": summary.get("sample_rate_hz"),
+        "channels": summary.get("channels"), "has_audio": summary.get("has_audio"),
+        "container": summary.get("container"), "overall_bit_rate": summary.get("overall_bit_rate"),
+        "video": summary.get("video"), "audio": summary.get("audio"),
+    }
+
+
+def current_tools():
+    return {"yt-dlp": tool_version(["yt-dlp", "--version"]),
+            "ffprobe": tool_version(["ffprobe", "-version"]),
+            "curl": tool_version(["curl", "--version"])}
+
+
+def write_record(refs_dir, record, stamp):
+    # The previous record is copied to history/ first: an older record is never lost.
+    refs_dir.mkdir(parents=True, exist_ok=True)
+    out_path = refs_dir / "reference.json"
+    if out_path.exists():
+        history = refs_dir / "history"
+        history.mkdir(exist_ok=True)
+        shutil.copy2(out_path, history / f"reference-{stamp}.json")
+    out_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return out_path
+
+
+def refresh_record(args, now, stamp):
+    # Recomputes the measured fields from the cached file, without any download.
+    refs_dir = Path(args.refs_root).resolve() / args.slug
+    record = json.loads((refs_dir / "reference.json").read_text(encoding="utf-8"))
+    media = Path(args.cache_root).resolve() / args.slug / record["file_name"]
+    if not media.is_file():
+        raise StepError(f"cached media missing: {media}")
+    summary = summarize(ffprobe(media))
+    digest = sha256_of(media)
+    changed = digest != record.get("sha256")
+    record.update({"sha256": digest, "bytes": media.stat().st_size})
+    measured = measured_fields(summary)
+    for key in ("duration_s", "video_codec", "width", "height", "fps", "audio_codec", "sample_rate_hz", "channels"):
+        record[key] = measured.pop(key)
+    record["notes"] = list(record.get("notes") or []) + list(args.note)
+    record.update(measured)
+    record["stream_sha256"] = stream_hashes(media)
+    record["cache_path"] = str(media)
+    record.setdefault("attempts", []).append({
+        "step": "refresh metadata from the cached file (no download)", "ok": True,
+        "detail": "file bytes changed since the last record" if changed else "same file bytes as the last record"})
+    record["tools"] = current_tools()
+    record["refreshed_at"] = now.isoformat(timespec="seconds")
+    write_record(refs_dir, record, stamp)
+    return record
+
+
+# ---------------------------------------------------------------- strategies
+
+def plan_curl(step, url, slug, media_id, notes=None):
+    def action(workdir):
+        ext = Path(urllib.parse.urlsplit(url).path).suffix.lower() or ".mp4"
+        dest = workdir / CONFIG["direct_output"].format(slug=slug, media_id=media_id or "media", ext=ext.lstrip("."))
+        command = curl_download(url, dest)
+        return dest, url, command, {}
+    return {"step": step, "action": action, "notes": notes or []}
+
+
+def plan_ytdlp(step, url, extra, template, notes=None):
+    def action(workdir):
+        path, info, command = ytdlp_download(url, workdir, extra, template)
+        media_url = info.get("url") or info.get("webpage_url") or url
+        return path, media_url, command, info
+    return {"step": step, "action": action, "notes": notes or []}
+
+
+def plan_fxtwitter_curl(tweet_id, slug, media_id):
+    # Last resort, resolved only when reached: ask api.fxtwitter.com for the variants.
+    def action(workdir):
+        body, _cmd = curl_get(CONFIG["fxtwitter_url"].format(tweet_id=tweet_id))
+        media = media_from_fxtwitter(json.loads(body.decode("utf-8", "replace")))
+        chosen = next((m for m in media if m["media_id"] == media_id), None) if media_id else \
+            next((m for m in media if m["own"]), None)
+        best = best_mp4(chosen["variants"]) if chosen else None
+        if not best:
+            raise StepError("no MP4 variant for this media in the fxtwitter JSON")
+        return plan_curl("", best["url"], slug, media_id or chosen["media_id"])["action"](workdir)
+    return {"step": "curl best MP4 variant from api.fxtwitter.com", "action": action, "notes": []}
+
+
+def ytdlp_common():
+    return ["--retries", str(CONFIG["ytdlp_retries"]), "--fragment-retries", str(CONFIG["ytdlp_retries"]),
+            "--concurrent-fragments", str(CONFIG["ytdlp_concurrent_fragments"])]
+
+
+def x_plans(tweet_url, slug, media, media_id, meta_source):
+    base = ["-S", CONFIG["x_format_sort"], "-f", "bv*+ba/b"] + ytdlp_common()
+    selector = ["--match-filters", f"id={media_id}"] if media_id else ["--playlist-items", "1"]
+    template = CONFIG["x_output"].format(slug=slug)
+    plans = [
+        plan_ytdlp("yt-dlp on the post (guest token, GraphQL)", tweet_url, base + selector, template),
+        plan_ytdlp("yt-dlp on the post (syndication API)", tweet_url,
+                   base + selector + ["--extractor-args", "twitter:api=syndication"], template),
+    ]
+    chosen = next((m for m in media if m["media_id"] == media_id), None) if media_id else None
+    best = best_mp4(chosen["variants"]) if chosen else None
+    if best:
+        plans.append(plan_curl(f"curl best MP4 variant (nominal {best.get('bitrate')} bit/s) from {meta_source} metadata",
+                               best["url"], slug, media_id))
+    match = TWEET_ID_RE.search(urllib.parse.urlsplit(tweet_url).path)
+    if match and meta_source != "fxtwitter":
+        plans.append(plan_fxtwitter_curl(match.group(1), slug, media_id))
+    return plans
+
+
+def choose_x_media(media, wanted, notes):
+    if wanted:
+        return wanted
+    own = [m for m in media if m["own"]]
+    pool = own or [m for m in media if m["own"] is None] or media
+    if not pool:
+        return None
+    others = [m for m in media if m is not pool[0]]
+    for other in others:
+        role = "quoted post" if other["own"] is False else "same post"
+        notes.append(f"Other video in the {role}, not downloaded: media {other['media_id']}, "
+                     f"{other.get('duration_s')} s.")
+    return pool[0]["media_id"]
+
+
+def build_plans(family, url, slug, args, journal, context):
+    notes = context["notes"]
+    if family == "youtube":
+        height = args.height or CONFIG["youtube_height"]
+        sort = CONFIG["youtube_format_sort"].format(height=height)
+        base = (["--no-playlist", "--abort-on-error", "--check-formats"] + ytdlp_common()
+                + ["--merge-output-format", CONFIG["youtube_merge_format"], "--newline", "-S", sort])
+        context["target_height"] = height
+        # DASH over HTTPS first. Measured on yt-4Q-o_ylnVnc (12 October 2026): HLS format 270
+        # (nominal 4385 kbit/s) decodes to the same 5454 frames as DASH 137, and its MPEG-TS
+        # stream holds a packet without timestamp that the mkv merge rejects.
+        return [
+            plan_ytdlp(f"yt-dlp YouTube best <= {height}p, HTTPS DASH, highest bitrate", url,
+                       base + ["-f", f"bv*[height<={height}][protocol=https]+ba[protocol=https]"
+                                     f"/b[height<={height}][protocol=https]"], CONFIG["youtube_output"]),
+            plan_ytdlp(f"yt-dlp YouTube best <= {height}p, any protocol", url,
+                       base + ["-f", f"bv*[height<={height}]+ba/b[height<={height}]"], CONFIG["youtube_output"]),
+        ]
+    if family == "x":
+        match = TWEET_ID_RE.search(urllib.parse.urlsplit(url).path)
+        if not match:
+            raise StepError("no status id in the X URL")
+        tweet_id = match.group(1)
+        media, meta = x_metadata(tweet_id, journal)
+        context["x_meta"] = meta
+        media_id = choose_x_media(media, args.media_id, notes)
+        context["media_id"] = media_id
+        context["source_post_url"] = url
+        if not media_id:
+            notes.append("Post metadata unavailable: the first video of the post is assumed to be its own.")
+        return x_plans(url, slug, media, media_id, meta.get("source"))
+    if family == "whatships":
+        body, cmd = curl_get(url)
+        page = parse_page(body.decode("utf-8", "replace"), url)
+        props = page["props_video"] or {}
+        video_object = page["video_object"] or {}
+        page_media = props.get("videoUrl") or unwrap_proxy(video_object.get("contentUrl") or "")[0] or None
+        tweet_url = props.get("tweetUrl") or video_object.get("citation")
+        journal.add("page: curl and parse", bool(page_media), (
+            f"videoUrl={page_media}; post={tweet_url}; {len(page['candidates'])} media URL(s) on the page "
+            f"(the rest belong to related cards)"), cmd)
+        context.update({"page": {"title": props.get("title") or video_object.get("name"),
+                                 "brand": props.get("company") or (video_object.get("author") or {}).get("name"),
+                                 "product": props.get("product"), "category": props.get("category"),
+                                 "published_at": props.get("publishedAt") or video_object.get("uploadDate"),
+                                 "duration_s": props.get("durationSeconds"),
+                                 "content_url": video_object.get("contentUrl"),
+                                 "candidates": page["candidates"]},
+                        "source_post_url": tweet_url})
+        try:
+            data, ycmd = ytdlp_json(url)
+            formats = data.get("formats") or ([data] if data.get("url") else [])
+            hosts = sorted({host_of(f.get("url") or "") for f in formats if f.get("url")})
+            journal.add("page: yt-dlp probe on the page URL (no download)", True,
+                        f"extractor {data.get('extractor_key')}, {len(formats)} format(s), hosts {hosts}", ycmd)
+        except StepError as error:
+            journal.add("page: yt-dlp probe on the page URL (no download)", False, str(error))
+        media_id = args.media_id or media_id_of([page_media or ""])
+        context["media_id"] = media_id
+        plans = []
+        best = None
+        if tweet_url and TWEET_ID_RE.search(tweet_url):
+            media, meta = x_metadata(TWEET_ID_RE.search(tweet_url).group(1), journal)
+            context["x_meta"] = meta
+            chosen = next((m for m in media if m["media_id"] == media_id), None)
+            best = best_mp4(chosen["variants"]) if chosen else None
+            if best and page_media and not same_media_url(best["url"], page_media):
+                notes.append(f"The post offers a richer MP4 than the page (nominal {best.get('bitrate')} bit/s); it was preferred.")
+                plans.append(plan_curl("curl best MP4 variant from the original post", best["url"], slug, media_id))
+        if page_media:
+            label = "curl page source (original X media URL from the page)"
+            if best and same_media_url(best["url"], page_media):
+                label += f", equal to the best variant of the post (nominal {best.get('bitrate')} bit/s)"
+            plans.append(plan_curl(label, page_media, slug, media_id))
+        if tweet_url:
+            plans += x_plans(tweet_url, slug, [], media_id, (context.get("x_meta") or {}).get("source"))
+        for candidate in page["candidates"]:
+            if candidate["kind"] in {"m3u8", "mux", "cloudflare_stream", "vimeo", "youtube_embed"} \
+                    and not host_matches(host_of(candidate["url"]), CONFIG["never_download_hosts"]):
+                plans.append(plan_ytdlp(f"yt-dlp on page candidate ({candidate['kind']})", candidate["url"],
+                                        ["-S", CONFIG["x_format_sort"]], CONFIG["x_output"].format(slug=slug)))
+        return plans
+    return [plan_ytdlp("yt-dlp generic, best resolution then bitrate", url,
+                       ["-S", CONFIG["x_format_sort"], "-f", "bv*+ba/b"], CONFIG["x_output"].format(slug=slug))]
+
+
+# ---------------------------------------------------------------- main flow
+
+def prepare_target(cache_root, slug, replace, stamp):
+    target = cache_root / slug
+    if target.exists() and any(target.iterdir()):
+        if not replace:
+            raise StepError(f"{target} is not empty; pass --replace to move it aside (nothing is deleted)")
+        aside = cache_root / f"{slug}.replaced-{stamp}"
+        target.rename(aside)
+        print(f"moved previous cache folder to {aside}", file=sys.stderr)
+    return target
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Fetch one reference video for analysis (metadata only in git).")
+    parser.add_argument("url")
+    parser.add_argument("slug")
+    parser.add_argument("--family", default="auto", choices=["auto", "whatships", "x", "youtube", "generic"])
+    parser.add_argument("--height", type=int, default=None, help="YouTube target height (default from CONFIG)")
+    parser.add_argument("--media-id", default=None, help="X media id to fetch when a post holds several videos")
+    parser.add_argument("--note", action="append", default=[], help="free note stored in reference.json")
+    parser.add_argument("--probe", action="store_true", help="list sources and plans, download nothing")
+    parser.add_argument("--replace", action="store_true", help="move an existing cache folder aside first")
+    parser.add_argument("--cache-root", default=CONFIG["cache_root"])
+    parser.add_argument("--refs-root", default=CONFIG["refs_root"])
+    parser.add_argument("--json", action="store_true", help="print reference.json on stdout")
+    args = parser.parse_args()
+
+    if not SLUG_RE.match(args.slug) or ".." in args.slug:
+        raise SystemExit(f"invalid slug: {args.slug!r}")
+    if urllib.parse.urlsplit(args.url).scheme != "https":
+        raise SystemExit("only https URLs are accepted")
+    family = detect_family(args.url) if args.family == "auto" else args.family
+    cache_root = Path(args.cache_root).resolve()
+    refs_dir = Path(args.refs_root).resolve() / args.slug
+    now = dt.datetime.now().astimezone()
+    stamp = now.strftime("%Y%m%d-%H%M%S")
+    journal = Journal()
+    context = {"notes": list(args.note), "target_height": None, "media_id": args.media_id}
+
+    try:
+        target = None if args.probe else prepare_target(cache_root, args.slug, args.replace, stamp)
+        plans = build_plans(family, args.url, args.slug, args, journal, context)
+    except (StepError, ValueError, OSError) as error:
+        journal.add("prepare", False, str(error))
+        print(json.dumps({"slug": args.slug, "ok": False, "attempts": journal.entries}, indent=2))
+        return 1
+
+    if args.probe:
+        print(json.dumps({"slug": args.slug, "family": family, "media_id": context.get("media_id"),
+                          "plans": [p["step"] for p in plans], "context": {k: v for k, v in context.items()},
+                          "attempts": journal.entries}, indent=2, ensure_ascii=False, default=str))
+        return 0
+
+    staging = cache_root / f".staging-{args.slug}-{stamp}"
+    staging.mkdir(parents=False, exist_ok=False)
+    accepted, fallback = None, None
+    silent_hashes = {}  # sha256 -> methods that returned these exact bytes without audio
+    for index, plan in enumerate(plans, start=1):
+        workdir = staging / f"{index:02d}"
+        workdir.mkdir(exist_ok=False)
+        try:
+            path, media_url, command, info = plan["action"](workdir)
+            summary = summarize(ffprobe(path))
+        except (StepError, ValueError) as error:
+            journal.add(plan["step"], False, str(error))
+            continue
+        problems = []
+        if not summary["has_video"]:
+            problems.append("no video stream")
+        if not summary["has_audio"]:
+            problems.append("no audio stream")
+        if context["target_height"] and (summary.get("height") or 0) < context["target_height"]:
+            problems.append(f"height {summary.get('height')} below target {context['target_height']}")
+        candidate = {"plan": plan, "path": path, "media_url": media_url, "command": command,
+                     "info": info, "summary": summary, "problems": problems}
+        detail = (f"{summary.get('width')}x{summary.get('height')} {summary.get('video_codec')} "
+                  f"{summary.get('fps')} fps, audio {summary.get('audio_codec') or 'none'}, "
+                  f"{path.stat().st_size} bytes")
+        journal.add(plan["step"], not problems, detail + (f"; problems: {', '.join(problems)}" if problems else ""),
+                    command)
+        if not problems:
+            accepted = candidate
+            break
+        if fallback is None and summary["has_video"]:
+            fallback = candidate
+        if problems == ["no audio stream"]:
+            # Two independent methods returning the same bytes without audio: the source is silent.
+            methods = silent_hashes.setdefault(sha256_of(path), [])
+            methods.append(plan["step"])
+            if len(methods) >= 2:
+                context["notes"].append(
+                    f"The source has no audio track: {len(methods)} independent methods returned the same "
+                    f"bytes without an audio stream.")
+                break
+    chosen = accepted or fallback
+    if chosen is None:
+        print(f"all strategies failed; partial files kept in {staging}", file=sys.stderr)
+        print(json.dumps({"slug": args.slug, "ok": False, "attempts": journal.entries}, indent=2))
+        return 1
+
+    target.mkdir(parents=False, exist_ok=True)
+    final_path = target / chosen["path"].name
+    chosen["path"].replace(final_path)
+    if staging.parent == cache_root and staging.name.startswith(".staging-"):
+        shutil.rmtree(staging)  # only the staging folder this run created
+
+    summary = chosen["summary"]
+    notes = context["notes"] + chosen["plan"]["notes"] + [f"Method: {chosen['plan']['step']}."]
+    if chosen["problems"]:
+        notes.append("WARNING: " + "; ".join(chosen["problems"]) + ".")
+    fps_pair = (summary.get("video") or {}).get("avg_frame_rate"), (summary.get("video") or {}).get("r_frame_rate")
+    if fps_pair[0] and fps_pair[1] and rate(fps_pair[0]) != rate(fps_pair[1]):
+        notes.append(f"Frame rate: average {fps_pair[0]} differs from base {fps_pair[1]} (possibly variable).")
+    media_url = chosen["media_url"]
+    if host_matches(host_of(media_url or ""), CONFIG["ephemeral_media_hosts"]):
+        notes.append("Stream URLs are signed and expire; the page URL and format ids are stored instead.")
+        media_url = chosen["info"].get("webpage_url") or args.url
+    page = context.get("page") or {}
+    x_meta = context.get("x_meta") or {}
+    info = chosen["info"]
+    title = page.get("title") or info.get("title") or x_meta.get("text")
+    record = {
+        "schema": "zenray-motion-design/reference@1",
+        "slug": args.slug,
+        "page_url": args.url,
+        "media_url": media_url,
+        "date": human_date(now.date()),
+        "file_name": final_path.name,
+        "sha256": sha256_of(final_path),
+        "bytes": final_path.stat().st_size,
+        "duration_s": summary.get("duration_s"),
+        "video_codec": summary.get("video_codec"),
+        "width": summary.get("width"),
+        "height": summary.get("height"),
+        "fps": summary.get("fps"),
+        "audio_codec": summary.get("audio_codec"),
+        "sample_rate_hz": summary.get("sample_rate_hz"),
+        "channels": summary.get("channels"),
+        "notes": notes,
+        "has_audio": summary.get("has_audio"),
+        "family": family,
+        "method": chosen["plan"]["step"],
+        "source_post_url": context.get("source_post_url"),
+        "media_id": context.get("media_id") or (str(info.get("id")) if info.get("id") else None),
+        "source_format_id": info.get("format_id"),
+        "title": (title or "")[:CONFIG["title_max_chars"]] or None,
+        "brand": page.get("brand") or x_meta.get("author") or info.get("uploader"),
+        "product": page.get("product"),
+        "category": page.get("category"),
+        "published_at": page.get("published_at") or x_meta.get("created_at") or info.get("upload_date"),
+        "listed_duration_s": page.get("duration_s"),
+        "container": summary.get("container"),
+        "overall_bit_rate": summary.get("overall_bit_rate"),
+        "video": summary.get("video"),
+        "audio": summary.get("audio"),
+        "cache_path": str(final_path),
+        "attempts": journal.entries,
+        "tools": {"yt-dlp": tool_version(["yt-dlp", "--version"]),
+                  "ffprobe": tool_version(["ffprobe", "-version"]),
+                  "curl": tool_version(["curl", "--version"])},
+        "fetched_at": now.isoformat(timespec="seconds"),
+    }
+    refs_dir.mkdir(parents=True, exist_ok=True)
+    out_path = refs_dir / "reference.json"
+    if out_path.exists():
+        out_path.rename(refs_dir / f"reference.previous-{stamp}.json")  # never lose an older record
+    out_path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if args.json:
+        print(json.dumps(record, indent=2, ensure_ascii=False))
+    else:
+        print(f"{args.slug}: {record['width']}x{record['height']} {record['fps']} fps, "
+              f"{record['duration_s']} s, audio {record['audio_codec'] or 'none'}, {record['bytes']} bytes "
+              f"-> {final_path}")
+    return 2 if chosen["problems"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

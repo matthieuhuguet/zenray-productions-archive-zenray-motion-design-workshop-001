@@ -1,0 +1,77 @@
+{
+  "schema": "zenray-motion-design/reference@1",
+  "slug": "yt-4Q-o_ylnVnc",
+  "page_url": "https://www.youtube.com/watch?v=4Q-o_ylnVnc",
+  "media_url": "https://www.youtube.com/watch?v=4Q-o_ylnVnc",
+  "date": "12 October 2026",
+  "file_name": "Claude Opus 5.5 Music Video - Ignore Previous Instructions [4Q-o_ylnVnc].mkv",
+  "sha256": "31a5a03e4fa6d4906058f41058c135d45bc45d9002a63acdc79b6b0229d34f91",
+  "bytes": 45996761,
+  "duration_s": 181.821,
+  "video_codec": "h264",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "audio_codec": "opus",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "notes": [
+    "Method: yt-dlp YouTube best <= 1080p, HTTPS DASH only."
+  ],
+  "has_audio": true,
+  "family": "youtube",
+  "method": "yt-dlp YouTube best <= 1080p, HTTPS DASH only",
+  "source_post_url": null,
+  "media_id": "4Q-o_ylnVnc",
+  "source_format_id": "137+251",
+  "title": "Claude Opus 5.5 Music Video - Ignore Previous Instructions",
+  "brand": "Seguramente",
+  "product": null,
+  "category": null,
+  "published_at": "20260929",
+  "listed_duration_s": null,
+  "container": "matroska,webm",
+  "overall_bit_rate": 2023826,
+  "video": {
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "bit_rate": null,
+    "nb_frames": null,
+    "avg_frame_rate": "30/1",
+    "r_frame_rate": "30/1",
+    "time_base": "1/1000",
+    "color_space": "bt709",
+    "color_transfer": "bt709",
+    "color_primaries": "bt709",
+    "color_range": "tv",
+    "sample_aspect_ratio": "1:1",
+    "duration_s": null
+  },
+  "audio": {
+    "profile": null,
+    "bit_rate": null,
+    "channel_layout": "stereo",
+    "sample_fmt": "fltp",
+    "duration_s": null
+  },
+  "cache_path": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/yt-4Q-o_ylnVnc/Claude Opus 5.5 Music Video - Ignore Previous Instructions [4Q-o_ylnVnc].mkv",
+  "attempts": [
+    {
+      "step": "yt-dlp YouTube best <= 1080p, highest bitrate",
+      "ok": false,
+      "detail": "yt-dlp exit 1, no media file: ERROR: Postprocessing: Conversion failed!"
+    },
+    {
+      "step": "yt-dlp YouTube best <= 1080p, HTTPS DASH only",
+      "ok": true,
+      "detail": "1920x1080 h264 30.0 fps, audio opus, 45996761 bytes",
+      "command": "yt-dlp --ignore-config --no-cookies --no-cookies-from-browser --socket-timeout 30 --no-playlist --abort-on-error --check-formats --retries 10 --fragment-retries 10 --concurrent-fragments 16 --merge-output-format mkv --newline -S res:1080,tbr -f 'bv*[height<=1080][protocol=https]+ba[protocol=https]/b[height<=1080][protocol=https]' --paths /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/.staging-yt-4Q-o_ylnVnc-20261012-031127/02 --output '%(title)s [%(id)s].%(ext)s' --print 'after_move:%(.{id,format_id,width,height,tbr,url,webpage_url,filepath,title,uploader,upload_date})j' -- 'https://www.youtube.com/watch?v=4Q-o_ylnVnc'"
+    }
+  ],
+  "tools": {
+    "yt-dlp": "2026.08.19",
+    "ffprobe": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0"
+  },
+  "fetched_at": "2026-10-12T03:11:27+02:00"
+}

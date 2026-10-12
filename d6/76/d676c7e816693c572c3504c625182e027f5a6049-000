@@ -1,0 +1,329 @@
+# 12 October 2026, 03:30 CEST (bezier by variable projection, 04:35 CEST): identify the ease and the timing of one animated channel (position, scale, opacity,
+# blur...) from a measured trajectory. Model: y(t) = a + b * E(clip((t - t0) / d, 0, 1)), where E is either an exact
+# GSAP ease sampled from the renderer's own library, or a CSS cubic-bezier. a and b enter linearly and are solved in
+# closed form for every (t0, d) (variable projection); t0 and d are searched on a grid then refined by Nelder-Mead.
+# Model choice uses BIC; candidates within 2 BIC units of the best are reported as ties.
+# FR : identifie l'ease et le timing d'un canal animé à partir d'une trajectoire mesurée ; numpy seul.
+import json
+import math
+
+import numpy as np
+
+
+
+class EaseLibrary:
+    """Exact ease curves sampled from the renderer (SampleGsapEases.mjs)."""
+
+    def __init__(self, path, names=None):
+        data = json.load(open(path))
+        self.grid = np.asarray(data["grid"], dtype=np.float64)
+        wanted = names or list(data["eases"].keys())
+        self.curves = {name: np.asarray(data["eases"][name], dtype=np.float64) for name in wanted}
+        self.version = data.get("gsap")
+
+    def names(self):
+        return list(self.curves.keys())
+
+    def evaluate(self, name, u):
+        u = np.clip(u, 0.0, 1.0)
+        return np.interp(u, self.grid, self.curves[name])
+
+
+def cubic_bezier(u, x1, y1, x2, y2, iterations=40):
+    """CSS cubic-bezier(x1, y1, x2, y2) evaluated at progress u, by bisection on the curve parameter."""
+    u = np.clip(np.asarray(u, dtype=np.float64), 0.0, 1.0)
+    lo = np.zeros_like(u)
+    hi = np.ones_like(u)
+    for _ in range(iterations):
+        s = 0.5 * (lo + hi)
+        x = 3 * (1 - s) ** 2 * s * x1 + 3 * (1 - s) * s ** 2 * x2 + s ** 3
+        below = x < u
+        lo = np.where(below, s, lo)
+        hi = np.where(below, hi, s)
+    s = 0.5 * (lo + hi)
+    return 3 * (1 - s) ** 2 * s * y1 + 3 * (1 - s) * s ** 2 * y2 + s ** 3
+
+
+def back_out(u, k):
+    """GSAP back.out(k) closed form, used to refine the overshoot continuously."""
+    v = 1.0 - np.clip(u, 0.0, 1.0)
+    return 1.0 - v * v * ((k + 1.0) * v - k)
+
+
+def nelder_mead(f, x0, step, iterations=400, tolerance=1e-10):
+    """Plain Nelder-Mead minimiser (numpy only)."""
+    n = len(x0)
+    simplex = [np.asarray(x0, dtype=np.float64)]
+    for i in range(n):
+        point = np.array(x0, dtype=np.float64)
+        point[i] += step[i]
+        simplex.append(point)
+    values = [f(p) for p in simplex]
+    for _ in range(iterations):
+        order = np.argsort(values)
+        simplex = [simplex[i] for i in order]
+        values = [values[i] for i in order]
+        if abs(values[-1] - values[0]) <= tolerance * (abs(values[0]) + 1e-30):
+            break
+        centroid = np.mean(simplex[:-1], axis=0)
+        reflected = centroid + (centroid - simplex[-1])
+        fr = f(reflected)
+        if fr < values[0]:
+            expanded = centroid + 2.0 * (centroid - simplex[-1])
+            fe = f(expanded)
+            if fe < fr:
+                simplex[-1], values[-1] = expanded, fe
+            else:
+                simplex[-1], values[-1] = reflected, fr
+        elif fr < values[-2]:
+            simplex[-1], values[-1] = reflected, fr
+        else:
+            contracted = centroid + 0.5 * (simplex[-1] - centroid)
+            fc = f(contracted)
+            if fc < values[-1]:
+                simplex[-1], values[-1] = contracted, fc
+            else:
+                best = simplex[0]
+                simplex = [best + 0.5 * (p - best) for p in simplex]
+                values = [f(p) for p in simplex]
+    i = int(np.argmin(values))
+    return simplex[i], values[i]
+
+
+def solve_linear(x, y):
+    """Least squares y = a + b x; returns a, b, sse (rows of x may be stacked)."""
+    xm = x.mean(axis=-1, keepdims=True)
+    ym = y.mean()
+    dx = x - xm
+    var = (dx * dx).sum(axis=-1)
+    cov = (dx * (y - ym)).sum(axis=-1)
+    b = np.where(var > 1e-15, cov / np.maximum(var, 1e-15), 0.0)
+    a = ym - b * xm[..., 0]
+    resid = y - (a[..., None] + b[..., None] * x)
+    return a, b, (resid * resid).sum(axis=-1)
+
+
+def motion_support(t, y):
+    """First and last instants where the channel visibly moves (5 % of the peak step)."""
+    v = np.abs(np.diff(y))
+    if v.max() <= 0:
+        return t[0], t[-1]
+    idx = np.nonzero(v > 0.05 * v.max())[0]
+    return t[idx[0]], t[min(idx[-1] + 1, len(t) - 1)]
+
+
+def fit_window(t, y, shape, t0_range, d_range, grid=24, refine=True):
+    """Fit a, b, t0, d for one shape function shape(u). Returns dict with sse and parameters."""
+    t0s = np.linspace(t0_range[0], t0_range[1], grid)
+    ds = np.geomspace(max(d_range[0], 1e-3), d_range[1], grid)
+    T0, D = np.meshgrid(t0s, ds, indexing="ij")
+    T0, D = T0.ravel(), D.ravel()
+    u = np.clip((t[None, :] - T0[:, None]) / D[:, None], 0.0, 1.0)
+    x = shape(u)
+    a, b, sse = solve_linear(x, y)
+    i = int(np.argmin(sse))
+    best = {"t0": float(T0[i]), "d": float(D[i]), "a": float(a[i]), "b": float(b[i]), "sse": float(sse[i])}
+    if refine:
+        def cost(p):
+            if p[1] <= 1e-3:
+                return 1e30
+            uu = np.clip((t - p[0]) / p[1], 0.0, 1.0)
+            return float(solve_linear(shape(uu)[None, :], y)[2][0])
+
+        step = [max((t0_range[1] - t0_range[0]) / grid, 1e-3), max(best["d"] * 0.1, 1e-3)]
+        p, sse_r = nelder_mead(cost, [best["t0"], best["d"]], step, iterations=300)
+        if sse_r < best["sse"]:
+            uu = np.clip((t - p[0]) / p[1], 0.0, 1.0)
+            aa, bb, _ = solve_linear(shape(uu)[None, :], y)
+            best = {"t0": float(p[0]), "d": float(p[1]), "a": float(aa[0]), "b": float(bb[0]), "sse": float(sse_r)}
+    return best
+
+
+def default_ranges(t, y):
+    first, last = motion_support(t, y)
+    span = max(last - first, (t[1] - t[0]) * 2)
+    t0_range = (first - 2.0 * span, first + 0.25 * span)
+    d_range = (0.5 * span, 3.5 * span)
+    return t0_range, d_range
+
+
+def bic(sse, n, k):
+    return n * math.log(max(sse, 1e-300) / n) + k * math.log(n)
+
+
+def fit_library(t, y, library, names=None, top_refine=10):
+    """Rank every library ease on one trajectory. Grid for all, Nelder-Mead refinement for the best few."""
+    t = np.asarray(t, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    t0_range, d_range = default_ranges(t, y)
+    rows = []
+    for name in names or library.names():
+        shape = lambda u, name=name: library.evaluate(name, u)
+        row = fit_window(t, y, shape, t0_range, d_range, refine=False)
+        row["name"] = name
+        rows.append(row)
+    rows.sort(key=lambda r: r["sse"])
+    for row in rows[:top_refine]:
+        shape = lambda u, name=row["name"]: library.evaluate(name, u)
+        refined = fit_window(t, y, shape, t0_range, d_range, refine=True)
+        row.update(refined)
+    rows.sort(key=lambda r: r["sse"])
+    n = len(t)
+    for row in rows:
+        row["rms"] = math.sqrt(row["sse"] / n)
+        row["bic"] = bic(row["sse"], n, 4)
+    return rows
+
+
+def bezier_basis(u, x1, x2, iterations=40):
+    """Bernstein terms of a CSS cubic-bezier at progress u: the curve value is c1*B1 + c2*B2 + c3*B3 with
+    c1 = b*y1, c2 = b*y2, c3 = b, so for fixed (x1, x2, t0, d) the fit is linear (a, c1, c2, c3)."""
+    u = np.clip(np.asarray(u, dtype=np.float64), 0.0, 1.0)
+    lo = np.zeros_like(u)
+    hi = np.ones_like(u)
+    for _ in range(iterations):
+        s = 0.5 * (lo + hi)
+        x = 3 * (1 - s) ** 2 * s * x1 + 3 * (1 - s) * s ** 2 * x2 + s ** 3
+        below = x < u
+        lo = np.where(below, s, lo)
+        hi = np.where(below, hi, s)
+    s = 0.5 * (lo + hi)
+    return np.stack([np.ones_like(s), 3 * (1 - s) ** 2 * s, 3 * (1 - s) * s ** 2, s ** 3], axis=-1)
+
+
+def _bezier_lsq(t, y, x1, x2, t0, d):
+    u = np.clip((t - t0) / d, 0.0, 1.0)
+    A = bezier_basis(u, x1, x2)
+    coef, *_ = np.linalg.lstsq(A, y, rcond=None)
+    resid = y - A @ coef
+    return coef, float(resid @ resid)
+
+
+def fit_bezier(t, y, t0_hint, d_hint, grid=11):
+    """Free CSS cubic-bezier fit. Nonlinear parameters (x1, x2, t0, d) by grid then Nelder-Mead; the four
+    others (a, b, y1, y2) by linear least squares at every step (variable projection)."""
+    t = np.asarray(t, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    xs = np.linspace(0.0, 1.0, grid)
+    best = (float("inf"), None)
+    # Candidate windows: the best named ease's window, and the visible motion support (a bezier rarely hides
+    # a long invisible tail, unlike expo), each widened and narrowed.
+    first, last = motion_support(t, y)
+    frame = t[1] - t[0]
+    windows = []
+    for c0, cd in ((t0_hint, d_hint), (first - frame, last - first + 2 * frame)):
+        for k0 in (-0.1, 0.0, 0.1):
+            for kd in (0.85, 1.0, 1.2):
+                windows.append((c0 + k0 * cd, cd * kd))
+    for t0, d in windows:
+        if d <= 1e-3:
+            continue
+        for x1 in xs:
+            for x2 in xs:
+                _, sse = _bezier_lsq(t, y, x1, x2, t0, d)
+                if sse < best[0]:
+                    best = (sse, (x1, x2, t0, d))
+
+    def cost(p):
+        x1, x2, t0, d = p
+        if d <= 1e-3 or not (0.0 <= x1 <= 1.0) or not (0.0 <= x2 <= 1.0):
+            return 1e30
+        return _bezier_lsq(t, y, x1, x2, t0, d)[1]
+
+    p, _ = nelder_mead(cost, list(best[1]), [0.05, 0.05, 0.02 * d_hint, 0.05 * d_hint], iterations=800)
+    x1, x2, t0, d = p
+    coef, sse = _bezier_lsq(t, y, x1, x2, t0, d)
+    a, c1, c2, c3 = coef
+    b = c3 if abs(c3) > 1e-12 else 1e-12
+    n = len(t)
+    return {"name": "cubic-bezier", "bezier": [float(x1), float(c1 / b), float(x2), float(c2 / b)], "t0": float(t0),
+            "d": float(d), "a": float(a), "b": float(b), "sse": float(sse), "rms": math.sqrt(sse / n),
+            "bic": bic(sse, n, 8)}
+
+
+def refine_back(t, y, row):
+    """If the best ease is a back.out variant, refine its overshoot k continuously (golden section)."""
+    t = np.asarray(t, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    t0_range, d_range = default_ranges(t, y)
+
+    def sse_for(k):
+        return fit_window(t, y, lambda u: back_out(u, k), t0_range, d_range, refine=True)
+
+    lo, hi = 0.1, 5.0
+    g = (math.sqrt(5) - 1) / 2
+    c, d = hi - g * (hi - lo), lo + g * (hi - lo)
+    fc, fd = sse_for(c), sse_for(d)
+    for _ in range(25):
+        if fc["sse"] < fd["sse"]:
+            hi, d, fd = d, c, fc
+            c = hi - g * (hi - lo)
+            fc = sse_for(c)
+        else:
+            lo, c, fc = c, d, fd
+            d = lo + g * (hi - lo)
+            fd = sse_for(d)
+    k = c if fc["sse"] < fd["sse"] else d
+    res = fc if fc["sse"] < fd["sse"] else fd
+    n = len(t)
+    res.update({"name": f"back.out({k:.3f})", "k": k, "rms": math.sqrt(res["sse"] / n), "bic": bic(res["sse"], n, 5)})
+    return res
+
+
+def identify(t, y, library, with_bezier=True, names=None):
+    """Full decision for one channel: ranked library, optional free bezier, BIC choice, ties."""
+    rows = fit_library(t, y, library, names=names)
+    best = rows[0]
+    decision = dict(best, family="library")
+    candidates = [decision]
+    if best["name"].startswith("back.out"):
+        refined = refine_back(t, y, best)
+        refined["family"] = "back"
+        candidates.append(refined)
+    if with_bezier:
+        bez = fit_bezier(t, y, best["t0"], best["d"])
+        bez["family"] = "bezier"
+        candidates.append(bez)
+    # The 8-parameter bezier replaces a named ease only on strong evidence (BIC lower by more than 6).
+    chosen = candidates[0]
+    for r in candidates[1:]:
+        margin = 6.0 if r["family"] == "bezier" else 2.0
+        if r["bic"] < chosen["bic"] - margin:
+            chosen = r
+    ties = [r["name"] for r in rows if r["bic"] - rows[0]["bic"] < 2.0]
+    return {"chosen": chosen, "library_best": best, "ties": ties, "ranking": [(r["name"], r["rms"], r["bic"]) for r in rows[:8]]}
+
+
+def predict(t, row, library=None):
+    """Evaluate a fitted row at times t."""
+    t = np.asarray(t, dtype=np.float64)
+    u = np.clip((t - row["t0"]) / row["d"], 0.0, 1.0)
+    if row.get("name") == "cubic-bezier":
+        e = cubic_bezier(u, *row["bezier"])
+    elif "k" in row:
+        e = back_out(u, row["k"])
+    else:
+        e = library.evaluate(row["name"], u)
+    return row["a"] + row["b"] * e
+
+
+def segments(t, y, rest_ratio=0.02, min_rest=4, pad=3):
+    """Split a channel into moves separated by rests (speed under rest_ratio of the peak for min_rest frames)."""
+    v = np.abs(np.diff(y))
+    if v.max() <= 0:
+        return []
+    moving = v > rest_ratio * v.max()
+    out, start, rest = [], None, 0
+    for i, m in enumerate(moving):
+        if m:
+            if start is None:
+                start = i
+            rest = 0
+        elif start is not None:
+            rest += 1
+            if rest >= min_rest:
+                out.append((max(0, start - pad), min(len(t) - 1, i - rest + 1 + pad)))
+                start, rest = None, 0
+    if start is not None:
+        out.append((max(0, start - pad), len(t) - 1))
+    return out

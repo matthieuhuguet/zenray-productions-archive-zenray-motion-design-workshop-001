@@ -1,0 +1,502 @@
+# R01 HyperFrames en profondeur (12 October 2026)
+
+Projet ZenRay Motion Design, identifiant Assets `zenray-motion-design`. Ce document répond à la tâche R01 : ce que HyperFrames sait faire, comment il pilote le temps et le son, comment l'installer de façon épinglée, quel contrat de composition notre moteur doit émettre, et quels pièges éviter pour viser une reproduction mesurée à 99 %.
+
+## 0. Légende des preuves (12 October 2026)
+
+Chaque affirmation porte l'une de ces marques, afin que ce qui est mesuré ne se confonde jamais avec ce qui est supposé.
+
+| Marque | Sens |
+|---|---|
+| [mesuré] | Constaté sur ce Mac le 12 October 2026 : commande lancée, fichier lu, journal de rendu, étiquette ffprobe. |
+| [code 0.8.147] | Lu dans le code de la CLI installée, `/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/`. |
+| [aide 0.8.147] | Sortie de `hyperframes <commande> --help`, lancée hors projet avec un HOME isolé, sans télémétrie ni vérification de mise à jour. |
+| [doc] | Documentation officielle lue le 12 October 2026 (URL en section 18). |
+| [registre] | Registre npm et API GitHub interrogés le 12 October 2026. |
+| [supposé] | Déduction non vérifiée, à transformer en test (section 17). |
+
+Couverture de lecture : les 158 pages indexées par `https://hyperframes.heygen.com/llms.txt` ont été téléchargées au format Markdown (3,2 Mo) ; les pages de contrat, de rendu, d'audio, de temps, de 3D, de lecteur, d'agents et de CLI ont été lues en entier, le catalogue de blocs (447 pages) seulement survolé par son index, car il ne touche pas notre moteur.
+
+## 1. Réponses courtes (12 October 2026)
+
+| Question | Réponse | Preuve |
+|---|---|---|
+| Comment une composition porte l'audio et comment le rendu le mixe | Chaque `<audio id>` visible, et chaque `<video data-has-audio="true">` non muet, devient une piste. Le rendu extrait chaque piste en PCM 16 bits à 48 kHz avec ffmpeg, applique volume, fondus et automation, la place par `adelay` arrondi à la milliseconde, somme le tout par `amix` avec compensation du nombre de pistes, encode en AAC 192 kb/s, puis abaisse le niveau global si le true peak dépasse -1 dBTP. Les effets (`data-fx-chain`) passent par un `OfflineAudioContext` dans Chrome. | [code 0.8.147], [doc] |
+| Comment le temps est piloté | Le moteur demande l'image n au temps t = n / fps, que le runtime ramène au pas d'image par plancher. Le runtime cherche toutes les timelines et tous les adaptateurs (GSAP, CSS, WAAPI, Lottie, Anime.js, Three.js, TypeGPU), émet l'événement `hf-seek`, puis un shim de temps virtuel fixe `Date.now`, `performance.now` et vide une fois la file `requestAnimationFrame`. `setTimeout` et `setInterval` restent sur l'horloge réelle, et `Math.random` n'est pas graine en rendu local. | [code 0.8.147], [doc] |
+| Comment faire du montage | Clips `<video>`, `<img>`, `<audio>` et sous-compositions, chacun avec `data-start`, `data-duration`, `data-media-start` pour couper le début, `data-playback-rate` ou une voie `rate` pour la vitesse. Les pistes (`data-track-index`) ne sont que des rangées d'affichage dans Studio : les clips se superposent librement et l'ordre de peinture vient de `z-index`. Transitions par GSAP sur des enveloppes ou par `@hyperframes/shader-transitions`. Édition scriptable : `hyperframes timeline move, trim, split, delete, set, duplicate, apply, undo`, avec `--plan` et `--json`. | [doc], [aide 0.8.147] |
+| Comment adapter un format | La taille est fixée dans la source (`data-width`, `data-height`, balise viewport). `--resolution` au rendu ne fait que suréchantillonner au même rapport, par multiple entier ; les variables ne peuvent changer ni la taille, ni la durée, ni la cadence. Il faut donc une composition par format, générée par notre moteur depuis les mêmes paramètres. | [doc], [aide 0.8.147] |
+| Existe-t-il un MCP ou un mode agent officiel | Oui, mais pas local : un connecteur MCP hébergé en bêta (`https://mcp.heygen.com/mcp/hyperframes/`, compte HeyGen, rendu dans leur cloud), douze outils WebMCP exposés par Studio dans le navigateur, un plugin Claude Code et des skills. Aucun serveur MCP local n'existe dans le dépôt à la version 0.8.149. | [doc], [registre] |
+| Comment intégrer un lecteur dans un site React | `@hyperframes/player` fournit le composant web `<hyperframes-player>` (iframe en sandbox, API `play`, `pause`, `seek`, événements `ready`, `timeupdate`, `ended`). En React 19 : `import "@hyperframes/player"`, une ref, et `addEventListener` dans un `useEffect`. Il injecte le runtime depuis jsDelivr à sa propre version si la composition ne l'embarque pas, et lit aussi un MP4 avec `type="video/mp4"`. | [doc], [registre], [code 0.8.147] |
+
+## 2. Identité, versions et licence (12 October 2026)
+
+| Élément | Valeur | Preuve |
+|---|---|---|
+| Paquet CLI | `hyperframes`, dernière version 0.8.149 publiée le 2026-10-11 à 19:24 UTC | [registre] `npm view` |
+| Étiquettes npm | `latest` 0.8.149, `alpha` 0.7.67-alpha.0, `desktop` 0.8.53-desktop.0 | [registre] |
+| Nombre de versions | 503 versions publiées depuis le 2026-03-23 ; douze versions entre le 6 et le 11 octobre (0.8.138 à 0.8.149), soit environ deux par jour | [registre] |
+| Licence | Apache-2.0 pour la CLI et pour le dépôt ; les paquets `@hyperframes/*` n'ont pas de champ `license` dans leur `package.json`, mais le tarball du lecteur contient un fichier LICENSE Apache 2.0 | [registre] |
+| Moteur requis | Node.js 22 ou plus, FFmpeg pour le rendu | [registre], [doc] |
+| Dépôt | `github.com/heygen-com/hyperframes`, créé le 2026-03-10, environ 61 000 étoiles, 5 451 forks, 260 tickets ouverts, dernier push le 2026-10-12 à 00:46 UTC | [registre] |
+| Commits des versions | 0.8.145 `76f8a567a5f4`, 0.8.147 `d4dd6c097d22`, 0.8.149 `bf881bf79d68` | [registre] |
+| Paquets liés, tous en 0.8.149 | `@hyperframes/player`, `core`, `engine`, `producer`, `sdk`, `studio`, `lint`, `parsers`, `shader-transitions` | [registre] |
+| Chrome épinglé par la CLI | `chrome-headless-shell` 152.0.7977.30 (150.0.7871.124 sous macOS 12), identique en 0.8.145 et 0.8.149 | [code 0.8.147], [registre] fichier `packages/cli/src/browser/manager.ts` |
+
+Les versions récentes qui pourraient nous concerner : 0.8.146 ajoute le limiteur `truepeak` et corrige un export qui échouait sur un clip vidéo dépassant la composition ; 0.8.148 garde le son et l'image synchronisés quand les flux d'un fichier source commencent à des instants différents ; 0.8.149 n'ajoute qu'une entrée `hyperframes/api` (transcription, détourage) qui ne nous sert pas. [doc] changelog
+
+## 3. État local mesuré (12 October 2026)
+
+| Élément | Constat | Preuve |
+|---|---|---|
+| Node et npm | Node v26.9.0 dans `/Users/zenray/.local/bin/node`, npm 11.19.1 | [mesuré] |
+| FFmpeg et Docker | ffmpeg 8.1.2 (Homebrew) présent ; Docker absent, donc `render --docker` indisponible | [mesuré] |
+| Projet de l'étude | [/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/package.json](/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/package.json) épingle `npx --yes hyperframes@0.8.145` dans les scripts `dev`, `check`, `render` et `publish` ; aucun `node_modules` local | [mesuré] |
+| `hyperframes.json` de l'étude | registre pointé sur la branche `main` du dépôt (non épinglé), chemins `compositions`, `compositions/components`, `assets`, `media.autoProxy` vrai | [mesuré] |
+| Version exécutée par `npx hyperframes` | 0.8.147 : c'est la seule copie extraite dans le cache npx (spécification non épinglée `hyperframes`, mise à jour le 11 octobre à 16:55) ; le cache de contenu npm contient les tarballs 0.8.145 et 0.8.147 ; aucune installation globale | [mesuré] |
+| `--version` | `0.8.147`, obtenu en lançant directement le binaire du cache npx avec un HOME isolé ; `npx hyperframes` en ligne aurait résolu `latest`, donc téléchargé 0.8.149, ce qui a été évité | [mesuré], [supposé] pour la résolution en ligne |
+| Dérive de version entre rendus | Les rendus v1 à v6 de l'étude portent l'étiquette `hyperframes_version=0.8.145`, les rendus v7 et v8 portent `0.8.147` ; les fichiers remuxés (son ajouté) ont perdu l'étiquette | [mesuré] ffprobe |
+| Conditions du rendu v1 | 60 images/s, 8 workers, GPU matériel (ANGLE Metal, Apple M5 Max), capture par capture d'écran car la capture rapide est désactivée en parallèle, frames écrites sur disque puis encodées, 4 080 images | [mesuré] `renders/render-v1.log` |
+| Flux vidéo produit (v6) | H.264 High, yuv420p, BT.709, 60/1, 4 080 images, environ 1,6 Mb/s | [mesuré] |
+| Navigateur | `chrome-headless-shell` 152.0.7977.30 dans `/Users/zenray/.cache/hyperframes/chrome` (201 Mo) ; Chrome personnel présent dans `/Applications/Google Chrome.app`, qui sert de repli si la copie gérée manque | [mesuré], [code 0.8.147] |
+| Télémétrie | Activée sur ce Mac (`~/.hyperframes/config.json` : `telemetryEnabled` vrai, 46 commandes, 9 rendus réussis comptés) ; identifiants non reproduits ici | [mesuré] |
+| Écritures de l'aperçu dans le projet | `.hyperframes/` (aperçu compilé de 344 Ko, `history-id`, `hf-ids-stamped.json` qui liste `compositions/S01.html` à `S10.html`), `.thumbnails/` (103 JPEG), historique dans `/Users/zenray/.cache/hyperframes/history/` | [mesuré] |
+| Poids de l'installation | 110 Mo pour la CLI et ses 71 paquets, plus 201 Mo de Chrome partagé | [mesuré] |
+| Skills HyperFrames installés | Aucun dans `/Users/zenray/.claude/skills` ni `~/.agents` | [mesuré] |
+
+## 4. Le contrat de composition selon la documentation (12 October 2026)
+
+Une composition est un document HTML fini et cherchable : l'apparence vient du HTML et du CSS ordinaires, tandis qu'un petit jeu d'attributs déclare la taille, la durée, les clips, les médias et l'imbrication. [doc] `reference/html-schema`
+
+**La racine.** Un élément de taille explicite porte `data-composition-id` (clé du registre des timelines), `data-start="0"`, `data-width`, `data-height` et, presque toujours, `data-duration`. La durée de la racine est lue par le compilateur avant l'exécution des scripts, si bien qu'aucun script ni aucune variable ne peut la changer pour un rendu donné. La CLI lit aussi `data-fps` sur la racine pour sa cadence par défaut, sinon 30 [aide 0.8.147]. Une composition sans timeline doit porter `data-no-timeline`, faute de quoi chaque rendu attend 45 secondes une timeline qui ne viendra jamais. [doc]
+
+**Les clips.** Tout élément temporisé porte un `id` stable, `data-start` (secondes, ou expression relative `autre-clip + 0.5` dans la même composition), `data-duration` (obligatoire pour le DOM et les sous-compositions, facultatif pour une image, qui vaut alors 3 s, et pour un média, qui joue alors jusqu'à la fin de sa source), et de préférence `class="clip"`, dont la règle CSS partagée donne la boîte plein cadre. La visibilité dépend de `data-start`, pas de la classe. [doc]
+
+**Les médias.** Le runtime possède la lecture : aucun script ne doit appeler `play()`, `pause()` ni écrire `currentTime`. Une vidéo sonore déclare `data-has-audio="true"` et n'est pas muette, une vidéo silencieuse porte `muted`, sans quoi `lint` signale `video_missing_muted`. Le décalage dans la source s'écrit `data-media-start` pour `<video>` et `<audio>` (le mixeur ne lit que ce nom) et `data-playback-start` pour une sous-composition. `data-volume` va de 0 à 3,98 (+12 dB), `data-fade-in` et `data-fade-out` sont des fondus linéaires en secondes. [doc]
+
+**L'imbrication.** Un hôte `data-composition-src="compositions/x.html"` ouvre une fenêtre fixe ; le fichier imbriqué transporte tout son contenu dans `<template>` (styles et scripts compris, la tête du fichier étant ignorée) ; l'identifiant de l'hôte doit être exactement celui de la racine du fichier et la clé de sa timeline ; les temps internes sont locaux à la sous-composition ; les chemins se résolvent depuis la racine du projet. Une timeline interne plus courte tient sa dernière image, une fenêtre d'hôte plus courte coupe. [doc], [registre] skill `sub-compositions.md`
+
+**L'animation.** Une timeline GSAP finie, créée en pause, enregistrée sur `window.__timelines` sous la clé `data-composition-id`, après l'ajout de ses tweens ; ni horloge murale, ni hasard non graine, ni répétition infinie sans durée finie de la racine. Une construction asynchrone (chargement de police avant mesure) est admise à condition d'enregistrer la timeline à la fin. [doc]
+
+**Les variables.** `data-composition-variables` déclare des entrées typées (`string`, `number`, `color`, `boolean`, `enum`, `font`, `image`) ; les valeurs passent par `data-variable-values` sur un hôte, par `render --variables`, `--variables-file` ou `--batch`, et se lisent par `data-var-text`, `data-var-src`, `var(--id)` ou `window.__hyperframes.getVariables()`. Elles ne changent jamais la taille, la durée de la racine, la cadence ni le format de sortie. [doc]
+
+## 5. Comment le temps est piloté (12 October 2026)
+
+**Le principe documenté.** Le rendu ne joue jamais la vidéo : il demande une image, attend que la page soit dans l'état de cet instant, la capture, puis passe à la suivante, dans n'importe quel ordre. Le temps vaut `floor(frame) / fps`, jamais une horloge. [doc] `concepts/determinism`
+
+**Ce que fait le code, image par image.** [code 0.8.147]
+
+1. Le producteur calcule `time = frameIndex / fps` et appelle `window.__hf.seek(time)` dans la page.
+2. Le runtime quantifie ce temps au pas d'image par `Math.floor(t * fps + 1e-9) / fps`, met en pause chaque timeline enregistrée et la place à ce temps, puis appelle chaque adaptateur déterministe (GSAP, animations CSS, WAAPI, Lottie, Anime.js, Three.js, TypeGPU et d'autres).
+3. Il émet `window.dispatchEvent(new CustomEvent("hf-seek", { detail: { time, waitUntil } }))` ; un écouteur peut appeler `waitUntil(promesse)` de façon synchrone pour retenir la capture. L'adaptateur Three.js publie aussi `window.__hfThreeTime`.
+4. Un shim de temps virtuel, injecté avant tout script de la page par le serveur de rendu, fixe alors `Date.now()`, `new Date()` et `performance.now()` sur ce temps, puis exécute une fois la file des rappels `requestAnimationFrame` en leur passant ce temps.
+5. La capture attend la fin des promesses (`__hfWaitForSeekCompletion`), puis prend les pixels.
+
+**Conséquences précises.**
+
+| Mécanisme | En rendu | En aperçu Studio | Verdict pour nous |
+|---|---|---|---|
+| `requestAnimationFrame` | File remplacée, vidée une fois par image avec le temps virtuel | Horloge réelle du navigateur | Interdit comme source de vérité : un état accumulé dépend de l'ordre des seeks et des workers. [code 0.8.147], [doc] |
+| `Date.now`, `performance.now` | Virtualisés | Réels | Interdits pour l'état visuel. [code 0.8.147] |
+| `setTimeout`, `setInterval` | Non virtualisés, horloge réelle | Réels | Interdits pour l'état visuel. [code 0.8.147] |
+| `Math.random`, `crypto.getRandomValues` | Non graines en rendu local ; graines par image seulement dans le rendu distribué (Lambda, Cloud Run) | Réels | PRNG graine obligatoire (mulberry32), graine dans les paramètres. [code 0.8.147] |
+| Canvas 2D et WebGL | Dessin dans un écouteur `hf-seek`, ou par `registerFrameSource` | Idem | Dessiner uniquement depuis `event.detail.time`. [doc], [code 0.8.147] |
+| Three.js | Adaptateur `three` : `hf-seek` et `__hfThreeTime`, attente du `DefaultLoadingManager`, pas d'inférence de durée | Idem | `data-duration` obligatoire sur la racine, taille et ratio de pixels du renderer fixés, `window.__hf.buildReady` pour un calcul lourd. [registre] skill `three.md` |
+| Images clés en escalier | Le temps de seek ne tombe pas exactement sur des doubles de 1/fps | Idem | Quantifier sur l'indice d'image entier, jamais sur des secondes. [doc] |
+
+**Frame sources.** `window.__hyperframes.registerFrameSource({ element, ready, render(sourceTime, signal), dispose })` branche une fonction du temps sur un hôte temporisé portant `data-no-timeline`, sans timeline GSAP factice ; le temps reçu intègre l'inpoint, la vitesse et les rampes ; les tirages sont sérialisés et la capture attend la promesse rendue. [doc] `guides/frame-sources`
+
+**HTML dans un canvas et chaînes VFX.** `drawElementImage` (API expérimentale de Chromium) copie du DOM vivant dans un canvas utilisable comme texture ; `data-vfx-chain` applique des noyaux WebGL2 par pixel (déformation, déplacement, bruit fractal) recalculés de façon identique à chaque seek. Les nœuds qui lisent leurs propres pixels imposent la capture par capture d'écran et un seul worker. [doc]
+
+**Les modes de capture.** Trois chemins existent : capture d'écran (`Page.captureScreenshot`), `HeadlessExperimental.beginFrame` sous Linux avec le shell headless, et la capture rapide par `drawElementImage`, active par défaut sous macOS avec GPU matériel mais désactivée dès que plusieurs workers tournent, faute d'auto-vérification. [aide 0.8.147], [mesuré] journal v1
+
+**Ce que « déterministe » garantit et ne garantit pas.** Le même worker qui cherche le même temps rend la même image. En revanche, plusieurs workers ne sont pas identiques au bit près : la documentation mesure des écarts de ±1 niveau sur quelques pixels, alignés sur les frontières de tranches de 30 images, et recommande `--workers 1` pour un résultat exact, en comparant des images sans perte plutôt que le MP4. Les polices, la version de Chrome, le GPU et l'encodeur peuvent aussi déplacer un pixel ; la voie officielle pour neutraliser la machine est `render --docker`, absente ici. [doc]
+
+## 6. L'audio : comment la composition le porte et comment le rendu le mixe (12 October 2026)
+
+**Ce que la composition déclare.** [doc] `reference/audio-effects`
+
+| Attribut | Porte sur | Rôle |
+|---|---|---|
+| `data-start`, `data-duration`, `data-media-start` | `<audio>`, `<video>` | Placement et découpe dans la source |
+| `data-volume` | idem | Gain statique, 1 = 0 dB, plafond 3,98 (+12 dB) |
+| `data-fade-in`, `data-fade-out` | idem | Fondus linéaires aux bords du clip |
+| `data-fx-chain` | clip, groupe, racine (bus maître) | Seize effets (filtres, compresseur, limiteur, truepeak, gate, saturation, bitcrush, delay, reverb, chorus, phaser, pitchshift), JSON versionné |
+| `data-automation` | clip, groupe | Enveloppes de volume, de paramètres d'effets, ou voie `rate` (rampe de vitesse) |
+| `data-audio-group` et `<hf-audio-group>` | clips | Bus de groupe, mute par `data-hidden` (le solo de Studio n'atteint pas l'export) |
+| `data-timeline-role="music"` | `<audio>` | Désigne la musique pour `hyperframes beats` |
+
+**Ce que fait le rendu.** [code 0.8.147]
+
+1. Collecte : chaque `audio[id]` non caché et chaque `video[id][data-has-audio="true"]` audible devient une piste.
+2. Extraction : `ffmpeg -ss <début> -t <durée> -i <source> -vn -acodec pcm_s16le -ar 48000`, donc un intermédiaire 16 bits à 48 kHz par piste.
+3. Effets : la chaîne `data-fx-chain` est rendue par un `OfflineAudioContext` dans Chrome, avec les mêmes constructeurs qu'en aperçu ; une chaîne illisible fait échouer tout le mixage au rendu alors que l'aperçu la joue sans effet.
+4. Placement et somme : par piste `atrim`, `volume` (expression par morceaux pour l'automation), fondus, `adelay=<ms>` avec arrondi à la milliseconde, `apad`, puis `amix=inputs=N:duration=longest:dropout_transition=0` suivi de `volume=N` pour annuler la normalisation d'amix ; gain maître par défaut 1 (`PRODUCER_AUDIO_GAIN`).
+5. Encodage : AAC 192 kb/s, sans option de CLI pour changer ce débit.
+6. Plafond : si le true peak de l'AAC dépasse -1 dBTP, le producteur réencode avec une atténuation calculée (jusqu'à trois passes, visée -1,5 dBTP) et journalise « Audio lowered by X dB ».
+7. Durée : la piste est complétée ou coupée à la durée exacte de la vidéo.
+
+**Rampes de vitesse.** Une voie `rate` (0,1 à 10, interpolation logarithmique) prime sur `data-playback-rate` ; l'image affichée vient d'une même fonction en aperçu et en rendu, tandis que le son est étiré par tranches d'un quart de seconde à vitesse constante, pitch conservé, donc proche mais non exact. [doc] `reference/speed-ramps`
+
+**Outils autour du son.** `normalize-audio` mesure la loudness intégrée EBU R128 d'un clip et propose un `data-volume` (écriture seulement avec `--write`, cible absolue `--lufs`, défaut -16) ; `beats` détecte la pulsation de la musique dans Chrome et écrit `beats/<audio>.json`, à une ou deux images près de Studio. [aide 0.8.147], [doc]
+
+**Ce que cela implique pour notre son fait en code.** Nos SFX et notre musique de travail sont synthétisés hors ligne (MakeSound.py, MakeAudio.py de l'étude). Deux voies sont possibles, et la seconde est celle de l'étude :
+
+| Voie | Avantages | Limites |
+|---|---|---|
+| A. Stems en `<audio>` dans la composition | Une seule source de vérité, Studio joue le son, une seule commande de rendu | Intermédiaire 16 bits, AAC 192 kb/s imposé, atténuation automatique au-dessus de -1 dBTP, placement arrondi à la milliseconde |
+| B. Rendu muet puis multiplexage ffmpeg (`-c:v copy`) | Son exact, image prouvée identique par hachage, débit au choix | Étape de plus, aperçu Studio muet si aucun `<audio>` n'est déclaré |
+
+Recommandation : voie A par défaut, avec des stems à 48 kHz dont le true peak du mixage reste sous -1,5 dBTP, de sorte que le plafond ne s'enclenche jamais, et un contrôle du journal qui refuse « Audio lowered » ; voie B réservée à un master qui exige un son bit à bit. Le contrôle des attaques (tolérance d'une image, soit 16,7 ms à 60 images/s) supporte sans peine l'arrondi à la milliseconde. [supposé] tant que le test 17.6 n'a pas été fait.
+
+## 7. Le montage (12 October 2026)
+
+**Clips et coupe.** Une vidéo se place par `<video id src data-start data-duration data-media-start muted>` ; pour la déplacer ou la redimensionner, on anime une enveloppe, jamais l'élément `<video>` lui-même, sous peine d'image figée. Une image par `<img class="clip">`. Une sous-composition par hôte `data-composition-src`. [doc]
+
+**Pistes multiples.** `data-track-index` n'est qu'une rangée d'affichage de Studio : le rendu ne la lit pas, deux clips de la même piste peuvent se chevaucher, et l'ordre de peinture se règle par `z-index` ; un `z-index` négatif demande `isolation: isolate` sur le parent. [doc]
+
+**Transitions.** Deux familles. Les transitions CSS animent les conteneurs de scènes par GSAP (opacité, transformations, `clip-path`, filtres) ; elles conviennent à la plupart des coupes. Les transitions par shader (`@hyperframes/shader-transitions`, quatorze shaders dont `whip-pan`, `glitch`, `light-leak`, `sdf-iris`, `cinematic-zoom`) composent les deux scènes en WebGL et passent au rendu par un compositeur déterministe côté page. Une sortie en fondu suivie d'une entrée en fondu produit une coupe avec un creux, car le rendu tient l'état final de chaque scène : la transition doit être la sortie elle-même. [doc]
+
+**Édition scriptable.** `hyperframes timeline` imprime pistes et clips (`--json`) et accepte les verbes `move`, `trim`, `split`, `delete`, `set`, `duplicate`, `ids`, `apply` (plan atomique depuis un fichier) et `undo` (depuis un reçu), avec `--plan` pour voir le diff sans écrire, `--at`, `--start`, `--end`, `--duration`, `--snap`, `--overwrite`. `hyperframes history` liste, annule et restaure les changements enregistrés. [aide 0.8.147]
+
+**Studio.** Déplacer, rogner, couper au rasoir (raccourci B), aligner sur la pulsation ; Studio réécrit les mêmes attributs dans la source. La page de guide « Editing existing videos » affirme que Studio n'offre pas encore la coupe, la page Studio dit le contraire : la page Studio, plus récente, fait foi. [doc]
+
+## 8. Adapter un format (16:9, 9:16, 1:1) (12 October 2026)
+
+| Moyen | Ce qu'il fait | Ce qu'il ne fait pas |
+|---|---|---|
+| `init --resolution landscape, portrait, square` (et variantes 4K) | Crée le canevas 1920×1080, 1080×1920 ou 1080×1080 | Ne transforme pas un projet existant |
+| `render --resolution` | Suréchantillonne par `deviceScaleFactor` au même rapport, multiple entier, MP4 seulement, sans HDR | Ne change jamais le rapport d'aspect |
+| Variables | Changent textes, couleurs, médias, choix | Ne changent ni la taille, ni la durée, ni la cadence |
+| `cloud render --aspect-ratio` | Valide le rapport | Ne remodèle pas la composition |
+
+Il n'existe donc aucune adaptation automatique de format. [doc], [aide 0.8.147] Notre moteur doit générer une composition par format depuis les mêmes paramètres : même timeline et même son, jetons de mise en page propres à chaque format (zones sûres, tailles de texte, position des légendes). C'est exactement la logique HDA du projet : une définition, trois instances.
+
+## 9. Images, polices, 3D et effets de média (12 October 2026)
+
+**Images.** Rerastérisées en 4K si leur source le permet ; une image 1080p agrandie n'apporte aucun détail. `data-color-grading` (JSON) étalonne une `<img>` ou une `<video>` réelle, jamais une scène HTML entière ; `media-treatment --capabilities --json` liste les effets disponibles. [doc]
+
+**Polices.** Le compilateur localise les polices distantes et les imports Google Fonts avant le rendu, et les scripts de composition démarrent après le chargement des polices utilisées par le balisage ; une police utilisée seulement par du texte créé en script doit être demandée par `document.fonts.load()` avant toute mesure. [doc] changelog et `guides/gsap-animation` Pour nous : uniquement des fichiers woff2 locaux déclarés par `@font-face`, sinon une famille absente déclenche une recherche réseau au moment de la compilation. [supposé] pour le déclenchement exact.
+
+**3D.** Three.js par l'adaptateur, jamais par une perspective CSS quand la lumière ou la caméra comptent ; `AnimationMixer.setTime(time)` pour une animation de modèle ; un seul temps de coupe déclaré une fois et lu partout, pour éviter l'apparition d'objets du plan suivant dans les dernières images du précédent. [registre] skill `three.md`
+
+## 10. Aperçu, Studio et lecteur local (12 October 2026)
+
+`hyperframes preview` ouvre Studio sur le port 3002 et choisit seul son mode : embarqué (Studio inclus dans la CLI), Studio local avec Vite si `@hyperframes/studio` est présent dans `node_modules`, ou monorepo. Dans un terminal non interactif, il démarre un aperçu géré qui survit à la commande : `--status`, `--stop`, `--list`, `--kill-all`, `--json`. L'option `--open` est vraie par défaut et ouvre le navigateur du système. `hyperframes play` ouvre le lecteur léger sur le port 3003. L'aperçu joue en temps réel et peut saccader là où le rendu, qui cherche image par image, n'en perd aucune. [doc], [aide 0.8.147]
+
+L'application de bureau HyperFrames Studio (Mac et Linux) exige un compte HeyGen et pilote un agent ; elle ne nous sert pas. [doc]
+
+## 11. Agents : skills, plugin, MCP et sorties machine (12 October 2026)
+
+| Surface | Ce que c'est | Usage pour zrmd |
+|---|---|---|
+| Skills | Dépôt `skills/` : routeur `hyperframes`, `hyperframes-core`, `hyperframes-animation` (adaptateurs GSAP, Three.js, Lottie, CSS, WAAPI, Anime.js, TypeGPU), `hyperframes-cli`, `hyperframes-audio`, `media-use` et dix workflows de création | Lire comme référence à un commit épinglé ; ne pas installer, car `skills` et `init` les lient dans les dossiers globaux des agents |
+| Plugin | `claude plugin marketplace add heygen-com/hyperframes`, puis `claude plugin install hyperframes@hyperframes` ; le manifeste épingle une version de CLI | Non : il contourne notre système de skills |
+| MCP hébergé | `https://mcp.heygen.com/mcp/hyperframes/`, bêta, OAuth HeyGen, rendu sur leur infrastructure | Non : il envoie les projets hors de la machine |
+| WebMCP de Studio | Douze outils dans le navigateur (`studio_look`, `studio_inspect`, `studio_frame`, `studio_select`, `studio_seek`, `studio_set_text`, `studio_set_style`, `studio_transform`, quatre outils d'animation), sous `document.modelContext`, Chrome 149 en origin trial | Peut-être plus tard pour l'éditeur local ; écrit dans la source |
+| Sorties machine de la CLI | `--json` presque partout avec un champ `_meta`, codes de sortie, `check --json`, `timeline --plan --json`, `preview --context --json`, `history begin` et `end` | Oui : c'est la base de notre propre serveur MCP |
+
+Aucun serveur MCP local n'existe dans le dépôt à la version 0.8.149 : l'arbre ne contient que le code WebMCP de Studio et les pages de documentation. [registre] Le serveur MCP visé par le projet doit donc envelopper la CLI locale épinglée et ses sorties JSON.
+
+## 12. Intégrer un lecteur dans un site React (12 October 2026)
+
+ZenRayWebsite et ZenRayProgress tournent tous deux en React 19.2 avec Vite (7 et 5) [mesuré]. `@hyperframes/player` est un composant web sans dépendance React, qui charge la composition dans une iframe en sandbox à l'intérieur de son Shadow DOM, la met à l'échelle de son conteneur et lui parle par `postMessage`. [doc]
+
+Points mesurés ou lus qui comptent :
+
+- Le sandbox par défaut inclut `allow-same-origin`, ce qui laisse le code de la composition atteindre la page hôte ; `sandbox-origin="opaque"` le retire. [registre] README du paquet
+- Si la composition n'embarque pas le runtime, le lecteur l'injecte depuis `https://cdn.jsdelivr.net/npm/@hyperframes/core@<sa version>/dist/hyperframe.runtime.iife.js` : il faut donc épingler le lecteur à la même version que la CLI et autoriser ce domaine, ou embarquer le runtime. [code 0.8.147]
+- `type="video/mp4"` lit un fichier vidéo avec la même API, ce qui convient à une galerie ; le flux HLS déjà en place dans ZenRayProgress reste la voie de diffusion. [doc]
+- `range-start` et `range-end` bouclent sur un plan, utile pour comparer un plan à la référence. [doc]
+
+Gabarit proposé (code original, à vérifier dans le navigateur interne) :
+
+```jsx
+// HyperframesPlayer.jsx: React 19 wrapper for <hyperframes-player> (12 October 2026, 03:10 CEST).
+// FR : enveloppe React 19 du composant web, événements branchés à la main.
+import { useEffect, useRef } from "react";
+import "@hyperframes/player"; // Registers the custom element once (side effect).
+
+export default function HyperframesPlayer({ src, type, poster, width = 1920, height = 1080, onReady, onTime }) {
+  const playerRef = useRef(null);
+
+  useEffect(() => {
+    // addEventListener works on React 18 and 19; CustomEvent payloads live in event.detail.
+    // FR : addEventListener vaut pour React 18 et 19 ; la charge utile est dans event.detail.
+    const player = playerRef.current;
+    if (!player) return undefined;
+    const handleReady = (event) => onReady?.(event.detail);
+    const handleTime = (event) => onTime?.(event.detail.currentTime);
+    player.addEventListener("ready", handleReady);
+    player.addEventListener("timeupdate", handleTime);
+    return () => {
+      player.removeEventListener("ready", handleReady);
+      player.removeEventListener("timeupdate", handleTime);
+    };
+  }, [onReady, onTime]);
+
+  return (
+    <hyperframes-player
+      ref={playerRef}
+      src={src}
+      type={type}
+      poster={poster}
+      width={width}
+      height={height}
+      controls
+      sandbox-origin="opaque"
+      style={{ display: "block", width: "100%", aspectRatio: `${width} / ${height}` }}
+    />
+  );
+}
+```
+
+Deux précautions : ne jamais passer `controls={false}` (sous React 18 l'attribut resterait présent avec la valeur « false ») ; servir la composition et ses fichiers depuis la même origine que le site. `@hyperframes/studio/player` expose aussi un composant React `Player`, mais il dépend des contextes de Studio et n'est presque pas documenté : il ne vaut pas le composant web pour une page publique. [doc]
+
+## 13. Inventaire des sous-commandes 0.8.147 et usage dans zrmd (12 October 2026)
+
+Toutes les aides ont été capturées par `--help` [aide 0.8.147]. Le classement « Non » applique les règles du projet : rien ne sort de la machine, aucune IA générative ne produit d'image ni de son.
+
+| Usage zrmd | Sous-commandes | Raison |
+|---|---|---|
+| Oui, cœur | `render`, `lint`, `check`, `snapshot`, `keyframes`, `compare`, `compositions`, `info`, `timeline` en lecture, `doctor`, `browser path` et `ensure`, `benchmark`, `play`, `preview` (toujours avec `--no-open`), `docs` | Rendu, contrôle et inspection locaux |
+| Oui, avec précaution | `normalize-audio` sans `--write`, `beats`, `clean --dry-run`, `upgrade --check --json`, `history` en lecture, `media-treatment`, `grade-compare` | Utiles, mais certains écrivent dans la source ou dans le cache |
+| Rarement | `init` (seulement pour lire un gabarit, avec `HYPERFRAMES_SKIP_SKILLS=1`), `add` (registre à épingler, licences des blocs à lire) | Écrivent des fichiers et peuvent toucher le réseau |
+| Non | `publish`, `cloud`, `lambda`, `cloudrun`, `feedback`, `auth`, `figma`, `capture` | Envoient le projet ou des données hors de la machine |
+| Non | `tts`, `remove-background`, `transcribe`, `models` | Modèles d'IA locaux, dont la synthèse vocale, inutiles ou contraires à la règle du son fait en code |
+| Non | `skills`, `events`, `telemetry` (laisser désactivée par variable), `usage`, `open`, `catch-up`, `present` | Installent des skills tiers, émettent de la télémétrie ou concernent l'application de bureau |
+| Dépréciées | `validate`, `inspect`, `layout` | Remplacées par `check` |
+
+Réglages de rendu mesurés dans le code : `draft` = x264 `ultrafast` CRF 28, `standard` = `medium` CRF 18, `high` = `slow` CRF 15, `looks` (défaut de la CLI) = `standard` avec CRF 16, `delivery` = `high`. La documentation présente encore `standard` comme défaut : l'aide installée fait foi. [code 0.8.147], [aide 0.8.147]
+
+## 14. Installation recommandée pour ce projet (12 October 2026)
+
+**Principe.** Une installation locale, épinglée au patch près, verrouillée par un lockfile, jamais globale (une installation globale npm, bun, pnpm ou Homebrew se met à jour seule en arrière-plan dans la même version majeure [code 0.8.147] [doc]) et jamais par `npx` sans version (dérive mesurée entre v6 et v7). Le code d'auto-mise à jour ignore une installation dans un `node_modules` de projet, qu'il classe en « disposition inconnue » [code 0.8.147], à une exception près : un chemin contenant `/lib/node_modules/hyperframes/` ou `/npm/node_modules/hyperframes/` serait pris pour une installation globale, d'où l'interdiction de nommer le dossier d'outillage `lib` ou `npm`.
+
+**Emplacement.** Le gabarit (`package.json`, `.npmrc`, lockfile) vit dans le skill, `/Users/zenray/.claude/skills/zenray-motion-design/templates/tooling/`, sans `node_modules` (la synchronisation des skills copierait 110 Mo). L'instance vit dans l'atelier, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/tooling/`, où l'on lance `npm ci`, et `node_modules` reste exclu de l'archive Assets.
+
+**Version.** Épingler la même version pour la CLI et pour le lecteur, car le lecteur injecte le runtime de sa propre version. Cible proposée : 0.8.149 (dernière, Chrome identique à 0.8.145 et 0.8.147), adoptée seulement après le test doré 17.1 qui compare 0.8.147 et 0.8.149 image par image sur la v8 ; en cas d'écart non expliqué, rester sur 0.8.147, qui a produit v7 et v8. Une série de versions V_xxx se rend toujours avec un seul épinglage, consigné dans chaque version.
+
+```json
+{
+  "name": "zrmd-tooling",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "devDependencies": {
+    "hyperframes": "0.8.149"
+  },
+  "scripts": {
+    "hf": "node ../Scripts/RunHyperframes.mjs",
+    "hf:version": "node ../Scripts/RunHyperframes.mjs --version",
+    "hf:doctor": "node ../Scripts/RunHyperframes.mjs doctor --json"
+  }
+}
+```
+
+`.npmrc` à côté : `save-exact=true` et `engine-strict=true`. Le lockfile `package-lock.json` se versionne avec le gabarit et l'installation passe toujours par `npm ci`.
+
+**L'enveloppe.** Toute invocation passe par un script unique, qui fixe l'environnement, vérifie la version, épingle le navigateur et refuse les sous-commandes interdites. Esquisse (code original, à tester) :
+
+```js
+// RunHyperframes.mjs: private, pinned wrapper around the local HyperFrames CLI (12 October 2026, 03:10 CEST).
+// FR : enveloppe privée et épinglée autour de la CLI HyperFrames locale.
+import { spawnSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const TOOLING_DIR = join(dirname(dirname(fileURLToPath(import.meta.url))), "tooling");
+const PINNED = JSON.parse(readFileSync(join(TOOLING_DIR, "package.json"), "utf8")).devDependencies.hyperframes;
+const CLI = join(TOOLING_DIR, "node_modules", ".bin", "hyperframes");
+const REFUSED = new Set(["publish", "cloud", "lambda", "cloudrun", "feedback", "auth", "figma", "capture",
+  "tts", "remove-background", "transcribe", "models", "skills", "events", "usage", "open", "catch-up"]);
+const OPENS_BROWSER = new Set(["preview", "play", "present"]);
+
+const args = process.argv.slice(2);
+if (REFUSED.has(args[0])) { console.error(`refused: "${args[0]}" leaves the machine or uses generative AI`); process.exit(2); }
+if (OPENS_BROWSER.has(args[0]) && !args.includes("--no-open")) args.push("--no-open");
+
+// Opt out of telemetry (and canaries), update checks, auto-install and third-party skills.
+// FR : sortie de la télémétrie (et des canaris), des mises à jour, de l'auto-installation et des skills tiers.
+const env = { ...process.env, HYPERFRAMES_NO_TELEMETRY: "1", DO_NOT_TRACK: "1",
+  HYPERFRAMES_NO_UPDATE_CHECK: "1", HYPERFRAMES_NO_AUTO_INSTALL: "1", HYPERFRAMES_SKIP_SKILLS: "1" };
+for (const key of ["GEMINI_API_KEY", "OPENROUTER_API_KEY", "HEYGEN_API_KEY", "HYPERFRAMES_API_KEY", "HEYGEN_ACCESS_TOKEN"]) delete env[key];
+
+const installed = spawnSync(CLI, ["--version"], { env, encoding: "utf8" }).stdout.trim();
+if (installed !== PINNED) { console.error(`version drift: installed ${installed}, pinned ${PINNED}`); process.exit(3); }
+
+const browser = spawnSync(CLI, ["browser", "path"], { env, encoding: "utf8" }).stdout.trim();
+if (!browser.includes("chrome-headless-shell") || !existsSync(browser)) { console.error("managed chrome-headless-shell missing"); process.exit(4); }
+env.HYPERFRAMES_BROWSER_PATH = browser; // Never fall back to the personal Chrome app.
+
+const run = spawnSync(CLI, args, { env, stdio: "inherit" });
+process.exit(run.status ?? 1);
+```
+
+**Deux profils de rendu.** Itération rapide : `render --fps 60 --quality looks --workers auto`. Rendu de vérification, celui que mesure le contrat des 99 % : `render --fps 60 --quality looks --workers 1`, après que le test 17.2 a établi si `--no-browser-gpu` et `--experimental-fast-capture=false` sont nécessaires pour obtenir deux rendus identiques.
+
+## 15. Le contrat que notre moteur doit émettre (12 October 2026)
+
+Chaque règle se vérifie par une commande ; la colonne de droite dit laquelle.
+
+| N° | Règle | Contrôle |
+|---|---|---|
+| C1 | Un projet HyperFrames autonome par version et par format : `versions/V_007/16x9/`, `9x16/`, `1x1/`, chacun avec `index.html`, `assets/`, `vendor/`, `hyperframes.json` | `compositions --json` dans chaque dossier |
+| C2 | Racine `#root` avec `data-composition-id="main"`, `data-start="0"`, `data-duration`, `data-width`, `data-height`, `data-fps="60"`, taille en pixels, `overflow: hidden`, `isolation: isolate`, balise viewport identique | `lint --json`, `info --json` |
+| C3 | Tous les temps (débuts, durées, positions de tweens, coupes) sont stockés en images entières dans les paramètres ; le HTML reçoit `images / fps` avec six décimales ; durée totale = N / fps exactement | Test du moteur : aucune valeur hors grille |
+| C4 | Chaque élément temporisé : `id` stable et unique dans tout le projet, `class="clip"`, `data-start`, `data-duration`, `data-track-index` ; ordre de peinture par jetons `z-index` ; pas d'expressions relatives, les paramètres restant la seule vérité | `lint --json` |
+| C5 | Une timeline GSAP en pause, construite de façon synchrone depuis des géométries précalculées par Cook, enregistrée en dernier sous `window.__timelines["main"]` ; `fromTo` avec état final explicite (`opacity: 1` compris) ; états cachés initiaux en CSS ; pas de valeurs relatives, pas de fonctions qui mesurent le DOM, pas de rappels qui mesurent | `lint --json`, `check --json --at-transitions` |
+| C6 | Aucune horloge, aucun minuteur, aucun `requestAnimationFrame` pour l'état visuel ; PRNG mulberry32 graine depuis les paramètres ; escaliers quantifiés sur l'indice d'image | Revue de code du gabarit, test de double rendu |
+| C7 | Canvas, WebGL et Three.js dessinés depuis `hf-seek` (`event.detail.time`, `waitUntil` si asynchrone) ou `registerFrameSource` sur un hôte `data-no-timeline` ; taille et ratio de pixels fixés ; Three.js et ses modules en fichiers locaux épinglés | `check --json`, `keyframes --ghost` |
+| C8 | Médias : jamais `play()` ni `currentTime` ; vidéo `muted` ou `data-has-audio="true"` ; découpe par `data-media-start` ; transformations sur une enveloppe ; fichiers locaux uniquement | `lint --json` |
+| C9 | Son : stems WAV 48 kHz en `<audio>` plein cadre temporel dans `#root`, `data-volume` seulement pour l'équilibre, mixage décidé par notre synthétiseur, true peak du mixage sous -1,5 dBTP, `data-timeline-role="music"` sur la musique | Journal de rendu sans « Audio lowered », mesure des attaques sur le fichier final |
+| C10 | Polices : woff2 locaux sous licence, `@font-face` à URL relative, aucune famille référencée sans fichier livré | `check --json` sans requête échouée |
+| C11 | Zéro réseau : GSAP 3.14.2, Three.js et polices dans `vendor/` et `assets/` ; registre de `hyperframes.json` épinglé sur une étiquette au lieu de `main` | `check --json` |
+| C12 | Sous-compositions permises seulement en respectant le transport `<template>`, des identifiants identiques, des temps locaux et `fromTo` ; sinon une timeline racine unique, comme l'étude | `lint --json`, revue |
+| C13 | Variables HyperFrames facultatives, au plus huit par catégorie, réservées aux variantes de style rendues par `--batch` ; jamais pour la durée, la taille ou la cadence | `render --batch --strict-variables` |
+| C14 | Contrôles bloquants : `lint` sans erreur (avertissements tolérés listés par code), `check` vert avec un fichier `*.motion.json` généré depuis les paramètres, paires `snapshot --against` aux instants de coupe, étiquette `hyperframes_version` égale à l'épinglage | Verify du moteur |
+| C15 | Provenance : un `build.json` par rendu (version HyperFrames, Chrome, Node, ffmpeg, GSAP, empreinte SHA-256 des paramètres, drapeaux, fps, nombre d'images) | Verify du moteur |
+| C16 | Les sorties cuites sont des produits de build : jamais éditées dans Studio ; `.hyperframes/`, `.thumbnails/`, `snapshots/`, `renders/` exclus des diffs et de l'archive | Revue, règle d'exclusion Assets |
+
+Squelette d'`index.html` émis par Cook (code original, valeurs d'exemple) :
+
+```html
+<!doctype html>
+<!-- Generated by Cook.mjs from params, never edited by hand (12 October 2026, 03:10 CEST). -->
+<!-- FR : généré par Cook.mjs depuis les paramètres, jamais modifié à la main. -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=1080" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="vendor/gsap-3.14.2.min.js"></script>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="68.000000"
+       data-width="1920" data-height="1080" data-fps="60">
+    <section id="s01" class="clip scene" data-start="0.000000" data-duration="1.900000" data-track-index="1"></section>
+    <section id="s02" class="clip scene" data-start="1.900000" data-duration="1.300000" data-track-index="1"></section>
+    <audio id="music" src="assets/audio/music.wav" data-start="0" data-duration="68.000000"
+           data-volume="1" data-timeline-role="music"></audio>
+    <audio id="sfx" src="assets/audio/sfx.wav" data-start="0" data-duration="68.000000" data-volume="1"></audio>
+  </div>
+  <script src="timeline-data.js"></script>
+  <script src="motion-core.js"></script>
+  <!-- motion-main.js builds one paused timeline, then registers window.__timelines.main last. -->
+  <script src="motion-main.js"></script>
+</body>
+</html>
+```
+
+## 16. Pièges (12 October 2026)
+
+1. **Dérive de version.** `npx hyperframes` sans version suit `latest`, qui change environ deux fois par jour ; l'étude a rendu v1 à v6 en 0.8.145 et v7, v8 en 0.8.147 sans le savoir, alors que ses scripts npm épinglaient 0.8.145 et que son skill appelle `npx hyperframes` nu. [mesuré]
+2. **Auto-mise à jour silencieuse** d'une installation globale, en arrière-plan, dans la même version majeure. [code 0.8.147], [doc]
+3. **Télémétrie active par défaut** (PostHog : noms de commandes, performances, empreinte système, nom de l'agent détecté) et **canaris** liés à la télémétrie : un canari active un changement pour une fraction stable des installations ; en 0.8.147 seuls deux canaris inertes existent, mais le mécanisme peut un jour changer un rendu. `HYPERFRAMES_NO_TELEMETRY=1` sort des deux. [doc], [code 0.8.147]
+4. **Skills tiers installés en douce** : `init` vérifie et installe les skills de base depuis GitHub dans les agents trouvés, ce qui heurterait la règle de la source unique des skills de Matthieu ; `HYPERFRAMES_SKIP_SKILLS=1` l'empêche. [aide 0.8.147]
+5. **Données qui sortent** : `publish` (script présent dans le `package.json` de l'étude, à retirer), `cloud`, `feedback --file-issue`, `capture` avec vision, et `snapshot --describe`, qui envoie chaque image à Gemini dès que `GEMINI_API_KEY` est défini. [doc], [aide 0.8.147]
+6. **Fichier `.env` chargé d'office** : la CLI lit le `.env` du dossier courant et l'applique à son environnement, si bien qu'une clé posée là réveille les fonctions d'IA. [code 0.8.147]
+7. **Navigateur personnel** : l'ordre de recherche est variable d'environnement, cache Puppeteer (n'importe quelle version), cache HyperFrames (version épinglée), puis Chrome système `/Applications/Google Chrome.app` ; et `preview`, `play`, `present` ouvrent le navigateur du système par défaut. Épingler `HYPERFRAMES_BROWSER_PATH` sur la copie gérée et toujours passer `--no-open`, puis regarder l'aperçu dans le navigateur interne. [code 0.8.147], [aide 0.8.147]
+8. **Workers non identiques au bit près** : écarts de ±1 niveau aux frontières de tranches ; `--workers 1` pour tout rendu mesuré. [doc]
+9. **Grille de temps** : le seek est ramené au pas d'image par plancher et les fenêtres de clips sont semi-ouvertes ; un début à 6,28 s à 60 images/s (image 376,8) n'apparaît qu'à l'image 377. Les temps à deux décimales de l'étude décalent donc des coupes d'une image. [code 0.8.147], [mesuré] valeurs de `timeline.json` de l'étude
+10. **Temps virtuel partiel** : `Date` et `requestAnimationFrame` sont virtualisés en rendu, pas les minuteurs ; `Math.random` n'est pas graine en local. Une animation pilotée par `requestAnimationFrame` paraît juste au rendu et fausse en aperçu, ou l'inverse. [code 0.8.147]
+11. **Sous-compositions** : style dans la tête du fichier au lieu du `<template>`, identifiant d'hôte différent de celui du fichier (attente de 45 s puis images figées), temps internes locaux, `gsap.from` qui se désynchronise au retour en arrière. Ce sont les causes probables de l'échec de l'étude (orbe noir à 0,9 s, compteur figé), dont la cause n'avait pas été isolée. [registre] skill, [supposé] pour l'attribution
+12. **Durée de la racine figée à la compilation** ; une composition jamais liée à une timeline coûte 45 s à chaque rendu ; `check` échoue en `sweep_static` si une composition de 3 s ou plus ne bouge jamais sous le seek. [doc]
+13. **Son** : intermédiaire 16 bits, AAC 192 kb/s imposé, atténuation automatique au-dessus de -1 dBTP, chaîne d'effets illisible qui casse tout le mixage au rendu seulement, queue de reverb ou de delay qui allonge une piste, conflit entre voie de volume et tween GSAP sur `volume`. [code 0.8.147], [doc]
+14. **Écritures de l'outil dans le projet** : `.hyperframes/`, `.thumbnails/`, identifiants tamponnés, historique dans `/Users/zenray/.cache/hyperframes/history/` ; Studio réécrit la source, que la cuisson suivante écraserait. [mesuré], [doc]
+15. **Registre non épinglé** : `hyperframes.json` pointe sur `main`, donc `add` installe la version du jour des blocs. [mesuré]
+16. **Ressources embarquées par la CLI** : le skill `media-use` livre une vingtaine de SFX en MP3 et des LUT ; aucun ne doit entrer dans un livrable, nos sons étant faits en code. [mesuré]
+17. **Documentation en retard sur le code** : qualité par défaut (`standard` dans la doc, `looks` dans la CLI), disponibilité de la coupe dans Studio, rôle de `data-track-index` décrit comme « restack » dans un guide. L'aide installée et la référence du schéma font foi. [doc], [aide 0.8.147]
+18. **Lecteur web** : sandbox `allow-same-origin` par défaut, runtime chargé depuis jsDelivr, attributs booléens mal passés sous React 18. [registre], [code 0.8.147]
+19. **Dossier nommé `lib` ou `npm`** : une installation locale y serait prise pour une installation globale et déclencherait une mise à jour automatique. [code 0.8.147]
+
+## 17. Tests à lancer ensuite (12 October 2026)
+
+1. **Test doré de version** : rendre la v8 en PNG avec 0.8.147 puis 0.8.149 (`--workers 1`), comparer les empreintes image par image ; adopter 0.8.149 seulement si identique ou si chaque écart s'explique.
+2. **Test de déterminisme** : deux rendus successifs `--format png-sequence --workers 1` d'une même version doivent avoir des empreintes identiques ; sinon ajouter `--no-browser-gpu`, puis `--experimental-fast-capture=false`, et noter ce qui a été nécessaire. Témoin rouge : un rendu `--workers 8` doit différer.
+3. **Coût d'un worker** : temps d'un rendu de 68 s à 60 images/s avec `--workers 1` sur le M5 Max, capture rapide active ou non.
+4. **Shim dans `snapshot` et `check`** : vérifier que ces commandes appliquent le même temps virtuel que `render`, en comparant une image de `snapshot --at` à l'image correspondante du rendu.
+5. **Grille de temps** : composition témoin dont un clip commence à 6,28 s ; constater qu'il apparaît à l'image 377, puis qu'à 377/60 s il apparaît bien à l'image 377 et à 376/60 s à l'image 376.
+6. **Son, voie A contre voie B** : même mixage par `<audio>` et par multiplexage ; mesurer l'écart d'attaque (attendu sous 1 ms), l'écart de niveau et l'absence de « Audio lowered ».
+7. **Nom du fichier de mouvement** : confirmer le nom attendu du fichier `*.motion.json` à côté de `index.html` par un `check` sur un témoin qui doit échouer.
+8. **Lecteur autonome** : comment livrer le runtime avec la composition pour que le lecteur n'appelle pas jsDelivr, à tester dans le navigateur interne.
+9. **Registre épinglé** : vérifier qu'une URL de registre sur l'étiquette `v0.8.149` fonctionne avec `add --json` sur un témoin.
+
+## 18. Sources (12 October 2026)
+
+Documentation officielle (lue le 12 October 2026) :
+
+- https://hyperframes.heygen.com/llms.txt
+- https://hyperframes.heygen.com/reference/html-schema
+- https://hyperframes.heygen.com/concepts/compositions
+- https://hyperframes.heygen.com/concepts/data-attributes
+- https://hyperframes.heygen.com/concepts/determinism
+- https://hyperframes.heygen.com/concepts/frame-adapters
+- https://hyperframes.heygen.com/concepts/variables
+- https://hyperframes.heygen.com/concepts/index
+- https://hyperframes.heygen.com/guides/gsap-animation
+- https://hyperframes.heygen.com/guides/frame-sources
+- https://hyperframes.heygen.com/guides/html-in-canvas
+- https://hyperframes.heygen.com/guides/vfx-chain
+- https://hyperframes.heygen.com/guides/rendering
+- https://hyperframes.heygen.com/guides/4k-rendering
+- https://hyperframes.heygen.com/guides/performance
+- https://hyperframes.heygen.com/guides/troubleshooting
+- https://hyperframes.heygen.com/guides/voice-and-audio
+- https://hyperframes.heygen.com/guides/video-components
+- https://hyperframes.heygen.com/guides/imported-film-html
+- https://hyperframes.heygen.com/reference/audio-effects
+- https://hyperframes.heygen.com/reference/speed-ramps
+- https://hyperframes.heygen.com/packages/cli
+- https://hyperframes.heygen.com/developers/cli
+- https://hyperframes.heygen.com/developers/overview
+- https://hyperframes.heygen.com/packages/player
+- https://hyperframes.heygen.com/packages/studio
+- https://hyperframes.heygen.com/packages/core
+- https://hyperframes.heygen.com/packages/engine
+- https://hyperframes.heygen.com/packages/producer
+- https://hyperframes.heygen.com/packages/shader-transitions
+- https://hyperframes.heygen.com/prompting/runtimes-and-3d
+- https://hyperframes.heygen.com/prompting/rules-and-anti-patterns
+- https://hyperframes.heygen.com/prompting/transitions
+- https://hyperframes.heygen.com/prompting/recreating-references
+- https://hyperframes.heygen.com/prompting/rendering-and-output
+- https://hyperframes.heygen.com/prompting/editing-existing-videos
+- https://hyperframes.heygen.com/studio/timeline
+- https://hyperframes.heygen.com/studio/index
+- https://hyperframes.heygen.com/studio-app/index
+- https://hyperframes.heygen.com/guides/mcp
+- https://hyperframes.heygen.com/guides/webmcp
+- https://hyperframes.heygen.com/guides/plugins
+- https://hyperframes.heygen.com/guides/skills
+- https://hyperframes.heygen.com/contributing/canary-rollouts
+- https://hyperframes.heygen.com/contributing/release-channels
+- https://hyperframes.heygen.com/changelog
+- https://hyperframes.heygen.com/schema/hyperframes.json
+
+Dépôt, registre et paquets :
+
+- https://github.com/heygen-com/hyperframes
+- https://github.com/heygen-com/hyperframes/releases
+- https://github.com/heygen-com/hyperframes/blob/v0.8.149/skills/hyperframes-animation/adapters/three.md
+- https://github.com/heygen-com/hyperframes/blob/v0.8.149/skills/hyperframes-core/references/sub-compositions.md
+- https://github.com/heygen-com/hyperframes/blob/v0.8.149/skills/hyperframes-core/references/determinism-rules.md
+- https://github.com/heygen-com/hyperframes/blob/v0.8.149/packages/cli/src/browser/manager.ts
+- https://registry.npmjs.org/hyperframes
+- https://www.npmjs.com/package/@hyperframes/player
+- https://cdn.jsdelivr.net/npm/@hyperframes/player@0.8.149/README.md
+
+Fichiers locaux lus (sans modification) :
+
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/cli.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/cli.js) : démarrage, `.env`, télémétrie, mises à jour
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/autoUpdate-MBNEZ2U4.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/autoUpdate-MBNEZ2U4.js) et [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-3YUFN37G.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-3YUFN37G.js) : auto-mise à jour et détection de l'installateur
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-3BYMCR4O.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-3BYMCR4O.js) : shim de temps virtuel, plafond true peak AAC
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-JF5L5SQ6.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-JF5L5SQ6.js) : mixeur audio et préréglages x264
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/hyperframe-runtime.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/hyperframe-runtime.js) : quantification du temps, `hf-seek`, adaptateur Three.js
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/render-KUVZFNQD.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/render-KUVZFNQD.js) : alias de qualité
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-A6S35NYA.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-A6S35NYA.js) : version de Chrome et ordre de recherche du navigateur
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-FXMKHHPO.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/chunk-FXMKHHPO.js) : registre des canaris
+- [/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/hyperframes-player.global.js](/Users/zenray/.npm/_npx/702923228c2ce1e6/node_modules/hyperframes/dist/hyperframes-player.global.js) : URL du runtime injecté par le lecteur
+- [/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/renders/render-v1.log](/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/renders/render-v1.log) : conditions du rendu de l'étude
+- [/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/hyperframes.json](/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/hyperframes.json) et [/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/package.json](/Users/zenray/.claude/tmp/tmp-zenray-motion-design-01/composition/package.json)
