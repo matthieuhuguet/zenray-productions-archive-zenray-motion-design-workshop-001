@@ -1,0 +1,14 @@
+{
+ "score": 0.9834,
+ "dimensions": {
+  "grade": 0.9834
+ },
+ "grade_detail": {
+  "score": 0.9834,
+  "dE2000_median": 2.968,
+  "dE2000_p95": 9.993,
+  "frames": 41,
+  "jnd_dE": 2.3
+ },
+ "lint_ok": true
+}

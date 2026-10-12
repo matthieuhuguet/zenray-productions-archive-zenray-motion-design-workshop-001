@@ -1,0 +1,22 @@
+{
+  "latest": "V_002",
+  "versions": [
+    "V_001",
+    "V_002"
+  ],
+  "updated": "12 October 2026",
+  "id": "onekey-p00836-plate",
+  "title": "Plate colour animatic",
+  "recipe": "plate",
+  "source": {
+    "slug": "onekey-pro-2",
+    "start": 13.933333,
+    "end": 14.6
+  },
+  "tags": [
+    "plate",
+    "slot",
+    "grade",
+    "onekey-pro-2"
+  ]
+}

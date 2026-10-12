@@ -1,0 +1,38 @@
+{
+ "score": 0.5464,
+ "dimensions": {
+  "grade": 0.99,
+  "overlay_light": 0.5464,
+  "overlay_typography": 0.6473
+ },
+ "grade_detail": {
+  "score": 0.99,
+  "dE2000_median": 2.302,
+  "dE2000_p95": 8.457,
+  "frames": 40,
+  "jnd_dE": 2.3
+ },
+ "lint_ok": true,
+ "overlays": [
+  {
+   "id": "ov1",
+   "light": 0.5464,
+   "light_err": 0.1551,
+   "typography": 0.6473,
+   "x_height": [
+    19.0,
+    21.5
+   ]
+  },
+  {
+   "id": "ov2",
+   "light": 0.7815,
+   "light_err": 0.099,
+   "typography": 1.0,
+   "x_height": [
+    50.0,
+    50.0
+   ]
+  }
+ ]
+}
