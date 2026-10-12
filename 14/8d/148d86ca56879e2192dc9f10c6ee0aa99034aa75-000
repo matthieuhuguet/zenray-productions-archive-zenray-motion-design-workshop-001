@@ -1,0 +1,103 @@
+{
+  "schema": "zrmd/motion@1",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60.0,
+    "frames": 65
+  },
+  "fonts": [
+    {
+      "family": "ZrInter",
+      "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/fonts/InterVariable.ttf"
+    }
+  ],
+  "measured": {
+    "x_height": 49.0,
+    "stroke_density": 0.3997,
+    "weight": 475,
+    "size": 94.38,
+    "tracking_em": 0.0254,
+    "reference_width": 480.0
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "color": "#000000",
+      "z": 0
+    },
+    {
+      "id": "caption",
+      "type": "text",
+      "text": "All covered.",
+      "color": "#cecece",
+      "x": 950.93,
+      "y": 541.48,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "z": 2,
+      "font": {
+        "family": "ZrInter",
+        "weight": 475,
+        "size": 90.176,
+        "tracking": 0.0254,
+        "variation": "'wght' 475, 'opsz' 32"
+      },
+      "initial": {
+        "brightness": 0.9902
+      },
+      "base_scale": 0.9999,
+      "shine": null,
+      "tracks": {
+        "scale": [
+          {
+            "start_frame": 0,
+            "frames": 3,
+            "from": 0.9999,
+            "to": 0.9999,
+            "ease": "cubic-bezier(0.000,0.102,0.000,0.314)"
+          },
+          {
+            "start_frame": 6,
+            "frames": 7,
+            "from": 0.9999,
+            "to": 0.9999,
+            "ease": "cubic-bezier(0.016,-0.064,1.000,2.616)"
+          },
+          {
+            "start_frame": 14,
+            "frames": 3,
+            "from": 0.9999,
+            "to": 0.9999,
+            "ease": "power4.out"
+          },
+          {
+            "start_frame": 22,
+            "frames": 25,
+            "from": 0.9999,
+            "to": 1.0,
+            "ease": "cubic-bezier(0.000,0.727,1.000,-0.422)"
+          },
+          {
+            "start_frame": 47,
+            "frames": 10,
+            "from": 1.0,
+            "to": 0.9999,
+            "ease": "cubic-bezier(0.000,-0.399,1.000,4.241)"
+          },
+          {
+            "start_frame": 59,
+            "frames": 3,
+            "from": 1.0,
+            "to": 1.0,
+            "ease": "none"
+          }
+        ],
+        "brightness": []
+      }
+    }
+  ]
+}
