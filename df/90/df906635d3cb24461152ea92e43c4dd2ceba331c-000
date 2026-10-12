@@ -1,0 +1,193 @@
+{
+  "schema": "zrmd/motion@1",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60.0,
+    "frames": 80
+  },
+  "fonts": [
+    {
+      "family": "ZrInter",
+      "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/fonts/InterVariable.ttf"
+    }
+  ],
+  "measured": {
+    "x_height": 24.0,
+    "stroke_density": 0.3557,
+    "weight": 400,
+    "size": 83.6,
+    "tracking_em": 0.0528,
+    "reference_width": 739.0
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "color": "#000000",
+      "z": 0
+    },
+    {
+      "id": "caption",
+      "type": "text",
+      "text": "Lighter. Sharper.",
+      "color": "#1c1c1c",
+      "x": 953.23,
+      "y": 539.29,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "z": 2,
+      "font": {
+        "family": "ZrInter",
+        "weight": 400,
+        "size": 79.39,
+        "tracking": 0.0528,
+        "variation": "'wght' 400, 'opsz' 32"
+      },
+      "initial": {
+        "brightness": 1.0
+      },
+      "base_scale": 1.3262,
+      "shine": {
+        "base": "#939393",
+        "highlight": "#cccccc",
+        "gesture": {
+          "t0": -0.4167,
+          "t1": 1.5988,
+          "c0": -99.4174,
+          "c1": 199.1662,
+          "w": 14.3111,
+          "amp": 0.4148,
+          "power": 1.859,
+          "r2": 0.5707
+        }
+      },
+      "tracks": {
+        "scale": [
+          {
+            "start_frame": 0,
+            "frames": 16,
+            "from": 1.3262,
+            "to": 1.1244,
+            "ease": "cubic-bezier(0.515,-0.085,0.669,0.996)"
+          },
+          {
+            "start_frame": 25,
+            "frames": 2,
+            "from": 1.1151,
+            "to": 1.1075,
+            "ease": "none"
+          },
+          {
+            "start_frame": 27,
+            "frames": 10,
+            "from": 1.1075,
+            "to": 1.0962,
+            "ease": "cubic-bezier(0.213,0.106,1.000,1.535)"
+          },
+          {
+            "start_frame": 40,
+            "frames": 3,
+            "from": 1.0982,
+            "to": 1.0752,
+            "ease": "cubic-bezier(0.563,0.339,0.000,0.058)"
+          },
+          {
+            "start_frame": 43,
+            "frames": 22,
+            "from": 1.0752,
+            "to": 1.0427,
+            "ease": "cubic-bezier(0.000,0.066,0.790,0.608)"
+          },
+          {
+            "start_frame": 65,
+            "frames": 3,
+            "from": 1.0427,
+            "to": 1.0306,
+            "ease": "none"
+          },
+          {
+            "start_frame": 71,
+            "frames": 3,
+            "from": 1.0257,
+            "to": 1.0147,
+            "ease": "none"
+          },
+          {
+            "start_frame": 77,
+            "frames": 2,
+            "from": 1.0091,
+            "to": 1.0002,
+            "ease": "cubic-bezier(0.435,0.000,0.630,0.887)"
+          }
+        ],
+        "brightness": [
+          {
+            "start_frame": 0,
+            "frames": 20,
+            "from": 0.5082,
+            "to": 1.4356,
+            "ease": "cubic-bezier(0.270,0.326,0.494,0.867)"
+          },
+          {
+            "start_frame": 26,
+            "frames": 2,
+            "from": 1.4228,
+            "to": 1.4547,
+            "ease": "cubic-bezier(0.158,0.001,0.653,0.593)"
+          },
+          {
+            "start_frame": 29,
+            "frames": 2,
+            "from": 1.4653,
+            "to": 1.4327,
+            "ease": "power4.inOut"
+          },
+          {
+            "start_frame": 55,
+            "frames": 2,
+            "from": 1.4302,
+            "to": 1.3866,
+            "ease": "cubic-bezier(0.397,0.000,0.479,1.107)"
+          },
+          {
+            "start_frame": 61,
+            "frames": 18,
+            "from": 1.391,
+            "to": 0.3666,
+            "ease": "cubic-bezier(0.401,0.084,1.000,0.871)"
+          }
+        ],
+        "shine": [
+          {
+            "start_frame": 0,
+            "frames": 121,
+            "from": -99.42,
+            "to": 199.17,
+            "ease": "power2.inOut"
+          }
+        ],
+        "shineW": [
+          {
+            "start_frame": 0,
+            "frames": 1,
+            "from": 14.31,
+            "to": 14.31,
+            "ease": "none"
+          }
+        ],
+        "shineA": [
+          {
+            "start_frame": 0,
+            "frames": 1,
+            "from": 1.0,
+            "to": 1.0,
+            "ease": "none"
+          }
+        ]
+      }
+    }
+  ]
+}
