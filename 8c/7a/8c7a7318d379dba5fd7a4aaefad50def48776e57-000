@@ -1,0 +1,8 @@
+{
+  "version": "V_050",
+  "parent": "V_049",
+  "created": "12 October 2026, 11:11",
+  "note": "pass 5: closed-loop correction",
+  "author": "zrmd",
+  "overrides": {}
+}
