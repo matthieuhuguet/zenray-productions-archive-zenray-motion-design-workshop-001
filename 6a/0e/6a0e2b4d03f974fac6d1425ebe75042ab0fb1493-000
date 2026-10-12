@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- Cooked by zrmd from params.json (12 October 2026); never edit by hand. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=1080" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="vendor/gsap.min.js"></script>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="1.250000" data-width="1920" data-height="1080" data-fps="60.0">
+    <div id="bg" class="clip layer layer-solid" data-start="0.000000" data-duration="1.250000" data-track-index="1"></div>
+    <div id="caption" class="clip layer layer-text" data-start="0.000000" data-duration="1.250000" data-track-index="1"><span class="ink">Lost track of your keys?</span></div>
+    
+  </div>
+  <script>
+// 12 October 2026: tiny runtime shared by every cooked motion. Pure functions of time, no clocks.
+window.Z = (function () {
+  function bezier(x1, y1, x2, y2) {
+    return function (t) {
+      let s = t;
+      for (let i = 0; i < 12; i++) {
+        const x = 3 * (1 - s) * (1 - s) * s * x1 + 3 * (1 - s) * s * s * x2 + s * s * s - t;
+        const dx = 3 * (1 - s) * (1 - s) * x1 + 6 * (1 - s) * s * (x2 - x1) + 3 * s * s * (1 - x2);
+        s = Math.min(1, Math.max(0, s - x / (Math.abs(dx) < 1e-6 ? 1e-6 : dx)));
+      }
+      return 3 * (1 - s) * (1 - s) * s * y1 + 3 * (1 - s) * s * s * y2 + s * s * s;
+    };
+  }
+  function ease(name) {
+    if (name.startsWith("CustomBezier:")) {
+      const n = name.slice(13).replace("cubic-bezier(", "").replace(")", "").split(",").map(Number);
+      return bezier(n[0], n[1], n[2], n[3]);
+    }
+    return name;
+  }
+  function tween(tl, sel, prop, from, to, at, dur, easeName) {
+    const a = {}, b = { duration: Math.max(dur, 1e-6), ease: ease(easeName), immediateRender: false };
+    a[prop] = from; b[prop] = to;
+    tl.fromTo(sel, a, b, at);
+  }
+  return { tween: tween };
+})();
+
+(function () {
+  const tl = gsap.timeline({ paused: true });
+  tl.set("#caption", {"scale": 0.9958}, 0);
+  Z.tween(tl, "#caption", "scale", 0.9958, 1.0067, 0.016667, 0.183333, "CustomBezier:cubic-bezier(0.000,-0.262,0.288,0.813)");
+  Z.tween(tl, "#caption", "scale", 1.0066, 1.0071, 0.233333, 0.033333, "sine.inOut");
+  Z.tween(tl, "#caption", "scale", 1.0071, 1.0002, 0.266667, 0.200000, "CustomBezier:cubic-bezier(0.765,0.412,0.276,0.693)");
+  tl.set("#caption", {"--zr-bright": 0.236}, 0);
+  Z.tween(tl, "#caption", "--zr-bright", 0.236, 1.003, 0.000000, 0.383333, "CustomBezier:cubic-bezier(0.000,-0.269,0.588,1.052)");
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+})();
+  </script>
+</body>
+</html>

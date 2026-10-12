@@ -1,0 +1,90 @@
+{
+  "schema": "zrmd/motion@1",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60.0,
+    "frames": 75
+  },
+  "fonts": [
+    {
+      "family": "ZrInter",
+      "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/fonts/InterVariable.ttf"
+    }
+  ],
+  "measured": {
+    "x_height": 49.0,
+    "stroke_density": 0.368,
+    "weight": 475,
+    "size": 94.38,
+    "tracking_em": 0.0308,
+    "reference_width": 975.0
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "color": "#000000",
+      "z": 0
+    },
+    {
+      "id": "caption",
+      "type": "text",
+      "text": "Lost track of your keys?",
+      "color": "#cecece",
+      "x": 962.01,
+      "y": 537.58,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "z": 2,
+      "font": {
+        "family": "ZrInter",
+        "weight": 475,
+        "size": 95.413,
+        "tracking": 0.0308,
+        "variation": "'wght' 475, 'opsz' 32"
+      },
+      "initial": {
+        "brightness": 0.2325
+      },
+      "base_scale": 0.9958,
+      "shine": null,
+      "tracks": {
+        "scale": [
+          {
+            "start_frame": 1,
+            "frames": 11,
+            "from": 0.9958,
+            "to": 1.0067,
+            "ease": "cubic-bezier(0.000,-0.262,0.288,0.813)"
+          },
+          {
+            "start_frame": 14,
+            "frames": 2,
+            "from": 1.0066,
+            "to": 1.0071,
+            "ease": "sine.inOut"
+          },
+          {
+            "start_frame": 16,
+            "frames": 12,
+            "from": 1.0071,
+            "to": 1.0002,
+            "ease": "cubic-bezier(0.765,0.412,0.276,0.693)"
+          }
+        ],
+        "brightness": [
+          {
+            "start_frame": 0,
+            "frames": 23,
+            "from": 0.2325,
+            "to": 0.9885,
+            "ease": "cubic-bezier(0.000,-0.269,0.588,1.052)"
+          }
+        ]
+      }
+    }
+  ]
+}
