@@ -1,0 +1,64 @@
+{
+  "dimensions": {
+    "animation": 0.972,
+    "image": 1.0,
+    "colour": 1.0,
+    "typography": 0.0
+  },
+  "weakest": "typography",
+  "score": 0.0,
+  "elements": {
+    "reference": 1,
+    "render": 1,
+    "matched": 1,
+    "unmatched": 0
+  },
+  "animation_detail": [
+    {
+      "score": 0.972,
+      "parts": {
+        "dx": 0.9929,
+        "dy": 0.9956,
+        "scale": 0.9873,
+        "brightness": 0.9564,
+        "settle": 0.9279
+      }
+    }
+  ],
+  "brightness_map": {
+    "score": 0.9564,
+    "pattern": 0.9648,
+    "level": 0.9564,
+    "strict_pattern": 0.8143,
+    "jnd_rel": 0.02,
+    "ref_level": 184.8,
+    "out_level": 192.6,
+    "mean_abs_err": 0.0377,
+    "ref_motion": 0.2033
+  },
+  "typography_detail": {
+    "score": 0.0,
+    "x_height": [
+      27.0,
+      46.0
+    ],
+    "stroke": [
+      10.0,
+      8.39
+    ],
+    "jnd": {
+      "x_height": 0.02,
+      "stroke": 0.05
+    }
+  },
+  "background": {
+    "score": 1.0,
+    "dE2000": 0.0
+  },
+  "image_detail": {
+    "score": 1.0,
+    "frames": 34,
+    "valid_share": 0.917
+  },
+  "lint_ok": true
+}
