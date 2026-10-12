@@ -1,0 +1,8 @@
+{
+  "version": "V_006",
+  "parent": "V_005",
+  "created": "12 October 2026, 11:21",
+  "note": "procedural shape test: squircle n=4, aspect 1.25, hue -30",
+  "author": "claude",
+  "overrides": {}
+}

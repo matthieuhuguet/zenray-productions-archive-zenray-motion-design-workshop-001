@@ -1,0 +1,6 @@
+@font-face { font-family: 'ZrInter'; src: url('assets/fonts/InterVariable.ttf'); font-weight: 100 900; font-display: block; }
+html, body { margin: 0; padding: 0; background: #000; }
+#root { position: relative; width: 1920px; height: 1080px; overflow: hidden; isolation: isolate; }
+#bg { position: absolute; z-index: 0; inset: 0; background: #000000; filter: blur(calc(var(--zr-blur, 0) * 1px)) brightness(var(--zr-bright, 1)); will-change: transform, opacity; }
+#caption { position: absolute; z-index: 2; left: 947.34px; top: 538.51px; transform-origin: 50.0% 50.0%; translate: -50.0% -50.0%; white-space: nowrap; font-family: 'ZrInter'; font-weight: 450; font-size: 91.08px; line-height: 1; letter-spacing: 0.0374em; color: #cfcfcf; font-variation-settings: 'wght' 450, 'opsz' 32; color: transparent; background-image: linear-gradient(90deg, #d3d3d3 0%, #d3d3d3 calc((var(--zr-shine, -999) - var(--zr-shine-w, 10)) * 1%), color-mix(in srgb, #ffffff calc(var(--zr-shine-a, 0) * 100%), #d3d3d3) calc(var(--zr-shine, -999) * 1%), #d3d3d3 calc((var(--zr-shine, -999) + var(--zr-shine-w, 10)) * 1%), #d3d3d3 100%); -webkit-background-clip: text; background-clip: text; filter: blur(calc(var(--zr-blur, 0) * 1px)) brightness(var(--zr-bright, 1)); will-change: transform, opacity; }
+#caption { --zr-bright: 1.0; }
