@@ -1,0 +1,6 @@
+10 masked rms 32.73
+48 masked rms 28.47
+92 masked rms 26.64
+frame 10  masked rms numpy 32.73  GLSL 32.74
+frame 48  masked rms numpy 28.47  GLSL 28.47
+frame 92  masked rms numpy 26.64  GLSL 26.64

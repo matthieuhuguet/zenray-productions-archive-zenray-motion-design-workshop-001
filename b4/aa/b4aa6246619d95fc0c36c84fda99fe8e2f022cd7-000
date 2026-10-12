@@ -1,0 +1,52 @@
+# S0, shader bank harness (12 October 2026)
+
+The harness of the procedural shader bank is in place and verified both ways: every look will be a composition of GLSL blocks with measured parameters, fitted on numpy twins, rendered sharp at any resolution, never textured with reference pixels. (12 October 2026)
+
+## Files (12 October 2026)
+
+| Path | Role |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/README.md` | block contract (GLSL signature `vec4 <id>(vec2 uv, params...)`, twin `render(params, u, v)`, block.json schema, licences, commands) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/index.json` | summary rebuilt from the folders by `bank.rebuild_index()` (id, family, tags, looks, params, licence, sha256 prefix) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/sdf_rounded_rect/` | seed block 1: rounded rectangle coverage with smoothstep soft edge (exact box SDF), mask family, 5 params incl. `aspect` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/linear_ramp4/` | seed block 2: four-stop linear ramp along an angle, gradient family, 7 params |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/shaders/bank.py` | `root()`, `list_blocks()`, `load(id)`, `resolve_params`, `random_params`, `uv_grid`, `twin_rgba`, `render_twin(id, params, w, h)`, `render_glsl(ids_and_params, w, h, out_png)`, `render_glsl_batch(compositions, w, h)`, `rebuild_index()` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/shaders/compose.py` | layer list `{block, params, blend normal/add/multiply/screen, mask}`: `evaluate` (numpy, for fitting) and `emit_glsl` (one fragment shader, each block inlined once, uniforms `u_l<i>_<name>`, mask `u_l<i>m_<name>`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/render.py` | new `still(project, times, out_dir)`: lossless PNGs at exact instants via `hyperframes snapshot` through the pinned wrapper (existing `render` untouched) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifyShaderBank.py` | GLSL against twin for every block at default + N random in-bounds sets, contract checks (fields, licence, signature, no dashes), `--json`, `--write-thumbs`, exit code |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/tests/test_shader_compose.py` | composition test, green and red cases (pytest or direct) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/settings.json`, section `shaders` | bank path, verify size 256, 2 random sets, seed, mean limit 2.0 levels, still fps 30, timeout, browser GPU mode, thumb size 128 |
+
+## Rendering path, and why it is fast (12 October 2026)
+
+`render_glsl_batch` cooks one HyperFrames project (raw WebGL2, one fullscreen triangle, `data-no-timeline`, `hf-seek` listener and `__hf.buildReady` as in `templates/device3d/scene.js`); each case is shown at time `i / fps` and all cases are captured by a single `hyperframes snapshot --at ...` run, so the browser launches once. A shader that fails to compile paints magenta, so a broken block turns red instead of passing on a stale frame. PNG snapshots were chosen over an MP4 render because H.264 4:2:0 would add compression error to a comparison measured in single levels. Measured on this Mac: 6 cases at 256 x 256 in 5.1 s, one 1920 x 1080 frame in 2.9 s, color pipeline exact (a uv gradient test matched `round(uv * 255)` with 0 error, no colour management on the canvas). (12 October 2026)
+
+## Verification, both ways (12 October 2026)
+
+| Run | Result | Exit |
+|---|---|---|
+| Verifier on the bank as committed | linear_ramp4 worst mean 0.2498, worst max 0.500; sdf_rounded_rect worst mean 0.0212, worst max 0.500 (only 8-bit rounding) | 0 |
+| Same, with `linear_ramp4/twin.py` deliberately broken (`seg1 = c1 + (c1 - c2)`) | linear_ramp4 RED, worst mean 29.33, worst max 220; sdf_rounded_rect still green | 1 |
+| After restoring the twin (SHA-256 `1ba14694...dd6ce` identical before and after) | all green again | 0 |
+| `tests/test_shader_compose.py` | 10 green cases (4 blends x masked/unmasked, mask alone, three layers) mean 0.03 to 0.25 levels, max 0.5; red: wrong blend in numpy detected (mean 126), unknown blend, unknown param, wrong vector size, unknown block all raise; each block inlined once, 24 uniforms | 0 |
+
+Reports: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S0-shader-harness/green.json`, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S0-shader-harness/red.json`; 1080p proof frame (ramp plus rounded rect with aspect 16/9): `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S0-shader-harness/hd.png`. Thumbs written to each block folder (`thumb.png`, GLSL render at 128). (12 October 2026)
+
+## Conventions fixed here, for the dataset workers (12 October 2026)
+
+- uv is the pixel centre, v downwards, so `bank.uv_grid` and `gl_FragCoord` give identical sample points; non-square canvases are handled by an explicit `aspect` param when a block needs isotropy. (12 October 2026)
+- Blocks take every parameter as a function argument (no uniforms in block.glsl), so one block can serve several layers; helpers carry the `<id>_` prefix. (12 October 2026)
+- Mask blocks return `(1, 1, 1, m)`; a layer's alpha is `s.a * mask.a * luma(mask.rgb)`, so a colour block can also act as a mask by its luminance. (12 October 2026)
+- Twins load with `sys.dont_write_bytecode` so no `__pycache__` lands in the dataset; `ZRMD_SHADER_BANK` points the bank at another folder. (12 October 2026)
+
+## Commands (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --write-thumbs [--json] [--blocks a,b]
+~/.venvs/zenray-motion/bin/python -I tests/test_shader_compose.py
+```
+
+## Limits (12 October 2026)
+
+The comparison runs on the hardware GPU (ANGLE Metal) by default (`settings.json` `shaders.browser_gpu`: auto); SwiftShader was not measured. Edge pixels of very sharp masks may differ by a few levels between float32 GPU and float64 numpy; the mean threshold absorbs that, the max is reported. Only two seed blocks exist; the dataset itself is the next task. (12 October 2026)

@@ -1,0 +1,50 @@
+[
+ {
+  "motion": "onekey-s02-caption-shine",
+  "exit": 1,
+  "best": {
+   "best_version": "V_055",
+   "best_score": 0.9785
+  }
+ },
+ {
+  "motion": "onekey-c02-caption-question",
+  "exit": 0,
+  "best": {
+   "best_version": "V_044",
+   "best_score": 0.9903
+  }
+ },
+ {
+  "motion": "onekey-c05-caption-duo",
+  "exit": 1,
+  "best": {
+   "best_version": "V_057",
+   "best_score": 0.9793
+  }
+ },
+ {
+  "motion": "onekey-c01-caption-read-detail",
+  "exit": 1,
+  "best": {
+   "best_version": "V_037",
+   "best_score": 0.9805
+  }
+ },
+ {
+  "motion": "onekey-c03-caption-answer",
+  "exit": 0,
+  "best": {
+   "best_version": "V_042",
+   "best_score": 0.9988
+  }
+ },
+ {
+  "motion": "onekey-c04-caption-open",
+  "exit": 1,
+  "best": {
+   "best_version": "V_049",
+   "best_score": 0.9846
+  }
+ }
+]

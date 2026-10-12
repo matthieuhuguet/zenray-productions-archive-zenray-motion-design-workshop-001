@@ -1,0 +1,101 @@
+# M1, la transcription de la musique en partition procédurale (12 October 2026)
+
+Rapport de la tâche M1 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`), qui applique le changement de règle du 12 October 2026 : la musique se reproduit d'abord en 1:1, procéduralement, comme banc de mesure, puis nos variations en dérivent par les paramètres. La tâche produit la partition, c'est-à-dire les notes, les rythmes, les frappes et les automations mesurés sur la référence `onekey-pro-2`, sous forme de nombres seulement ; aucun échantillon de la référence n'entre dans un rendu. Toutes les valeurs citées sont mesurées par le code livré, sauf mention contraire. (12 October 2026)
+
+## 1. Ce qui a été construit (12 October 2026)
+
+| Fichier | Rôle |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/audio/transcribe.py` | carte de tempo et grille de mesures, sections, batterie par classe, basse monophonique (pyin, glissades), polyphonie de la piste « other » (VQT et NMF harmonique contrainte, accords, tenues), voix en mélodie ou en texture, automations de volume par voix ; rendu de vérification en sinus et bruit, métriques, cas connu |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/TranscribeMusic.py` | la commande : écrit `score.json`, vérifie dans les deux sens, range le rendu de contrôle dans un `V_NNN` neuf, code de sortie 0 seulement si le vert est vert et le rouge rouge |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/transcribe-params.json` | l'interface HDA : chaque seuil de la transcription, modifiable par `--set a.b=json` ou la variable `ZRMD_TRANSCRIBE_OVERRIDES` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/tests/test_transcribe.py` | trois tests, exécutables par `python -I tests/test_transcribe.py` |
+
+Le module réutilise sans les modifier `music.kick_grid`, `music.beat_times`, `music.beat_features`, `music.sections_of` et `music.key_of` ; aucun fichier existant du moteur son n'a été réécrit, et le fichier `sfx-params.json`, que le chantier parallèle de la banque son modifie, n'a pas été touché, les paramètres de M1 vivant dans leur propre fichier. Toute l'analyse est du traitement du signal déterministe (flux spectral par bande et détection de pics, pyin, VQT, NMF à multiplications, séparation harmonique et percussive, nouveauté par temps) ; Demucs n'intervient que par ses pistes déjà calculées. (12 October 2026)
+
+Commande, environ 75 s sur ce Mac, dont l'analyse lancée en processus parallèles (pyin découpé en tranches de 5 s sur 16 ouvriers, batterie et polyphonie dans deux processus séparés) :
+
+```bash
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/TranscribeMusic.py --slug onekey-pro-2
+```
+
+## 2. La partition obtenue (12 October 2026)
+
+Fichier : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/score.json` (format `zrmd.score/1`, 360 Ko). La version précédente de ce fichier, produite avant la correction d'une section vide en fin de morceau, n'a pas été écrasée : elle a été déplacée dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/scores/score-20261012-130935.json`.
+
+**Tempo et grille.** 88,047 BPM, première grosse caisse à 5,747 s, résidu de grille 5,13 ms, ce qui rejoint les mesures du rapport B1 (88,047 BPM, 5,750 s). La grille compte 25 mesures de quatre temps, numérotées de sorte que la mesure 1 commence sur la première grosse caisse (l'introduction occupe les mesures -1 et 0). Chaque temps porte son instant théorique et son instant recalé sur l'attaque de batterie la plus proche à 40 ms près, et le tempo local par mesure varie de 86,9 à 89,4 BPM autour d'une médiane de 88,047.
+
+**Sections.** Sept sections calées sur les barres de mesure : 0 à 5,75 s (introduction sans basse), 5,75 à 16,65 s, 16,65 à 22,10 s, 22,10 à 27,55 s (sans grosse caisse, -72,9 dB dans sa bande), 27,55 à 33,01 s, 33,01 à 62,99 s, puis la fin jusqu'à 68,05 s, chacune avec ses niveaux médians par piste.
+
+**Batterie.** 333 frappes, chacune avec sa classe, sa vélocité, son niveau en dB, sa position (pas au seizième, mesure, temps, pas dans la mesure) et son micro-décalage en millisecondes par rapport à la grille :
+
+| Classe | Frappes | Écart médian à la grille | Pas les plus fréquents dans la mesure |
+|---|---|---|---|
+| grosse caisse | 95 | 9,0 ms | 5, 9, 13, 1 (les quatre temps) |
+| charleston fermé | 125 | 15,5 ms | 6, 1, 9, 4 |
+| charleston ouvert | 85 | 12,2 ms | 11, 3, 15, 8 |
+| caisse claire | 16 | 42,4 ms | 11, 15, 7, 1 |
+| clap | 12 | 15,1 ms | 9, 14, 7 |
+| tom, percussion | 0 | | |
+
+Les toms et les percussions n'apparaissent pas sur cette référence, ce qui reste une mesure et non une limite du détecteur, puisque le cas connu de la section 3 les retrouve. L'écart médian de 42 ms des caisses claires laisse supposer soit des frappes réellement décalées, soit des événements mal classés, et il mériterait une écoute avant la passe M2.
+
+**Basse.** 116 notes de do 1 à ré dièse 2 (les plus fréquentes : MIDI 27, 29 et 24, soit mi bémol 1, fa 1 et do 1, entre 32 et 44 Hz), chacune avec son début, sa durée, sa hauteur, son écart en cents, sa vélocité et son niveau ; 7 notes portent une glissade (`glide`, note de départ et durée), par exemple 36 vers 39 en 87 ms à 7,20 s.
+
+**Piste « other ».** 932 notes réparties en trois voix par registre (`otherLow` jusqu'à do 4 : 222 notes ; `otherMid` jusqu'à do 5 : 217 ; `otherHigh` au-dessus : 493), avec des tenues médianes de 0,16 à 0,19 s, et 98 plages d'accords étiquetées par temps (les plus longues : G5 pendant 20,4 s, D5 pendant 12,2 s, D#maj7 pendant 4,1 s), ce qui s'accorde avec la tonalité de do mineur mesurée (corrélation 0,561). La part du résidu expliquée par la composante de bruit de la NMF est de 4,0 %.
+
+**Voix.** La piste « vocals » mesure -68,8 dBFS, si bien qu'elle ne porte aucun contenu tonal : elle est décrite comme une couche de texture (quatre enveloppes de bande toutes les 50 ms), avec la raison écrite dans la partition.
+
+**Automations.** Une courbe de niveau par piste (fenêtre 100 ms, pas 50 ms), qui porte le pompage et le gate, que les notes seules ne décrivent pas.
+
+## 3. Vérification dans les deux sens (12 October 2026)
+
+### 3.1 Vert sur un cas dont la vérité est exacte
+
+Une partition synthétique connue (8 mesures à 100 BPM : grosses caisses, caisses claires, claps, charlestons fermés et ouverts, tom ; une basse avec une glissade ; des accords de trois notes et une ligne aiguë) est jouée par les voix de vérification, puis retranscrite et comparée note à note (début à 50 ms près et même hauteur MIDI) :
+
+| Partie | F-mesure | Précision | Rappel |
+|---|---|---|---|
+| batterie, classe exacte | 0,945 | 0,958 | 0,932 |
+| basse | 1,000 | 1,000 | 1,000 (glissade retrouvée : 1 sur 1) |
+| polyphonie | 0,985 | 0,970 | 1,000 |
+
+La même transcription jugée contre la vérité décalée de 80 ms et d'un demi-ton tombe à 0,000 sur les trois parties. Le test `tests/test_transcribe.py` passe en 18,7 s ; avec un paramètre volontairement cassé (`kickMaxHz` à 20 Hz et `stableSemi` à 0,05), il échoue sur la batterie (F 0,677) et rend le code 1.
+
+### 3.2 La référence réelle, rendue en sinus et en bruit
+
+La partition est jouée par des voix volontairement pauvres (sinus pour les notes, bruit filtré pour la batterie et la texture), avec ses automations de volume, et chaque rendu est comparé à la piste Demucs correspondante par la F-mesure des attaques (même détecteur des deux côtés, tolérance 50 ms), la similarité de chroma (cosinus par trame, trames à moins de 40 dB du maximum) et la corrélation des enveloppes. Ces chiffres jugent les notes et les instants, pas le timbre, que la passe M2 ajustera par la banque son.
+
+| Piste | F attaques | Chroma | Corr. enveloppe | Décalé 80 ms et +1 demi-ton : F, chroma | Temps seul : F | Hauteur seule : chroma |
+|---|---|---|---|---|---|---|
+| drums | 0,765 | 0,815 | 0,972 | 0,193 ; 0,792 | 0,193 | 0,815 |
+| bass | 0,574 | 0,952 | 0,950 | 0,184 ; 0,576 | 0,184 | 0,573 |
+| other | 0,543 | 0,829 | 0,836 | 0,377 ; 0,454 | 0,371 | 0,459 |
+| vocals (texture) | 0,711 | 0,951 | 0,922 | 0,382 ; 0,951 | 0,382 | 0,951 |
+
+Sans les automations, les notes seules donnent 0,742, 0,543 et 0,524 en F d'attaques et 0,826, 0,948 et 0,827 en chroma pour la batterie, la basse et « other » ; les automations apportent donc surtout les attaques de pompage que le détecteur voit sur la référence.
+
+Seuils de passage (`verify.pass`) : F d'attaques 0,6 pour la batterie, 0,55 pour la basse, 0,45 pour « other » ; chroma 0,7 pour la basse et « other » ; corrélation d'enveloppe 0,6 pour la batterie et 0,5 pour la voix. Toutes les pistes passent. La partition décalée échoue aux seuils, et chaque piste jugée perd au moins une marge (F d'attaques d'au moins 0,2 ou chroma d'au moins 0,15) : la batterie perd 0,573 de F, la basse 0,389 de F et 0,376 de chroma, « other » 0,167 de F et 0,375 de chroma. La règle « au moins une marge » tient à ce que « other » est une piste dense, où le simple hasard garde environ 0,37 de F d'attaques (mesuré par le décalage temporel seul), alors que son chroma s'effondre. Enfin, lancée avec un décalage nul (`--set verify.shiftS=0 --set verify.shiftSemi=0`), la commande rend le verdict « verification failed » et le code 1, ce qui prouve que le vérificateur sait virer au rouge.
+
+Rendu de contrôle, privé et jamais publié : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/V_002/check-sine.wav` (sinus et bruit, utile pour entendre la grille et les notes, pas un son à juger), avec `score.json`, `verify.json` et `meta.json` (`"kind": "transcription-check", "private": true`). `V_001` est la même passe avant la correction de la section vide, conservée telle quelle.
+
+## 4. Ce que ces chiffres disent, et ce qu'ils ne disent pas (12 October 2026)
+
+La batterie et la basse sont transcrites de façon exploitable : la grille, les grosses caisses sur les temps et les hauteurs de basse passent la vérification avec une marge nette contre le décalage. La polyphonie est la partie la plus fragile, car sa F d'attaques de 0,543 ne dépasse le hasard que de 0,17 ; le chroma de 0,83 montre que les hauteurs portées sont justes en moyenne, mais une part des 932 notes relève vraisemblablement de résidus de réverbération ou de fragments d'attaque. Le balayage de 18 réglages (seuil relatif à la trame, seuil absolu, durée minimale) n'a fait varier la F que de 0,47 à 0,53 et le chroma de 0,81 à 0,84, ce qui laisse penser que la limite tient à la méthode NMF à gabarits harmoniques plus qu'à ses seuils ; le réglage retenu (15 dB, 26 dB, 100 ms) est celui qui garde le moins de notes à qualité égale.
+
+Ces mesures ne disent rien encore du 99 % visé : elles valident une partition, pas un son. La passe suivante (M2) devra jouer cette partition avec des blocs de la banque son aux timbres ajustés et mesurer l'écart à la référence par la perte perceptive de `ploss.py`, ce qui révélera les notes fausses de la polyphonie bien mieux qu'un rendu en sinus.
+
+## 5. Pièges payés pendant la passe (12 October 2026)
+
+| Piège | Correction |
+|---|---|
+| Une grosse caisse à hauteur descendante n'entre dans la bande 30 à 150 Hz que 90 ms après son clic, d'où 299 « grosses caisses » décalées au deuxième seizième | bande basse portée à 250 Hz, chaque détection recalée sur l'enveloppe de sa bande (premier passage à 6 dB du pic), test de montée franche et fusion des queues |
+| La normalisation du flux par son maximum global rend la détection dépendante de l'extrait : la grosse caisse de 5,75 s disparaissait sur le morceau entier et revenait sur un extrait | recalage par premier franchissement de seuil, robuste aux creux de l'enveloppe |
+| Le grain d'une caisse claire en bruit comptait comme plusieurs salves de clap | enveloppe lissée sur 3 ms, salves comptées par proéminence avec un écart minimal |
+| Le corps à 190 Hz d'une caisse claire devenait un tom | un tom exige une bande médiane faible |
+| Les gabarits harmoniques adaptés laissent une sous-harmonique (mi bémol 2) expliquer un accord entier | test de saillance de la fondamentale, filtre des fantômes d'octave, de douzième et de demi-ton voisin, VQT à fenêtres courtes dans le grave |
+| pyin met environ 150 ms à suivre une glissade de 80 ms et la découpe en fragments | drapeau voisé de pyin conservé, fragments courts liés absorbés dans la glissade d'arrivée |
+
+## 6. Prochaine étape (12 October 2026)
+
+M2 : jouer `score.json` avec la banque son (blocs différentiables ajustés par gradient sur chaque voix), écrire les rendus 1:1 dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/V_003` et suivants, et mesurer l'écart par piste. Avant cela, une écoute de `V_002/check-sine.wav` par Matthieu dirait si la grille et les basses sonnent juste, puisque le verdict final sur le son lui revient.

@@ -1,0 +1,78 @@
+# A0, le harnais de la banque de sons différentiable (12 October 2026)
+
+Rapport de la tâche A0 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Elle prolonge le moteur son B1 sans en réécrire une ligne : les trois modules nouveaux s'ajoutent à `zrmd/audio`, leurs réglages s'ajoutent à `datasets/sfx-params.json` sous trois clés neuves (`bank`, `ploss`, `dfit`), et aucune version `V_001` à `V_017` n'a été touchée. Toutes les valeurs citées sont mesurées par le code livré. (12 October 2026)
+
+## 1. Résultat (12 October 2026)
+
+Le vérificateur passe au vert, code de sortie 0, en 260 s sur 16 processus : les trois blocs retrouvent leurs propres paramètres avec un score perceptif minimal de 99,81 (exigé : 99,5), et un bloc faux, sur les cibles qu'il ne peut pas exprimer, plafonne à 65,53 (exigé : au plus 90). Le mode sabotage du même vérificateur sort en rouge, code 1, ce qui prouve qu'il regarde réellement les résultats. Rapport machine : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/sound-bank/verify-report.json`. (12 October 2026)
+
+| Cible | Bloc ajusté | Score ploss | Score B1 (describe.compare) | Durée |
+|---|---|---|---|---|
+| sine_env, défauts | sine_env | 100,00 | 100,00 | 4,7 s |
+| sine_env, tirage 1 | sine_env | 99,95 | 99,97 | 80 s |
+| sine_env, tirage 2 | sine_env | 99,95 | 99,93 | 92 s |
+| filtered_noise_burst, défauts | filtered_noise_burst | 100,00 | 100,00 | 9,0 s |
+| filtered_noise_burst, tirage 1 | filtered_noise_burst | 99,95 | 99,70 | 52 s |
+| filtered_noise_burst, tirage 2 | filtered_noise_burst | 99,95 | 99,94 | 30 s |
+| fm_bell, défauts | fm_bell | 100,00 | 100,00 | 8,4 s |
+| fm_bell, tirage 1 | fm_bell | 99,96 | 99,99 | 49 s |
+| fm_bell, tirage 2 | fm_bell | 99,81 | 99,98 | 119 s |
+| sine_env glissé de -12 demi-tons | fm_bell | 65,53 | 62,68 | rouge attendu |
+| sine_env glissé de -12 demi-tons | filtered_noise_burst | 62,43 | 60,51 | rouge attendu |
+| fm_bell, indice 5 tenu 1 s | sine_env | 3,52 | 2,52 | rouge attendu |
+| fm_bell, indice 5 tenu 1 s | filtered_noise_burst | 22,09 | 0,00 | rouge attendu |
+| filtered_noise_burst, défauts | fm_bell | 43,87 | 65,15 | rouge attendu |
+| filtered_noise_burst, défauts | sine_env | 4,71 | 4,28 | rouge attendu |
+
+Le score B1, calculé indépendamment par `describe.compare` sur la même fenêtre, confirme chaque ligne verte au-dessus de 99,7, de sorte que la réussite ne tient pas à la seule métrique que l'ajusteur optimise. (12 October 2026)
+
+## 2. Ce qui a été construit (12 October 2026)
+
+| Fichier | Rôle |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/audio/bank.py` | classe `Block` (paramètres bornés par sigmoïde, linéaires ou logarithmiques, bruit à graine fixe), briques DSP différentiables (enveloppe, accumulation de phase, filtre de masque en STFT), chargement, liste, rendu d'un bloc ou d'une chaîne en numpy, écriture de `block.json`, `demo.wav` et `index.json` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/audio/ploss.py` | perte perceptive en torch et score 0 à 100 ; terme de flou logarithmique, guide d'ajustement seulement |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/audio/dfit.py` | ajusteur : pré-tri aléatoire, Adam multi-départs, sauts de bassin, arrêt anticipé ; MPS ou CPU, repli CPU nommé |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/sound-bank/` | trois blocs (`sine_env`, `filtered_noise_burst`, `fm_bell`), chacun avec `block.py`, `block.json`, `demo.wav`, plus `index.json`, `README.md`, `verify-report.json` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/BuildSoundBank.py` | régénère `block.json`, `demo.wav` et `index.json` depuis les `block.py` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifySoundBank.py` | vérificateur, `--json`, code de sortie, `--sabotage`, `--mps-check` |
+
+Le format de chaîne est `{"sr", "seconds", "masterGainDb", "blocks": [{"block", "params", "gainDb", "offsetS", "seed"}]}`, rendu par `bank.render_chain` et retourné tel quel par `dfit.fit`, si bien qu'un ajustement se rejoue sans le moteur d'ajustement. Le `block.py` est l'unique source d'un bloc (son `META` et ses `PARAMS`), `block.json` n'en est qu'une copie générée, que le vérificateur compare à la source. Les réglages vivent tous dans `datasets/sfx-params.json` (loi HDA), aucun seuil n'est écrit dans le code. (12 October 2026)
+
+## 3. La perte et le score, et leur lien avec verify.py (12 October 2026)
+
+La perte compte quatre termes, chacun exprimé en seuils différentiels comme les indices de `describe.compare` : le spectre STFT multi-résolution (256, 1024 et 4096 points), dont l'écart moyen en dB est divisé par 2 dB ; le spectrogramme mel à 64 bandes, divisé par 2 dB, la même valeur que `jnd.melShapeDb` ; l'enveloppe de sonie RMS sur 10 ms, divisée par 1 dB, la même que `jnd.levelDb` ; enfin l'instant d'attaque, lu par un argmax doux de la montée de l'enveloppe, dont l'écart en millisecondes est divisé par `jnd.anchorMs`. Chaque écart en dB est pondéré, cellule par cellule, par la hauteur de la plus forte des deux valeurs au-dessus d'un plancher placé 60 dB sous la cellule la plus forte de la cible, règle reprise de `describe.compare`, en sorte que le silence ne domine pas et qu'un son manquant ne se cache pas. (12 October 2026)
+
+La perte vaut `E2 = somme des w_k e_k^2`, et le score `100 * score.base ** E2`, exactement la formule de `describe.compare` et donc de chaque score d'événement dans `verify.py` : une perte nulle donne 100, une distance d'un seuil donne 99, et le score dépasse 99 exactement lorsque `E` reste sous 1. Les indices diffèrent cependant, des cellules de spectrogramme ici, des descripteurs de synthèse là, de sorte que les deux scores ne sont pas le même nombre ; c'est pourquoi `dfit` rend les deux côte à côte, le score ploss comme objectif et le score B1 comme contrôle. Le tableau de la section 1 montre qu'ils s'accordent sur les cas verts, tandis que sur les cas rouges l'un ou l'autre peut être plus sévère (le bruit ajusté par une cloche FM obtient 43,9 en ploss et 65,1 en B1, la cloche ajustée par un bruit 22,1 et 0). (12 October 2026)
+
+## 4. L'ajusteur, et pourquoi il a fallu un flou (12 October 2026)
+
+La première version, un pré-tri aléatoire de 384 points puis Adam sur la perte officielle, échouait sur la cloche FM (carrier 800 Hz, rapport 2,1) en s'arrêtant à 854 Hz et 1,95, score 77,3. La carte de la perte mesurée sur une grille (carrier de 600 à 1000 Hz, rapport de 1,4 à 2,5) en donne la raison : le bassin autour de la vérité ne mesure qu'une dizaine de hertz, parce qu'une partielle décalée de plus d'un intervalle de fréquence ne reçoit plus aucun gradient vers sa place. Ajouter un flou en somme n'y changeait rien (score 49,1), car la perte officielle, de l'ordre de quelques centaines, écrasait le terme flou, de l'ordre de quelques unités. (12 October 2026)
+
+La version livrée remplace donc, pendant les premiers 60 pour cent des pas, les termes STFT et mel par un spectre flouté le long de l'axe logarithmique des fréquences (gaussienne de 0,25 octave, réduite géométriquement à 0,02 octave en douze paliers), en gardant l'enveloppe et l'attaque ; le pré-tri classe lui aussi ses départs par cette perte guide à 0,15 octave, puis la fin de chaque course revient à la perte officielle seule. La cloche passe alors à 99,92. Un dernier cas résistait encore, un sinus glissant de -17 demi-tons (98,51) : des sauts de bassin, six coups gaussiens de 0,3 dans l'espace libre suivis de 250 pas d'Adam, gardés seulement s'ils améliorent, le portent à 99,95. Le flou ne compte jamais dans le score. (12 October 2026)
+
+## 5. Ce que les mesures disent des limites (12 October 2026)
+
+Deux blocs se recouvrent réellement, et le vérificateur le dit au lieu de le cacher. Une cloche FM dont l'indice s'éteint en 24 ms est un sinus (le tirage 2 de `fm_bell`, imité à 99,73 par `sine_env`), et un sinus qui ne glisse que de deux demi-tons pendant que sa note s'éteint est une cloche d'indice nul (tirage 1 de `sine_env`, imité à 99,72 par `fm_bell`). Ces ajustements croisés sur les tirages aléatoires sont donc rendus comme information de recouvrement (maximum 99,89) et jamais notés ; les cibles rouges notées, réglées dans `bank.verify.redTargets`, sont choisies hors du recouvrement. (12 October 2026)
+
+Retrouver le son n'est pas retrouver les paramètres : le sinus glissant de -17 demi-tons est rendu à 99,95 avec un glissando de -19,2 demi-tons et une constante de 0,267 s au lieu de 0,229, deux paramètres qui se compensent. Ce qui compte pour la reproduction est le son, et le score le mesure ; un paramètre lu pour lui-même devra se méfier de ces couples. (12 October 2026)
+
+Le déterminisme est exact au bit près dans un processus, et à un ulp de float32 près (1,2e-7 mesuré) entre deux processus, ce qui fixe la tolérance du `demo.wav` stocké. Un ajustement change de trajectoire avec le nombre de fils du CPU (le même cas a pris 4 départs à un fil et 9 à huit fils, pour 99,96 et 99,97) : il est reproductible à appareil et nombre de fils fixés. (12 October 2026)
+
+Sur ces fenêtres d'une seconde, MPS n'accélère rien : le même ajustement de cloche prend 23,9 s sur un cœur CPU et 25,6 s sur MPS. Le vérificateur fait donc tourner seize ajustements CPU à un fil en parallèle, et `--mps-check` prouve que le chemin MPS fonctionne (100,00 en 7,5 s). `dfit.device = "auto"` choisit MPS quand il existe, avec repli CPU nommé dans le résultat. (12 October 2026)
+
+Rien de tout cela ne prouve encore une reproduction de la référence `onekey-pro-2` : ces cibles sont rendues par la banque elle-même, avec la même graine de bruit, ce qui est le test minimal qu'un ajusteur doit passer avant toute cible réelle. Sur une vraie cible, le bruit ne sera jamais le même tirage, et la part stochastique devra se juger par les termes lissés (mel, enveloppe) plutôt que par la STFT fine. Aucun son de calibration CC0 n'a été téléchargé pour A0. (12 October 2026)
+
+## 6. Commandes (12 October 2026)
+
+```
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/BuildSoundBank.py
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifySoundBank.py --mps-check --json   # vert, code 0, 260 s
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifySoundBank.py --sabotage --sets 0   # rouge, code 1, 208 s
+```
+
+En mode sabotage, la licence du premier bloc est retirée en mémoire (trois erreurs de contrat) et un mauvais bloc est déclaré juste pour le premier cas (43,87 sous le seuil de 99,5) : le vérificateur sort en rouge. Les sept tests B1 de `tests/test_audio.py` passent toujours (code 0). (12 October 2026)
+
+## 7. Prochaine étape (12 October 2026)
+
+Élargir la banque aux briques de la consigne (oscillateurs à bande limitée, résonateurs modaux, réverbération FDN, saturation, compression, stéréo), puis brancher `dfit` sur les quatre événements réels de `V_017` (E001, E005, E006, E007) en essayant plusieurs chaînes par événement, avec une version `V_018` qui garde les précédentes intactes. (12 October 2026)

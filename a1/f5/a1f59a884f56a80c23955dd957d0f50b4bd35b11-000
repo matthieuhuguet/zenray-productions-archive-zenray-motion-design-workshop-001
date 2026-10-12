@@ -1,0 +1,272 @@
+{
+  "date": "12 October 2026",
+  "bank": "/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/redbank",
+  "size": 256,
+  "sets": 2,
+  "seed": 20261012,
+  "mean_limit_levels": 2.0,
+  "seconds_glsl_render": 4.23,
+  "seconds_total": 4.28,
+  "index": "/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/redbank/index.json",
+  "green": false,
+  "blocks": [
+    {
+      "id": "blur_rect_gaussian",
+      "cases": [
+        {
+          "label": "default",
+          "max_abs": 255.0,
+          "mean_abs": 161.84,
+          "params": {
+            "center": [
+              0.5,
+              0.5
+            ],
+            "half_size": [
+              0.2,
+              0.12
+            ],
+            "sigma": [
+              0.02,
+              0.02
+            ],
+            "aspect": 1.0
+          }
+        },
+        {
+          "label": "random1",
+          "max_abs": 255.0,
+          "mean_abs": 156.5307,
+          "params": {
+            "center": [
+              0.566348356215031,
+              0.4475118443621201
+            ],
+            "half_size": [
+              0.358928222765544,
+              0.20258643115236646
+            ],
+            "sigma": [
+              0.0615264168020255,
+              0.07585640933624606
+            ],
+            "aspect": 1.8354298154970121
+          }
+        },
+        {
+          "label": "random2",
+          "max_abs": 255.0,
+          "mean_abs": 168.3242,
+          "params": {
+            "center": [
+              0.7964773502684004,
+              0.2834794058911854
+            ],
+            "half_size": [
+              0.062222204050897914,
+              0.2832553631599356
+            ],
+            "sigma": [
+              0.016317363104297468,
+              0.04842165113707787
+            ],
+            "aspect": 3.45473495148027
+          }
+        }
+      ],
+      "errors": [],
+      "worst_mean": 168.3242,
+      "worst_max": 255.0,
+      "green": false
+    },
+    {
+      "id": "dither_bayer_ramp",
+      "cases": [
+        {
+          "label": "default",
+          "max_abs": 76.75,
+          "mean_abs": 13.9984,
+          "params": {
+            "angle": 90.0,
+            "c0": [
+              0.05,
+              0.05,
+              0.12
+            ],
+            "c1": [
+              0.95,
+              0.8,
+              0.55
+            ],
+            "levels": 4.0,
+            "cells": 256.0,
+            "aspect": 1.0
+          }
+        },
+        {
+          "label": "random1",
+          "max_abs": 14.37,
+          "mean_abs": 2.1833,
+          "params": {
+            "angle": 73.08473647799892,
+            "c0": [
+              0.20652791088373157,
+              0.9670871197330526,
+              0.47060444550132374
+            ],
+            "c1": [
+              0.613856656796027,
+              0.36868019583221556,
+              0.5621159257017513
+            ],
+            "levels": 12.008756642707649,
+            "cells": 138.9003468542574,
+            "aspect": 2.5135233375833104
+          }
+        },
+        {
+          "label": "random2",
+          "max_abs": 13.34,
+          "mean_abs": 1.8361,
+          "params": {
+            "angle": 108.93449197793035,
+            "c0": [
+              0.28102102095812154,
+              0.748577613738636,
+              0.4554773883755838
+            ],
+            "c1": [
+              0.987929200640072,
+              0.8409924813695332,
+              0.09734042387971076
+            ],
+            "levels": 15.094940769752963,
+            "cells": 37.809445230717756,
+            "aspect": 0.43587589884301825
+          }
+        }
+      ],
+      "errors": [],
+      "worst_mean": 13.9984,
+      "worst_max": 76.75,
+      "green": false
+    },
+    {
+      "id": "noise_simplex3_anim",
+      "cases": [
+        {
+          "label": "default",
+          "max_abs": 11.655,
+          "mean_abs": 3.4053,
+          "params": {
+            "scale": 8.0,
+            "offset": [
+              0.0,
+              0.0
+            ],
+            "time": 0.0,
+            "speed": 0.5,
+            "seed": 1.0,
+            "contrast": 1.0,
+            "aspect": 1.0
+          }
+        },
+        {
+          "label": "random1",
+          "max_abs": 6.208,
+          "mean_abs": 1.7123,
+          "params": {
+            "scale": 10.946881309845809,
+            "offset": [
+              19.71402252235955,
+              -9.135547673917923
+            ],
+            "time": 1.2051683859605167,
+            "speed": 1.4089971125486507,
+            "seed": 80.29022457847283,
+            "contrast": 0.504334137392623,
+            "aspect": 0.8952021000368034
+          }
+        },
+        {
+          "label": "random2",
+          "max_abs": 12.589,
+          "mean_abs": 4.1144,
+          "params": {
+            "scale": 8.384124659247577,
+            "offset": [
+              -18.381243630413863,
+              5.941799536950182
+            ],
+            "time": 3.0293112090238985,
+            "speed": 1.0585612414843866,
+            "seed": 26.505918446406586,
+            "contrast": 2.518157105296214,
+            "aspect": 1.599478951579526
+          }
+        }
+      ],
+      "errors": [],
+      "worst_mean": 4.1144,
+      "worst_max": 12.589,
+      "green": false
+    },
+    {
+      "id": "tonemap_agx",
+      "cases": [
+        {
+          "label": "default",
+          "max_abs": 10.035,
+          "mean_abs": 5.9088,
+          "params": {
+            "angle": 90.0,
+            "tint": [
+              1.0,
+              0.85,
+              0.7
+            ],
+            "ev_min": -4.0,
+            "ev_max": 3.0,
+            "exposure": 1.0
+          }
+        },
+        {
+          "label": "random1",
+          "max_abs": 10.111,
+          "mean_abs": 6.3104,
+          "params": {
+            "angle": -0.10503071610386883,
+            "tint": [
+              0.8261404759904558,
+              0.596645925911437,
+              0.8064558861360739
+            ],
+            "ev_min": -3.0525855308629346,
+            "ev_max": 4.791656758322859,
+            "exposure": 0.36300964015379855
+          }
+        },
+        {
+          "label": "random2",
+          "max_abs": 10.884,
+          "mean_abs": 5.7998,
+          "params": {
+            "angle": -114.03474013960383,
+            "tint": [
+              0.2544391263607485,
+              0.49621009474212796,
+              0.3700611378434039
+            ],
+            "ev_min": -1.3377281364759765,
+            "ev_max": 4.478160518772566,
+            "exposure": 1.6058244630662084
+          }
+        }
+      ],
+      "errors": [],
+      "worst_mean": 6.3104,
+      "worst_max": 10.884,
+      "green": false
+    }
+  ]
+}

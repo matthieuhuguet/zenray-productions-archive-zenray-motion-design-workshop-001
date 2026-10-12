@@ -1,0 +1,109 @@
+# 12 October 2026: verifier of the procedural shader bank (datasets/shaders). For every block it renders the GLSL
+# through HyperFrames (one browser run for all cases) and the numpy twin, at the default parameters and at N random
+# in-bounds sets, and compares them pixel by pixel in 8-bit levels. A block is red when the mean absolute error of
+# any case exceeds settings.json shaders.verify_mean_max (2 levels), or when its metadata breaks the contract.
+# Exit code 0 when every block is green, 1 otherwise. --json prints a machine-readable report.
+# Usage: python -I Scripts/VerifyShaderBank.py [--blocks a,b] [--size 256] [--sets 2] [--seed N] [--write-thumbs] [--json]
+# FR : vérificateur de la banque de shaders ; GLSL contre jumeau numpy, vert ou rouge, code de sortie exploitable.
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from zrmd import settings  # noqa: E402
+from zrmd.shaders import bank, compose  # noqa: E402
+
+REQUIRED = ("id", "family", "description", "params", "source_url", "licence", "attribution", "tags", "looks")
+ALLOWED_LICENCES = ("original", "mit", "bsd", "apache-2.0", "cc0", "public domain", "public-domain")
+FORBIDDEN_CHARS = ("—", "–")  # 12 October 2026: em dash and en dash are banned in every file.
+
+
+def contract_errors(bid: str) -> list[str]:
+    errs = []
+    b = bank.load(bid)
+    meta = b["meta"]
+    errs += [f"block.json missing '{k}'" for k in REQUIRED if k not in meta]
+    lic = str(meta.get("licence", "")).lower()
+    if not any(lic.startswith(a) or a in lic.split(" (")[0] for a in ALLOWED_LICENCES):
+        errs.append(f"licence '{meta.get('licence')}' is not MIT, BSD, Apache-2.0, CC0, public domain or original")
+    if not lic.startswith("original") and not meta.get("source_url"):
+        errs.append("copied code needs source_url")
+    for p in meta["params"]:
+        for k in ("name", "type", "default", "min", "max", "unit"):
+            if k not in p:
+                errs.append(f"param {p.get('name')} missing '{k}'")
+    if f"vec4 {bid}(vec2 uv" not in b["glsl"]:
+        errs.append(f"block.glsl does not define vec4 {bid}(vec2 uv, ...)")
+    for f in ("block.glsl", "twin.py", "block.json"):
+        text = (b["path"] / f).read_text(encoding="utf-8")
+        if any(c in text for c in FORBIDDEN_CHARS):
+            errs.append(f"{f} contains an em or en dash")
+    return errs
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--blocks", default="")
+    ap.add_argument("--size", type=int, default=settings.get("shaders.verify_size"))
+    ap.add_argument("--sets", type=int, default=settings.get("shaders.verify_random_sets"))
+    ap.add_argument("--seed", type=int, default=settings.get("shaders.verify_seed"))
+    ap.add_argument("--write-thumbs", action="store_true")
+    ap.add_argument("--json", action="store_true")
+    a = ap.parse_args()
+    limit = float(settings.get("shaders.verify_mean_max"))
+    ids = [s for s in a.blocks.split(",") if s] or bank.list_blocks()
+    rng = np.random.default_rng(a.seed)
+    t0 = time.time()
+
+    cases = []  # (block id, label, params)
+    for bid in ids:
+        meta = bank.load(bid)["meta"]
+        cases.append((bid, "default", bank.resolve_params(meta, {})))
+        for k in range(a.sets):
+            cases.append((bid, f"random{k + 1}", bank.random_params(meta, rng)))
+    glsl = bank.render_glsl_batch([(bid, p) for bid, _, p in cases], a.size, a.size)
+    t_glsl = time.time() - t0
+
+    blocks = {bid: {"id": bid, "cases": [], "errors": contract_errors(bid)} for bid in ids}
+    for (bid, label, params), img in zip(cases, glsl):
+        twin = bank.render_twin(bid, params, a.size, a.size)
+        d = np.abs(img.astype(float) - twin)
+        blocks[bid]["cases"].append({"label": label, "max_abs": round(float(d.max()), 3),
+                                     "mean_abs": round(float(d.mean()), 4), "params": params})
+    for b in blocks.values():
+        b["worst_mean"] = max(c["mean_abs"] for c in b["cases"])
+        b["worst_max"] = max(c["max_abs"] for c in b["cases"])
+        b["green"] = b["worst_mean"] <= limit and not b["errors"]
+
+    if a.write_thumbs:
+        from PIL import Image
+        n = int(settings.get("shaders.thumb_size"))
+        thumbs = bank.render_glsl_batch([(bid, {}) for bid in ids], n, n)
+        for bid, img in zip(ids, thumbs):
+            Image.fromarray(img).save(bank.root() / bid / "thumb.png")
+    index = bank.rebuild_index()
+
+    report = {"date": "12 October 2026", "bank": str(bank.root()), "size": a.size, "sets": a.sets, "seed": a.seed,
+              "mean_limit_levels": limit, "seconds_glsl_render": round(t_glsl, 2),
+              "seconds_total": round(time.time() - t0, 2), "index": str(index),
+              "green": all(b["green"] for b in blocks.values()), "blocks": list(blocks.values())}
+    if a.json:
+        print(json.dumps(report, indent=2))
+    else:
+        for b in blocks.values():
+            state = "GREEN" if b["green"] else "RED"
+            print(f"{state:5}  {b['id']:24} worst mean {b['worst_mean']:.4f}  worst max {b['worst_max']:.3f}"
+                  + (f"  errors: {b['errors']}" if b["errors"] else ""))
+        print(f"{'all green' if report['green'] else 'RED'} in {report['seconds_total']} s "
+              f"(GLSL render {report['seconds_glsl_render']} s, {len(cases)} cases)")
+    return 0 if report["green"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,5 +1,5 @@
 {
-  "latest": "V_033",
+  "latest": "V_047",
   "versions": [
     "V_001",
     "V_002",
@@ -33,7 +33,33 @@
     "V_030",
     "V_031",
     "V_032",
-    "V_033"
+    "V_033",
+    "V_034",
+    "V_035",
+    "V_036",
+    "V_037",
+    "V_038",
+    "V_039",
+    "V_040",
+    "V_041",
+    "V_042",
+    "V_043",
+    "V_044",
+    "V_045",
+    "V_046",
+    "V_047"
   ],
-  "updated": "12 October 2026"
+  "updated": "12 October 2026",
+  "id": "onekey-c01-caption-read-detail",
+  "recipe": "textcard",
+  "source": {
+    "slug": "onekey-pro-2",
+    "start": 25.4,
+    "end": 27.0833
+  },
+  "tags": [
+    "caption",
+    "onekey-pro-2"
+  ],
+  "title": "Caption read-detail"
 }

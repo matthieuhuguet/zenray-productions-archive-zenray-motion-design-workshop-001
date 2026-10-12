@@ -1,9 +1,9 @@
 font /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf
-V_027 score=0.1037 dims={'animation': 0.9331, 'image': 1.0, 'colour': 1.0, 'typography': 0.1037} lint=True
-V_028 score=0.9273 dims={'animation': 0.9777, 'image': 1.0, 'colour': 1.0, 'typography': 0.9273} lint=True
-V_029 score=0.9257 dims={'animation': 0.9894, 'image': 1.0, 'colour': 1.0, 'typography': 0.9257} lint=True
-V_030 score=0.9865 dims={'animation': 0.9865, 'image': 1.0, 'colour': 1.0, 'typography': 0.993} lint=True
-V_031 score=0.9810 dims={'animation': 0.9866, 'image': 1.0, 'colour': 1.0, 'typography': 0.981} lint=True
-V_032 score=0.9854 dims={'animation': 0.9854, 'image': 1.0, 'colour': 1.0, 'typography': 0.9949} lint=True
-V_033 score=0.9848 dims={'animation': 0.9848, 'image': 1.0, 'colour': 1.0, 'typography': 0.9949} lint=True
-{"best_version": "V_030", "best_score": 0.9865}
+V_041 score=0.1037 dims={'animation': 0.9576, 'image': 1.0, 'colour': 1.0, 'typography': 0.1037} lint=True
+V_042 score=0.9273 dims={'animation': 0.9848, 'image': 1.0, 'colour': 1.0, 'typography': 0.9273} lint=True
+V_043 score=0.9257 dims={'animation': 0.9785, 'image': 1.0, 'colour': 1.0, 'typography': 0.9257} lint=True
+V_044 score=0.9803 dims={'animation': 0.9803, 'image': 1.0, 'colour': 1.0, 'typography': 0.993} lint=True
+V_045 score=0.9775 dims={'animation': 0.9775, 'image': 1.0, 'colour': 1.0, 'typography': 0.981} lint=True
+V_046 score=0.9760 dims={'animation': 0.976, 'image': 1.0, 'colour': 1.0, 'typography': 0.9949} lint=True
+V_047 score=0.9777 dims={'animation': 0.9777, 'image': 1.0, 'colour': 1.0, 'typography': 0.9949} lint=True
+{"best_version": "V_044", "best_score": 0.9803}

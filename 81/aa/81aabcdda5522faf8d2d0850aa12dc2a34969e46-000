@@ -1,0 +1,28 @@
+# Shader bank (12 October 2026)
+
+Procedural building blocks for every look of a reproduction, the image counterpart of the zenray-height block dataset. A reproduction is never textured with the reference image or with a colour grid sampled from it: every look is a composition of these blocks with measured parameters, fitted on the numpy twins and rendered by the GLSL, sharp 1:1 at any resolution. (12 October 2026)
+
+## One folder per block (12 October 2026)
+
+| File | Content |
+|---|---|
+| `<id>/block.glsl` | a pure GLSL ES 3.0 function `vec4 <id>(vec2 uv, <params in block.json order>)`; `uv` is the pixel centre in [0,1]^2 with v pointing down; returns straight RGBA in 0..1. Mask blocks return `(1, 1, 1, m)`, colour blocks alpha 1. Helper functions are prefixed `<id>_`. No uniforms inside: every parameter is an argument, so one block can serve several layers. |
+| `<id>/twin.py` | `render(params, u, v)`, the same formula vectorised in numpy: HxWx3 float 0..255 (colour block) or HxW float 0..1 (mask block). `u, v` are the pixel-centre grids of `zrmd.shaders.bank.uv_grid`. |
+| `<id>/block.json` | `{id, family, description, params:[{name, type, default, min, max, unit}], source_url, licence, attribution, tags, looks}`. Types: `float`, `vec2`, `vec3`, `color` (vec3, sRGB 0..1). `looks` lists the look ids the block can serve. |
+| `<id>/thumb.png` | the GLSL render at the default parameters (written by the verifier with `--write-thumbs`). |
+| `index.json` | summary of every folder, rebuilt by `zrmd.shaders.bank.rebuild_index()` (the verifier calls it). |
+
+## Licences (12 October 2026)
+
+Code is copied only from MIT, BSD, Apache-2.0, CC0 or public-domain sources, with the exact URL in `source_url` and the licence in `licence`; otherwise the function is written from the mathematics and `licence` starts with `original`. Never Shadertoy code under its default CC BY-NC-SA, never LYGIA (Prosperity licence), never a pixel, logo or text of a reference video. (12 October 2026)
+
+## Commands (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --write-thumbs   # GLSL against twin, exit 0 = green
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --json           # machine-readable report
+~/.venvs/zenray-motion/bin/python -I tests/test_shader_compose.py                  # composition, both ways
+```
+
+Python API: `bank.load(id)`, `bank.list_blocks()`, `bank.render_twin(id, params, w, h)`, `bank.render_glsl(ids_and_params, w, h, out_png)`, `bank.render_glsl_batch(compositions, w, h)` (many frames, one browser run), `compose.evaluate(layers, w, h)` and `compose.emit_glsl(layers)`. A layer is `{"block", "params", "blend": normal|add|multiply|screen, "mask": {"block", "params"}}`. Settings (paths, verification size, mean threshold of 2 levels, still fps, browser GPU mode) live in `settings.json`, section `shaders`. (12 October 2026)

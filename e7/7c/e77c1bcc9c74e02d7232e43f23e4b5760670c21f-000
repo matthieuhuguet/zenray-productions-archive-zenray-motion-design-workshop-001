@@ -1,0 +1,123 @@
+# S3, shader bank family B: noise and post-processing (12 October 2026)
+
+Family B of the procedural shader bank now holds 39 blocks: noise, grain, dithering, single-pass analytic optics (bloom, blur, defocus, chromatic aberration, flares), colour grading and tone mapping, mask transitions, and colour transitions over time in OKLab. Each block is a pure GLSL ES 3.0 function with a numpy twin. The verifier is green on all 39, and a deliberately broken copy turns red. No reference pixel, logo or text is used anywhere. (12 October 2026)
+
+## How it is built (12 October 2026)
+
+| Path | Role |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/HarvestNoisePost.py` | The single definition. It holds shared GLSL helpers (prefix `@` becomes `<id>_`), shared numpy helpers inlined into each twin so the twins stay standalone, common parameter definitions and the 39 block specs. It writes `datasets/shaders/<id>/{block.glsl, twin.py, block.json}`. It refuses to overwrite a folder another generator wrote (marker check) and rebuilds `index.json` under the shared lock `datasets/shaders/.index.lock`. |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/<id>/` | 39 new block folders, each with `thumb.png` written by the verifier. |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S3-noise-post/green.json` | Full verifier JSON (default plus 2 random sets, 256 px, seed 20261012). |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S3-noise-post/green-4sets-seed777.json` | Stress run (4 random sets, 320 px, seed 777), taken **before** the cell epsilon fix. It is kept as the record of the failure explained below. |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S3-noise-post/red.json` | Red test on a scratch copy. |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S3-noise-post/thumbs-sheet.png` | Contact sheet of the 39 thumbs. |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S3-noise-post/hd-composition.png` | 1920 x 1080 composition through `compose`: warp palette + bokeh (add) + flare streak and ghosts (add) + film grain at 25 % opacity. GLSL against the numpy evaluation: mean 0.2497, max 0.5 levels. |
+
+To regenerate and verify:
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/HarvestNoisePost.py [--only a,b]
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --blocks <ids> --write-thumbs --json
+```
+
+Index: 76 blocks in total after this task, including family A from the other worker, whose folders were untouched.
+
+## Design decisions that make the twins exact (12 October 2026)
+
+- **Hashing.**
+  - Every lattice hash is the integer `pcg2d` (Jarzynski and Olano 2020), written from the paper, on `uvec2(ivec2(cell) + 32768)`. The integer part of the seed is mixed in.
+  - The result becomes 2 floats through `(h >> 8) / 2^24`, which is exact in float32.
+  - The numpy twin reproduces the same uint32 arithmetic, so hashes are bit-identical. No `fract(sin())` hash was used, because its result depends on the GPU's sine precision.
+- **Simplex noise.**
+  - The 2D and 3D simplex blocks come from Ashima webgl-noise (MIT; URLs in each `block.json`).
+  - Their twins compute in float32 because the 3D version floors `j * (1/7)` at multiples of 7. In float64, `7 * 0.142857142857` rounds below 1 and the floor differs. Float32 rounding matches the GPU.
+- **Pixel-quantised cells.**
+  - The dither and grain cells use `floor(x * cells + 0.000731)`. The stress run at 320 px with 256 cells put cell boundaries exactly on pixel centres (0.8 j + 0.4 = integer), and float32 and float64 disagreed: mean 2.27 levels, red.
+  - The odd epsilon moves the boundaries off simple ratios. After the fix, sizes 256, 320, 384, 513 and 1000 with 4 random sets are all green (mean at most 0.35).
+  - The epsilon is defined once in the generator and substituted into both languages.
+- **Tone mapping.**
+  - ACES filmic, AgX and Neutral are copied from the vendored three.js r185 file (`vendor/three/build/three.module.js`, MIT).
+  - The GLSL `mat3` column order is mirrored in numpy by `c @ M` with columns as rows.
+- **OKLab.** Implemented from Ottosson's published matrices (constants only); interpolation is done in OKLab and the result goes back to sRGB.
+
+## Limits, documented in each block.json (12 October 2026)
+
+- **Bloom, blur and defocus are single-pass analytic versions on a procedural source.** Blocks cannot read the layers below them, because `compose` has no input-texture concept.
+  - `blur_rect_gaussian` is exact (the product of erf differences is separable).
+  - `blur_motion_bar` is exact for a box shutter along the bar's own axis.
+  - `blur_disc_gaussian` and the bloom glows approximate the blur by a function of the exterior distance. This is exact for straight edges and wrong when sigma exceeds about radius / 3.
+  - `bloom_spots` and `dof_bokeh_field` search the 3 x 3 neighbourhood, so `coc` is capped at 0.7 cell and `glow_sigma` should stay under 0.3 cell.
+- **Grade and tonemap blocks grade a procedural source**: a ramp from c0 to c1, or an HDR ramp `tint * 2^ev`. The operator itself is the helper `<id>_apply(...)` in each `block.glsl`, ready for filter layers if `compose` ever gains them.
+- **Grain** is drawn over a flat base colour. To grain an existing composite, layer it through a low-opacity mask (as in the HD composition).
+- **Step-function blocks show isolated maximum spikes** while their mean stays within limits.
+  - `dither_ign_ramp` reaches a max of 76.75: one quantisation step at pixels where float32 rounding of the IGN threshold flips.
+  - `grain_film` reaches a max of 174 at 1000 px: a single pixel whose cell flipped.
+  - These cases are expected: the means are 0.25 to 0.36 levels.
+
+## Verifier JSON, green (12 October 2026)
+
+The run used 3 cases per block (default plus 2 random), 256 x 256, seed 20261012, a mean limit of 2.0 levels, and a total of 23.35 s for 117 cases. Exit 0, `"green": true`.
+
+| Block | Family | Params | Licence | Worst mean | Worst max |
+|---|---|---|---|---|---|
+| `noise_value` | noise | 5 | original | 0.2502 | 0.501 |
+| `noise_gradient` | noise | 5 | original | 0.2506 | 0.501 |
+| `noise_simplex2` | noise | 5 | MIT | 0.2502 | 0.972 |
+| `noise_simplex3_anim` | noise | 7 | MIT | 0.2495 | 0.525 |
+| `noise_worley` | noise | 8 | original | 0.2502 | 0.500 |
+| `noise_voronoi_cells` | noise | 9 | original | 0.2588 | 0.505 |
+| `noise_fbm` | noise | 8 | original | 0.2498 | 0.502 |
+| `noise_ridged` | noise | 8 | original | 0.2505 | 0.501 |
+| `noise_turbulence` | noise | 8 | original | 0.2497 | 0.518 |
+| `noise_domain_warp` | noise | 7 | original | 0.2508 | 0.502 |
+| `noise_warp_palette` | noise | 10 | original | 0.2503 | 0.503 |
+| `grain_film` | grain | 8 | original | 0.2493 | 0.500 |
+| `dither_bayer_ramp` | dither | 6 | original | 0.3207 | 0.500 |
+| `dither_ign_ramp` | dither | 6 | original | 0.2858 | 76.750 |
+| `bloom_disc` | bloom | 10 | original | 0.2173 | 0.500 |
+| `bloom_rect` | bloom | 9 | original | 0.2579 | 0.500 |
+| `bloom_spots` | bloom | 10 | original | 0.2198 | 0.502 |
+| `blur_rect_gaussian` | blur | 4 | original | 0.0435 | 0.500 |
+| `blur_disc_gaussian` | blur | 4 | original | 0.1043 | 0.500 |
+| `blur_motion_bar` | blur | 6 | original | 0.0199 | 0.500 |
+| `dof_bokeh_field` | defocus | 10 | original | 0.0823 | 0.500 |
+| `chroma_aberration_ring` | chromatic | 8 | original | 0.0634 | 0.503 |
+| `chroma_aberration_rect` | chromatic | 8 | original | 0.0144 | 0.499 |
+| `flare_streak` | flare | 9 | original | 0.1139 | 0.500 |
+| `flare_ghosts` | flare | 7 | original | 0.0111 | 0.500 |
+| `flare_halo` | flare | 7 | original | 0.0915 | 0.500 |
+| `grade_lift_gamma_gain` | grade | 6 | original | 0.2492 | 0.500 |
+| `grade_exposure_saturation` | grade | 7 | original | 0.2492 | 0.500 |
+| `tonemap_aces_filmic` | tonemap | 5 | MIT | 0.2576 | 0.500 |
+| `tonemap_agx` | tonemap | 5 | MIT | 0.2500 | 0.501 |
+| `tonemap_neutral` | tonemap | 5 | MIT | 0.2535 | 0.500 |
+| `transition_wipe_linear` | transition | 3 | original | 0.1387 | 0.500 |
+| `transition_iris` | transition | 4 | original | 0.0217 | 0.500 |
+| `transition_clock` | transition | 5 | original | 0.0087 | 0.500 |
+| `transition_dissolve_noise` | transition | 6 | original | 0.1749 | 0.501 |
+| `transition_blinds` | transition | 5 | original | 0.0383 | 0.503 |
+| `transition_crossfade` | transition | 2 | original | 0.5000 | 0.500 |
+| `colorkeys_oklab` | colour-time | 8 | original | 0.3565 | 0.473 |
+| `ramp_oklab_anim` | colour-time | 7 | original | 0.2502 | 0.500 |
+
+A licence shown as "original" with pcg2d hashing cites the paper in the full licence string. Per-case parameters and errors are in `green.json`.
+
+## Verifier JSON, red (12 October 2026)
+
+Four blocks were copied to a scratch bank (`ZRMD_SHADER_BANK`) and each was broken on purpose. The verifier exited with code 1 and turned all four red. The scratch copy was then removed; the real bank was never touched.
+
+| Block | Deliberate break | Worst mean | Worst max |
+|---|---|---|---|
+| `blur_rect_gaussian` | GLSL syntax error (missing `;`), so the shader paints magenta | 168.32 | 255.0 |
+| `dither_bayer_ramp` | Twin Bayer bit weights swapped (16 and 4) | 14.00 | 76.75 |
+| `noise_simplex3_anim` | Twin final factor 105 changed to 95 | 4.11 | 12.59 |
+| `tonemap_agx` | Twin exponent 2.2 changed to 2.0 | 6.31 | 10.88 |
+
+`tests/test_shader_compose.py` still exits 0 after the harvest.
+
+## What remains (12 October 2026)
+
+- **No multi-pass effects.** `compose` cannot feed one layer into a filter. A real image-space bloom or blur of an arbitrary composite would need a filter-layer concept in `compose` and a render-to-texture step. The `<id>_apply` helpers are ready for that.
+- **GPU path tested only on ANGLE Metal.** SwiftShader was not measured (same limit as S0).

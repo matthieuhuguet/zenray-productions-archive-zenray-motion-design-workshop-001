@@ -1,0 +1,43 @@
+{
+ "segments": 36,
+ "plates": 25,
+ "motions": 7,
+ "frames": 4080,
+ "reference_frames": 4080,
+ "rhythm": {
+  "score": 1.0,
+  "found": 26,
+  "reference": 26,
+  "extra": 0,
+  "extra_frames": [],
+  "errors_frames": [
+   0,
+   0,
+   -1,
+   0,
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "film": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-montages/onekey-film/12_October_2026_11:46/film-silent.mp4"
+}

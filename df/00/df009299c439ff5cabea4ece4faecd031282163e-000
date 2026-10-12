@@ -1,0 +1,138 @@
+[13:36:49] bank: 61 ready, 0 pending, 0 failed import
+[13:36:50] fits: 78 jobs over 9 roles: kick=['kick', 'sub_808', 'sine_env'], snare=['snare'], clap=['clap'], hatClosed=['hihat_closed', 'filtered_noise_burst', 'hihat_open'], hatOpen=['hihat_open', 'filtered_noise_burst', 'crash_cymbal', 'hihat_closed'], bass=['bass_saw', 'sine_env'], otherLow=['pad_saw', 'fm_epiano', 'pluck_ks', 'supersaw'], otherMid=['pad_saw', 'fm_epiano', 'pluck_ks', 'pulse_lead'], otherHigh=['pulse_lead', 'fm_bell', 'pluck_ks', 'fm_epiano']
+[13:38:02]   fit kick       kick                 ex0 ploss  28.412 b1 33.482 (63.7 s)
+[13:38:04]   fit kick       kick                 ex1 ploss  67.606 b1 18.754 (66.2 s)
+[13:38:06]   fit kick       kick                 ex2 ploss  58.049 b1 0.227 (67.65 s)
+[13:38:06]   fit kick       sub_808              ex0 ploss  25.633 b1 14.034 (53.92 s)
+[13:38:06]   fit kick       sub_808              ex1 ploss  61.530 b1 3.849 (53.1 s)
+[13:38:06]   fit kick       sub_808              ex2 ploss  52.412 b1 0.154 (58.23 s)
+[13:38:06]   fit kick       sine_env             ex0 ploss  21.134 b1 0.013 (53.31 s)
+[13:38:06]   fit kick       sine_env             ex1 ploss  46.850 b1 2.87 (48.89 s)
+[13:38:06]   fit kick       sine_env             ex2 ploss  39.970 b1 0.457 (49.09 s)
+[13:38:06]   fit snare      snare                ex0 ploss  21.497 b1 35.187 (63.94 s)
+[13:38:06]   fit snare      snare                ex1 ploss  35.026 b1 0.515 (64.34 s)
+[13:38:06]   fit snare      snare                ex2 ploss  57.348 b1 16.429 (64.85 s)
+[13:38:06]   fit clap       clap                 ex0 ploss  22.273 b1 0.0 (64.67 s)
+[13:38:06]   fit clap       clap                 ex1 ploss  22.687 b1 0.0 (65.57 s)
+[13:38:06]   fit clap       clap                 ex2 ploss  42.319 b1 19.324 (65.09 s)
+[13:38:06]   fit hatClosed  hihat_closed         ex0 ploss  25.256 b1 63.182 (63.14 s)
+[13:38:42]   fit hatClosed  hihat_closed         ex1 ploss  26.044 b1 70.302 (54.54 s)
+[13:38:43]   fit hatClosed  hihat_closed         ex2 ploss  29.081 b1 68.181 (54.61 s)
+[13:38:43]   fit hatClosed  filtered_noise_burst ex0 ploss  58.412 b1 76.149 (37.97 s)
+[13:38:43]   fit hatClosed  filtered_noise_burst ex1 ploss  52.590 b1 54.115 (35.01 s)
+[13:38:43]   fit hatClosed  filtered_noise_burst ex2 ploss  45.885 b1 54.794 (34.68 s)
+[13:38:48]   fit hatClosed  hihat_open           ex0 ploss  31.943 b1 6.68 (51.31 s)
+[13:38:53]   fit hatClosed  hihat_open           ex1 ploss  25.606 b1 66.091 (51.35 s)
+[13:38:54]   fit hatClosed  hihat_open           ex2 ploss  31.142 b1 54.647 (50.99 s)
+[13:39:18]   fit hatOpen    hihat_open           ex0 ploss  32.809 b1 0.0 (75.44 s)
+[13:39:18]   fit hatOpen    hihat_open           ex1 ploss  34.215 b1 0.089 (73.22 s)
+[13:39:18]   fit hatOpen    hihat_open           ex2 ploss  37.797 b1 1.418 (72.93 s)
+[13:39:18]   fit hatOpen    filtered_noise_burst ex0 ploss  60.487 b1 17.837 (50.72 s)
+[13:39:18]   fit hatOpen    filtered_noise_burst ex1 ploss  53.241 b1 26.949 (46.78 s)
+[13:39:18]   fit hatOpen    filtered_noise_burst ex2 ploss  66.457 b1 42.042 (51.39 s)
+[13:39:57]   fit hatOpen    crash_cymbal         ex0 ploss  31.385 b1 0.295 (112.14 s)
+[13:39:57]   fit hatOpen    crash_cymbal         ex1 ploss  46.855 b1 73.21 (107.4 s)
+[13:40:19]   fit hatOpen    crash_cymbal         ex2 ploss  41.909 b1 58.884 (112.27 s)
+[13:40:19]   fit hatOpen    hihat_closed         ex0 ploss   2.215 b1 4.347 (78.86 s)
+[13:40:19]   fit hatOpen    hihat_closed         ex1 ploss   5.359 b1 7.424 (75.88 s)
+[13:40:19]   fit hatOpen    hihat_closed         ex2 ploss   4.654 b1 12.689 (74.93 s)
+[13:40:51]   fit bass       bass_saw             ex0 ploss  63.255 b1 26.303 (127.95 s)
+[13:40:58]   fit bass       bass_saw             ex1 ploss  60.330 b1 25.951 (129.33 s)
+[13:41:00]   fit bass       bass_saw             ex2 ploss  52.669 b1 35.494 (129.06 s)
+[13:41:00]   fit bass       sine_env             ex0 ploss  13.450 b1 14.269 (90.1 s)
+[13:41:00]   fit bass       sine_env             ex1 ploss  15.666 b1 5.758 (84.16 s)
+[13:41:00]   fit bass       sine_env             ex2 ploss  11.426 b1 10.82 (82.6 s)
+[13:41:00]   fit otherLow   pad_saw              ex0 ploss  55.846 b1 0.0 (110.1 s)
+[13:41:00]   fit otherLow   pad_saw              ex1 ploss  66.893 b1 1.168 (80.06 s)
+[13:41:00]   fit otherLow   pad_saw              ex2 ploss  62.687 b1 23.507 (81.99 s)
+[13:41:00]   fit otherLow   fm_epiano            ex0 ploss   7.731 b1 0.0 (80.54 s)
+[13:41:00]   fit otherLow   fm_epiano            ex1 ploss  19.836 b1 0.0 (59.61 s)
+[13:41:00]   fit otherLow   fm_epiano            ex2 ploss  22.187 b1 0.0 (61.43 s)
+[13:41:45]   fit otherLow   pluck_ks             ex0 ploss  22.414 b1 0.0 (111.17 s)
+[13:41:45]   fit otherLow   pluck_ks             ex1 ploss  28.923 b1 0.0 (96.12 s)
+[13:41:45]   fit otherLow   pluck_ks             ex2 ploss  27.729 b1 0.0 (97.9 s)
+[13:42:24]   fit otherLow   supersaw             ex0 ploss   4.911 b1 0.0 (126.34 s)
+[13:42:24]   fit otherLow   supersaw             ex1 ploss   2.937 b1 0.0 (91.39 s)
+[13:42:24]   fit otherLow   supersaw             ex2 ploss   5.660 b1 0.0 (93.0 s)
+[13:42:27]   fit otherMid   pad_saw              ex0 ploss   7.278 b1 28.2 (123.25 s)
+[13:42:45]   fit otherMid   pad_saw              ex1 ploss   3.840 b1 53.832 (127.77 s)
+[13:42:46]   fit otherMid   pad_saw              ex2 ploss   2.795 b1 55.953 (127.05 s)
+[13:42:46]   fit otherMid   fm_epiano            ex0 ploss  26.483 b1 50.13 (96.34 s)
+[13:42:46]   fit otherMid   fm_epiano            ex1 ploss  17.479 b1 31.21 (95.08 s)
+[13:42:46]   fit otherMid   fm_epiano            ex2 ploss  17.061 b1 35.922 (94.66 s)
+[13:42:52]   fit otherMid   pluck_ks             ex0 ploss  14.556 b1 0.0 (124.29 s)
+[13:42:53]   fit otherMid   pluck_ks             ex1 ploss  10.439 b1 0.0 (122.24 s)
+[13:43:00]   fit otherMid   pluck_ks             ex2 ploss  10.705 b1 0.0 (122.29 s)
+[13:43:00]   fit otherMid   pulse_lead           ex0 ploss  41.208 b1 53.561 (115.45 s)
+[13:43:26]   fit otherMid   pulse_lead           ex1 ploss  30.506 b1 52.954 (112.96 s)
+[13:43:29]   fit otherMid   pulse_lead           ex2 ploss  31.525 b1 57.747 (113.58 s)
+[13:43:29]   fit otherHigh  pulse_lead           ex0 ploss  17.445 b1 0.006 (97.66 s)
+[13:43:29]   fit otherHigh  pulse_lead           ex1 ploss  18.154 b1 43.577 (95.39 s)
+[13:43:33]   fit otherHigh  pulse_lead           ex2 ploss  22.686 b1 47.957 (101.12 s)
+[13:43:33]   fit otherHigh  fm_bell              ex0 ploss  17.599 b1 0.0 (62.67 s)
+[13:43:33]   fit otherHigh  fm_bell              ex1 ploss  19.244 b1 0.0 (67.74 s)
+[13:43:33]   fit otherHigh  fm_bell              ex2 ploss  16.414 b1 0.0 (65.98 s)
+[13:44:11]   fit otherHigh  pluck_ks             ex0 ploss   8.193 b1 0.0 (107.52 s)
+[13:44:12]   fit otherHigh  pluck_ks             ex1 ploss   8.547 b1 8.271 (105.43 s)
+[13:44:30]   fit otherHigh  pluck_ks             ex2 ploss   8.507 b1 0.0 (105.79 s)
+[13:44:30]   fit otherHigh  fm_epiano            ex0 ploss  13.324 b1 0.011 (78.92 s)
+[13:44:30]   fit otherHigh  fm_epiano            ex1 ploss  15.856 b1 29.315 (78.92 s)
+[13:44:30]   fit otherHigh  fm_epiano            ex2 ploss  10.920 b1 0.0 (80.37 s)
+[13:44:35] fits done in 465 s
+[13:44:48] choice kick       -> kick (ex1, cross mean 44.00)
+[13:44:48] choice snare      -> snare (ex0, cross mean 0.03)
+[13:44:48] choice clap       -> clap (ex1, cross mean 0.01)
+[13:44:48] choice hatClosed  -> filtered_noise_burst (ex2, cross mean 20.97)
+[13:44:48] choice hatOpen    -> filtered_noise_burst (ex1, cross mean 50.13)
+[13:44:48] choice bass       -> bass_saw (ex1, cross mean 0.00)
+[13:44:48] choice otherLow   -> supersaw (ex0, cross mean 2.70)
+[13:44:48] choice otherMid   -> pad_saw (ex0, cross mean 4.91)
+[13:44:48] choice otherHigh  -> pulse_lead (ex0, cross mean 0.00)
+[13:44:48] rendering from params
+[13:45:12] scoring
+[13:45:55] V_003 written
+{
+ "version": "V_003",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.8849,
+   "chroma": 0.8251,
+   "envCorr": 0.9687,
+   "sectionEnv": 82.155
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.007,
+   "onsetF": 0.6218,
+   "chroma": 0.7238,
+   "envCorr": 0.8192,
+   "sectionEnv": 72.0
+  },
+  "other": {
+   "plossFull": 0.0,
+   "plossBarMedian": 36.417,
+   "onsetF": 0.3402,
+   "chroma": 0.8235,
+   "envCorr": 0.611,
+   "sectionEnv": 92.485
+  },
+  "vocals": {
+   "plossFull": 0.0452,
+   "plossBarMedian": 57.87,
+   "onsetF": 0.6728,
+   "chroma": 0.9502,
+   "envCorr": 0.8429,
+   "sectionEnv": 93.479
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 12.771,
+   "onsetF": 0.8171,
+   "chroma": 0.8412,
+   "envCorr": 0.8927,
+   "sectionEnv": 96.689
+  }
+ }
+}

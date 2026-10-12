@@ -5,8 +5,8 @@ font /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datas
   per_bin = np.nanmedian(bmap[plateau], axis=0)
 /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/effects.py:102: RuntimeWarning: All-NaN slice encountered
   per_bin = np.nanmedian(bmap[plateau], axis=0)
-V_039 score=0.9685 dims={'animation': 0.9685, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_043 score=0.9783 dims={'animation': 0.9783, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
 /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/effects.py:102: RuntimeWarning: All-NaN slice encountered
   per_bin = np.nanmedian(bmap[plateau], axis=0)
-V_040 score=0.9956 dims={'animation': 0.9956, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
-{"best_version": "V_040", "best_score": 0.9956}
+V_044 score=0.9988 dims={'animation': 0.9988, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+{"best_version": "V_044", "best_score": 0.9988}

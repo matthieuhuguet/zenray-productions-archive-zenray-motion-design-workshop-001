@@ -1,1 +1,9 @@
 font /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf
+V_060 score=0.4175 dims={'animation': 0.9438, 'image': 1.0, 'colour': 1.0, 'typography': 0.4175} lint=True
+V_061 score=0.8943 dims={'animation': 0.9872, 'image': 1.0, 'colour': 1.0, 'typography': 0.8943} lint=True
+V_062 score=0.9785 dims={'animation': 0.9785, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_063 score=0.9784 dims={'animation': 0.9784, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_064 score=0.9785 dims={'animation': 0.9785, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_065 score=0.9783 dims={'animation': 0.9783, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_066 score=0.9784 dims={'animation': 0.9784, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+{"best_version": "V_062", "best_score": 0.9785}

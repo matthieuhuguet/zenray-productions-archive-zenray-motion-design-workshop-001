@@ -1,1 +1,13 @@
 font /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf
+V_060 score=0.7378 dims={'animation': 0.9649, 'image': 1.0, 'colour': 1.0, 'typography': 0.7378} lint=True
+V_061 score=0.8515 dims={'animation': 0.9809, 'image': 1.0, 'colour': 1.0, 'typography': 0.8515} lint=True
+V_062 score=0.9774 dims={'animation': 0.9774, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/effects.py:102: RuntimeWarning: All-NaN slice encountered
+  per_bin = np.nanmedian(bmap[plateau], axis=0)
+V_063 score=0.9883 dims={'animation': 0.9883, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_064 score=0.9800 dims={'animation': 0.98, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+V_065 score=0.9776 dims={'animation': 0.9776, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/effects.py:102: RuntimeWarning: All-NaN slice encountered
+  per_bin = np.nanmedian(bmap[plateau], axis=0)
+V_066 score=0.9883 dims={'animation': 0.9883, 'image': 1.0, 'colour': 1.0, 'typography': 1.0} lint=True
+{"best_version": "V_063", "best_score": 0.9883}

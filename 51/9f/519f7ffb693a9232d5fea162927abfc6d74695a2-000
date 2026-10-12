@@ -1,0 +1,4 @@
+RED    metal_ring_tint          worst mean 2.6003  worst max 48.705
+RED    ramp_oklab4              worst mean 3.0520  worst max 6.135
+GREEN  sdf_arc                  worst mean 1.7583  worst max 255.000
+RED in 3.79 s (GLSL render 3.75 s, 9 cases)

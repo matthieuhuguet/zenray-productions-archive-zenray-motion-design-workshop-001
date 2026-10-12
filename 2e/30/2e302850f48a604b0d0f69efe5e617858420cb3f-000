@@ -1,0 +1,74 @@
+# B2 : bibles graphiques et storyboards des 12 références (12 October 2026)
+
+Rapport de la tâche B2 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Tous les chemins sont absolus ; les mesures marquées M ont été relevées sur ce Mac le 12 October 2026, celles marquées S restent des suppositions. Aucun git commit n'a été fait, le pilote s'en charge. (12 October 2026)
+
+## 1. Ce qui existe désormais (12 October 2026)
+
+| Fichier | Rôle |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/easefit.py` | identification exacte des eases GSAP 3.14.2, reprise de `R04-lab/EaseFit.py`, avec fenêtre bornée au plan (drapeau `linear_segment`, décision 3 de R04), confiance par rapport signal sur bruit et liste des ex aequo (décision 4), filtre `reportable` avant d'écrire une courbe dans une bible |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/eases/eases-gsap-3.14.2.json` | table des 59 eases échantillonnées sur 4 001 points, régénérable à l'identique par `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/SampleGsapEases.mjs` (vérifié octet pour octet par `cmp`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/curves.py` | inchangé dans ses signatures ; deux fonctions ajoutées, `fit_track_exact` (une ease exacte par mouvement) et `fit_track_reportable` (la même, filtrée) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/analyze/camera.py` | mouvement global par similarité chaînée (R04 §3), repli ECC sur les aplats, sonde 3D de R04 §10 avec le résidu d'apparence demandé par la décision 6, résumé des canaux (x, y, zoom, roulis) avec leurs eases |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/audio/summary.py` | résumé sonore : attaques de `zrmd.audio.events`, détecteur de houles porté de `R03-lab/SegmentTest.py`, tempo, sonie intégrée (ebur128), sections d'énergie, part des coupes sur un temps et sur une attaque |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/bible.py` | bible d'une référence plan par plan (famille, palette et rôles en CIEDE2000, caméra et 3D, éléments et courbes, typographie, transitions, phases des plans longs, sons), revue à l'œil, `bible.json` et `bible.md` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/storyboard.py` | `storyboard.html` (une carte par plan) et planches de revue par `zrmd.sheets.contact_sheet` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/BuildReferenceBook.py` | commande `--slug`, `--render-only`, `--fontmatch`, `--sheets`, `--index` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/CheckReferenceBooks.py` | vérificateur des livrables, code de sortie et `--json` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/CheckPageWidth.mjs` | ouvre une page dans le chrome-headless-shell géré par HyperFrames (jamais un navigateur personnel ni le navigateur intégré) et mesure le débordement horizontal, les images cassées et les polices chargées |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/tests/test_easefit.py`, `test_camera.py`, `test_bible.py` | tests dans les deux sens |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/settings.json` | nouvelles sections `analysis.easefit`, `analysis.camera`, `analysis.bible` (familles, seuils de texte, phases, vignettes, revue), `analysis.sound` ; aucun seuil n'est écrit en dur dans le code |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/<slug>/bible.json`, `bible.md`, `storyboard.html`, `review.json`, `analysis/shots.json`, `analysis/shots-curves.json` | livrables des 12 références |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/INDEX.md` | tableau des 12 références |
+
+Deux corrections mineures de code existant, sans changement de signature : `zrmd/cli.py` (`cmd_shots` plantait sur un `float32` non sérialisable, il passe désormais `default=float`) et le support du mouvement de `easefit.motion_support`, dont l'estimation du bruit s'effondrait sur une courbe lisse sans bruit (un `sine.inOut` sortait en `none`) : le bruit est plafonné par celui de la différence seconde. (12 October 2026)
+
+## 2. Méthode (12 October 2026)
+
+La commande détecte les plans par `zrmd.analyze.shots.detect`, puis décode chaque plan une seule fois à 480 pixels de large, à 30 images par seconde au plus et 540 images au plus par plan, dans un pool de processus (16 cœurs, `OMP_NUM_THREADS=1`, aucune tâche torch). Sur ces images elle mesure la palette (k-moyennes en Lab, fusion sous 2 unités CIEDE2000, fond par les bords, texte par les lignes de texte, accent par la chroma), la caméra et la sonde 3D, les éléments par soustraction de fond (fonctions de `zrmd.analyze.layers`) et leurs courbes, puis les lignes de texte sur une image pleine hauteur 1080 prise à l'instant où le texte est le plus présent (`zrmd.analyze.typography.line_metrics`). Le son est résumé en parallèle. Les vignettes de début, milieu et fin de plan, et celles des phases des plans de plus de 4 s, sont écrites dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/<slug>/storyboard/`, jamais dans l'atelier. (12 October 2026)
+
+La revue à l'œil s'est faite sur les planches d'une image tous les quarts de seconde (`zrmd.sheets.contact_sheet`, 57 planches) et sur des tuiles début, milieu, fin par plan, écrites dans `/private/tmp/claude-501/-Users-zenray--claude-Memory1/7e78b89b-c9f6-435b-aeea-a9878d6c808b/scratchpad/b2/sheets/`. Elle est consignée dans `references/<slug>/review.json` : coupes oubliées (recalées sur le pic local de différence de luminance le plus proche, à 0,3 s près, hors des coupes existantes), coupe fausse retirée, et pour chaque plan une phrase paraphrasée et la famille vue à l'œil. La bible garde à côté la mesure automatique (`content_measured`, `family_measured`). (12 October 2026)
+
+## 3. Résultats mesurés (12 October 2026)
+
+| Référence | Durée | Plans | Coupes détecteur, ajoutées, retirées | Plan médian | Tempo | Coupes sur un temps, sur une attaque | Accord famille mesurée et œil |
+|---|---|---|---|---|---|---|---|
+| claude-opus-5-5 | 20,0 s | 37 | 36, 0, 0 | 0,44 s | 151,9 BPM | 22 %, 33 % | 31 sur 37 |
+| fin-4 | 7,9 s | 1 | 0, 0, 0 | 7,87 s | sans son | | 0 sur 1 |
+| flora-agents-on-canvas | 51,4 s | 7 | 5, 1, 0 | 6,63 s | 117,7 BPM | 17 %, 67 % | 5 sur 7 |
+| interface | 90,1 s | 75 | 72, 2, 0 | 0,83 s | 114,3 BPM | 15 %, 61 % | 69 sur 75 |
+| kardashev-0-7 | 67,4 s | 15 | 13, 1, 0 | 4,17 s | 100,0 BPM | 14 %, 50 % | 11 sur 15 |
+| memo | 44,4 s | 107 | 99, 11, 1 | 0,23 s | 139,5 BPM | 25 %, 41 % | 95 sur 107 |
+| motion-opus-5-5 | 29,9 s | 9 | 2, 6, 0 | 3,77 s | 122,5 BPM | 0 %, 63 % | 7 sur 9 |
+| onekey-pro-2 | 68,0 s | 30 | 26, 3, 0 | 1,66 s | 88,2 BPM | 10 %, 59 % | 24 sur 30 |
+| paper-mono-code | 60,5 s | 1 | 0, 0, 0 | 60,55 s | 137,9 BPM | | 0 sur 1 |
+| x-anabology-2105325733312884869 | 191,6 s | 223 | 214, 15, 0 | 0,50 s | 130,4 BPM | 37 %, 36 % | 212 sur 223 |
+| x-anabology-2106157622986748377 | 181,3 s | 107 | 89, 17, 0 | 1,25 s | 130,4 BPM | 26 %, 45 % | 105 sur 107 |
+| yt-4Q-o_ylnVnc | 181,8 s | 143 | 86, 56, 0 | 0,70 s | 142,9 BPM | 56 %, 47 % | 120 sur 143 |
+| **Total** | **994,3 s** | **755** | **642, 112, 1** | | | | **679 sur 755 (89,9 %)** |
+
+Le tempo de OneKey Pro 2 (88,24 BPM) retrouve à 0,2 BPM près celui mesuré sur la piste batterie séparée par Demucs (88,03 BPM, `references/onekey-pro-2/audio-notes.md`). Les 755 plans ont chacun une phrase écrite à l'œil. 1 908 courbes ont passé le filtre de qualité (moins de 6 % d'erreur rapportée à l'amplitude, rapport signal sur bruit d'au moins 10, et 30 pour les formes à rebond), 1 502 ont été rejetées comme bruit. (M)
+
+Le classement automatique des familles concordait à 88,9 % avec l'œil avec des seuils fixés a priori ; une recherche en grille sur ces mêmes 755 plans les a portés à 89,9 %, chiffre donc mesuré sur l'échantillon d'étalonnage et non sur des plans nouveaux. Les confusions restantes sont surtout des captures d'écran et des affiches d'interface (aplats et texte) que l'œil classe en plaque ou en graphique selon leur nature. (M)
+
+L'appariement de police donne un résultat net sur trois références (OneKey Pro 2 : Epilogue 625 à -0,03 em, score 0,296 ; motion-opus : Geist 575, 0,305 ; x-anabology-2106 : Chivo 625, 0,369), faible au-delà du seuil de 0,6 sur six autres (titres en serif, capitales condensées, texte stylisé, que la base de 139 fichiers ne couvre pas), et aucun résultat sur trois (pas de ligne lisible par tesseract ou pas de plan texte). La bible le dit dans chaque cas. Le texte lu par OCR ne sert qu'à piloter le comparateur et n'est écrit nulle part. (M)
+
+## 4. Tests, dans les deux sens (12 October 2026)
+
+| Test | Vert | Rouge |
+|---|---|---|
+| `tests/test_easefit.py` | 324 cas connus de R04 §5.2 : ease vraie en tête 280 fois, courbe à moins de 1 % 260 fois (laboratoire 276 et 264) ; deux mouvements lisses sans bruit retrouvés `sine.inOut` puis `expo.out` | une ease imposée fausse laisse 5,4 % d'erreur, un `power1.in` n'est jamais nommé `power3.out` |
+| `tests/test_camera.py` | zoom de 15 % en `power2.inOut` mesuré 15,105 % avec la bonne ease, panoramique de 4,17 % mesuré 4,207 % ; carte tournant en perspective classée `card_perspective` | une séquence fixe donne « fixe » ; un zoom 2D pur n'est pas appelé 3D |
+| `tests/test_bible.py` | une coupe à l'œil se recale sur le pic local le plus proche, une coupe retirée disparaît, une entrée de revue tombe dans le bon plan, la palette trouve fond et accent ; le vérificateur rend 0 sur les vraies références | deux coupes à l'œil rapprochées ne fusionnent pas sur le même pic ; une copie du storyboard avec un tiret long et un chemin d'image vers l'atelier fait sortir le vérificateur en 1 |
+| `Scripts/CheckReferenceBooks.py --width` | les 12 références passent : plans égaux aux coupes plus une, toutes les phrases présentes, aucun tiret long, toutes les images sous `../../../tmp-zenray-motion-design-refcache/<slug>/` et présentes (2 328 vignettes), aucun média dans l'atelier, largeur 375 px sans débordement (`scrollWidth` 375 sur 12 pages), InterVariable et AnthropicSerif chargées | il a d'abord sorti en 1 sur un vrai défaut (un plan de yt-4Q sans phrase après un recalage de coupe), corrigé ensuite |
+
+## 5. Limites (12 October 2026)
+
+1. Le détecteur de plans a manqué 112 coupes et en a inventé une, surtout dans les montages très rapides où le rapport à la médiane locale reste faible, dans les changements de mise en page des clips graphiques et sur des coupes masquées par un filé. La revue les a ajoutées à partir des pics de différence les plus isolés (rapport au voisinage d'au moins 10 à 15) et des tuiles ; ce réglage reste à reporter dans `zrmd.analyze.shots`, que je n'ai pas modifié. Dans les fondus et les filés, l'instant recalé peut différer d'une ou deux images de l'instant voulu (S).
+2. Les phrases des plans de deux ou trois images ont été écrites d'après les vignettes début, milieu, fin ; quelques-unes décrivent l'image dominante plutôt que chaque image (S).
+3. La caméra mesure le mouvement global : sur un fond uni, elle suit le calque dominant ; sur une capture d'écran, elle suit le défilement. Le roulis et le zoom des plans très courts restent peu fiables, d'où le filtre de qualité.
+4. Les courbes d'éléments viennent d'une soustraction de fond à 480 pixels : fiables sur les cartes texte et les graphiques à fond uni, sans objet sur les plaques, où seule la caméra est mesurée.
+5. La sonde 3D ne voit pas les objets 3D qui glissent comme un calque (R04 §10) ; la part 3D de la bible repose donc sur l'œil (16 plans 3D, tous dans OneKey Pro 2).
+6. Le classement des sons (impact grave, attaque médium, clic aigu, souffle) est un arbre de règles simple sur le centroïde, la durée et la planéité, sans l'ajustement des 18 recettes de R03.
+7. Les vignettes du storyboard et les recadrages de lignes de texte vivent dans le cache local : la page ne s'affiche complètement que sur ce Mac.
+8. Fichiers vus dans l'atelier mais écrits par d'autres tâches, non modifiés : `references/onekey-pro-2/captions-original.tsv` et `references/onekey-pro-2/font-match.json`.

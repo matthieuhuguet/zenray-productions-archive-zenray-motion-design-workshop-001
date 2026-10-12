@@ -1,0 +1,112 @@
+# S4, critic and closure of the shader bank (12 October 2026)
+
+The bank now holds 86 blocks, all green on the full verifier in both directions, with a stricter criterion than before; ten blocks were added to cover the onekey-pro-2 looks, every look has a written composition, and the arch glow look composed from the bank lowers the fitting error on the three proof frames from 41.3, 39.4 and 39.7 to 32.5, 28.7 and 25.8 (RMS in 8-bit levels), while remaining far from a faithful match, for reasons measured below. No block failed, so nothing was quarantined and no file was deleted. (12 October 2026)
+
+## 1. Verifier on the whole bank, and what was fixed (12 October 2026)
+
+The first run on the 76 blocks inherited from S0, S2 and S3 was green (exit 0, 27.5 s). That verdict, however, rested on the mean error alone, and S2 had already shown that a geometric error confined to a small area passes under it (`sdf_arc` widened by 30 degrees: mean 1.76, max 255). The verifier therefore received a second criterion, set in `settings.json` (`shaders.verify_outlier_levels` 8, `shaders.verify_outlier_share_max` 0.001): a case is red when more than 0.1 % of its pixels differ by more than 8 levels in their worst channel. The previous verifier is kept at `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S4-critic/VerifyShaderBank.before-S4.py`. (12 October 2026)
+
+The stricter verifier, run as a stress test (4 random sets, 320 px, seed 777), turned three S3 blocks red, each for a float32 against float64 disagreement at a floor:
+
+| Block | Symptom | Cause | Fix in `Scripts/HarvestNoisePost.py` |
+|---|---|---|---|
+| `dither_bayer_ramp` | 0.15 % outliers, steps of 76.75 levels | exact rational ties: at 320 px, `3j + 5 idx + 4 = 320 n` has integer solutions, so `t (L - 1) + th` lands exactly on a level | odd offset `QUANT_EPS = 0.000613` inside the floor, in both languages |
+| `dither_ign_ramp` | 0.17 % outliers | the IGN fract chain drifts by about 1e-4 between float32 and float64 at large cell indices | same offset, and the twin computes the IGN threshold in float32 |
+| `grain_film` | 0.18 % outliers at 513 px | one row of cells floors differently | the twin rebuilds the fragment uv in float32 exactly as the shader does (`x / res`, `1 - y / res`) |
+
+After the fixes, the three blocks are green at 256, 320, 384, 513, 720 and 1000 px. One residual remains: `grain_film` at 1000 px, seed 5, shows exactly one flipped row (share 0.00100, equal to the limit, so green); the GPU probably fuses a multiply-add there, which numpy cannot imitate. The previous folders are kept at `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S4-critic/dither-before/`. Every other twin is unchanged: the SHA-256 of all 39 S3 twins was compared before and after the regeneration of their metadata. (12 October 2026)
+
+## 2. The verifier, proven both ways on the full bank (12 October 2026)
+
+| Run | Blocks | Result | Exit |
+|---|---|---|---|
+| Green, defaults plus 2 sets, 256 px, seed 20261012, thumbs rewritten | 86 | all green, worst mean 0.50, no outliers, 47.1 s | 0 |
+| Stress, 4 sets, 320 px, seed 777 | 86 | all green, worst mean 0.50, worst outlier share 0.000166 | 0 |
+| Red, full scratch copy of the bank (`ZRMD_SHADER_BANK`), 7 deliberate breaks, stress settings | 86 | 6 red, 80 green | 1 |
+| `tests/test_shader_compose.py` | n/a | green | 0 |
+
+The seven breaks and their verdicts: `arch_glow_field` twin back to the vertical distance, RED (mean 35.3, outliers 65 %); `beam_lines_field` core 30 % wider, RED (mean 6.6); `halo_tail3` GLSL syntax error, RED (magenta, mean 169.5); `sdf_arc` span plus 30 degrees, now RED through the new criterion (mean 1.76, outliers 0.81 %), where it passed before; `fog_band_noise` declared CC BY-NC-SA with a Shadertoy URL, RED (licence); `solid_color` without `source_url`, RED (contract). The seventh break, removing the S4 offset from the `dither_bayer_ramp` twin only, stayed green, which is honest information: an offset of 0.0006 of a level changes fewer than 0.1 % of the pixels, so the criterion cannot see it, and only a configuration with exact ties would. Reports: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S4-critic/green-full.json`, `green-stress-4sets-320-seed777.json`, `red-full.json` and the first, smaller red run `red.json` (6 blocks). (12 October 2026)
+
+## 3. Licences (12 October 2026)
+
+| Licence | Blocks | Verdict |
+|---|---|---|
+| original, written from the mathematics | 60 | allowed; no URL needed |
+| original, pcg2d hash after Jarzynski and Olano (JCGT 2020) | 17 | allowed; `source_url` points to https://jcgt.org/published/0009/03/02/ (it was empty for the 13 S3 blocks) |
+| original, OKLab matrices of Bjorn Ottosson | 4 | allowed; `colorkeys_oklab` and `ramp_oklab_anim` now carry https://bottosson.github.io/posts/oklab/ |
+| MIT, Ashima webgl-noise | 2 (`noise_simplex2`, `noise_simplex3_anim`) | allowed, URL and copyright recorded |
+| MIT, three.js r185 tone mappers | 3 | allowed, but see below |
+
+These metadata changes were made in the generator (`_source_url`, `_licence` in `Scripts/HarvestNoisePost.py`) and the 39 S3 folders regenerated, so the generator stays the single definition. One point remains doubtful and is flagged rather than settled: three.js distributes its tone mappers under MIT, yet its r185 source cites upstream origins, which are now written in each `licence` field. AgX cites Filament (Apache-2.0, compatible) and the iolite minimal AgX post, Neutral cites the Khronos PBR Neutral page, and the ACES `RRTAndODTFit` cites `selfshadow/ltc_code`, whose licence I have not verified. The risk looks low, since the fitted curve is a few numeric constants widely republished, but if it matters for a commercial release, the ACES block should be rewritten from Narkowicz's published curve or that repository's licence checked. No Shadertoy code, no LYGIA code and no reference pixel is in the bank. (12 October 2026)
+
+## 4. Coverage of the 23 looks, and the ten blocks written (12 October 2026)
+
+The `looks` field of the blocks holds generic tags, not the onekey look ids, so the mapping is now explicit in a new file, `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/looks-onekey-coverage.json` (schema `zrmd/look-coverage@1`): for each look, the blocks that compose it, the structural gaps, and a note. Every block id in it exists; the script that wrote it asserts this. (12 October 2026)
+
+Ten blocks were missing for a look to be composed at all, and they are now written by `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/HarvestCriticGaps.py` (marker `generated by Scripts/HarvestCriticGaps.py`, same contract and lock as the other generators), all original and green at two configurations:
+
+| Block | Family | Serves | What it does |
+|---|---|---|---|
+| `solid_color` | colour | void-black-grain, dip-to-black, droplet | flat colour, the base of a composition |
+| `halo_tail3` | glow | bloom-halo, chip, orb, neon ring | sum of three gaussians of the outside distance; defaults are the measured 3, 15 and 60 px tail |
+| `gradient_stops6` | gradient | arch, copper, screen UI, logo | six stops with free positions given as segment widths, always sorted, so a measured profile can be fitted |
+| `arch_glow_field` | gradient | arch-glow-wallpaper | arch, normal-distance ramp, side drift by `|x|` or by height |
+| `strata_contour_bands` | pattern | strata-landscape-wallpaper | warped fbm height, contour bands, four-stop palette, dark rock |
+| `fog_band_noise` | volumetric | smoke letters, reflective floor | horizontal band with drifting fbm density |
+| `horizon_floor_reflect` | reflection | reflective floor, grazing glass | floor ramp and a blurred, attenuated mirror of a rectangle |
+| `brushed_metal_aniso` | lighting | brushed-aluminium-studio | stretched value noise streaks and a sharp specular strip |
+| `thin_film_iridescence` | lighting | chip-emissive-iridescent | spectral cosine fringe along a rounded rectangle edge |
+| `beam_lines_field` | glow | green-light-beams | hashed parallel beams, gaussian core and exponential glow, `coverage` animates them |
+
+What no block can fill, listed per look in the coverage file: `compose` has no filter layer, so grading, blurring or mirroring an arbitrary composite (low-key grade, depth of field on live footage, reflection of the letters) needs a render-to-texture pass; glyph and logo masks belong to the typography layer; mesh lighting of the device stays in `templates/device3d`. (12 October 2026)
+
+## 5. Arch glow wallpaper on the device screen: composition and fitting proof (12 October 2026)
+
+**Diagnosis of the old fit.** `zrmd/shaders/archglow.py` ramps its colours on the vertical distance `v - va(x)`. On a steep flank that distance grows much faster than the true distance, so the bright band thins out along the flanks and the fit had to flatten the arch into a chevron to keep any band at all (visible on `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-d01-device-pullback/V_008/archglow-board.png`). The bank block `arch_glow_field` keeps the same layers but ramps on the first-order normal distance in canvas heights, `(v - va) / sqrt(1 + slope^2)` with the slope corrected by the screen aspect, and lets the side drift follow the height (`side_axis`), since the amber lies low on the flanks. (12 October 2026)
+
+**Composition** (`compose.py` layers, bottom first):
+
+```json
+[{"block": "arch_glow_field", "params": {"aspect": 0.632, "...": "fitted"}},
+ {"block": "solid_color", "params": {"color": "droplet"}, "mask": {"block": "sdf_circle", "params": {"center": ["cx", "dot_y"], "radius": "dot_r", "soft": 0.003, "aspect": 0.632}}},
+ {"block": "glow_ring", "blend": "add", "params": {"color": "ring", "center": ["cx", "dot_y"], "radius": "dot_r", "sigma": "fitted", "intensity": "fitted", "aspect": 0.632}}]
+```
+
+**Method.** `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/FitArchGlowBank.py` reuses the crop function of `Scripts/FitArchGlow.py` (V_008 device track, grey opening, 64 x 100 screen crop), fits 42 parameters on the numpy twins by least squares from 18 starts (apex, k, p) on 16 processes, refines the best, then renders the same layer list as GLSL at 64 x 100 and 640 x 1000. Total 74 s. (12 October 2026)
+
+| Frame | Time | Old `archglow.py` RMS | Bank, iteration 1 (normal distance) | Bank, iteration 2 (plus `side_axis`) | GLSL against crop | GLSL against numpy, mean / max |
+|---|---|---|---|---|---|---|
+| 10 | 1.500 s | 41.28 | 35.24 | 32.46 | 32.46 | 0.23 / 0.5 |
+| 48 | 2.133 s | 39.41 | 30.30 | 28.70 | 28.70 | 0.11 / 0.5 |
+| 92 | 2.866 s | 39.73 | 26.67 | 25.81 | 25.82 | 0.16 / 0.5 |
+
+The GLSL render reproduces the fitted numpy evaluation to a fraction of a level, so the improvement is real on the GPU path, and the 640 x 1000 renders are sharp (`/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S4-critic/fit/frame048-glsl-640x1000.png`). Board, crop against GLSL against HD: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/S4-critic/fit/board-crop-glsl-hd.png`; parameters and layers: `fit/fit-arch-glow-bank.json`; iteration 1 in `fit-iter1/`. The crops in those folders are analysis data only. (12 October 2026)
+
+**Why the error is still about 26 to 32 levels, read from the fitted values and the board.** Several parameters end on their bounds (`w_out` at its minimum 0.02, `side` at [0.5, 1.0]), and the fitter darkens `c_core_side` almost to black: it uses the side drift to imitate a falloff the model lacks, which says the structure, not the optimiser, is the limit. Three causes stand out. First, the reference has a broad warm region filling the lower flanks outside the arch, whereas the model only has a warm rim; a second `arch_glow_field` (or `gradient_stops6` along the height) in `screen` blend, masked to the lower flanks, should carry it. Second, the thin cyan line and deep blue rim on the arch edge are narrower than one crop pixel at 64 x 100, so the fit should move to a crop of at least 192 x 298 (the device's `screen_px`). Third, frame 10's crop contains the device frame and its blue reflection around a rounded screen, not the wallpaper alone, which no wallpaper model can fit; the screen should be masked by a `sdf_rounded_rect` and the RMS measured inside it. The droplet also fell into a grey disc on frame 92, a local minimum that a fixed dark colour would avoid. These are the next steps, in this order, and each is a parameter or a layer, never a texture. (12 October 2026)
+
+## Files touched (12 October 2026)
+
+| Path | Change |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifyShaderBank.py` | outlier criterion, per-case `outlier_share`, report fields (SHA-256 `cbf7770a...16`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/settings.json` | `shaders.verify_outlier_levels`, `shaders.verify_outlier_share_max`, `_doc_outliers` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/HarvestNoisePost.py` | `QUANT_EPS`, float32 IGN and grain twins, `_source_url`, `_licence` (previous copy in `docs/build/S4-critic/HarvestNoisePost.before-S4.py`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/HarvestCriticGaps.py` | new generator, 10 blocks (SHA-256 `3e6dd133...dfef`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/FitArchGlowBank.py` | new fitting proof (SHA-256 `9c6bb6ae...a34a`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/looks-onekey-coverage.json` | new, look to blocks map |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/README.md` | sections "Verification criteria" and "Using the bank in a reproduction" (previous copy in `docs/build/S4-critic/README.before-S4.md`) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/shaders/index.json` | rebuilt, 86 blocks |
+
+## Commands (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --write-thumbs                      # exit 0 = green
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyShaderBank.py --sets 4 --size 320 --seed 777      # stress
+~/.venvs/zenray-motion/bin/python -I Scripts/HarvestCriticGaps.py [--only a,b]
+~/.venvs/zenray-motion/bin/python -I Scripts/FitArchGlowBank.py ../motions/onekey-d01-device-pullback/V_008 10,48,92
+```
+
+## Limits (12 October 2026)
+
+All GPU measurements ran on ANGLE Metal only. The outlier criterion cannot see a perturbation below one level spread over fewer than 0.1 % of the pixels, as the seventh red break showed. The arch fit is a proof on three frames at 64 x 100, not a finished reproduction of the shot. (12 October 2026)
