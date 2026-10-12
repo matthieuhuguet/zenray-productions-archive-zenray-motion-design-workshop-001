@@ -1,0 +1,179 @@
+{
+  "schema": "zrmd/motion@1",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60.0,
+    "frames": 68
+  },
+  "fonts": [
+    {
+      "family": "ZrInter",
+      "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/fonts/InterVariable.ttf"
+    }
+  ],
+  "measured": {
+    "x_height": 22.0,
+    "stroke_density": 0.3807,
+    "weight": 425,
+    "size": 41.51,
+    "tracking_em": 0.4831,
+    "reference_width": 784.0
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "color": "#000000",
+      "z": 0
+    },
+    {
+      "id": "caption",
+      "type": "text",
+      "text": "Fully open software",
+      "color": "#262626",
+      "x": 957.81,
+      "y": 542.51,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "z": 2,
+      "font": {
+        "family": "ZrInter",
+        "weight": 425,
+        "size": 72.651,
+        "tracking": 0.4831,
+        "variation": "'wght' 425, 'opsz' 32"
+      },
+      "initial": {
+        "brightness": 1.0
+      },
+      "base_scale": 1.4648,
+      "shine": {
+        "base": "#aeaeae",
+        "highlight": "#dfdfdf",
+        "gesture": {
+          "t0": 0.0481,
+          "t1": 1.5048,
+          "c0": -35.4584,
+          "c1": 199.9813,
+          "w": 41.5754,
+          "amp": 0.3329,
+          "power": 1.156,
+          "r2": 0.7674
+        }
+      },
+      "tracks": {
+        "scale": [
+          {
+            "start_frame": 0,
+            "frames": 19,
+            "from": 1.4648,
+            "to": 1.2467,
+            "ease": "cubic-bezier(0.406,0.055,0.545,0.830)"
+          },
+          {
+            "start_frame": 19,
+            "frames": 12,
+            "from": 1.2467,
+            "to": 1.2251,
+            "ease": "cubic-bezier(0.000,0.375,0.025,-0.113)"
+          },
+          {
+            "start_frame": 32,
+            "frames": 3,
+            "from": 1.2195,
+            "to": 1.2078,
+            "ease": "none"
+          },
+          {
+            "start_frame": 36,
+            "frames": 17,
+            "from": 1.2014,
+            "to": 1.1605,
+            "ease": "cubic-bezier(0.000,0.010,0.052,0.242)"
+          },
+          {
+            "start_frame": 53,
+            "frames": 14,
+            "from": 1.1605,
+            "to": 0.9986,
+            "ease": "cubic-bezier(0.000,-0.098,1.000,0.934)"
+          }
+        ],
+        "brightness": [
+          {
+            "start_frame": 0,
+            "frames": 19,
+            "from": 0.4544,
+            "to": 1.3023,
+            "ease": "cubic-bezier(0.251,0.292,0.453,0.776)"
+          },
+          {
+            "start_frame": 19,
+            "frames": 7,
+            "from": 1.3023,
+            "to": 1.3308,
+            "ease": "cubic-bezier(0.000,0.991,0.000,-0.079)"
+          },
+          {
+            "start_frame": 26,
+            "frames": 3,
+            "from": 1.3308,
+            "to": 1.3643,
+            "ease": "cubic-bezier(0.000,0.005,0.887,1.287)"
+          },
+          {
+            "start_frame": 30,
+            "frames": 3,
+            "from": 1.3714,
+            "to": 1.4315,
+            "ease": "cubic-bezier(0.298,0.000,0.697,0.808)"
+          },
+          {
+            "start_frame": 41,
+            "frames": 4,
+            "from": 1.4265,
+            "to": 1.3306,
+            "ease": "cubic-bezier(0.192,0.198,0.128,0.667)"
+          },
+          {
+            "start_frame": 53,
+            "frames": 14,
+            "from": 1.34,
+            "to": 0.423,
+            "ease": "cubic-bezier(0.431,0.102,1.000,0.834)"
+          }
+        ],
+        "shine": [
+          {
+            "start_frame": 3,
+            "frames": 87,
+            "from": -35.46,
+            "to": 199.98,
+            "ease": "none"
+          }
+        ],
+        "shineW": [
+          {
+            "start_frame": 0,
+            "frames": 1,
+            "from": 41.58,
+            "to": 41.58,
+            "ease": "none"
+          }
+        ],
+        "shineA": [
+          {
+            "start_frame": 0,
+            "frames": 1,
+            "from": 1.0,
+            "to": 1.0,
+            "ease": "none"
+          }
+        ]
+      }
+    }
+  ]
+}
