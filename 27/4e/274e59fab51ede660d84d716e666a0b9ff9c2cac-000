@@ -1,0 +1,86 @@
+{
+ "schema": "zrmd/asset2d@1",
+ "asset": "verify-glow",
+ "date": "12 October 2026",
+ "canvas": {
+  "width": 160,
+  "height": 160
+ },
+ "source": {
+  "kind": "synthetic",
+  "case": "glow"
+ },
+ "palette": {},
+ "layers": [
+  {
+   "id": "L00",
+   "name": "L00-background",
+   "z": 0,
+   "kind": "rect",
+   "geometry": {
+    "cx": 80.0,
+    "cy": 80.0,
+    "w": 160.0,
+    "h": 160.0,
+    "angle": 0.0
+   },
+   "paint": {
+    "type": "radial",
+    "cx": 80.017,
+    "cy": 80.017,
+    "r": 112.455,
+    "stops": [
+     {
+      "offset": 0.0,
+      "colour": "#ffb86b"
+     },
+     {
+      "offset": 0.53333,
+      "colour": "#291f18"
+     },
+     {
+      "offset": 0.6,
+      "colour": "#0c0a0d"
+     },
+     {
+      "offset": 0.66667,
+      "colour": "#040409"
+     },
+     {
+      "offset": 0.73333,
+      "colour": "#06050a"
+     },
+     {
+      "offset": 1.0,
+      "colour": "#05050a"
+     }
+    ],
+    "fit_rms": 0.711
+   },
+   "effects": {
+    "blur": 0.0,
+    "opacity": 1.0
+   },
+   "fit": {
+    "background": true
+   },
+   "shader_hint": [
+    "radial_gradient3",
+    "glow_gaussian"
+   ]
+  }
+ ],
+ "editing": "change palette colours, layer geometry, paint stops or effects here, then run Scripts/Vectorise.py rebuild to cook a new version (12 October 2026)",
+ "trace": {
+  "refine": true,
+  "sabotage": false,
+  "rejected": [],
+  "settings": {
+   "smooth_step": 10,
+   "fit_error_px": 0.3,
+   "band_px": 3
+  }
+ },
+ "version": "V_001",
+ "parent": null
+}

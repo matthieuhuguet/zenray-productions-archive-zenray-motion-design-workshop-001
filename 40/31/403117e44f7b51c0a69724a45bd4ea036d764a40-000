@@ -1,0 +1,129 @@
+{
+ "date": "12 October 2026",
+ "blocks": {
+  "peak_eq": {
+   "contractErrors": [],
+   "renderEqual": true,
+   "demoEqual": true,
+   "identityScore": 100.0,
+   "finite": true,
+   "peak": 0.5436,
+   "ok": true
+  }
+ },
+ "cases": [
+  {
+   "target": "peak_eq",
+   "fit": "peak_eq",
+   "case": 0,
+   "expect": "recover",
+   "params": {
+    "freq_hz": 1500.0,
+    "gain_db": 9.0,
+    "q": 1.5,
+    "out_db": 0.0
+   },
+   "score": 100.0,
+   "b1Score": 100.0,
+   "errors": {
+    "stft": 0.0,
+    "mel": 0.0,
+    "envelope": 0.0,
+    "onset": 0.0
+   },
+   "fitted": {
+    "freq_hz": 1499.999512,
+    "gain_db": 9.000002,
+    "q": 1.5,
+    "out_db": 0.0
+   },
+   "seconds": 8.5,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 1,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "peak_eq",
+   "fit": "sine_env",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "freq_hz": 660.0,
+    "gain_db": 17.0,
+    "q": 6.0,
+    "out_db": -12.0
+   },
+   "score": 4.657,
+   "b1Score": 1.023,
+   "errors": {
+    "stft": 10.8833,
+    "mel": 11.3576,
+    "envelope": 7.5938,
+    "onset": -0.1939
+   },
+   "fitted": {
+    "freq_hz": 1070.82312,
+    "glide_st": -8.91,
+    "glide_s": 0.007293,
+    "amp_db": -25.359379,
+    "onset_s": 0.003184,
+    "attack_s": 0.000826,
+    "decay_s": 0.597831
+   },
+   "seconds": 200.4,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 230,
+   "starts": 17,
+   "ok": true
+  },
+  {
+   "target": "peak_eq",
+   "fit": "tremolo",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "freq_hz": 660.0,
+    "gain_db": 17.0,
+    "q": 6.0,
+    "out_db": -12.0
+   },
+   "score": 68.8339,
+   "b1Score": 0.0,
+   "errors": {
+    "stft": 2.4455,
+    "mel": 2.8113,
+    "envelope": 4.4509,
+    "onset": -1.8619
+   },
+   "fitted": {
+    "rate_hz": 1.446173,
+    "depth": 0.999998,
+    "phase": 0.333874,
+    "out_db": -4.901539
+   },
+   "seconds": 260.85,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 250,
+   "starts": 17,
+   "ok": true
+  }
+ ],
+ "thresholds": {
+  "recoverMin": 99.5,
+  "wrongMax": 90.0
+ },
+ "summary": {
+  "pass": true,
+  "recoverMinScore": 100.0,
+  "rejectMaxScore": 68.8339,
+  "overlapMaxScore": null,
+  "cases": 3,
+  "failed": [],
+  "seconds": 265.3,
+  "sabotage": false
+ }
+}

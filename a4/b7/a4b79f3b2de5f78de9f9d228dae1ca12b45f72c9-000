@@ -1,0 +1,69 @@
+# F0 : le harnais vectoriel du moteur zrmd (12 October 2026)
+
+Rapport de la tâche F0 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Ce harnais est la première pièce de la partie assets 2D, SVG et polices : il joue pour les formes vectorielles le rôle que la mesure par masques joue dans zenray-height, c'est-à-dire qu'il fournit un rendu déterministe et des mesures, afin que la boucle d'ajustement des tâches suivantes compare des nombres et ne devine jamais. Les mesures marquées M ont été relevées sur ce Mac le 12 October 2026. Aucun git commit n'a été fait. (12 October 2026)
+
+## 1. Ce qui existe désormais (12 October 2026)
+
+| Fichier | Rôle |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/vector/__init__.py` | paquet `zrmd.vector` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/vector/render.py` | mise en forme HarfBuzz (crénage, ligatures, axes variables), contours de glyphes en chemin SVG en pixels, remplissage Skia anticrénelé, rendu SVG par Skia (`skia.SVGDOM`) ou resvg, export d'un SVG éditable (un `<g id="line">`, un `<path>` nommé par glyphe avec `data-advance` et `data-kern`, paramètres dans `<metadata>`), `versions()` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/vector/metrics.py` | IoU douce et dure, distance de contour chamfer dans les deux sens (moyenne, p95, max), distribution des épaisseurs de trait et contraste plein et délié (p90 sur p10), ligne de base, hauteur d'x, hauteur de capitale, ascendante et descendante, approches et chasses lues sur le profil d'encre, crénage mesuré sur l'encre, angles des terminaisons, `measure` et `compare` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifyVector.py` | vérificateur, `--json`, `--out`, `--no-sweep`, `--sabotage`, code de sortie |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/tests/test_vector.py` | cinq tests dans les deux sens |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/requirements-vector.txt` | versions épinglées ; reprises dans `pyproject.toml`, extra `vector` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/settings.json` | nouvelle section `vector` (`render`, `metrics`, `verify`, `verify.cross_renderer`) ; aucun seuil n'est écrit en dur |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F0-vector-verify.json` | dernier rapport complet du vérificateur |
+
+Le code existant n'a pas été réécrit : `metrics.vertical_metrics` réutilise `zrmd.analyze.typography.x_height_components`, et la police vient de l'index existant `datasets/fonts/index.json`. (12 October 2026)
+
+## 2. Choix des bibliothèques et licences (12 October 2026)
+
+Installées dans `~/.venvs/zenray-motion` et épinglées : `skia-python==144.0.post2` (BSD-3-Clause), `uharfbuzz==0.56.3` (Apache-2.0, HarfBuzz sous licence Old MIT), `resvg-py==0.5.0` (MIT). Elles sont utilisées comme bibliothèques et jamais copiées dans `vendor/` ; potrace n'est pas touché. (12 October 2026)
+
+HarfBuzz fait en un seul appel ce que Pillow faisait en plusieurs approximations : il applique le crénage GPOS et les axes variables, puis dessine le contour exact du glyphe à cette position de l'espace de variation. Les contours sont émis en commandes absolues M, L, Q, C, Z ; skia-python 144 n'ayant pas d'analyseur de chemin SVG, `render.skia_path` lit ce dialecte et lève une erreur sur toute autre commande au lieu de l'ignorer. Les documents SVG quelconques passent par `render_svg`. (12 October 2026)
+
+## 3. Résultats mesurés (12 October 2026)
+
+Ligne de test « Hamburgefonstiv », Inter `wght` 400, 96 px, alignement par le coin haut gauche de la boîte d'encre (paramètre `vector.metrics.align`), règle de correspondance : IoU douce au moins 0,995, distance de contour moyenne au plus 0,05 px et p95 au plus 0,5 px.
+
+| Cas | Attendu | Obtenu | IoU douce | Contour moyen, p95 (px) |
+|---|---|---|---|---|
+| même police, même graisse, même taille | vert | vert | 1,0 | 0, 0 |
+| mauvaise police (Archivo) | rouge | rouge | 0,300 | 3,97, 12 |
+| mauvaise graisse (500) | rouge | rouge | 0,454 | 2,34, 7 |
+| mauvaise taille (100 px) | rouge | rouge | 0,238 | 4,01, 12 |
+| deux rendus, mêmes octets (sha256) | vert | vert | | |
+| SVG éditable relu par Skia | vert | vert | 0,999 | 0,0006, 0 |
+| SVG éditable relu par resvg (règle croisée) | vert | vert | 0,988 | 0,092, 1 |
+| SVG éditable, un glyphe décalé de 1 px | rouge | rouge | 0,850 | 0,55, 1 |
+| crénage lu sur l'encre de « AVATAR To » contre HarfBuzz | vert | vert | écart max 0,56 px | |
+| balayage des 98 familles, chacune contre elle-même | 98 verts | 98 verts | 1,0 | 0 |
+| balayage, chaque famille contre la suivante | 97 rouges et 1 doublon | 98 conformes | pire 0,744 | |
+
+Le vérificateur sort 0 sur ce tableau (M, 4,3 s sur 16 processus). Avec `--sabotage`, qui désactive la règle, les quatre cas rouges passent au vert à tort et le vérificateur sort 1 : il sait donc virer au rouge. Le premier passage complet était d'ailleurs rouge, parce que Lexend et Lexend Deca ont des contours strictement identiques sur la ligne de test (même empreinte sha256 du raster) ; l'attente du balayage se déduit désormais de l'empreinte des contours et non des noms, et le doublon est listé dans `sweep.duplicate_outlines`. (12 October 2026)
+
+Sensibilité (M, Inter 96 px) : une graisse de +1 et +2 reste sous le seuil (IoU 0,998 et 0,9953), +3 est rouge (0,974) ; en taille, +0,05 px est déjà rouge (0,964). La règle actuelle sépare donc la graisse à 3 unités `wght` près et la taille au vingtième de pixel près, à cette taille de corps. (12 October 2026)
+
+Mesures d'une seule ligne (M) : hauteur d'x lue sur l'encre 54,0 px contre 52,4 px déclarés par la police, l'écart venant du dépassement des lettres rondes et du seuil à 0,5 ; capitale 70,5 px contre 69,8 px ; épaisseur médiane du trait 8,0 px, contraste 1,39 pour Inter contre 5,0 pour Playfair Display, ce qui sépare une linéale d'une didone ; 42 terminaisons détectées. (12 October 2026)
+
+Le rendu croisé resvg diffère de Skia par sa couverture d'anticrénelage : sur un bord vertical à x = 10,1 et 10,9, Skia rend 0,098 et 0,898, resvg 0 et 1. C'est pourquoi la relecture par resvg a sa propre règle (`vector.verify.cross_renderer` : IoU 0,98, contour moyen 0,15 px, p95 1 px), tandis que la relecture par Skia garde la règle stricte. (12 October 2026)
+
+## 4. Mode d'emploi (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyVector.py                  # vert attendu, code 0
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyVector.py --no-sweep --sabotage   # rouge attendu, code 1
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyVector.py --json --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F0-vector-verify.json
+```
+
+Les paramètres se changent en un seul endroit, `settings.json` section `vector` : texte de test, taille, police de contrôle et police alternative, graisse fausse et taille fausse, seuils de la règle, nombre de processus, marge de rendu, nombre de décimales des chemins, moteur SVG par défaut. (12 October 2026)
+
+## 5. Limites et suite (12 October 2026)
+
+- Les distances de contour sont lues sur les masques seuillés, donc quantifiées au pixel ; une distance sous-pixel par interpolation du bord n'est pas encore faite et serait la prochaine précision utile pour l'ajustement fin. (12 October 2026)
+- La hauteur de capitale vient d'un regroupement des composants hauts posés sur la ligne de base ; sur une ligne sans capitale, la valeur rendue est celle des ascendantes. (12 October 2026)
+- Le crénage lu sur l'encre suppose que les deux lignes se découpent en autant de taches ; une ligature ou un contact entre lettres rend `None`, jamais une valeur fausse. (12 October 2026)
+- L'index des polices contient 15 familles Fontshare sous ITF Free Font License, et non OFL ou Apache (Author, Cabinet Grotesk, Chillax, Clash Display, Clash Grotesk, Erode, Excon, Gambetta, General Sans, Satoshi, Sentient, Supreme, Switzer, Synonym, Zodiak). Elles étaient déjà là avant F0 ; la règle du projet demande une décision : les garder pour la mesure privée seulement, ou les retirer. (12 October 2026)
+- Étape suivante prévue : F1, le jeu de données de briques mesurées (contours de glyphes par famille et par graisse, primitives SVG) avec leurs mesures `metrics.measure`, puis F2, la boucle d'ajustement police, graisse, taille, interlettrage contre un recadrage de référence du cache local, version par version de V_001 à V_999. (12 October 2026)

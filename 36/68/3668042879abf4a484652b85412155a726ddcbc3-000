@@ -1,0 +1,126 @@
+# F1, font dataset, font matcher and parametric font creator (12 October 2026)
+
+Status (12 October 2026): **GREEN**. `Scripts/VerifyFonts.py` exits 0 on the full run (2265.5 s, every case lands) and exits 1 with `--sabotage` (1030.0 s, RED). Machine reports: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F1-fonts-verify.json` and `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F1-fonts-verify-sabotage.json`.
+
+Method (12 October 2026), as in zenray-height: a dataset of measured building blocks first, then a measured fitting loop. Text is rendered as vector outlines (HarfBuzz shaping, Skia fill, F0 harness), compared as numbers (soft IoU plus chamfer edge distance), never guessed.
+
+## 1. Font dataset (12 October 2026)
+
+| Item | Value |
+|---|---|
+| Families | 480 (target was 400) |
+| Font files | 661, of which 412 variable |
+| Licence classes | 646 files open (OFL or Apache, `google/fonts`), 15 files ITF Free Font License (Fontshare, free commercial use) |
+| Licence files | present in every family folder, with `source.json` (provenance, licence, date); missing list empty |
+| Excluded files | `datasets/fonts/_excluded/` with reasons in its `README.txt` |
+| Features | one record per file in `datasets/fonts/features.jsonl` (661 records, 661 usable) |
+| Index | `datasets/fonts/index.json` (file level), `datasets/fonts/features-index.json` (family to files, signature, numeric vector) |
+| Signatures | 276 humanist, 265 geometric, 120 neutral |
+
+Each feature record (12 October 2026) is measured by `zrmd/vector/metrics.py` on the fixed specimen "Hamburgefonstiv" at the regular location: declared and ink x-height and cap ratios, stroke widths (p10, p50, p90 in em) and thick/thin contrast, advance per glyph in em, apertures of c and e, terminal angle histogram, o aspect and stress axis, stem width sampled along wght (`stem_curve`, used by the matcher to invert a measured stem into a weight), and a geometric versus humanist signature.
+
+Rebuild (12 October 2026):
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I datasets/fonts/Fetch.py          # idempotent download, licence files kept
+~/.venvs/zenray-motion/bin/python -I Scripts/BuildFontFeatures.py     # 16 workers, features.jsonl + index
+```
+
+## 2. Matcher, `zrmd/vector/fontfit.py` (12 October 2026)
+
+Given a reference text crop and its known string (`crop_to_mask` turns a gray crop into a coverage mask), `match_font(ref, text)`:
+
+1. coarse, every usable file (661): size from the ink height, wght from the measured stem through the file's stem curve, tracking from the ink width, origin from the ink box; one score per file;
+2. fine, the top_k files: Nelder-Mead on size, sub-pixel origin, tracking and every fitted axis present (wght, wdth, opsz, slnt) on blurred masks, then decoupled rounds (size and origin y on the row profile, one x shift per glyph folded into tracking and per-glyph deltas, axes by bounded 1-D searches);
+3. polish (`vector.fit.polish`): profiled axis polish of the best fit, each axis location gets its own placement refit. This is what moved Source Serif 4 from IoU 0.9756 (wght error 11.8) to 0.9983 (wght error 0.09).
+
+Match rule (12 October 2026, `vector.fit.match`): IoU at least 0.99 and mean edge distance at most 0.3 px.
+
+## 3. Parametric font creator, `zrmd/vector/fontcreate.py` (12 October 2026)
+
+When no free family reaches the match rule, the creator starts from the matcher families (multi-start, `vector.create.starts`, TrueType outlines only), instances the base at its axes with fontTools `varLib.instancer`, and fits parameters so the rendered string lands on the reference mask, then builds a real `.ttf` with fontTools. The font is a pure function of (base file, `params.json`), schema `zrmd/font-params@1`:
+
+| Parameter | Effect |
+|---|---|
+| `base.axes` | location of the free base font (searched on a grid, refined) |
+| `global.weight_units` | every point moves along its ink-growing normal |
+| `global.contrast_units` | extra normal offset times (abs nx minus abs ny): stems thicken, horizontals thin |
+| `global.x_height_scale` | lowercase scale between baseline and x-height, blending back to the ascender |
+| `global.overshoot_units` | round parts beyond baseline, x-height and cap height grow |
+| `glyphs.<name>.scale_x`, `advance_units` | per-glyph width and spacing |
+| `glyphs.<name>.offsets` | per-point residual offsets in font units, smoothed along the contour |
+| `layout` | size, origin, tracking of the line |
+
+Fitting stages (12 October 2026): axis grid search; layout rounds (spacing by least squares on per-name advances, then globals with line size and origin); residual point offsets by edge snapping (area difference on a strip across each edge, damped, smoothed, kept only when the loss improves).
+
+### Fix of this session (12 October 2026)
+
+The previous run was RED on one case: the creator rebuilt the target at IoU 0.9703 (start Montserrat, wght 557.9 for a truth of 480, weight_units minus 2.2 for a truth of plus 9). Diagnosis by measurement, not by guess:
+
+| Probe at the true wght 480 | Result |
+|---|---|
+| truth params through `render_params` | IoU 0.9948, so the model can represent the target |
+| default creator layout | IoU 0.949, size stuck at 91.84 for a truth of 90, x_height_scale 1.027 for 1.05 |
+| blur schedule alone (sigma 6, 3, 1) | 0.948, still the same basin |
+| size unit rescaled to the cap height | 0.949, same basin |
+| size factor 0.99 from the matcher size | 0.858 (line drift breaks spacing) |
+| five size starts with tracking compensation, sigma 6, 3, 1 | **0.9935**, size 90.04, x_height_scale 1.047, weight 8.88 |
+
+Cause: the matcher size belongs to an unmodified font, so a taller x-height is first explained by a bigger line size, and the local least squares stay in that basin; a plain size change then makes the line drift by several pixels, beyond what a local fit can see. Fix, added in `fontcreate._fit_at` and driven by settings (HDA law):
+
+- `vector.create.size_starts` = [0.97, 0.98, 0.99, 1.0, 1.01]: the first layout round runs from each line size factor, with tracking compensated so the line length is kept, and the best loss is kept;
+- `vector.create.layout_sigmas` = [6, 3, 1]: coarse-to-fine blur per layout round;
+- `vector.create.size_unit` and `vector.create.global_x_scale` are optional switches, unset by default (measured neutral or divergent: `x_scale="jac"` overflowed in scipy and produced an empty path).
+
+Landscape after the fix: at wght 480 the layout reaches 0.9935, at wght 557 only 0.967, so the axis search now finds the true location.
+
+## 4. Verifier, `Scripts/VerifyFonts.py` (12 October 2026)
+
+Every reference is rendered from a known free font with known parameters, so the truth is known.
+
+| Case | Expect | Full run | Detail |
+|---|---|---|---|
+| dataset | green | OK | 480 families, 661 files, no missing licence file |
+| Montserrat wght 537, tracking 0.021, one glyph delta | match | OK, IoU 0.998975, edge 0.0024 | rank 1, size error 0.005 percent, wght error 0.5 |
+| Open Sans wdth 87 wght 610, tracking minus 0.012 | match | OK, IoU 0.996508, edge 0.0072 | wdth error 0.07, wght error 0.23 |
+| Source Serif 4 opsz 30 wght 420 | match | OK, IoU 0.998313, edge 0.0022 | opsz error 0.18, wght error 0.09 |
+| Lato Regular (static), tracking 0.035 | match | OK, IoU 0.999949, edge 0.0004 | size error 0.001 percent |
+| Montserrat case with Montserrat removed | no match | OK, best Alexandria 0.903 | red side of the matcher |
+| creator target (Montserrat 480, +9 weight, +5 contrast, x-height 1.05, +6 overshoot) not matched by any family | no match | OK, best Alexandria 0.881 | |
+| creator rebuilds the target 1:1 through HarfBuzz | match | OK, IoU 0.992777, edge 0.0239 | fitted wght 479.4, weight 9.12, contrast 5.005, x-height 1.0495, overshoot 5.58; layout render 0.9969 before HarfBuzz kerning |
+| two builds of the same params | byte-identical | OK | sha256 identical |
+| weight_units +20 | different and bolder | OK | IoU vs target 0.733, stroke p50 10 to 14 px |
+| creator with every stage off | no match | OK, 0.880 | red side of the creator |
+
+Sabotage (12 October 2026, matcher fine stage and creator stages switched off): exit 1. Lato drops to 0.903 and the creator to 0.855, so the verifier can turn red. Honest note: the three variable-font matcher cases still pass under sabotage (0.9938 to 0.9988), because the coarse stage already inverts the stem curve and ink box well on variable fonts; the fine stage proves itself on the static Lato case and on the Source Serif axis precision of the polish.
+
+Commands (12 October 2026):
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyFonts.py --out ../docs/build/F1-fonts-verify.json             # exit 0
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyFonts.py --sabotage --out ../docs/build/F1-fonts-verify-sabotage.json  # exit 1
+~/.venvs/zenray-motion/bin/python -I Scripts/VerifyFonts.py --only creator    # creator only, about 20 min on 16 workers
+```
+
+## 5. Using it (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+~/.venvs/zenray-motion/bin/python -I Scripts/FontCreate.py match  --mask CROP.png --text "..."
+~/.venvs/zenray-motion/bin/python -I Scripts/FontCreate.py create --mask CROP.png --text "..." --id ID
+~/.venvs/zenray-motion/bin/python -I Scripts/FontCreate.py vary   --id ID --from V_001 --set global.weight_units=12
+~/.venvs/zenray-motion/bin/python -I Scripts/FontCreate.py build  --params params.json --out font.ttf
+```
+
+Each `create` or `vary` writes a new version `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/<ID>/V_NNN/` (font.ttf, params.json, fit.json, preview.png), never overwritten. A variation is a parameter change and a rebuild. A 1:1 font of a proprietary reference stays private in the workshop; only variations may be published after rights validation (Rules.md, 12 October 2026).
+
+## 6. Limits and next steps (12 October 2026)
+
+- The creator case costs about 20 minutes on 16 workers (axis grid times five size starts). Next lever: run the size starts only at the final axis location and a single start inside the axis grid, measured before adopting.
+- The creator edits glyf (TrueType) outlines only; CFF starts are skipped with a logged reason.
+- The remaining gap between the layout render (0.9969) and the HarfBuzz-built font (0.9928) comes from kerning pairs not yet carried by `advance_units`; a GPOS pair adjustment parameter would close it.
+- Real reference crops (from the bibles in `references/<slug>/`) are the next proof; synthetic crops prove the loop, not the coverage of the dataset.
+
+Files touched in this session (12 October 2026): `zrmd/vector/fontcreate.py` (coarse-to-fine layout sigmas, size multi-start, optional size unit and x_scale switches), `settings.json` (`vector.create.layout_sigmas`, `size_starts` with dated docs). Backups of the previous versions: scratchpad of the session.

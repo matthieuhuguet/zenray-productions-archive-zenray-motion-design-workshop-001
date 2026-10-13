@@ -1,0 +1,22 @@
+{
+ "date": "12 October 2026",
+ "rule": {
+  "iou_min": 0.995,
+  "edge_mean_max_px": 0.5,
+  "colour_mae_max": 1.5,
+  "colour_p99_max": 24
+ },
+ "layers": [],
+ "colour": {
+  "mae": 0.4093,
+  "p99": 4.0,
+  "max": 4.0,
+  "share_over_16": 0.0
+ },
+ "layers_ok": true,
+ "colour_ok": true,
+ "pass": true,
+ "worst_layer": null,
+ "min_iou": null,
+ "max_edge_mean": null
+}

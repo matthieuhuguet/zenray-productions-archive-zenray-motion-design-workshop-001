@@ -1,0 +1,80 @@
+# A1, transient and noise blocks of the sound bank (12 and 13 October 2026)
+
+Report of task A1 of ZenRay Motion Design (Assets id `zenray-motion-design`). It extends the A0 harness (`bank.py`, `ploss.py`, `dfit.py`, `VerifySoundBank.py`) without rewriting it, and it touches neither B1 nor the versions `V_001` to `V_017`. Every number below is read from the verifier JSON files listed in section 6. (13 October 2026)
+
+## 1. Result (13 October 2026)
+
+27 transient and noise blocks were added to `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/sound-bank/`, listed in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/A1BlockList.txt`. Each block recovers its own sound from three targets (the defaults and two seeded random draws) with a ploss score of at least 99.5. The lowest recovery is `glitch_stutter` at 99.53. The wrong blocks fitted on each block's red target score at most 23.86 (threshold 90). (12 October 2026)
+
+| Block | Family | Min recovery (ploss) | Min B1 score on the same fits | Max wrong-block score | Fit time, 3 cases (s) |
+|---|---|---|---|---|---|
+| kick | drum | 99.95 | 99.96 | 10.44 | 310 |
+| sub_drop | drum | 99.95 | 99.74 | 16.20 | 27 |
+| snare | drum | 99.95 | 99.49 | 14.54 | 34 |
+| clap | drum | 99.89 | 99.09 | 23.86 | 1959 |
+| tom_drum | drum | 99.96 | 99.96 | 11.45 | 47 |
+| hihat_closed | cymbal | 99.71 | 99.69 | 11.79 | 1329 |
+| hihat_open | cymbal | 99.95 | 99.98 | 0.38 | 169 |
+| crash_cymbal | cymbal | 99.95 | 99.90 | 0.31 | 2450 |
+| impact_layered | impact | 99.95 | 65.13 | 0.09 | 119 |
+| thud | impact | 99.96 | 99.81 | 15.75 | 253 |
+| wood_knock | impact | 99.96 | 99.98 | 15.39 | 107 |
+| ui_click | ui | 99.84 | 99.97 | 0.26 | 717 |
+| ui_tick | ui | 99.96 | 51.94 | 1.30 | 368 |
+| key_press | foley | 99.95 | 0.00 | 1.14 | 963 |
+| keyboard_typing | foley | 99.95 | 99.34 | 0.02 | 1997 |
+| paper_rustle | foley | 99.97 | 99.98 | 5.04 | 487 |
+| cloth_swish | foley | 99.82 | 99.22 | 0.03 | 483 |
+| shaker | foley | 99.69 | 99.47 | 0.002 | 6524 |
+| whoosh | whoosh | 99.95 | 99.79 | 0.01 | 165 |
+| swoosh_tonal | whoosh | 99.82 | 99.20 | 0.15 | 723 |
+| riser | riser | 99.56 | 99.64 | 0.002 | 771 |
+| downlifter | riser | 99.95 | 99.96 | 0.20 | 299 |
+| reverse_swell | riser | 99.95 | 99.84 | 0.04 | 323 |
+| glitch_stutter | glitch | 99.53 | 99.96 | 0.17 | 2359 |
+| static_crackle | noise | 99.91 | 99.91 | 0.01 | 5710 |
+| room_tone | ambience | 99.95 | 99.00 | 0.60 | 29 |
+| wind | ambience | 99.95 | 79.99 | 0.03 | 260 |
+
+The run that covers 26 of these blocks is `verify-final.json` (78 recover cases, 52 reject cases, all green, 6073 s). The shaker was repaired after it and verified alone in `verify-shaker2.json` (99.69, green, 3458 s). (12 October 2026)
+
+## 2. What each block exposes (12 October 2026)
+
+Every block follows the A0 contract. `block.py` is the only source: its `META`, its `PARAMS` (name, unit, min, max, default, lin or log scale, description), an optional `FIT` dict of fitter hints, and a torch `render`. `block.json` and `demo.wav` are generated from it by `BuildSoundBank.py`. Every block has 7 or 8 parameters, no more than the HDA limit of 8 per category. All 27 are original code derived from the mathematics, so `licence` is `original` and no third-party code was copied. (12 October 2026)
+
+The patterned blocks are deterministic patterns, not random ones, as the task asked. `keyboard_typing` has count, rate, jitter and accent parameters over an R1 low-discrepancy sequence. `glitch_stutter` has rate, count, density and pitch spread. `shaker` has count, rate and swing. `static_crackle` has density and click duration. Each stroke is a template with its own fixed noise, placed by an exact fractional delay in the frequency domain (`sfxdsp.delay_sum`). The count is continuous, with the last stroke faded in by its fraction, so every parameter keeps a gradient. (12 October 2026)
+
+## 3. What had to change in the fitter, and why (12 October 2026)
+
+The first full run (`verify-run1.json`, 3378 s) failed on 20 of 81 recover cases. The pattern blocks were worst: glitch_stutter at 0.02, keyboard_typing at 10.3 and shaker at 0.14. Three causes were measured and fixed, all as additions that the A0 blocks do not trigger. (12 October 2026)
+
+- **Stroke patterns have no gradient from far away.** A click train shifted by more than one stroke width gets no gradient back towards its place. `ploss.time_blur_error` adds an envelope term on a power envelope smoothed by a Gaussian in time. A block opts in through `FIT` (`screenBlurMs`, `blurStartMs`, `blurEndMs`), and the blur is annealed to 2 ms the same way A0 anneals its frequency blur. It never counts in the score. (12 October 2026)
+- **One parameter stuck in a wrong basin.** Most misses after that were a single parameter in a wrong basin, or two parameters that trade against each other: onset against attack, tail level against overall level, hi-hat base pitch against metal level. `dfit` gained a coordinate scan, level-matched scans that refit the level while scanning another parameter, and pair scans declared per block (`scanPairs`). (12 October 2026)
+- **Joint refinement.** A joint evolution strategy over the parameter groups, then a box CMA-ES on the official E2 from the best state, one run per sigma of `dfit.cmaSigmas`. Both use a fixed seed. CMA-ES is written from the published algorithm (Hansen), not copied. (12 October 2026)
+
+The shaker was the last to resist (`verify-shaker.json`: 98.78 and 78.47). Its grains now peak a fixed time after their stroke, whatever their attack, so attack no longer moves the onset. With a larger budget declared in its `FIT`, it reaches 99.69. It is also by far the slowest block to fit, at 6524 s for three cases. (12 October 2026)
+
+`VerifySoundBank.py` gained a `--cross contrast` mode. Each red target is checked against an explicit list of wrong blocks, because the all-against-all cross fits of A0 grow as N squared once the bank holds about 50 blocks. `FitBankCases.py` reruns selected recover cases in parallel. All new settings live in `datasets/sfx-params.json`. (12 October 2026)
+
+## 4. Concurrency with A2 (12 October 2026)
+
+Blocks are written one folder each, and `index.json` is only ever regenerated by `BuildSoundBank.py` under the lock file `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/sound-bank/.index.lock`. A1 and A2 therefore never edit the same file. The bank now holds 64 blocks in all (`index.json`, 13 October 2026), from A0, A1 and A2. (12 October 2026)
+
+## 5. Limits, measured (13 October 2026)
+
+- **The two scores disagree on four blocks.** The ploss score and the B1 descriptor score agree on 23 of the 27 blocks. On four they do not, even though the ploss fit is at least 99.95: key_press scores 0.00 in B1, ui_tick 51.94, impact_layered 65.13 and wind 79.99. Each of these is two events (press and release, two pings), a layered sound, or a stationary noise. B1's descriptors were tuned on single events, so they score these sounds poorly. A ploss score of 99.95 means the spectrogram and the envelope match; it does not mean B1's descriptors do. This is reported, not hidden. (13 October 2026)
+- **Self-recovery is not reproduction.** As in A0, every target here was rendered by the bank with the same noise seed. On real sounds, the A3 calibration run (`/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/A3-calibration.md`) fitted 180 CC0 Kenney sounds with the 47 A1 and A2 source blocks. It reached a median of 82.29 on the seed-invariant metric and 47.22 on the official one, and no sound reached 99. The bank is still far from a 1:1 reproduction of real SFX, and the next work is chains, layering and the stochastic metric, not more self-tests. (13 October 2026)
+- **Fit cost.** Pattern blocks take minutes to tens of minutes per fit on one CPU thread (shaker about 36 min per case). Any later loop on real targets needs these budgets kept per block in `FIT`. (12 October 2026)
+
+## 6. Verifiers, both directions (13 October 2026)
+
+| Run | Command | Expected | Measured |
+|---|---|---|---|
+| good case, 26 blocks | `VerifySoundBank.py --blocks <A1 list minus shaker> --json` (default 3 sets, contrast cross) | exit 0 | pass, 130 cases, min recovery 99.53, max reject 23.86 (`verify-final.json`) |
+| good case, shaker | `VerifySoundBank.py --blocks shaker --json` | exit 0 | pass, min 99.69 (`verify-shaker2.json`) |
+| broken case | `VerifySoundBank.py --blocks <A1 list> --sets 0 --sabotage --json` | exit 1 | exit 1, red as expected (`verify-sabotage2.json`, 81 cases, 3605 s, 13 October 2026). The sabotage removes clap's licence in memory, which gives three contract errors, and declares a wrong block (additive_harmonic, 36.43) for clap's first case. The other 26 default recoveries and every reject case still pass, so the same run also re-confirms the defaults on the current code |
+| recheck on the current code | `VerifySoundBank.py --blocks <A1 list> --sets 1 --json` | exit 0 | exit 0, green (`verify-recheck.json`, 27 blocks, 108 cases, 2822 s, 13 October 2026): every contract holds, min recovery 99.55 (ui_click, draw 1), max reject 23.86 |
+
+The 13 October recheck exists for one reason. `ploss.py` and `sfx-params.json` were edited by A2 (local onset window) and A3 (the stochastic variant, off by default) while the final A1 run was still going. So the 27 blocks are run once more against the code as it stands now. The earlier sabotage attempt of 12 October (`verify-sabotage.json`) was left empty when its process was stopped, and it was rerun. (13 October 2026)
+
+All files are in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/A1-transient-noise/`. Python: `~/.venvs/zenray-motion/bin/python -I`. (13 October 2026)

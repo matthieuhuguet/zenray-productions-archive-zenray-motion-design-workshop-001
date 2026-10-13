@@ -1,0 +1,50 @@
+[17:00:12] measuring stem eq and stereo
+[17:00:19] fitting the mix bus
+[17:01:34] rendering from params
+[17:02:02] scoring
+[17:02:30] V_006 written
+{
+ "version": "V_006",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.873,
+   "chroma": 0.894,
+   "envCorr": 0.9818,
+   "sectionEnv": 86.527
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.002,
+   "onsetF": 0.5532,
+   "chroma": 0.7476,
+   "envCorr": 0.9322,
+   "sectionEnv": 75.091
+  },
+  "other": {
+   "plossFull": 0.0039,
+   "plossBarMedian": 59.033,
+   "onsetF": 0.4081,
+   "chroma": 0.8284,
+   "envCorr": 0.8205,
+   "sectionEnv": 98.326
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 7.771,
+   "onsetF": 0.8451,
+   "chroma": 0.8994,
+   "envCorr": 0.9254,
+   "sectionEnv": 98.146
+  }
+ }
+}

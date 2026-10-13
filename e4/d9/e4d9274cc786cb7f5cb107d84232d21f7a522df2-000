@@ -1,0 +1,426 @@
+{
+ "schema": "zrmd/verify-fonts@1",
+ "date": "12 October 2026",
+ "sabotage": true,
+ "ok": false,
+ "seconds": 1030.0,
+ "versions": {
+  "skia-python": "144.0.post2",
+  "uharfbuzz": "0.56.3",
+  "resvg-py": "0.5.0",
+  "numpy": "2.4.6"
+ },
+ "cases": [
+  {
+   "case": "dataset",
+   "expect": "green",
+   "ok": true,
+   "families": 480,
+   "usable": 480,
+   "files": 661,
+   "licence_classes": {
+    "open": 465,
+    "free-restricted": 15
+   },
+   "missing_licence_file": []
+  },
+  {
+   "case": "Montserrat wght 537, tracking, one glyph delta",
+   "expect": "match",
+   "truth": {
+    "family": "Montserrat",
+    "size": 83.4,
+    "axes": {
+     "wght": 537
+    },
+    "tracking_em": 0.021,
+    "deltas": {
+     "3": 1.3
+    }
+   },
+   "best": {
+    "family": "Montserrat",
+    "iou": 0.998833,
+    "edge_mean": 0.0039,
+    "match": true,
+    "params": {
+     "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Montserrat/Montserrat[wght].ttf",
+     "size": 83.42453,
+     "origin": [
+      20.3633,
+      90.6249
+     ],
+     "tracking_em": 0.021932,
+     "axes": {
+      "wght": 536.794
+     },
+     "deltas": [
+      -0.1086,
+      -0.0833,
+      -0.1039,
+      1.2041,
+      -0.0881,
+      -0.0966,
+      -0.0885,
+      -0.0921,
+      -0.0929,
+      -0.0955,
+      -0.0923,
+      -0.0869,
+      -0.0882,
+      -0.0871,
+      0.0
+     ]
+    }
+   },
+   "rank": [
+    "Montserrat",
+    "Asap Sharp",
+    "Lexend Giga",
+    "Lexend Mega",
+    "Nunito Sans"
+   ],
+   "coarse_rank_of_truth": 1,
+   "candidates": 661,
+   "seconds": 128.9,
+   "size_rel_err": 0.00029,
+   "axis_err": {
+    "wght": 0.20600000000001728
+   },
+   "ok": true
+  },
+  {
+   "case": "Open Sans wdth 87 wght 610",
+   "expect": "match",
+   "truth": {
+    "family": "Open Sans",
+    "size": 61.7,
+    "axes": {
+     "wdth": 87,
+     "wght": 610
+    },
+    "tracking_em": -0.012,
+    "deltas": null
+   },
+   "best": {
+    "family": "Open Sans",
+    "iou": 0.993795,
+    "edge_mean": 0.0131,
+    "match": true,
+    "params": {
+     "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/OpenSans/OpenSans[wdth,wght].ttf",
+     "size": 61.76919,
+     "origin": [
+      14.6245,
+      70.2192
+     ],
+     "tracking_em": -0.01196,
+     "axes": {
+      "wght": 607.785,
+      "wdth": 87.0
+     },
+     "deltas": [
+      0.0158,
+      0.0016,
+      0.0152,
+      0.0148,
+      -0.0131,
+      2.4482,
+      -2.4849,
+      -0.0037,
+      -0.0081,
+      -0.0045,
+      -0.005,
+      -0.0119,
+      0.0355,
+      0.0
+     ]
+    }
+   },
+   "rank": [
+    "Open Sans",
+    "Yaldevi",
+    "Asap",
+    "Asap Sharp",
+    "Radio Canada"
+   ],
+   "coarse_rank_of_truth": 1,
+   "candidates": 661,
+   "seconds": 106.8,
+   "size_rel_err": 0.00112,
+   "axis_err": {
+    "wdth": 0.0,
+    "wght": 2.215000000000032
+   },
+   "ok": true
+  },
+  {
+   "case": "Source Serif 4 opsz 30 wght 420",
+   "expect": "match",
+   "truth": {
+    "family": "Source Serif 4",
+    "size": 70.2,
+    "axes": {
+     "opsz": 30,
+     "wght": 420
+    },
+    "tracking_em": 0.0,
+    "deltas": null
+   },
+   "best": {
+    "family": "Source Serif 4",
+    "iou": 0.997848,
+    "edge_mean": 0.0044,
+    "match": true,
+    "params": {
+     "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/SourceSerif4/SourceSerif4[opsz,wght].ttf",
+     "size": 70.1799,
+     "origin": [
+      12.4037,
+      74.8955
+     ],
+     "tracking_em": 0.000125,
+     "axes": {
+      "wght": 421.171,
+      "opsz": 30.013
+     },
+     "deltas": [
+      0.0045,
+      -0.0002,
+      -0.0001,
+      0.0012,
+      0.0006,
+      -0.0001,
+      -0.0011,
+      -0.005,
+      0.0003,
+      2.6555,
+      -2.6566,
+      0.0012,
+      0.0072,
+      -0.0074,
+      0.0
+     ]
+    }
+   },
+   "rank": [
+    "Source Serif 4",
+    "Petrona",
+    "Slabo 27px",
+    "Alegreya",
+    "Libre Caslon Condensed"
+   ],
+   "coarse_rank_of_truth": 1,
+   "candidates": 661,
+   "seconds": 186.0,
+   "size_rel_err": 0.00029,
+   "axis_err": {
+    "opsz": 0.013000000000001677,
+    "wght": 1.1709999999999923
+   },
+   "ok": true
+  },
+  {
+   "case": "Lato Regular (static)",
+   "expect": "match",
+   "truth": {
+    "family": "Lato",
+    "size": 77.0,
+    "axes": {},
+    "tracking_em": 0.035,
+    "deltas": null
+   },
+   "best": {
+    "family": "Lato",
+    "iou": 0.903028,
+    "edge_mean": 0.2961,
+    "match": false,
+    "params": {
+     "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lato/Lato-Regular.ttf",
+     "size": 76.0,
+     "origin": [
+      16.0,
+      80.012
+     ],
+     "tracking_em": 0.043421,
+     "axes": {},
+     "deltas": null
+    }
+   },
+   "rank": [
+    "Lato",
+    "Lato",
+    "Lato",
+    "Lato",
+    "Hanken Grotesk"
+   ],
+   "coarse_rank_of_truth": 1,
+   "candidates": 661,
+   "seconds": 38.4,
+   "size_rel_err": 0.01299,
+   "axis_err": {},
+   "ok": false
+  },
+  {
+   "case": "Montserrat wght 537, tracking, one glyph delta, family removed",
+   "expect": "no match",
+   "truth": {
+    "family": "Montserrat",
+    "size": 83.4,
+    "axes": {
+     "wght": 537
+    },
+    "tracking_em": 0.021,
+    "deltas": {
+     "3": 1.3
+    }
+   },
+   "best": {
+    "family": "Asap Sharp",
+    "iou": 0.821693,
+    "edge_mean": 0.6654,
+    "match": false,
+    "params": {
+     "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AsapSharp/AsapSharp[wdth,wght].ttf",
+     "size": 82.7082,
+     "origin": [
+      19.7762,
+      89.8814
+     ],
+     "tracking_em": 0.030546,
+     "axes": {
+      "wght": 531.391,
+      "wdth": 119.834
+     },
+     "deltas": [
+      -3.1776,
+      -0.5437,
+      1.3891,
+      1.6659,
+      -0.361,
+      0.8018,
+      1.8432,
+      -0.3832,
+      -2.4194,
+      -1.2291,
+      0.7669,
+      0.2136,
+      2.5783,
+      -1.1449,
+      0.0
+     ]
+    }
+   },
+   "rank": [
+    "Asap Sharp",
+    "Lexend Giga",
+    "Lexend Mega",
+    "Nunito Sans",
+    "Alexandria"
+   ],
+   "coarse_rank_of_truth": null,
+   "candidates": 659,
+   "seconds": 212.5,
+   "ok": true
+  },
+  {
+   "case": "creator target is not matched by a free family",
+   "expect": "no match",
+   "best": {
+    "family": "Montserrat",
+    "iou": 0.855524,
+    "match": false
+   },
+   "ok": true
+  },
+  {
+   "case": "creator rebuilds the target 1:1 (built .ttf through HarfBuzz)",
+   "expect": "match",
+   "ok": false,
+   "score": {
+    "iou": 0.855277,
+    "edge_mean": 0.7002,
+    "edge_p95": 2.0,
+    "loss": 0.15172521049408255
+   },
+   "start": "Montserrat",
+   "starts": [
+    {
+     "family": "Montserrat",
+     "matcher_iou": 0.855524,
+     "iou": 0.855334,
+     "edge_mean": 0.6339,
+     "loss": 0.151005
+    },
+    {
+     "family": "Alexandria",
+     "matcher_iou": 0.784646,
+     "iou": 0.78538,
+     "edge_mean": 1.0,
+     "loss": 0.22462
+    },
+    {
+     "family": "Asap Sharp",
+     "matcher_iou": 0.701341,
+     "iou": 0.703603,
+     "edge_mean": 1.4195,
+     "loss": 0.310592
+    }
+   ],
+   "truth_global": {
+    "weight_units": 9.0,
+    "contrast_units": 5.0,
+    "x_height_scale": 1.05,
+    "overshoot_units": 6.0
+   },
+   "fitted_global": {
+    "weight_units": 0.0,
+    "contrast_units": 0.0,
+    "x_height_scale": 1.0,
+    "overshoot_units": 0.0
+   },
+   "fitted_axes": {
+    "wght": 604.557
+   },
+   "truth_axes": {
+    "wght": 480
+   },
+   "trace": [
+    {
+     "stage": "identity",
+     "iou": 0.855334,
+     "edge_mean": 0.6339
+    }
+   ],
+   "seconds": 284.7
+  },
+  {
+   "case": "two builds of the same params are byte-identical",
+   "expect": "green",
+   "ok": true,
+   "sha256": "bb477682f1f5c41a"
+  },
+  {
+   "case": "a parameter change is a variation (weight_units +20)",
+   "expect": "different and bolder",
+   "ok": true,
+   "iou_vs_target": 0.677113,
+   "stroke_p50": [
+    10.0,
+    14.422
+   ]
+  },
+  {
+   "case": "creator with every stage off does not reach the match rule",
+   "expect": "no match",
+   "ok": true,
+   "score": {
+    "stage": "identity",
+    "iou": 0.855334,
+    "edge_mean": 0.6339,
+    "edge_p95": 2.0,
+    "loss": 0.15100508464582188
+   }
+  }
+ ]
+}

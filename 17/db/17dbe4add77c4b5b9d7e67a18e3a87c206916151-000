@@ -1,0 +1,65 @@
+[18:18:40] measuring stem eq and stereo
+[18:19:15] fitting the mix bus
+[18:20:32] rendering from params
+[18:21:01] scoring
+[18:21:44] V_025 written
+{
+ "version": "V_025",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.06,
+   "onsetF": 0.8515,
+   "chroma": 0.975,
+   "envCorr": 0.9725,
+   "sectionEnv": 96.71,
+   "plossEvents": 60.012,
+   "plossBarNoOnset": 70.818,
+   "tfBands": 88.726
+  },
+  "bass": {
+   "plossFull": 0.0031,
+   "plossBarMedian": 0.559,
+   "onsetF": 0.6234,
+   "chroma": 0.971,
+   "envCorr": 0.9692,
+   "sectionEnv": 98.73,
+   "plossEvents": 55.441,
+   "plossBarNoOnset": 58.83,
+   "tfBands": 93.457
+  },
+  "other": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.5244,
+   "chroma": 0.8977,
+   "envCorr": 0.913,
+   "sectionEnv": 99.222,
+   "plossEvents": 64.409,
+   "plossBarNoOnset": 67.324,
+   "tfBands": 93.732
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457,
+   "plossEvents": null,
+   "plossBarNoOnset": 70.962,
+   "tfBands": 96.858
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 21.563,
+   "onsetF": 0.8518,
+   "chroma": 0.9668,
+   "envCorr": 0.9658,
+   "sectionEnv": 98.633,
+   "plossEvents": 65.963,
+   "plossBarNoOnset": 75.389,
+   "tfBands": 95.778
+  }
+ }
+}

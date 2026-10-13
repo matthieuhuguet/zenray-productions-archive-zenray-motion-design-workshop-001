@@ -1,0 +1,110 @@
+# F3, every text and 2D mark of onekey-pro-2 reproduced 1:1 (private benchmark) (12 October 2026)
+
+Status (12 October 2026): **partial**. 34 marks inventoried, 34 reproduced as motion versions with params.json, render.png, asset.svg and fidelity.json. Three SVG marks pass the 0.99 mask IoU rule (end logo 0.9994, battery icon 0.9961, padlock 0.9941, hard IoU). No text mark reaches 0.99 yet: the best reach 0.958 to 0.963 hard IoU (0.92 to 0.945 soft), and the cause is measured, not guessed (section 4). Every asset is private-1to1 (rights field in params.json, Rules.md 12 October 2026); nothing is published.
+
+## 1. What exists (12 October 2026)
+
+| File | Role |
+|---|---|
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/references/onekey-pro-2/marks-f3.json` | inventory: 34 marks (30 text, 4 SVG), hold window, search region, family, occluders; 4 marks declared out of scope with the reason (PRO 3D letters, EAL chip engraving, embossed back logo, filmed wallet app screens) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/zrmd/vector/marks.py` | new module: steady frame choice, alpha matting of light text over a local background (grey opening), occluders (residual, low contrast, boxes), line components (band, thickness, width and gap filters reject streaks), ink colour along x (lightmap), fitting loop (multi-start wght, size grid, column correlation, Nelder-Mead with explicit simplex, per-glyph advance deltas by least squares, bounded optical blur), cook (RGBA), editable text SVG (one named path per glyph, blur filter, lightmap gradient, params in metadata), fidelity (mask IoU hard and soft, sub-pixel edge distance, dE2000) |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/F3Marks.py` | CLI: `extract`, `coverage`, `fit`, `create` (F1 font creator chained from the best version, then refit), `svg` (F2 tracer, `--trace-text` for text), `vary`, `table` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/F3MatchFamily.py`, `F3ProbeFamilies.py` | family search: F1 matcher over 661 files, then the marks fitter on 26 then 6 families for every mark |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/F3CodecCeiling.py` | ceiling: exact outlines through the reference codec (H.264 1080p60 at 2 176 889 bit/s), read back by the same pipeline |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifyMarks.py` | verifier, both ways, `--sabotage` |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-<id>/V_NNN/` | one motion per mark, 125 versions in all, never overwritten |
+| `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-<id>/V_NNN/font.ttf` | 30 created private fonts (params.json, fit.json) |
+| `settings.json`, section `vector.marks` | every threshold and step of F3 (HDA law), including `create_overrides` so the F1 creator defaults stay untouched |
+
+Extensions of existing code, nothing rewritten (12 October 2026): `zrmd/vector/fontcreate.py` gains an optional `layout.blur_px` (render_params, render_built, default_params), unset means the F1 behaviour; backup of settings.json before F3 in the session scratchpad. Reference crops stay in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/onekey-pro-2/f3/`; no output pastes reference pixels (renders are outlines plus parameters).
+
+## 2. Method, as in zenray-height (12 October 2026)
+
+1. Inventory by measurement: a 0.5 s scan of the whole video (136 frames), a bright-text detector, then for each mark the frame of highest steady contrast inside its hold window (top-hat energy minus change to the neighbours). Three windows were moved after reading the crops (Ultra-crips 14.0 s, Find My 31.2 s, Air-gap 42.4 s, glyphs hidden by a bright background or a hand at the first pick).
+2. Reference coverage: background by grey opening, ink colour measured per 60 px bin along the line (the captions brighten along x, measured 2 to 15 percent), coverage by projection on (ink minus background), matting noise floor removed (p97 of far pixels), occluded or low-contrast pixels at weight 0.
+3. Family: no free family is the OneKey typeface. Best soft IoU with the marks fitter: Figtree on 11 marks, DM Sans 5, Albert Sans 5, Plus Jakarta Sans 6, Lexend 2 (F3-probe-all2.log). The F1 matcher (no blur, no weights) ranked Figtree first on Four secure elements at 0.849.
+4. Fit V_001 per mark with its best family, then two chained rounds of the F1 creator (globals, spacing, per-point offsets, blur carried) and a refit of the built font. Measured gain of the creator: 0.915 to 0.942 soft on Four secure elements, about plus 0.04 to 0.08 on most marks, plateau after the second round.
+5. SVG marks: the F2 tracer on the crop.
+
+## 3. Assets and scores (12 October 2026)
+
+Mask IoU hard = binary masks at 0.5 coverage (the usual mask IoU); soft = sum of minimum over sum of maximum of coverages (stricter, counts every anti-aliased pixel). Edge mean = sub-pixel contour distance both ways. dE2000 = mean over the ink band, rendered composite against the reference pixels. Ceiling = the same text with EXACT outlines through the reference codec (section 4).
+
+| Asset | Kind | Best version | Font or drawing | Mask IoU hard | Mask IoU soft | Edge mean px | dE2000 band | Codec ceiling hard / soft | Variation |
+|---|---|---|---|---|---|---|---|---|---|
+| t-title | text | V_001 of 2 | PlusJakartaSans wght 708 | 0.87711 | 0.86119 | 1.9514 | 10.206 |  | V_002 |
+| t-title-small | text | V_003 of 3 | created t-title-small/V_002 (base PlusJakartaSans) | 0.93755 | 0.87622 | 0.2377 | 5.903 | 0.99098 / 0.98571 |  |
+| t-beautifully-powerful | text | V_003 of 3 | created t-beautifully-powerful/V_002 (base PlusJakartaSans) | 0.93167 | 0.91835 | 0.3932 | 4.924 |  |  |
+| t-aluminum-unibody | text | V_003 of 3 | created t-aluminum-unibody/V_002 (base Figtree) | 0.95156 | 0.92013 | 0.2416 | 4.462 |  |  |
+| t-mirror-polished | text | V_006 of 6 | created t-mirror-polished/V_002 (base DMSans) | 0.85917 | 0.85153 | 1.7902 | 7.501 |  |  |
+| t-ultra-crips | text | V_007 of 7 | created t-ultra-crips/V_002 (base AlbertSans) | 0.93417 | 0.89258 | 0.2797 | 6.396 |  |  |
+| t-gorilla | text | V_002 of 4 | AlbertSans wght 579 | 0.73508 | 0.71466 | 0.6313 | 11.89 |  |  |
+| t-quantum-ready | text | V_006 of 6 | created t-quantum-ready/V_002 (base Figtree) | 0.91978 | 0.87889 | 0.4644 | 8.203 |  |  |
+| t-four-secure | text | V_009 of 15 | created t-four-secure/V_004 (base Figtree) | 0.9543 | 0.94228 | 0.2162 | 3.562 | 0.99133 / 0.98954 | V_015 |
+| t-eal | text | V_004 of 4 | created t-eal/V_002 (base Figtree) | 0.89673 | 0.84617 | 0.1904 | 7.628 |  |  |
+| t-unlock | text | V_003 of 3 | created t-unlock/V_002 (base Figtree) | 0.95489 | 0.91869 | 0.2265 | 4.311 |  |  |
+| t-with-a-touch | text | V_002 of 3 | created t-with-a-touch/V_001 (base DMSans) | 0.95007 | 0.92685 | 0.2015 | 4.433 |  |  |
+| t-clear-signing | text | V_003 of 3 | created t-clear-signing/V_002 (base Figtree) | 0.94225 | 0.92988 | 0.2425 | 6.021 |  |  |
+| t-see-exactly | text | V_003 of 3 | created t-see-exactly/V_002 (base AlbertSans) | 0.91378 | 0.89798 | 0.3726 | 6.588 |  |  |
+| t-cant-find | text | V_003 of 3 | created t-cant-find/V_002 (base PlusJakartaSans) | 0.95323 | 0.93047 | 0.2608 | 3.961 |  |  |
+| t-no-worries | text | V_003 of 4 | created t-no-worries/V_002 (base AlbertSans) | 0.96284 | 0.9452 | 0.1971 | 3.028 | 0.99727 / 0.99248 | V_004 |
+| t-find-my | text | V_004 of 4 | created t-find-my/V_002 (base DMSans) | 0.92561 | 0.88911 | 0.4072 | 6.772 |  |  |
+| t-charge-wirelessly | text | V_003 of 3 | created t-charge-wirelessly/V_002 (base Figtree) | 0.92468 | 0.87707 | 0.3484 | 6.82 |  |  |
+| t-backup-seedcard | text | V_003 of 3 | created t-backup-seedcard/V_002 (base DMSans) | 0.94917 | 0.90435 | 0.2281 | 5.371 |  |  |
+| t-bundled | text | V_002 of 3 | created t-bundled/V_001 (base DMSans) | 0.92924 | 0.87518 | 0.1467 | 5.874 | 0.99752 / 0.98633 |  |
+| t-air-gap | text | V_005 of 5 | created t-air-gap/V_002 (base DMSans) | 0.8284 | 0.79758 | 0.8577 | 12.128 |  |  |
+| t-nfc-passkey | text | V_003 of 3 | created t-nfc-passkey/V_002 (base PlusJakartaSans) | 0.93803 | 0.90539 | 0.2915 | 6.205 |  |  |
+| t-on-device | text | V_002 of 3 | created t-on-device/V_001 (base Figtree) | 0.95767 | 0.9224 | 0.1945 | 4.513 |  |  |
+| t-all-new | text | V_003 of 3 | created t-all-new/V_002 (base Lexend) | 0.89098 | 0.87462 | 0.2566 | 6.416 |  |  |
+| t-safeos | text | V_002 of 3 | created t-safeos/V_001 (base Figtree) | 0.95606 | 0.91797 | 0.276 | 5.278 |  |  |
+| t-open-source | text | V_003 of 3 | created t-open-source/V_002 (base Figtree) | 0.9566 | 0.93498 | 0.207 | 4.105 |  |  |
+| t-smoother | text | V_003 of 3 | created t-smoother/V_002 (base Figtree) | 0.95148 | 0.93096 | 0.2309 | 3.963 | 0.99798 / 0.9868 |  |
+| ui-onekey | text | V_003 of 4 | created ui-onekey/V_002 (base DMSans) | 0.91636 | 0.90251 | 0.254 | 5.324 |  | V_004 |
+| ui-unlock-line | text | V_003 of 3 | created ui-unlock-line/V_002 (base AlbertSans) | 0.86443 | 0.83014 | 0.1783 | 8.125 | 0.99406 / 0.97919 |  |
+| ui-battery-text | text | V_002 of 3 | created ui-battery-text/V_001 (base Figtree) | 0.91837 | 0.84776 | 0.1243 | 5.924 | 0.97523 / 0.9576 |  |
+| ui-padlock | svg | V_001 of 2 | SVG: path, path, path, path | 0.99411 | 0.97746 | 0.052 | 1.158 |  | V_002 |
+| logo-end | svg | V_001 of 2 | SVG: path, path | 0.99939 | 0.9934 | 0.0349 | 0.349 |  | V_002 |
+| ui-bluetooth | svg | V_001 of 1 | SVG: path, path, path | 0.79618 | 0.77094 | 0.3517 | 12.287 |  |  |
+| ui-battery | svg | V_001 of 1 | SVG: path | 0.99606 | 0.98766 | 0.0669 | 0.61 |  |  |
+
+Variations by parameters only (12 October 2026), one per family, each a new version with variation.json (changed true, IoU against its parent):
+
+| Family | Version | Parameters changed |
+|---|---|---|
+| caption | `motions/onekey-f3-t-four-secure/V_015` | text "Lighter. Sharper.", wght 700, colour #ff6a2b (IoU vs parent 0.258) |
+| title | `motions/onekey-f3-t-title/V_002` | text "ZenRay Pro 3", wght 500, colour #c84523 (0.241) |
+| device-ui | `motions/onekey-f3-ui-onekey/V_004` | text "ZenRay", wght 700, colour #9bd5ff (0.358) |
+| logo | `motions/onekey-f3-logo-end/V_002` | palette c1 #bb5d2e (the copper stage of the reference fade), mean change 22.0 |
+| icon | `motions/onekey-f3-ui-padlock/V_002` | palette c1 #4fc3f7, mean change 17.3 |
+| red case | `motions/onekey-f3-t-no-worries/V_004` | opacity 1.0 (already 1.0): changed false, IoU 1.0, as expected |
+
+Created fonts are static instances, so a weight variation of a created font goes through its params (`global.weight_units`, `Scripts/FontCreate.py vary`), not through wght.
+
+## 4. What blocks 0.99 on text, measured (12 October 2026)
+
+- **The codec allows it, the outlines do not.** Exact outlines encoded like the reference and read back: hard IoU 0.991 (Four secure elements, 105 px), 0.997 (No worries.), 0.998 (Smoother. Clearer.), 0.998 (Bundled with OneKey Pro 2, small), 0.994 (device unlock line), 0.975 (100%, 11 px tall). Soft IoU ceiling 0.958 to 0.992. So 0.99 hard is reachable for every caption and 0.99 soft only for the large ones; the small UI texts cannot reach 0.99 soft against this video whatever the outlines.
+- **The fitter is not the limit.** On the decoded synthetic frame with the true font the loop reaches 0.988 soft and 0.986 hard (size 104.875 for a truth of 104.860); with a wrong font (Plus Jakarta Sans) it stops at 0.900 (`F3-ceiling-four-secure.json`, `F3-ceiling-four-secure-red.json`).
+- **The residual is glyph shape.** The residual map of Four secure elements (best version) concentrates on terminal cuts of s, c, e, r and on the F (narrower bar, stem 1 px left), not on placement or blur: outline differences between the OneKey typeface and every free family. The F1 creator moves points along normals with smoothing and a step cap; longer snapping (200 iterations, step 0.02 em) gave no gain (V_010, V_011), so its deformation space cannot cut a terminal differently.
+- Mark specific: OneKey Pro 2 title, the creator build fails (`hmtx can't contain negative advance widths`: the hand hides "y " and the spacing fit drives an advance negative); Air-gap signing and with Corning Gorilla Glass have glyphs over a bright background (weight 0 on 1836 and 4669 px, "A" and "Glass"), so their IoU is computed on the visible part and the fit is weakly constrained; Mirror-polished aluminum keeps a light streak in its crop; the bluetooth icon is 14 px tall and the tracer merges its strokes (0.796).
+
+**Next lever, already launched**: trace the text itself as free SVG paths with the F2 tracer (`F3Marks.py svg --trace-text`), which reached 0.998 on synthetic glyphs in F2; it is running detached on No worries. and OneKey (PID in `F3-trace-text.pid`, log `F3-trace-text.log`, wait with `while ps -p $(cat F3-trace-text.pid) >/dev/null; do sleep 5; done`); the result lands as the next version of `motions/onekey-f3-t-no-worries` and `motions/onekey-f3-ui-onekey`. It had not finished after 35 minutes (the free-path refinement is the known slow part). If it passes, the glyphs traced there become the per-glyph outlines of one OneKey benchmark font (one drawing per glyph, reused by every caption), which is the route to 0.99 on all captions; the title also needs a non-negative advance bound in the creator spacing stage.
+
+## 5. Verification, both ways (12 October 2026)
+
+`Scripts/VerifyMarks.py --out F3-verify.json`: ok true, exit 0 (self match IoU 1.0; 1 px shift rejected at 0.852; text SVG against its raster 0.999; a colour variation changes the render; a no-op variation does not). `--sabotage` (rule off): ok false, exit 1. The fitter itself: green 0.988 on the true font, red 0.900 on a wrong font (section 4).
+
+## 6. Commands (12 October 2026)
+
+```bash
+cd /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign
+PY="$HOME/.venvs/zenray-motion/bin/python -I"
+$PY Scripts/F3Marks.py extract                      # frame choice for every mark (16 workers)
+$PY Scripts/F3Marks.py fit <ids> --file <font.ttf>   # one fitted version per mark
+$PY Scripts/F3Marks.py create <ids>                  # creator chained from the best version, then refit
+$PY Scripts/F3Marks.py svg <ids> [--trace-text]      # SVG marks (and text as free paths)
+$PY Scripts/F3Marks.py vary <id> --src V_005 --set 'text="..."' 'font.axes.wght=700' 'colour="#ff6a2b"'
+$PY Scripts/F3Marks.py table                         # best version per mark
+$PY Scripts/VerifyMarks.py ; $PY Scripts/VerifyMarks.py --sabotage
+```
+
+Edit a mark without asking: change a value in `motions/onekey-f3-<id>/V_NNN/params.json` through `vary --set` (text, size_px, tracking_em, font.axes, colour, lightmap.gain, blur_px, opacity, origin_px); the SVG gets the same parameters in its metadata and named glyph paths.

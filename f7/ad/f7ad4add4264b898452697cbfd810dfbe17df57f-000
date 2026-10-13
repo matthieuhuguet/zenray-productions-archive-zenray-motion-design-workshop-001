@@ -1,0 +1,20 @@
+{
+ "date": "12 October 2026",
+ "stereoShape": [
+  2,
+  48000
+ ],
+ "leftEqualsMono": true,
+ "rightDiffers": true,
+ "green": {
+  "score": 99.1008,
+  "b1": 99.82,
+  "seconds": 656.54
+ },
+ "red": {
+  "score": 81.8798,
+  "b1": 0.0,
+  "seconds": 295.24
+ },
+ "pass": false
+}

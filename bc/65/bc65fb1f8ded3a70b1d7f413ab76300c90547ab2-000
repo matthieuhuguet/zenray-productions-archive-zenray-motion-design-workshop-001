@@ -1,0 +1,37 @@
+{
+ "date": "12 October 2026",
+ "mark": "t-no-worries",
+ "version": "V_003",
+ "sabotage": true,
+ "ok": false,
+ "cases": [
+  {
+   "case": "self",
+   "expect": true,
+   "got": true,
+   "iou_soft": 1.0
+  },
+  {
+   "case": "shift 1 px",
+   "expect": false,
+   "got": true,
+   "iou_soft": 0.85164
+  },
+  {
+   "case": "svg vs raster",
+   "expect": true,
+   "got": true,
+   "iou_soft": 0.99895
+  },
+  {
+   "case": "variation colour",
+   "expect": true,
+   "got": true
+  },
+  {
+   "case": "no-op variation",
+   "expect": false,
+   "got": true
+  }
+ ]
+}

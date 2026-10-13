@@ -1,0 +1,256 @@
+{
+ "date": "12 October 2026",
+ "versions": {
+  "skia-python": "144.0.post2",
+  "uharfbuzz": "0.56.3",
+  "resvg-py": "0.5.0",
+  "numpy": "2.4.6"
+ },
+ "rule": {
+  "iou_min": 0.995,
+  "edge_mean_max_px": 0.05,
+  "edge_p95_max_px": 0.5
+ },
+ "text": "Hamburgefonstiv",
+ "cases": [
+  {
+   "case": "self identity",
+   "expect": "match",
+   "got": "match",
+   "ok": true,
+   "iou": {
+    "soft": 1.0,
+    "hard": 1.0
+   },
+   "edge": {
+    "mean": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+   },
+   "delta": {
+    "stroke_p50": 0.0,
+    "stroke_contrast": 0.0,
+    "x_height": 0.0,
+    "cap_height": 0.0,
+    "ink_width": 0.0
+   },
+   "a": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "37fda196e2367bf3"
+   },
+   "b": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "37fda196e2367bf3"
+   }
+  },
+  {
+   "case": "wrong font",
+   "expect": "mismatch",
+   "got": "mismatch",
+   "ok": true,
+   "iou": {
+    "soft": 0.300251,
+    "hard": 0.301127
+   },
+   "edge": {
+    "mean": 3.974,
+    "p95": 12.0,
+    "max": 45.0
+   },
+   "delta": {
+    "stroke_p50": 0.0,
+    "stroke_contrast": 0.194,
+    "x_height": -3.0,
+    "cap_height": -5.0,
+    "ink_width": -45.0
+   },
+   "a": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "37fda196e2367bf3"
+   },
+   "b": {
+    "file": "Archivo[wdth,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "548e284c7692b3c5"
+   }
+  },
+  {
+   "case": "wrong weight",
+   "expect": "mismatch",
+   "got": "mismatch",
+   "ok": true,
+   "iou": {
+    "soft": 0.454229,
+    "hard": 0.456295
+   },
+   "edge": {
+    "mean": 2.3384,
+    "p95": 7.0,
+    "max": 12.1655
+   },
+   "delta": {
+    "stroke_p50": 2.0,
+    "stroke_contrast": 0.113,
+    "x_height": 0.0,
+    "cap_height": 0.0,
+    "ink_width": 12.0
+   },
+   "a": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "37fda196e2367bf3"
+   },
+   "b": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 500,
+    "sha256": "caeb0d4852c51b5b"
+   }
+  },
+  {
+   "case": "wrong size",
+   "expect": "mismatch",
+   "got": "mismatch",
+   "ok": true,
+   "iou": {
+    "soft": 0.237594,
+    "hard": 0.237961
+   },
+   "edge": {
+    "mean": 4.0075,
+    "p95": 12.0,
+    "max": 31.0644
+   },
+   "delta": {
+    "stroke_p50": 0.944,
+    "stroke_contrast": 0.0,
+    "x_height": 2.0,
+    "cap_height": 3.0,
+    "ink_width": 31.0
+   },
+   "a": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 96,
+    "weight": 400,
+    "sha256": "37fda196e2367bf3"
+   },
+   "b": {
+    "file": "Inter[opsz,wght].ttf",
+    "size": 100,
+    "weight": 400,
+    "sha256": "fa497a328def6312"
+   }
+  },
+  {
+   "case": "deterministic bytes",
+   "expect": "match",
+   "got": "match",
+   "ok": true,
+   "sha256": "37fda196e2367bf3f82d8e7062f726a43e719965183374903e93f3b636c53b73"
+  },
+  {
+   "case": "editable svg round trip (skia)",
+   "expect": "match",
+   "got": "match",
+   "ok": true,
+   "iou": {
+    "soft": 0.999019,
+    "hard": 0.999817
+   },
+   "edge": {
+    "mean": 0.0006,
+    "p95": 0.0,
+    "max": 1.0
+   },
+   "rule": {
+    "iou_min": 0.995,
+    "edge_mean_max_px": 0.05,
+    "edge_p95_max_px": 0.5
+   }
+  },
+  {
+   "case": "editable svg round trip (resvg)",
+   "expect": "match",
+   "got": "match",
+   "ok": true,
+   "iou": {
+    "soft": 0.987778,
+    "hard": 0.973358
+   },
+   "edge": {
+    "mean": 0.0916,
+    "p95": 1.0,
+    "max": 1.4142
+   },
+   "rule": {
+    "iou_min": 0.98,
+    "edge_mean_max_px": 0.15,
+    "edge_p95_max_px": 1.0
+   }
+  },
+  {
+   "case": "editable svg, one glyph moved 1 px",
+   "expect": "mismatch",
+   "got": "mismatch",
+   "ok": true,
+   "iou": {
+    "soft": 0.849956,
+    "hard": 0.850673
+   },
+   "edge": {
+    "mean": 0.5482,
+    "p95": 1.0,
+    "max": 1.0
+   }
+  },
+  {
+   "case": "kerning from ink profile",
+   "expect": "match",
+   "got": "match",
+   "ok": true,
+   "measured": [
+    -7.0,
+    -6.0,
+    -8.0,
+    -8.0,
+    0.0,
+    0.0,
+    -8.0
+   ],
+   "font": [
+    -6.5625,
+    -6.5625,
+    -8.1562,
+    -8.1562,
+    0.0,
+    0.0,
+    -7.5
+   ],
+   "max_err_px": 0.5625
+  }
+ ],
+ "sweep": {
+  "families": 98,
+  "self_ok": 98,
+  "self_total": 98,
+  "neighbour_ok": 98,
+  "neighbour_total": 98,
+  "worst_neighbour_iou": 0.7443,
+  "duplicate_outlines": [
+   [
+    "Lexend",
+    "Lexend Deca"
+   ]
+  ],
+  "failures": []
+ },
+ "ok": true
+}

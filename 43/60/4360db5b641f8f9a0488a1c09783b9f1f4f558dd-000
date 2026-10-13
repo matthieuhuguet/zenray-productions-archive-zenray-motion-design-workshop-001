@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+<metadata>{"schema": "zrmd/asset2d@1", "asset": "verify-glow", "version": "V_001", "date": "12 October 2026"}</metadata>
+<defs><radialGradient id="grad-L00" gradientUnits="userSpaceOnUse" cx="80.017" cy="80.017" r="112.455"><stop offset="0" stop-color="#ffb86b"/><stop offset="0.53333" stop-color="#291f18"/><stop offset="0.6" stop-color="#0c0a0d"/><stop offset="0.66667" stop-color="#040409"/><stop offset="0.73333" stop-color="#06050a"/><stop offset="1" stop-color="#05050a"/></radialGradient></defs>
+<g id="L00-background" data-kind="rect"><rect x="0" y="0" width="160" height="160" fill="url(#grad-L00)"/></g>
+</svg>

@@ -1,0 +1,62 @@
+# F2, 2D asset and SVG creator (12 October 2026)
+
+Status: built and verified both ways on synthetic SVGs. Real reference crop: see the last section.
+
+## What exists
+
+| File | Role |
+|---|---|
+| `ZenRayMotionDesign/zrmd/vector/trace.py` | Deterministic raster to vector, written from the mathematics (no vendored code, no potrace, no vtracer copy). Segmentation into regions joined by small neighbour steps (a gradient stays one region, a hard or blurred edge splits), anti-aliasing slivers absorbed by a two-colour mixing test, colour model per region (flat, linear or radial gradient with stops), stacking by containment, soft coverage target per layer, Gaussian blur estimated from the edge profile, sub-pixel contours, cubic Bezier fitting (Schneider: corners, chord-length parameters, Newton reparameterisation, split at worst point, error bound `fit_error_px` = 0.3 px), then least squares refinement of every control point on the rendered Skia coverage against the target. |
+| `zrmd/vector/primitives.py` | Primitive recognition first: circle, ellipse, rect, rounded_rect (fills); line, arc (a full arc is a ring), polyline, stroke_path (strokes, with width, caps). Each candidate is initialised from moments or the skeleton, refined by least squares, accepted only inside the primitive rule (soft IoU >= 0.995, edge mean <= 0.15 px). A wrong primitive fails measurably instead of being forced. |
+| `zrmd/vector/asset.py` | `vectorise()` builds params (schema `zrmd/asset2d@1`: palette, layers with kind, geometry, paint, effects blur and opacity, fit measures, shader-bank hints such as `linear_ramp4`, `radial_gradient3`, `glow_gaussian`, `blur_disc_gaussian`). `cook_svg()` bakes params into `asset.svg`, one named `<g id="L02-arc" data-kind="arc">` per layer, gradients in `<defs>`. `evaluate()` gives fidelity (per layer soft IoU and sub-pixel edge distance, composite colour MAE and p99). `write_version()` writes V_NNN, never overwriting. `apply_overrides()` edits by layer id and names an unknown id. Reference crops get `rights: private-1to1`. |
+| `Scripts/Vectorise.py` (new this run) | CLI. `trace <image> --id ID [--box x y w h] [--private]` and `rebuild <asset_dir> [--set dotted=value ...] [--overrides FILE] [--source IMAGE]` (HDA loop: edit a value, cook a new version without retracing). |
+| `Scripts/VerifySvgTrace.py` | Verifier, 16 workers, `--json`, `--out`, `--write`, `--sabotage`, `--case`. |
+| `datasets/vector/synthetic-svg-cases.json` | 16 synthetic SVGs on a 160 x 160 canvas. |
+| `settings.json`, section `vector.trace` | Every threshold: tracing, primitives, fidelity (iou_min 0.99, edge_mean_max_px 0.5, colour_mae_max 2.0, colour_p99_max 24), verify (iou_min 0.995, colour_mae_max 1.5, shift_px 1.0, blur_tol 0.15), `raster_ss` 4 (reference rasteriser: Skia at 1x under-covers curved strokes, 1657.2 px against an exact 1664.18). |
+
+Output per asset, under `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/assets2d/<id>/V_NNN/`: `asset.svg`, `params.json`, `render.png`, `fidelity.json`, `version.json`.
+
+## Verification, both ways
+
+Green run: `~/.venvs/zenray-motion/bin/python -I Scripts/VerifySvgTrace.py --out ../docs/build/F2-svg-verify.json`, exit 0, 365.5 s (the `glyphs` case alone takes 364 s, every other case under 61 s). 16 green and 19 red cases as expected, 0 failed.
+
+| Case | Recovered kinds | min IoU | edge mean px | colour MAE |
+|---|---|---|---|---|
+| circle | circle | 0.99988 | 0.0024 | 0.001 |
+| ellipse | ellipse | 0.99982 | 0.0072 | 0.003 |
+| rect | rect | 0.99991 | 0.0022 | 0.000 |
+| rounded_rect | rounded_rect | 0.99989 | 0.0056 | 0.006 |
+| line | line | 0.99954 | 0.0025 | 0.001 |
+| arc | arc | 0.99962 | 0.0021 | 0.004 |
+| ring | arc | 0.99972 | 0.0065 | 0.003 |
+| stroke_icon | polyline + line | 0.99956 | 0.0026 | 0.004 |
+| curve_stroke | stroke_path | 0.99685 | 0.0368 | 0.030 |
+| blob | free path | 0.99928 | 0.0327 | 0.030 |
+| glyphs | 2 free paths | 0.99819 | 0.0230 | 0.049 |
+| linear_gradient | rect, linear paint | 0.99981 | 0.0128 | 0.037 |
+| radial_gradient | circle, radial paint | 0.99945 | 0.0264 | 0.135 |
+| blur_disc | circle, blur 3 recovered within 15 percent | 0.99896 | 0.0058 | 0.001 |
+| glow | background radial paint | n/a | n/a | 0.409 |
+| logo | rounded_rect (linear) + arc + circle | 0.99927 | 0.0076 | 0.086 |
+
+All green cases exceed the 0.995 IoU target. Red cases: every asset with one layer shifted by 1 px fails (IoU 0.87 to 0.98), and every forced wrong primitive is rejected (circle as rect best IoU 0.836, rounded_rect as circle 0.800, arc as line 0.212, curve_stroke as polyline 0.935).
+
+Sabotage run (`--sabotage`: refinement off, forced primitives accepted): exit 1, 17 failed (13 green cases lose fidelity or kinds, 4 wrong-primitive reds are accepted), 5.9 s. Report: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F2-svg-verify-sabotage.json`.
+
+Editing loop proven: `VerifySvgTrace.py --case logo glow --write` wrote `assets2d/_verify/logo/V_001`, then `Vectorise.py rebuild assets2d/_verify/logo --set 'palette.c1="#ff3366"'` wrote V_002 (parent V_001) with only the palette entry changed and V_001 untouched.
+
+## Known limits
+
+- The free-path refinement is slow on text: `glyphs` 364 s on one worker. Layers already run in parallel; a coarse-to-fine refinement would be the next lever.
+- Gradients are fitted as SVG paint; blur is an SVG Gaussian filter, with shader-bank names recorded in `shader_hint` for the HyperFrames layer. A glow that is not a separate shape is folded into the background radial paint (case `glow`).
+- No fitting loop yet that chains several frames of a motion; F2 is per still crop.
+
+## Real reference crop (12 October 2026, pending)
+
+Crop: `<refcache>/onekey-pro-2/looks/logo-colour-fade-1.png`, box 120 100 150 220 (the orange "1" over the ring with a dark gradient), traced as a private 1:1 benchmark (`--private`, `rights: private-1to1`, never published). The first attempt ran 31 minutes on a machine saturated by other sessions' workers without finishing, so it was stopped and relaunched detached:
+
+- PID in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F2-real-crop.pid`, log `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/F2-real-crop.log`.
+- Result lands in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/assets2d/onekey-logo-1to1/V_001/` with `fidelity.json`; the command exits 1 if the 0.99 IoU and 0.5 px rule is not reached.
+- Wait with `while ps -p $(cat F2-real-crop.pid) >/dev/null; do sleep 5; done` (never `pgrep -f` on the script name, which matches its own shell).
+
+Not verified yet: whether a real anti-aliased, compressed frame reaches IoU 0.99. The slow part is the per-layer least squares refinement of free paths; it is the next speed lever.

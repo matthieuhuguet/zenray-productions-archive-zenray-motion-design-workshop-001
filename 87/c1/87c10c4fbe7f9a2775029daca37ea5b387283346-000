@@ -1,0 +1,28 @@
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 228 fits, 21 s
+dfit stage 2 chains: 224 fits, 1096 s
+dfit stage 3 grow: 99 fits, 2386 s
+dfit stage 4 full: 16 fits, 4452 s
+dfit done: 4455 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/V_021",
+ "events": 4,
+ "scores": {
+  "full": {
+   "sound": 83.77,
+   "sfx": 78.5,
+   "timing": 75.0,
+   "mix": 99.84,
+   "music": 99.16
+  },
+  "S02": {
+   "sound": 99.67,
+   "sfx": 100.0,
+   "timing": 100.0,
+   "mix": 99.03,
+   "music": 99.29
+  }
+ },
+ "seconds": 4478.7
+}

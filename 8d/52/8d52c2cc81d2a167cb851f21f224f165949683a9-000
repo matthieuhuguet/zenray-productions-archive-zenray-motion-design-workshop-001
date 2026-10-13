@@ -1,0 +1,69 @@
+[17:25:13] sms analysis and calibration
+[17:27:20] sms drums: calibration mean |dB| per round [{'kick': 3.233, 'snare': 2.97, 'clap': 2.081, 'hatClosed': 4.116, 'hatOpen': 4.084}, {'kick': 2.401, 'snare': 2.042, 'clap': 1.933, 'hatClosed': 2.59, 'hatOpen': 2.651}, {'kick': 2.279, 'snare': 1.86, 'clap': 1.789, 'hatClosed': 2.35, 'hatOpen': 2.267}, {'kick': 2.198, 'snare': 1.754, 'clap': 1.716, 'hatClosed': 2.217, 'hatOpen': 2.128}, {'kick': 2.13, 'snare': 1.668, 'clap': 1.688, 'hatClosed': 2.128, 'hatOpen': 2.096}, {'kick': 2.085, 'snare': 1.615, 'clap': 1.635, 'hatClosed': 2.051, 'hatOpen': 2.036}]
+[17:27:20] sms bass: calibration mean |dB| per round [{'bass': 1.235}, {'bass': 0.802}, {'bass': 0.63}, {'bass': 0.527}, {'bass': 0.486}, {'bass': 0.478}]
+[17:27:20] sms other: calibration mean |dB| per round [{'otherLow': 6.446, 'otherMid': 1.504, 'otherHigh': 1.299}, {'otherLow': 2.765, 'otherMid': 0.914, 'otherHigh': 0.764}, {'otherLow': 1.854, 'otherMid': 0.685, 'otherHigh': 0.522}, {'otherLow': 1.556, 'otherMid': 0.56, 'otherHigh': 0.395}, {'otherLow': 1.451, 'otherMid': 0.473, 'otherHigh': 0.306}, {'otherLow': 1.408, 'otherMid': 0.403, 'otherHigh': 0.242}]
+[17:27:20] measuring stem eq and stereo
+[17:28:06] fitting the mix bus
+[17:29:47] rendering from params
+[17:30:32] scoring
+[17:31:28] V_012 written
+{
+ "version": "V_012",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.003,
+   "onsetF": 0.8728,
+   "chroma": 0.9663,
+   "envCorr": 0.9789,
+   "sectionEnv": 83.919,
+   "plossEvents": 44.78,
+   "plossBarNoOnset": 63.722,
+   "tfBands": 85.046
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.157,
+   "onsetF": 0.5552,
+   "chroma": 0.9412,
+   "envCorr": 0.9666,
+   "sectionEnv": 98.604,
+   "plossEvents": 53.391,
+   "plossBarNoOnset": 57.434,
+   "tfBands": 92.005
+  },
+  "other": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.529,
+   "chroma": 0.8968,
+   "envCorr": 0.9138,
+   "sectionEnv": 99.267,
+   "plossEvents": 62.564,
+   "plossBarNoOnset": 66.603,
+   "tfBands": 91.85
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457,
+   "plossEvents": null,
+   "plossBarNoOnset": 70.962,
+   "tfBands": 96.858
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 28.889,
+   "onsetF": 0.8207,
+   "chroma": 0.9441,
+   "envCorr": 0.974,
+   "sectionEnv": 99.271,
+   "plossEvents": 66.836,
+   "plossBarNoOnset": 75.335,
+   "tfBands": 95.526
+  }
+ }
+}

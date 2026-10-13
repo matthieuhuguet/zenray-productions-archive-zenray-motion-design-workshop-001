@@ -1,0 +1,175 @@
+[
+ {
+  "target": "notify_two_tone",
+  "case": 1,
+  "score": 98.6502,
+  "b1": 99.619,
+  "seconds": 1121.31,
+  "scan": {
+   "rounds": 6,
+   "moves": 10,
+   "gain": [
+    68.4406,
+    5.1843,
+    3.9545,
+    0.1122,
+    0.0105,
+    0.0
+   ],
+   "cma": {
+    "runs": 2,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 12,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 1807.092529,
+   "interval_st": 0.933926,
+   "step_s": 0.31361,
+   "note_decay_s": 0.204116,
+   "h3_db": -16.633842,
+   "note2_db": -5.336265,
+   "amp_db": -46.916855,
+   "onset_s": 0.203094
+  },
+  "params": {
+   "f1_hz": 1807.172729,
+   "interval_st": 0.929743,
+   "step_s": 0.313239,
+   "note_decay_s": 0.202181,
+   "h3_db": -16.820202,
+   "note2_db": -7.398604,
+   "amp_db": -46.508522,
+   "onset_s": 0.203278
+  },
+  "ok": false
+ },
+ {
+  "target": "notify_two_tone",
+  "case": 2,
+  "score": 99.9625,
+  "b1": 99.939,
+  "seconds": 21.9,
+  "scan": {
+   "rounds": 0,
+   "moves": 0,
+   "cma": {
+    "runs": 0,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 2272.454346,
+   "interval_st": 7.887779,
+   "step_s": 0.12432,
+   "note_decay_s": 0.475221,
+   "h3_db": -26.652924,
+   "note2_db": -8.257702,
+   "amp_db": -29.468422,
+   "onset_s": 0.140039
+  },
+  "params": {
+   "f1_hz": 2272.525879,
+   "interval_st": 7.886053,
+   "step_s": 0.123259,
+   "note_decay_s": 0.47421,
+   "h3_db": -26.603886,
+   "note2_db": -7.873196,
+   "amp_db": -29.667288,
+   "onset_s": 0.14029
+  },
+  "ok": true
+ },
+ {
+  "target": "notify_arpeggio",
+  "case": 1,
+  "score": 99.9525,
+  "b1": 99.991,
+  "seconds": 27.72,
+  "scan": {
+   "rounds": 0,
+   "moves": 0,
+   "cma": {
+    "runs": 0,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 609.467285,
+   "step1_st": 9.049009,
+   "step2_st": 6.148157,
+   "step_s": 0.048737,
+   "note_decay_s": 0.281533,
+   "tilt": 1.285453,
+   "amp_db": -34.437141,
+   "onset_s": 0.211784
+  },
+  "params": {
+   "f1_hz": 609.422546,
+   "step1_st": 9.05374,
+   "step2_st": 6.149452,
+   "step_s": 0.048783,
+   "note_decay_s": 0.281016,
+   "tilt": 1.282116,
+   "amp_db": -34.421303,
+   "onset_s": 0.211875
+  },
+  "ok": true
+ },
+ {
+  "target": "notify_arpeggio",
+  "case": 2,
+  "score": 99.9792,
+  "b1": 99.997,
+  "seconds": 768.54,
+  "scan": {
+   "rounds": 3,
+   "moves": 11,
+   "gain": [
+    257.5804,
+    68.543,
+    0.2661
+   ],
+   "cma": {
+    "runs": 0,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 252.382141,
+   "step1_st": 1.930752,
+   "step2_st": 6.82081,
+   "step_s": 0.185814,
+   "note_decay_s": 0.082871,
+   "tilt": 2.365049,
+   "amp_db": -37.98571,
+   "onset_s": 0.121797
+  },
+  "params": {
+   "f1_hz": 253.241898,
+   "step1_st": 1.855037,
+   "step2_st": 6.836167,
+   "step_s": 0.185766,
+   "note_decay_s": 0.082855,
+   "tilt": 2.362148,
+   "amp_db": -37.980896,
+   "onset_s": 0.121895
+  },
+  "ok": true
+ }
+]

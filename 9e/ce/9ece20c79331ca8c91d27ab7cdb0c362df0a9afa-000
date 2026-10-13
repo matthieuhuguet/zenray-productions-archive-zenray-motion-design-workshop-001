@@ -1,0 +1,182 @@
+{
+ "date": "12 October 2026",
+ "blocks": {
+  "hit_sequence": {
+   "contractErrors": [
+    "block.json missing 'licence'",
+    "block.json differs from block.py (run Scripts/BuildSoundBank.py)",
+    "licence 'None' is not original, MIT, BSD, ISC, Apache-2.0, CC0 or public domain"
+   ],
+   "renderEqual": true,
+   "demoEqual": true,
+   "identityScore": 100.0,
+   "finite": true,
+   "peak": 0.4142,
+   "ok": false
+  }
+ },
+ "cases": [
+  {
+   "target": "hit_sequence",
+   "fit": "additive_harmonic",
+   "case": 0,
+   "expect": "recover",
+   "params": {
+    "count": 7.0,
+    "rate_hz": 11.7,
+    "accel": 1.0,
+    "jitter": 0.1,
+    "crescendo_db": 0.0,
+    "level_spread_db": 3.0,
+    "click_hz": 2500.0,
+    "bw_oct": 2.0,
+    "bright_spread_oct": 0.3,
+    "decay_s": 0.04,
+    "body_hz": 180.0,
+    "body_db": -20.0,
+    "amp_db": -14.0,
+    "onset_s": 0.02
+   },
+   "score": 0.1384,
+   "b1Score": 0.514,
+   "errors": {
+    "stft": 12.2811,
+    "mel": 10.4073,
+    "envelope": 19.8959,
+    "onset": -0.0379
+   },
+   "fitted": {
+    "f0_hz": 388.158173,
+    "tilt_db_oct": 0.048,
+    "even_db": -0.080002,
+    "decay_s": 2.142262,
+    "decay_tilt": 0.004,
+    "attack_s": 0.001013,
+    "amp_db": -30.73333,
+    "onset_s": 0.018693
+   },
+   "seconds": 349.81,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 230,
+   "starts": 30,
+   "ok": false
+  },
+  {
+   "target": "hit_sequence",
+   "fit": "keyboard_typing",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "count": 12.0,
+    "rate_hz": 14.0,
+    "accel": 1.8,
+    "jitter": 0.1,
+    "crescendo_db": 12.0,
+    "level_spread_db": 3.0,
+    "click_hz": 2500.0,
+    "bw_oct": 2.0,
+    "bright_spread_oct": 1.5,
+    "decay_s": 0.04,
+    "body_hz": 180.0,
+    "body_db": -40.0,
+    "amp_db": -14.0,
+    "onset_s": 0.02
+   },
+   "score": 4.3058,
+   "b1Score": 26.809,
+   "errors": {
+    "stft": 7.1696,
+    "mel": 7.3545,
+    "envelope": 14.3945,
+    "onset": -0.5
+   },
+   "fitted": {
+    "count": 11.008497,
+    "rate_hz": 15.486671,
+    "jitter": 0.0074,
+    "accent_db": 1.592307,
+    "click_hz": 2691.404785,
+    "decay_s": 0.082772,
+    "amp_db": -17.810226,
+    "onset_s": 0.022541
+   },
+   "seconds": 407.2,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 245,
+   "starts": 18,
+   "ok": true
+  },
+  {
+   "target": "hit_sequence",
+   "fit": "drum_step_pattern",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "count": 12.0,
+    "rate_hz": 14.0,
+    "accel": 1.8,
+    "jitter": 0.1,
+    "crescendo_db": 12.0,
+    "level_spread_db": 3.0,
+    "click_hz": 2500.0,
+    "bw_oct": 2.0,
+    "bright_spread_oct": 1.5,
+    "decay_s": 0.04,
+    "body_hz": 180.0,
+    "body_db": -40.0,
+    "amp_db": -14.0,
+    "onset_s": 0.02
+   },
+   "score": 1.2222,
+   "b1Score": 34.154,
+   "errors": {
+    "stft": 7.3906,
+    "mel": 8.0358,
+    "envelope": 17.862,
+    "onset": -0.0177
+   },
+   "fitted": {
+    "onset_s": 0.022921,
+    "step_s": 0.197339,
+    "body_hz": 283.646271,
+    "drop_st": 33.204208,
+    "body_t60": 0.085307,
+    "noise_hz": 2998.801758,
+    "noise_t60": 0.399678,
+    "b1_db": -8.137249,
+    "b2_db": -22.715935,
+    "b3_db": -27.655788,
+    "b4_db": -3.831974,
+    "n1_db": -9.41869,
+    "n2_db": -5.465935,
+    "n3_db": -1.200657,
+    "n4_db": -9.497364,
+    "amp_db": -19.447948
+   },
+   "seconds": 411.03,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 250,
+   "starts": 16,
+   "ok": true
+  }
+ ],
+ "thresholds": {
+  "recoverMin": 99.5,
+  "wrongMax": 90.0
+ },
+ "summary": {
+  "pass": false,
+  "recoverMinScore": 0.1384,
+  "rejectMaxScore": 4.3058,
+  "overlapMaxScore": null,
+  "cases": 3,
+  "failed": [
+   "hit_sequence#0 fit additive_harmonic (recover): 0.1384"
+  ],
+  "seconds": 412.4,
+  "sabotage": true
+ }
+}

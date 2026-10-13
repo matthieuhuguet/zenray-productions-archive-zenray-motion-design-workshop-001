@@ -1,0 +1,1652 @@
+[
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.88072,
+  "axes": {
+   "wght": 705.7473531076511
+  },
+  "size": 241.00671794100367
+ },
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.74522,
+  "axes": {
+   "wght": 1000.0,
+   "opsz": 38.222093071238675
+  },
+  "size": 250.15136967590615
+ },
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.8629,
+  "axes": {
+   "wght": 667.5594892651798
+  },
+  "size": 261.2251548278057
+ },
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.85967,
+  "axes": {
+   "wght": 628.6501217865437
+  },
+  "size": 268.71566127295995
+ },
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.83764,
+  "axes": {
+   "wght": 520.7939821261273
+  },
+  "size": 258.1965747929571
+ },
+ {
+  "mark": "t-title",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.81806,
+  "axes": {
+   "wght": 704.8662665418166
+  },
+  "size": 262.66121115005797
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.83515,
+  "axes": {
+   "wght": 743.8459005142798
+  },
+  "size": 53.02461834824746
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.82852,
+  "axes": {
+   "wght": 707.0355672874005,
+   "opsz": 15.498852245007958
+  },
+  "size": 57.16303626630339
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.83013,
+  "axes": {
+   "wght": 670.4884753647591
+  },
+  "size": 57.3858161958797
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.81795,
+  "axes": {
+   "wght": 667.8949541336823
+  },
+  "size": 59.74406709428156
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.80187,
+  "axes": {
+   "wght": 541.2511623296178
+  },
+  "size": 56.37807120531426
+ },
+ {
+  "mark": "t-title-small",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.8018,
+  "axes": {
+   "wght": 718.4774321729736
+  },
+  "size": 58.729871970473646
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.86235,
+  "axes": {
+   "wght": 540.8439680651041
+  },
+  "size": 106.72324894730629
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.84909,
+  "axes": {
+   "wght": 567.9119213022242,
+   "opsz": 14.670051380234762
+  },
+  "size": 113.34902037546274
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.81227,
+  "axes": {
+   "wght": 576.2523167427096
+  },
+  "size": 115.0309071555641
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.81783,
+  "axes": {
+   "wght": 537.9658102186019
+  },
+  "size": 119.90891619225866
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.83202,
+  "axes": {
+   "wght": 429.5328824511384
+  },
+  "size": 111.22328285894284
+ },
+ {
+  "mark": "t-beautifully-powerful",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.85873,
+  "axes": {
+   "wght": 526.3819954733315
+  },
+  "size": 116.27337768724583
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.85733,
+  "axes": {
+   "wght": 623.125250656133
+  },
+  "size": 90.80083571059615
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.87766,
+  "axes": {
+   "wght": 573.049810721176,
+   "opsz": 10.716824405567225
+  },
+  "size": 93.42913090609174
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.90845,
+  "axes": {
+   "wght": 528.2769259919193
+  },
+  "size": 97.38731365310241
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.88862,
+  "axes": {
+   "wght": 517.905655426594
+  },
+  "size": 102.86044755670622
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.89602,
+  "axes": {
+   "wght": 421.12476838407207
+  },
+  "size": 92.7804990189788
+ },
+ {
+  "mark": "t-aluminum-unibody",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.86093,
+  "axes": {
+   "wght": 518.4432091139703
+  },
+  "size": 98.12396430231999
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.31457,
+  "axes": {
+   "wght": 800.0
+  },
+  "size": 118.52985210688661
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.3349,
+  "axes": {
+   "wght": 1000.0,
+   "opsz": 9.085589146116389
+  },
+  "size": 113.59732327596286
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.31609,
+  "axes": {
+   "wght": 897.2343266337248
+  },
+  "size": 118.42530529866515
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.33572,
+  "axes": {
+   "wght": 884.8233857952938
+  },
+  "size": 123.35331265236474
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.64946,
+  "axes": {
+   "wght": 532.0423601352963
+  },
+  "size": 100.74738714998765
+ },
+ {
+  "mark": "t-mirror-polished",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.32699,
+  "axes": {
+   "wght": 900.0
+  },
+  "size": 116.77564020100195
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.82578,
+  "axes": {
+   "wght": 547.9104884249898
+  },
+  "size": 89.23434730491407
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.84746,
+  "axes": {
+   "wght": 521.1778684212495,
+   "opsz": 12.988257555670156
+  },
+  "size": 92.80401726206465
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.84388,
+  "axes": {
+   "wght": 531.4672236661976
+  },
+  "size": 95.72726587606824
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.81122,
+  "axes": {
+   "wght": 522.9837573280333
+  },
+  "size": 100.80505176566952
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.78813,
+  "axes": {
+   "wght": 403.34223147438263
+  },
+  "size": 91.72978503757544
+ },
+ {
+  "mark": "t-ultra-crips",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.85019,
+  "axes": {
+   "wght": 525.4074464615109
+  },
+  "size": 96.4128717727294
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.71584,
+  "axes": {
+   "wght": 631.5673720613062
+  },
+  "size": 34.036370745849624
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.69593,
+  "axes": {
+   "wght": 572.7481750537054,
+   "opsz": 23.56343864389243
+  },
+  "size": 36.639360537652706
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.68234,
+  "axes": {
+   "wght": 629.5175585900265
+  },
+  "size": 36.71904616543006
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.69102,
+  "axes": {
+   "wght": 574.3077776211078
+  },
+  "size": 38.398476956431715
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.67761,
+  "axes": {
+   "wght": 438.9300085322798
+  },
+  "size": 35.80566171248734
+ },
+ {
+  "mark": "t-gorilla",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.72344,
+  "axes": {
+   "wght": 576.1689339061966
+  },
+  "size": 36.80313723856743
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.81606,
+  "axes": {
+   "wght": 580.7545407547688
+  },
+  "size": 90.31227602960388
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.83195,
+  "axes": {
+   "wght": 523.5590387110396,
+   "opsz": 15.499950604521016
+  },
+  "size": 95.46869950433283
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.85437,
+  "axes": {
+   "wght": 530.1058567606547
+  },
+  "size": 97.60083098187532
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.83285,
+  "axes": {
+   "wght": 508.0420916190598
+  },
+  "size": 102.57146241323264
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.73894,
+  "axes": {
+   "wght": 450.647372106707
+  },
+  "size": 94.19530375285133
+ },
+ {
+  "mark": "t-quantum-ready",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.83278,
+  "axes": {
+   "wght": 519.8497990062027
+  },
+  "size": 99.0319902449697
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.86757,
+  "axes": {
+   "wght": 650.0091641575226
+  },
+  "size": 96.1487087818853
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.89611,
+  "axes": {
+   "wght": 513.5499859196176,
+   "opsz": 13.157231468054114
+  },
+  "size": 101.448947393417
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.9149,
+  "axes": {
+   "wght": 530.4752365477788
+  },
+  "size": 104.85977680058416
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.87202,
+  "axes": {
+   "wght": 514.8098389384611
+  },
+  "size": 108.12893698601489
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.88113,
+  "axes": {
+   "wght": 397.75921830168875
+  },
+  "size": 99.06878973114283
+ },
+ {
+  "mark": "t-four-secure",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.80393,
+  "axes": {
+   "wght": 525.0143044777462
+  },
+  "size": 105.67304818864902
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.77227,
+  "axes": {
+   "wght": 586.5846063705403
+  },
+  "size": 36.38889980033982
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.81476,
+  "axes": {
+   "wght": 504.23231879110506,
+   "opsz": 17.563609350542073
+  },
+  "size": 38.195410667126005
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.81936,
+  "axes": {
+   "wght": 509.2569609228465
+  },
+  "size": 38.636195228746146
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.7932,
+  "axes": {
+   "wght": 515.9302514160759
+  },
+  "size": 39.8139607331624
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.71071,
+  "axes": {
+   "wght": 356.8399395207294
+  },
+  "size": 37.047123824431516
+ },
+ {
+  "mark": "t-eal",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.76539,
+  "axes": {
+   "wght": 521.7518802517683
+  },
+  "size": 38.40529931524585
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.89416,
+  "axes": {
+   "wght": 574.9862397692578
+  },
+  "size": 90.74790016055192
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.8883,
+  "axes": {
+   "wght": 508.12097362099735,
+   "opsz": 16.45311584560761
+  },
+  "size": 95.99851908460897
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.89986,
+  "axes": {
+   "wght": 524.6394187127066
+  },
+  "size": 97.05444663852488
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.83444,
+  "axes": {
+   "wght": 500.9661682205532
+  },
+  "size": 100.89198989202733
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.89615,
+  "axes": {
+   "wght": 399.59446831357883
+  },
+  "size": 93.23790421669501
+ },
+ {
+  "mark": "t-unlock",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.86533,
+  "axes": {
+   "wght": 511.30078348515883
+  },
+  "size": 97.42598173502437
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.84926,
+  "axes": {
+   "wght": 547.6132878664314
+  },
+  "size": 89.17922184302508
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.89495,
+  "axes": {
+   "wght": 508.89237080893867,
+   "opsz": 14.808370003531714
+  },
+  "size": 94.5412388701591
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.86653,
+  "axes": {
+   "wght": 524.0373018245414
+  },
+  "size": 97.45821350827603
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.86311,
+  "axes": {
+   "wght": 512.6443182397546
+  },
+  "size": 102.81473363985964
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.79353,
+  "axes": {
+   "wght": 419.35279855890064
+  },
+  "size": 93.87176101693626
+ },
+ {
+  "mark": "t-with-a-touch",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.89364,
+  "axes": {
+   "wght": 513.0050307449288
+  },
+  "size": 99.03671549229905
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.854,
+  "axes": {
+   "wght": 571.9648659662843
+  },
+  "size": 90.41463846087755
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.75674,
+  "axes": {
+   "wght": 534.1655838376803,
+   "opsz": 23.998671404907892
+  },
+  "size": 95.76762048924974
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.8872,
+  "axes": {
+   "wght": 522.7486031904068
+  },
+  "size": 96.95235743206185
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.82177,
+  "axes": {
+   "wght": 501.48788925589554
+  },
+  "size": 102.56332974196492
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.70272,
+  "axes": {
+   "wght": 437.7963665622561
+  },
+  "size": 92.73589676078709
+ },
+ {
+  "mark": "t-clear-signing",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.84968,
+  "axes": {
+   "wght": 508.9743006927451
+  },
+  "size": 98.57797996019798
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.81634,
+  "axes": {
+   "wght": 557.067472584125
+  },
+  "size": 88.40536367836994
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.8225,
+  "axes": {
+   "wght": 526.5691285594551,
+   "opsz": 20.39733461001203
+  },
+  "size": 96.34853884332986
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.8338,
+  "axes": {
+   "wght": 488.63841686583964
+  },
+  "size": 96.42731304292316
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.80924,
+  "axes": {
+   "wght": 527.9327021393498
+  },
+  "size": 101.47032001804239
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.77507,
+  "axes": {
+   "wght": 402.80816192754554
+  },
+  "size": 91.2590851431047
+ },
+ {
+  "mark": "t-see-exactly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.8578,
+  "axes": {
+   "wght": 527.9538145442127
+  },
+  "size": 99.18752856363415
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.86283,
+  "axes": {
+   "wght": 584.3186533561515
+  },
+  "size": 90.60007380387778
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.8604,
+  "axes": {
+   "wght": 545.5332254448936,
+   "opsz": 13.240849083606882
+  },
+  "size": 94.52501247947511
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.81279,
+  "axes": {
+   "wght": 597.2590455946568
+  },
+  "size": 95.32452612560347
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.84279,
+  "axes": {
+   "wght": 537.223322154917
+  },
+  "size": 101.81496597529112
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.75413,
+  "axes": {
+   "wght": 398.2457572678948
+  },
+  "size": 92.45576558496224
+ },
+ {
+  "mark": "t-cant-find",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.81993,
+  "axes": {
+   "wght": 546.1426873392894
+  },
+  "size": 96.08957968898395
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.88735,
+  "axes": {
+   "wght": 588.2742464577088
+  },
+  "size": 89.39908482378193
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.88694,
+  "axes": {
+   "wght": 509.2981094513092,
+   "opsz": 12.566191282479954
+  },
+  "size": 94.93627027423463
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.80694,
+  "axes": {
+   "wght": 586.1431934118863
+  },
+  "size": 94.58412656648754
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.84645,
+  "axes": {
+   "wght": 535.6297822288973
+  },
+  "size": 101.09562260079937
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.84462,
+  "axes": {
+   "wght": 423.13669359854276
+  },
+  "size": 91.71204094077547
+ },
+ {
+  "mark": "t-no-worries",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.90089,
+  "axes": {
+   "wght": 531.4237311573868
+  },
+  "size": 97.28928378630695
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.34467,
+  "axes": {
+   "wght": 800.0
+  },
+  "size": 104.96391522912546
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.34108,
+  "axes": {
+   "wght": 869.941063380629,
+   "opsz": 10.490121656090817
+  },
+  "size": 106.09141750497648
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.34393,
+  "axes": {
+   "wght": 732.6460877100473
+  },
+  "size": 111.70572585774316
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.3417,
+  "axes": {
+   "wght": 888.4087907862336
+  },
+  "size": 116.83870041710726
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.33538,
+  "axes": {
+   "wght": 900.0
+  },
+  "size": 105.4099696880587
+ },
+ {
+  "mark": "t-find-my",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.33419,
+  "axes": {
+   "wght": 900.0
+  },
+  "size": 111.27906741332899
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.8184,
+  "axes": {
+   "wght": 580.350257588941
+  },
+  "size": 91.31844728522468
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.80591,
+  "axes": {
+   "wght": 480.02718977825384,
+   "opsz": 13.416390641255537
+  },
+  "size": 95.0250717222732
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.83268,
+  "axes": {
+   "wght": 507.5894967193117
+  },
+  "size": 96.30530194295959
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.77533,
+  "axes": {
+   "wght": 500.97278225583665
+  },
+  "size": 101.87721373226907
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.77119,
+  "axes": {
+   "wght": 381.39134104434964
+  },
+  "size": 91.55851264490296
+ },
+ {
+  "mark": "t-charge-wirelessly",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.82492,
+  "axes": {
+   "wght": 485.9238992266958
+  },
+  "size": 95.86722410946234
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.84298,
+  "axes": {
+   "wght": 580.0310265953119
+  },
+  "size": 89.09769007706173
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.85931,
+  "axes": {
+   "wght": 538.8135606789039,
+   "opsz": 13.745661180159948
+  },
+  "size": 96.09644271889874
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.84917,
+  "axes": {
+   "wght": 547.621618673382
+  },
+  "size": 97.33315548339664
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.73754,
+  "axes": {
+   "wght": 546.9728996716491
+  },
+  "size": 100.38905375775009
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.78107,
+  "axes": {
+   "wght": 394.0719389295271
+  },
+  "size": 93.83709902612775
+ },
+ {
+  "mark": "t-backup-seedcard",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.80858,
+  "axes": {
+   "wght": 504.52325910074086
+  },
+  "size": 96.94665535325474
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.8441,
+  "axes": {
+   "wght": 560.7004351986517
+  },
+  "size": 33.8905044453843
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.84664,
+  "axes": {
+   "wght": 516.0887999455623,
+   "opsz": 15.200481751535621
+  },
+  "size": 36.00153137123001
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.82728,
+  "axes": {
+   "wght": 537.1541305839563
+  },
+  "size": 35.842117390851634
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.80577,
+  "axes": {
+   "wght": 568.2270682127264
+  },
+  "size": 38.12195292536248
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.80902,
+  "axes": {
+   "wght": 451.43899425283166
+  },
+  "size": 35.24652384973093
+ },
+ {
+  "mark": "t-bundled",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.82824,
+  "axes": {
+   "wght": 529.6119336561355
+  },
+  "size": 36.29246334343478
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.34182,
+  "axes": {
+   "wght": 616.946886923583
+  },
+  "size": 95.04694791535893
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.37185,
+  "axes": {
+   "wght": 997.5006391605793,
+   "opsz": 9.0
+  },
+  "size": 96.60048387741357
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.35976,
+  "axes": {
+   "wght": 680.9081891600414
+  },
+  "size": 101.97057604188903
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.37028,
+  "axes": {
+   "wght": 665.5104238338732
+  },
+  "size": 104.77975719556855
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.37174,
+  "axes": {
+   "wght": 657.1734000678139
+  },
+  "size": 92.78229240998769
+ },
+ {
+  "mark": "t-air-gap",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.36489,
+  "axes": {
+   "wght": 899.9475583231998
+  },
+  "size": 101.89147192736371
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.86723,
+  "axes": {
+   "wght": 559.4447952747139
+  },
+  "size": 89.8841251313933
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.85365,
+  "axes": {
+   "wght": 520.0164643912922,
+   "opsz": 17.052630917893577
+  },
+  "size": 96.323783899544
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.81467,
+  "axes": {
+   "wght": 545.1383350023722
+  },
+  "size": 95.72025758657682
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.80249,
+  "axes": {
+   "wght": 511.6234842454752
+  },
+  "size": 99.24656340386349
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.75356,
+  "axes": {
+   "wght": 386.4153521771992
+  },
+  "size": 93.34147804025373
+ },
+ {
+  "mark": "t-nfc-passkey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.85725,
+  "axes": {
+   "wght": 538.1201320425038
+  },
+  "size": 96.05364539734879
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.8022,
+  "axes": {
+   "wght": 494.95790515255464
+  },
+  "size": 87.68602433109567
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.80696,
+  "axes": {
+   "wght": 503.3243387942429,
+   "opsz": 9.96937936196817
+  },
+  "size": 92.2328903916348
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.87567,
+  "axes": {
+   "wght": 493.1956625986068
+  },
+  "size": 96.92775436597658
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.84733,
+  "axes": {
+   "wght": 485.5950435505975
+  },
+  "size": 102.49785203963658
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.76967,
+  "axes": {
+   "wght": 394.0870431449899
+  },
+  "size": 95.25177666121193
+ },
+ {
+  "mark": "t-on-device",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.75353,
+  "axes": {
+   "wght": 504.75443394001576
+  },
+  "size": 94.21742175903937
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.8094,
+  "axes": {
+   "wght": 587.9113086569068
+  },
+  "size": 46.27508818683905
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.82658,
+  "axes": {
+   "wght": 517.2900695877308,
+   "opsz": 13.703329497531694
+  },
+  "size": 50.85528101279844
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.82793,
+  "axes": {
+   "wght": 505.55443614204944
+  },
+  "size": 51.838925430871626
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.81111,
+  "axes": {
+   "wght": 517.9228583625019
+  },
+  "size": 53.219209449065715
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.82962,
+  "axes": {
+   "wght": 391.58475307138514
+  },
+  "size": 51.146842619042964
+ },
+ {
+  "mark": "t-all-new",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.81769,
+  "axes": {
+   "wght": 498.00151555225733
+  },
+  "size": 52.650225251965004
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.82601,
+  "axes": {
+   "wght": 584.6503651086866
+  },
+  "size": 118.96962233099555
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.8247,
+  "axes": {
+   "wght": 527.2740357557249,
+   "opsz": 15.051165579610885
+  },
+  "size": 127.03628083314341
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.84457,
+  "axes": {
+   "wght": 539.1618115549741
+  },
+  "size": 127.92795470300415
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.79767,
+  "axes": {
+   "wght": 530.7762314106183
+  },
+  "size": 132.233482370082
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.72763,
+  "axes": {
+   "wght": 415.16779706363945
+  },
+  "size": 128.22179438775717
+ },
+ {
+  "mark": "t-safeos",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.8067,
+  "axes": {
+   "wght": 544.2755667654428
+  },
+  "size": 128.18938727629754
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.8398,
+  "axes": {
+   "wght": 604.166597154542
+  },
+  "size": 90.41337160172284
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.85279,
+  "axes": {
+   "wght": 565.1640427105899,
+   "opsz": 15.500419596401795
+  },
+  "size": 95.26746534793148
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.88875,
+  "axes": {
+   "wght": 522.5270623475134
+  },
+  "size": 96.55805985553192
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.83174,
+  "axes": {
+   "wght": 540.0170779383894
+  },
+  "size": 101.11590695215392
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.81067,
+  "axes": {
+   "wght": 384.60534080132675
+  },
+  "size": 92.07635721782593
+ },
+ {
+  "mark": "t-open-source",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.86545,
+  "axes": {
+   "wght": 531.1671816331913
+  },
+  "size": 98.08436566634377
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.88722,
+  "axes": {
+   "wght": 602.9311972677909
+  },
+  "size": 90.00385231380312
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.88163,
+  "axes": {
+   "wght": 506.7621717216837,
+   "opsz": 12.206924357505773
+  },
+  "size": 95.41441735263103
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.91011,
+  "axes": {
+   "wght": 533.3468713004597
+  },
+  "size": 97.17369475206782
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.80657,
+  "axes": {
+   "wght": 508.8941360843485
+  },
+  "size": 98.39145039789409
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.79516,
+  "axes": {
+   "wght": 436.80755095012756
+  },
+  "size": 91.72922107253424
+ },
+ {
+  "mark": "t-smoother",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.86418,
+  "axes": {
+   "wght": 548.3131507817214
+  },
+  "size": 98.47901095339954
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.86583,
+  "axes": {
+   "wght": 722.3541747721782
+  },
+  "size": 50.363194898318866
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.86932,
+  "axes": {
+   "wght": 701.3597262124501,
+   "opsz": 18.870346671536222
+  },
+  "size": 54.5524805987308
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.86056,
+  "axes": {
+   "wght": 670.3856442460094
+  },
+  "size": 54.48037280437833
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.85811,
+  "axes": {
+   "wght": 646.930842400974
+  },
+  "size": 57.18616229169246
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.83816,
+  "axes": {
+   "wght": 579.2669601620076
+  },
+  "size": 52.84433775756379
+ },
+ {
+  "mark": "ui-onekey",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.85917,
+  "axes": {
+   "wght": 690.5270546133903
+  },
+  "size": 55.455996242025115
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.70783,
+  "axes": {
+   "wght": 624.3603827455652
+  },
+  "size": 24.697284405581055
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.75862,
+  "axes": {
+   "wght": 509.76535691597417,
+   "opsz": 12.287443522425521
+  },
+  "size": 26.712522924968695
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.74896,
+  "axes": {
+   "wght": 503.88119518117065
+  },
+  "size": 27.016266291471826
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.75741,
+  "axes": {
+   "wght": 471.93569521718786
+  },
+  "size": 29.180494646626855
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.70638,
+  "axes": {
+   "wght": 365.6796600454971
+  },
+  "size": 25.97831909844409
+ },
+ {
+  "mark": "ui-unlock-line",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.75952,
+  "axes": {
+   "wght": 468.9757689826789
+  },
+  "size": 27.687573221233567
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+  "iou_soft": 0.64195,
+  "axes": {
+   "wght": 540.3409268054742
+  },
+  "size": 21.56674213683434
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+  "iou_soft": 0.67886,
+  "axes": {
+   "wght": 511.94080941936187,
+   "opsz": 15.160273702518706
+  },
+  "size": 22.593125074505313
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+  "iou_soft": 0.77725,
+  "axes": {
+   "wght": 502.10068113736526
+  },
+  "size": 23.090240959007932
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Gantari/Gantari[wght].ttf",
+  "iou_soft": 0.58433,
+  "axes": {
+   "wght": 579.1637315475909
+  },
+  "size": 24.51452746032662
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+  "iou_soft": 0.68503,
+  "axes": {
+   "wght": 365.04378961367905
+  },
+  "size": 23.370955743793186
+ },
+ {
+  "mark": "ui-battery-text",
+  "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/AlbertSans/AlbertSans[wght].ttf",
+  "iou_soft": 0.77016,
+  "axes": {
+   "wght": 495.86321392638854
+  },
+  "size": 23.518895450369943
+ }
+]

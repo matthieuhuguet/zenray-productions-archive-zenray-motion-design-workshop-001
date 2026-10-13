@@ -1,0 +1,50 @@
+# A2, les blocs tonals et les effets de la banque de sons (12 et 13 October 2026)
+
+Rapport de la tâche A2 du projet ZenRay Motion Design (identifiant Assets `zenray-motion-design`). Elle prolonge le harnais A0 sans le réécrire : un module neuf, `zrmd/audio/fxdsp.py`, porte le DSP commun, et trente et un blocs s'ajoutent à `datasets/sound-bank`, aux côtés des blocs de A0 et de A1 (64 blocs au total dans `index.json`). Aucune version `V_001` à `V_017` n'a été touchée. Toutes les valeurs ci-dessous sont lues dans les rapports JSON du dossier `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/A2-tonal-effects/`. (13 October 2026)
+
+## 1. État à la reprise, dit sans détour (13 October 2026)
+
+La session du 12 October 2026 s'est interrompue pendant la vérification complète (`verify-full.json` vide, processus tué à 00:43 sans écrire son rapport), puis la machine a redémarré. Le 13 October 2026 à 09:11, la vérification complète des 31 blocs A2 a été relancée en tâche détachée, sous une charge de la machine mesurée à 220 (plusieurs workflows parallèles se partagent les 18 cœurs) ; au moment d'écrire ce rapport, elle tourne depuis plus de quarante minutes et n'a pas rendu son verdict. Ce verdict global n'est donc **pas encore vérifié** ; il s'écrira dans `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/docs/build/A2-tonal-effects/verify-full2.json` (code de sortie dans le processus dont le numéro est dans `verify-full2.pid`). Ce qui est prouvé à ce jour l'est cas par cas, comme le détaillent les sections suivantes. (13 October 2026)
+
+## 2. Les 31 blocs (12 October 2026)
+
+Chaque bloc a son `block.py` (source unique, `META` et `PARAMS` bornés avec nom, unité, min, max, défaut), son `block.json` et son `demo.wav` générés par `Scripts/BuildSoundBank.py`, et l'index se reconstruit sous le verrou `sound-bank/.index.lock` (`fcntl.flock`, écriture atomique), partagé avec A1 et les moissonneurs de shaders. Liste exacte : `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/A2BlockList.txt`. (12 October 2026)
+
+| Famille | Blocs |
+|---|---|
+| modaux, partielles inharmoniques | `modal_ding`, `chime_bar` (rapports d'Euler-Bernoulli), `bell_modal` (hum, prime, tierce, quint, nominal), `marimba_bar` |
+| FM et physique | `fm_epiano`, `pluck_ks` (Karplus-Strong exact dans le domaine fréquentiel, délai fractionnaire) |
+| soustractifs et basses | `supersaw` (7 scies polyBLEP), `pad_saw`, `pulse_lead`, `bass_saw`, `sub_808` |
+| glissés et notifications | `tone_glide`, `notify_two_tone`, `notify_arpeggio`, `notify_chirp`, `ui_blip_tri`, `additive_harmonic` |
+| filtres à coupure mobile | `lowpass_sweep`, `highpass_sweep`, `bandpass_sweep`, `peak_eq` (formules RBJ, domaine public) |
+| espace et temps | `reverb_noise_tail`, `reverb_fdn` (huit lignes, matrice de Householder, évaluation fréquentielle exacte), `delay_echo` |
+| dynamique et couleur | `saturation`, `transient_shaper`, `compressor` (RMS à genou doux) |
+| stéréo et modulation | `stereo_pan`, `stereo_width` (mid/side avec délai de Haas), `chorus`, `tremolo` |
+
+Licences : tous les blocs sont « original », dérivés des mathématiques publiées (Karplus et Strong 1983, Jot et Chaigne 1991, Välimäki et Huovilainen 2007, Audio EQ Cookbook), aucune ligne de code copiée. Un effet (`EffectBlock`) traite, rendu seul, un excitateur déterministe fixe, ce qui permet de le vérifier et de l'ajuster comme un bloc ; inséré dans une chaîne, `bank.mix_modules` lui fait traiter le bus des entrées précédentes. Un effet stéréo rend `[2, n]` ; dans une chaîne mono son canal gauche sert à la perte, et `fxdsp.render_chain_stereo` rend les deux canaux. (12 October 2026)
+
+## 3. Ce qui est prouvé (12 et 13 October 2026)
+
+**Premier passage complet** (`verify-a2.json`, 155 cas, 1457 s) : rouge, avec quatorze cas de récupération sous 99,5 (de 1,78 pour `notify_two_tone#1` à 99,33) et trois cibles rouges imitées par un autre effet (peak EQ par tremolo à 97,6, saturation par peak EQ à 98,6, compresseur par passe-bas à 92,5). (12 October 2026)
+
+**Les quatorze cas ratés, rejoués un par un** par `Scripts/RefitSoundCases.py` en neuf passes, passent tous au-dessus de 99,5 une fois les indices d'ajustement `FIT` de chaque bloc élargis (plus de départs, balayages plus fins, CMA-ES) et, pour les notifications, la paramétrisation revue : `supersaw#1` 99,99, `pad_saw#1` 99,86, `pulse_lead#2` 99,96, `additive_harmonic#2` 99,95, `highpass_sweep#1` 99,75, `reverb_noise_tail#1` 99,98, `reverb_fdn#1` 99,56, `delay_echo#2` 100,00, `chorus#1` 99,96, `chorus#2` 99,98, `notify_arpeggio#1` 99,95, `notify_arpeggio#2` 99,98, `stereo_width#1` 100,00, `stereo_width#2` 99,76, `notify_two_tone#2` 99,96, `notify_two_tone#1` 99,97 (B1 99,95). (12 October 2026)
+
+**Les cibles rouges** ont été déplacées là où l'effet fait ce qu'aucun bloc de contraste ne sait faire (aplatissement et intermodulation lourds pour la saturation, pompage marqué pour le compresseur, bosse étroite sur la troisième partielle de l'excitateur, 660 Hz, pour le peak EQ), réglage dans `datasets/sfx-params.json`, `bank.verify.redTargets`. Mesures : saturation imitée au mieux à 33,9, compresseur à 49,2, transient shaper à 66,0 (`verify-red3.json`), peak EQ à 68,8 (`verify-peq.json`, vert, code 0), tous sous le plafond de 90. (12 October 2026)
+
+**La chaîne source puis effets** (`Scripts/CheckA2Chain.py`, `check-chain6.json`) : pluck, écho puis panoramique rendus en stéréo (le gauche égale le mono, le droit diffère), réajustés par la même chaîne à 99,99 (B1 99,93), et à 82,4 seulement quand on retire les effets : vert dans les deux sens. (12 October 2026)
+
+**Le sabotage** (`verify-sabotage.json`, 15 cas) sort rouge comme il le doit (cas déclaré faux à 26,7) ; dans ce même passage, les cas non sabotés de `notify_two_tone`, `stereo_width` et `notify_arpeggio` passent entre 99,95 et 100, et leurs cibles rouges restent sous 24,4. (12 October 2026)
+
+## 4. Ce qui reste (13 October 2026)
+
+Le verdict de la vérification complète relancée (`verify-full2.json`) doit confirmer, sous les indices `FIT` définitifs, que les 155 cas tiennent ensemble ; tant qu'il n'est pas lu, le vert global n'est pas acquis. Comme en A0, ces cibles sont rendues par la banque elle-même : rien ici ne prouve encore une meilleure reproduction des SFX réels d'`onekey-pro-2`, ce qui est la tâche suivante (A3 calibration, puis branchement de `dfit` sur les événements de `V_017` dans une `V_018`). Le coût des indices `FIT` élargis est réel : certains ajustements durent 10 à 25 minutes par cas sur un cœur. (13 October 2026)
+
+## 5. Commandes (13 October 2026)
+
+```
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/BuildSoundBank.py --blocks $(cat /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/A2BlockList.txt)
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifySoundBank.py --blocks $(cat /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/A2BlockList.txt) --json   # verdict global, en cours
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/VerifySoundBank.py --blocks notify_two_tone,stereo_width,notify_arpeggio --sabotage --json   # rouge attendu
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/CheckA2Chain.py --json
+~/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/RefitSoundCases.py --report <verify.json> --cases bloc#cas
+```

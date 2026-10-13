@@ -1,0 +1,22 @@
+{
+ "date": "12 October 2026",
+ "mark": "t-four-secure",
+ "version": "V_005",
+ "bitrate": "2176889",
+ "ceiling_exact_outlines": {
+  "iou_soft": 0.98954,
+  "iou_hard": 0.99133,
+  "edge_mean_px": 0.0233
+ },
+ "fit_on_decoded": {
+  "font": "PlusJakartaSans",
+  "iou_soft": 0.89958,
+  "iou_hard": 0.90143,
+  "edge_mean_px": 0.482,
+  "size_true": 104.8598,
+  "size_fit": 96.158,
+  "axes": {
+   "wght": 580.5703954655105
+  }
+ }
+}

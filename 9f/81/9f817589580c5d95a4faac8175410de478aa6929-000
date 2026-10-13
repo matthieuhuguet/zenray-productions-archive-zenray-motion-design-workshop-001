@@ -1,0 +1,60 @@
+{
+ "date": "12 October 2026",
+ "stereoShape": [
+  2,
+  48000
+ ],
+ "leftEqualsMono": true,
+ "rightDiffers": true,
+ "green": {
+  "score": 99.9949,
+  "b1": 99.933,
+  "seconds": 379.11,
+  "fitted": [
+   {
+    "f0_hz": 247.002625,
+    "decay_s": 0.897546,
+    "brightness": 0.600547,
+    "amp_db": -23.956001,
+    "onset_s": 0.030001
+   },
+   {
+    "time_s": 0.209998,
+    "feedback": 0.40093,
+    "damp_hz": 3600.124023,
+    "mix": 0.445859,
+    "out_db": -0.875698
+   },
+   {
+    "pan": -0.309378,
+    "out_db": -0.874081
+   }
+  ],
+  "truth": [
+   {
+    "f0_hz": 247.0,
+    "decay_s": 0.9,
+    "brightness": 0.6,
+    "amp_db": -26.0,
+    "onset_s": 0.03
+   },
+   {
+    "time_s": 0.21,
+    "feedback": 0.4,
+    "damp_hz": 3500.0,
+    "mix": 0.45,
+    "out_db": 0.0
+   },
+   {
+    "pan": -0.4,
+    "out_db": 0.0
+   }
+  ]
+ },
+ "red": {
+  "score": 82.4191,
+  "b1": 0.0,
+  "seconds": 381.53
+ },
+ "pass": true
+}

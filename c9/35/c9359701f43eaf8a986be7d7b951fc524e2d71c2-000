@@ -1,0 +1,50 @@
+[17:00:34] measuring stem eq and stereo
+[17:01:11] fitting the mix bus
+[17:02:51] rendering from params
+[17:03:37] scoring
+[17:04:08] V_007 written
+{
+ "version": "V_007",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.039,
+   "onsetF": 0.7928,
+   "chroma": 0.9032,
+   "envCorr": 0.9768,
+   "sectionEnv": 95.98
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.1524,
+   "chroma": 0.933,
+   "envCorr": 0.9483,
+   "sectionEnv": 84.891
+  },
+  "other": {
+   "plossFull": 29.2028,
+   "plossBarMedian": 56.486,
+   "onsetF": 0.1184,
+   "chroma": 0.7585,
+   "envCorr": 0.7834,
+   "sectionEnv": 96.455
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 26.33,
+   "onsetF": 0.7158,
+   "chroma": 0.93,
+   "envCorr": 0.9375,
+   "sectionEnv": 97.741
+  }
+ }
+}

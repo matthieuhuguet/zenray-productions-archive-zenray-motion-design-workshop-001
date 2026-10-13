@@ -1,0 +1,609 @@
+{
+ "date": "12 October 2026",
+ "blocks": {
+  "notify_two_tone": {
+   "contractErrors": [
+    "block.json missing 'licence'",
+    "block.json differs from block.py (run Scripts/BuildSoundBank.py)",
+    "licence 'None' is not original, MIT, BSD, ISC, Apache-2.0, CC0 or public domain"
+   ],
+   "renderEqual": true,
+   "demoEqual": true,
+   "identityScore": 100.0,
+   "finite": true,
+   "peak": 0.2291,
+   "ok": false
+  },
+  "stereo_width": {
+   "contractErrors": [],
+   "renderEqual": true,
+   "demoEqual": true,
+   "identityScore": 100.0,
+   "finite": true,
+   "peak": 0.302,
+   "ok": true
+  },
+  "notify_arpeggio": {
+   "contractErrors": [],
+   "renderEqual": true,
+   "demoEqual": true,
+   "identityScore": 100.0,
+   "finite": true,
+   "peak": 0.2116,
+   "ok": true
+  }
+ },
+ "cases": [
+  {
+   "target": "notify_two_tone",
+   "fit": "additive_harmonic",
+   "case": 0,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 880.0,
+    "interval_st": 5.0,
+    "step_s": 0.12,
+    "note_decay_s": 0.4,
+    "h3_db": -20.0,
+    "note2_db": 0.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 26.7451,
+   "b1Score": 45.788,
+   "errors": {
+    "stft": 6.8494,
+    "mel": 7.6842,
+    "envelope": 5.0259,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f0_hz": 878.065674,
+    "tilt_db_oct": 13.916567,
+    "even_db": -25.830212,
+    "decay_s": 0.60324,
+    "decay_tilt": 0.000321,
+    "attack_s": 0.001773,
+    "amp_db": -12.252033,
+    "onset_s": 0.020018
+   },
+   "seconds": 1979.19,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 250,
+   "starts": 26,
+   "ok": false
+  },
+  {
+   "target": "notify_two_tone",
+   "fit": "notify_two_tone",
+   "case": 1,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 1807.172729,
+    "interval_st": 0.929743,
+    "step_s": 0.313239,
+    "note_decay_s": 0.202181,
+    "h3_db": -16.820202,
+    "note2_db": -7.398604,
+    "amp_db": -46.508522,
+    "onset_s": 0.203278
+   },
+   "score": 99.9727,
+   "b1Score": 99.952,
+   "errors": {
+    "stft": 0.1165,
+    "mel": 0.0709,
+    "envelope": 0.0925,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f1_hz": 1807.363159,
+    "interval_st": 0.940897,
+    "step_s": 0.31334,
+    "note_decay_s": 0.200903,
+    "h3_db": -16.89019,
+    "note2_db": -7.57693,
+    "amp_db": -46.300591,
+    "onset_s": 0.203151
+   },
+   "seconds": 37.29,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 92,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "notify_two_tone",
+   "fit": "notify_two_tone",
+   "case": 2,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 2272.525879,
+    "interval_st": 7.886053,
+    "step_s": 0.123259,
+    "note_decay_s": 0.47421,
+    "h3_db": -26.603886,
+    "note2_db": -7.873196,
+    "amp_db": -29.667288,
+    "onset_s": 0.14029
+   },
+   "score": 99.9519,
+   "b1Score": 99.96,
+   "errors": {
+    "stft": 0.1823,
+    "mel": 0.0887,
+    "envelope": 0.0821,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f1_hz": 2272.777344,
+    "interval_st": 7.877644,
+    "step_s": 0.124045,
+    "note_decay_s": 0.473767,
+    "h3_db": -26.616341,
+    "note2_db": -8.231511,
+    "amp_db": -29.520271,
+    "onset_s": 0.140412
+   },
+   "seconds": 40.34,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 155,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "notify_two_tone",
+   "fit": "filtered_noise_burst",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "f1_hz": 880.0,
+    "interval_st": 5.0,
+    "step_s": 0.12,
+    "note_decay_s": 0.4,
+    "h3_db": -20.0,
+    "note2_db": 0.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 24.3146,
+   "b1Score": 9.152,
+   "errors": {
+    "stft": 7.7463,
+    "mel": 7.1819,
+    "envelope": 5.3958,
+    "onset": 0.0
+   },
+   "fitted": {
+    "center_start_hz": 850.06488,
+    "center_end_hz": 1691.320312,
+    "bw_oct": 0.299932,
+    "amp_db": -13.198109,
+    "onset_s": 0.019904,
+    "attack_s": 0.001992,
+    "decay_s": 0.580905
+   },
+   "seconds": 547.35,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 500,
+   "starts": 15,
+   "ok": true
+  },
+  {
+   "target": "notify_two_tone",
+   "fit": "sine_env",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "f1_hz": 880.0,
+    "interval_st": 5.0,
+    "step_s": 0.12,
+    "note_decay_s": 0.4,
+    "h3_db": -20.0,
+    "note2_db": 0.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 21.3553,
+   "b1Score": 0.0,
+   "errors": {
+    "stft": 8.4125,
+    "mel": 8.3196,
+    "envelope": 3.5547,
+    "onset": -0.9957
+   },
+   "fitted": {
+    "freq_hz": 639.612244,
+    "glide_st": 10.825142,
+    "glide_s": 0.065458,
+    "amp_db": -14.25082,
+    "onset_s": 0.008652,
+    "attack_s": 0.143947,
+    "decay_s": 0.399962
+   },
+   "seconds": 456.73,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 81,
+   "starts": 17,
+   "ok": true
+  },
+  {
+   "target": "stereo_width",
+   "fit": "stereo_width",
+   "case": 0,
+   "expect": "recover",
+   "params": {
+    "width": 1.2,
+    "haas_ms": 12.0,
+    "out_db": 0.0
+   },
+   "score": 100.0,
+   "b1Score": 100.0,
+   "errors": {
+    "stft": 0.0,
+    "mel": 0.0,
+    "envelope": 0.0,
+    "onset": 0.0
+   },
+   "fitted": {
+    "width": 1.2,
+    "haas_ms": 12.0,
+    "out_db": 0.0
+   },
+   "seconds": 41.09,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 1,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "stereo_width",
+   "fit": "stereo_width",
+   "case": 1,
+   "expect": "recover",
+   "params": {
+    "width": 0.843173,
+    "haas_ms": 20.034204,
+    "out_db": 6.702291
+   },
+   "score": 99.9727,
+   "b1Score": 99.984,
+   "errors": {
+    "stft": 0.1219,
+    "mel": 0.0502,
+    "envelope": 0.0988,
+    "onset": 0.0
+   },
+   "fitted": {
+    "width": 0.855516,
+    "haas_ms": 20.035734,
+    "out_db": 6.822321
+   },
+   "seconds": 54.3,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 219,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "stereo_width",
+   "fit": "stereo_width",
+   "case": 2,
+   "expect": "recover",
+   "params": {
+    "width": 0.214711,
+    "haas_ms": 2.448055,
+    "out_db": -11.958805
+   },
+   "score": 99.972,
+   "b1Score": 99.989,
+   "errors": {
+    "stft": 0.1656,
+    "mel": 0.0159,
+    "envelope": 0.0128,
+    "onset": 0.0
+   },
+   "fitted": {
+    "width": 0.226741,
+    "haas_ms": 2.454875,
+    "out_db": -11.873878
+   },
+   "seconds": 45.75,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 77,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "stereo_width",
+   "fit": "sine_env",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "width": 1.2,
+    "haas_ms": 12.0,
+    "out_db": 0.0
+   },
+   "score": 1.2294,
+   "b1Score": 0.0,
+   "errors": {
+    "stft": 13.6725,
+    "mel": 13.3317,
+    "envelope": 8.5432,
+    "onset": 0.0
+   },
+   "fitted": {
+    "freq_hz": 1004.425842,
+    "glide_st": -23.948757,
+    "glide_s": 0.005912,
+    "amp_db": -23.556049,
+    "onset_s": 0.022645,
+    "attack_s": 0.000502,
+    "decay_s": 0.611198
+   },
+   "seconds": 466.03,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 152,
+   "starts": 17,
+   "ok": true
+  },
+  {
+   "target": "stereo_width",
+   "fit": "fm_bell",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "width": 1.2,
+    "haas_ms": 12.0,
+    "out_db": 0.0
+   },
+   "score": 5.181,
+   "b1Score": 0.0,
+   "errors": {
+    "stft": 11.7988,
+    "mel": 9.1378,
+    "envelope": 8.4749,
+    "onset": 0.0
+   },
+   "fitted": {
+    "carrier_hz": 442.585754,
+    "ratio": 1.481615,
+    "index": 11.817659,
+    "index_decay_s": 0.573909,
+    "amp_db": -22.848309,
+    "onset_s": 0.020449,
+    "attack_s": 0.00057,
+    "decay_s": 0.578725
+   },
+   "seconds": 545.25,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 230,
+   "starts": 17,
+   "ok": true
+  },
+  {
+   "target": "notify_arpeggio",
+   "fit": "notify_arpeggio",
+   "case": 0,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 523.0,
+    "step1_st": 4.0,
+    "step2_st": 3.0,
+    "step_s": 0.09,
+    "note_decay_s": 0.35,
+    "tilt": 2.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 100.0,
+   "b1Score": 100.0,
+   "errors": {
+    "stft": 0.0,
+    "mel": 0.0,
+    "envelope": 0.0,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f1_hz": 523.000061,
+    "step1_st": 4.0,
+    "step2_st": 3.0,
+    "step_s": 0.09,
+    "note_decay_s": 0.35,
+    "tilt": 2.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "seconds": 43.64,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 1,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "notify_arpeggio",
+   "fit": "notify_arpeggio",
+   "case": 1,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 609.422546,
+    "step1_st": 9.05374,
+    "step2_st": 6.149452,
+    "step_s": 0.048783,
+    "note_decay_s": 0.281016,
+    "tilt": 1.282116,
+    "amp_db": -34.421303,
+    "onset_s": 0.211875
+   },
+   "score": 99.9634,
+   "b1Score": 99.985,
+   "errors": {
+    "stft": 0.1873,
+    "mel": 0.0315,
+    "envelope": 0.0196,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f1_hz": 609.684082,
+    "step1_st": 9.035708,
+    "step2_st": 6.160584,
+    "step_s": 0.048797,
+    "note_decay_s": 0.28123,
+    "tilt": 1.280899,
+    "amp_db": -34.427792,
+    "onset_s": 0.211876
+   },
+   "seconds": 54.08,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 129,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "notify_arpeggio",
+   "fit": "notify_arpeggio",
+   "case": 2,
+   "expect": "recover",
+   "params": {
+    "f1_hz": 253.241898,
+    "step1_st": 1.855037,
+    "step2_st": 6.836167,
+    "step_s": 0.185766,
+    "note_decay_s": 0.082855,
+    "tilt": 2.362148,
+    "amp_db": -37.980896,
+    "onset_s": 0.121895
+   },
+   "score": 99.9572,
+   "b1Score": 99.98,
+   "errors": {
+    "stft": 0.1728,
+    "mel": 0.1063,
+    "envelope": 0.0379,
+    "onset": 0.0
+   },
+   "fitted": {
+    "f1_hz": 250.968796,
+    "step1_st": 1.960929,
+    "step2_st": 6.874064,
+    "step_s": 0.185773,
+    "note_decay_s": 0.082733,
+    "tilt": 2.361128,
+    "amp_db": -37.984638,
+    "onset_s": 0.121886
+   },
+   "seconds": 57.87,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 181,
+   "starts": 1,
+   "ok": true
+  },
+  {
+   "target": "notify_arpeggio",
+   "fit": "filtered_noise_burst",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "f1_hz": 523.0,
+    "step1_st": 4.0,
+    "step2_st": 3.0,
+    "step_s": 0.09,
+    "note_decay_s": 0.35,
+    "tilt": 2.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 23.6174,
+   "b1Score": 1.009,
+   "errors": {
+    "stft": 6.8299,
+    "mel": 7.389,
+    "envelope": 6.5078,
+    "onset": 0.0
+   },
+   "fitted": {
+    "center_start_hz": 573.937744,
+    "center_end_hz": 2324.401367,
+    "bw_oct": 1.710623,
+    "amp_db": -14.168552,
+    "onset_s": 0.020917,
+    "attack_s": 0.000708,
+    "decay_s": 0.636084
+   },
+   "seconds": 551.29,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 81,
+   "starts": 16,
+   "ok": true
+  },
+  {
+   "target": "notify_arpeggio",
+   "fit": "sine_env",
+   "case": "red",
+   "expect": "reject",
+   "params": {
+    "f1_hz": 523.0,
+    "step1_st": 4.0,
+    "step2_st": 3.0,
+    "step_s": 0.09,
+    "note_decay_s": 0.35,
+    "tilt": 2.0,
+    "amp_db": -12.0,
+    "onset_s": 0.02
+   },
+   "score": 14.9851,
+   "b1Score": 0.065,
+   "errors": {
+    "stft": 9.5041,
+    "mel": 9.0557,
+    "envelope": 3.9418,
+    "onset": -0.9953
+   },
+   "fitted": {
+    "freq_hz": 387.080048,
+    "glide_st": 12.915333,
+    "glide_s": 0.108679,
+    "amp_db": -13.900852,
+    "onset_s": 0.008238,
+    "attack_s": 0.190142,
+    "decay_s": 0.350179
+   },
+   "seconds": 418.58,
+   "device": "cpu",
+   "deviceFallback": null,
+   "steps": 250,
+   "starts": 16,
+   "ok": true
+  }
+ ],
+ "thresholds": {
+  "recoverMin": 99.5,
+  "wrongMax": 90.0
+ },
+ "summary": {
+  "pass": false,
+  "recoverMinScore": 26.7451,
+  "rejectMaxScore": 24.3146,
+  "overlapMaxScore": null,
+  "cases": 15,
+  "failed": [
+   "notify_two_tone#0 fit additive_harmonic (recover): 26.7451"
+  ],
+  "seconds": 1987.5,
+  "sabotage": true
+ }
+}

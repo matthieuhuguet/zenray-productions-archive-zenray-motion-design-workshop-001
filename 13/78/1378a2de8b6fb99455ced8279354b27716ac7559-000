@@ -1,0 +1,80 @@
+[
+ {
+  "target": "shaker",
+  "fit": "shaker",
+  "case": 1,
+  "expect": "recover",
+  "params": {
+   "count": 7.228571,
+   "rate_hz": 7.2088,
+   "swing": 0.174889,
+   "hp_hz": 9438.511719,
+   "attack_s": 0.010227,
+   "decay_s": 0.062927,
+   "amp_db": -19.458115,
+   "onset_s": 0.044952
+  },
+  "score": 77.3076,
+  "b1Score": 99.421,
+  "errors": {
+   "stft": 2.9439,
+   "mel": 1.6865,
+   "envelope": 3.7358,
+   "onset": 0.3769
+  },
+  "fitted": {
+   "count": 6.817773,
+   "rate_hz": 7.164591,
+   "swing": 0.1835,
+   "hp_hz": 9660.791016,
+   "attack_s": 0.017717,
+   "decay_s": 0.06076,
+   "amp_db": -20.535393,
+   "onset_s": 0.036476
+  },
+  "seconds": 2093.8,
+  "device": "cpu",
+  "deviceFallback": null,
+  "steps": 230,
+  "starts": 17
+ },
+ {
+  "target": "shaker",
+  "fit": "shaker",
+  "case": 2,
+  "expect": "recover",
+  "params": {
+   "count": 12.490776,
+   "rate_hz": 13.752775,
+   "swing": 0.112489,
+   "hp_hz": 2505.796875,
+   "attack_s": 0.00716,
+   "decay_s": 0.029984,
+   "amp_db": -53.869865,
+   "onset_s": 0.092117
+  },
+  "score": 92.5787,
+  "b1Score": 0.18,
+  "errors": {
+   "stft": 1.1153,
+   "mel": 0.6704,
+   "envelope": 2.4051,
+   "onset": 0.4412
+  },
+  "fitted": {
+   "count": 12.50254,
+   "rate_hz": 13.770709,
+   "swing": 0.132195,
+   "hp_hz": 2536.449463,
+   "attack_s": 0.007806,
+   "decay_s": 0.030122,
+   "amp_db": -54.087746,
+   "onset_s": 0.09175
+  },
+  "seconds": 2054.01,
+  "device": "cpu",
+  "deviceFallback": null,
+  "steps": 230,
+  "starts": 17
+ }
+]

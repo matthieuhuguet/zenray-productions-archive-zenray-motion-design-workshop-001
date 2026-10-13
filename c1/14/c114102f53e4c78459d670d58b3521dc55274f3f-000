@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+<metadata>{"schema": "zrmd/asset2d@1", "asset": "verify-logo", "version": "V_002", "date": "12 October 2026"}</metadata>
+<defs><linearGradient id="grad-L01" gradientUnits="userSpaceOnUse" x1="131.509" y1="131.491" x2="28.509" y2="28.491"><stop offset="0" stop-color="#8d39ea"/><stop offset="1" stop-color="#417cf6"/></linearGradient></defs>
+<g id="L00-background" data-kind="rect"><rect x="0" y="0" width="160" height="160" fill="#f7f7f2"/></g>
+<g id="L01-rounded_rect" data-kind="rounded_rect"><rect x="20.5013" y="20.4925" width="118.999" height="119" rx="26.0027" ry="26.0027" transform="rotate(0.0006 80.0009 79.9926)" fill="url(#grad-L01)"/></g>
+<g id="L02-arc" data-kind="arc"><circle cx="79.9998" cy="80.0127" r="34.2006" fill="none" stroke="#ff3366" stroke-width="8.9986" stroke-linecap="butt" stroke-linejoin="round"/></g>
+<g id="L03-circle" data-kind="circle"><circle cx="79.9994" cy="79.9996" r="11.5994" fill="#fde047"/></g>
+</svg>

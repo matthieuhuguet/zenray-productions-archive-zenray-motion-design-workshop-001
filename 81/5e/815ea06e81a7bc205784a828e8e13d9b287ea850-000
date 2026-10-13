@@ -1,0 +1,68 @@
+[17:14:19] sms analysis and calibration
+[17:14:46] sms drums: calibration mean |dB| per round [{'kick': 3.233, 'snare': 2.97, 'clap': 2.081, 'hatClosed': 4.116, 'hatOpen': 4.084}, {'kick': 2.401, 'snare': 2.042, 'clap': 1.933, 'hatClosed': 2.59, 'hatOpen': 2.651}, {'kick': 2.279, 'snare': 1.86, 'clap': 1.789, 'hatClosed': 2.35, 'hatOpen': 2.267}, {'kick': 2.198, 'snare': 1.754, 'clap': 1.716, 'hatClosed': 2.217, 'hatOpen': 2.128}]
+[17:14:46] sms bass: calibration mean |dB| per round [{'bass': 1.235}, {'bass': 0.802}, {'bass': 0.63}, {'bass': 0.527}]
+[17:14:46] measuring stem eq and stereo
+[17:15:08] fitting the mix bus
+[17:15:59] rendering from params
+[17:16:23] scoring
+[17:16:43] V_009 written
+{
+ "version": "V_009",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.019,
+   "onsetF": 0.8661,
+   "chroma": 0.9685,
+   "envCorr": 0.979,
+   "sectionEnv": 83.894,
+   "plossEvents": 45.612,
+   "plossBarNoOnset": 63.599,
+   "tfBands": 84.887
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.001,
+   "onsetF": 0.5636,
+   "chroma": 0.9704,
+   "envCorr": 0.9618,
+   "sectionEnv": 83.094,
+   "plossEvents": 48.302,
+   "plossBarNoOnset": 56.199,
+   "tfBands": 91.515
+  },
+  "other": {
+   "plossFull": 29.2028,
+   "plossBarMedian": 56.486,
+   "onsetF": 0.1184,
+   "chroma": 0.7585,
+   "envCorr": 0.7834,
+   "sectionEnv": 96.455,
+   "plossEvents": 59.393,
+   "plossBarNoOnset": 58.546,
+   "tfBands": 90.512
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457,
+   "plossEvents": null,
+   "plossBarNoOnset": 70.962,
+   "tfBands": 96.858
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 10.846,
+   "onsetF": 0.7794,
+   "chroma": 0.9514,
+   "envCorr": 0.9466,
+   "sectionEnv": 98.287,
+   "plossEvents": 65.062,
+   "plossBarNoOnset": 73.249,
+   "tfBands": 95.148
+  }
+ }
+}

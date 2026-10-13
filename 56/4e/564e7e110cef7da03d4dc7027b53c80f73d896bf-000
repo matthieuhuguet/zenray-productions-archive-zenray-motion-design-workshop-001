@@ -1,0 +1,42 @@
+[
+ {
+  "target": "notify_two_tone",
+  "case": 1,
+  "score": 99.9727,
+  "b1": 99.952,
+  "seconds": 39.92,
+  "scan": {
+   "rounds": 0,
+   "moves": 0,
+   "cma": {
+    "runs": 0,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 1807.363159,
+   "interval_st": 0.940897,
+   "step_s": 0.31334,
+   "note_decay_s": 0.200903,
+   "h3_db": -16.89019,
+   "note2_db": -7.57693,
+   "amp_db": -46.300591,
+   "onset_s": 0.203151
+  },
+  "params": {
+   "f1_hz": 1807.172729,
+   "interval_st": 0.929743,
+   "step_s": 0.313239,
+   "note_decay_s": 0.202181,
+   "h3_db": -16.820202,
+   "note2_db": -7.398604,
+   "amp_db": -46.508522,
+   "onset_s": 0.203278
+  },
+  "ok": true
+ }
+]

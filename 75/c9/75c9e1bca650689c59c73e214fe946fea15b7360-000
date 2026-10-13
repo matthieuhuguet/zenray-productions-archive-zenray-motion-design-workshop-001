@@ -1,0 +1,21 @@
+RED shaker#1 ploss   77.308 b1 99.421 2093.8 s starts 17 
+    errors {'stft': 2.9439, 'mel': 1.6865, 'envelope': 3.7358, 'onset': 0.3769}
+    count                7.22857     6.81777
+    rate_hz              7.20880     7.16459
+    swing                0.17489     0.18350
+    hp_hz             9438.51172  9660.79102
+    attack_s             0.01023     0.01772
+    decay_s              0.06293     0.06076
+    amp_db             -19.45811   -20.53539
+    onset_s              0.04495     0.03648
+RED shaker#2 ploss   92.579 b1 0.18 2054.01 s starts 17 
+    errors {'stft': 1.1153, 'mel': 0.6704, 'envelope': 2.4051, 'onset': 0.4412}
+    count               12.49078    12.50254
+    rate_hz             13.75277    13.77071
+    swing                0.11249     0.13220
+    hp_hz             2505.79688  2536.44946
+    attack_s             0.00716     0.00781
+    decay_s              0.02998     0.03012
+    amp_db             -53.86986   -54.08775
+    onset_s              0.09212     0.09175
+total 2097 s

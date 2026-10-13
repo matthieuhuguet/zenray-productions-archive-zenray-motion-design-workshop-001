@@ -1,0 +1,231 @@
+[
+ {
+  "target": "pulse_lead",
+  "case": 2,
+  "score": 99.9604,
+  "b1": 99.987,
+  "seconds": 317.17,
+  "scan": {
+   "rounds": 0,
+   "moves": 0
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "f0_hz": 775.782715,
+   "width": 0.178973,
+   "cutoff_hz": 258.493011,
+   "vib_rate_hz": 1.634645,
+   "vib_cents": 30.38059,
+   "attack_s": 0.006496,
+   "decay_s": 1.188929,
+   "amp_db": -25.496567,
+   "onset_s": 0.113952
+  },
+  "params": {
+   "f0_hz": 775.327148,
+   "width": 0.181206,
+   "cutoff_hz": 441.975403,
+   "vib_rate_hz": 1.639414,
+   "vib_cents": 31.058836,
+   "attack_s": 0.006463,
+   "decay_s": 1.188613,
+   "amp_db": -34.593803,
+   "onset_s": 0.113931
+  },
+  "ok": true
+ },
+ {
+  "target": "notify_two_tone",
+  "case": 1,
+  "score": 97.1512,
+  "b1": 98.143,
+  "seconds": 923.74,
+  "scan": {
+   "rounds": 6,
+   "moves": 24,
+   "esGain": [
+    212.1819,
+    0.2363,
+    0.004,
+    0.2685,
+    0.2113,
+    0.0
+   ]
+  },
+  "polish": {
+   "rounds": 12,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 1806.69104,
+   "interval_st": 0.934227,
+   "step_s": 0.312742,
+   "note_decay_s": 0.200687,
+   "h3_db": -16.946339,
+   "note2_db": -10.469956,
+   "amp_db": -46.242188,
+   "onset_s": 0.203622
+  },
+  "params": {
+   "f1_hz": 1807.172729,
+   "interval_st": 0.929743,
+   "step_s": 0.313239,
+   "note_decay_s": 0.202181,
+   "h3_db": -16.820202,
+   "note2_db": -7.398604,
+   "amp_db": -46.508522,
+   "onset_s": 0.203278
+  },
+  "ok": false
+ },
+ {
+  "target": "notify_arpeggio",
+  "case": 2,
+  "score": 99.1011,
+  "b1": 99.531,
+  "seconds": 1192.8,
+  "scan": {
+   "rounds": 6,
+   "moves": 29,
+   "esGain": [
+    354.1298,
+    13.2324,
+    2.4125,
+    0.4073,
+    0.1464,
+    0.0
+   ]
+  },
+  "polish": {
+   "rounds": 12,
+   "improved": 0
+  },
+  "fitted": {
+   "f1_hz": 261.116241,
+   "step1_st": 1.330366,
+   "step2_st": 6.965177,
+   "step_s": 0.185636,
+   "note_decay_s": 0.083986,
+   "tilt": 2.370125,
+   "amp_db": -38.135597,
+   "onset_s": 0.121918
+  },
+  "params": {
+   "f1_hz": 253.241898,
+   "step1_st": 1.855037,
+   "step2_st": 6.836167,
+   "step_s": 0.185766,
+   "note_decay_s": 0.082855,
+   "tilt": 2.362148,
+   "amp_db": -37.980896,
+   "onset_s": 0.121895
+  },
+  "ok": false
+ },
+ {
+  "target": "stereo_width",
+  "case": 1,
+  "score": 99.1313,
+  "b1": 96.417,
+  "seconds": 1087.1,
+  "scan": {
+   "rounds": 5,
+   "moves": 8,
+   "esGain": [
+    1.2744,
+    3.4237,
+    0.1662,
+    0.0934,
+    0.0
+   ]
+  },
+  "polish": {
+   "rounds": 24,
+   "improved": 0
+  },
+  "fitted": {
+   "width": 1.010151,
+   "haas_ms": 20.0359,
+   "out_db": 6.207745
+  },
+  "params": {
+   "width": 0.843173,
+   "haas_ms": 20.034204,
+   "out_db": 6.702291
+  },
+  "ok": false
+ },
+ {
+  "target": "chorus",
+  "case": 1,
+  "score": 99.4986,
+  "b1": 99.256,
+  "seconds": 1056.83,
+  "scan": {
+   "rounds": 3,
+   "moves": 1,
+   "esGain": [
+    0.3049,
+    0.0002,
+    0.0001
+   ]
+  },
+  "polish": {
+   "rounds": 24,
+   "improved": 0
+  },
+  "fitted": {
+   "rate_hz": 0.136411,
+   "depth_ms": 0.791933,
+   "base_ms": 22.942423,
+   "mix": 0.545043,
+   "out_db": -16.607113
+  },
+  "params": {
+   "rate_hz": 0.458977,
+   "depth_ms": 0.32232,
+   "base_ms": 23.177254,
+   "mix": 0.548951,
+   "out_db": -16.537849
+  },
+  "ok": false
+ },
+ {
+  "target": "chorus",
+  "case": 2,
+  "score": 95.2952,
+  "b1": 94.017,
+  "seconds": 1072.76,
+  "scan": {
+   "rounds": 3,
+   "moves": 2,
+   "esGain": [
+    0.3905,
+    0.0029,
+    0.0
+   ]
+  },
+  "polish": {
+   "rounds": 24,
+   "improved": 3
+  },
+  "fitted": {
+   "rate_hz": 1.643655,
+   "depth_ms": 7.938648,
+   "base_ms": 14.341165,
+   "mix": 0.26095,
+   "out_db": 1.073259
+  },
+  "params": {
+   "rate_hz": 3.271527,
+   "depth_ms": 2.342186,
+   "base_ms": 12.402796,
+   "mix": 0.407138,
+   "out_db": 1.838951
+  },
+  "ok": false
+ }
+]

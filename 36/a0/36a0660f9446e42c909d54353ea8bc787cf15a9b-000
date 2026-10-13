@@ -1,0 +1,11 @@
+{
+ "date": "12 October 2026",
+ "mark": "t-title-small",
+ "version": "V_003",
+ "bitrate": "2176889",
+ "ceiling_exact_outlines": {
+  "iou_soft": 0.98571,
+  "iou_hard": 0.99098,
+  "edge_mean_px": 0.0277
+ }
+}

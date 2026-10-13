@@ -1,0 +1,39 @@
+[
+ {
+  "target": "stereo_width",
+  "case": 1,
+  "score": 99.1313,
+  "b1": 96.417,
+  "seconds": 1603.55,
+  "scan": {
+   "rounds": 5,
+   "moves": 8,
+   "gain": [
+    10.7995,
+    4.2053,
+    0.2228,
+    0.1345,
+    0.0
+   ],
+   "cma": {
+    "runs": 2,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 48,
+   "improved": 0
+  },
+  "fitted": {
+   "width": 1.010151,
+   "haas_ms": 20.0359,
+   "out_db": 6.207745
+  },
+  "params": {
+   "width": 0.843173,
+   "haas_ms": 20.034204,
+   "out_db": 6.702291
+  },
+  "ok": false
+ }
+]

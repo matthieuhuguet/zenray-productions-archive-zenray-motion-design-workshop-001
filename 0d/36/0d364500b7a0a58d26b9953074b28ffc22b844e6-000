@@ -1,0 +1,98 @@
+OK  keyboard_typing#1 ploss   99.950 b1 99.342 1592.13 s starts 12 
+    errors {'stft': 0.09, 'mel': 0.0742, 'envelope': 0.1748, 'onset': -0.0733}
+    count                2.89136     2.89132
+    rate_hz              6.13780     6.13512
+    jitter               0.26742     0.26892
+    accent_db            9.16409     9.84282
+    click_hz          2693.53345  2696.98804
+    decay_s              0.01691     0.01689
+    amp_db             -28.79226   -28.39573
+    onset_s              0.15081     0.15072
+OK  keyboard_typing#2 ploss   99.951 b1 99.984 894.6 s starts 9 
+    errors {'stft': 0.172, 'mel': 0.0976, 'envelope': 0.0965, 'onset': -0.0029}
+    count                4.34397     4.34259
+    rate_hz             13.34148    13.32831
+    jitter               0.50253     0.50479
+    accent_db            1.33918     1.51408
+    click_hz          3682.48755  3693.35522
+    decay_s              0.03598     0.03580
+    amp_db             -49.87584   -49.73716
+    onset_s              0.06386     0.06385
+RED shaker#1 ploss   67.519 b1 0.0 2136.27 s starts 19 
+    errors {'stft': 3.5571, 'mel': 2.5856, 'envelope': 4.2084, 'onset': 1.425}
+    count                7.22857     7.92372
+    rate_hz              7.20880     7.21115
+    swing                0.17489     0.14872
+    hp_hz             9438.51172 11210.07031
+    attack_s             0.01023     0.02374
+    decay_s              0.06293     0.06381
+    amp_db             -19.45811   -25.07098
+    onset_s              0.04495     0.03979
+RED shaker#2 ploss   92.579 b1 0.18 1979.24 s starts 17 
+    errors {'stft': 1.1153, 'mel': 0.6704, 'envelope': 2.4051, 'onset': 0.4412}
+    count               12.49078    12.50254
+    rate_hz             13.75277    13.77071
+    swing                0.11249     0.13220
+    hp_hz             2505.79688  2536.44946
+    attack_s             0.00716     0.00781
+    decay_s              0.02998     0.03012
+    amp_db             -53.86986   -54.08775
+    onset_s              0.09212     0.09175
+OK  static_crackle#1 ploss   99.905 b1 99.911 3733.31 s starts 18 
+    errors {'stft': 0.1745, 'mel': 0.1472, 'envelope': 0.2056, 'onset': -0.0127}
+    density              0.60348     0.59479
+    duration_s           0.38195     0.38198
+    center_hz          918.77515   944.43231
+    bw_oct               2.70480     2.66126
+    click_s              0.00286     0.00309
+    amp_db             -33.40354   -33.53727
+    onset_s              0.03383     0.03379
+OK  hihat_closed#1 ploss   99.707 b1 99.873 923.55 s starts 17 
+    errors {'stft': 0.4911, 'mel': 0.2144, 'envelope': 0.072, 'onset': 0.0}
+    base_hz           4255.14697  4259.55615
+    metal_db            -9.27334    -9.41000
+    hp_hz             5218.61865  5214.21582
+    decay_s              0.04990     0.04995
+    attack_s             0.00113     0.00119
+    amp_db             -31.87583   -31.91118
+    onset_s              0.16895     0.16891
+OK  ui_click#1 ploss   99.840 b1 99.974 580.46 s starts 18 
+    errors {'stft': 0.3595, 'mel': 0.1555, 'envelope': 0.0738, 'onset': 0.0}
+    center_hz         4525.84522  4531.17041
+    bw_oct               1.16344     1.13999
+    decay_s              0.00923     0.00902
+    attack_s             0.00018     0.00013
+    tone_db            -15.42073   -13.96734
+    amp_db             -47.27837   -46.98877
+    onset_s              0.10844     0.10845
+OK  riser#2 ploss   99.563 b1 99.635 603.82 s starts 18 
+    errors {'stft': 0.2393, 'mel': 0.3386, 'envelope': 0.5136, 'onset': 0.0002}
+    start_hz           116.36924   137.41107
+    end_hz            8798.44922  9000.82910
+    bw_oct               1.72971     1.74237
+    duration_s           0.38501     0.36171
+    curve                1.46983     1.23291
+    tone_db            -23.03226   -20.87107
+    amp_db             -23.56856   -23.81250
+    onset_s              0.02214     0.04557
+OK  glitch_stutter#1 ploss   99.534 b1 99.993 1096.96 s starts 17 
+    errors {'stft': 0.3591, 'mel': 0.1039, 'envelope': 0.2207, 'onset': -0.5256}
+    base_hz           2565.34131  2568.02173
+    spread_oct           0.65791     0.65422
+    grain_s              0.01029     0.01041
+    rate_hz             10.87319    10.87254
+    count               10.59271    10.58828
+    density              0.67784     0.67878
+    amp_db             -15.65546   -15.70865
+    onset_s              0.06618     0.06605
+OK  paper_rustle#1 ploss   99.969 b1 99.983 264.16 s starts 9 
+    errors {'stft': 0.0736, 'mel': 0.0556, 'envelope': 0.149, 'onset': -0.012}
+    center_hz         2738.25537  2734.88477
+    bw_oct               2.22497     2.22382
+    crinkle_hz          42.07280    42.04878
+    depth                0.49743     0.48901
+    duration_s           0.17661     0.17661
+    attack_s             0.00817     0.00878
+    amp_db             -26.64888   -26.81365
+    onset_s              0.05332     0.05286
+total 3739 s

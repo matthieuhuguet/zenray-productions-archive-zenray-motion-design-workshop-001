@@ -1,0 +1,248 @@
+{
+ "schema": "zrmd/asset2d@1",
+ "asset": "verify-logo",
+ "date": "12 October 2026",
+ "canvas": {
+  "width": 160,
+  "height": 160
+ },
+ "source": {
+  "kind": "synthetic",
+  "case": "logo"
+ },
+ "palette": {
+  "c0": "#f7f7f2",
+  "c1": "#ffffff",
+  "c2": "#fde047"
+ },
+ "layers": [
+  {
+   "id": "L00",
+   "name": "L00-background",
+   "z": 0,
+   "kind": "rect",
+   "geometry": {
+    "cx": 80.0,
+    "cy": 80.0,
+    "w": 160.0,
+    "h": 160.0,
+    "angle": 0.0
+   },
+   "paint": {
+    "type": "flat",
+    "colour": "@c0",
+    "fit_rms": 0.0
+   },
+   "effects": {
+    "blur": 0.0,
+    "opacity": 1.0
+   },
+   "fit": {
+    "background": true
+   },
+   "shader_hint": [
+    "solid_color"
+   ]
+  },
+  {
+   "id": "L01",
+   "name": "L01-rounded_rect",
+   "z": 1,
+   "kind": "rounded_rect",
+   "geometry": {
+    "cx": 80.0009,
+    "cy": 79.9926,
+    "w": 118.9992,
+    "h": 119.0001,
+    "angle": 0.0006,
+    "radius": 26.0027
+   },
+   "paint": {
+    "type": "linear",
+    "x1": 131.509,
+    "y1": 131.491,
+    "x2": 28.509,
+    "y2": 28.491,
+    "stops": [
+     {
+      "offset": 0.0,
+      "colour": "#8d39ea"
+     },
+     {
+      "offset": 1.0,
+      "colour": "#417cf6"
+     }
+    ],
+    "fit_rms": 0.28
+   },
+   "effects": {
+    "blur": 0.0,
+    "opacity": 1.0
+   },
+   "fit": {
+    "iou": 0.99983,
+    "edge_mean": 0.0363,
+    "nfev": 247,
+    "tried": [
+     {
+      "kind": "circle",
+      "cap": null,
+      "iou": 0.838387,
+      "edge_mean": 4.4276,
+      "ok": false
+     },
+     {
+      "kind": "ellipse",
+      "cap": null,
+      "iou": 0.838433,
+      "edge_mean": 4.4299,
+      "ok": false
+     },
+     {
+      "kind": "rect",
+      "cap": null,
+      "iou": 0.939911,
+      "edge_mean": 1.5364,
+      "ok": false
+     },
+     {
+      "kind": "rounded_rect",
+      "cap": null,
+      "iou": 0.99983,
+      "edge_mean": 0.0363,
+      "ok": true
+     },
+     {
+      "kind": "rounded_rect",
+      "cap": null,
+      "iou": 0.999802,
+      "edge_mean": 0.0358,
+      "ok": true
+     },
+     {
+      "kind": "rounded_rect",
+      "cap": null,
+      "iou": 0.999828,
+      "edge_mean": 0.0359,
+      "ok": true
+     }
+    ],
+    "stats": {
+     "area": 13556.0,
+     "holes": 0,
+     "solidity": 0.9867,
+     "thickness": 118.068,
+     "skeleton": 2,
+     "thin": 0.017
+    }
+   },
+   "shader_hint": [
+    "linear_ramp4",
+    "gradient_stops6"
+   ]
+  },
+  {
+   "id": "L02",
+   "name": "L02-arc",
+   "z": 2,
+   "kind": "arc",
+   "geometry": {
+    "cx": 79.9998,
+    "cy": 80.0127,
+    "r": 34.2006,
+    "start": -0.0287,
+    "sweep": 360.0287,
+    "width": 8.9986,
+    "cap": "butt"
+   },
+   "paint": {
+    "type": "flat",
+    "colour": "@c1",
+    "fit_rms": 0.0
+   },
+   "effects": {
+    "blur": 0.0,
+    "opacity": 1.0
+   },
+   "fit": {
+    "iou": 0.999344,
+    "edge_mean": 0.0024,
+    "nfev": 170,
+    "tried": [
+     {
+      "kind": "arc",
+      "cap": "butt",
+      "iou": 0.999344,
+      "edge_mean": 0.0024,
+      "ok": true
+     }
+    ],
+    "stats": {
+     "area": 1942.0,
+     "holes": 2756,
+     "solidity": 0.4074,
+     "thickness": 10.0,
+     "skeleton": 192,
+     "thin": 19.2
+    }
+   },
+   "shader_hint": []
+  },
+  {
+   "id": "L03",
+   "name": "L03-circle",
+   "z": 3,
+   "kind": "circle",
+   "geometry": {
+    "cx": 79.9994,
+    "cy": 79.9996,
+    "r": 11.5994
+   },
+   "paint": {
+    "type": "flat",
+    "colour": "@c2",
+    "fit_rms": 0.0
+   },
+   "effects": {
+    "blur": 0.0,
+    "opacity": 1.0
+   },
+   "fit": {
+    "iou": 0.999555,
+    "edge_mean": 0.002,
+    "nfev": 113,
+    "tried": [
+     {
+      "kind": "circle",
+      "cap": null,
+      "iou": 0.999555,
+      "edge_mean": 0.002,
+      "ok": true
+     }
+    ],
+    "stats": {
+     "area": 425.0,
+     "holes": 0,
+     "solidity": 0.9563,
+     "thickness": 22.091,
+     "skeleton": 2,
+     "thin": 0.091
+    }
+   },
+   "shader_hint": []
+  }
+ ],
+ "editing": "change palette colours, layer geometry, paint stops or effects here, then run Scripts/Vectorise.py rebuild to cook a new version (12 October 2026)",
+ "trace": {
+  "refine": true,
+  "sabotage": false,
+  "rejected": [],
+  "settings": {
+   "smooth_step": 10,
+   "fit_error_px": 0.3,
+   "band_px": 3
+  }
+ },
+ "version": "V_001",
+ "parent": null
+}

@@ -1,0 +1,133 @@
+# A3, calibration corpus and realism test (12 and 13 October 2026)
+
+## What exists
+
+Corpus (12 October 2026). 525 CC0 sound effects, taken from seven Kenney packs (interface, impact, ui, digital, sci-fi, rpg, casino). Each pack's `License.txt` was read, and `prepare` refuses any pack whose licence does not say CC0. The files were downloaded without a login into `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/sound-calibration/raw`. Each one is decoded to mono at 48 kHz, trimmed, capped at 1 s and peaked at -6 dB, then written to `prepared/`. The B1 rule tree (describe, extra, classify) assigns the class. Every file is listed in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/sound-calibration/manifest.json` with its source URL, licence, licence file, source sha256, class and the reason for that class. Class counts: click 100, impact 98, whoosh 44, keyboard 43, swoosh 39, blip 37, pop 30, swipe 29, glitch 19, boom 19, trigger 18, ding 18, tick 17, reverse 7, shimmer 6, subdrop 1. None of this is in the workshop.
+
+OneKey targets (analysis only, 12 October 2026). The windows E001, E005, E006 and E007 of V_017 `events.json` are cut from the demucs stem each event was detected on, into `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/onekey-pro-2/sound-targets/` (plus `manifest.json`). They are never archived, never published and never used as a deliverable.
+
+Script: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/CalibrateSoundBank.py`, with steps `prepare | targets | fit | report | check`. All its parameters live in `datasets/sfx-params.json`, section `calibrate`.
+
+- `fit` picks a stratified, deterministic subset of 180 sounds (12 per class, then round robin). It then runs four stages, and any sound already at 99 skips the remaining stages:
+  1. A screen of every source block (a random pre-screen plus 40 Adam steps).
+  2. A full dfit on the 4 best screened blocks.
+  3. Pairs: the best single block, warm-started, layered with the next 2.
+  4. An fx stage: the best chain followed by reverb_fdn, saturation or peak_eq.
+
+  Fits are cached in `fits.jsonl`, keyed by sound, chain, the sha256 of each `block.py` and the settings, so a rerun only fits new chains. The step reports the score distribution per class, the best chains, the median error per loss term, the official ploss score beside the fitted metric, and a seed ceiling: the best chain scored against itself rendered with every noise seed moved by one.
+- `fit --targets-only` (added 12 October 2026) fits only the four OneKey windows.
+- `report --lines A:B` (added 12 October 2026) rebuilds a report from a slice of `fits.jsonl`. See "Defect found" below for why it was needed.
+- `--out name.json` writes the report to a named file inside the calibration folder.
+
+## Verifiers, both directions (13 October 2026)
+
+| Check | Command | Expected | Measured |
+|---|---|---|---|
+| verdict, good case | `check` | exit 0 | exit 0, synthetic sine 99.999, noise fitted by a sine-only bank 1.69 |
+| verdict, broken case | `check --sabotage` | exit 1 | exit 1, sine fitted with the wrong block 93.22 (under 99) |
+| report from cache, broken case | `report --lines 0:0` | exit 1 | exit 1, "no fitted row of the chosen corpus" |
+| report from cache, good case | `report --lines 26463:36055` | exit 0 | exit 0, 180 sounds, 19 s |
+
+## Run 1 (12 October 2026, 3 blocks: sine_env, filtered_noise_burst, fm_bell; official ploss metric)
+
+180 sounds: median 43.57, p10 6.21, p90 63.72, max 83.16, 0 at or above 99. Every class is under 99. Report: `calibration-report-run1.json`.
+
+## Run 2 (12 October 2026, 47 source blocks from A1 and A2; stochastic metric; screen, full and pair stages complete)
+
+The first ten fx fits are counted. The rest of the fx stage was stopped after 52 fits, for the reason given below. Report: `calibration-report-run2.json`, rebuilt from `fits.jsonl` lines 26463 to 36054.
+
+| Class | Sounds | Median | P10 | P90 | Max | At or above 99 | Official median | B1 median | Seed ceiling median | Best chains |
+|---|---|---|---|---|---|---|---|---|---|---|
+| blip | 13 | 85.95 | 75.52 | 94.3 | 95.71 | 0 | 59.84 | 10.2 | 99.08 | impact_layered+key_press+peak_eq (2), snare+clap+peak_eq (1) |
+| boom | 13 | 97.3 | 77.82 | 98.61 | 98.85 | 0 | 21.43 | 23.27 | 98.39 | room_tone+wind (3), wind+pulse_lead+saturation (1) |
+| click | 13 | 87.89 | 80.18 | 93.78 | 96.22 | 0 | 65.45 | 22.09 | 98.3 | paper_rustle+filtered_noise_burst (2), clap+snare (1) |
+| ding | 13 | 81.59 | 62.08 | 89.94 | 90.83 | 0 | 40.83 | 24.79 | 99.65 | crash_cymbal+paper_rustle (1), sine_env+chime_bar (1) |
+| glitch | 13 | 70.38 | 11.12 | 94.75 | 96.38 | 0 | 5.77 | 32.09 | 99.73 | wind+filtered_noise_burst (2), room_tone+wind (1) |
+| impact | 13 | 94.8 | 81.15 | 96.76 | 98.4 | 0 | 20.48 | 57.53 | 99.84 | pad_saw+thud (2), fm_bell+kick (1) |
+| keyboard | 13 | 42.03 | 28.87 | 90.29 | 96.83 | 0 | 11.22 | 0.08 | 99.47 | glitch_stutter+paper_rustle (1), supersaw+pad_saw (1) |
+| pop | 13 | 75.72 | 65.25 | 80.78 | 92.34 | 0 | 49.79 | 47.78 | 99.48 | pad_saw+thud (2), impact_layered+filtered_noise_burst (2) |
+| swipe | 13 | 81.44 | 73.15 | 92.64 | 94.26 | 0 | 53.22 | 4.38 | 98.97 | pluck_ks+paper_rustle (1), filtered_noise_burst+clap (1) |
+| swoosh | 13 | 78.31 | 39.55 | 87.61 | 95.82 | 0 | 43.54 | 16.13 | 99.32 | paper_rustle+filtered_noise_burst (3), swoosh_tonal+paper_rustle (2) |
+| tick | 12 | 87.46 | 17.51 | 97.12 | 98.87 | 0 | 53.05 | 0.03 | 99.48 | room_tone+pad_saw (3), paper_rustle+hihat_closed (1) |
+| trigger | 12 | 91.4 | 72.06 | 95.89 | 98.81 | 0 | 46.62 | 9.61 | 99.23 | room_tone+wind (3), room_tone+pad_saw (2) |
+| whoosh | 12 | 77.12 | 53.15 | 94.69 | 95.6 | 0 | 47.58 | 38.55 | 99.77 | downlifter+filtered_noise_burst (1), static_crackle+paper_rustle (1) |
+| reverse | 7 | 76.92 | 69.23 | 86.92 | 89.06 | 0 | 51.63 | 0.0 | 99.67 | keyboard_typing+ui_click (1), filtered_noise_burst+thud (1) |
+| shimmer | 6 | 82.6 | 44.83 | 91.33 | 91.34 | 0 | 54.48 | 0.0 | 99.58 | room_tone+filtered_noise_burst (2), cloth_swish+filtered_noise_burst (1) |
+| subdrop | 1 | 97.47 | 97.47 | 97.47 | 97.47 | 0 | 10.08 | 75.5 | 99.66 | room_tone+pad_saw (1) |
+| all | 180 | 82.29 | 41.94 | 96.01 | 98.87 | 0 | 47.22 | | | |
+
+The "Score" columns use the stochastic, seed-invariant metric that the fits optimised. The official ploss column is the same render scored the A0 way. Like for like on the official metric, the median moved from 43.57 (3 blocks) to 47.22 (47 blocks), the p90 from 63.72 to 70.73 and the max from 83.16 to 81.84. Under the official metric no class gained more than about 10 points. Under the stochastic metric the median rose from about 44 to 82.
+
+The seed ceiling median is between 98.3 and 99.8 for every class. In other words, the stochastic metric does not punish a different noise realisation, so the gap to 99 that remains is a modelling gap: blocks are missing or are too rigid.
+
+## Run 3 (13 October 2026, OneKey windows only, current bank with 50 sources plus fx)
+
+Report: `calibration-report-run3-onekey.json`, 1818 s at a machine load of about 170.
+
+| OneKey target | B1 class | Score (stochastic) | Official | B1 score | Seed ceiling | Best chain | Run 1 (3 blocks) |
+|---|---|---|---|---|---|---|---|
+| E001 | impact | 90.88 | 71.90 | 15.58 | 99.79 | impact_layered+pad_saw+reverb_fdn | 7.64 |
+| E005 | keyboard | 90.62 | 66.20 | 11.60 | 92.85 | wind+impact_layered+saturation | 56.96 |
+| E006 | impact | 95.68 | 74.89 | 33.30 | 98.26 | room_tone+pad_saw+peak_eq | 29.41 |
+| E007 | ding | 96.22 | 79.29 | 78.66 | 99.78 | gated_tone+filtered_noise_burst+peak_eq | 42.38 |
+
+The real OneKey SFX improved on every one of the four windows, measured on the official score: 7.6 to 71.9, 57.0 to 66.2, 29.4 to 74.9, and 42.4 to 79.3. None reaches 99 on either metric. For E005, the keyboard roll, even the seed ceiling (92.85) is under 99, which means the best chain does not model it.
+
+## Classes under 99, and the missing blocks they point to
+
+Every class is under 99 (median), so none passes yet. The median error per loss term, in JND units from run 2, gives the direction for each group:
+
+- **keyboard** (median 42, envelope error 4.11, the worst) and the OneKey E005 roll: the bank needs a **multi-hit sequence block**. Each hit should get its own timing jitter, level, pitch and brightness, and the hit rate should be learnable. `keyboard_typing` is too regular, and today the fit falls back on noise.
+- **glitch** (median 70, envelope 3.31): a **gated or stuttered source**, built from a learnable step gate and sample-and-hold, with bit or rate reduction.
+- **swoosh, whoosh, swipe, reverse** (77 to 81, envelope 1.9 to 2.7, mel up to 3.5): a **noise band with a learnable centre and width trajectory**, using multi-point breakpoint envelopes rather than a single attack and decay. The best chains layer two static noises to fake the motion.
+- **ding, pop, shimmer** (76 to 83, mel 2.6 to 3.4): **modal partials that are inharmonic, with a decay per partial** (a learnable stretch factor). For pop, a **short pitch drop on the body**. For shimmer, **detuned partials with amplitude modulation**.
+- **blip** (86, stft 2.96): a **chip pulse with discrete pitch steps** (a two or three note arpeggio within one blip). Its best chains currently borrow percussion blocks.
+- **click, tick, trigger, impact, boom, subdrop** (88 to 97): these are close. What remains is mostly attack shape: a **transient with a learnable click spectrum** placed in front of a body. Boom and subdrop score 97 under the stochastic metric but only 10 to 21 officially, and they are fitted by `room_tone+wind`. The stochastic metric rewards a matching noise floor here, so these two classes need a listening check before anyone believes them.
+
+## Defect found, and its consequence (13 October 2026)
+
+`settings_hash` keys the cache on the global `dfit` and `ploss` sections of `sfx-params.json`. A1 and A2 edit those sections while they work, so every one of their edits re-keyed all 35,000 cached fits. This happened four times: the aborted logs `run2-official-aborted.log`, `run2-scan3-aborted.log`, `run2-reboot-aborted.log` and `run2-rekey-aborted.log` all start from "0 cached".
+
+On top of that, the run 2 fx stage ran at about 36 s per fit while the machine load was 140 to 250, which projected to about 5 hours. I therefore stopped it after 52 fits and rebuilt the run 2 report from its own `fits.jsonl` lines with the new `report --lines` step. Proposed fix, not applied because it would re-key the cache once more: copy the dfit and ploss settings used for calibration into `calibrate` and hash only those.
+
+## Files
+
+- `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/CalibrateSoundBank.py` (backup of the version before the 12 October 2026 23:10 edit: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/sound-calibration/CalibrateSoundBank.py.bak-2310`)
+- `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/sound-calibration/manifest.json`, `fits.jsonl`, `calibration-history.jsonl`, `calibration-report-run1.json`, `calibration-report-run2.json`, `calibration-report-run3-onekey.json`
+- `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/onekey-pro-2/sound-targets/` (E001, E005, E006, E007 and manifest)
+
+## Cache key fix applied (13 October 2026)
+
+`calibrate.pinned` in `datasets/sfx-params.json` now holds a frozen copy of the global `dfit` and `ploss` sections, and the new `base_cfg()` in `CalibrateSoundBank.py` overlays it before both the fits and `settings_hash`. The copy was taken from the globals that produced hash `a60932b0b3369813` (the run 2 and run 3 hash), so the existing cache stays valid. Proved both ways: editing the global `dfit.steps` in memory leaves the hash unchanged (green), editing `calibrate.pinned.dfit.steps` changes it (red). Backups: `CalibrateSoundBank.py.bak-pin` and `sfx-params.json.bak-pin` in the calibration folder.
+
+Run 4 (13 October 2026) refits the 180 corpus sounds with the current 64 entries of the bank. Its screen stage reruns about 8,800 fits because A1 and A2 edited many `block.py` files between run 2 and run 3 (block hashes are part of the key, as they should be).
+
+## Run 4 (13 October 2026, 180 corpus sounds, 64 bank entries, pinned settings, all four stages complete)
+
+Report: `/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/sound-calibration/calibration-report-run4.json`, log `run4.log`, 13,645 s at a machine load of 40 to 190 (other jobs shared the CPU). Fits run: 8,802 screens, 720 full, 358 pairs, 534 fx. Same stochastic metric and settings hash as run 2 (`a60932b0b3369813`), so the two runs compare like for like.
+
+| Class | Sounds | Median | P10 | P90 | Max | At or above 99 | Official median | B1 median | Seed ceiling median | Worst error term (JND) | Top chain | Run 2 median |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| blip | 13 | 85.95 | 75.52 | 96.2 | 96.65 | 0 | 61.91 | 10.2 | 99.08 | stft 2.96 | impact_layered+key_press+peak_eq (2) | 85.95 |
+| boom | 13 | 98.24 | 87.5 | 99.01 | 99.2 | 2 | 76.56 | 64.32 | 99.68 | stft 1.02 | gated_tone+wind+reverb_fdn (2) | 97.3 |
+| click | 13 | 91.68 | 84.95 | 94.71 | 97.3 | 0 | 66.86 | 34.69 | 98.23 | mel 1.98 | clap+snare+peak_eq (1) | 87.89 |
+| ding | 13 | 83.33 | 64.55 | 94.12 | 98.24 | 0 | 56.92 | 50.48 | 99.76 | mel 3.31 | crash_cymbal+paper_rustle+reverb_fdn (1) | 81.59 |
+| glitch | 13 | 78.83 | 48.9 | 95.43 | 96.63 | 0 | 43.65 | 24.55 | 99.74 | envelope 2.86 | room_tone+wind+reverb_fdn (1) | 70.38 |
+| impact | 13 | 96.23 | 91.41 | 97.19 | 98.86 | 0 | 73.31 | 70.35 | 99.76 | stft 1.31 | filtered_noise_burst+peak_eq (1) | 94.8 |
+| keyboard | 13 | 65.49 | 37.48 | 92.37 | 97.42 | 0 | 42.73 | 3.57 | 99.62 | envelope 3.44 | paper_rustle+whoosh+saturation (1) | 42.03 |
+| pop | 13 | 82.21 | 69.29 | 90.67 | 95.14 | 0 | 61.05 | 66.57 | 99.29 | mel 3.1 | impact_layered+filtered_noise_burst+reverb_fdn (2) | 75.72 |
+| swipe | 13 | 87.65 | 81.9 | 94.13 | 95.8 | 0 | 59.2 | 2.75 | 98.39 | stft 2.21 | paper_rustle+impact_layered+peak_eq (1) | 81.44 |
+| swoosh | 13 | 83.18 | 48.32 | 94.56 | 96.43 | 0 | 57.03 | 29.04 | 99.47 | mel 2.69 | gated_tone+cloth_swish+peak_eq (1) | 78.31 |
+| tick | 12 | 91.26 | 18.35 | 97.2 | 99.02 | 1 | 61.81 | 0.26 | 99.12 | mel 1.89 | room_tone+pad_saw+peak_eq (2) | 87.46 |
+| trigger | 12 | 92.31 | 80.32 | 96.62 | 99.15 | 1 | 61.12 | 5.48 | 99.08 | stft 1.48 | room_tone+wind+peak_eq (2) | 91.4 |
+| whoosh | 12 | 86.74 | 54.29 | 96.72 | 96.76 | 0 | 66.52 | 39.24 | 99.72 | mel 2.64 | downlifter+filtered_noise_burst+peak_eq (1) | 77.12 |
+| reverse | 7 | 86.06 | 75.31 | 91.32 | 91.88 | 0 | 54.93 | 0.02 | 99.53 | mel 2.33 | keyboard_typing+filtered_noise_burst+peak_eq (1) | 76.92 |
+| shimmer | 6 | 86.23 | 63.44 | 93.08 | 93.11 | 0 | 59.24 | 1.08 | 99.61 | stft 2.16 | room_tone+filtered_noise_burst+peak_eq (2) | 82.6 |
+| subdrop | 1 | 98.17 | 98.17 | 98.17 | 98.17 | 0 | 84.19 | 77.69 | 99.66 | stft 0.91 | room_tone+pad_saw+peak_eq (1) | 97.47 |
+| all | 180 | 87.87 | 61.96 | 96.87 | 99.2 | 4 | 62.88 | | | | | 82.29 |
+
+What moved. The overall median rose from 82.29 to 87.87 on the fitted metric, and from 47.22 to 62.88 on the official A0 metric (official max 81.84 to 90.14). Every class gained or held; keyboard gained the most (42 to 65), then whoosh (77 to 87), reverse (77 to 86), glitch (70 to 79). Four sounds now pass 99 on the fitted metric, all slow sci-fi engine drones (boom, tick, trigger classes), fitted by `gated_tone` or `room_tone` layered with `wind` or `pad_saw`; their official scores are 72 to 90, so they are not 99 to the ear yet. Blip did not move at all (85.95 in both runs): no new block reached it.
+
+Every class is still under 99 at the median, and every seed ceiling median is 98.2 or above, so the remaining gap is still a modelling gap. The missing block list from run 2 stands, reordered by run 4 error: keyboard and glitch need a multi-hit or stepped-gate source (envelope error 3.4 and 2.9 JND, the largest); ding and pop need inharmonic modal partials with per-partial decay and a body pitch drop (mel 3.3 and 3.1); blip needs a chip pulse with discrete pitch steps (stft 3.0, no progress); swoosh, whoosh, swipe and reverse need a noise band with breakpoint trajectories for centre and width (mel 2.2 to 2.7). The OneKey windows were not refitted (their 16 cached fits were reused; run 3 numbers stand).
+
+Next: build those four block families in the bank, then rerun `fit --out calibration-report-run5.json`; with the pinned key only the new blocks are fitted.

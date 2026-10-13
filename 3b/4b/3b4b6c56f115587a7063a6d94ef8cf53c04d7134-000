@@ -1,0 +1,70 @@
+[
+ {
+  "target": "stereo_width",
+  "case": 1,
+  "score": 99.9998,
+  "b1": 100.0,
+  "seconds": 593.67,
+  "scan": {
+   "rounds": 2,
+   "moves": 5,
+   "gain": [
+    11.6836,
+    3.0674
+   ],
+   "cma": {
+    "runs": 0,
+    "improved": 0
+   }
+  },
+  "polish": {
+   "rounds": 0,
+   "improved": 0
+  },
+  "fitted": {
+   "width": 0.845312,
+   "haas_ms": 20.034248,
+   "out_db": 6.703712
+  },
+  "params": {
+   "width": 0.843173,
+   "haas_ms": 20.034204,
+   "out_db": 6.702291
+  },
+  "ok": true
+ },
+ {
+  "target": "stereo_width",
+  "case": 2,
+  "score": 99.7621,
+  "b1": 99.94,
+  "seconds": 1052.02,
+  "scan": {
+   "rounds": 2,
+   "moves": 0,
+   "gain": [
+    0.0211,
+    0.0
+   ],
+   "cma": {
+    "runs": 2,
+    "improved": 1
+   }
+  },
+  "polish": {
+   "rounds": 24,
+   "improved": 4
+  },
+  "fitted": {
+   "width": 0.215663,
+   "haas_ms": 2.30303,
+   "out_db": -11.961103
+  },
+  "params": {
+   "width": 0.214711,
+   "haas_ms": 2.448055,
+   "out_db": -11.958805
+  },
+  "ok": true
+ }
+]

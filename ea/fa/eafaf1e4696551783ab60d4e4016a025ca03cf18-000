@@ -1,0 +1,1 @@
+{"id": "t-four-secure", "version": "V_006", "font": "font.ttf", "iou_soft": 0.94004, "iou_hard": 0.94428, "edge_mean_px": 0.2359, "dE2000_band_mean": 3.822, "match": false, "svg_vs_render_iou": 0.99913, "score_built_creator": {"iou": 0.938215, "edge_mean": 0.2474, "edge_p95": 1.0, "loss": 0.0642594153607631}, "creator_seconds": 30.3}

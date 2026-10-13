@@ -1,0 +1,69 @@
+[17:09:41] sms analysis and calibration
+[17:11:32] sms drums: calibration mean |dB| per round [{'kick': 3.233, 'snare': 2.97, 'clap': 2.081, 'hatClosed': 4.116, 'hatOpen': 4.084}, {'kick': 2.401, 'snare': 2.042, 'clap': 1.933, 'hatClosed': 2.59, 'hatOpen': 2.651}, {'kick': 2.279, 'snare': 1.86, 'clap': 1.789, 'hatClosed': 2.35, 'hatOpen': 2.267}, {'kick': 2.198, 'snare': 1.754, 'clap': 1.716, 'hatClosed': 2.217, 'hatOpen': 2.128}]
+[17:11:32] sms bass: calibration mean |dB| per round [{'bass': 1.235}, {'bass': 0.802}, {'bass': 0.63}, {'bass': 0.527}]
+[17:11:32] sms other: calibration mean |dB| per round [{'otherLow': 6.446, 'otherMid': 1.504, 'otherHigh': 1.299}, {'otherLow': 2.765, 'otherMid': 0.914, 'otherHigh': 0.764}, {'otherLow': 1.854, 'otherMid': 0.685, 'otherHigh': 0.522}, {'otherLow': 1.556, 'otherMid': 0.56, 'otherHigh': 0.395}]
+[17:11:32] measuring stem eq and stereo
+[17:11:59] fitting the mix bus
+[17:13:20] rendering from params
+[17:13:41] scoring
+[17:14:06] V_008 written
+{
+ "version": "V_008",
+ "headline": {
+  "drums": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.019,
+   "onsetF": 0.8661,
+   "chroma": 0.9685,
+   "envCorr": 0.979,
+   "sectionEnv": 83.894,
+   "plossEvents": 45.612,
+   "plossBarNoOnset": 63.599,
+   "tfBands": 84.887
+  },
+  "bass": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.001,
+   "onsetF": 0.5636,
+   "chroma": 0.9704,
+   "envCorr": 0.9618,
+   "sectionEnv": 83.094,
+   "plossEvents": 48.302,
+   "plossBarNoOnset": 56.199,
+   "tfBands": 91.515
+  },
+  "other": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.5094,
+   "chroma": 0.8525,
+   "envCorr": 0.769,
+   "sectionEnv": 97.567,
+   "plossEvents": 56.109,
+   "plossBarNoOnset": 50.912,
+   "tfBands": 86.058
+  },
+  "vocals": {
+   "plossFull": 0.0465,
+   "plossBarMedian": 57.657,
+   "onsetF": 0.6679,
+   "chroma": 0.9502,
+   "envCorr": 0.8409,
+   "sectionEnv": 93.457,
+   "plossEvents": null,
+   "plossBarNoOnset": 70.962,
+   "tfBands": 96.858
+  },
+  "mix": {
+   "plossFull": 0.0,
+   "plossBarMedian": 9.226,
+   "onsetF": 0.7938,
+   "chroma": 0.9545,
+   "envCorr": 0.8927,
+   "sectionEnv": 98.673,
+   "plossEvents": 66.082,
+   "plossBarNoOnset": 74.153,
+   "tfBands": 95.449
+  }
+ }
+}
