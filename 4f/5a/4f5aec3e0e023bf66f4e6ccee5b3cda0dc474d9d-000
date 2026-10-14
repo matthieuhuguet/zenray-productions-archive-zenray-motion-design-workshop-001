@@ -1,0 +1,96 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-aluminum-unibody",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Aluminum unibody",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-t-aluminum-unibody/V_002/font.ttf",
+    "family": "V_002",
+    "axes": {}
+  },
+  "size_px": 97.8334,
+  "tracking_em": 0.002668,
+  "deltas_px": [
+    -0.0828,
+    0.0599,
+    0.0398,
+    0.335,
+    -0.058,
+    0.5874,
+    -0.0152,
+    -0.2183,
+    0.0398,
+    -0.0912,
+    -0.5921,
+    -0.0061,
+    0.0229,
+    -0.0167,
+    0.0275,
+    0.0
+  ],
+  "origin_px": [
+    546.233,
+    920.351
+  ],
+  "blur_px": 0.3903,
+  "colour": "#d5d4d4",
+  "lightmap": {
+    "x_px": [
+      578.36,
+      637.07,
+      695.79,
+      754.5,
+      813.21,
+      871.93,
+      930.64,
+      989.36,
+      1048.07,
+      1106.79,
+      1165.5,
+      1224.21,
+      1282.93,
+      1341.64
+    ],
+    "gain": [
+      0.9851,
+      0.9717,
+      0.9827,
+      0.978,
+      0.9843,
+      0.9686,
+      0.9937,
+      0.989,
+      0.9922,
+      0.9749,
+      0.9843,
+      0.9969,
+      1.0,
+      0.9922
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 8.3333,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      19,
+      377,
+      132,
+      1223
+    ]
+  }
+}

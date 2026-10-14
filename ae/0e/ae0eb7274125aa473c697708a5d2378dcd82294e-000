@@ -1,0 +1,106 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-beautifully-powerful",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Beautifully powerful",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-t-beautifully-powerful/V_001/font.ttf",
+    "family": "V_001",
+    "axes": {}
+  },
+  "size_px": 104.9347,
+  "tracking_em": 0.013258,
+  "deltas_px": [
+    -0.0378,
+    0.0515,
+    0.0283,
+    -0.4658,
+    -0.196,
+    0.2605,
+    0.4242,
+    -0.2357,
+    0.7527,
+    -1.607,
+    0.0693,
+    0.0693,
+    0.0747,
+    -0.03,
+    -0.0033,
+    -0.6246,
+    0.3628,
+    -0.0172,
+    0.4467,
+    0.7127
+  ],
+  "origin_px": [
+    434.649,
+    571.251
+  ],
+  "blur_px": 0.3546,
+  "colour": "#d0d0d0",
+  "lightmap": {
+    "x_px": [
+      473.24,
+      533.71,
+      594.18,
+      654.65,
+      715.12,
+      775.59,
+      836.06,
+      896.53,
+      957.0,
+      1017.47,
+      1077.94,
+      1138.41,
+      1198.88,
+      1259.35,
+      1319.82,
+      1380.29,
+      1440.76
+    ],
+    "gain": [
+      0.9856,
+      0.9952,
+      1.0,
+      0.9952,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      1.0,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 5.0,
+    "region": [
+      160,
+      470,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      6,
+      271,
+      137,
+      1323
+    ]
+  }
+}

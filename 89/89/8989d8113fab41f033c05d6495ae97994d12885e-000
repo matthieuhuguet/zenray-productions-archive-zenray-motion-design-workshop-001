@@ -1,0 +1,94 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-bundled",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Bundled with OneKey Pro 2",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+    "family": "DMSans",
+    "axes": {
+      "wght": 516.5685878810971,
+      "opsz": 15.627196325037902
+    }
+  },
+  "size_px": 34.9731,
+  "tracking_em": 0.001614,
+  "deltas_px": [
+    0.5604,
+    0.2445,
+    -0.4059,
+    0.1934,
+    -0.1741,
+    -0.5317,
+    -0.332,
+    -0.332,
+    -0.2709,
+    -0.3368,
+    -0.0579,
+    -0.035,
+    -0.035,
+    0.4459,
+    -0.0122,
+    1.2842,
+    1.5074,
+    -0.3363,
+    -0.5066,
+    -0.5066,
+    0.1668,
+    0.618,
+    -0.2138,
+    -0.2138,
+    0.0
+  ],
+  "origin_px": [
+    724.824,
+    1006.629
+  ],
+  "blur_px": 0.3951,
+  "colour": "#b2aeaf",
+  "lightmap": {
+    "x_px": [
+      758.71,
+      822.14,
+      885.57,
+      949.0,
+      1012.43,
+      1075.86,
+      1139.29
+    ],
+    "gain": [
+      0.9839,
+      1.0,
+      0.9905,
+      0.9763,
+      0.9763,
+      0.9497,
+      0.9763
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 38.0,
+    "region": [
+      680,
+      955,
+      560,
+      80
+    ],
+    "crop_box_tlbr": [
+      14,
+      35,
+      72,
+      503
+    ]
+  }
+}

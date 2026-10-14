@@ -1,0 +1,67 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-all-new",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "All new",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Lexend/Lexend[wght].ttf",
+    "family": "Lexend",
+    "axes": {
+      "wght": 400.9479964517818
+    }
+  },
+  "size_px": 51.1114,
+  "tracking_em": -0.048013,
+  "deltas_px": [
+    0.834,
+    0.9271,
+    -0.9484,
+    -0.9484,
+    -0.0306,
+    0.003,
+    0.0
+  ],
+  "origin_px": [
+    176.596,
+    465.901
+  ],
+  "blur_px": 0.4154,
+  "colour": "#d3d3d3",
+  "lightmap": {
+    "x_px": [
+      203.5,
+      256.5,
+      309.5
+    ],
+    "gain": [
+      0.9953,
+      1.0,
+      1.0
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 54.3333,
+    "region": [
+      120,
+      380,
+      360,
+      120
+    ],
+    "crop_box_tlbr": [
+      36,
+      45,
+      99,
+      228
+    ]
+  }
+}

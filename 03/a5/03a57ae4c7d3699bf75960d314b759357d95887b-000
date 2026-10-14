@@ -1,0 +1,58 @@
+{
+ "date": "13 October 2026",
+ "rule": {
+  "iou_min": 0.99,
+  "edge_mean_max_px": 0.5,
+  "colour_mae_max": 2.0,
+  "colour_p99_max": 24
+ },
+ "layers": [
+  {
+   "id": "L01",
+   "kind": "path",
+   "iou": 0.995282,
+   "edge_mean": 0.0311,
+   "edge_p95": 0.0527,
+   "ok": true
+  },
+  {
+   "id": "L02",
+   "kind": "path",
+   "iou": 0.992157,
+   "edge_mean": 0.0431,
+   "edge_p95": 0.0775,
+   "ok": true
+  }
+ ],
+ "colour": {
+  "mae": 0.3615,
+  "p99": 10.0,
+  "max": 47.0,
+  "share_over_16": 0.003776
+ },
+ "layers_ok": true,
+ "colour_ok": true,
+ "pass": true,
+ "worst_layer": {
+  "id": "L02",
+  "kind": "path",
+  "iou": 0.992157,
+  "edge_mean": 0.0431,
+  "edge_p95": 0.0775,
+  "ok": true
+ },
+ "min_iou": 0.992157,
+ "max_edge_mean": 0.0431,
+ "f3": {
+  "iou_soft": 0.9934,
+  "iou_hard": 0.99939,
+  "edge_mean_px": 0.0349,
+  "edge_p95_px": 0.0668,
+  "dE2000_band_mean": 0.349,
+  "dE2000_band_p95": 2.429,
+  "dE2000_core_mean": 0.125,
+  "weighted_px": 38400,
+  "hidden_px": 0,
+  "match": true
+ }
+}

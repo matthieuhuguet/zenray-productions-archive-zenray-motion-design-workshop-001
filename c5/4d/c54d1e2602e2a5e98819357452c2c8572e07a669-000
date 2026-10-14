@@ -1,0 +1,104 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-backup-seedcard",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Backup with SeedCard",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-t-backup-seedcard/V_001/font.ttf",
+    "family": "V_001",
+    "axes": {}
+  },
+  "size_px": 95.7991,
+  "tracking_em": -0.015107,
+  "deltas_px": [
+    -0.0507,
+    -0.6229,
+    -0.066,
+    0.0074,
+    -0.0749,
+    0.0891,
+    -0.917,
+    -0.1271,
+    0.0722,
+    -0.0131,
+    -0.0341,
+    0.972,
+    0.0074,
+    0.5628,
+    -0.5747,
+    0.5162,
+    0.0003,
+    1.0032,
+    -0.3492,
+    -0.4354
+  ],
+  "origin_px": [
+    455.169,
+    919.735
+  ],
+  "blur_px": 0.3828,
+  "colour": "#fdf8fc",
+  "lightmap": {
+    "x_px": [
+      492.91,
+      554.72,
+      616.53,
+      678.34,
+      740.16,
+      801.97,
+      863.78,
+      925.59,
+      987.41,
+      1049.22,
+      1111.03,
+      1172.84,
+      1234.66,
+      1296.47,
+      1358.28,
+      1420.09
+    ],
+    "gain": [
+      0.8406,
+      0.8499,
+      0.8552,
+      0.8566,
+      0.8234,
+      0.838,
+      0.8227,
+      0.832,
+      0.83,
+      0.8533,
+      0.8194,
+      0.8499,
+      0.8526,
+      0.8645,
+      0.9582,
+      1.0
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 38.5333,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      19,
+      290,
+      132,
+      1303
+    ]
+  }
+}

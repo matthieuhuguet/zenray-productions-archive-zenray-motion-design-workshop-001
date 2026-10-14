@@ -1,0 +1,95 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-charge-wirelessly",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Charge wirelessly",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-t-charge-wirelessly/V_002/font.ttf",
+    "family": "V_002",
+    "axes": {}
+  },
+  "size_px": 95.7473,
+  "tracking_em": 0.007606,
+  "deltas_px": [
+    0.1004,
+    -0.1046,
+    -0.0504,
+    0.6792,
+    -0.0452,
+    -1.0778,
+    0.0098,
+    -0.0417,
+    -0.1245,
+    -0.5385,
+    1.1747,
+    1.2463,
+    -0.1265,
+    -0.525,
+    0.6547,
+    -1.1111,
+    0.0
+  ],
+  "origin_px": [
+    570.951,
+    919.942
+  ],
+  "blur_px": 0.4267,
+  "colour": "#ffffff",
+  "lightmap": {
+    "x_px": [
+      604.38,
+      663.15,
+      721.92,
+      780.69,
+      839.46,
+      898.23,
+      957.0,
+      1015.77,
+      1074.54,
+      1133.31,
+      1192.08,
+      1250.85,
+      1309.62
+    ],
+    "gain": [
+      0.8562,
+      0.8412,
+      0.8863,
+      0.9673,
+      0.998,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.9817
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 32.3,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      19,
+      403,
+      132,
+      1191
+    ]
+  }
+}

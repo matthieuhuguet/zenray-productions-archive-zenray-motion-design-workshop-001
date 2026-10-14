@@ -1,0 +1,97 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-charge-wirelessly",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Charge wirelessly",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/Figtree/Figtree[wght].ttf",
+    "family": "Figtree",
+    "axes": {
+      "wght": 500.8036857551154
+    }
+  },
+  "size_px": 95.8721,
+  "tracking_em": 0.007395,
+  "deltas_px": [
+    -1.2212,
+    2.136,
+    0.6921,
+    2.9179,
+    -0.432,
+    -1.4381,
+    -1.4381,
+    -2.5476,
+    -0.5732,
+    1.378,
+    1.045,
+    -0.1649,
+    -0.3495,
+    -0.4798,
+    0.6959,
+    -2.0031,
+    0.0
+  ],
+  "origin_px": [
+    572.524,
+    919.531
+  ],
+  "blur_px": 0.4317,
+  "colour": "#ffffff",
+  "lightmap": {
+    "x_px": [
+      604.38,
+      663.15,
+      721.92,
+      780.69,
+      839.46,
+      898.23,
+      957.0,
+      1015.77,
+      1074.54,
+      1133.31,
+      1192.08,
+      1250.85,
+      1309.62
+    ],
+    "gain": [
+      0.8562,
+      0.8412,
+      0.8863,
+      0.9673,
+      0.998,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.9817
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 32.3,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      19,
+      403,
+      132,
+      1191
+    ]
+  }
+}

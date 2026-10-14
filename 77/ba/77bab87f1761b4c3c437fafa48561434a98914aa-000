@@ -1,0 +1,83 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-clear-signing",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Clear signing",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/fonts/onekey-f3-t-clear-signing/V_001/font.ttf",
+    "family": "V_001",
+    "axes": {}
+  },
+  "size_px": 97.4475,
+  "tracking_em": 0.002756,
+  "deltas_px": [
+    -0.0478,
+    0.0578,
+    0.0121,
+    -0.1406,
+    0.0573,
+    0.0573,
+    0.1505,
+    0.0553,
+    -0.0279,
+    -0.3462,
+    -0.21,
+    0.4596,
+    -0.1222
+  ],
+  "origin_px": [
+    667.705,
+    920.524
+  ],
+  "blur_px": 0.3157,
+  "colour": "#d4cecf",
+  "lightmap": {
+    "x_px": [
+      703.39,
+      766.17,
+      828.94,
+      891.72,
+      954.5,
+      1017.28,
+      1080.06,
+      1142.83,
+      1205.61
+    ],
+    "gain": [
+      0.984,
+      0.9856,
+      0.9888,
+      1.0,
+      0.9776,
+      0.9888,
+      0.9888,
+      0.9976,
+      0.9808
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 25.0,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      19,
+      500,
+      132,
+      1089
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-air-gap",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Air-gap signing",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/DMSans/DMSans[opsz,wght].ttf",
+    "family": "DMSans",
+    "axes": {
+      "wght": 528.8168395894542,
+      "opsz": 13.302901711850144
+    }
+  },
+  "size_px": 93.6673,
+  "tracking_em": -0.00824,
+  "deltas_px": [
+    5.1914,
+    0.7186,
+    -5.0182,
+    -2.3143,
+    -0.0625,
+    0.5913,
+    -1.4471,
+    -1.4471,
+    -1.5634,
+    3.8669,
+    1.5394,
+    0.6021,
+    0.3387,
+    2.9901,
+    0.0
+  ],
+  "origin_px": [
+    614.954,
+    919.569
+  ],
+  "blur_px": 0.4529,
+  "colour": "#f0e8e8",
+  "lightmap": {
+    "x_px": [
+      720.7,
+      780.1,
+      839.5,
+      898.9,
+      958.3,
+      1017.7,
+      1077.1,
+      1136.5,
+      1195.9,
+      1255.3
+    ],
+    "gain": [
+      0.8709,
+      0.8638,
+      0.8681,
+      0.8667,
+      0.9021,
+      0.8894,
+      0.8908,
+      0.8851,
+      0.9135,
+      1.0
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 42.4,
+    "region": [
+      160,
+      820,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      38,
+      519,
+      136,
+      1137
+    ]
+  }
+}

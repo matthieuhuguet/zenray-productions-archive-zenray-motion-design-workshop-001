@@ -1,0 +1,108 @@
+{
+  "schema": "zrmd/mark@1",
+  "date": "12 October 2026",
+  "slug": "onekey-pro-2",
+  "mark": "t-beautifully-powerful",
+  "kind": "text",
+  "family": "caption",
+  "rights": "private-1to1",
+  "rights_note": "1:1 benchmark of a third-party mark, private, never published (Rules.md, 12 October 2026)",
+  "text": "Beautifully powerful",
+  "font": {
+    "file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/datasets/fonts/files/PlusJakartaSans/PlusJakartaSans[wght].ttf",
+    "family": "PlusJakartaSans",
+    "axes": {
+      "wght": 625.8846849237966
+    }
+  },
+  "size_px": 103.8725,
+  "tracking_em": 0.018298,
+  "deltas_px": [
+    -3.2691,
+    -0.024,
+    3.0785,
+    0.5157,
+    0.5995,
+    -1.3315,
+    3.1415,
+    1.0137,
+    -0.2792,
+    -1.8589,
+    1.7557,
+    1.7557,
+    -2.6018,
+    -1.7778,
+    -2.1337,
+    -0.1726,
+    -8.2374,
+    1.8487,
+    1.9967,
+    0.0
+  ],
+  "origin_px": [
+    436.252,
+    569.63
+  ],
+  "blur_px": 0.5887,
+  "colour": "#d0d0d0",
+  "lightmap": {
+    "x_px": [
+      473.24,
+      533.71,
+      594.18,
+      654.65,
+      715.12,
+      775.59,
+      836.06,
+      896.53,
+      957.0,
+      1017.47,
+      1077.94,
+      1138.41,
+      1198.88,
+      1259.35,
+      1319.82,
+      1380.29,
+      1440.76
+    ],
+    "gain": [
+      0.9856,
+      0.9952,
+      1.0,
+      0.9952,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      1.0,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904,
+      0.9904
+    ]
+  },
+  "opacity": 1.0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "source": {
+    "time_s": 5.0,
+    "region": [
+      160,
+      470,
+      1600,
+      150
+    ],
+    "crop_box_tlbr": [
+      6,
+      271,
+      137,
+      1323
+    ]
+  }
+}
