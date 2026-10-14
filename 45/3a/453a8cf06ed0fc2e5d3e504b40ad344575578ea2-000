@@ -1,0 +1,29 @@
+{
+ "date": "12 October 2026",
+ "keys": [
+  0,
+  36,
+  71,
+  107,
+  142,
+  178
+ ],
+ "key_masked_rms": [
+  1.57,
+  1.56,
+  1.68,
+  1.94,
+  2.4,
+  12.88
+ ],
+ "backdrop_share": [
+  0.83,
+  0.83,
+  0.83,
+  0.83,
+  0.79,
+  0.93
+ ],
+ "grain": 0.002950864514663676,
+ "review": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/onekey-pro-2/reviews/onekey-s13-studio-backdrop-V_002.mp4"
+}
