@@ -1,0 +1,637 @@
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage bus --from V_009 --set residual.stems=["drums","bass","other","vocals"]
+[00:59:31] measuring stem eq and stereo
+[00:59:45] fitting the mix bus
+[01:00:06] rendering from params
+[01:00:16] scoring
+[01:00:23] V_039 written
+{
+ "version": "V_039",
+ "headline": {
+  "drums": {
+   "plossFull": 64.4558,
+   "plossBarMedian": 64.537,
+   "onsetF": 0.8661,
+   "chroma": 0.958,
+   "envCorr": 0.9811,
+   "sectionEnv": 97.121,
+   "plossEvents": 60.829,
+   "plossBarNoOnset": 64.652,
+   "tfBands": 85.005
+  },
+  "bass": {
+   "plossFull": 62.0211,
+   "plossBarMedian": 58.016,
+   "onsetF": 0.6245,
+   "chroma": 0.9444,
+   "envCorr": 0.9679,
+   "sectionEnv": 98.598,
+   "plossEvents": 68.832,
+   "plossBarNoOnset": 58.036,
+   "tfBands": 92.819
+  },
+  "other": {
+   "plossFull": 60.7764,
+   "plossBarMedian": 59.619,
+   "onsetF": 0.1333,
+   "chroma": 0.7605,
+   "envCorr": 0.837,
+   "sectionEnv": 96.653,
+   "plossEvents": 62.424,
+   "plossBarNoOnset": 59.969,
+   "tfBands": 91.635
+  },
+  "vocals": {
+   "plossFull": 78.6366,
+   "plossBarMedian": 78.3,
+   "onsetF": 0.6729,
+   "chroma": 0.9513,
+   "envCorr": 0.8465,
+   "sectionEnv": 97.617,
+   "plossEvents": null,
+   "plossBarNoOnset": 78.672,
+   "tfBands": 97.118
+  },
+  "mix": {
+   "plossFull": 72.6203,
+   "plossBarMedian": 73.651,
+   "onsetF": 0.7935,
+   "chroma": 0.9348,
+   "envCorr": 0.9684,
+   "sectionEnv": 98.11,
+   "plossEvents": 69.145,
+   "plossBarNoOnset": 73.826,
+   "tfBands": 95.093
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/MusicCritic.py --version V_009
+{
+ "date": "12 October 2026",
+ "version": "V_009",
+ "critic": {
+  "nFft": 4096,
+  "hop": 2048,
+  "fMin": 30.0,
+  "fMax": 16000.0,
+  "bandsPerOct": 3,
+  "jndDb": 2.0,
+  "floorDb": 60.0,
+  "base": 0.99,
+  "groupsHz": [
+   [
+    30,
+    120
+   ],
+   [
+    120,
+    500
+   ],
+   [
+    500,
+    2000
+   ],
+   [
+    2000,
+    6000
+   ],
+   [
+    6000,
+    16000
+   ]
+  ],
+  "onsetWindowS": 0.1,
+  "missDb": 6.0,
+  "selftestDropMin": 3.0,
+  "agreeTol": 1.0,
+  "workers": 16
+ },
+ "tfBandsIndependent": {
+  "drums": 94.575,
+  "bass": 98.926,
+  "other": 95.788,
+  "vocals": 80.564,
+  "mix": 96.801
+ },
+ "tfBandsStored": {
+  "drums": 94.575,
+  "bass": 98.926,
+  "other": 95.788,
+  "vocals": 80.564,
+  "mix": 96.801
+ },
+ "agreement": {
+  "drums": 0.0,
+  "bass": 0.0,
+  "other": 0.0,
+  "vocals": 0.0,
+  "mix": 0.0
+ },
+ "diagnosis": {
+  "drums": {
+   "E": 2.3558,
+   "score": 94.575,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.442,
+     "meanAbsDb": 7.0,
+     "signedDb": -1.79
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.308,
+     "meanAbsDb": 4.84,
+     "signedDb": -0.66
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.115,
+     "meanAbsDb": 2.98,
+     "signedDb": 0.56
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.101,
+     "meanAbsDb": 2.98,
+     "signedDb": 0.4
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.034,
+     "meanAbsDb": 2.64,
+     "signedDb": 1.09
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.004,
+     "meanAbsDb": 2.23,
+     "signedDb": -1.38
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.703,
+     "meanAbsDb": 4.01,
+     "signedDb": -0.27
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.293,
+     "meanAbsDb": 8.31,
+     "signedDb": -1.6
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.415,
+    "sustainFrames": 0.585,
+    "missingEnergy": 0.395,
+    "extraEnergy": 0.244,
+    "within6Db": 0.361
+   },
+   "ifFixed": {
+    "missingEnergy": 97.98,
+    "extraEnergy": 96.86,
+    "onsetFrames": 98.11,
+    "lowUnder120Hz": 98.28
+   }
+  },
+  "bass": {
+   "E": 1.0367,
+   "score": 98.926,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.582,
+     "meanAbsDb": 1.85,
+     "signedDb": 0.06
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.353,
+     "meanAbsDb": 2.33,
+     "signedDb": 0.3
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.063,
+     "meanAbsDb": 4.19,
+     "signedDb": 0.73
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.001,
+     "meanAbsDb": 2.96,
+     "signedDb": -2.7
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.001,
+     "meanAbsDb": 3.78,
+     "signedDb": -3.04
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.041,
+     "meanAbsDb": 2.07,
+     "signedDb": -0.61
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.158,
+     "meanAbsDb": 1.74,
+     "signedDb": 0.02
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.627,
+     "meanAbsDb": 2.21,
+     "signedDb": 0.22
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.174,
+     "meanAbsDb": 1.99,
+     "signedDb": 0.26
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.094,
+    "sustainFrames": 0.906,
+    "missingEnergy": 0.051,
+    "extraEnergy": 0.115,
+    "within6Db": 0.834
+   },
+   "ifFixed": {
+    "missingEnergy": 99.03,
+    "extraEnergy": 99.16,
+    "onsetFrames": 99.12,
+    "lowUnder120Hz": 99.81
+   }
+  },
+  "other": {
+   "E": 2.0691,
+   "score": 95.788,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.268,
+     "meanAbsDb": 6.13,
+     "signedDb": -0.02
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.305,
+     "meanAbsDb": 3.99,
+     "signedDb": -0.27
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.271,
+     "meanAbsDb": 3.88,
+     "signedDb": -0.18
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.085,
+     "meanAbsDb": 3.06,
+     "signedDb": 1.02
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.071,
+     "meanAbsDb": 2.98,
+     "signedDb": 0.74
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.016,
+     "meanAbsDb": 5.18,
+     "signedDb": 0.72
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.174,
+     "meanAbsDb": 5.17,
+     "signedDb": -0.16
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.603,
+     "meanAbsDb": 3.44,
+     "signedDb": 0.41
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.206,
+     "meanAbsDb": 7.0,
+     "signedDb": -1.92
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.668,
+    "sustainFrames": 0.332,
+    "missingEnergy": 0.292,
+    "extraEnergy": 0.267,
+    "within6Db": 0.442
+   },
+   "ifFixed": {
+    "missingEnergy": 97.87,
+    "extraEnergy": 97.71,
+    "onsetFrames": 99.53,
+    "lowUnder120Hz": 97.72
+   }
+  },
+  "vocals": {
+   "E": 4.6372,
+   "score": 80.564,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.001,
+     "meanAbsDb": 7.41,
+     "signedDb": -6.82
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.301,
+     "meanAbsDb": 11.36,
+     "signedDb": -5.83
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.381,
+     "meanAbsDb": 8.2,
+     "signedDb": -2.94
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.148,
+     "meanAbsDb": 6.91,
+     "signedDb": -3.08
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.169,
+     "meanAbsDb": 12.68,
+     "signedDb": -11.82
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.01,
+     "meanAbsDb": 5.13,
+     "signedDb": -3.61
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.081,
+     "meanAbsDb": 7.65,
+     "signedDb": -3.13
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.227,
+     "meanAbsDb": 9.0,
+     "signedDb": -4.36
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.573,
+     "meanAbsDb": 9.94,
+     "signedDb": -5.4
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.109,
+     "meanAbsDb": 8.78,
+     "signedDb": -4.3
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.0,
+    "sustainFrames": 1.0,
+    "missingEnergy": 0.68,
+    "extraEnergy": 0.184,
+    "within6Db": 0.136
+   },
+   "ifFixed": {
+    "missingEnergy": 97.81,
+    "extraEnergy": 86.61,
+    "onsetFrames": 80.56,
+    "lowUnder120Hz": 80.61
+   }
+  },
+  "mix": {
+   "E": 1.7985,
+   "score": 96.801,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.176,
+     "meanAbsDb": 2.49,
+     "signedDb": 0.25
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.273,
+     "meanAbsDb": 3.7,
+     "signedDb": -0.54
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.292,
+     "meanAbsDb": 4.11,
+     "signedDb": 0.03
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.143,
+     "meanAbsDb": 4.19,
+     "signedDb": 1.81
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.117,
+     "meanAbsDb": 4.09,
+     "signedDb": 0.84
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.008,
+     "meanAbsDb": 3.65,
+     "signedDb": -0.45
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.095,
+     "meanAbsDb": 5.28,
+     "signedDb": 0.32
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.233,
+     "meanAbsDb": 4.29,
+     "signedDb": 0.17
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.518,
+     "meanAbsDb": 3.11,
+     "signedDb": 0.22
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.146,
+     "meanAbsDb": 3.95,
+     "signedDb": 0.41
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.24,
+    "sustainFrames": 0.76,
+    "missingEnergy": 0.232,
+    "extraEnergy": 0.256,
+    "within6Db": 0.512
+   },
+   "ifFixed": {
+    "missingEnergy": 98.1,
+    "extraEnergy": 98.21,
+    "onsetFrames": 98.14,
+    "lowUnder120Hz": 97.82
+   }
+  }
+ },
+ "ceilings": null
+}

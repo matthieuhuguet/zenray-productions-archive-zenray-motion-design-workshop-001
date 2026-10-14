@@ -1,0 +1,759 @@
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage own
+[00:30:47] bank: 71 ready, 0 pending, 0 failed import
+[00:30:47] fits: 112 jobs over 9 roles: kick=['kick', 'sub_808', 'drum_step_pattern', 'sine_env', 'drum_hit'], snare=['snare', 'drum_step_pattern', 'drum_hit'], clap=['clap', 'drum_hit'], hatClosed=['hihat_closed', 'filtered_noise_burst', 'drum_step_pattern', 'hihat_open', 'drum_hit'], hatOpen=['hihat_open', 'filtered_noise_burst', 'crash_cymbal', 'drum_step_pattern', 'drum_hit'], bass=['bass_saw', 'sine_env', 'pumped_bass', 'synth_voice'], otherLow=['pad_saw', 'fm_epiano', 'pluck_ks', 'supersaw', 'synth_voice'], otherMid=['pad_saw', 'fm_epiano', 'pluck_ks', 'pulse_lead', 'synth_voice'], otherHigh=['pulse_lead', 'fm_bell', 'pluck_ks', 'fm_epiano', 'synth_voice']
+[00:31:43]   fit kick       kick                 ex0 ploss  32.107 b1 1.016 (54.83 s)
+[00:31:44]   fit kick       kick                 ex1 ploss  54.624 b1 0.0 (55.81 s)
+[00:31:44]   fit kick       kick                 ex2 ploss  75.781 b1 0.128 (54.83 s)
+[00:31:44]   fit kick       sub_808              ex0 ploss  33.322 b1 2.673 (53.31 s)
+[00:31:44]   fit kick       sub_808              ex1 ploss  62.636 b1 4.039 (54.8 s)
+[00:31:44]   fit kick       sub_808              ex2 ploss  68.256 b1 0.001 (54.87 s)
+[00:36:52]   fit kick       drum_step_pattern    ex0 ploss  34.783 b1 1.935 (363.51 s)
+[00:36:54]   fit kick       drum_step_pattern    ex1 ploss  60.267 b1 0.947 (366.25 s)
+[00:36:54]   fit kick       drum_step_pattern    ex2 ploss  75.748 b1 73.232 (361.39 s)
+[00:36:54]   fit kick       sine_env             ex0 ploss  25.985 b1 2.12 (37.64 s)
+[00:36:54]   fit kick       sine_env             ex1 ploss  52.979 b1 0.003 (53.39 s)
+[00:36:54]   fit kick       sine_env             ex2 ploss  74.262 b1 0.0 (53.86 s)
+[00:36:54]   fit kick       drum_hit             ex0 ploss  74.753 b1 68.473 (82.45 s)
+[00:36:54]   fit kick       drum_hit             ex1 ploss  78.266 b1 13.417 (83.26 s)
+[00:36:54]   fit kick       drum_hit             ex2 ploss  78.303 b1 14.674 (81.39 s)
+[00:36:54]   fit snare      snare                ex0 ploss  34.391 b1 1.41 (63.89 s)
+[00:36:54]   fit snare      snare                ex1 ploss  50.183 b1 60.68 (65.94 s)
+[00:36:54]   fit snare      snare                ex2 ploss  41.807 b1 0.194 (57.76 s)
+[00:36:54]   fit snare      drum_step_pattern    ex0 ploss  52.936 b1 0.005 (289.06 s)
+[00:36:54]   fit snare      drum_step_pattern    ex1 ploss  52.851 b1 60.617 (206.32 s)
+[00:36:54]   fit snare      drum_step_pattern    ex2 ploss  49.879 b1 25.565 (289.49 s)
+[00:36:54]   fit snare      drum_hit             ex0 ploss  53.334 b1 9.53 (55.55 s)
+[00:36:54]   fit snare      drum_hit             ex1 ploss  65.945 b1 43.738 (81.88 s)
+[00:36:54]   fit snare      drum_hit             ex2 ploss  63.163 b1 12.006 (70.58 s)
+[00:36:54]   fit clap       clap                 ex0 ploss  56.608 b1 0.0 (141.28 s)
+[00:36:54]   fit clap       clap                 ex1 ploss  16.903 b1 0.0 (141.03 s)
+[00:36:54]   fit clap       clap                 ex2 ploss  33.049 b1 16.392 (139.83 s)
+[00:36:54]   fit clap       drum_hit             ex0 ploss  74.692 b1 11.913 (84.56 s)
+[00:36:54]   fit clap       drum_hit             ex1 ploss  63.573 b1 0.0 (71.77 s)
+[00:36:54]   fit clap       drum_hit             ex2 ploss  53.868 b1 39.082 (85.67 s)
+[00:36:54]   fit hatClosed  hihat_closed         ex0 ploss  16.315 b1 71.318 (79.07 s)
+[00:36:54]   fit hatClosed  hihat_closed         ex1 ploss   7.935 b1 0.0 (78.03 s)
+[00:36:54]   fit hatClosed  filtered_noise_burst ex0 ploss  15.671 b1 33.048 (48.58 s)
+[00:36:54]   fit hatClosed  filtered_noise_burst ex1 ploss  35.230 b1 48.633 (48.39 s)
+[00:38:16]   fit hatClosed  drum_step_pattern    ex0 ploss  22.520 b1 78.302 (293.21 s)
+[00:39:50]   fit hatClosed  drum_step_pattern    ex1 ploss  41.761 b1 80.186 (374.77 s)
+[00:39:50]   fit hatClosed  hihat_open           ex0 ploss  13.236 b1 66.356 (69.44 s)
+[00:39:50]   fit hatClosed  hihat_open           ex1 ploss   5.325 b1 0.0 (58.32 s)
+[00:39:50]   fit hatClosed  drum_hit             ex0 ploss  66.084 b1 65.992 (72.51 s)
+[00:39:50]   fit hatClosed  drum_hit             ex1 ploss  74.557 b1 71.378 (71.13 s)
+[00:39:50]   fit hatOpen    hihat_open           ex0 ploss  21.877 b1 0.0 (90.33 s)
+[00:39:50]   fit hatOpen    hihat_open           ex1 ploss  12.640 b1 0.0 (91.75 s)
+[00:39:50]   fit hatOpen    hihat_open           ex2 ploss  22.854 b1 0.0 (91.46 s)
+[00:39:50]   fit hatOpen    filtered_noise_burst ex0 ploss  35.676 b1 8.596 (67.05 s)
+[00:39:50]   fit hatOpen    filtered_noise_burst ex1 ploss  36.803 b1 0.15 (66.53 s)
+[00:39:50]   fit hatOpen    filtered_noise_burst ex2 ploss  42.931 b1 13.716 (66.59 s)
+[00:39:50]   fit hatOpen    crash_cymbal         ex0 ploss  34.594 b1 0.049 (143.74 s)
+[00:39:50]   fit hatOpen    crash_cymbal         ex1 ploss  32.035 b1 0.003 (140.54 s)
+[00:39:50]   fit hatOpen    crash_cymbal         ex2 ploss  34.676 b1 0.147 (141.79 s)
+[00:39:50]   fit hatOpen    drum_step_pattern    ex0 ploss  41.843 b1 39.71 (228.86 s)
+[00:39:50]   fit hatOpen    drum_step_pattern    ex1 ploss  38.876 b1 18.873 (229.26 s)
+[00:41:00]   fit hatOpen    drum_step_pattern    ex2 ploss  40.534 b1 27.584 (323.44 s)
+[00:41:00]   fit hatOpen    drum_hit             ex0 ploss  76.130 b1 12.559 (93.86 s)
+[00:41:00]   fit hatOpen    drum_hit             ex1 ploss  74.866 b1 4.215 (91.19 s)
+[00:41:00]   fit hatOpen    drum_hit             ex2 ploss  74.816 b1 0.188 (91.62 s)
+[00:41:00]   fit bass       bass_saw             ex0 ploss  69.042 b1 4.406 (197.08 s)
+[00:41:00]   fit bass       bass_saw             ex1 ploss  68.298 b1 73.233 (200.61 s)
+[00:41:00]   fit bass       bass_saw             ex2 ploss  20.992 b1 0.0 (110.94 s)
+[00:41:00]   fit bass       sine_env             ex0 ploss  73.053 b1 7.655 (168.72 s)
+[00:41:00]   fit bass       sine_env             ex1 ploss  68.299 b1 92.989 (172.54 s)
+[00:41:00]   fit bass       sine_env             ex2 ploss  20.498 b1 34.698 (73.54 s)
+[00:41:30]   fit bass       pumped_bass          ex0 ploss  81.787 b1 18.88 (241.15 s)
+[00:41:30]   fit bass       pumped_bass          ex1 ploss  78.600 b1 97.24 (239.83 s)
+[00:41:30]   fit bass       pumped_bass          ex2 ploss  30.402 b1 44.613 (127.12 s)
+[00:41:57]   fit bass       synth_voice          ex0 ploss  77.407 b1 4.614 (265.39 s)
+[00:41:57]   fit bass       synth_voice          ex1 ploss  77.260 b1 88.64 (240.4 s)
+[00:41:57]   fit bass       synth_voice          ex2 ploss  38.973 b1 85.397 (175.68 s)
+[00:41:57]   fit otherLow   pad_saw              ex0 ploss  52.487 b1 0.0 (165.55 s)
+[00:42:17]   fit otherLow   pad_saw              ex1 ploss  55.129 b1 0.0 (216.17 s)
+[00:42:17]   fit otherLow   pad_saw              ex2 ploss  57.842 b1 0.0 (160.56 s)
+[00:42:17]   fit otherLow   fm_epiano            ex0 ploss  50.713 b1 0.046 (117.27 s)
+[00:42:37]   fit otherLow   fm_epiano            ex1 ploss  51.767 b1 0.0 (179.61 s)
+[00:42:42]   fit otherLow   fm_epiano            ex2 ploss  55.155 b1 1.187 (181.4 s)
+[00:42:42]   fit otherLow   pluck_ks             ex0 ploss  43.056 b1 0.0 (126.48 s)
+[00:42:54]   fit otherLow   pluck_ks             ex1 ploss  47.044 b1 0.0 (186.27 s)
+[00:42:54]   fit otherLow   pluck_ks             ex2 ploss  43.488 b1 0.0 (167.49 s)
+[00:42:54]   fit otherLow   supersaw             ex0 ploss  52.010 b1 0.0 (158.37 s)
+[00:43:46]   fit otherLow   supersaw             ex1 ploss  60.450 b1 2.004 (165.21 s)
+[00:44:24]   fit otherLow   supersaw             ex2 ploss  60.152 b1 0.368 (192.14 s)
+[00:44:24]   fit otherLow   synth_voice          ex0 ploss  65.772 b1 0.0 (166.19 s)
+[00:45:41]   fit otherLow   synth_voice          ex1 ploss  61.393 b1 7.194 (257.55 s)
+[00:45:52]   fit otherLow   synth_voice          ex2 ploss  63.112 b1 0.0 (262.99 s)
+[00:45:52]   fit otherMid   pad_saw              ex0 ploss  37.960 b1 73.11 (189.58 s)
+[00:45:52]   fit otherMid   pad_saw              ex1 ploss  40.511 b1 35.171 (199.52 s)
+[00:45:52]   fit otherMid   pad_saw              ex2 ploss  35.745 b1 0.0 (109.89 s)
+[00:45:52]   fit otherMid   fm_epiano            ex0 ploss  40.062 b1 89.247 (91.59 s)
+[00:45:52]   fit otherMid   fm_epiano            ex1 ploss  41.477 b1 34.145 (110.15 s)
+[00:45:52]   fit otherMid   fm_epiano            ex2 ploss  38.420 b1 0.0 (63.33 s)
+[00:45:52]   fit otherMid   pluck_ks             ex0 ploss  37.486 b1 32.598 (121.67 s)
+[00:45:52]   fit otherMid   pluck_ks             ex1 ploss  38.459 b1 29.349 (106.75 s)
+[00:45:52]   fit otherMid   pluck_ks             ex2 ploss  23.109 b1 25.522 (114.36 s)
+[00:47:15]   fit otherMid   pulse_lead           ex0 ploss  44.744 b1 85.036 (273.38 s)
+[00:48:08]   fit otherMid   pulse_lead           ex1 ploss  39.342 b1 28.027 (314.43 s)
+[00:48:08]   fit otherMid   pulse_lead           ex2 ploss  36.648 b1 33.479 (269.1 s)
+[00:48:08]   fit otherMid   synth_voice          ex0 ploss  49.817 b1 84.598 (183.26 s)
+[00:48:08]   fit otherMid   synth_voice          ex1 ploss  47.193 b1 25.135 (190.37 s)
+[00:48:08]   fit otherMid   synth_voice          ex2 ploss  45.493 b1 43.65 (152.54 s)
+[00:48:49]   fit otherHigh  pulse_lead           ex0 ploss  43.265 b1 75.747 (301.57 s)
+[00:48:49]   fit otherHigh  pulse_lead           ex1 ploss  36.414 b1 26.194 (249.01 s)
+[00:50:20]   fit otherHigh  pulse_lead           ex2 ploss  48.087 b1 31.565 (356.28 s)
+[00:50:20]   fit otherHigh  fm_bell              ex0 ploss  59.095 b1 82.027 (99.16 s)
+[00:50:20]   fit otherHigh  fm_bell              ex1 ploss  44.972 b1 0.0 (92.98 s)
+[00:50:20]   fit otherHigh  fm_bell              ex2 ploss  62.215 b1 69.364 (164.24 s)
+[00:50:20]   fit otherHigh  pluck_ks             ex0 ploss  60.660 b1 77.434 (133.95 s)
+[00:50:20]   fit otherHigh  pluck_ks             ex1 ploss  43.697 b1 0.0 (109.13 s)
+[00:50:20]   fit otherHigh  pluck_ks             ex2 ploss  56.830 b1 60.388 (166.81 s)
+[00:50:20]   fit otherHigh  fm_epiano            ex0 ploss  55.235 b1 77.788 (103.0 s)
+[00:50:20]   fit otherHigh  fm_epiano            ex1 ploss  38.435 b1 29.351 (111.75 s)
+[00:50:20]   fit otherHigh  fm_epiano            ex2 ploss  52.385 b1 60.764 (157.94 s)
+[00:50:20]   fit otherHigh  synth_voice          ex0 ploss  65.070 b1 92.709 (139.87 s)
+[00:50:20]   fit otherHigh  synth_voice          ex1 ploss  51.852 b1 54.361 (146.15 s)
+[00:50:20]   fit otherHigh  synth_voice          ex2 ploss  69.605 b1 90.212 (161.22 s)
+[00:50:21] fits done in 1174 s
+[00:50:23] choice kick       -> drum_hit (ex1, cross mean 44.19)
+[00:50:23] choice snare      -> drum_hit (ex2, cross mean 50.59)
+[00:50:23] choice clap       -> drum_hit (ex2, cross mean 37.88)
+[00:50:23] choice hatClosed  -> drum_hit (ex1, cross mean 37.28)
+[00:50:23] choice hatOpen    -> drum_hit (ex0, cross mean 61.96)
+[00:50:23] choice bass       -> synth_voice (ex1, cross mean 52.82)
+[00:50:23] choice otherLow   -> synth_voice (ex0, cross mean 56.29)
+[00:50:23] choice otherMid   -> synth_voice (ex1, cross mean 19.03)
+[00:50:23] choice otherHigh  -> synth_voice (ex2, cross mean 51.10)
+[00:50:23] rendering from params
+[00:50:26] scoring
+[00:50:32] V_002 written
+{
+ "version": "V_002",
+ "headline": {
+  "drums": {
+   "plossFull": 30.9049,
+   "plossBarMedian": 24.288,
+   "onsetF": 0.7391,
+   "chroma": 0.9126,
+   "envCorr": 0.7755,
+   "sectionEnv": 87.025,
+   "plossEvents": 36.782,
+   "plossBarNoOnset": 24.315,
+   "tfBands": 68.809
+  },
+  "bass": {
+   "plossFull": 1.6059,
+   "plossBarMedian": 2.756,
+   "onsetF": 0.3,
+   "chroma": 0.9066,
+   "envCorr": 0.423,
+   "sectionEnv": 63.25,
+   "plossEvents": 50.482,
+   "plossBarNoOnset": 2.758,
+   "tfBands": 61.054
+  },
+  "other": {
+   "plossFull": 32.2909,
+   "plossBarMedian": 31.557,
+   "onsetF": 0.2273,
+   "chroma": 0.7495,
+   "envCorr": 0.9217,
+   "sectionEnv": 69.303,
+   "plossEvents": 34.947,
+   "plossBarNoOnset": 31.561,
+   "tfBands": 76.15
+  },
+  "vocals": {
+   "plossFull": 0.0,
+   "plossBarMedian": 0.0,
+   "onsetF": 0.0,
+   "chroma": 0.0,
+   "envCorr": 0.0,
+   "sectionEnv": 2.203,
+   "plossEvents": null,
+   "plossBarNoOnset": 0.0,
+   "tfBands": 7.069
+  },
+  "mix": {
+   "plossFull": 32.4293,
+   "plossBarMedian": 31.185,
+   "onsetF": 0.3226,
+   "chroma": 0.8155,
+   "envCorr": 0.6563,
+   "sectionEnv": 57.978,
+   "plossEvents": 59.029,
+   "plossBarNoOnset": 31.193,
+   "tfBands": 74.061
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/MusicCritic.py --version V_002
+{
+ "date": "12 October 2026",
+ "version": "V_002",
+ "critic": {
+  "nFft": 4096,
+  "hop": 2048,
+  "fMin": 30.0,
+  "fMax": 16000.0,
+  "bandsPerOct": 3,
+  "jndDb": 2.0,
+  "floorDb": 60.0,
+  "base": 0.99,
+  "groupsHz": [
+   [
+    30,
+    120
+   ],
+   [
+    120,
+    500
+   ],
+   [
+    500,
+    2000
+   ],
+   [
+    2000,
+    6000
+   ],
+   [
+    6000,
+    16000
+   ]
+  ],
+  "onsetWindowS": 0.1,
+  "missDb": 6.0,
+  "selftestDropMin": 3.0,
+  "agreeTol": 1.0,
+  "workers": 16
+ },
+ "tfBandsIndependent": {
+  "drums": 68.809,
+  "bass": 61.054,
+  "other": 76.15,
+  "vocals": 7.069,
+  "mix": 74.061
+ },
+ "tfBandsStored": {
+  "drums": 68.809,
+  "bass": 61.054,
+  "other": 76.15,
+  "vocals": 7.069,
+  "mix": 74.061
+ },
+ "agreement": {
+  "drums": 0.0,
+  "bass": 0.0,
+  "other": 0.0,
+  "vocals": 0.0,
+  "mix": 0.0
+ },
+ "diagnosis": {
+  "drums": {
+   "E": 6.0989,
+   "score": 68.809,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.416,
+     "meanAbsDb": 15.54,
+     "signedDb": 10.33
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.164,
+     "meanAbsDb": 9.31,
+     "signedDb": 5.23
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.146,
+     "meanAbsDb": 9.58,
+     "signedDb": 7.91
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.136,
+     "meanAbsDb": 10.71,
+     "signedDb": 5.83
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.138,
+     "meanAbsDb": 14.25,
+     "signedDb": 11.6
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 2.98,
+     "signedDb": 2.98
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.0,
+     "meanAbsDb": 3.17,
+     "signedDb": 3.17
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.021,
+     "meanAbsDb": 8.63,
+     "signedDb": 7.39
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.792,
+     "meanAbsDb": 12.47,
+     "signedDb": 7.85
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.186,
+     "meanAbsDb": 11.76,
+     "signedDb": 10.02
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.473,
+    "sustainFrames": 0.527,
+    "missingEnergy": 0.132,
+    "extraEnergy": 0.788,
+    "within6Db": 0.08
+   },
+   "ifFixed": {
+    "missingEnergy": 75.47,
+    "extraEnergy": 98.33,
+    "onsetFrames": 90.14,
+    "lowUnder120Hz": 88.04
+   }
+  },
+  "bass": {
+   "E": 7.0067,
+   "score": 61.054,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.738,
+     "meanAbsDb": 15.92,
+     "signedDb": -7.81
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.246,
+     "meanAbsDb": 10.75,
+     "signedDb": -5.66
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.016,
+     "meanAbsDb": 7.61,
+     "signedDb": -3.74
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.0,
+     "meanAbsDb": 3.22,
+     "signedDb": -3.22
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.0,
+     "meanAbsDb": 4.38,
+     "signedDb": -4.38
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.133,
+     "meanAbsDb": 20.05,
+     "signedDb": 19.66
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.268,
+     "meanAbsDb": 19.51,
+     "signedDb": -10.85
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.451,
+     "meanAbsDb": 11.45,
+     "signedDb": -8.85
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.148,
+     "meanAbsDb": 12.74,
+     "signedDb": -11.4
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.035,
+    "sustainFrames": 0.965,
+    "missingEnergy": 0.714,
+    "extraEnergy": 0.211,
+    "within6Db": 0.075
+   },
+   "ifFixed": {
+    "missingEnergy": 96.05,
+    "extraEnergy": 73.54,
+    "onsetFrames": 63.17,
+    "lowUnder120Hz": 96.68
+   }
+  },
+  "other": {
+   "E": 5.2068,
+   "score": 76.15,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.38,
+     "meanAbsDb": 16.76,
+     "signedDb": 16.14
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.352,
+     "meanAbsDb": 11.05,
+     "signedDb": 10.3
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.126,
+     "meanAbsDb": 5.33,
+     "signedDb": -0.24
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.081,
+     "meanAbsDb": 8.43,
+     "signedDb": -3.51
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.061,
+     "meanAbsDb": 7.38,
+     "signedDb": -3.71
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.0,
+     "meanAbsDb": 0.0,
+     "signedDb": 0.0
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.021,
+     "meanAbsDb": 10.69,
+     "signedDb": 7.83
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.097,
+     "meanAbsDb": 7.68,
+     "signedDb": 2.82
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.631,
+     "meanAbsDb": 9.73,
+     "signedDb": 5.18
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.25,
+     "meanAbsDb": 15.17,
+     "signedDb": 14.33
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.672,
+    "sustainFrames": 0.328,
+    "missingEnergy": 0.138,
+    "extraEnergy": 0.755,
+    "within6Db": 0.107
+   },
+   "ifFixed": {
+    "missingEnergy": 81.69,
+    "extraEnergy": 98.37,
+    "onsetFrames": 97.11,
+    "lowUnder120Hz": 90.06
+   }
+  },
+  "vocals": {
+   "E": 16.2363,
+   "score": 7.069,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.0,
+     "meanAbsDb": 7.58,
+     "signedDb": -7.58
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.257,
+     "meanAbsDb": 34.17,
+     "signedDb": -34.17
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.494,
+     "meanAbsDb": 37.19,
+     "signedDb": -37.19
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.166,
+     "meanAbsDb": 27.8,
+     "signedDb": -27.8
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.082,
+     "meanAbsDb": 20.8,
+     "signedDb": -20.8
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.019,
+     "meanAbsDb": 32.51,
+     "signedDb": -32.51
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.083,
+     "meanAbsDb": 28.57,
+     "signedDb": -28.57
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.242,
+     "meanAbsDb": 33.58,
+     "signedDb": -33.58
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.556,
+     "meanAbsDb": 33.57,
+     "signedDb": -33.57
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.099,
+     "meanAbsDb": 28.25,
+     "signedDb": -28.25
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.0,
+    "sustainFrames": 1.0,
+    "missingEnergy": 0.998,
+    "extraEnergy": 0.0,
+    "within6Db": 0.002
+   },
+   "ifFixed": {
+    "missingEnergy": 100.0,
+    "extraEnergy": 7.07,
+    "onsetFrames": 7.07,
+    "lowUnder120Hz": 7.08
+   }
+  },
+  "mix": {
+   "E": 5.466,
+   "score": 74.061,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.312,
+     "meanAbsDb": 12.1,
+     "signedDb": 3.29
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.256,
+     "meanAbsDb": 9.72,
+     "signedDb": 4.21
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.224,
+     "meanAbsDb": 10.39,
+     "signedDb": -8.58
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.126,
+     "meanAbsDb": 12.93,
+     "signedDb": -11.49
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.083,
+     "meanAbsDb": 10.2,
+     "signedDb": -8.78
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 0.3891,
+     "errorShare": 0.02,
+     "meanAbsDb": 29.26,
+     "signedDb": -29.26
+    },
+    {
+     "start": 0.3891,
+     "end": 3.1029,
+     "errorShare": 0.132,
+     "meanAbsDb": 20.07,
+     "signedDb": -0.86
+    },
+    {
+     "start": 3.1029,
+     "end": 7.1737,
+     "errorShare": 0.23,
+     "meanAbsDb": 13.99,
+     "signedDb": -9.95
+    },
+    {
+     "start": 7.1737,
+     "end": 16.6721,
+     "errorShare": 0.497,
+     "meanAbsDb": 9.16,
+     "signedDb": -0.81
+    },
+    {
+     "start": 16.6721,
+     "end": 20.0533,
+     "errorShare": 0.121,
+     "meanAbsDb": 8.97,
+     "signedDb": 4.48
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.244,
+    "sustainFrames": 0.756,
+    "missingEnergy": 0.541,
+    "extraEnergy": 0.367,
+    "within6Db": 0.092
+   },
+   "ifFixed": {
+    "missingEnergy": 93.88,
+    "extraEnergy": 88.65,
+    "onsetFrames": 84.25,
+    "lowUnder120Hz": 86.73
+   }
+  }
+ },
+ "ceilings": null
+}

@@ -1,0 +1,17 @@
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage phrase --from V_009
+[00:58:43] phrase refinement
+Traceback (most recent call last):
+  File "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py", line 737, in <module>
+    main()
+  File "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py", line 733, in main
+    {"build": cmd_build, "render": cmd_render, "variation": cmd_variation, "baseline": cmd_baseline, "rescore": cmd_rescore}[a.cmd](a, P)
+  File "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py", line 569, in cmd_build
+    prm, fits = run_phrase(prm, P, ref, score)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/ZenRayMotionDesign/Scripts/ResynthMusic.py", line 141, in run_phrase
+    with ProcessPoolExecutor(max_workers=len(jobs)) as ex:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 663, in __init__
+    raise ValueError("max_workers must be greater than 0")
+ValueError: max_workers must be greater than 0
+stage failed: phrase
