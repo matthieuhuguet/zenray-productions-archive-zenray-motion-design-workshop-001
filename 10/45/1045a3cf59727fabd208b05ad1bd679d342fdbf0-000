@@ -1,0 +1,22 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "20syl-ode-to-odd",
+ "page_url": "https://www.youtube.com/watch?v=oVu1V0kNYXI",
+ "media_url": null,
+ "date": "14 October 2026",
+ "file_name": "20syl-ode-to-odd.flac",
+ "sha256": "89ce34a64f7f585c6c88bc97c483f7a0a13d5e5365c90eec0ac1399a3ebe1091",
+ "bytes": 28060568,
+ "duration_s": 158.952,
+ "has_audio": true,
+ "video_codec": null,
+ "audio_codec": "flac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "family": "youtube-music",
+ "title": "20syl - Ode to Odd",
+ "brand": "20syl",
+ "notes": [
+  "Downloaded with yt-dlp (audio only, FLAC decode) on Matthieu's request of 14 October 2026; source: fan upload (no official channel found), to confirm. Stays in the reference cache, never archived or published."
+ ]
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "zrmd/motion@1",
+  "recipe": "shader-field",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "fps": 60,
+    "frames": 177
+  },
+  "look": {
+    "colourMain": "#5a6b7f",
+    "colourEnd": "#0a131e",
+    "glow": 0.0,
+    "backdrop": "#10141b",
+    "gradientAngle": -10.444,
+    "glowRadius": 0.0407,
+    "glowColour": "#ffb060",
+    "glowX": 1.0,
+    "glowY": 0.8399,
+    "vignette": 0.0,
+    "grain": 0.003,
+    "exposure": 0.1519,
+    "saturation": 1.0,
+    "contrast": 1.0,
+    "pivot": 0.5,
+    "vignetteInner": 0.35,
+    "vignetteOuter": 0.85,
+    "vignetteX": 0.5,
+    "vignetteY": 0.5,
+    "grainDensity": 400.0,
+    "grainChroma": 0.0,
+    "grainResponse": 0.5
+  },
+  "tracks": [
+    {
+      "key": "gradientAngle",
+      "start": 0,
+      "frames": 88,
+      "from": -22.7446,
+      "to": -10.444,
+      "ease": "linear"
+    },
+    {
+      "key": "gradientAngle",
+      "start": 88,
+      "frames": 88,
+      "from": -10.444,
+      "to": 0.0,
+      "ease": "linear"
+    },
+    {
+      "key": "glowRadius",
+      "start": 0,
+      "frames": 88,
+      "from": 0.0505,
+      "to": 0.0407,
+      "ease": "linear"
+    },
+    {
+      "key": "glowRadius",
+      "start": 88,
+      "frames": 88,
+      "from": 0.0407,
+      "to": 0.0887,
+      "ease": "linear"
+    },
+    {
+      "key": "glowX",
+      "start": 0,
+      "frames": 88,
+      "from": 0.9986,
+      "to": 1.0,
+      "ease": "linear"
+    },
+    {
+      "key": "glowX",
+      "start": 88,
+      "frames": 88,
+      "from": 1.0,
+      "to": 0.9656,
+      "ease": "linear"
+    },
+    {
+      "key": "glowY",
+      "start": 0,
+      "frames": 88,
+      "from": 0.0756,
+      "to": 0.8399,
+      "ease": "linear"
+    },
+    {
+      "key": "glowY",
+      "start": 88,
+      "frames": 88,
+      "from": 0.8399,
+      "to": 0.8842,
+      "ease": "linear"
+    }
+  ],
+  "fit": {
+    "keyframes": [
+      {
+        "frame": 0,
+        "metrics": {
+          "share": 0.8677,
+          "within1": 0.0536,
+          "score": 0.94912,
+          "deMedian": 1.851,
+          "deP90": 3.349,
+          "meanDe2": 5.0884
+        }
+      },
+      {
+        "frame": 88,
+        "metrics": {
+          "share": 0.8762,
+          "within1": 0.1044,
+          "score": 0.9445,
+          "deMedian": 1.902,
+          "deP90": 3.63,
+          "meanDe2": 5.5498
+        }
+      },
+      {
+        "frame": 176,
+        "metrics": {
+          "share": 0.7822,
+          "within1": 0.0463,
+          "score": 0.9431,
+          "deMedian": 1.919,
+          "deP90": 3.705,
+          "meanDe2": 5.6898
+        }
+      }
+    ],
+    "grain": 0.003,
+    "grid": {
+      "width": 96,
+      "height": 54,
+      "decodeFps": 6,
+      "threads": 2
+    },
+    "date": "14 October 2026, 17:17"
+  }
+}

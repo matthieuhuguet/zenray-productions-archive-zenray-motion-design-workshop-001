@@ -66,9 +66,13 @@
     "V_063",
     "V_064",
     "V_065",
-    "V_066"
+    "V_066",
+    "V_067",
+    "V_068",
+    "V_069",
+    "V_070"
   ],
-  "updated": "12 October 2026",
+  "updated": "14 October 2026",
   "id": "onekey-s02-caption-shine",
   "title": "Caption scale-settle with light sweep",
   "source": {

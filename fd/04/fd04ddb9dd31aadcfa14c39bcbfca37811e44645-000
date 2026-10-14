@@ -1,0 +1,8 @@
+{
+  "version": "V_003",
+  "parent": "V_002",
+  "created": "14 October 2026, 17:20",
+  "note": "V1 proof: colourEnd, glow, glowX, glowY set through the exposed keys",
+  "author": "zrmd",
+  "overrides": {}
+}

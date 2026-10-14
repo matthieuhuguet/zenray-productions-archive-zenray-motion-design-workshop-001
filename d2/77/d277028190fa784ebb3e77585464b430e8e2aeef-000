@@ -13,7 +13,7 @@
  "cadence": {
   "fps": 25.0,
   "factor": 1,
-  "duplicate_ratio": 0.136
+  "duplicate_ratio": 0.114
  },
  "frames": 500,
  "fps": 25.0,
@@ -211,6 +211,12 @@
    "source": "detector"
   },
   {
+   "frame": 383,
+   "t": 15.32,
+   "kind": "hard",
+   "source": "detector"
+  },
+  {
    "frame": 389,
    "t": 15.56,
    "kind": "hard",
@@ -227,12 +233,6 @@
    "t": 15.96,
    "kind": "hard",
    "source": "detector"
-  },
-  {
-   "frame": 486,
-   "t": 19.44,
-   "kind": "dissolve",
-   "source": "detector"
   }
  ],
  "detected": {
@@ -243,25 +243,24 @@
   "file": "review.json",
   "added_cuts": 0,
   "removed_cuts": 0,
+  "cut_corrections_superseded": 0,
   "shots_described": 37,
   "family_agreement": {
-   "reviewed": 37,
+   "reviewed": 36,
    "same_content": 31,
-   "share": 0.838
+   "share": 0.861
   },
   "unmatched_entries": []
  },
  "summary": {
   "families_time_share": {
-   "plate": 0.428,
-   "montage": 0.346,
-   "textcard": 0.174,
-   "graphic": 0.052
+   "plate": 0.602,
+   "montage": 0.372,
+   "graphic": 0.026
   },
   "content_time_share": {
-   "plate": 0.762,
-   "graphic": 0.064,
-   "textcard": 0.174
+   "plate": 0.948,
+   "graphic": 0.052
   },
   "palette": [
    {
@@ -270,37 +269,37 @@
     "lab": [
      5.0,
      -0.6,
-     -1.1
+     -1.0
     ],
     "chroma": 1.2
    },
    {
     "hex": "#e8ddce",
-    "share": 0.04,
+    "share": 0.041,
     "lab": [
-     88.7,
+     88.6,
      1.1,
      8.9
     ],
     "chroma": 9.0
    },
    {
-    "hex": "#e5e4e1",
-    "share": 0.033,
+    "hex": "#e6e4e1",
+    "share": 0.034,
     "lab": [
-     90.5,
+     90.7,
      0.2,
      1.5
     ],
     "chroma": 1.5
    },
    {
-    "hex": "#1a0f11",
+    "hex": "#1a1011",
     "share": 0.032,
     "lab": [
-     5.5,
+     5.6,
      5.0,
-     0.9
+     1.0
     ],
     "chroma": 5.1
    },
@@ -308,19 +307,19 @@
     "hex": "#d7c18c",
     "share": 0.03,
     "lab": [
-     78.8,
+     78.7,
      0.1,
      29.6
     ],
     "chroma": 29.6
    },
    {
-    "hex": "#697f89",
-    "share": 0.027,
+    "hex": "#698089",
+    "share": 0.026,
     "lab": [
-     51.9,
-     -5.8,
-     -8.1
+     52.0,
+     -6.0,
+     -8.0
     ],
     "chroma": 10.0
    },
@@ -335,44 +334,34 @@
     "chroma": 26.4
    },
    {
-    "hex": "#162732",
+    "hex": "#162631",
     "share": 0.024,
     "lab": [
-     14.8,
-     -3.2,
-     -9.5
+     14.4,
+     -3.1,
+     -9.3
     ],
-    "chroma": 10.0
+    "chroma": 9.8
    },
    {
-    "hex": "#c4b090",
-    "share": 0.023,
+    "hex": "#c4b191",
+    "share": 0.022,
     "lab": [
-     72.8,
-     2.0,
-     19.2
+     73.0,
+     2.1,
+     18.9
     ],
-    "chroma": 19.3
+    "chroma": 19.0
    },
    {
     "hex": "#bb4f24",
-    "share": 0.019,
+    "share": 0.017,
     "lab": [
      47.4,
      41.0,
      45.1
     ],
-    "chroma": 61.0
-   },
-   {
-    "hex": "#3c5e71",
-    "share": 0.017,
-    "lab": [
-     38.1,
-     -6.7,
-     -14.5
-    ],
-    "chroma": 16.0
+    "chroma": 60.9
    },
    {
     "hex": "#2d1415",
@@ -383,6 +372,16 @@
      4.8
     ],
     "chroma": 13.3
+   },
+   {
+    "hex": "#3d6072",
+    "share": 0.017,
+    "lab": [
+     38.7,
+     -6.8,
+     -14.5
+    ],
+    "chroma": 16.1
    }
   ],
   "roles": {
@@ -396,18 +395,18 @@
      "share_of_time": 0.048
     },
     {
-     "hex": "#eaddc5",
-     "share_of_time": 0.04
+     "hex": "#d8c088",
+     "share_of_time": 0.042
     },
     {
-     "hex": "#e7ded4",
+     "hex": "#eaddc5",
      "share_of_time": 0.04
     }
    ],
    "accent": [
     {
      "hex": "#ba4a25",
-     "share_of_time": 0.18
+     "share_of_time": 0.152
     },
     {
      "hex": "#d4a629",
@@ -424,15 +423,7 @@
    ],
    "text": [
     {
-     "hex": "#acbdc4",
-     "share_of_time": 0.174
-    },
-    {
      "hex": "#8baed4",
-     "share_of_time": 0.026
-    },
-    {
-     "hex": "#beab7f",
      "share_of_time": 0.026
     },
     {
@@ -445,51 +436,44 @@
    "none": 7,
    "sine.out": 4,
    "elastic.inOut(1,0.3)": 3,
-   "sine.inOut": 2,
-   "back.inOut(1.70158)": 2,
+   "sine.inOut": 1,
    "power1.out": 1,
    "css.ease-out": 1,
    "power2.inOut": 1,
    "back.inOut(2.5)": 1,
-   "elastic.inOut(1,0.45)": 1,
-   "power3.inOut": 1
+   "bounce.out": 1,
+   "back.inOut(1.70158)": 1,
+   "back.inOut(3.5)": 1
   },
   "element_move_median_s": null,
   "camera_kinds": {
-   "zoom avant": 6,
+   "zoom avant": 5,
    "panoramique": 4,
    "roulis": 5,
-   "fixe": 25,
-   "travelling vertical": 7,
-   "zoom arrière": 2
+   "fixe": 27,
+   "travelling vertical": 5,
+   "zoom arrière": 1
   },
   "transitions": {
-   "coupe franche": 35,
-   "ouverture": 1,
-   "fondu enchaîné": 1
+   "coupe franche": 36,
+   "ouverture": 1
   },
   "typography": {
-   "lines_measured": 8,
+   "lines_measured": 2,
    "x_height_px1080": {
     "min": 6.0,
-    "median": 30.5,
-    "max": 159.0
+    "median": 49.0,
+    "max": 92.0
    },
-   "stroke_density_median": 0.255,
+   "stroke_density_median": 0.389,
    "case": {
     "capitales": 0,
-    "bas de casse": 8
+    "bas de casse": 2
    },
-   "light_on_dark_share": 0.38,
+   "light_on_dark_share": 0.5,
    "text_colours": [
-    "#60808d",
     "#888a7f",
-    "#8baed4",
-    "#bca77c",
-    "#bda97c",
-    "#bfab7c",
-    "#c6b07c",
-    "#fcfeff"
+    "#8baed4"
    ]
   },
   "rhythm": {
@@ -498,22 +482,22 @@
    "duration": 20.0,
    "cuts_per_minute": 108.0,
    "shot_mean_s": 0.541,
-   "shot_median_s": 0.44,
+   "shot_median_s": 0.32,
    "shot_min_s": 0.2,
-   "shot_max_s": 3.48,
-   "shot_cv": 1.006,
-   "under_0_5s": 22,
+   "shot_max_s": 4.04,
+   "shot_cv": 1.166,
+   "under_0_5s": 24,
    "over_3s": 1,
    "cuts_on_beat": 0.222,
-   "cuts_on_attack": 0.333,
-   "shot_median_beats": 1.11
+   "cuts_on_attack": 0.361,
+   "shot_median_beats": 0.81
   },
   "three_d": {
-   "plate_share": 0.762,
+   "plate_share": 0.948,
    "plate_3d_shots": 0,
    "probe_classes": {
-    "layer_2d": 6,
-    "static": 27,
+    "layer_2d": 5,
+    "static": 28,
     "complex": 2,
     "rigid_3d": 1,
     "parallax_2_5d": 1
@@ -551,7 +535,7 @@
    }
   ],
   "cuts_on_beat": 0.222,
-  "cuts_on_attack": 0.333,
+  "cuts_on_attack": 0.361,
   "sections": [
    {
     "start": 0.0,
@@ -8473,188 +8457,105 @@
   {
    "id": "S33",
    "start": 15.04,
-   "end": 15.56,
-   "duration": 0.52,
+   "end": 15.32,
+   "duration": 0.28,
    "start_frame": 376,
-   "end_frame": 389,
+   "end_frame": 383,
    "enter": "hard",
    "cut_source": "detector",
    "sample_fps": 25.0,
-   "frames_measured": 13,
-   "family": "graphic",
+   "frames_measured": 7,
+   "family": "montage",
    "content": "graphic",
    "plate_kind": null,
    "features": {
-    "text_cover": 0.027,
-    "nonflat_entropy": 3.26,
-    "flat_share": 0.405,
-    "texture": 4.29,
-    "colourfulness": 22.5,
-    "edge_density": 0.0984
+    "text_cover": 0.0,
+    "nonflat_entropy": 3.38,
+    "flat_share": 0.713,
+    "texture": 1.16,
+    "colourfulness": 16.2,
+    "edge_density": 0.0711
    },
    "palette": [
     {
      "lab": [
-      95.42,
+      95.64,
       0.32,
-      4.59
+      4.48
      ],
-     "share": 0.4444,
-     "hex": "#f6f1e9",
-     "chroma": 4.6,
+     "share": 0.8653,
+     "hex": "#f7f2ea",
+     "chroma": 4.5,
      "role": "background"
     },
     {
      "lab": [
-      79.54,
-      -0.42,
-      24.9
+      84.45,
+      -0.78,
+      9.63
      ],
-     "share": 0.3468,
-     "hex": "#d6c497",
-     "chroma": 24.9,
+     "share": 0.0412,
+     "hex": "#d9d2c1",
+     "chroma": 9.7,
      "role": "secondary"
     },
     {
      "lab": [
-      70.72,
-      0.02,
-      25.47
+      38.87,
+      2.95,
+      8.75
      ],
-     "share": 0.0637,
-     "hex": "#beab7f",
-     "chroma": 25.5,
-     "role": "text"
-    },
-    {
-     "lab": [
-      14.73,
-      3.88,
-      8.48
-     ],
-     "share": 0.0456,
-     "hex": "#2f2319",
-     "chroma": 9.3,
+     "share": 0.0305,
+     "hex": "#66594e",
+     "chroma": 9.2,
      "role": "secondary"
     },
     {
      "lab": [
-      34.35,
-      3.25,
-      14.62
+      61.38,
+      1.78,
+      7.82
      ],
-     "share": 0.0333,
-     "hex": "#5e4e3a",
-     "chroma": 15.0,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      53.18,
-      1.53,
-      13.39
-     ],
-     "share": 0.0313,
-     "hex": "#8b7d68",
-     "chroma": 13.5,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      72.7,
-      2.1,
-      10.5
-     ],
-     "share": 0.0285,
-     "hex": "#beb09f",
-     "chroma": 10.7,
+     "share": 0.0244,
+     "hex": "#9d9387",
+     "chroma": 8.0,
      "role": "secondary"
     }
    ],
    "roles": {
-    "background": "#f6f1e9",
-    "text": "#beab7f",
+    "background": "#f7f2ea",
     "secondary": [
-     "#d6c497",
-     "#2f2319",
-     "#5e4e3a",
-     "#8b7d68",
-     "#beb09f"
+     "#d9d2c1",
+     "#66594e",
+     "#9d9387"
     ]
    },
-   "border_lab_std": 10.71,
+   "border_lab_std": 6.8,
    "camera": {
     "channels": {
      "x": {
-      "total": 0.164,
-      "range": 0.169,
+      "total": -0.003,
+      "range": 0.003,
       "moves": []
      },
      "y": {
-      "total": -0.88,
-      "range": 0.882,
-      "moves": [
-       {
-        "start": 0.206,
-        "duration": 0.1079,
-        "from": -0.005,
-        "to": -0.8793,
-        "ease": "back.inOut(1.70158)",
-        "rms": 0.0017,
-        "rms_rel": 0.002,
-        "amplitude": 0.8753,
-        "ties": [
-         "back.inOut(1.70158)",
-         "elastic.inOut(1,0.3)",
-         "bounce.in",
-         "elastic.in(1.5,0.4)",
-         "elastic.in(1,0.3)",
-         "expo.inOut"
-        ],
-        "snr": 169.7,
-        "confidence": "low",
-        "flag": null,
-        "library": "3.14.2"
-       }
-      ],
-      "rejected_moves": 0
+      "total": -0.005,
+      "range": 0.006,
+      "moves": []
      },
      "zoom": {
-      "total": -2.242,
-      "range": 2.247,
-      "moves": [
-       {
-        "start": 0.187,
-        "duration": 0.1195,
-        "from": 0.0026,
-        "to": -2.2417,
-        "ease": "elastic.inOut(1,0.45)",
-        "rms": 0.0007,
-        "rms_rel": 0.0003,
-        "amplitude": 2.2449,
-        "ties": [
-         "elastic.inOut(1,0.45)",
-         "elastic.inOut(1,0.3)",
-         "back.inOut(1.70158)",
-         "elastic.in(1.5,0.4)"
-        ],
-        "snr": 983.6,
-        "confidence": "low",
-        "flag": null,
-        "library": "3.14.2"
-       }
-      ],
-      "rejected_moves": 0
+      "total": 0.003,
+      "range": 0.004,
+      "moves": []
      },
      "roll": {
-      "total": -0.719,
-      "range": 0.721,
+      "total": -0.002,
+      "range": 0.004,
       "moves": []
      }
     },
     "kind": [
-     "zoom arrière",
-     "travelling vertical"
+     "fixe"
     ],
     "units": {
      "x": "% largeur",
@@ -8663,7 +8564,7 @@
      "roll": "degrés"
     },
     "probe": {
-     "pairs": 12,
+     "pairs": 6,
      "moving_pairs_fraction": 0.0,
      "sim": 0.0,
      "aff": 0.0,
@@ -8671,78 +8572,31 @@
      "fun": 0.0,
      "layers": 0.0,
      "layers_explained": 0.0,
-     "residual": 0.0105,
-     "residual_p90": 0.0268,
-     "ecc_pairs": 1,
+     "residual": 0.0074,
+     "residual_p90": 0.012,
+     "ecc_pairs": 0,
      "class": "static"
     }
    },
-   "elements": [],
-   "elements_tracked": 148,
-   "text_lines": [
+   "elements": [
     {
+     "id": "L01",
+     "first_t": 0.0,
+     "last_t": 0.24,
      "box_pct": [
-      81.2,
-      49.4,
-      12.3,
-      6.2
+      3.5,
+      84.1,
+      1.5,
+      3.0
      ],
-     "x_height_px1080": 31.0,
-     "top_to_base_px1080": 47.0,
-     "x_over_top": 0.66,
-     "stroke_density": 0.2802,
-     "case": "bas de casse",
-     "color": "#bda97c",
-     "light_on_dark": false,
-     "_crop_file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/claude-opus-5-5/typography/S33.png"
-    },
-    {
-     "box_pct": [
-      29.7,
-      0.2,
-      9.5,
-      12.5
-     ],
-     "x_height_px1080": 30.0,
-     "top_to_base_px1080": 46.0,
-     "x_over_top": 0.652,
-     "stroke_density": 0.2288,
-     "case": "bas de casse",
-     "color": "#c6b07c",
-     "light_on_dark": false
-    },
-    {
-     "box_pct": [
-      69.5,
-      22.8,
-      4.8,
-      2.6
-     ],
-     "x_height_px1080": 18.5,
-     "top_to_base_px1080": 40.0,
-     "x_over_top": 0.463,
-     "stroke_density": 0.5156,
-     "case": "bas de casse",
-     "color": "#bfab7c",
-     "light_on_dark": false
-    },
-    {
-     "box_pct": [
-      86.3,
-      42.2,
-      3.4,
-      3.1
-     ],
-     "x_height_px1080": 18.0,
-     "top_to_base_px1080": 33.0,
-     "x_over_top": 0.545,
-     "stroke_density": 0.1105,
-     "case": "bas de casse",
-     "color": "#bca77c",
-     "light_on_dark": false
+     "color": "#f0ded7",
+     "channels": {},
+     "rejected_moves": 2
     }
    ],
-   "text_frame_t": 15.44,
+   "elements_tracked": 1,
+   "text_lines": [],
+   "text_frame_t": null,
    "phases": [],
    "thumbs": {
     "in": "S33-in.jpg",
@@ -8755,9 +8609,9 @@
     5.44
    ],
    "last_lab": [
-    69.95,
-    0.37,
-    22.42
+    90.21,
+    0.77,
+    5.48
    ],
    "transition_in": {
     "kind": "coupe franche",
@@ -8766,12 +8620,12 @@
     "delta_e_mean": 80.8
    },
    "description": "Dessin au trait d'un arc et de lignes rouges sur papier clair, comme un diagramme, puis une version griffonnée.",
-   "content_measured": "plate",
-   "family_measured": "plate",
-   "plate_kind_measured": "image",
+   "content_measured": "graphic",
+   "family_measured": "montage",
+   "plate_kind_measured": null,
    "eye_reviewed": true,
    "sound": {
-    "events_count": 3,
+    "events_count": 2,
     "events": [
      {
       "t": 15.105,
@@ -8784,7 +8638,214 @@
       "kind": "attaque médium",
       "main": false,
       "peak_db": -10.51
+     }
+    ],
+    "swells": []
+   }
+  },
+  {
+   "id": "S34",
+   "start": 15.32,
+   "end": 15.56,
+   "duration": 0.24,
+   "start_frame": 383,
+   "end_frame": 389,
+   "enter": "hard",
+   "cut_source": "detector",
+   "sample_fps": 25.0,
+   "frames_measured": 6,
+   "family": "montage",
+   "content": "plate",
+   "plate_kind": "image",
+   "features": {
+    "text_cover": 0.063,
+    "nonflat_entropy": 3.13,
+    "flat_share": 0.063,
+    "texture": 7.57,
+    "colourfulness": 28.8,
+    "edge_density": 0.1298
+   },
+   "palette": [
+    {
+     "lab": [
+      80.19,
+      -0.38,
+      24.84
+     ],
+     "share": 0.5486,
+     "hex": "#d8c699",
+     "chroma": 24.8,
+     "role": "background"
+    },
+    {
+     "lab": [
+      75.48,
+      -0.29,
+      25.75
+     ],
+     "share": 0.2034,
+     "hex": "#cbb98b",
+     "chroma": 25.7,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      72.73,
+      0.97,
+      15.78
+     ],
+     "share": 0.0512,
+     "hex": "#c0b196",
+     "chroma": 15.8,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      12.15,
+      4.3,
+      5.68
+     ],
+     "share": 0.0452,
+     "hex": "#281e18",
+     "chroma": 7.1,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      65.26,
+      0.6,
+      25.23
+     ],
+     "share": 0.0449,
+     "hex": "#b09d71",
+     "chroma": 25.2,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      18.7,
+      4.01,
+      14.89
+     ],
+     "share": 0.0395,
+     "hex": "#3a2b18",
+     "chroma": 15.4,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      52.22,
+      1.89,
+      15.79
+     ],
+     "share": 0.0367,
+     "hex": "#8a7b62",
+     "chroma": 15.9,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      34.55,
+      2.66,
+      15.8
+     ],
+     "share": 0.0305,
+     "hex": "#5e4f38",
+     "chroma": 16.0,
+     "role": "secondary"
+    }
+   ],
+   "roles": {
+    "background": "#d8c699",
+    "secondary": [
+     "#cbb98b",
+     "#c0b196",
+     "#281e18",
+     "#b09d71",
+     "#3a2b18",
+     "#8a7b62",
+     "#5e4f38"
+    ]
+   },
+   "border_lab_std": 8.66,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": 0.0,
+      "range": 0.003,
+      "moves": []
      },
+     "y": {
+      "total": -0.0,
+      "range": 0.006,
+      "moves": []
+     },
+     "zoom": {
+      "total": -0.002,
+      "range": 0.003,
+      "moves": []
+     },
+     "roll": {
+      "total": 0.0,
+      "range": 0.001,
+      "moves": []
+     }
+    },
+    "kind": [
+     "fixe"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 5,
+     "moving_pairs_fraction": 0.0,
+     "sim": 0.0,
+     "aff": 0.0,
+     "hom": 0.0,
+     "fun": 0.0,
+     "layers": 0.0,
+     "layers_explained": 0.0,
+     "residual": 0.0182,
+     "residual_p90": 0.0248,
+     "ecc_pairs": 0,
+     "class": "static"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 147,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [],
+   "thumbs": {
+    "in": "S34-in.jpg",
+    "mid": "S34-mid.jpg",
+    "out": "S34-out.jpg"
+   },
+   "first_lab": [
+    69.93,
+    0.38,
+    22.4
+   ],
+   "last_lab": [
+    69.95,
+    0.37,
+    22.42
+   ],
+   "transition_in": {
+    "kind": "coupe franche",
+    "frame": 383,
+    "same_tone": false,
+    "delta_e_mean": 17.5
+   },
+   "description": "Un mot en lettres serif sur un papier craquelé, par-dessus un enchevêtrement de traits noirs à l'encre.",
+   "eye_reviewed": true,
+   "sound": {
+    "events_count": 1,
+    "events": [
      {
       "t": 15.455,
       "kind": "attaque médium",
@@ -8796,7 +8857,7 @@
    }
   },
   {
-   "id": "S34",
+   "id": "S35",
    "start": 15.56,
    "end": 15.76,
    "duration": 0.2,
@@ -8973,9 +9034,9 @@
    "text_frame_t": null,
    "phases": [],
    "thumbs": {
-    "in": "S34-in.jpg",
-    "mid": "S34-mid.jpg",
-    "out": "S34-out.jpg"
+    "in": "S35-in.jpg",
+    "mid": "S35-mid.jpg",
+    "out": "S35-out.jpg"
    },
    "first_lab": [
     36.15,
@@ -9018,7 +9079,7 @@
    }
   },
   {
-   "id": "S35",
+   "id": "S36",
    "start": 15.76,
    "end": 15.96,
    "duration": 0.2,
@@ -9195,9 +9256,9 @@
    "text_frame_t": null,
    "phases": [],
    "thumbs": {
-    "in": "S35-in.jpg",
-    "mid": "S35-mid.jpg",
-    "out": "S35-out.jpg"
+    "in": "S36-in.jpg",
+    "mid": "S36-mid.jpg",
+    "out": "S36-out.jpg"
    },
    "first_lab": [
     18.26,
@@ -9234,132 +9295,141 @@
    }
   },
   {
-   "id": "S36",
+   "id": "S37",
    "start": 15.96,
-   "end": 19.44,
-   "duration": 3.48,
+   "end": 20.0,
+   "duration": 4.04,
    "start_frame": 399,
-   "end_frame": 486,
+   "end_frame": 500,
    "enter": "hard",
    "cut_source": "detector",
    "sample_fps": 25.0,
-   "frames_measured": 87,
-   "family": "textcard",
-   "content": "textcard",
-   "plate_kind": null,
+   "frames_measured": 101,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "image",
    "features": {
-    "text_cover": 0.149,
+    "text_cover": 0.148,
     "nonflat_entropy": 3.78,
-    "flat_share": 0.902,
-    "texture": 0.45,
+    "flat_share": 0.901,
+    "texture": 0.47,
     "colourfulness": 18.3,
-    "edge_density": 0.0042
+    "edge_density": 0.0041
    },
    "palette": [
     {
      "lab": [
-      6.39,
-      -1.47,
-      -2.71
+      6.52,
+      -1.32,
+      -2.43
      ],
-     "share": 0.7259,
-     "hex": "#0f1518",
-     "chroma": 3.1,
+     "share": 0.6915,
+     "hex": "#101518",
+     "chroma": 2.8,
      "role": "background"
     },
     {
      "lab": [
-      13.27,
-      -2.92,
-      -9.01
+      13.01,
+      -2.85,
+      -8.84
      ],
-     "share": 0.0805,
-     "hex": "#14242e",
-     "chroma": 9.5,
+     "share": 0.0827,
+     "hex": "#14232e",
+     "chroma": 9.3,
      "role": "secondary"
     },
     {
      "lab": [
-      51.63,
-      -6.5,
-      -8.67
+      51.73,
+      -6.45,
+      -8.28
      ],
-     "share": 0.067,
-     "hex": "#667f8a",
-     "chroma": 10.8,
+     "share": 0.0754,
+     "hex": "#677f89",
+     "chroma": 10.5,
      "role": "secondary"
     },
     {
      "lab": [
-      39.32,
-      -6.8,
-      -14.45
+      39.38,
+      -6.88,
+      -14.48
      ],
-     "share": 0.056,
+     "share": 0.0575,
      "hex": "#3f6174",
      "chroma": 16.0,
      "role": "secondary"
     },
     {
      "lab": [
-      25.14,
-      -5.4,
-      -13.14
+      24.79,
+      -5.39,
+      -13.04
      ],
-     "share": 0.0507,
-     "hex": "#223f4f",
-     "chroma": 14.2,
+     "share": 0.0515,
+     "hex": "#223e4e",
+     "chroma": 14.1,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      62.58,
+      8.16,
+      12.43
+     ],
+     "share": 0.0203,
+     "hex": "#ae9282",
+     "chroma": 14.9,
      "role": "secondary"
     }
    ],
    "roles": {
-    "background": "#0f1518",
-    "text": "#acbdc4",
+    "background": "#101518",
     "secondary": [
-     "#14242e",
-     "#667f8a",
+     "#14232e",
+     "#677f89",
      "#3f6174",
-     "#223f4f"
+     "#223e4e",
+     "#ae9282"
     ]
    },
-   "border_lab_std": 11.48,
+   "border_lab_std": 11.64,
    "camera": {
     "channels": {
      "x": {
-      "total": -0.907,
+      "total": -0.912,
       "range": 1.834,
       "moves": [],
       "rejected_moves": 3
      },
      "y": {
-      "total": 16.613,
-      "range": 16.648,
+      "total": 16.054,
+      "range": 29.165,
       "moves": [
        {
-        "start": 1.5382,
-        "duration": 3.8776,
-        "from": 1.1065,
-        "to": 34.5573,
-        "ease": "power3.inOut",
-        "rms": 0.3538,
-        "rms_rel": 0.0228,
-        "amplitude": 15.4833,
+        "start": 2.4425,
+        "duration": 3.3915,
+        "from": 1.5527,
+        "to": 25.0673,
+        "ease": "bounce.out",
+        "rms": 1.2615,
+        "rms_rel": 0.0538,
+        "amplitude": 23.4344,
         "ties": [
-         "power3.inOut",
-         "power3.in",
-         "power4.in"
+         "bounce.out"
         ],
-        "snr": 270.4,
+        "snr": 412.9,
         "confidence": "high",
         "flag": "linear_segment",
         "library": "3.14.2"
        }
       ],
-      "rejected_moves": 0
+      "rejected_moves": 1
      },
      "zoom": {
-      "total": -5.563,
-      "range": 5.755,
+      "total": -5.759,
+      "range": 8.12,
       "moves": [
        {
         "start": 1.247,
@@ -9382,32 +9452,32 @@
         "library": "3.14.2"
        },
        {
-        "start": 3.1928,
-        "duration": 0.3662,
-        "from": -4.2192,
-        "to": -5.9711,
-        "ease": "sine.inOut",
-        "rms": 0.0578,
-        "rms_rel": 0.0433,
-        "amplitude": 1.3341,
+        "start": 3.1837,
+        "duration": 2.244,
+        "from": -4.2152,
+        "to": 16.8645,
+        "ease": "back.inOut(3.5)",
+        "rms": 0.1498,
+        "rms_rel": 0.0453,
+        "amplitude": 3.3052,
         "ties": [
-         "sine.inOut",
-         "material.accelerate",
-         "css.ease-in-out",
-         "css.ease-in",
-         "sine.in",
-         "power1.inOut"
+         "back.inOut(3.5)",
+         "back.in(1)",
+         "back.in(2.5)",
+         "back.inOut(2.5)",
+         "back.in(3.5)",
+         "back.in(1.70158)"
         ],
-        "snr": 16.9,
+        "snr": 88.1,
         "confidence": "low",
-        "flag": null,
+        "flag": "linear_segment",
         "library": "3.14.2"
        }
       ],
       "rejected_moves": 2
      },
      "roll": {
-      "total": 0.66,
+      "total": 0.594,
       "range": 0.863,
       "moves": []
      }
@@ -9423,61 +9493,40 @@
      "roll": "degrés"
     },
     "probe": {
-     "pairs": 86,
-     "moving_pairs_fraction": 0.0,
-     "sim": 0.0,
-     "aff": 0.0,
-     "hom": 0.0,
-     "fun": 0.0,
-     "layers": 0.0,
-     "layers_explained": 0.0,
-     "residual": 0.0062,
-     "residual_p90": 0.0929,
-     "ecc_pairs": 86,
+     "pairs": 100,
+     "moving_pairs_fraction": 0.07,
+     "sim": 0.9896049896049897,
+     "aff": 0.9896049896049897,
+     "hom": 0.9895397489539749,
+     "fun": 0.993993993993994,
+     "layers": 1.0,
+     "layers_explained": 0.9895397489539749,
+     "residual": 0.0096,
+     "residual_p90": 0.1043,
+     "ecc_pairs": 93,
      "class": "static"
     }
    },
    "elements": [],
-   "elements_tracked": 3,
-   "text_lines": [
+   "elements_tracked": 4,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [
     {
-     "box_pct": [
-      0.0,
-      80.0,
-      100.0,
-      20.0
-     ],
-     "x_height_px1080": 159.0,
-     "top_to_base_px1080": 177.0,
-     "x_over_top": 0.898,
-     "stroke_density": 0.7055,
-     "case": "bas de casse",
-     "color": "#60808d",
-     "light_on_dark": true,
-     "_crop_file": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/claude-opus-5-5/typography/S36.png"
+     "start": 15.96,
+     "end": 19.24,
+     "thumb": "S37-p01.jpg"
     },
     {
-     "box_pct": [
-      40.1,
-      43.0,
-      19.8,
-      9.2
-     ],
-     "x_height_px1080": 51.0,
-     "top_to_base_px1080": 73.0,
-     "x_over_top": 0.699,
-     "stroke_density": 0.1036,
-     "case": "bas de casse",
-     "color": "#fcfeff",
-     "light_on_dark": true
+     "start": 19.28,
+     "end": 19.96,
+     "thumb": "S37-p02.jpg"
     }
    ],
-   "text_frame_t": 15.96,
-   "phases": [],
    "thumbs": {
-    "in": "S36-in.jpg",
-    "mid": "S36-mid.jpg",
-    "out": "S36-out.jpg"
+    "in": "S37-in.jpg",
+    "mid": "S37-mid.jpg",
+    "out": "S37-out.jpg"
    },
    "first_lab": [
     11.84,
@@ -9485,9 +9534,9 @@
     -4.65
    ],
    "last_lab": [
-    23.78,
-    0.54,
-    -0.74
+    25.38,
+    2.02,
+    1.35
    ],
    "transition_in": {
     "kind": "coupe franche",
@@ -9495,10 +9544,10 @@
     "same_tone": false,
     "delta_e_mean": 21.86
    },
-   "description": "Carte titre sur fond nuit avec une lueur bleue en bas : un nom de produit en serif, puis un logotype qui remonte lentement vers le haut du cadre.",
-   "content_measured": "plate",
-   "family_measured": "plate",
-   "plate_kind_measured": "image",
+   "description": "Retour à la courbe de planète du début, en fondu, qui clôt la boucle.",
+   "content_measured": "textcard",
+   "family_measured": "textcard",
+   "plate_kind_measured": null,
    "eye_reviewed": true,
    "sound": {
     "events_count": 9,
@@ -9536,206 +9585,6 @@
       "level_db": 42.3
      }
     ]
-   }
-  },
-  {
-   "id": "S37",
-   "start": 19.44,
-   "end": 20.0,
-   "duration": 0.56,
-   "start_frame": 486,
-   "end_frame": 500,
-   "enter": "dissolve",
-   "cut_source": "detector",
-   "sample_fps": 25.0,
-   "frames_measured": 14,
-   "family": "plate",
-   "content": "plate",
-   "plate_kind": "image",
-   "features": {
-    "text_cover": 0.0,
-    "nonflat_entropy": 3.94,
-    "flat_share": 0.87,
-    "texture": 0.8,
-    "colourfulness": 46.8,
-    "edge_density": 0.0
-   },
-   "palette": [
-    {
-     "lab": [
-      8.09,
-      0.17,
-      -1.09
-     ],
-     "share": 0.4959,
-     "hex": "#171819",
-     "chroma": 1.1,
-     "role": "background"
-    },
-    {
-     "lab": [
-      51.68,
-      -5.28,
-      -7.65
-     ],
-     "share": 0.1657,
-     "hex": "#6a7e88",
-     "chroma": 9.3,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      15.47,
-      -3.5,
-      -9.89
-     ],
-     "share": 0.1045,
-     "hex": "#162934",
-     "chroma": 10.5,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      34.23,
-      -6.44,
-      -14.29
-     ],
-     "share": 0.0759,
-     "hex": "#345567",
-     "chroma": 15.7,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      58.35,
-      9.44,
-      12.49
-     ],
-     "share": 0.0585,
-     "hex": "#a58677",
-     "chroma": 15.7,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      61.64,
-      20.14,
-      41.65
-     ],
-     "share": 0.0429,
-     "hex": "#c9864b",
-     "chroma": 46.3,
-     "role": "secondary"
-    },
-    {
-     "lab": [
-      47.96,
-      41.61,
-      44.85
-     ],
-     "share": 0.0419,
-     "hex": "#bd5026",
-     "chroma": 61.2,
-     "role": "accent"
-    }
-   ],
-   "roles": {
-    "background": "#171819",
-    "accent": "#bd5026",
-    "secondary": [
-     "#6a7e88",
-     "#162934",
-     "#345567",
-     "#a58677",
-     "#c9864b"
-    ]
-   },
-   "border_lab_std": 10.79,
-   "camera": {
-    "channels": {
-     "x": {
-      "total": -0.056,
-      "range": 0.167,
-      "moves": []
-     },
-     "y": {
-      "total": -1.971,
-      "range": 13.491,
-      "moves": [],
-      "rejected_moves": 1
-     },
-     "zoom": {
-      "total": 0.076,
-      "range": 2.304,
-      "moves": [],
-      "rejected_moves": 1
-     },
-     "roll": {
-      "total": -0.067,
-      "range": 0.074,
-      "moves": []
-     }
-    },
-    "kind": [
-     "zoom avant",
-     "travelling vertical"
-    ],
-    "units": {
-     "x": "% largeur",
-     "y": "% largeur",
-     "zoom": "% échelle",
-     "roll": "degrés"
-    },
-    "probe": {
-     "pairs": 13,
-     "moving_pairs_fraction": 0.538,
-     "sim": 0.9896049896049897,
-     "aff": 0.9896049896049897,
-     "hom": 0.9895397489539749,
-     "fun": 0.993993993993994,
-     "layers": 1.0,
-     "layers_explained": 0.9895397489539749,
-     "residual": 0.0122,
-     "residual_p90": 0.2427,
-     "ecc_pairs": 6,
-     "class": "layer_2d"
-    }
-   },
-   "elements": [],
-   "elements_tracked": 3,
-   "text_lines": [],
-   "text_frame_t": null,
-   "phases": [],
-   "thumbs": {
-    "in": "S37-in.jpg",
-    "mid": "S37-mid.jpg",
-    "out": "S37-out.jpg"
-   },
-   "first_lab": [
-    24.66,
-    1.48,
-    0.01
-   ],
-   "last_lab": [
-    25.38,
-    2.02,
-    1.35
-   ],
-   "transition_in": {
-    "kind": "fondu enchaîné",
-    "frame": 486,
-    "same_tone": true,
-    "delta_e_mean": 1.64
-   },
-   "description": "Retour à la courbe de planète du début, en fondu, qui clôt la boucle.",
-   "content_measured": "plate",
-   "family_measured": "plate",
-   "plate_kind_measured": "image",
-   "eye_reviewed": true,
-   "sound": {
-    "events_count": 0,
-    "events": [],
-    "swells": []
    }
   }
  ],

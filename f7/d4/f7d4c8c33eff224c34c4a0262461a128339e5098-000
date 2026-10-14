@@ -16,20 +16,19 @@ Montage en raccords de forme : chaque plan, photographie macro, gravure ou illus
 
 ## Rythme de montage
 
-La référence compte 37 plans et 36 coupes, soit 108,0 coupes par minute ; un plan dure 0,44 s en médiane et 0,54 s en moyenne, du plus court (0,20 s) au plus long (3,48 s), avec un coefficient de variation de 1,01. 22 plans durent moins d'une demi-seconde et 1 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 22 %, et celle des coupes tombant sur une attaque sonore 33 %. Le plan médian dure 1,11 temps. Le détecteur avait trouvé 36 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 0 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
+La référence compte 37 plans et 36 coupes, soit 108,0 coupes par minute ; un plan dure 0,32 s en médiane et 0,54 s en moyenne, du plus court (0,20 s) au plus long (4,04 s), avec un coefficient de variation de 1,17. 24 plans durent moins d'une demi-seconde et 1 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 22 %, et celle des coupes tombant sur une attaque sonore 36 %. Le plan médian dure 0,81 temps. Le détecteur avait trouvé 36 coupes ; la revue à l'œil des planches (une image tous les quarts de seconde) en a ajouté 0 et retiré 0, chaque ajout étant recalé sur l'image de plus forte différence à 0,3 s près.
 
 ## Familles de plans
 
 | Famille | Part du temps |
 |---|---|
-| plaque 3D ou prise de vue | 42,8 % |
-| montage | 34,6 % |
-| carte texte | 17,4 % |
-| graphique | 5,2 % |
+| plaque 3D ou prise de vue | 60,2 % |
+| montage | 37,2 % |
+| graphique | 2,6 % |
 
-Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 31 plans sur 37, soit 84 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
+Le classement automatique (aplats, couverture du texte, entropie des zones non plates, sonde 3D) concorde avec le classement à l'œil sur 31 plans sur 36, soit 86 % ; la bible retient le classement à l'œil et garde la mesure à côté (`content_measured`).
 
-La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 76,2 %, graphique 6,4 %, carte texte 17,4 %.
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 94,8 %, graphique 5,2 %.
 
 ## Couleurs
 
@@ -38,29 +37,29 @@ Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée p
 | Couleur | Part | L* | Chroma |
 |---|---|---|---|
 | `#0f1113` | 35,5 % | 5,0 | 1,2 |
-| `#e8ddce` | 4,0 % | 88,7 | 9,0 |
-| `#e5e4e1` | 3,3 % | 90,5 | 1,5 |
-| `#1a0f11` | 3,2 % | 5,5 | 5,1 |
-| `#d7c18c` | 3,0 % | 78,8 | 29,6 |
-| `#697f89` | 2,7 % | 51,9 | 10,0 |
+| `#e8ddce` | 4,1 % | 88,6 | 9,0 |
+| `#e6e4e1` | 3,4 % | 90,7 | 1,5 |
+| `#1a1011` | 3,2 % | 5,6 | 5,1 |
+| `#d7c18c` | 3,0 % | 78,7 | 29,6 |
+| `#698089` | 2,6 % | 52,0 | 10,0 |
 | `#38638a` | 2,4 % | 40,4 | 26,4 |
-| `#162732` | 2,4 % | 14,8 | 10,0 |
-| `#c4b090` | 2,3 % | 72,8 | 19,3 |
-| `#bb4f24` | 1,9 % | 47,4 | 61,0 |
-| `#3c5e71` | 1,7 % | 38,1 | 16,0 |
+| `#162631` | 2,4 % | 14,4 | 9,8 |
+| `#c4b191` | 2,2 % | 73,0 | 19,0 |
+| `#bb4f24` | 1,7 % | 47,4 | 60,9 |
 | `#2d1415` | 1,7 % | 10,0 | 13,3 |
+| `#3d6072` | 1,7 % | 38,7 | 16,1 |
 
 Rôles (part du temps où la couleur tient ce rôle) :
 
 | Rôle | Couleurs |
 |---|---|
-| fond | `#161717` (61 %), `#181115` (5 %), `#eaddc5` (4 %), `#e7ded4` (4 %) |
-| accent | `#ba4a25` (18 %), `#d4a629` (5 %), `#bd7d21` (5 %), `#d2964f` (5 %) |
-| texte | `#acbdc4` (17 %), `#8baed4` (3 %), `#beab7f` (3 %), `#92998b` (1 %) |
+| fond | `#161717` (61 %), `#181115` (5 %), `#d8c088` (4 %), `#eaddc5` (4 %) |
+| accent | `#ba4a25` (15 %), `#d4a629` (5 %), `#bd7d21` (5 %), `#d2964f` (5 %) |
+| texte | `#8baed4` (3 %), `#92998b` (1 %) |
 
 ## Typographie
 
-8 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 6,0 à 159,0 pixels, médiane 30,5 ; la densité de trait médiane vaut 0,255. On compte 0 lignes en capitales et 8 en bas de casse, et 38 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#60808d`, `#888a7f`, `#8baed4`, `#bca77c`, `#bda97c`, `#bfab7c`, `#c6b07c`, `#fcfeff`.
+2 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 6,0 à 92,0 pixels, médiane 49,0 ; la densité de trait médiane vaut 0,389. On compte 0 lignes en capitales et 2 en bas de casse, et 50 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#888a7f`, `#8baed4`.
 
 Appariement de police faible sur la ligne de S30 (meilleur score 1,167, au-delà du seuil 0,60) : aucune police libre de la base ne ressemble assez au dessin mesuré, la plus proche étant Clash Display 700 ; la police se choisira à l'œil.
 
@@ -73,42 +72,41 @@ Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gar
 | `none` | 7 |
 | `sine.out` | 4 |
 | `elastic.inOut(1,0.3)` | 3 |
-| `sine.inOut` | 2 |
-| `back.inOut(1.70158)` | 2 |
+| `sine.inOut` | 1 |
 | `power1.out` | 1 |
 | `css.ease-out` | 1 |
 | `power2.inOut` | 1 |
 | `back.inOut(2.5)` | 1 |
-| `elastic.inOut(1,0.45)` | 1 |
-| `power3.inOut` | 1 |
+| `bounce.out` | 1 |
+| `back.inOut(1.70158)` | 1 |
+| `back.inOut(3.5)` | 1 |
 
 Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
 
 | Mouvement | Plans |
 |---|---|
-| fixe | 25 |
-| travelling vertical | 7 |
-| zoom avant | 6 |
+| fixe | 27 |
+| zoom avant | 5 |
 | roulis | 5 |
+| travelling vertical | 5 |
 | panoramique | 4 |
-| zoom arrière | 2 |
+| zoom arrière | 1 |
 
 ## Transitions
 
 | Transition d'entrée | Plans |
 |---|---|
-| coupe franche | 35 |
+| coupe franche | 36 |
 | ouverture | 1 |
-| fondu enchaîné | 1 |
 
 ## Usage de la 3D
 
-Les plaques (rendu 3D ou prise de vue) occupent 76,2 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+Les plaques (rendu 3D ou prise de vue) occupent 94,8 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
 
 | Classe de la sonde | Plans |
 |---|---|
-| immobile | 27 |
-| calque 2D | 6 |
+| immobile | 28 |
+| calque 2D | 5 |
 | mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 2 |
 | scène 3D rigide en profondeur | 1 |
 | plusieurs couches en parallaxe (2,5D) | 1 |
@@ -183,10 +181,10 @@ Tempo estimé 151,9 BPM, 44 temps détectés, régularité de la grille 0,123 (�
 | S30 | 14,24 s | 0,24 s | montage | Collage de formes plates colorées sous le mot, très bref. |
 | S31 | 14,48 s | 0,28 s | montage | Coupe de cellules végétales vertes en microscopie. |
 | S32 | 14,76 s | 0,28 s | montage | Bord rouge granuleux sur noir constellé. |
-| S33 | 15,04 s | 0,52 s | graphique | Dessin au trait d'un arc et de lignes rouges sur papier clair, comme un diagramme, puis une version griffonnée. |
-| S34 | 15,56 s | 0,20 s | montage | Fourrure blanche en contre-jour sur noir, très bref. |
-| S35 | 15,76 s | 0,20 s | montage | Lamelles rouges en éventail sous le mot, très bref. |
-| S36 | 15,96 s | 3,48 s | carte texte | Carte titre sur fond nuit avec une lueur bleue en bas : un nom de produit en serif, puis un logotype qui remonte lentement vers le haut du cadre. |
-| S37 | 19,44 s | 0,56 s | plaque 3D ou prise de vue | Retour à la courbe de planète du début, en fondu, qui clôt la boucle. |
+| S33 | 15,04 s | 0,28 s | montage | Dessin au trait d'un arc et de lignes rouges sur papier clair, comme un diagramme, puis une version griffonnée. |
+| S34 | 15,32 s | 0,24 s | montage | Un mot en lettres serif sur un papier craquelé, par-dessus un enchevêtrement de traits noirs à l'encre. |
+| S35 | 15,56 s | 0,20 s | montage | Fourrure blanche en contre-jour sur noir, très bref. |
+| S36 | 15,76 s | 0,20 s | montage | Lamelles rouges en éventail sous le mot, très bref. |
+| S37 | 15,96 s | 4,04 s | plaque 3D ou prise de vue | Retour à la courbe de planète du début, en fondu, qui clôt la boucle. |
 
 Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

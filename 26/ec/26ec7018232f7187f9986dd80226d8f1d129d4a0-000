@@ -1,0 +1,22 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "20syl-ode-to-odd-m2",
+ "page_url": null,
+ "media_url": null,
+ "date": "14 October 2026",
+ "file_name": "20syl-ode-to-odd-m2.flac",
+ "sha256": "591af94256d4a354937cb802a44e6c6ab630d0ed120ee6262f44959884b90bac",
+ "bytes": 5461375,
+ "duration_s": 30,
+ "has_audio": true,
+ "video_codec": null,
+ "audio_codec": "flac",
+ "family": "music-corpus",
+ "parent_slug": "20syl-ode-to-odd",
+ "start_s": 63,
+ "end_s": 93,
+ "title": "20syl - Ode to Odd (music excerpt 2: 63 to 93 s)",
+ "notes": [
+  "Lossless decode of the reference audio; the media stays in the reference cache (never archived or published)."
+ ]
+}
