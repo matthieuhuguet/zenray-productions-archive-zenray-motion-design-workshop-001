@@ -1,0 +1,93 @@
+# Rhythm: results of the winner on the picture references (14 October 2026)
+
+Hard cuts, F1 at 0 and at +-1 frame against the pooled-adjudication truth (`<workshop>/rhythm/truth/<slug>.json`). `found` is the number of true hard cuts found at +-1 frame, `extra` the cuts reported where the truth has none, `missed` the true cuts not found. The final models are trained on these same references, so F1 columns are RESUBSTITUTION numbers; `LORO` is the leave-one-reference-out F1 of ALL cut kinds (the fusion and the transition classifier both trained on the other videos), the number to expect on a video the model never saw. fin-4 has no boundary above the duplicate floor: no cut can exist. FR : resultats du gagnant par reference. (14 October 2026)
+
+| reference | frames | fps | true cuts | found | extra | missed | F1 @0 | F1 @+-1 | all kinds F1 @+-1 | LORO all kinds F1 @+-1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| claude-opus-5-5 | 500 | 25.00 | 36 | 36 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.909 |
+| fin-4 | 236 | 30.00 | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 |
+| flora-agents-on-canvas | 1543 | 30.00 | 1 | 1 | 0 | 0 | 0.667 | 1.000 | 1.000 | 0.500 |
+| motion-opus-5-5 | 897 | 30.00 | 2 | 2 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.667 |
+| kardashev-0-7 | 1618 | 24.00 | 14 | 14 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 |
+| memo | 1331 | 30.00 | 126 | 126 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.836 |
+| paper-mono-code | 3633 | 60.00 | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 |
+| onekey-pro-2 | 4080 | 60.00 | 26 | 26 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.772 |
+| interface | 2162 | 24.00 | 56 | 56 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.966 |
+| x-anabology-2106157622986748377 | 4351 | 24.00 | 24 | 24 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.781 |
+| x-anabology-2105325733312884869 | 4598 | 24.00 | 156 | 156 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.901 |
+| yt-4Q-o_ylnVnc | 5454 | 30.00 | 68 | 68 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.779 |
+
+## claude-opus-5-5 (14 October 2026)
+
+No miss and no extra jump.
+
+## fin-4 (14 October 2026)
+
+No miss and no extra jump.
+
+## flora-agents-on-canvas (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 351: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.0, "F": null, "ED": 0.55, "EN": 0.72, "r1": 1.78, "q1": 1.04}
+
+## motion-opus-5-5 (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 631: truth A, evidence {"U": 0.49, "F": 1.0, "ED": 0.76, "EN": 0.8, "r1": 1.01, "q1": 0.01}
+
+## kardashev-0-7 (14 October 2026)
+
+No miss and no extra jump.
+
+## memo (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 563: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.94, "F": 1.0, "ED": 0.67, "EN": 0.78, "r1": 1.07, "q1": 0.98}
+- frame 735: truth inside a true fade interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 1.0, "F": 1.0, "ED": 1.0, "EN": null, "r1": 1.0, "q1": 0.0}
+- frame 755: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 1.0, "F": 1.0, "ED": 0.68, "EN": 0.74, "r1": 0.43, "q1": 0.64}
+- frame 878: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.98, "F": 1.0, "ED": 0.79, "EN": 0.77, "r1": 0.65, "q1": 0.96}
+
+## paper-mono-code (14 October 2026)
+
+No miss and no extra jump.
+
+## onekey-pro-2 (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 185: truth inside a true dissolve interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.0, "F": 0.0, "ED": 0.0, "EN": 0.0, "r1": 1.0, "q1": 0.0}
+- frame 1042: truth inside a true dissolve interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": null, "F": null, "ED": null, "EN": null, "r1": null, "q1": null}
+
+## interface (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 97: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.84, "F": 0.77, "ED": 0.01, "EN": 0.35, "r1": 0.92, "q1": 0.84}
+- frame 232: truth inside a true fade interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.92, "F": 1.0, "ED": 1.0, "EN": null, "r1": 1.0, "q1": 0.0}
+- frame 1393: truth inside a true fade interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.93, "F": 1.0, "ED": 0.43, "EN": 0.95, "r1": 0.97, "q1": 0.06}
+- frame 2072: truth inside a true dissolve interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.04, "F": 0.03, "ED": 0.05, "EN": 0.0, "r1": 2.03, "q1": 1.03}
+
+## x-anabology-2106157622986748377 (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 97: truth inside a true dissolve interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.62, "F": 0.39, "ED": 0.61, "EN": 0.77, "r1": 1.77, "q1": 0.85}
+- frame 1078: truth inside a true dissolve interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.18, "F": 0.35, "ED": 0.11, "EN": 0.05, "r1": 1.68, "q1": 0.7}
+- frame 3369: truth inside a true fade interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.21, "F": 0.92, "ED": 0.22, "EN": 0.17, "r1": 1.84, "q1": 0.93}
+
+## x-anabology-2105325733312884869 (14 October 2026)
+
+Extra jumps (reported where the truth has no cut):
+
+- frame 1076: truth inside a true whip interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.86, "F": 1.0, "ED": 0.99, "EN": 1.0, "r1": 1.02, "q1": 0.52}
+- frame 1501: truth A, evidence {"U": 0.94, "F": 1.0, "ED": 1.0, "EN": 1.0, "r1": 1.0, "q1": 0.13}
+- frame 2717: truth inside a true fade interval (neutral for hard cuts, an extra jump for all kinds), evidence {"U": 0.0, "F": 1.0, "ED": null, "EN": 1.0, "r1": 1.01, "q1": 0.01}
+- frame 4436: truth A, evidence {"U": 0.58, "F": 1.0, "ED": 0.76, "EN": 0.85, "r1": 1.13, "q1": 0.8}
+
+## yt-4Q-o_ylnVnc (14 October 2026)
+
+No miss and no extra jump.
+

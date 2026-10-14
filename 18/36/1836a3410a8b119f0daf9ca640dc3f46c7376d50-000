@@ -1,0 +1,122 @@
+[vost#0:0/rawvideo @ 0x7b46c54300] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7b47400180] Error muxing a packet
+[out#0/rawvideo @ 0x7b47400180] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7b47400180] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7b47400180] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7b47400180] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7c4ec24000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7c4e400300] Error muxing a packet
+[out#0/rawvideo @ 0x7c4e400300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7c4e400300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7c4e400300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7c4e400300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7770cbc000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7771044300] Error muxing a packet
+[out#0/rawvideo @ 0x7771044300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7771044300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7771044300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7771044300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x769685c000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7697014300] Error muxing a packet
+[out#0/rawvideo @ 0x7697014300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7697014300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7697014300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7697014300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x759ed04000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x759f060300] Error muxing a packet
+[out#0/rawvideo @ 0x759f060300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x759f060300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x759f060300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x759f060300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7b14c64000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7b14400300] Error muxing a packet
+[out#0/rawvideo @ 0x7b14400300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7b14400300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7b14400300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7b14400300] Error closing file: Broken pipe
+[
+ {
+  "slug": "kardashev-0-7",
+  "ok": true,
+  "aggregate": {
+   "shots": 15,
+   "frames": 1618,
+   "coverage": 0.5567,
+   "within1Jnd": 0.2864,
+   "value": 0.9639
+  },
+  "seconds": 22.6,
+  "glowShare": 0.5333
+ },
+ {
+  "slug": "fin-4",
+  "ok": true,
+  "aggregate": {
+   "shots": 1,
+   "frames": 236,
+   "coverage": 0.7298,
+   "within1Jnd": 0.4842,
+   "value": 0.9719
+  },
+  "seconds": 2.0,
+  "glowShare": 0.0
+ },
+ {
+  "slug": "motion-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 9,
+   "frames": 897,
+   "coverage": 0.9229,
+   "within1Jnd": 0.6265,
+   "value": 0.9862
+  },
+  "seconds": 14.9,
+  "glowShare": 0.1852
+ },
+ {
+  "slug": "onekey-pro-2",
+  "ok": true,
+  "aggregate": {
+   "shots": 30,
+   "frames": 4080,
+   "coverage": 0.6639,
+   "within1Jnd": 0.4398,
+   "value": 0.9734
+  },
+  "seconds": 43.7,
+  "glowShare": 0.5222
+ },
+ {
+  "slug": "flora-agents-on-canvas",
+  "ok": true,
+  "aggregate": {
+   "shots": 7,
+   "frames": 1543,
+   "coverage": 0.7188,
+   "within1Jnd": 0.4958,
+   "value": 0.9778
+  },
+  "seconds": 12.8,
+  "glowShare": 0.4762
+ },
+ {
+  "slug": "claude-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 37,
+   "frames": 500,
+   "coverage": 0.6983,
+   "within1Jnd": 0.3404,
+   "value": 0.9643
+  },
+  "seconds": 41.5,
+  "glowShare": 0.1982
+ }
+]

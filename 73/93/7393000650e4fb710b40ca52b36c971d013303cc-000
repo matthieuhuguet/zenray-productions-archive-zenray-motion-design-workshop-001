@@ -1,0 +1,11 @@
+{
+ "ok": true,
+ "version": "V_001",
+ "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-s01-cream-field/V_001/render.mp4",
+ "score": 0.99075,
+ "dimensions": {
+  "field": 0.99075,
+  "coverage": 0.9323,
+  "within1Jnd": 0.7762
+ }
+}

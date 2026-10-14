@@ -1,0 +1,134 @@
+{
+  "schema": "zrmd/motion@1",
+  "recipe": "shader-field",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "fps": 60,
+    "frames": 120
+  },
+  "look": {
+    "colourMain": "#e9e7dd",
+    "colourEnd": "#e2e2d9",
+    "glow": 0.0,
+    "backdrop": "#ecece2",
+    "gradientAngle": 141.6942,
+    "glowRadius": 0.3,
+    "glowColour": "#ffb060",
+    "glowX": 0.1434,
+    "glowY": 0.9606,
+    "vignette": 0.0,
+    "grain": 0.0,
+    "exposure": 0.0912,
+    "saturation": 1.0,
+    "contrast": 1.0,
+    "pivot": 0.5,
+    "vignetteInner": 0.35,
+    "vignetteOuter": 0.85,
+    "vignetteX": 0.5,
+    "vignetteY": 0.5,
+    "grainDensity": 400.0,
+    "grainChroma": 0.0,
+    "grainResponse": 0.5
+  },
+  "tracks": [],
+  "fit": {
+    "keyframes": [
+      {
+        "frame": 0,
+        "metrics": {
+          "share": 0.985,
+          "within1": 0.88,
+          "curve": {
+            "1.0": [
+              0.88,
+              0.99589
+            ],
+            "2.0": [
+              0.9838,
+              0.99502
+            ],
+            "3.0": [
+              0.984,
+              0.99501
+            ],
+            "5.0": [
+              0.985,
+              0.99483
+            ]
+          },
+          "score": 0.99483,
+          "deMedian": 0.509,
+          "deP90": 1.016,
+          "meanDe2": 0.517
+        }
+      },
+      {
+        "frame": 61,
+        "metrics": {
+          "share": 0.9124,
+          "within1": 0.7959,
+          "curve": {
+            "1.0": [
+              0.7959,
+              0.99583
+            ],
+            "2.0": [
+              0.9022,
+              0.99475
+            ],
+            "3.0": [
+              0.9062,
+              0.99452
+            ],
+            "5.0": [
+              0.9124,
+              0.99341
+            ]
+          },
+          "score": 0.99341,
+          "deMedian": 0.509,
+          "deP90": 1.016,
+          "meanDe2": 0.6592
+        }
+      },
+      {
+        "frame": 119,
+        "metrics": {
+          "share": 0.912,
+          "within1": 0.7901,
+          "curve": {
+            "1.0": [
+              0.7901,
+              0.99584
+            ],
+            "2.0": [
+              0.8993,
+              0.99468
+            ],
+            "3.0": [
+              0.9053,
+              0.99431
+            ],
+            "5.0": [
+              0.912,
+              0.9931
+            ]
+          },
+          "score": 0.9931,
+          "deMedian": 0.546,
+          "deP90": 1.016,
+          "meanDe2": 0.6897
+        }
+      }
+    ],
+    "grain": 0.0,
+    "grid": {
+      "width": 96,
+      "height": 54,
+      "decodeFps": 6,
+      "threads": 2
+    },
+    "date": "14 October 2026, 17:32"
+  }
+}

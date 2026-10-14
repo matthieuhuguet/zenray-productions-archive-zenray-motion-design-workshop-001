@@ -1,0 +1,68 @@
+# Rhythm: method sheet on the adjudicated references (14 October 2026)
+
+Twenty methods, four phases each, one truth (pooled adjudication, `<workshop>/rhythm/truth/<slug>.json`), leave-one-reference-out: the thresholds of a method are chosen on the OTHER references and applied to the held-out one, so every number below is a number on a video the method never saw. Scores are F1 at +-1 frame of the hard cuts (hard cuts only; transitions and ambiguous boundaries are neutral). FR : vingt methodes, quatre phases, verite adjudiquee, validation par reference exclue. (14 October 2026)
+
+Phases: P1 the number per boundary, scored by the area under the ROC curve of true cuts against every boundary (AUC all) and against the judged traps (AUC traps); P2 peak picking; P3 persistence, flash return, isolation; P4 exact placement, F1 at 0 and at +-1 frame. (14 October 2026)
+
+| id | method | principle | AUC all | AUC traps | P2 F1 | P3 F1 | P4 F1 @0 | P4 F1 @+-1 | micro P | micro R | micro F1 | TP | FP | FN |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| M01 | pixel-mad-global | mean absolute luma difference of adjacent pictures against ONE fixed threshold | 0.991 | 0.885 | 0.441 | 0.441 | 0.429 | 0.441 | 0.422 | 0.554 | 0.479 | 282 | 387 | 227 |
+| M02 | pixel-mad-adaptive | the same difference against the median of its own neighbourhood | 0.991 | 0.885 | 0.516 | 0.546 | 0.541 | 0.546 | 0.587 | 0.627 | 0.606 | 319 | 224 | 190 |
+| M03 | histogram-chi | global colour histogram chi-square distance (ignores where colours are) | 0.993 | 0.890 | 0.519 | 0.599 | 0.595 | 0.599 | 0.645 | 0.715 | 0.678 | 364 | 200 | 145 |
+| M04 | edge-change-ratio | share of edge pixels that appear or disappear (structure, not intensity) | 0.993 | 0.913 | 0.430 | 0.561 | 0.558 | 0.561 | 0.613 | 0.625 | 0.619 | 318 | 201 | 191 |
+| M05 | ssim | one minus structural similarity (luminance, contrast and structure terms) | 0.990 | 0.880 | 0.434 | 0.540 | 0.536 | 0.540 | 0.566 | 0.627 | 0.595 | 319 | 245 | 190 |
+| M06 | perceptual-hash | Hamming distance of 63-bit DCT sign hashes (compact global structure) | 0.995 | 0.900 | 0.493 | 0.574 | 0.570 | 0.574 | 0.649 | 0.582 | 0.613 | 296 | 160 | 213 |
+| M07 | colour-layout | L1 distance of the 8x8 mean-colour layout (where the colours sit) | 0.995 | 0.900 | 0.503 | 0.543 | 0.538 | 0.543 | 0.551 | 0.652 | 0.598 | 332 | 270 | 177 |
+| M08 | block-match-unexplained | content-weighted share of picture no small shift of the previous picture explains | 0.986 | 0.882 | 0.366 | 0.402 | 0.397 | 0.402 | 0.473 | 0.519 | 0.495 | 264 | 294 | 245 |
+| M09 | flow-residual | Farneback dense flow compensation residual (motion explains it or not) | 0.988 | 0.864 | 0.478 | 0.515 | 0.511 | 0.515 | 0.547 | 0.587 | 0.566 | 299 | 248 | 210 |
+| M10 | feature-survival | corner features that Lucas-Kanade tracks forward and back (loss = new picture) | 0.982 | 0.910 | 0.606 | 0.642 | 0.639 | 0.642 | 0.754 | 0.686 | 0.718 | 349 | 114 | 160 |
+| M11 | phase-correlation | one minus the phase correlation peak (no global translation links the pictures) | 0.993 | 0.896 | 0.473 | 0.592 | 0.588 | 0.592 | 0.612 | 0.644 | 0.628 | 328 | 208 | 181 |
+| M12 | spike-second-difference | adjacent difference divided by its larger neighbour (a cut is a one-boundary spike) | 0.969 | 0.892 | 0.413 | 0.508 | 0.505 | 0.508 | 0.461 | 0.652 | 0.540 | 332 | 388 | 177 |
+| M13 | window-between | distance between the means of k pictures after and k before, k = 2, 4, 8 | 0.959 | 0.842 | 0.518 | 0.552 | 0.542 | 0.548 | 0.634 | 0.580 | 0.606 | 295 | 170 | 214 |
+| M14 | codec-packet-size | compressed size of each picture against its local median (prediction failed) | 0.602 | 0.566 | 0.116 | 0.234 | 0.229 | 0.234 | 0.346 | 0.257 | 0.295 | 131 | 248 | 378 |
+| M15 | codec-keyframe | the encoder's own key-frame decision (scene-cut detection of x264) | 0.507 | 0.506 | 0.050 | 0.037 | 0.037 | 0.037 | 0.533 | 0.031 | 0.059 | 16 | 14 | 493 |
+| M19 | evidence-conjunction | area rule: replaced share, no tracked features, not a return, not a ramp | 0.993 | 0.887 | 0.772 | 0.776 | 0.773 | 0.776 | 0.709 | 0.923 | 0.802 | 470 | 193 | 39 |
+| M20 | learned-fusion | gradient-boosted trees on the whole evidence matrix | 0.999 | 0.970 | 0.693 | 0.851 | 0.851 | 0.851 | 0.876 | 0.862 | 0.869 | 439 | 62 | 70 |
+
+Columns AUC and P2 to P4 are the mean over the eleven references (macro); micro columns pool every cut of every reference. (14 October 2026)
+
+**Reading notes (14 October 2026).** M19 and M20 are scored with the PRODUCT decision (`zrmd.analyze.rhythm_detect.decide` with the shipped ramp types: fades typed, dissolves and whips off; flashes typed with the absolute structure correlation), M20 fed with leave-one-reference-out probabilities from a model trained on the other ten references and the four synthetic videos. M01 to M15 are tuned on the other references (quantile of the signal and peak ratio, grid in `Scripts/RhythmSheet.py`). The truth is one reader's pooled adjudication; a blind re-read of 32 random boundaries agreed on 27 of 31 (docs/ARCHITECTURE.md section 14). FR : M19 et M20 sont notees avec la decision du produit.
+
+## Transitions (M16 to M18), pooled over the references and the four synthetic videos (14 October 2026)
+
+| id | method | kind | P2 tp/fp/fn | P3 tp/fp/fn | P4 tp/fp/fn | P4 F1 |
+|---|---|---|---|---|---|---|
+| M16 | dissolve-linear-fit | dissolve | 20/28/11 | 20/28/11 | 20/28/11 | 0.506 |
+| M17 | luma-envelope-fade | fade | 14/2/6 | 14/2/6 | 14/2/6 | 0.778 |
+| M18 | whip-sharpness-collapse | whip | 5/40/14 | 4/26/15 | 4/26/15 | 0.163 |
+
+## Per reference, M19 and M20 (F1 at +-1 frame, tp/fp/fn) (14 October 2026)
+
+| reference | true cuts | M19 rule | M20 fusion |
+|---|---|---|---|
+| claude-opus-5-5 | 36 | 0.986 (36/1/0) | 0.909 (30/0/6) |
+| flora-agents-on-canvas | 1 | 0.500 (1/2/0) | 0.667 (1/1/0) |
+| motion-opus-5-5 | 2 | 0.571 (2/3/0) | 0.667 (2/2/0) |
+| kardashev-0-7 | 14 | 1.000 (14/0/0) | 1.000 (14/0/0) |
+| memo | 126 | 0.899 (116/16/10) | 0.843 (94/3/32) |
+| paper-mono-code | 0 | 1.000 (0/0/0) | 1.000 (0/0/0) |
+| onekey-pro-2 | 26 | 0.667 (23/20/3) | 0.815 (22/6/4) |
+| interface | 56 | 0.880 (44/0/12) | 0.982 (54/0/2) |
+| x-anabology-2106157622986748377 | 24 | 0.548 (23/37/1) | 0.821 (23/9/1) |
+| x-anabology-2105325733312884869 | 156 | 0.812 (153/68/3) | 0.898 (149/27/7) |
+| yt-4Q-o_ylnVnc | 68 | 0.674 (58/46/10) | 0.758 (50/14/18) |
+
+## Second pass (14 October 2026): M21 typed-transition classifier, and the quiet side of a flash
+
+**What was added.** M21 (`zrmd/analyze/rhythm_ramps.py`, `Scripts/RhythmRamps.py`): candidate spans from six loose generators (fade through a flat run, cross-dissolve, sharpness-collapse whip, flat run of any colour, a group of two or three predicted cuts, a run of steps above 0.03), one 44-column evidence vector per candidate, one ensemble of 300 trees of depth 5, non-maximum suppression, V1 gates before it. Four phases, pooled over the eleven references, fin-4 and the four synthetic videos (70 adjudicated transitions, 16 of them on real references). FR : M21, le classifieur des transitions typees, quatre phases. (14 October 2026)
+
+| phase | what is measured | result |
+|---|---|---|
+| P1 signal | does a RIGHT answer exist among the candidates (instant inside the adjudicated interval, span not much wider, no true cut swallowed, every predicted cut inside covered)? | real references 16 of 16, synthetic videos 46 of 54 |
+| P2 candidates | candidates per video, all kinds | 0 to 330 (fin-4 0, memo 270, x-anabology-2105 272); 1 514 in the training set, 160 of them right answers |
+| P3 verify | classifier score, resubstitution: right answers 0.9966 and above, every other candidate 0.019 and below | tp / fp / fn 60 / 1 / 10 (F1 0.916), real references 16 / 0 / 0 |
+| P4 place | the instant of a kept span against the adjudicated interval, leave-one-video-out at confidence 0.99 | tp / fp / fn 24 / 1 / 46 (F1 0.505), real references 2 / 1 / 14 (F1 0.211) |
+
+Against the threshold detectors M16 to M18 pooled over the same videos (38 / 56 / 32, F1 0.463), the classifier trades recall for precision held out (0.96 against 0.40), which is the right trade for a typed event that also removes the cuts under it. **What it is worth, said plainly:** the all-kinds leave-one-reference-out F1 of the product moves from 0.8610 (micro) and 0.8422 (macro) before the pass to 0.8640 and 0.8425 after it; at the naive confidence 0.5 it costs (0.8599 and 0.8327), it is neutral from 0.9 to 0.99 and the shipped 0.99 was chosen on those same numbers. In resubstitution every reference reaches 1.000. (14 October 2026)
+
+**Flash, quiet side (14 October 2026).** A flash needs a quiet side: the picture before an entry is calm (quiet before at most 0.7) and the picture after an exit settles (quiet after at most 0.7). On the boundaries the first-pass leave-one-out probabilities typed as flashes (x-anabology-2105, 16) the entries measure at most 0.47 and the exits at most 0.09; memo 858 measures 0.95 and is a cut again. Zero flash lost, one cut gained, and the same eight boundaries are typed with the retrained fusion. (14 October 2026)

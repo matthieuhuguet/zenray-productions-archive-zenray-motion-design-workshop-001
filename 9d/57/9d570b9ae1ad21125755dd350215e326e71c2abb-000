@@ -1,0 +1,9 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug x-anabology-2105325733312884869-m2 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/x-anabology-2105325733312884869-m2 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 855 fits, 117 s
+dfit stage 2 chains: 300 fits, 2263 s
+dfit stage 3 grow: 0 fits, 2263 s
+/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

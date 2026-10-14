@@ -1,0 +1,26 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug kiasmos-blurred-m3 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/kiasmos-blurred-m3 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 228 fits, 114 s
+dfit stage 2 chains: 80 fits, 1004 s
+dfit stage 3 grow: 0 fits, 1004 s
+dfit stage 4 full: 4 fits, 1473 s
+dfit done: 1475 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/kiasmos-blurred-m3/V_001",
+ "events": 4,
+ "scores": {
+  "full": {
+   "sound": 64.82,
+   "sfx": 60.64,
+   "timing": 75.0,
+   "mix": 59.89,
+   "music": 66.49
+  }
+ },
+ "seconds": 1489.6
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug kiasmos-blurred-m3 --workers 8
+{"ok": true, "version": "V_002", "from": "V_001", "sfx": {"before": 60.636, "after": 97.45}, "b1Mean": {"before": 25.494, "after": 99.726}, "critic": {"before": 71.6, "after": 99.957}, "stochastic": {"before": 70.1, "after": 99.988}, "auditMean": {"before": 80.163, "after": 99.835}, "gate": {"events": 4, "pass": 4, "passMusic": 4, "atCeiling": 4, "eqRejectedByB1Guard": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [{"id": "E001", "kind": "chain", "scoreBefore": 76.933, "scoreAfter": 98.2048, "ploss": [76.933, 98.2048], "plossStochastic": [94.0554, 99.9978], "b1": [28.587, 99.974], "critic": [90.927, 99.981], "auditMean": [93.21, 99.887], "ceiling": {"official": 91.798, "stochastic": 99.735}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 100.0, "b1Out": 99.97}}, {"id": "E002", "kind": "chain", "scoreBefore": 53.8313, "scoreAfter": 97.5321, "ploss": [53.8313, 97.5321], "plossStochastic": [60.2222, 99.993], "b1": [0.0, 99.512], "critic": [60.709, 99.971], "auditMean": [76.162, 99.886], "ceiling": {"official": 93.729, "stochastic": 99.937}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 99.94, "b1Out": 99.51}}, {"id": "E003", "kind": "chain", "scoreBefore": 73.4744, "scoreAfter": 98.0433, "ploss": [73.4744, 98.0433], "plossStochastic": [90.8478, 99.9943], "b1": [73.389, 99.986], "critic": [91.845, 99.965], "auditMean": [90.881, 99.835], "ceiling": {"official": 86.607, "stochastic": 98.982}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 100.0, "b1Out": 99.99}}, {"id": "E004", "kind": "chain", "scoreBefore": 49.8459, "scoreAfter": 96.577, "ploss": [49.8459, 96.577], "plossStochastic": [53.179, 99.9727], "b1": [0.0, 99.434], "critic": [58.936, 99.923], "auditMean": [69.942, 99.752], "ceiling": {"official": 92.763, "stochastic": 99.919}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 99.69, "b1Out": 99.43}}], "seconds": 61.2}

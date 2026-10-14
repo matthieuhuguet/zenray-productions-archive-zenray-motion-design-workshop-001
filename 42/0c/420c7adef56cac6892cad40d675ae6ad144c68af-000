@@ -1,0 +1,247 @@
+{
+ "date": "14 October 2026",
+ "rule": {
+  "iou_min": 0.99,
+  "edge_mean_max_px": 0.5,
+  "colour_mae_max": 2.0,
+  "colour_p99_max": 24
+ },
+ "layers": [
+  {
+   "id": "L01",
+   "kind": "path",
+   "iou": 0.963101,
+   "edge_mean": 0.0419,
+   "edge_p95": 0.0904,
+   "ok": false
+  },
+  {
+   "id": "L02",
+   "kind": "path",
+   "iou": 0.966282,
+   "edge_mean": 0.0514,
+   "edge_p95": 0.1126,
+   "ok": false
+  },
+  {
+   "id": "L03",
+   "kind": "path",
+   "iou": 0.955947,
+   "edge_mean": 0.0512,
+   "edge_p95": 0.1205,
+   "ok": false
+  },
+  {
+   "id": "L04",
+   "kind": "path",
+   "iou": 0.953361,
+   "edge_mean": 0.0463,
+   "edge_p95": 0.0853,
+   "ok": false
+  },
+  {
+   "id": "L05",
+   "kind": "path",
+   "iou": 0.961567,
+   "edge_mean": 0.055,
+   "edge_p95": 0.1128,
+   "ok": false
+  },
+  {
+   "id": "L06",
+   "kind": "path",
+   "iou": 0.964295,
+   "edge_mean": 0.0493,
+   "edge_p95": 0.1033,
+   "ok": false
+  },
+  {
+   "id": "L07",
+   "kind": "path",
+   "iou": 0.972308,
+   "edge_mean": 0.0457,
+   "edge_p95": 0.0906,
+   "ok": false
+  },
+  {
+   "id": "L08",
+   "kind": "path",
+   "iou": 0.984356,
+   "edge_mean": 0.0486,
+   "edge_p95": 0.098,
+   "ok": false
+  },
+  {
+   "id": "L09",
+   "kind": "path",
+   "iou": 0.950613,
+   "edge_mean": 0.042,
+   "edge_p95": 0.0822,
+   "ok": false
+  },
+  {
+   "id": "L10",
+   "kind": "path",
+   "iou": 0.929735,
+   "edge_mean": 0.0489,
+   "edge_p95": 0.1033,
+   "ok": false
+  },
+  {
+   "id": "L11",
+   "kind": "path",
+   "iou": 0.927712,
+   "edge_mean": 0.0571,
+   "edge_p95": 0.1331,
+   "ok": false
+  },
+  {
+   "id": "L12",
+   "kind": "path",
+   "iou": 0.948247,
+   "edge_mean": 0.0488,
+   "edge_p95": 0.1084,
+   "ok": false
+  },
+  {
+   "id": "L13",
+   "kind": "path",
+   "iou": 0.942821,
+   "edge_mean": 0.0598,
+   "edge_p95": 0.1296,
+   "ok": false
+  },
+  {
+   "id": "L14",
+   "kind": "path",
+   "iou": 0.946151,
+   "edge_mean": 0.0495,
+   "edge_p95": 0.1031,
+   "ok": false
+  },
+  {
+   "id": "L15",
+   "kind": "path",
+   "iou": 0.955248,
+   "edge_mean": 0.049,
+   "edge_p95": 0.1021,
+   "ok": false
+  },
+  {
+   "id": "L16",
+   "kind": "path",
+   "iou": 0.972537,
+   "edge_mean": 0.036,
+   "edge_p95": 0.0802,
+   "ok": false
+  },
+  {
+   "id": "L17",
+   "kind": "path",
+   "iou": 0.947957,
+   "edge_mean": 0.0481,
+   "edge_p95": 0.0996,
+   "ok": false
+  },
+  {
+   "id": "L18",
+   "kind": "path",
+   "iou": 0.911899,
+   "edge_mean": 0.1463,
+   "edge_p95": 0.1344,
+   "ok": false
+  },
+  {
+   "id": "L19",
+   "kind": "path",
+   "iou": 0.96832,
+   "edge_mean": 0.0617,
+   "edge_p95": 0.1289,
+   "ok": false
+  },
+  {
+   "id": "L20",
+   "kind": "path",
+   "iou": 0.946388,
+   "edge_mean": 0.043,
+   "edge_p95": 0.0853,
+   "ok": false
+  },
+  {
+   "id": "L21",
+   "kind": "path",
+   "iou": 0.940172,
+   "edge_mean": 0.0561,
+   "edge_p95": 0.1228,
+   "ok": false
+  },
+  {
+   "id": "L22",
+   "kind": "path",
+   "iou": 0.952875,
+   "edge_mean": 0.0392,
+   "edge_p95": 0.0836,
+   "ok": false
+  },
+  {
+   "id": "L23",
+   "kind": "path",
+   "iou": 0.946508,
+   "edge_mean": 0.0441,
+   "edge_p95": 0.0921,
+   "ok": false
+  },
+  {
+   "id": "L24",
+   "kind": "path",
+   "iou": 0.948805,
+   "edge_mean": 0.053,
+   "edge_p95": 0.1399,
+   "ok": false
+  }
+ ],
+ "colour": {
+  "mae": 7.6292,
+  "p99": 39.0,
+  "max": 80.0,
+  "share_over_16": 0.159717
+ },
+ "layers_ok": false,
+ "colour_ok": false,
+ "pass": false,
+ "worst_layer": {
+  "id": "L18",
+  "kind": "path",
+  "iou": 0.911899,
+  "edge_mean": 0.1463,
+  "edge_p95": 0.1344,
+  "ok": false
+ },
+ "min_iou": 0.911899,
+ "max_edge_mean": 0.1463,
+ "f3": {
+  "iou_soft": 0.87433,
+  "iou_hard": 0.90836,
+  "edge_mean_px": 0.4991,
+  "edge_p95_px": 0.4848,
+  "dE2000_band_mean": 2.146,
+  "dE2000_band_p95": 9.579,
+  "dE2000_core_mean": 0.861,
+  "weighted_px": 101350,
+  "hidden_px": 26,
+  "match": false,
+  "basis": "glyph layers vs reference matte (same as a font render)"
+ },
+ "f3_previous": {
+  "iou_soft": 0.77365,
+  "iou_hard": 0.99006,
+  "edge_mean_px": 0.0564,
+  "edge_p95_px": 0.1198,
+  "dE2000_band_mean": 4.128,
+  "dE2000_band_p95": 10.085,
+  "dE2000_core_mean": 0.914,
+  "weighted_px": 240000,
+  "hidden_px": 0,
+  "match": false
+ }
+}

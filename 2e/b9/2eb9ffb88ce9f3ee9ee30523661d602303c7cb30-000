@@ -1,0 +1,1048 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicRun.py --slug x-anabology-2105325733312884869-m1 --transcribe --stages sms,bus,dev,gap,retag,bus --set residual.stems=["drums","bass","other","vocals"] --critic
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Selected model is a bag of 1 models. You will see that many progress bars per track.
+Separated tracks will be stored in /Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/x-anabology-2105325733312884869-m1/stems/out/htdemucs
+Separating track mix.wav
+  0%|                                                                     | 0.0/35.099999999999994 [00:00<?, ?seconds/s] 17%|██████████                                                  | 5.85/35.099999999999994 [00:00<00:02, 11.11seconds/s] 33%|████████████████████                                        | 11.7/35.099999999999994 [00:00<00:01, 19.04seconds/s] 50%|███████████████████████                       | 17.549999999999997/35.099999999999994 [00:00<00:00, 24.94seconds/s] 67%|████████████████████████████████████████                    | 23.4/35.099999999999994 [00:00<00:00, 28.99seconds/s] 83%|█████████████████████████████████████████████████▏         | 29.25/35.099999999999994 [00:01<00:00, 32.11seconds/s]100%|██████████████████████████████████████████████| 35.099999999999994/35.099999999999994 [00:01<00:00, 31.58seconds/s]100%|██████████████████████████████████████████████| 35.099999999999994/35.099999999999994 [00:01<00:00, 26.62seconds/s]
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/TranscribeMusic.py --slug x-anabology-2105325733312884869-m1
+{
+ "score": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/x-anabology-2105325733312884869-m1/music-bench/score.json",
+ "summary": {
+  "bpm": 131.275,
+  "bars": 17,
+  "sections": 5,
+  "drums": {
+   "kick": 58,
+   "hatOpen": 37,
+   "hatClosed": 26,
+   "snare": 5,
+   "tom": 2,
+   "clap": 2
+  },
+  "notes": {
+   "bass": 85,
+   "otherLow": 281,
+   "otherMid": 7,
+   "otherHigh": 0,
+   "vocals": 71
+  },
+  "glides": 1,
+  "vocals": "melody",
+  "chordSpans": 41,
+  "chordLabels": [
+   "Bmadd9",
+   "Dmadd9",
+   "Emadd9",
+   "Esus2",
+   "F",
+   "F#m7",
+   "F#maj7",
+   "F5",
+   "Fmaj7",
+   "Fsus2",
+   "N"
+  ]
+ },
+ "verdict": "verification failed",
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/x-anabology-2105325733312884869-m1/music-bench/V_001",
+ "totalS": 30.7
+}
+drums   onsetF 0.770  chroma 0.968  env 0.962   shifted onsetF 0.126 chroma 0.949
+bass    onsetF 0.591  chroma 0.941  env 0.859   shifted onsetF 0.594 chroma 0.742
+other   onsetF 0.335  chroma 0.876  env 0.866   shifted onsetF 0.316 chroma 0.794
+vocals  onsetF 0.610  chroma 0.725  env 0.494   shifted onsetF 0.260 chroma 0.624
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage sms --set residual.stems=["drums","bass","other","vocals"]
+[17:56:24] sms analysis and calibration
+[17:57:12] sms drums: calibration mean |dB| per round [{'kick': 7.249, 'snare': 7.352, 'clap': 8.051, 'hatClosed': 6.087, 'hatOpen': 9.839, 'tom': 5.691}, {'kick': 3.518, 'snare': 4.841, 'clap': 7.128, 'hatClosed': 3.164, 'hatOpen': 5.016, 'tom': 2.566}]
+[17:57:12] sms bass: calibration mean |dB| per round [{'bass': 5.363}, {'bass': 2.946}]
+[17:57:12] sms other: calibration mean |dB| per round [{'otherLow': 5.646, 'otherMid': 3.175}, {'otherLow': 1.699, 'otherMid': 1.788}, {'otherLow': 1.079, 'otherMid': 1.411}, {'otherLow': 0.924, 'otherMid': 1.2}, {'otherLow': 0.853, 'otherMid': 0.987}, {'otherLow': 0.812, 'otherMid': 0.859}]
+[17:57:12] sms vocals: calibration mean |dB| per round [{'vocals': 2.009}, {'vocals': 1.043}, {'vocals': 0.676}, {'vocals': 0.457}, {'vocals': 0.314}, {'vocals': 0.221}]
+[17:57:12] measuring stem eq and stereo
+[17:57:34] fitting the mix bus
+[17:57:58] rendering from params
+[17:58:08] scoring
+[17:58:18] V_002 written
+{
+ "version": "V_002",
+ "headline": {
+  "drums": {
+   "plossFull": 66.0641,
+   "plossBarMedian": 65.823,
+   "onsetF": 0.8614,
+   "chroma": 0.9863,
+   "envCorr": 0.9633,
+   "sectionEnv": 99.19,
+   "plossEvents": 66.373,
+   "plossBarNoOnset": 65.984,
+   "tfBands": 90.798
+  },
+  "bass": {
+   "plossFull": 51.5688,
+   "plossBarMedian": 53.635,
+   "onsetF": 0.657,
+   "chroma": 0.955,
+   "envCorr": 0.9741,
+   "sectionEnv": 98.763,
+   "plossEvents": 56.908,
+   "plossBarNoOnset": 53.663,
+   "tfBands": 89.915
+  },
+  "other": {
+   "plossFull": 57.5278,
+   "plossBarMedian": 66.847,
+   "onsetF": 0.3645,
+   "chroma": 0.8978,
+   "envCorr": 0.9662,
+   "sectionEnv": 99.821,
+   "plossEvents": 58.545,
+   "plossBarNoOnset": 66.883,
+   "tfBands": 89.204
+  },
+  "vocals": {
+   "plossFull": 53.2107,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5581,
+   "chroma": 0.8948,
+   "envCorr": 0.966,
+   "sectionEnv": 98.756,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.261
+  },
+  "mix": {
+   "plossFull": 70.7429,
+   "plossBarMedian": 70.648,
+   "onsetF": 0.7249,
+   "chroma": 0.9693,
+   "envCorr": 0.8669,
+   "sectionEnv": 99.625,
+   "plossEvents": 73.02,
+   "plossBarNoOnset": 70.702,
+   "tfBands": 94.297
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage bus --from V_002 --set residual.stems=["drums","bass","other","vocals"]
+[17:58:20] measuring stem eq and stereo
+[17:58:39] fitting the mix bus
+[17:59:10] rendering from params
+[17:59:25] scoring
+[17:59:43] V_003 written
+{
+ "version": "V_003",
+ "headline": {
+  "drums": {
+   "plossFull": 66.0641,
+   "plossBarMedian": 65.823,
+   "onsetF": 0.8614,
+   "chroma": 0.9863,
+   "envCorr": 0.9633,
+   "sectionEnv": 99.19,
+   "plossEvents": 66.373,
+   "plossBarNoOnset": 65.984,
+   "tfBands": 90.798
+  },
+  "bass": {
+   "plossFull": 51.5688,
+   "plossBarMedian": 53.635,
+   "onsetF": 0.657,
+   "chroma": 0.955,
+   "envCorr": 0.9741,
+   "sectionEnv": 98.763,
+   "plossEvents": 56.908,
+   "plossBarNoOnset": 53.663,
+   "tfBands": 89.915
+  },
+  "other": {
+   "plossFull": 57.5278,
+   "plossBarMedian": 66.847,
+   "onsetF": 0.3645,
+   "chroma": 0.8978,
+   "envCorr": 0.9662,
+   "sectionEnv": 99.821,
+   "plossEvents": 58.545,
+   "plossBarNoOnset": 66.883,
+   "tfBands": 89.204
+  },
+  "vocals": {
+   "plossFull": 53.2107,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5581,
+   "chroma": 0.8948,
+   "envCorr": 0.966,
+   "sectionEnv": 98.756,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.261
+  },
+  "mix": {
+   "plossFull": 70.7429,
+   "plossBarMedian": 70.648,
+   "onsetF": 0.7249,
+   "chroma": 0.9693,
+   "envCorr": 0.8669,
+   "sectionEnv": 99.625,
+   "plossEvents": 73.02,
+   "plossBarNoOnset": 70.702,
+   "tfBands": 94.297
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage dev --from V_003 --set residual.stems=["drums","bass","other","vocals"]
+[17:59:47] per-event deviation
+[18:00:42] dev drums: mean |dB| per round [6.953, 4.326, 3.247, 2.851]
+[18:00:42] dev bass: mean |dB| per round [7.345, 3.926, 2.492, 1.964]
+[18:00:42] dev other: mean |dB| per round [8.776, 5.921, 4.384]
+[18:00:42] measuring stem eq and stereo
+[18:01:09] fitting the mix bus
+[18:01:34] rendering from params
+[18:01:45] scoring
+[18:01:54] V_004 written
+{
+ "version": "V_004",
+ "headline": {
+  "drums": {
+   "plossFull": 73.0214,
+   "plossBarMedian": 73.077,
+   "onsetF": 0.8844,
+   "chroma": 0.9841,
+   "envCorr": 0.9683,
+   "sectionEnv": 99.508,
+   "plossEvents": 75.927,
+   "plossBarNoOnset": 73.085,
+   "tfBands": 95.053
+  },
+  "bass": {
+   "plossFull": 55.2472,
+   "plossBarMedian": 59.432,
+   "onsetF": 0.6769,
+   "chroma": 0.9706,
+   "envCorr": 0.9718,
+   "sectionEnv": 98.521,
+   "plossEvents": 60.495,
+   "plossBarNoOnset": 59.432,
+   "tfBands": 92.84
+  },
+  "other": {
+   "plossFull": 59.9719,
+   "plossBarMedian": 66.744,
+   "onsetF": 0.4135,
+   "chroma": 0.9021,
+   "envCorr": 0.9686,
+   "sectionEnv": 99.565,
+   "plossEvents": 62.105,
+   "plossBarNoOnset": 66.87,
+   "tfBands": 90.742
+  },
+  "vocals": {
+   "plossFull": 53.2107,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5581,
+   "chroma": 0.8948,
+   "envCorr": 0.966,
+   "sectionEnv": 98.756,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.261
+  },
+  "mix": {
+   "plossFull": 71.1012,
+   "plossBarMedian": 72.376,
+   "onsetF": 0.7797,
+   "chroma": 0.9679,
+   "envCorr": 0.8227,
+   "sectionEnv": 99.623,
+   "plossEvents": 73.847,
+   "plossBarNoOnset": 72.533,
+   "tfBands": 94.895
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage gap --from V_004 --set residual.stems=["drums","bass","other","vocals"]
+[18:01:56] gap fill: 13 drum hits added 7.70s snare (peakBand), 9.53s snare (peakBand), 11.12s hatOpen (nearest), 12.83s hatOpen (nearest), 13.19s snare (peakBand), 13.74s hatOpen (nearest), 13.87s hatOpen (peakBand), 15.02s snare (peakBand), 17.77s snare (peakBand), 21.45s snare (nearest), 22.32s snare (peakBand), 26.88s snare (peakBand), 28.74s snare (nearest)
+[18:01:56] per-event deviation
+[18:02:38] dev drums: mean |dB| per round [7.325, 4.579, 3.39, 2.953]
+[18:02:38] dev bass: mean |dB| per round [7.345, 3.926, 2.492, 1.964]
+[18:02:38] dev other: mean |dB| per round [8.776, 5.921, 4.384]
+[18:02:38] measuring stem eq and stereo
+[18:02:58] fitting the mix bus
+[18:03:21] rendering from params
+[18:03:31] scoring
+[18:03:38] V_005 written
+{
+ "version": "V_005",
+ "headline": {
+  "drums": {
+   "plossFull": 73.5852,
+   "plossBarMedian": 73.585,
+   "onsetF": 0.8922,
+   "chroma": 0.9837,
+   "envCorr": 0.971,
+   "sectionEnv": 99.507,
+   "plossEvents": 75.488,
+   "plossBarNoOnset": 73.593,
+   "tfBands": 95.238
+  },
+  "bass": {
+   "plossFull": 55.2472,
+   "plossBarMedian": 59.432,
+   "onsetF": 0.6769,
+   "chroma": 0.9706,
+   "envCorr": 0.9718,
+   "sectionEnv": 98.521,
+   "plossEvents": 60.495,
+   "plossBarNoOnset": 59.432,
+   "tfBands": 92.84
+  },
+  "other": {
+   "plossFull": 59.9719,
+   "plossBarMedian": 66.744,
+   "onsetF": 0.4135,
+   "chroma": 0.9021,
+   "envCorr": 0.9686,
+   "sectionEnv": 99.565,
+   "plossEvents": 62.105,
+   "plossBarNoOnset": 66.87,
+   "tfBands": 90.742
+  },
+  "vocals": {
+   "plossFull": 53.2107,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5581,
+   "chroma": 0.8948,
+   "envCorr": 0.966,
+   "sectionEnv": 98.756,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.261
+  },
+  "mix": {
+   "plossFull": 71.1383,
+   "plossBarMedian": 72.374,
+   "onsetF": 0.7755,
+   "chroma": 0.9679,
+   "envCorr": 0.8229,
+   "sectionEnv": 99.622,
+   "plossEvents": 73.832,
+   "plossBarNoOnset": 72.536,
+   "tfBands": 94.903
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage retag --from V_005 --set residual.stems=["drums","bass","other","vocals"]
+[18:03:39] retag: 2 hits kick -> tom: 14.42s 73Hz, 16.71s 74Hz
+[18:03:39] sms analysis and calibration
+[18:03:46] sms drums: calibration mean |dB| per round [{'kick': 6.998, 'snare': 10.748, 'clap': 10.511, 'hatClosed': 6.845, 'hatOpen': 7.35, 'tom': 6.373}, {'kick': 3.54, 'snare': 7.855, 'clap': 9.436, 'hatClosed': 4.632, 'hatOpen': 3.156, 'tom': 2.978}]
+[18:03:46] per-event deviation
+[18:04:14] dev drums: mean |dB| per round [7.245, 4.629, 3.467, 3.019]
+[18:04:14] dev bass: mean |dB| per round [7.609, 4.129, 2.55, 1.979]
+[18:04:14] dev other: mean |dB| per round [8.776, 5.921, 4.384]
+[18:04:14] measuring stem eq and stereo
+[18:04:27] fitting the mix bus
+[18:04:42] rendering from params
+[18:04:50] scoring
+[18:04:56] V_006 written
+{
+ "version": "V_006",
+ "headline": {
+  "drums": {
+   "plossFull": 74.9849,
+   "plossBarMedian": 75.519,
+   "onsetF": 0.9072,
+   "chroma": 0.9826,
+   "envCorr": 0.9733,
+   "sectionEnv": 99.57,
+   "plossEvents": 75.265,
+   "plossBarNoOnset": 75.624,
+   "tfBands": 95.686
+  },
+  "bass": {
+   "plossFull": 54.2117,
+   "plossBarMedian": 56.903,
+   "onsetF": 0.6566,
+   "chroma": 0.9707,
+   "envCorr": 0.9723,
+   "sectionEnv": 99.093,
+   "plossEvents": 59.482,
+   "plossBarNoOnset": 56.903,
+   "tfBands": 92.479
+  },
+  "other": {
+   "plossFull": 59.9719,
+   "plossBarMedian": 66.744,
+   "onsetF": 0.4135,
+   "chroma": 0.9021,
+   "envCorr": 0.9686,
+   "sectionEnv": 99.565,
+   "plossEvents": 62.105,
+   "plossBarNoOnset": 66.87,
+   "tfBands": 90.742
+  },
+  "vocals": {
+   "plossFull": 53.1587,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5736,
+   "chroma": 0.8944,
+   "envCorr": 0.9658,
+   "sectionEnv": 98.752,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.239
+  },
+  "mix": {
+   "plossFull": 71.048,
+   "plossBarMedian": 71.749,
+   "onsetF": 0.7764,
+   "chroma": 0.9685,
+   "envCorr": 0.8222,
+   "sectionEnv": 99.623,
+   "plossEvents": 73.519,
+   "plossBarNoOnset": 72.041,
+   "tfBands": 94.883
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ResynthMusic.py build --stage bus --from V_006 --set residual.stems=["drums","bass","other","vocals"]
+[18:04:57] measuring stem eq and stereo
+[18:05:10] fitting the mix bus
+[18:05:25] rendering from params
+[18:05:32] scoring
+[18:05:38] V_007 written
+{
+ "version": "V_007",
+ "headline": {
+  "drums": {
+   "plossFull": 74.9849,
+   "plossBarMedian": 75.519,
+   "onsetF": 0.9072,
+   "chroma": 0.9826,
+   "envCorr": 0.9733,
+   "sectionEnv": 99.57,
+   "plossEvents": 75.265,
+   "plossBarNoOnset": 75.624,
+   "tfBands": 95.686
+  },
+  "bass": {
+   "plossFull": 54.2117,
+   "plossBarMedian": 56.903,
+   "onsetF": 0.6566,
+   "chroma": 0.9707,
+   "envCorr": 0.9723,
+   "sectionEnv": 99.093,
+   "plossEvents": 59.482,
+   "plossBarNoOnset": 56.903,
+   "tfBands": 92.479
+  },
+  "other": {
+   "plossFull": 59.9719,
+   "plossBarMedian": 66.744,
+   "onsetF": 0.4135,
+   "chroma": 0.9021,
+   "envCorr": 0.9686,
+   "sectionEnv": 99.565,
+   "plossEvents": 62.105,
+   "plossBarNoOnset": 66.87,
+   "tfBands": 90.742
+  },
+  "vocals": {
+   "plossFull": 53.1587,
+   "plossBarMedian": 48.607,
+   "onsetF": 0.5736,
+   "chroma": 0.8944,
+   "envCorr": 0.9658,
+   "sectionEnv": 98.752,
+   "plossEvents": null,
+   "plossBarNoOnset": 48.882,
+   "tfBands": 84.239
+  },
+  "mix": {
+   "plossFull": 71.048,
+   "plossBarMedian": 71.749,
+   "onsetF": 0.7764,
+   "chroma": 0.9685,
+   "envCorr": 0.8222,
+   "sectionEnv": 99.623,
+   "plossEvents": 73.519,
+   "plossBarNoOnset": 72.041,
+   "tfBands": 94.883
+  }
+ }
+}
+$ /Users/zenray/.venvs/zenray-motion/bin/python -I /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicCritic.py --version V_007
+{
+ "date": "12 October 2026",
+ "version": "V_007",
+ "critic": {
+  "nFft": 4096,
+  "hop": 2048,
+  "fMin": 30.0,
+  "fMax": 16000.0,
+  "bandsPerOct": 3,
+  "jndDb": 2.0,
+  "floorDb": 60.0,
+  "base": 0.99,
+  "groupsHz": [
+   [
+    30,
+    120
+   ],
+   [
+    120,
+    500
+   ],
+   [
+    500,
+    2000
+   ],
+   [
+    2000,
+    6000
+   ],
+   [
+    6000,
+    16000
+   ]
+  ],
+  "onsetWindowS": 0.1,
+  "missDb": 6.0,
+  "selftestDropMin": 3.0,
+  "agreeTol": 1.0,
+  "workers": 16
+ },
+ "tfBandsIndependent": {
+  "drums": 95.686,
+  "bass": 92.479,
+  "other": 90.737,
+  "vocals": 84.239,
+  "mix": 94.879
+ },
+ "tfBandsStored": {
+  "drums": 95.686,
+  "bass": 92.479,
+  "other": 90.742,
+  "vocals": 84.239,
+  "mix": 94.883
+ },
+ "agreement": {
+  "drums": 0.0,
+  "bass": 0.0,
+  "other": -0.005,
+  "vocals": 0.0,
+  "mix": -0.004
+ },
+ "diagnosis": {
+  "drums": {
+   "E": 2.0946,
+   "score": 95.686,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.347,
+     "meanAbsDb": 5.42,
+     "signedDb": -1.62
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.252,
+     "meanAbsDb": 4.58,
+     "signedDb": 0.41
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.149,
+     "meanAbsDb": 3.56,
+     "signedDb": -0.74
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.116,
+     "meanAbsDb": 3.13,
+     "signedDb": -0.44
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.135,
+     "meanAbsDb": 3.33,
+     "signedDb": 0.07
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 2.0876,
+     "errorShare": 0.04,
+     "meanAbsDb": 3.97,
+     "signedDb": -1.24
+    },
+    {
+     "start": 2.0876,
+     "end": 5.7441,
+     "errorShare": 0.112,
+     "meanAbsDb": 5.86,
+     "signedDb": -0.37
+    },
+    {
+     "start": 5.7441,
+     "end": 18.5417,
+     "errorShare": 0.589,
+     "meanAbsDb": 4.07,
+     "signedDb": -0.49
+    },
+    {
+     "start": 18.5417,
+     "end": 22.1981,
+     "errorShare": 0.049,
+     "meanAbsDb": 3.27,
+     "signedDb": -0.36
+    },
+    {
+     "start": 22.1981,
+     "end": 30.0,
+     "errorShare": 0.211,
+     "meanAbsDb": 4.22,
+     "signedDb": -0.61
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.59,
+    "sustainFrames": 0.41,
+    "missingEnergy": 0.357,
+    "extraEnergy": 0.245,
+    "within6Db": 0.397
+   },
+   "ifFixed": {
+    "missingEnergy": 98.2,
+    "extraEnergy": 97.52,
+    "onsetFrames": 99.26,
+    "lowUnder120Hz": 98.14
+   }
+  },
+  "bass": {
+   "E": 2.7892,
+   "score": 92.479,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.318,
+     "meanAbsDb": 4.86,
+     "signedDb": -0.4
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.31,
+     "meanAbsDb": 4.23,
+     "signedDb": 1.45
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.186,
+     "meanAbsDb": 6.45,
+     "signedDb": 4.54
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.124,
+     "meanAbsDb": 16.97,
+     "signedDb": 14.35
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.061,
+     "meanAbsDb": 14.02,
+     "signedDb": 11.19
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 2.0876,
+     "errorShare": 0.001,
+     "meanAbsDb": 2.31,
+     "signedDb": -0.85
+    },
+    {
+     "start": 2.0876,
+     "end": 5.7441,
+     "errorShare": 0.0,
+     "meanAbsDb": 3.1,
+     "signedDb": -3.02
+    },
+    {
+     "start": 5.7441,
+     "end": 18.5417,
+     "errorShare": 0.413,
+     "meanAbsDb": 4.52,
+     "signedDb": 0.93
+    },
+    {
+     "start": 18.5417,
+     "end": 22.1981,
+     "errorShare": 0.187,
+     "meanAbsDb": 8.65,
+     "signedDb": 5.07
+    },
+    {
+     "start": 22.1981,
+     "end": 30.0,
+     "errorShare": 0.399,
+     "meanAbsDb": 6.06,
+     "signedDb": 2.6
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.305,
+    "sustainFrames": 0.695,
+    "missingEnergy": 0.209,
+    "extraEnergy": 0.505,
+    "within6Db": 0.286
+   },
+   "ifFixed": {
+    "missingEnergy": 95.23,
+    "extraEnergy": 98.1,
+    "onsetFrames": 96.29,
+    "lowUnder120Hz": 96.43
+   }
+  },
+  "other": {
+   "E": 3.1099,
+   "score": 90.737,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.21,
+     "meanAbsDb": 7.2,
+     "signedDb": -1.88
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.249,
+     "meanAbsDb": 4.32,
+     "signedDb": 0.54
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.23,
+     "meanAbsDb": 6.66,
+     "signedDb": 3.6
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.162,
+     "meanAbsDb": 7.98,
+     "signedDb": 4.55
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.149,
+     "meanAbsDb": 7.83,
+     "signedDb": 3.79
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 2.0876,
+     "errorShare": 0.157,
+     "meanAbsDb": 9.63,
+     "signedDb": 6.55
+    },
+    {
+     "start": 2.0876,
+     "end": 5.7441,
+     "errorShare": 0.148,
+     "meanAbsDb": 6.67,
+     "signedDb": 1.22
+    },
+    {
+     "start": 5.7441,
+     "end": 18.5417,
+     "errorShare": 0.271,
+     "meanAbsDb": 5.05,
+     "signedDb": 0.4
+    },
+    {
+     "start": 18.5417,
+     "end": 22.1981,
+     "errorShare": 0.042,
+     "meanAbsDb": 5.01,
+     "signedDb": -0.05
+    },
+    {
+     "start": 22.1981,
+     "end": 30.0,
+     "errorShare": 0.382,
+     "meanAbsDb": 6.34,
+     "signedDb": 1.84
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.579,
+    "sustainFrames": 0.421,
+    "missingEnergy": 0.249,
+    "extraEnergy": 0.49,
+    "within6Db": 0.261
+   },
+   "ifFixed": {
+    "missingEnergy": 94.67,
+    "extraEnergy": 97.5,
+    "onsetFrames": 98.29,
+    "lowUnder120Hz": 94.11
+   }
+  },
+  "vocals": {
+   "E": 4.1311,
+   "score": 84.239,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.049,
+     "meanAbsDb": 7.02,
+     "signedDb": 0.88
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.317,
+     "meanAbsDb": 9.59,
+     "signedDb": 6.1
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.32,
+     "meanAbsDb": 9.28,
+     "signedDb": 6.38
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.127,
+     "meanAbsDb": 6.0,
+     "signedDb": 2.81
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.187,
+     "meanAbsDb": 7.38,
+     "signedDb": 2.86
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 2.0876,
+     "errorShare": 0.045,
+     "meanAbsDb": 5.78,
+     "signedDb": 2.44
+    },
+    {
+     "start": 2.0876,
+     "end": 5.7441,
+     "errorShare": 0.098,
+     "meanAbsDb": 9.23,
+     "signedDb": 5.77
+    },
+    {
+     "start": 5.7441,
+     "end": 18.5417,
+     "errorShare": 0.565,
+     "meanAbsDb": 9.22,
+     "signedDb": 5.62
+    },
+    {
+     "start": 18.5417,
+     "end": 22.1981,
+     "errorShare": 0.11,
+     "meanAbsDb": 7.73,
+     "signedDb": 4.41
+    },
+    {
+     "start": 22.1981,
+     "end": 30.0,
+     "errorShare": 0.182,
+     "meanAbsDb": 6.71,
+     "signedDb": 2.66
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.0,
+    "sustainFrames": 1.0,
+    "missingEnergy": 0.142,
+    "extraEnergy": 0.692,
+    "within6Db": 0.166
+   },
+   "ifFixed": {
+    "missingEnergy": 88.14,
+    "extraEnergy": 98.38,
+    "onsetFrames": 84.24,
+    "lowUnder120Hz": 85.63
+   }
+  },
+  "mix": {
+   "E": 2.2869,
+   "score": 94.879,
+   "groups": [
+    {
+     "hz": [
+      30,
+      120
+     ],
+     "errorShare": 0.209,
+     "meanAbsDb": 4.51,
+     "signedDb": -1.29
+    },
+    {
+     "hz": [
+      120,
+      500
+     ],
+     "errorShare": 0.244,
+     "meanAbsDb": 4.04,
+     "signedDb": 0.7
+    },
+    {
+     "hz": [
+      500,
+      2000
+     ],
+     "errorShare": 0.262,
+     "meanAbsDb": 5.5,
+     "signedDb": 3.05
+    },
+    {
+     "hz": [
+      2000,
+      6000
+     ],
+     "errorShare": 0.116,
+     "meanAbsDb": 3.85,
+     "signedDb": 1.26
+    },
+    {
+     "hz": [
+      6000,
+      16000
+     ],
+     "errorShare": 0.17,
+     "meanAbsDb": 4.95,
+     "signedDb": 1.64
+    }
+   ],
+   "sections": [
+    {
+     "start": 0.0,
+     "end": 2.0876,
+     "errorShare": 0.062,
+     "meanAbsDb": 4.54,
+     "signedDb": 0.65
+    },
+    {
+     "start": 2.0876,
+     "end": 5.7441,
+     "errorShare": 0.155,
+     "meanAbsDb": 6.46,
+     "signedDb": 2.5
+    },
+    {
+     "start": 5.7441,
+     "end": 18.5417,
+     "errorShare": 0.426,
+     "meanAbsDb": 4.23,
+     "signedDb": 0.81
+    },
+    {
+     "start": 18.5417,
+     "end": 22.1981,
+     "errorShare": 0.132,
+     "meanAbsDb": 5.62,
+     "signedDb": 2.27
+    },
+    {
+     "start": 22.1981,
+     "end": 30.0,
+     "errorShare": 0.225,
+     "meanAbsDb": 3.96,
+     "signedDb": 0.31
+    }
+   ],
+   "split": {
+    "onsetFrames": 0.373,
+    "sustainFrames": 0.627,
+    "missingEnergy": 0.211,
+    "extraEnergy": 0.398,
+    "within6Db": 0.391
+   },
+   "ifFixed": {
+    "missingEnergy": 96.78,
+    "extraEnergy": 98.12,
+    "onsetFrames": 97.96,
+    "lowUnder120Hz": 96.76
+   }
+  }
+ },
+ "ceilings": null
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicTrim.py --slug x-anabology-2105325733312884869-m1
+{"ok": true, "slug": "x-anabology-2105325733312884869-m1", "version": "V_008", "base": "V_005", "stemsGate": {"drums": 99.999, "bass": 99.998, "other": 99.999, "vocals": 100.0}, "stemsAuditMean": {"drums": 99.95, "bass": 99.812, "other": 99.841, "vocals": 99.921}, "stemsOk": true, "mixFinal": true, "mixGate": 99.999, "mixAuditMean": 99.94, "seconds": 222.1}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicPolish.py --slug x-anabology-2105325733312884869-m1 --force
+{"ok": true, "version": "V_008", "preview": false, "clean": true, "mix": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/x-anabology-2105325733312884869-m1/music-bench/V_008/polish/mix.mp3", "criticTrimmed": 99.999, "criticPolished": 99.953, "after": {"clicksPerSecond": 0.0, "cracklePerSecond": 0.833, "hissFloorDb": -32.4, "dc": 9e-06, "clippedShare": 0.0, "rumbleShare": 1e-05, "truePeakDbtp": -3.79, "lufs": -14.55, "crestDb": 12.33}, "seconds": 21.4}

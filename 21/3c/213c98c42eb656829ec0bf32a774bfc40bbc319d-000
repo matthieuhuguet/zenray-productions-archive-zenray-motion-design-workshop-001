@@ -1,0 +1,235 @@
+[vost#0:0/rawvideo @ 0x77c2c84300] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x77c3068180] Error muxing a packet
+[out#0/rawvideo @ 0x77c3068180] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x77c3068180] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x77c3068180] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x77c3068180] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x784b0b8000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x784ac08780] Error muxing a packet
+[out#0/rawvideo @ 0x784ac08780] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x784ac08780] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x784ac08780] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x784ac08780] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x78a50b8000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x78a4c08780] Error muxing a packet
+[out#0/rawvideo @ 0x78a4c08780] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x78a4c08780] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x78a4c08780] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x78a4c08780] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x76fc894000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x76fd058300] Error muxing a packet
+[out#0/rawvideo @ 0x76fd058300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x76fd058300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x76fd058300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x76fd058300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7cf88d4000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7cf901c3c0] Error muxing a packet
+[out#0/rawvideo @ 0x7cf901c3c0] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7cf901c3c0] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7cf901c3c0] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7cf901c3c0] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7bf7474000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7bf6c08780] Error muxing a packet
+[out#0/rawvideo @ 0x7bf6c08780] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7bf6c08780] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7bf6c08780] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7bf6c08780] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7cbb44c000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7cbac08780] Error muxing a packet
+[out#0/rawvideo @ 0x7cbac08780] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7cbac08780] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7cbac08780] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7cbac08780] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x74f087c000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x74f0400300] Error muxing a packet
+[out#0/rawvideo @ 0x74f0400300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x74f0400300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x74f0400300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x74f0400300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x77308a0000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7730800300] Error muxing a packet
+[out#0/rawvideo @ 0x7730800300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7730800300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7730800300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7730800300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7a2acb4000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7a2b404300] Error muxing a packet
+[out#0/rawvideo @ 0x7a2b404300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a2b404300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a2b404300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7a2b404300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x774ec8c000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x774f044300] Error muxing a packet
+[out#0/rawvideo @ 0x774f044300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x774f044300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x774f044300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x774f044300] Error closing file: Broken pipe
+[
+ {
+  "slug": "claude-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 37,
+   "frames": 500,
+   "coverage": 0.6958,
+   "within1Jnd": 0.3385,
+   "value": 0.9639
+  },
+  "seconds": 36.3,
+  "glowShare": 0.1622
+ },
+ {
+  "slug": "fin-4",
+  "ok": true,
+  "aggregate": {
+   "shots": 1,
+   "frames": 236,
+   "coverage": 0.7298,
+   "within1Jnd": 0.4842,
+   "value": 0.9719
+  },
+  "seconds": 1.0,
+  "glowShare": 0.0
+ },
+ {
+  "slug": "flora-agents-on-canvas",
+  "ok": true,
+  "aggregate": {
+   "shots": 7,
+   "frames": 1543,
+   "coverage": 0.7238,
+   "within1Jnd": 0.4848,
+   "value": 0.9761
+  },
+  "seconds": 8.0,
+  "glowShare": 0.2857
+ },
+ {
+  "slug": "interface",
+  "ok": true,
+  "aggregate": {
+   "shots": 75,
+   "frames": 2162,
+   "coverage": 0.4097,
+   "within1Jnd": 0.1097,
+   "value": 0.9312
+  },
+  "seconds": 81.4,
+  "glowShare": 0.1289
+ },
+ {
+  "slug": "kardashev-0-7",
+  "ok": true,
+  "aggregate": {
+   "shots": 15,
+   "frames": 1618,
+   "coverage": 0.5551,
+   "within1Jnd": 0.2799,
+   "value": 0.9638
+  },
+  "seconds": 16.5,
+  "glowShare": 0.4889
+ },
+ {
+  "slug": "memo",
+  "ok": true,
+  "aggregate": {
+   "shots": 107,
+   "frames": 1331,
+   "coverage": 0.4234,
+   "within1Jnd": 0.1962,
+   "value": 0.9545
+  },
+  "seconds": 89.9,
+  "glowShare": 0.2875
+ },
+ {
+  "slug": "motion-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 9,
+   "frames": 897,
+   "coverage": 0.9207,
+   "within1Jnd": 0.6263,
+   "value": 0.9861
+  },
+  "seconds": 10.1,
+  "glowShare": 0.2222
+ },
+ {
+  "slug": "onekey-pro-2",
+  "ok": true,
+  "aggregate": {
+   "shots": 30,
+   "frames": 4080,
+   "coverage": 0.6574,
+   "within1Jnd": 0.4394,
+   "value": 0.9736
+  },
+  "seconds": 29.2,
+  "glowShare": 0.5556
+ },
+ {
+  "slug": "paper-mono-code",
+  "ok": true,
+  "aggregate": {
+   "shots": 1,
+   "frames": 3633,
+   "coverage": 0.755,
+   "within1Jnd": 0.0728,
+   "value": 0.9403
+  },
+  "seconds": 4.1,
+  "glowShare": 0.0
+ },
+ {
+  "slug": "x-anabology-2105325733312884869",
+  "ok": true,
+  "aggregate": {
+   "shots": 223,
+   "frames": 4598,
+   "coverage": 0.4868,
+   "within1Jnd": 0.1662,
+   "value": 0.9435
+  },
+  "seconds": 189.3,
+  "glowShare": 0.346
+ },
+ {
+  "slug": "x-anabology-2106157622986748377",
+  "ok": true,
+  "aggregate": {
+   "shots": 107,
+   "frames": 4351,
+   "coverage": 0.356,
+   "within1Jnd": 0.1212,
+   "value": 0.9399
+  },
+  "seconds": 85.7,
+  "glowShare": 0.3551
+ },
+ {
+  "slug": "yt-4Q-o_ylnVnc",
+  "ok": true,
+  "aggregate": {
+   "shots": 143,
+   "frames": 5454,
+   "coverage": 0.5852,
+   "within1Jnd": 0.4083,
+   "value": 0.9746
+  },
+  "seconds": 127.9,
+  "glowShare": 0.2319
+ }
+]

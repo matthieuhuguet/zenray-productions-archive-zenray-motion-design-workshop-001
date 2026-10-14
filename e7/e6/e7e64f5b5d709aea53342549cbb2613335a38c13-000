@@ -1,0 +1,26 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug 20syl-ode-to-odd-m1 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/20syl-ode-to-odd-m1 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 171 fits, 35 s
+dfit stage 2 chains: 60 fits, 419 s
+dfit stage 3 grow: 0 fits, 419 s
+dfit stage 4 full: 3 fits, 548 s
+dfit done: 550 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/20syl-ode-to-odd-m1/V_001",
+ "events": 3,
+ "scores": {
+  "full": {
+   "sound": 79.26,
+   "sfx": 75.72,
+   "timing": 66.67,
+   "mix": 98.63,
+   "music": 15.73
+  }
+ },
+ "seconds": 562.0
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug 20syl-ode-to-odd-m1 --workers 8
+{"ok": true, "version": "V_002", "from": "V_001", "sfx": {"before": 75.721, "after": 97.518}, "b1Mean": {"before": 8.503, "after": 99.521}, "critic": {"before": 90.528, "after": 99.973}, "stochastic": {"before": 91.394, "after": 99.994}, "auditMean": {"before": 91.533, "after": 99.889}, "gate": {"events": 3, "pass": 3, "passMusic": 3, "atCeiling": 3, "eqRejectedByB1Guard": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [{"id": "E001", "kind": "chain", "scoreBefore": 73.8524, "scoreAfter": 97.3458, "ploss": [73.8524, 97.3458], "plossStochastic": [91.0435, 99.9906], "b1": [7.256, 98.61], "critic": [89.722, 99.971], "auditMean": [90.866, 99.866], "ceiling": {"official": 84.864, "stochastic": 98.396}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 98.69, "b1Out": 98.61}}, {"id": "E002", "kind": "chain", "scoreBefore": 80.1509, "scoreAfter": 97.4499, "ploss": [80.1509, 97.4499], "plossStochastic": [95.2164, 99.9938], "b1": [0.0, 99.971], "critic": [95.791, 99.967], "auditMean": [94.457, 99.895], "ceiling": {"official": 92.494, "stochastic": 98.762}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 100.0, "b1Out": 99.97}}, {"id": "E003", "kind": "chain", "scoreBefore": 73.6115, "scoreAfter": 97.7705, "ploss": [73.6115, 97.7705], "plossStochastic": [88.1965, 99.9965], "b1": [18.252, 99.982], "critic": [86.479, 99.982], "auditMean": [89.523, 99.907], "ceiling": {"official": 91.317, "stochastic": 99.716}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 100.0, "b1Out": 99.98}}], "seconds": 13.1}

@@ -1,0 +1,27 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug grandbrothers-bloodflow-edit-m1 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/grandbrothers-bloodflow-edit-m1 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+dfit stage 1 screen: 0 fits, 0 s
+dfit stage 2 chains: 0 fits, 0 s
+dfit stage 3 grow: 0 fits, 0 s
+dfit stage 4 full: 0 fits, 0 s
+dfit done: 0 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/grandbrothers-bloodflow-edit-m1/V_001",
+ "events": 0,
+ "scores": {
+  "full": {
+   "sound": 99.69,
+   "sfx": 100.0,
+   "timing": 100.0,
+   "mix": 99.08,
+   "music": 97.67
+  }
+ },
+ "seconds": 25.0
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug grandbrothers-bloodflow-edit-m1 --workers 8
+{"ok": true, "version": "V_002", "from": "V_001", "sfx": {"before": 100.0, "after": 100.0}, "b1Mean": {"before": null, "after": null}, "critic": {"before": null, "after": null}, "stochastic": {"before": null, "after": null}, "auditMean": {"before": null, "after": null}, "gate": {"events": 0, "pass": 0, "passMusic": 0, "atCeiling": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [], "seconds": 0.2}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug grandbrothers-bloodflow-edit-m1 --workers 8
+{"ok": true, "version": "V_003", "from": "V_002", "sfx": {"before": 100.0, "after": 100.0}, "b1Mean": {"before": null, "after": null}, "critic": {"before": null, "after": null}, "stochastic": {"before": null, "after": null}, "auditMean": {"before": null, "after": null}, "gate": {"events": 0, "pass": 0, "passMusic": 0, "atCeiling": 0, "eqRejectedByB1Guard": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [], "seconds": 0.1}

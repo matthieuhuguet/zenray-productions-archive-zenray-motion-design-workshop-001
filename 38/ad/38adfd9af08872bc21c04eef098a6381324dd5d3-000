@@ -1,0 +1,79 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicTrim.py --slug onekey-pro-2
+{"ok": true, "slug": "onekey-pro-2", "version": "V_040", "base": "V_037", "stemsGate": {"drums": 99.999, "bass": 99.999, "other": 100.0, "vocals": 100.0}, "stemsAuditMean": {"drums": 99.948, "bass": 99.754, "other": 99.904, "vocals": 99.8}, "stemsOk": true, "mixFinal": true, "mixGate": 100.0, "mixAuditMean": 99.943, "seconds": 1104.7}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicPolish.py --slug onekey-pro-2 --force
+{"ok": true, "version": "V_040", "preview": false, "clean": false, "mix": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/V_040/polish/mix.mp3", "criticTrimmed": 100.0, "criticPolished": 99.645, "after": {"clicksPerSecond": 0.0, "cracklePerSecond": 0.47, "hissFloorDb": -36.9, "dc": 6e-06, "clippedShare": 0.0, "rumbleShare": 9e-05, "truePeakDbtp": -1.0, "lufs": -10.54, "crestDb": 11.11}, "seconds": 55.6}
+
+$ ResynthMusic.py render --params /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/V_037/params.json --score  (re-render of V_037)
+[16:41:25] V_041 written
+{
+ "version": "V_041",
+ "headline": {
+  "drums": {
+   "plossFull": 82.2686,
+   "plossBarMedian": 80.96,
+   "onsetF": 0.9108,
+   "chroma": 0.9774,
+   "envCorr": 0.9867,
+   "sectionEnv": 96.78,
+   "plossEvents": 80.156,
+   "plossBarNoOnset": 82.008,
+   "tfBands": 99.109
+  },
+  "bass": {
+   "plossFull": 80.029,
+   "plossBarMedian": 78.219,
+   "onsetF": 0.5658,
+   "chroma": 0.9842,
+   "envCorr": 0.9933,
+   "sectionEnv": 98.675,
+   "plossEvents": 78.542,
+   "plossBarNoOnset": 79.368,
+   "tfBands": 99.054
+  },
+  "other": {
+   "plossFull": 82.3527,
+   "plossBarMedian": 81.919,
+   "onsetF": 0.5739,
+   "chroma": 0.9544,
+   "envCorr": 0.9867,
+   "sectionEnv": 99.368,
+   "plossEvents": 81.305,
+   "plossBarNoOnset": 82.118,
+   "tfBands": 98.463
+  },
+  "vocals": {
+   "plossFull": 82.7749,
+   "plossBarMedian": 81.099,
+   "onsetF": 0.7667,
+   "chroma": 0.9657,
+   "envCorr": 0.8702,
+   "sectionEnv": 99.198,
+   "plossEvents": null,
+   "plossBarNoOnset": 81.099,
+   "tfBands": 99.166
+  },
+  "mix": {
+   "plossFull": 83.6096,
+   "plossBarMedian": 83.062,
+   "onsetF": 0.9181,
+   "chroma": 0.9792,
+   "envCorr": 0.9874,
+   "sectionEnv": 99.604,
+   "plossEvents": 81.715,
+   "plossBarNoOnset": 83.183,
+   "tfBands": 99.064
+  }
+ }
+}
+[16:40:27] stem drums from V_025
+[16:40:29] stem bass from V_022
+[16:40:35] stem other from V_043
+[16:41:08] stem vocals from V_011
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicTrim.py --slug onekey-pro-2 --from V_041
+{"ok": true, "slug": "onekey-pro-2", "version": "V_042", "base": "V_041", "stemsGate": {"drums": 99.999, "bass": 99.999, "other": 100.0, "vocals": 100.0}, "stemsAuditMean": {"drums": 99.948, "bass": 99.754, "other": 99.904, "vocals": 99.8}, "stemsOk": true, "mixFinal": true, "mixGate": 100.0, "mixAuditMean": 99.943, "seconds": 435.5}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicPolish.py --slug onekey-pro-2 --force
+{"ok": true, "version": "V_042", "preview": false, "clean": true, "mix": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/onekey-pro-2/music-bench/V_042/polish/mix.mp3", "criticTrimmed": 100.0, "criticPolished": 99.095, "after": {"clicksPerSecond": 0.0, "cracklePerSecond": 0.456, "hissFloorDb": -34.9, "dc": 0.000111, "clippedShare": 0.0, "rumbleShare": 0.00028, "truePeakDbtp": -1.0, "lufs": -9.03, "crestDb": 9.42}, "seconds": 60.5}

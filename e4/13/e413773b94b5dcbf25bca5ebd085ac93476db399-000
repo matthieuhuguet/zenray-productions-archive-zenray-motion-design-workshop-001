@@ -1,0 +1,8 @@
+claude-opus-5-5 E001 fine         ploss=  91.03 sto=  98.10 b1=98.929 critic=  99.94 train=  99.83 audit=  99.62 ceil=98.4/99.9 3.8s
+claude-opus-5-5 E001 full         ploss=  89.90 sto=  98.06 b1=99.784 critic=  99.91 train=  99.70 audit=  99.30 ceil=98.4/99.9 5.4s
+claude-opus-5-5 E001 fine-plain   ploss=  88.50 sto=  96.91 b1=96.099 critic=  99.77 train=  99.54 audit=  99.14 ceil=98.4/99.9 1.6s
+claude-opus-5-5 E001 critic-only  ploss=  77.25 sto=  95.32 b1=96.479 critic=  98.28 train=  95.81 audit=  94.67 ceil=98.4/99.9 0.1s
+/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/zrmd/audio/sfxtrim.py:114: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  v = float(e2)
+claude-opus-5-5 E001 fine+eq      ploss=  96.56 sto=  99.88 b1=94.126 critic=  99.24 train=  99.46 audit=  99.42 ceil=98.4/99.9 28.9s

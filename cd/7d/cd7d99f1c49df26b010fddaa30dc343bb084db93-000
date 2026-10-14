@@ -1,0 +1,24 @@
+/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/zrmd/audio/sfxtrim.py:114: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  v = float(e2)
+claude-opus-5-5 E002 spec 120      official= 95.91 sto= 99.99 critic= 99.96 audit= 99.86 b1=99.256 table=12240 numbers for 25920 samples (43.6s)
+claude-opus-5-5 E002 spec 240      official= 96.11 sto= 99.99 critic= 99.97 audit= 99.87 b1=99.394 table=24480 numbers for 25920 samples (41.2s)
+claude-opus-5-5 E002 spec 513      official= 96.57 sto= 99.99 critic= 99.97 audit= 99.87 b1=99.432 table=52326 numbers for 25920 samples (41.4s)
+claude-opus-5-5 E002 spec 513:128  official= 96.69 sto=100.00 critic= 99.98 audit= 99.87 b1=99.505 table=104139 numbers for 25920 samples (39.5s)
+claude-opus-5-5 E005 spec 120      official= 96.02 sto= 99.98 critic= 99.91 audit= 99.73 b1=99.825 table=11040 numbers for 23520 samples (31.1s)
+claude-opus-5-5 E005 spec 240      official= 96.29 sto= 99.98 critic= 99.91 audit= 99.74 b1=99.791 table=22080 numbers for 23520 samples (21.3s)
+claude-opus-5-5 E005 spec 513      official= 96.82 sto= 99.98 critic= 99.92 audit= 99.75 b1=99.734 table=47196 numbers for 23520 samples (27.3s)
+claude-opus-5-5 E005 spec 513:128  official= 96.97 sto= 99.98 critic= 99.92 audit= 99.76 b1=99.721 table=94392 numbers for 23520 samples (28.2s)
+
+claude-opus-5-5 (V_013): price of the cell-exact official score
+event  spec      official invariant  critic   audit     b1    table  samples table/samples
+E002   spectral     95.50     99.99   99.98   99.86   99.4        -    25920             -
+E002   eq 120       95.91     99.99   99.96   99.86   99.3    12240    25920          0.47
+E002   eq 240       96.11     99.99   99.97   99.87   99.4    24480    25920          0.94
+E002   eq 513       96.57     99.99   99.97   99.87   99.4    52326    25920          2.02
+E002   eq 513:128    96.69    100.00   99.98   99.87   99.5   104139    25920          4.02
+E005   spectral     95.53     99.97   99.95   99.70   98.4        -    23520             -
+E005   eq 120       96.02     99.98   99.91   99.73   99.8    11040    23520          0.47
+E005   eq 240       96.29     99.98   99.91   99.74   99.8    22080    23520          0.94
+E005   eq 513       96.82     99.98   99.92   99.75   99.7    47196    23520          2.01
+E005   eq 513:128    96.97     99.98   99.92   99.76   99.7    94392    23520          4.01

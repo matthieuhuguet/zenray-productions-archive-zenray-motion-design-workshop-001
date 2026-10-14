@@ -1,0 +1,110 @@
+[
+ {
+  "slug": "claude-opus-5-5",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/claude-opus-5-5/claude-opus-5-5 [2102432417352929280].mp4', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmp0ucssrg7.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ },
+ {
+  "slug": "fin-4",
+  "ok": true,
+  "aggregate": {
+   "shots": 1,
+   "frames": 236,
+   "coverage": 0.688,
+   "within1Jnd": 0.1575,
+   "value": 0.9375
+  },
+  "seconds": 0.5,
+  "glowShare": 0.0
+ },
+ {
+  "slug": "flora-agents-on-canvas",
+  "ok": true,
+  "aggregate": {
+   "shots": 7,
+   "frames": 1543,
+   "coverage": 0.6016,
+   "within1Jnd": 0.4116,
+   "value": 0.9738
+  },
+  "seconds": 3.5,
+  "glowShare": 0.5714
+ },
+ {
+  "slug": "interface",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/interface/interface [2108225966556540928].mp4', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmpl4ld_7p_.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ },
+ {
+  "slug": "kardashev-0-7",
+  "ok": true,
+  "aggregate": {
+   "shots": 15,
+   "frames": 1618,
+   "coverage": 0.4503,
+   "within1Jnd": 0.1182,
+   "value": 0.9462
+  },
+  "seconds": 6.7,
+  "glowShare": 0.6667
+ },
+ {
+  "slug": "memo",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/memo/memo [2107928253180874752].mp4', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmp2m7uc7o1.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ },
+ {
+  "slug": "motion-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 9,
+   "frames": 897,
+   "coverage": 0.9233,
+   "within1Jnd": 0.5018,
+   "value": 0.979
+  },
+  "seconds": 5.4,
+  "glowShare": 0.2963
+ },
+ {
+  "slug": "onekey-pro-2",
+  "ok": true,
+  "aggregate": {
+   "shots": 30,
+   "frames": 4080,
+   "coverage": 0.6331,
+   "within1Jnd": 0.4095,
+   "value": 0.972
+  },
+  "seconds": 11.4,
+  "glowShare": 0.6333
+ },
+ {
+  "slug": "paper-mono-code",
+  "ok": true,
+  "aggregate": {
+   "shots": 1,
+   "frames": 3633,
+   "coverage": 0.7475,
+   "within1Jnd": 0.0475,
+   "value": 0.9374
+  },
+  "seconds": 3.4,
+  "glowShare": 0.0
+ },
+ {
+  "slug": "x-anabology-2105325733312884869",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/x-anabology-2105325733312884869/x-anabology-2105325733312884869 [2105324983178219522].mp4', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmpbm8sgfc5.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ },
+ {
+  "slug": "x-anabology-2106157622986748377",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/x-anabology-2106157622986748377/x-anabology-2106157622986748377 [2106157510101008384].mp4', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmpu90l755j.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ },
+ {
+  "slug": "yt-4Q-o_ylnVnc",
+  "ok": false,
+  "error": "CalledProcessError: Command '['ffmpeg', '-v', 'error', '-threads', '2', '-i', '/Users/zenray/.claude/tmp/tmp-zenray-motion-design-refcache/yt-4Q-o_ylnVnc/Claude Opus 5.5 Music Video - Ignore Previous Instructions [4Q-o_ylnVnc].mkv', '-filter_script:v', '/var/folders/r2/wh6ygv490dqbrs2mb51g39jm0000gn/T/tmpccfui8nq.ffscript', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']' returned non-zero exit status 244."
+ }
+]

@@ -1,0 +1,11 @@
+{
+ "ok": true,
+ "version": "V_002",
+ "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_002/render.mp4",
+ "score": 0.94198,
+ "dimensions": {
+  "field": 0.94198,
+  "coverage": 0.8256,
+  "within1Jnd": 0.1345
+ }
+}

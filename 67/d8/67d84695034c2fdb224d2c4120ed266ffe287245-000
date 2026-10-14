@@ -1,0 +1,142 @@
+[vost#0:0/rawvideo @ 0x76b8c64000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x76b8808300] Error muxing a packet
+[out#0/rawvideo @ 0x76b8808300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x76b8808300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x76b8808300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x76b8808300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7ce10d8000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7ce0c08780] Error muxing a packet
+[out#0/rawvideo @ 0x7ce0c08780] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7ce0c08780] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7ce0c08780] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7ce0c08780] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7704884000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7705010300] Error muxing a packet
+[out#0/rawvideo @ 0x7705010300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7705010300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7705010300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7705010300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x799e838000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x799f4083c0] Error muxing a packet
+[out#0/rawvideo @ 0x799f4083c0] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x799f4083c0] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x799f4083c0] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x799f4083c0] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7a48844000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7a4903c300] Error muxing a packet
+[out#0/rawvideo @ 0x7a4903c300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a4903c300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a4903c300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7a4903c300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x790acb0000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x790a800300] Error muxing a packet
+[out#0/rawvideo @ 0x790a800300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x790a800300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x790a800300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x790a800300] Error closing file: Broken pipe
+[vost#0:0/rawvideo @ 0x7a80cd0000] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rawvideo @ 0x7a80800300] Error muxing a packet
+[out#0/rawvideo @ 0x7a80800300] Task finished with error code: -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a80800300] Terminating thread with return code -32 (Broken pipe)
+[out#0/rawvideo @ 0x7a80800300] Error writing trailer: Broken pipe
+[out#0/rawvideo @ 0x7a80800300] Error closing file: Broken pipe
+[
+ {
+  "slug": "claude-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 37,
+   "frames": 500,
+   "coverage": 0.701,
+   "within1Jnd": 0.3359,
+   "value": 0.9639
+  },
+  "seconds": 54.1,
+  "glowShare": 0.1892
+ },
+ {
+  "slug": "flora-agents-on-canvas",
+  "ok": true,
+  "aggregate": {
+   "shots": 2,
+   "frames": 1543,
+   "coverage": 0.7366,
+   "within1Jnd": 0.5143,
+   "value": 0.9758
+  },
+  "seconds": 7.8,
+  "glowShare": 0.5
+ },
+ {
+  "slug": "interface",
+  "ok": true,
+  "aggregate": {
+   "shots": 60,
+   "frames": 2162,
+   "coverage": 0.4034,
+   "within1Jnd": 0.1109,
+   "value": 0.932
+  },
+  "seconds": 100.1,
+  "glowShare": 0.1389
+ },
+ {
+  "slug": "memo",
+  "ok": true,
+  "aggregate": {
+   "shots": 136,
+   "frames": 1331,
+   "coverage": 0.433,
+   "within1Jnd": 0.209,
+   "value": 0.9562
+  },
+  "seconds": 144.8,
+  "glowShare": 0.3273
+ },
+ {
+  "slug": "motion-opus-5-5",
+  "ok": true,
+  "aggregate": {
+   "shots": 5,
+   "frames": 897,
+   "coverage": 0.9309,
+   "within1Jnd": 0.6149,
+   "value": 0.9859
+  },
+  "seconds": 10.4,
+  "glowShare": 0.0769
+ },
+ {
+  "slug": "onekey-pro-2",
+  "ok": true,
+  "aggregate": {
+   "shots": 27,
+   "frames": 4080,
+   "coverage": 0.6746,
+   "within1Jnd": 0.4459,
+   "value": 0.9743
+  },
+  "seconds": 38.7,
+  "glowShare": 0.4815
+ },
+ {
+  "slug": "x-anabology-2106157622986748377",
+  "ok": true,
+  "aggregate": {
+   "shots": 26,
+   "frames": 4351,
+   "coverage": 0.3523,
+   "within1Jnd": 0.1209,
+   "value": 0.9398
+  },
+  "seconds": 34.9,
+  "glowShare": 0.4211
+ }
+]

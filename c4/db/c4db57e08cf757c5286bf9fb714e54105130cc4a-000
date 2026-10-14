@@ -1,0 +1,10 @@
+kardashev-0-7-m1 E003 spec 120      official= 96.26 sto= 99.99 critic= 99.97 audit= 99.75 b1=99.904 table=8040 numbers for 17040 samples (12.9s)
+kardashev-0-7-m1 E003 spec 513      official= 96.91 sto= 99.99 critic= 99.97 audit= 99.76 b1=99.897 table=34371 numbers for 17040 samples (13.5s)
+kardashev-0-7-m1 E003 spec 513:128  official= 97.04 sto= 99.99 critic= 99.96 audit= 99.76 b1=99.896 table=68742 numbers for 17040 samples (13.8s)
+
+kardashev-0-7-m1 (V_005): price of the cell-exact official score
+event  spec      official invariant  critic   audit     b1    table  samples table/samples
+E003   spectral     95.60     99.99   99.98   99.73  100.0        -    17040             -
+E003   eq 120       96.26     99.99   99.97   99.75   99.9     8040    17040          0.47
+E003   eq 513       96.91     99.99   99.97   99.76   99.9    34371    17040          2.02
+E003   eq 513:128    97.04     99.99   99.96   99.76   99.9    68742    17040          4.03

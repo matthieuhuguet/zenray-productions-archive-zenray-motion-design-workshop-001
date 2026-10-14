@@ -1,0 +1,73 @@
+/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/zrmd/audio/sfxtrim.py:106: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  v = float(e2)
+claude-opus-5-5 E001 eq           ploss=  94.10 sto=  99.38 b1=0.0 critic=  97.32 train=  97.30 audit=  97.62 ceil=98.4/99.9 27.8s
+claude-opus-5-5 E001 fine+eq      ploss=  97.95 sto=  99.96 b1=98.965 critic=  99.72 train=  99.71 audit=  99.59 ceil=98.4/99.9 25.1s
+claude-opus-5-5 E001 eq+fine      ploss=  96.67 sto=  99.79 b1=97.371 critic=  99.94 train=  99.88 audit=  99.74 ceil=98.4/99.9 3.3s
+claude-opus-5-5 E002 chain        ploss=  81.37 sto=  96.02 b1=59.135 critic=  96.47 train=  94.05 audit=  94.35 ceil=88.4/99.5 0.0s
+claude-opus-5-5 E002 eq           ploss=  91.24 sto=  99.67 b1=72.526 critic=  99.48 train=  98.50 audit=  98.52 ceil=88.4/99.5 19.8s
+claude-opus-5-5 E002 full         ploss=  95.50 sto=  99.99 b1=99.425 critic=  99.98 train=  99.92 audit=  99.86 ceil=88.4/99.5 4.9s
+claude-opus-5-5 E002 fine         ploss=  95.46 sto=  99.97 b1=99.225 critic=  99.97 train=  99.91 audit=  99.86 ceil=88.4/99.5 3.8s
+claude-opus-5-5 E002 fine-plain   ploss=  94.72 sto=  99.92 b1=0.0 critic=  99.92 train=  99.84 audit=  99.76 ceil=88.4/99.5 2.0s
+claude-opus-5-5 E002 critic-only  ploss=  84.42 sto=  98.77 b1=73.11 critic=  99.22 train=  96.29 audit=  96.53 ceil=88.4/99.5 0.1s
+claude-opus-5-5 E002 fine+eq      ploss=  95.93 sto=  99.98 b1=99.125 critic=  99.95 train=  99.89 audit=  99.85 ceil=88.4/99.5 22.4s
+claude-opus-5-5 E002 eq+fine      ploss=  95.69 sto=  99.97 b1=44.008 critic=  99.95 train=  99.92 audit=  99.87 ceil=88.4/99.5 3.1s
+claude-opus-5-5 E003 chain        ploss=  80.63 sto=  94.14 b1=0.0 critic=  90.45 train=  92.12 audit=  92.37 ceil=88.9/99.3 0.0s
+claude-opus-5-5 E003 eq           ploss=  92.02 sto=  99.02 b1=3.854 critic=  96.82 train=  97.98 audit=  97.93 ceil=88.9/99.3 20.9s
+claude-opus-5-5 E003 full         ploss=  95.64 sto=  99.86 b1=9.352 critic=  99.86 train=  99.84 audit=  99.75 ceil=88.9/99.3 5.1s
+claude-opus-5-5 E003 fine         ploss=  95.74 sto=  99.57 b1=9.57 critic=  99.94 train=  99.91 audit=  99.82 ceil=88.9/99.3 4.1s
+claude-opus-5-5 E003 fine-plain   ploss=  95.05 sto=  99.47 b1=8.902 critic=  99.94 train=  99.87 audit=  99.72 ceil=88.9/99.3 1.7s
+claude-opus-5-5 E003 critic-only  ploss=  79.64 sto=  94.86 b1=9.736 critic=  99.08 train=  96.42 audit=  95.43 ceil=88.9/99.3 0.1s
+claude-opus-5-5 E003 fine+eq      ploss=  97.11 sto=  99.94 b1=44.872 critic=  99.65 train=  99.83 audit=  99.81 ceil=88.9/99.3 31.0s
+claude-opus-5-5 E003 eq+fine      ploss=  95.93 sto=  99.62 b1=9.548 critic=  99.95 train=  99.92 audit=  99.83 ceil=88.9/99.3 4.9s
+claude-opus-5-5 E004 chain        ploss=  76.40 sto=  90.48 b1=44.173 critic=  92.24 train=  91.74 audit=  92.15 ceil=100.0/100.0 0.0s
+claude-opus-5-5 E004 eq           ploss=  91.20 sto=  99.48 b1=99.071 critic=  99.11 train=  98.53 audit=  98.55 ceil=100.0/100.0 82.2s
+claude-opus-5-5 E004 full         ploss=  95.17 sto=  99.99 b1=99.966 critic=  99.98 train=  99.91 audit=  99.85 ceil=100.0/100.0 14.8s
+claude-opus-5-5 E004 fine         ploss=  95.56 sto=  99.98 b1=99.993 critic=  99.97 train=  99.95 audit=  99.91 ceil=100.0/100.0 10.8s
+claude-opus-5-5 E004 fine-plain   ploss=  94.67 sto=  99.95 b1=99.958 critic=  99.93 train=  99.88 audit=  99.81 ceil=100.0/100.0 5.1s
+claude-opus-5-5 E004 critic-only  ploss=  82.84 sto=  98.45 b1=99.0 critic=  99.43 train=  96.28 audit=  96.51 ceil=100.0/100.0 0.3s
+claude-opus-5-5 E004 fine+eq      ploss=  96.19 sto=  99.99 b1=99.964 critic=  99.94 train=  99.92 audit=  99.90 ceil=100.0/100.0 80.9s
+claude-opus-5-5 E004 eq+fine      ploss=  95.96 sto=  99.99 b1=99.996 critic=  99.97 train=  99.95 audit=  99.92 ceil=100.0/100.0 9.3s
+claude-opus-5-5 E005 chain        ploss=  73.66 sto=  91.18 b1=0.402 critic=  93.18 train=  91.31 audit=  90.69 ceil=87.1/99.0 0.0s
+claude-opus-5-5 E005 eq           ploss=  90.73 sto=  99.43 b1=97.265 critic=  98.49 train=  98.28 audit=  97.91 ceil=87.1/99.0 20.2s
+claude-opus-5-5 E005 full         ploss=  95.53 sto=  99.97 b1=98.446 critic=  99.95 train=  99.83 audit=  99.70 ceil=87.1/99.0 5.4s
+claude-opus-5-5 E005 fine         ploss=  95.88 sto=  99.95 b1=99.895 critic=  99.94 train=  99.92 audit=  99.84 ceil=87.1/99.0 4.3s
+claude-opus-5-5 E005 fine-plain   ploss=  95.15 sto=  99.86 b1=99.411 critic=  99.95 train=  99.88 audit=  99.73 ceil=87.1/99.0 1.6s
+claude-opus-5-5 E005 critic-only  ploss=  76.67 sto=  96.52 b1=91.83 critic=  98.83 train=  95.08 audit=  93.32 ceil=87.1/99.0 0.1s
+claude-opus-5-5 E005 fine+eq      ploss=  96.34 sto=  99.97 b1=99.833 critic=  99.89 train=  99.89 audit=  99.84 ceil=87.1/99.0 25.3s
+claude-opus-5-5 E005 eq+fine      ploss=  95.92 sto=  99.94 b1=99.894 critic=  99.95 train=  99.92 audit=  99.83 ceil=87.1/99.0 3.9s
+claude-opus-5-5 E006 chain        ploss=  80.04 sto=  95.54 b1=15.103 critic=  92.87 train=  93.44 audit=  93.69 ceil=86.7/99.1 0.0s
+claude-opus-5-5 E006 eq           ploss=  90.32 sto=  99.27 b1=56.324 critic=  97.91 train=  98.22 audit=  98.09 ceil=86.7/99.1 10.4s
+claude-opus-5-5 E006 full         ploss=  94.60 sto=  99.96 b1=88.639 critic=  99.92 train=  99.83 audit=  99.74 ceil=86.7/99.1 4.5s
+claude-opus-5-5 E006 fine         ploss=  95.13 sto=  99.92 b1=8.786 critic=  99.77 train=  99.86 audit=  99.83 ceil=86.7/99.1 2.8s
+claude-opus-5-5 E006 fine-plain   ploss=  94.34 sto=  99.86 b1=95.28 critic=  99.66 train=  99.77 audit=  99.73 ceil=86.7/99.1 1.0s
+claude-opus-5-5 E006 critic-only  ploss=  81.78 sto=  98.06 b1=18.705 critic=  99.44 train=  96.79 audit=  95.79 ceil=86.7/99.1 0.1s
+claude-opus-5-5 E006 fine+eq      ploss=  95.60 sto=  99.96 b1=9.117 critic=  99.83 train=  99.85 audit=  99.82 ceil=86.7/99.1 12.5s
+claude-opus-5-5 E006 eq+fine      ploss=  95.05 sto=  99.92 b1=8.944 critic=  99.77 train=  99.85 audit=  99.83 ceil=86.7/99.1 2.4s
+claude-opus-5-5 E007 chain        ploss=  76.73 sto=  91.30 b1=0.0 critic=  90.60 train=  90.31 audit=  89.89 ceil=91.6/99.8 0.0s
+claude-opus-5-5 E007 eq           ploss=  92.22 sto=  99.22 b1=0.001 critic=  96.85 train=  97.55 audit=  97.41 ceil=91.6/99.8 25.1s
+claude-opus-5-5 E007 full         ploss=  95.62 sto=  99.96 b1=99.741 critic=  99.97 train=  99.90 audit=  99.85 ceil=91.6/99.8 6.5s
+claude-opus-5-5 E007 fine         ploss=  94.76 sto=  99.52 b1=75.342 critic=  99.96 train=  99.91 audit=  99.81 ceil=91.6/99.8 5.8s
+claude-opus-5-5 E007 fine-plain   ploss=  93.89 sto=  99.43 b1=70.291 critic=  99.91 train=  99.84 audit=  99.67 ceil=91.6/99.8 2.1s
+claude-opus-5-5 E007 critic-only  ploss=  75.17 sto=  95.88 b1=0.002 critic=  98.36 train=  95.85 audit=  94.93 ceil=91.6/99.8 0.1s
+claude-opus-5-5 E007 fine+eq      ploss=  96.74 sto=  99.92 b1=94.175 critic=  99.43 train=  99.75 audit=  99.73 ceil=91.6/99.8 31.1s
+claude-opus-5-5 E007 eq+fine      ploss=  94.87 sto=  99.51 b1=75.951 critic=  99.96 train=  99.92 audit=  99.83 ceil=91.6/99.8 4.4s
+claude-opus-5-5 E008 chain        ploss=  76.25 sto=  92.98 b1=78.125 critic=  88.31 train=  89.87 audit=  91.14 ceil=100.0/100.0 0.0s
+claude-opus-5-5 E008 eq           ploss=  88.54 sto=  98.27 b1=88.82 critic=  96.01 train=  95.59 audit=  96.06 ceil=100.0/100.0 27.5s
+claude-opus-5-5 E008 full         ploss=  92.65 sto=  98.60 b1=99.912 critic=  99.99 train=  99.90 audit=  99.79 ceil=100.0/100.0 7.0s
+claude-opus-5-5 E008 fine         ploss=  89.46 sto=  96.76 b1=99.811 critic=  99.91 train=  99.90 audit=  99.76 ceil=100.0/100.0 3.7s
+claude-opus-5-5 E008 fine-plain   ploss=  85.21 sto=  96.65 b1=96.542 critic=  99.20 train=  98.56 audit=  98.20 ceil=100.0/100.0 1.7s
+claude-opus-5-5 E008 critic-only  ploss=  72.14 sto=  94.06 b1=87.884 critic=  96.08 train=  94.13 audit=  92.74 ceil=100.0/100.0 0.1s
+claude-opus-5-5 E008 fine+eq      ploss=  97.10 sto=  99.91 b1=99.835 critic=  99.58 train=  99.75 audit=  99.69 ceil=100.0/100.0 33.2s
+claude-opus-5-5 E008 eq+fine      ploss=  89.68 sto=  97.47 b1=98.206 critic=  99.79 train=  99.85 audit=  99.69 ceil=100.0/100.0 4.7s
+
+claude-opus-5-5 (V_009), 8 events; mean weighted by loudness (as the event score), then unweighted
+variant       official    ceil    gap     sto     b1  critic   train   audit auditMin
+chain            78.79   96.89 -18.10   93.45   39.9   92.67   92.07   92.62    91.27
+critic-only      78.02   96.89 -18.86   96.07   86.8   98.42   95.69   95.11    92.94
+fine-plain       91.70   96.89  -5.19   98.59   80.0   99.72   99.50   99.27    98.52
+fine             93.93   96.89  -2.96   99.16   94.4   99.92   99.86   99.72    99.25
+full             94.50   96.89  -2.39   99.61   97.7   99.96   99.82   99.64    99.16
+eq               91.38   96.89  -5.51   99.22   64.0   97.98   97.58   97.75    96.28
+fine+eq          96.79   96.89  -0.10   99.96   97.1   99.80   99.82   99.77    99.41
+eq+fine          94.76   96.89  -2.13   99.40   86.2   99.92   99.91   99.81    99.46

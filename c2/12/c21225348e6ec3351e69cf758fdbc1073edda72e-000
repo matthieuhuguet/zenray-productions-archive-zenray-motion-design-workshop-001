@@ -1,0 +1,21 @@
+{
+  "latest": "V_001",
+  "versions": [
+    "V_001"
+  ],
+  "updated": "14 October 2026",
+  "id": "claude-p00325-plate",
+  "title": "Plate colour animatic",
+  "recipe": "plate",
+  "source": {
+    "slug": "claude-opus-5-5",
+    "start": 5.416667,
+    "end": 5.55
+  },
+  "tags": [
+    "plate",
+    "slot",
+    "grade",
+    "claude-opus-5-5"
+  ]
+}

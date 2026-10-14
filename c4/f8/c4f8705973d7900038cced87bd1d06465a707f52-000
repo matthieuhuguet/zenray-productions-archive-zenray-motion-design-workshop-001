@@ -1,0 +1,228 @@
+{
+ "slug": "memo-m1",
+ "version": "V_003",
+ "events": {
+  "E001": {
+   "stem": "drums",
+   "seconds": 0.54,
+   "levelDb": -12.28,
+   "variants": {
+    "chain": {
+     "ploss": 42.7062,
+     "sto": 55.1969,
+     "b1": 0.006,
+     "critic": 74.553,
+     "mel": 74.516,
+     "fast": 73.339,
+     "trainMean": 72.764,
+     "auditMean": 72.901,
+     "auditMin": 70.173,
+     "errors": {
+      "stft": 5.356,
+      "mel": 5.203,
+      "envelope": 5.375,
+      "onset": 0.065
+     },
+     "seconds": 0.0
+    },
+    "fine": {
+     "ploss": 95.6877,
+     "sto": 99.9857,
+     "b1": 99.397,
+     "critic": 99.96,
+     "mel": 99.961,
+     "fast": 99.813,
+     "trainMean": 99.943,
+     "auditMean": 99.902,
+     "auditMin": 99.737,
+     "errors": {
+      "stft": 2.06,
+      "mel": 0.221,
+      "envelope": 0.303,
+      "onset": 0.025
+     },
+     "gateCritic": 99.998,
+     "finisher": true,
+     "seconds": 5.2
+    },
+    "full": {
+     "ploss": 95.6323,
+     "sto": 99.9928,
+     "b1": 99.563,
+     "critic": 99.99,
+     "mel": 99.931,
+     "fast": 99.773,
+     "trainMean": 99.919,
+     "auditMean": 99.866,
+     "auditMin": 99.674,
+     "errors": {
+      "stft": 2.082,
+      "mel": 0.289,
+      "envelope": 0.152,
+      "onset": 0.038
+     },
+     "gateCritic": 100.0,
+     "finisher": true,
+     "seconds": 5.7
+    },
+    "fine+eq": {
+     "ploss": 96.257,
+     "sto": 99.9949,
+     "b1": 81.972,
+     "critic": 99.908,
+     "mel": 99.953,
+     "fast": 99.819,
+     "trainMean": 99.925,
+     "auditMean": 99.892,
+     "auditMin": 99.753,
+     "errors": {
+      "stft": 1.933,
+      "mel": 0.2,
+      "envelope": 0.129,
+      "onset": 0.027
+     },
+     "gateCritic": 99.998,
+     "finisher": true,
+     "eqStored": true,
+     "seconds": 24.2
+    },
+    "full+eq": {
+     "ploss": 96.1741,
+     "sto": 99.998,
+     "b1": 78.599,
+     "critic": 99.948,
+     "mel": 99.936,
+     "fast": 99.793,
+     "trainMean": 99.912,
+     "auditMean": 99.867,
+     "auditMin": 99.711,
+     "errors": {
+      "stft": 1.954,
+      "mel": 0.236,
+      "envelope": 0.085,
+      "onset": 0.014
+     },
+     "gateCritic": 100.0,
+     "finisher": true,
+     "eqStored": true,
+     "seconds": 31.5
+    }
+   },
+   "ceiling": {
+    "official": 86.754,
+    "stochastic": 98.987
+   }
+  },
+  "E003": {
+   "stem": "drums",
+   "seconds": 0.43,
+   "levelDb": -5.84,
+   "variants": {
+    "chain": {
+     "ploss": 71.1797,
+     "sto": 87.9375,
+     "b1": 0.0,
+     "critic": 91.57,
+     "mel": 91.037,
+     "fast": 90.48,
+     "trainMean": 90.551,
+     "auditMean": 90.16,
+     "auditMin": 87.584,
+     "errors": {
+      "stft": 3.789,
+      "mel": 2.957,
+      "envelope": 3.274,
+      "onset": 0.01
+     },
+     "seconds": 0.0
+    },
+    "fine": {
+     "ploss": 95.2561,
+     "sto": 99.9788,
+     "b1": 99.925,
+     "critic": 99.938,
+     "mel": 99.98,
+     "fast": 99.863,
+     "trainMean": 99.964,
+     "auditMean": 99.934,
+     "auditMin": 99.795,
+     "errors": {
+      "stft": 2.13,
+      "mel": 0.186,
+      "envelope": 0.515,
+      "onset": 0.002
+     },
+     "gateCritic": 99.997,
+     "finisher": true,
+     "seconds": 4.2
+    },
+    "full": {
+     "ploss": 94.931,
+     "sto": 99.9835,
+     "b1": 96.731,
+     "critic": 99.983,
+     "mel": 99.96,
+     "fast": 99.744,
+     "trainMean": 99.938,
+     "auditMean": 99.881,
+     "auditMin": 99.652,
+     "errors": {
+      "stft": 2.2,
+      "mel": 0.248,
+      "envelope": 0.524,
+      "onset": 0.0
+     },
+     "gateCritic": 100.0,
+     "finisher": true,
+     "seconds": 6.7
+    },
+    "fine+eq": {
+     "ploss": 96.178,
+     "sto": 99.993,
+     "b1": 0.0,
+     "critic": 99.836,
+     "mel": 99.966,
+     "fast": 99.858,
+     "trainMean": 99.93,
+     "auditMean": 99.91,
+     "auditMin": 99.798,
+     "errors": {
+      "stft": 1.955,
+      "mel": 0.174,
+      "envelope": 0.159,
+      "onset": 0.0
+     },
+     "gateCritic": 99.997,
+     "finisher": true,
+     "eqStored": true,
+     "seconds": 23.2
+    },
+    "full+eq": {
+     "ploss": 95.8494,
+     "sto": 99.9956,
+     "b1": 92.959,
+     "critic": 99.869,
+     "mel": 99.94,
+     "fast": 99.73,
+     "trainMean": 99.891,
+     "auditMean": 99.84,
+     "auditMin": 99.644,
+     "errors": {
+      "stft": 2.029,
+      "mel": 0.231,
+      "envelope": 0.22,
+      "onset": 0.001
+     },
+     "gateCritic": 100.0,
+     "finisher": true,
+     "eqStored": true,
+     "seconds": 24.4
+    }
+   },
+   "ceiling": {
+    "official": 85.615,
+    "stochastic": 98.53
+   }
+  }
+ }
+}

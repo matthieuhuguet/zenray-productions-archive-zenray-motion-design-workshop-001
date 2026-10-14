@@ -1,0 +1,72 @@
+{
+ "slug": "memo-m1",
+ "version": "V_005",
+ "events": {
+  "E006": {
+   "seconds": 1.44,
+   "samples": 69120,
+   "levelDb": -10.68,
+   "specs": {
+    "120": {
+     "ploss": 98.0999,
+     "sto": 99.9943,
+     "b1": 99.281,
+     "critic": 99.96,
+     "mel": 99.906,
+     "fast": 99.765,
+     "trainMean": 99.899,
+     "auditMean": 99.846,
+     "auditMin": 99.65,
+     "bands": 120,
+     "hop": 256,
+     "frames": 271,
+     "tableSize": 32520,
+     "seconds": 45.4
+    },
+    "513": {
+     "ploss": 98.5677,
+     "sto": 99.9952,
+     "b1": 99.384,
+     "critic": 99.971,
+     "mel": 99.915,
+     "fast": 99.785,
+     "trainMean": 99.911,
+     "auditMean": 99.867,
+     "auditMin": 99.671,
+     "bands": 513,
+     "hop": 256,
+     "frames": 271,
+     "tableSize": 139023,
+     "seconds": 58.5
+    },
+    "513:128": {
+     "ploss": 98.6486,
+     "sto": 99.9953,
+     "b1": 99.375,
+     "critic": 99.971,
+     "mel": 99.918,
+     "fast": 99.789,
+     "trainMean": 99.913,
+     "auditMean": 99.872,
+     "auditMin": 99.676,
+     "bands": 513,
+     "hop": 128,
+     "frames": 541,
+     "tableSize": 277533,
+     "seconds": 57.5
+    }
+   },
+   "spectral": {
+    "ploss": 97.6908,
+    "sto": 99.9856,
+    "b1": 99.745,
+    "critic": 99.973,
+    "mel": 99.906,
+    "fast": 99.775,
+    "trainMean": 99.903,
+    "auditMean": 99.844,
+    "auditMin": 99.653
+   }
+  }
+ }
+}

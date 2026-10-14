@@ -1,0 +1,26 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug 20syl-ode-to-odd-m3 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/20syl-ode-to-odd-m3 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 114 fits, 10 s
+dfit stage 2 chains: 40 fits, 154 s
+dfit stage 3 grow: 0 fits, 154 s
+dfit stage 4 full: 2 fits, 243 s
+dfit done: 245 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/20syl-ode-to-odd-m3/V_001",
+ "events": 2,
+ "scores": {
+  "full": {
+   "sound": 89.73,
+   "sfx": 75.55,
+   "timing": 100.0,
+   "mix": 95.64,
+   "music": 0.92
+  }
+ },
+ "seconds": 254.8
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug 20syl-ode-to-odd-m3 --workers 8
+{"ok": true, "version": "V_002", "from": "V_001", "sfx": {"before": 75.549, "after": 96.569}, "b1Mean": {"before": 40.075, "after": 99.79}, "critic": {"before": 92.07, "after": 99.891}, "stochastic": {"before": 92.564, "after": 99.957}, "auditMean": {"before": 91.592, "after": 99.785}, "gate": {"events": 2, "pass": 1, "passMusic": 1, "atCeiling": 2, "eqRejectedByB1Guard": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [{"id": "E001", "kind": "chain", "scoreBefore": 72.137, "scoreAfter": 96.9258, "ploss": [72.137, 96.9258], "plossStochastic": [89.6755, 99.9977], "b1": [0.0, 99.886], "critic": [89.461, 99.967], "auditMean": [89.74, 99.894], "ceiling": {"official": 91.896, "stochastic": 99.842}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 100.0, "b1Out": 99.89}}, {"id": "E003", "kind": "chain", "scoreBefore": 80.441, "scoreAfter": 96.0575, "ploss": [80.441, 96.0575], "plossStochastic": [96.7055, 99.8979], "b1": [80.151, 99.694], "critic": [95.811, 99.783], "auditMean": [94.248, 99.628], "ceiling": {"official": 94.263, "stochastic": 99.625}, "atCeiling": true, "pass": false, "passMusic": false, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 97.2, "b1Out": 99.69}}], "seconds": 9.3}

@@ -1,0 +1,38 @@
+{
+ "dimensions": {
+  "animation": 0.482,
+  "image": 0.9008,
+  "colour": 1.0
+ },
+ "weakest": "animation",
+ "score": 0.482,
+ "elements": {
+  "reference": 2,
+  "render": 2,
+  "matched": 1,
+  "unmatched": 1
+ },
+ "animation_detail": [
+  {
+   "score": 0.9641,
+   "parts": {
+    "dx": 0.9997,
+    "dy": 0.9931,
+    "scale": 0.994,
+    "brightness": 0.983,
+    "settle": 0.8509
+   }
+  }
+ ],
+ "brightness_map": null,
+ "typography_detail": null,
+ "background": {
+  "score": 1.0,
+  "dE2000": 0.0
+ },
+ "image_detail": {
+  "score": 0.9008,
+  "frames": 40,
+  "valid_share": 1.0
+ }
+}

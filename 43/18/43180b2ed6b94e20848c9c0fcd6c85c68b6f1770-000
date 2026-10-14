@@ -1,0 +1,59 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug flora-agents-on-canvas-m1 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/flora-agents-on-canvas-m1 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+Traceback (most recent call last):
+  File "/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py", line 247, in <module>
+    main()
+  File "/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py", line 166, in main
+    fits = fit.run_dfit(events, windows, workers=args.workers, warm=wd, log=lambda m: print(m, file=sys.stderr, flush=True))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/zrmd/audio/fit.py", line 421, in run_dfit
+    out = run([job(e, [b], "screen", over=s["screenOverrides"]) for e in evs for b in src])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/zrmd/audio/fit.py", line 399, in run
+    out = list(pool.map(_dfit_job, jobs))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 620, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15_3/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug flora-agents-on-canvas-m1 --workers 8
+{"ok": false, "error": "no sound version in /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/flora-agents-on-canvas-m1: run ReproduceSound.py first"}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/ReproduceSound.py --slug flora-agents-on-canvas-m1 --out /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/flora-agents-on-canvas-m1 --workers 8 --set fit.sfxDfit.screenTop=4 --set fit.sfxDfit.pairTop=2 --set fit.sfxDfit.effectTop=1 --set fit.sfxDfit.growTop=1 --set fit.sfxDfit.growSources=2 --set fit.sfxDfit.maxBlocks=2 --set fit.sfxDfit.fullTop=1 --set fit.sfxDfit.fullOverrides.scanRounds=0 --set fit.sfxDfit.fullOverrides.cmaIters=30 --set fit.sfxDfit.pairOverrides.starts=2 --set fit.sfxDfit.pairOverrides.steps=200 --set fit.sfxDfit.pairOverrides.cmaIters=30 --set fit.sfxDfit.seedChoices=[0,1,2,3,4,5,6,7] --note SFX corpus, fast profile
+/Users/zenray/.venvs/zenray-motion/lib/python3.11/site-packages/librosa/feature/spectral.py:2148: UserWarning: Empty filters detected in mel frequency basis. Some channels will produce empty responses. Try increasing your sampling rate (and fmax) or reducing n_mels.
+  mel_basis = filters.mel(sr=sr, n_fft=n_fft, **kwargs)
+dfit stage 1 screen: 171 fits, 15 s
+dfit stage 2 chains: 60 fits, 237 s
+dfit stage 3 grow: 0 fits, 237 s
+dfit stage 4 full: 3 fits, 372 s
+dfit done: 374 s
+{
+ "version": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/flora-agents-on-canvas-m1/V_002",
+ "events": 3,
+ "scores": {
+  "full": {
+   "sound": 79.31,
+   "sfx": 74.99,
+   "timing": 66.67,
+   "mix": 99.8,
+   "music": 99.55
+  }
+ },
+ "seconds": 384.6
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/SfxTrim.py --slug flora-agents-on-canvas-m1 --workers 8
+{"ok": true, "version": "V_003", "from": "V_002", "sfx": {"before": 74.995, "after": 97.586}, "b1Mean": {"before": 49.57, "after": 99.623}, "critic": {"before": 87.516, "after": 99.794}, "stochastic": {"before": 87.687, "after": 99.98}, "auditMean": {"before": 90.253, "after": 99.771}, "gate": {"events": 3, "pass": 3, "passMusic": 2, "atCeiling": 1, "eqRejectedByB1Guard": 0, "spec": {"_doc": "What '99.9 for SFX' means (14 October 2026). HEADLINE: the official loss with its seed-invariant variant (ploss.stochastic, the official terms with the cell noise of a seed taken out) at or above stochasticMin, AND the mean of the held-out audit layouts of the music (never optimised) at or above auditMin. MUSIC: the third-octave critic shared with the music (params/music-trim.json specs.critic) at or above criticMin, reported beside the headline. The cell-exact official score and the identity ceiling are reported, never a gate: a noise cannot match the cells of another noise without copying them (identity ceilings 86 to 100).", "stochasticMin": 99.9, "auditMin": 99.0, "criticMin": 99.9}}, "events": [{"id": "E001", "kind": "chain", "scoreBefore": 68.8304, "scoreAfter": 97.0425, "ploss": [68.8304, 97.0425], "plossStochastic": [80.7237, 99.9598], "b1": [2.668, 98.975], "critic": [80.931, 99.59], "auditMean": [87.459, 99.66], "ceiling": {"official": 100.0, "stochastic": 99.999}, "atCeiling": false, "pass": true, "passMusic": false, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 99.41, "b1Out": 98.97}}, {"id": "E002", "kind": "chain", "scoreBefore": 80.8826, "scoreAfter": 97.9273, "ploss": [80.8826, 97.9273], "plossStochastic": [93.8486, 99.9961], "b1": [87.623, 99.931], "critic": [93.397, 99.96], "auditMean": [92.749, 99.854], "ceiling": {"official": 100.0, "stochastic": 99.999}, "atCeiling": false, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 99.58, "b1Out": 99.93}}, {"id": "E003", "kind": "chain", "scoreBefore": 71.4198, "scoreAfter": 99.1332, "ploss": [71.4198, 99.1332], "plossStochastic": [88.7507, 99.9978], "b1": [58.419, 99.962], "critic": [87.96, 99.984], "auditMean": [90.425, 99.951], "ceiling": {"official": 95.085, "stochastic": 99.765}, "atCeiling": true, "pass": true, "passMusic": true, "program": ["spectral", "eq"], "eqGuard": {"kept": true, "guard": "B1 within the guard", "b1In": 99.99, "b1Out": 99.96}}], "seconds": 12.2}

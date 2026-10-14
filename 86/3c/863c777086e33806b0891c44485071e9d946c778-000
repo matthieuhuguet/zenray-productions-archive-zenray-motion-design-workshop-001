@@ -1,0 +1,72 @@
+{
+ "slug": "kardashev-0-7-m1",
+ "version": "V_005",
+ "events": {
+  "E003": {
+   "seconds": 0.355,
+   "samples": 17040,
+   "levelDb": -20.88,
+   "specs": {
+    "120": {
+     "ploss": 96.2591,
+     "sto": 99.9947,
+     "b1": 99.904,
+     "critic": 99.967,
+     "mel": 99.863,
+     "fast": 99.56,
+     "trainMean": 99.836,
+     "auditMean": 99.745,
+     "auditMin": 99.369,
+     "bands": 120,
+     "hop": 256,
+     "frames": 67,
+     "tableSize": 8040,
+     "seconds": 12.9
+    },
+    "513": {
+     "ploss": 96.9144,
+     "sto": 99.9946,
+     "b1": 99.897,
+     "critic": 99.965,
+     "mel": 99.848,
+     "fast": 99.568,
+     "trainMean": 99.827,
+     "auditMean": 99.757,
+     "auditMin": 99.375,
+     "bands": 513,
+     "hop": 256,
+     "frames": 67,
+     "tableSize": 34371,
+     "seconds": 13.5
+    },
+    "513:128": {
+     "ploss": 97.0397,
+     "sto": 99.9945,
+     "b1": 99.896,
+     "critic": 99.962,
+     "mel": 99.842,
+     "fast": 99.576,
+     "trainMean": 99.826,
+     "auditMean": 99.759,
+     "auditMin": 99.379,
+     "bands": 513,
+     "hop": 128,
+     "frames": 134,
+     "tableSize": 68742,
+     "seconds": 13.8
+    }
+   },
+   "spectral": {
+    "ploss": 95.5989,
+    "sto": 99.9925,
+    "b1": 99.962,
+    "critic": 99.984,
+    "mel": 99.872,
+    "fast": 99.546,
+    "trainMean": 99.847,
+    "auditMean": 99.734,
+    "auditMin": 99.349
+   }
+  }
+ }
+}

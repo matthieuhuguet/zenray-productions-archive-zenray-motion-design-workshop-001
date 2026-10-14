@@ -1,0 +1,46 @@
+# SFX layer: shared spectral trim experiment (14 October 2026)
+
+## 1. What the SFX reference signal is, and how the official event score is made (14 October 2026)
+
+1. There is no clean "SFX stem". The reference of an event is the Demucs htdemucs stem(s) it was DETECTED on (drums, bass, other; a swell is "drums+bass+other"), decoded mono at 48 kHz, so it still carries the music bleed of that stem (analysis only, never written out).
+2. The window of an event is [windowStart, windowEnd] from `zrmd/audio/segment.py`: preRoll before the detection to the point where the bed (drums+bass+other) has fallen endDb below its peak, capped by transientMaxSeconds / windowMaxSeconds and by the NEXT event on the same stem. Measured on Opus and OneKey: 0.18 to 1.81 s, mostly 0.49 to 0.54 s.
+3. Our side is one bank chain per event (`zrmd/audio/bank.py`, fitted by `dfit`), rendered mono and placed at windowStart; per stem a track `sfx_by_stem` is the sum of the bodies of that stem's events (this is what `verify.report` reads for timing).
+4. The official event score is `fit.score_window(ours, window)["ploss"]`: `ploss.score` with the seed-invariant variant OFF, `100 * 0.99 ** E2`, E2 = stft (multi-resolution 256 / 1024 / 4096 cell-wise log magnitude, JND 2 dB) + mel (64 bands, JND 2 dB) + envelope (10 ms, JND 1 dB) + onset (ms / 10), all weighted by (max(ref, ours) - floor), floor 60 dB under the loudest reference cell.
+5. The SFX score of a member is the loudness-weighted mean (10^(levelDb/20)) of the event scores (`verify.report`, "sfx"); B1 (`describe.compare`, summary descriptors) is an audit, never optimised.
+6. The official metric compares CELLS, so a noise is asked to reproduce the exact noise realisation of the reference: a chain rendered with another seed scores 86 to 91 against itself (identity ceiling, `sfxtrim.identity_ceiling`), 100 only for a deterministic chain. The seed-invariant variant (expected spectrum, 1.5 dB dead zone) is the metric that can reach 99.9 for noise.
+7. The music critic is another metric: third-octave band power, 4096 FFT, 46 ms frames, JND 2 dB (`params/music-trim.json` specs.critic). It is smooth in frequency, so a gain can reach 99.9 on it; the official SFX loss is cell-exact.
+
+## 2. The decisive experiment, claude-opus-5-5 (V_009 chains, 8 events, loudness-weighted means, 14 October 2026)
+
+Script `Scripts/SfxSpectral.py experiment --slug claude-opus-5-5`, numbers in `/Users/zenray/.claude/tmp/tmp-zenray-motion-design/logs/sfx-spectral/claude-opus-5-5.json`. official = cell-exact event score (ploss), sto = the same loss with its seed-invariant variant, critic = the music's third-octave critic, audit = mean of the held-out layouts (never optimised). Identity ceiling of the member (weighted): 96.89.
+
+| stage | official | sto | B1 | critic | audit |
+|---|---|---|---|---|---|
+| raw chain | 78.79 | 93.45 | 39.9 | 92.67 | 92.62 |
+| per-event EQ (existing) | 91.38 | 99.22 | 64.0 | 97.98 | 97.75 |
+| shared trim "fine" alone | 94.98 | 99.71 | 94.7 | 99.89 | 99.72 |
+| shared trim "full" (music layouts) | 95.24 | 99.86 | 97.7 | 99.96 | 99.62 |
+| fine then EQ (the pipeline) | 96.89 | 99.97 | 97.0 | 99.84 | 99.78 |
+| full then EQ | 96.78 | 99.97 | 97.4 | 99.85 | 99.72 |
+| EQ then fine | 95.93 | 99.87 | 86.9 | 99.93 | 99.83 |
+| whole SFX track per stem, fine (variant a) | 95.14 | 99.64 | 96.6 | 99.82 | 99.69 |
+
+Variants tried and dropped: no fill carriers and no finisher ("fine-plain") 92.83; third-octave critic only 78.02 (a spec that is also the score proves nothing on another one); a closed-form broadband envelope stage between the two (E001 93.62 against 94.13, E001 with EQ 96.76 against 97.95); the shared trim written back as a 120-band 2048/256 gain table (E001 94.1 to 85.8, E002 95.5 to 87.6, E003 95.7 to 87.5: no single gain table holds it, so the cooked body is stored baked); eq 150 steps instead of 500 (E001 96.26 against 97.95, E003 95.98 against 97.11).
+
+Guards of the music that must be OFF for a short effect (measured on E001, E003, E005, E008, shared trim alone, official): minResolvedBins 2 and 18 Hz high-pass both on 91.0 / 88.5 / 93.7 / 91.1; both off 94.1 / 95.7 / 95.9 / 94.4. The high-pass doubles the envelope error of a 0.5 s window.
+
+## 3. What "99.9 for SFX" means, and the corpus (14 October 2026, pipeline = shared trim `full` then EQ, baked)
+
+Gate (`params/sfx-trim.json`, `gate`): HEADLINE = official loss with its seed-invariant variant >= 99.9 AND mean of the held-out audit layouts >= 99.0; MUSIC = third-octave critic >= 99.9 (reported beside); exact official score and identity ceiling reported, never a gate.
+
+| member | events | raw | EQ only | official | seed-invariant | critic | audit | B1 | at ceiling | headline | music |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| claude-opus-5-5 | 8 | 78.8 | 91.4 | 96.8 | 99.97 | 99.85 | 99.72 | 91.4 | 5/8 | 8/8 | 4/8 |
+| onekey-pro-2 | 4 | 78.5 | 91.7 | 95.6 | 99.99 | 99.96 | 99.83 | 99.6 | 4/4 | 4/4 | 3/4 |
+| memo-m1 | 8 | 62.7 | 90.8 | 97.0 | 99.98 | 99.87 | 99.77 | 93.8 | 7/8 | 8/8 | 4/8 |
+| motion-opus-5-5-m1 | 3 | 59.7 | 89.6 | 98.6 | 99.99 | 99.94 | 99.83 | 99.7 | 3/3 | 3/3 | 2/3 |
+| kardashev-0-7-m1 | 14 | 73.9 | 91.6 | 97.3 | 99.98 | 99.91 | 99.75 | 99.5 | 12/14 | 14/14 | 11/14 |
+
+37 events: headline 37/37, music 24/37, official min 95.07 / median 96.8 / max 99.79, B1 >= 90 on 34. Six events under their identity ceiling by more than 0.3 (five deterministic chains with ceiling 100, Opus E001 at 97.6 for 98.4): all above 99.9 seed-invariant; remaining error is the cell-exact STFT term (1.3 to 2.1 JND).
+
+Null checks: (1) white noise with no relation to the reference, shared trim on 12 windows: critic 99.5 to 99.96 but official 0.06 to 79 (the critic cannot judge structure; the gate does not rest on it); lag-0 waveform correlation median 0.10, max 0.44. (2) cooked events: lag-0 correlation median 0.11 to 0.39 per member (chain alone 0.04 to 0.11), five low events at 0.75 to 0.98 (fitted oscillator left alone after the trim; 91 to 98 percent of the energy under 200 Hz).

@@ -1,0 +1,10 @@
+memo-m1 E006 spec 120      official= 98.10 sto= 99.99 critic= 99.96 audit= 99.85 b1=99.281 table=32520 numbers for 69120 samples (45.4s)
+memo-m1 E006 spec 513      official= 98.57 sto=100.00 critic= 99.97 audit= 99.87 b1=99.384 table=139023 numbers for 69120 samples (58.5s)
+memo-m1 E006 spec 513:128  official= 98.65 sto=100.00 critic= 99.97 audit= 99.87 b1=99.375 table=277533 numbers for 69120 samples (57.5s)
+
+memo-m1 (V_005): price of the cell-exact official score
+event  spec      official invariant  critic   audit     b1    table  samples table/samples
+E006   spectral     97.69     99.99   99.97   99.84   99.7        -    69120             -
+E006   eq 120       98.10     99.99   99.96   99.85   99.3    32520    69120          0.47
+E006   eq 513       98.57    100.00   99.97   99.87   99.4   139023    69120          2.01
+E006   eq 513:128    98.65    100.00   99.97   99.87   99.4   277533    69120          4.02

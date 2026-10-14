@@ -1,0 +1,75 @@
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicTrim.py --slug claude-opus-5-5
+{"ok": true, "slug": "claude-opus-5-5", "version": "V_014", "base": "V_010", "stemsGate": {"drums": 99.999, "bass": 99.999, "other": 99.999, "vocals": 100.0}, "stemsAuditMean": {"drums": 99.861, "bass": 99.745, "other": 99.885, "vocals": 99.644}, "stemsOk": true, "mixFinal": true, "mixGate": 100.0, "mixAuditMean": 99.959, "seconds": 163.6}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicPolish.py --slug claude-opus-5-5 --force
+{"ok": true, "version": "V_014", "preview": false, "clean": true, "mix": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/claude-opus-5-5/music-bench/V_014/polish/mix.mp3", "criticTrimmed": 100.0, "criticPolished": 99.705, "after": {"clicksPerSecond": 0.0, "cracklePerSecond": 0.0, "hissFloorDb": -45.4, "dc": -2e-06, "clippedShare": 0.0, "rumbleShare": 0.00031, "truePeakDbtp": -1.0, "lufs": -16.43, "crestDb": 16.76}, "seconds": 8.6}
+
+$ ResynthMusic.py render --params /Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/claude-opus-5-5/music-bench/V_010/params.json --score  (re-render of V_010)
+[15:57:12] V_015 written
+{
+ "version": "V_015",
+ "headline": {
+  "drums": {
+   "plossFull": 39.7769,
+   "plossBarMedian": 3.236,
+   "onsetF": 0.7541,
+   "chroma": 0.9481,
+   "envCorr": 0.8746,
+   "sectionEnv": 99.296,
+   "plossEvents": 58.042,
+   "plossBarNoOnset": 3.24,
+   "tfBands": 94.479
+  },
+  "bass": {
+   "plossFull": 85.462,
+   "plossBarMedian": 83.184,
+   "onsetF": 0.5333,
+   "chroma": 0.9853,
+   "envCorr": 0.9795,
+   "sectionEnv": 96.784,
+   "plossEvents": 80.19,
+   "plossBarNoOnset": 83.539,
+   "tfBands": 98.926
+  },
+  "other": {
+   "plossFull": 72.6576,
+   "plossBarMedian": 64.57,
+   "onsetF": 0.2772,
+   "chroma": 0.8712,
+   "envCorr": 0.9538,
+   "sectionEnv": 97.611,
+   "plossEvents": 80.345,
+   "plossBarNoOnset": 66.605,
+   "tfBands": 95.788
+  },
+  "vocals": {
+   "plossFull": 56.1878,
+   "plossBarMedian": 54.855,
+   "onsetF": 0.7759,
+   "chroma": 0.8,
+   "envCorr": 0.9,
+   "sectionEnv": 96.178,
+   "plossEvents": null,
+   "plossBarNoOnset": 54.865,
+   "tfBands": 91.142
+  },
+  "mix": {
+   "plossFull": 77.7736,
+   "plossBarMedian": 76.111,
+   "onsetF": 0.6667,
+   "chroma": 0.9677,
+   "envCorr": 0.9699,
+   "sectionEnv": 98.138,
+   "plossEvents": 79.331,
+   "plossBarNoOnset": 76.134,
+   "tfBands": 97.322
+  }
+ }
+}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicTrim.py --slug claude-opus-5-5 --from V_015
+{"ok": true, "slug": "claude-opus-5-5", "version": "V_016", "base": "V_015", "stemsGate": {"drums": 99.998, "bass": 100.0, "other": 99.999, "vocals": 100.0}, "stemsAuditMean": {"drums": 99.67, "bass": 99.83, "other": 99.879, "vocals": 99.785}, "stemsOk": true, "mixFinal": true, "mixGate": 100.0, "mixAuditMean": 99.954, "seconds": 268.7}
+
+$ /Users/zenray/Create/Build/Productions/GithubProductions/ZenRayMotionDesign/Scripts/MusicPolish.py --slug claude-opus-5-5 --force
+{"ok": true, "version": "V_016", "preview": false, "clean": true, "mix": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/sound/claude-opus-5-5/music-bench/V_016/polish/mix.mp3", "criticTrimmed": 100.0, "criticPolished": 99.86, "after": {"clicksPerSecond": 0.0, "cracklePerSecond": 0.0, "hissFloorDb": -45.6, "dc": -1e-06, "clippedShare": 0.0, "rumbleShare": 0.00024, "truePeakDbtp": -1.0, "lufs": -16.42, "crestDb": 16.73}, "seconds": 22.2}

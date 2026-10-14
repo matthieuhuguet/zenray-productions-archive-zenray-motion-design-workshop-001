@@ -1,0 +1,21 @@
+{
+  "latest": "V_001",
+  "versions": [
+    "V_001"
+  ],
+  "updated": "14 October 2026",
+  "id": "kardashev-s09-horizon-field",
+  "title": "Kardashev horizon, shader field",
+  "recipe": "shader-field",
+  "source": {
+    "slug": "kardashev-0-7",
+    "start": 14.0,
+    "end": 16.0
+  },
+  "tags": [
+    "shader",
+    "field",
+    "backdrop",
+    "kardashev-0-7"
+  ]
+}

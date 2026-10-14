@@ -1,237 +1,1312 @@
 {
   "schema": "zrmd/catalog@1",
-  "updated": "12 October 2026, 11:10",
+  "updated": "14 October 2026, 21:26",
   "motions": [
     {
+      "id": "claude-p00000-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9901,
+      "dimensions": {
+        "grade": 0.9901
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 0.0,
+        "end": 0.516667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00000-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00000-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.5166666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971867164338245,
+        1791971867163436448,
+        1791971870676225163,
+        1791971870940334405,
+        1791979147244754803
+      ]
+    },
+    {
+      "id": "claude-p00031-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9905,
+      "dimensions": {
+        "grade": 0.9905
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 0.516667,
+        "end": 0.95
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00031-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00031-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.43333333333333335,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971867176276021,
+        1791971867175441683,
+        1791971870431705407,
+        1791971870737984679,
+        1791990002244337955
+      ]
+    },
+    {
+      "id": "claude-p00057-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9908,
+      "dimensions": {
+        "grade": 0.9908
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 0.95,
+        "end": 1.383333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00057-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00057-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.43333333333333335,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971867178195449,
+        1791971867177268943,
+        1791971870431580906,
+        1791971870728677459,
+        1791990002317934062
+      ]
+    },
+    {
+      "id": "claude-p00083-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9952,
+      "dimensions": {
+        "grade": 0.9952
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 1.383333,
+        "end": 1.566667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00083-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00083-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.18333333333333332,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971871101976318,
+        1791971871100882729,
+        1791971873466206045,
+        1791971873737054408,
+        1791990002381554908
+      ]
+    },
+    {
+      "id": "claude-p00094-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9952,
+      "dimensions": {
+        "grade": 0.9952
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 1.566667,
+        "end": 1.666667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00094-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00094-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.1,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971871102866990,
+        1791971871101887526,
+        1791971873185605460,
+        1791971873487700958,
+        1791990002437099043
+      ]
+    },
+    {
+      "id": "claude-p00100-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9959,
+      "dimensions": {
+        "grade": 0.9959
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 1.666667,
+        "end": 1.766667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00100-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00100-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.1,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971871293487399,
+        1791971871292180141,
+        1791971873357878225,
+        1791971873656113618,
+        1791990002493880726
+      ]
+    },
+    {
+      "id": "claude-p00106-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9947,
+      "dimensions": {
+        "grade": 0.9947
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 1.766667,
+        "end": 1.983333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00106-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00106-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.21666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971873863518039,
+        1791971873862545909,
+        1791971876209361412,
+        1791971876517540278,
+        1791990002561591385
+      ]
+    },
+    {
+      "id": "claude-p00119-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9947,
+      "dimensions": {
+        "grade": 0.9947
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 1.983333,
+        "end": 2.233333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00119-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00119-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.25,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971874024073154,
+        1791971874022812522,
+        1791971876483078250,
+        1791971876783172320,
+        1791990002627157866
+      ]
+    },
+    {
+      "id": "claude-p00134-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9951,
+      "dimensions": {
+        "grade": 0.9951
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 2.233333,
+        "end": 2.45
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00134-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00134-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.21666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971874098605950,
+        1791971874097334110,
+        1791971876457977858,
+        1791971876760288566,
+        1791990002687083067
+      ]
+    },
+    {
+      "id": "claude-p00147-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9968,
+      "dimensions": {
+        "grade": 0.9968
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 2.45,
+        "end": 2.683333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00147-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00147-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.23333333333333334,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971876907849483,
+        1791971876906966269,
+        1791971879333347306,
+        1791971879660181485,
+        1791990002746492889
+      ]
+    },
+    {
+      "id": "claude-p00161-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9968,
+      "dimensions": {
+        "grade": 0.9968
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 2.683333,
+        "end": 2.933333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00161-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00161-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.25,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971877152941283,
+        1791971877152028611,
+        1791971879743435872,
+        1791971880038622831,
+        1791990002804967082
+      ]
+    },
+    {
+      "id": "claude-p00176-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9969,
+      "dimensions": {
+        "grade": 0.9969
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 2.933333,
+        "end": 3.15
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00176-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00176-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.21666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971877174399112,
+        1791971877173295106,
+        1791971879591640015,
+        1791971879910735484,
+        1791990002902665529
+      ]
+    },
+    {
+      "id": "claude-p00189-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9949,
+      "dimensions": {
+        "grade": 0.9949
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 3.15,
+        "end": 3.383333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00189-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00189-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.23333333333333334,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971880039761379,
+        1791971880038624748,
+        1791971882853897897,
+        1791971883180512491,
+        1791990003031298603
+      ]
+    },
+    {
+      "id": "claude-p00203-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9975,
+      "dimensions": {
+        "grade": 0.9975
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 3.383333,
+        "end": 3.633333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00203-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00203-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.25,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971880289417247,
+        1791971880288396241,
+        1791971883194913989,
+        1791971883691228293,
+        1791990003197054836
+      ]
+    },
+    {
+      "id": "claude-p00218-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.99,
+      "dimensions": {
+        "grade": 0.99
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 3.633333,
+        "end": 3.766667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00218-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00218-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971880400511958,
+        1791971880399549369,
+        1791971882858475590,
+        1791971883228546638,
+        1791990003394030239
+      ]
+    },
+    {
+      "id": "claude-p00226-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9982,
+      "dimensions": {
+        "grade": 0.9982
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 3.766667,
+        "end": 3.933333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00226-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00226-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.16666666666666666,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971883751610426,
+        1791971883750646129,
+        1791971887698807010,
+        1791971888042760994,
+        1791990003602958165
+      ]
+    },
+    {
+      "id": "claude-p00236-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.991,
+      "dimensions": {
+        "grade": 0.991
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 3.933333,
+        "end": 4.066667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00236-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00236-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971883811655306,
+        1791971883810729593,
+        1791971887319394450,
+        1791971887692650683,
+        1791990003731845448
+      ]
+    },
+    {
+      "id": "claude-p00244-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9918,
+      "dimensions": {
+        "grade": 0.9918
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 4.066667,
+        "end": 4.25
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00244-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00244-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.18333333333333332,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971884210486933,
+        1791971884209500344,
+        1791971887861538346,
+        1791971888203592485,
+        1791990003820776098
+      ]
+    },
+    {
+      "id": "claude-p00255-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9974,
+      "dimensions": {
+        "grade": 0.9974
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 4.25,
+        "end": 4.45
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00255-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00255-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.2,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971888185714426,
+        1791971888184769546,
+        1791971890532933308,
+        1791971890805571348,
+        1791990004011251507
+      ]
+    },
+    {
+      "id": "claude-p00267-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9974,
+      "dimensions": {
+        "grade": 0.9974
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 4.45,
+        "end": 4.75
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00267-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00267-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.3,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971888508570041,
+        1791971888507352868,
+        1791971891135147500,
+        1791971891429493496,
+        1791990004170775248
+      ]
+    },
+    {
+      "id": "claude-p00285-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9964,
+      "dimensions": {
+        "grade": 0.9964
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 4.75,
+        "end": 4.883333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00285-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00285-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971888654270448,
+        1791971888653344567,
+        1791971890777833733,
+        1791971891059512116,
+        1791990004243963562
+      ]
+    },
+    {
+      "id": "claude-p00293-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9967,
+      "dimensions": {
+        "grade": 0.9967
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 4.883333,
+        "end": 5.016667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00293-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00293-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971891206007400,
+        1791971891204953478,
+        1791971893370518417,
+        1791971893645767721,
+        1791990004343392769
+      ]
+    },
+    {
+      "id": "claude-p00301-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9969,
+      "dimensions": {
+        "grade": 0.9969
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.016667,
+        "end": 5.2
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00301-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00301-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.18333333333333332,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971891483796095,
+        1791971891482753089,
+        1791971893746568833,
+        1791971894030930064,
+        1791990004448982759
+      ]
+    },
+    {
+      "id": "claude-p00312-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9971,
+      "dimensions": {
+        "grade": 0.9971
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.2,
+        "end": 5.316667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00312-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00312-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.11666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971891895580629,
+        1791971891894339122,
+        1791971893927953565,
+        1791971894212041294,
+        1791990004547248918
+      ]
+    },
+    {
+      "id": "claude-p00319-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9911,
+      "dimensions": {
+        "grade": 0.9911
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.316667,
+        "end": 5.416667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00319-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00319-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.1,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971894023499272,
+        1791971894022450266,
+        1791971895969525721,
+        1791971896298960622,
+        1791990004616109666
+      ]
+    },
+    {
+      "id": "claude-p00325-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9972,
+      "dimensions": {
+        "grade": 0.9972
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.416667,
+        "end": 5.55
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00325-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00325-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971894402284369,
+        1791971894401481239,
+        1791971896493136011,
+        1791971896797414188,
+        1791990004680186223
+      ]
+    },
+    {
+      "id": "claude-p00333-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9974,
+      "dimensions": {
+        "grade": 0.9974
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.55,
+        "end": 5.683333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00333-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00333-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971894578522572,
+        1791971894577800069,
+        1791971896699489760,
+        1791971896993854631,
+        1791990004739879589
+      ]
+    },
+    {
+      "id": "claude-p00341-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9972,
+      "dimensions": {
+        "grade": 0.9972
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.683333,
+        "end": 5.8
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00341-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00341-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.11666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971896724334608,
+        1791971896723371186,
+        1791971898637633206,
+        1791971898957595638,
+        1791990004803835936
+      ]
+    },
+    {
+      "id": "claude-p00348-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9939,
+      "dimensions": {
+        "grade": 0.9939
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.8,
+        "end": 5.933333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00348-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00348-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.13333333333333333,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971897167827404,
+        1791971897167063941,
+        1791971899142736891,
+        1791971899440950409,
+        1791990004868539329
+      ]
+    },
+    {
+      "id": "claude-p00356-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9977,
+      "dimensions": {
+        "grade": 0.9977
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 5.933333,
+        "end": 6.033333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00356-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00356-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.1,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971897361869167,
+        1791971897361124038,
+        1791971899310003669,
+        1791971899613763677,
+        1791990004946861254
+      ]
+    },
+    {
+      "id": "claude-p00362-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9981,
+      "dimensions": {
+        "grade": 0.9981
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 6.033333,
+        "end": 6.15
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00362-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00362-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.11666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971899323571288,
+        1791971899322589074,
+        1791971901419385083,
+        1791971901732970354,
+        1791990005026293186
+      ]
+    },
+    {
+      "id": "claude-p00369-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9978,
+      "dimensions": {
+        "grade": 0.9978
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 6.15,
+        "end": 6.266667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00369-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00369-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.11666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971899794672657,
+        1791971899793849111,
+        1791971901962697860,
+        1791971902265741071,
+        1791990005156953311
+      ]
+    },
+    {
+      "id": "claude-p00376-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.996,
+      "dimensions": {
+        "grade": 0.996
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 6.266667,
+        "end": 6.483333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00376-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00376-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.21666666666666667,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971899971902200,
+        1791971899970947694,
+        1791971902548696502,
+        1791971902833905947,
+        1791990005235292820
+      ]
+    },
+    {
+      "id": "claude-p00399-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.997,
+      "dimensions": {
+        "grade": 0.997
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 6.65,
+        "end": 8.1
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00399-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00399-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 1.45,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971902223062705,
+        1791971902222010365,
+        1791971907822576580,
+        1791971908191612288,
+        1791979149926814244
+      ]
+    },
+    {
+      "id": "claude-p00486-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.9919,
+      "dimensions": {
+        "grade": 0.9919
+      },
+      "source": {
+        "slug": "claude-opus-5-5",
+        "start": 8.1,
+        "end": 8.333333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00486-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-p00486-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "claude-opus-5-5"
+      ],
+      "recipe": "plate",
+      "duration": 0.23333333333333334,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791971902692301189,
+        1791971902691514226,
+        1791971904964253520,
+        1791971905246645114,
+        1791990005305521910
+      ]
+    },
+    {
+      "id": "kardashev-s09-horizon-field",
+      "title": "Kardashev horizon, shader field",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 0.91555,
+      "dimensions": {
+        "field": 0.91555,
+        "coverage": 0.4595,
+        "within1Jnd": 0.0619
+      },
+      "source": {
+        "slug": "kardashev-0-7",
+        "start": 14.0,
+        "end": 16.0
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/kardashev-s09-horizon-field/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/kardashev-s09-horizon-field/V_001/poster.jpg",
+      "tags": [
+        "shader",
+        "field",
+        "backdrop",
+        "kardashev-0-7"
+      ],
+      "recipe": "shader-field",
+      "duration": 2.0,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791990956694441751,
+        1791990956692480824,
+        1791990995178574262,
+        1791990996026345074,
+        1791990995419930572
+      ]
+    },
+    {
+      "id": "motion-opus-s01-cream-field",
+      "title": "Cream backdrop, shader field",
+      "latest": "V_001",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": 0.99075,
+      "dimensions": {
+        "field": 0.99075,
+        "coverage": 0.9323,
+        "within1Jnd": 0.7762
+      },
+      "source": {
+        "slug": "motion-opus-5-5",
+        "start": 0.6,
+        "end": 2.6
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-s01-cream-field/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-s01-cream-field/V_001/poster.jpg",
+      "tags": [
+        "shader",
+        "field",
+        "backdrop",
+        "motion-opus-5-5"
+      ],
+      "recipe": "shader-field",
+      "duration": 2.0,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791994612905240702,
+        1791991966511672051,
+        1791991970852334853,
+        1791991971515917829,
+        1791991970927001124
+      ]
+    },
+    {
       "id": "onekey-c01-caption-read-detail",
-      "title": "onekey-c01-caption-read-detail",
-      "latest": "V_026",
-      "versions": [
-        "V_001",
-        "V_002",
-        "V_003",
-        "V_004",
-        "V_005",
-        "V_006",
-        "V_007",
-        "V_008",
-        "V_009",
-        "V_010",
-        "V_011",
-        "V_012",
-        "V_013",
-        "V_014",
-        "V_015",
-        "V_016",
-        "V_017",
-        "V_018",
-        "V_019",
-        "V_020",
-        "V_021",
-        "V_022",
-        "V_023",
-        "V_024",
-        "V_025",
-        "V_026"
-      ],
-      "score": 0.9848,
-      "dimensions": {
-        "animation": 0.9848,
-        "image": 1.0,
-        "colour": 1.0,
-        "typography": 0.9949
-      },
-      "source": null,
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c01-caption-read-detail/V_026/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c01-caption-read-detail/V_026/poster.jpg",
-      "tags": [],
-      "recipe": null,
-      "duration": 1.6833333333333333,
-      "updated": "12 October 2026"
-    },
-    {
-      "id": "onekey-c02-caption-question",
-      "title": "onekey-c02-caption-question",
-      "latest": "V_040",
-      "versions": [
-        "V_001",
-        "V_002",
-        "V_003",
-        "V_004",
-        "V_005",
-        "V_006",
-        "V_007",
-        "V_008",
-        "V_009",
-        "V_010",
-        "V_011",
-        "V_012",
-        "V_013",
-        "V_014",
-        "V_015",
-        "V_016",
-        "V_017",
-        "V_018",
-        "V_019",
-        "V_020",
-        "V_021",
-        "V_022",
-        "V_023",
-        "V_024",
-        "V_025",
-        "V_026",
-        "V_027",
-        "V_028",
-        "V_029",
-        "V_030",
-        "V_031",
-        "V_032",
-        "V_033",
-        "V_034",
-        "V_035",
-        "V_036",
-        "V_037",
-        "V_038",
-        "V_039",
-        "V_040"
-      ],
-      "score": 0.9902,
-      "dimensions": {
-        "animation": 0.9902,
-        "image": 1.0,
-        "colour": 1.0,
-        "typography": 0.9975
-      },
-      "source": null,
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c02-caption-question/V_040/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c02-caption-question/V_040/poster.jpg",
-      "tags": [],
-      "recipe": null,
-      "duration": 1.25,
-      "updated": "12 October 2026"
-    },
-    {
-      "id": "onekey-c03-caption-answer",
-      "title": "onekey-c03-caption-answer",
-      "latest": "V_038",
-      "versions": [
-        "V_001",
-        "V_002",
-        "V_003",
-        "V_004",
-        "V_005",
-        "V_006",
-        "V_007",
-        "V_008",
-        "V_009",
-        "V_010",
-        "V_011",
-        "V_012",
-        "V_013",
-        "V_014",
-        "V_015",
-        "V_016",
-        "V_017",
-        "V_018",
-        "V_019",
-        "V_020",
-        "V_021",
-        "V_022",
-        "V_023",
-        "V_024",
-        "V_025",
-        "V_026",
-        "V_027",
-        "V_028",
-        "V_029",
-        "V_030",
-        "V_031",
-        "V_032",
-        "V_033",
-        "V_034",
-        "V_035",
-        "V_036",
-        "V_037",
-        "V_038"
-      ],
-      "score": 0.9654,
-      "dimensions": {
-        "animation": 0.9654,
-        "image": 1.0,
-        "colour": 1.0,
-        "typography": 1.0
-      },
-      "source": null,
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c03-caption-answer/V_038/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c03-caption-answer/V_038/poster.jpg",
-      "tags": [],
-      "recipe": null,
-      "duration": 1.0833333333333333,
-      "updated": "12 October 2026"
-    },
-    {
-      "id": "onekey-c04-caption-open",
-      "title": "onekey-c04-caption-open",
-      "latest": "V_038",
-      "versions": [
-        "V_001",
-        "V_002",
-        "V_003",
-        "V_004",
-        "V_005",
-        "V_006",
-        "V_007",
-        "V_008",
-        "V_009",
-        "V_010",
-        "V_011",
-        "V_012",
-        "V_013",
-        "V_014",
-        "V_015",
-        "V_016",
-        "V_017",
-        "V_018",
-        "V_019",
-        "V_020",
-        "V_021",
-        "V_022",
-        "V_023",
-        "V_024",
-        "V_025",
-        "V_026",
-        "V_027",
-        "V_028",
-        "V_029",
-        "V_030",
-        "V_031",
-        "V_032",
-        "V_033",
-        "V_034",
-        "V_035",
-        "V_036",
-        "V_037",
-        "V_038"
-      ],
-      "score": 0.9809,
-      "dimensions": {
-        "animation": 0.9809,
-        "image": 1.0,
-        "colour": 1.0,
-        "typography": 0.9974
-      },
-      "source": null,
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c04-caption-open/V_038/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c04-caption-open/V_038/poster.jpg",
-      "tags": [],
-      "recipe": null,
-      "duration": 1.1333333333333333,
-      "updated": "12 October 2026"
-    },
-    {
-      "id": "onekey-c05-caption-duo",
-      "title": "onekey-c05-caption-duo",
-      "latest": "V_045",
+      "title": "Caption read-detail",
+      "latest": "V_047",
       "versions": [
         "V_001",
         "V_002",
@@ -277,26 +1352,468 @@
         "V_042",
         "V_043",
         "V_044",
-        "V_045"
+        "V_045",
+        "V_046",
+        "V_047"
       ],
-      "score": 0.9789,
+      "score": 0.9777,
       "dimensions": {
-        "animation": 0.9789,
+        "animation": 0.9777,
+        "image": 1.0,
+        "colour": 1.0,
+        "typography": 0.9949
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 25.4,
+        "end": 27.0833
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c01-caption-read-detail/V_047/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c01-caption-read-detail/V_047/poster.jpg",
+      "tags": [
+        "caption",
+        "onekey-pro-2"
+      ],
+      "recipe": "textcard",
+      "duration": 1.6833333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797601417430222,
+        1791796825756056074,
+        1791796832297956274,
+        1791796835807627055,
+        1791805003426955598
+      ]
+    },
+    {
+      "id": "onekey-c02-caption-question",
+      "title": "Caption question",
+      "latest": "V_046",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012",
+        "V_013",
+        "V_014",
+        "V_015",
+        "V_016",
+        "V_017",
+        "V_018",
+        "V_019",
+        "V_020",
+        "V_021",
+        "V_022",
+        "V_023",
+        "V_024",
+        "V_025",
+        "V_026",
+        "V_027",
+        "V_028",
+        "V_029",
+        "V_030",
+        "V_031",
+        "V_032",
+        "V_033",
+        "V_034",
+        "V_035",
+        "V_036",
+        "V_037",
+        "V_038",
+        "V_039",
+        "V_040",
+        "V_041",
+        "V_042",
+        "V_043",
+        "V_044",
+        "V_045",
+        "V_046"
+      ],
+      "score": 0.9903,
+      "dimensions": {
+        "animation": 0.9903,
+        "image": 1.0,
+        "colour": 1.0,
+        "typography": 0.9975
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 27.1833,
+        "end": 28.4333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c02-caption-question/V_046/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c02-caption-question/V_046/poster.jpg",
+      "tags": [
+        "caption",
+        "onekey-pro-2"
+      ],
+      "recipe": "textcard",
+      "duration": 1.25,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797601471269308,
+        1791796703627236777,
+        1791796709710767284,
+        1791796714922774127,
+        1791805005693492256
+      ]
+    },
+    {
+      "id": "onekey-c03-caption-answer",
+      "title": "Caption answer",
+      "latest": "V_044",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012",
+        "V_013",
+        "V_014",
+        "V_015",
+        "V_016",
+        "V_017",
+        "V_018",
+        "V_019",
+        "V_020",
+        "V_021",
+        "V_022",
+        "V_023",
+        "V_024",
+        "V_025",
+        "V_026",
+        "V_027",
+        "V_028",
+        "V_029",
+        "V_030",
+        "V_031",
+        "V_032",
+        "V_033",
+        "V_034",
+        "V_035",
+        "V_036",
+        "V_037",
+        "V_038",
+        "V_039",
+        "V_040",
+        "V_041",
+        "V_042",
+        "V_043",
+        "V_044"
+      ],
+      "score": 0.9988,
+      "dimensions": {
+        "animation": 0.9988,
         "image": 1.0,
         "colour": 1.0,
         "typography": 1.0
       },
-      "source": null,
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c05-caption-duo/V_045/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c05-caption-duo/V_045/poster.jpg",
-      "tags": [],
-      "recipe": null,
-      "duration": 1.3333333333333333,
-      "updated": "12 October 2026"
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 28.4333,
+        "end": 29.5167
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c03-caption-answer/V_044/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c03-caption-answer/V_044/poster.jpg",
+      "tags": [
+        "caption",
+        "onekey-pro-2"
+      ],
+      "recipe": "textcard",
+      "duration": 1.0833333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797601517160315,
+        1791796809961394741,
+        1791796815564526536,
+        1791796819036741320,
+        1791805009198121778
+      ]
     },
     {
-      "id": "onekey-s01-orb-ignition",
-      "title": "Orb ignition, measured field",
+      "id": "onekey-c04-caption-open",
+      "title": "Caption open",
+      "latest": "V_059",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012",
+        "V_013",
+        "V_014",
+        "V_015",
+        "V_016",
+        "V_017",
+        "V_018",
+        "V_019",
+        "V_020",
+        "V_021",
+        "V_022",
+        "V_023",
+        "V_024",
+        "V_025",
+        "V_026",
+        "V_027",
+        "V_028",
+        "V_029",
+        "V_030",
+        "V_031",
+        "V_032",
+        "V_033",
+        "V_034",
+        "V_035",
+        "V_036",
+        "V_037",
+        "V_038",
+        "V_039",
+        "V_040",
+        "V_041",
+        "V_042",
+        "V_043",
+        "V_044",
+        "V_045",
+        "V_046",
+        "V_047",
+        "V_048",
+        "V_049",
+        "V_050",
+        "V_051",
+        "V_052",
+        "V_053",
+        "V_054",
+        "V_055",
+        "V_056",
+        "V_057",
+        "V_058",
+        "V_059"
+      ],
+      "score": 0.9846,
+      "dimensions": {
+        "animation": 0.9846,
+        "image": 1.0,
+        "colour": 1.0,
+        "typography": 0.9974
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 55.417,
+        "end": 56.5503
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c04-caption-open/V_059/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c04-caption-open/V_059/poster.jpg",
+      "tags": [
+        "caption",
+        "onekey-pro-2"
+      ],
+      "recipe": "textcard",
+      "duration": 1.1333333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797601554906741,
+        1791796866612014840,
+        1791796871244060400,
+        1791796875447477726,
+        1791805013268015958
+      ]
+    },
+    {
+      "id": "onekey-c05-caption-duo",
+      "title": "Caption duo",
+      "latest": "V_066",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012",
+        "V_013",
+        "V_014",
+        "V_015",
+        "V_016",
+        "V_017",
+        "V_018",
+        "V_019",
+        "V_020",
+        "V_021",
+        "V_022",
+        "V_023",
+        "V_024",
+        "V_025",
+        "V_026",
+        "V_027",
+        "V_028",
+        "V_029",
+        "V_030",
+        "V_031",
+        "V_032",
+        "V_033",
+        "V_034",
+        "V_035",
+        "V_036",
+        "V_037",
+        "V_038",
+        "V_039",
+        "V_040",
+        "V_041",
+        "V_042",
+        "V_043",
+        "V_044",
+        "V_045",
+        "V_046",
+        "V_047",
+        "V_048",
+        "V_049",
+        "V_050",
+        "V_051",
+        "V_052",
+        "V_053",
+        "V_054",
+        "V_055",
+        "V_056",
+        "V_057",
+        "V_058",
+        "V_059",
+        "V_060",
+        "V_061",
+        "V_062",
+        "V_063",
+        "V_064",
+        "V_065",
+        "V_066"
+      ],
+      "score": 0.9883,
+      "dimensions": {
+        "animation": 0.9883,
+        "image": 1.0,
+        "colour": 1.0,
+        "typography": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 56.617,
+        "end": 57.9503
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c05-caption-duo/V_066/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-c05-caption-duo/V_066/poster.jpg",
+      "tags": [
+        "caption",
+        "onekey-pro-2"
+      ],
+      "recipe": "textcard",
+      "duration": 1.3333333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797601594858095,
+        1791796790016811054,
+        1791796797101225065,
+        1791796803185016500,
+        1791805017205910243
+      ]
+    },
+    {
+      "id": "onekey-d01-device-pullback",
+      "title": "Device pull-back, 3D",
+      "latest": "V_012",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012"
+      ],
+      "score": 0.7969,
+      "dimensions": {
+        "silhouette": 0.7969
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 1.333,
+        "end": 2.9
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-d01-device-pullback/V_012/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-d01-device-pullback/V_012/poster.jpg",
+      "tags": [
+        "3d",
+        "device",
+        "camera",
+        "onekey-pro-2"
+      ],
+      "recipe": "device3d",
+      "duration": 1.5666666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791818704995983480,
+        1791818704988663991,
+        1791818723493360365,
+        1791818725265968574,
+        1791842734909243911
+      ]
+    },
+    {
+      "id": "onekey-f3-logo-end",
+      "title": "onekey-f3-logo-end",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-logo-end/V_002/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880113691137813,
+        1791880113527817634,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-air-gap",
+      "title": "onekey-f3-t-air-gap",
       "latest": "V_005",
       "versions": [
         "V_001",
@@ -305,17 +1822,1951 @@
         "V_004",
         "V_005"
       ],
-      "score": 0.9922,
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-air-gap/V_005/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880031433274608,
+        1791880031430242529,
+        0,
+        1791880031776376732,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-all-new",
+      "title": "onekey-f3-t-all-new",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-all-new/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880022964501134,
+        1791880022943583539,
+        0,
+        1791880023191593469,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-aluminum-unibody",
+      "title": "onekey-f3-t-aluminum-unibody",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-aluminum-unibody/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880018945052874,
+        1791880018944155251,
+        0,
+        1791880019423558551,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-backup-seedcard",
+      "title": "onekey-f3-t-backup-seedcard",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-backup-seedcard/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880033399391113,
+        1791880033385768717,
+        0,
+        1791880033795643785,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-beautifully-powerful",
+      "title": "onekey-f3-t-beautifully-powerful",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-beautifully-powerful/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880024698686603,
+        1791880024695640399,
+        0,
+        1791880025213768184,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-bundled",
+      "title": "onekey-f3-t-bundled",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-bundled/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880031436205062,
+        1791880031435397438,
+        0,
+        1791880031697130223,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-cant-find",
+      "title": "onekey-f3-t-cant-find",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-cant-find/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880024344117454,
+        1791880024341160291,
+        0,
+        1791880024848683717,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-charge-wirelessly",
+      "title": "onekey-f3-t-charge-wirelessly",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-charge-wirelessly/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880025903781844,
+        1791880025900874265,
+        0,
+        1791880026327320851,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-clear-signing",
+      "title": "onekey-f3-t-clear-signing",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-clear-signing/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880017362486809,
+        1791880017361829018,
+        0,
+        1791880017759072105,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-eal",
+      "title": "onekey-f3-t-eal",
+      "latest": "V_004",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-eal/V_004/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880014327503280,
+        1791880014326613531,
+        0,
+        1791880014613187738,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-find-my",
+      "title": "onekey-f3-t-find-my",
+      "latest": "V_004",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-find-my/V_004/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880026480438461,
+        1791880026477518590,
+        0,
+        1791880027137874751,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-four-secure",
+      "title": "onekey-f3-t-four-secure",
+      "latest": "V_016",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007",
+        "V_008",
+        "V_009",
+        "V_010",
+        "V_011",
+        "V_012",
+        "V_013",
+        "V_014",
+        "V_015",
+        "V_016"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-four-secure/V_016/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "14 October 2026",
+      "_sig": [
+        1791967435752001168,
+        1791967434894763172,
+        0,
+        1791967523069188313,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-gorilla",
+      "title": "onekey-f3-t-gorilla",
+      "latest": "V_004",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-gorilla/V_004/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880033006354895,
+        1791880033004852981,
+        0,
+        1791880033272988506,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-mirror-polished",
+      "title": "onekey-f3-t-mirror-polished",
+      "latest": "V_006",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-mirror-polished/V_006/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880028672908178,
+        1791880028670282723,
+        0,
+        1791880029351277771,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-nfc-passkey",
+      "title": "onekey-f3-t-nfc-passkey",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-nfc-passkey/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880026268534437,
+        1791880026242122225,
+        0,
+        1791880026583732852,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-no-worries",
+      "title": "onekey-f3-t-no-worries",
+      "latest": "V_005",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-no-worries/V_005/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880801198756205,
+        1791880801054895114,
+        0,
+        1791967523304166129,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-on-device",
+      "title": "onekey-f3-t-on-device",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-on-device/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880033241573469,
+        1791880033238611306,
+        0,
+        1791880033592001624,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-open-source",
+      "title": "onekey-f3-t-open-source",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-open-source/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880038706177535,
+        1791880038704337330,
+        0,
+        1791880039024335321,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-quantum-ready",
+      "title": "onekey-f3-t-quantum-ready",
+      "latest": "V_006",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-quantum-ready/V_006/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880018387358605,
+        1791880018386400148,
+        0,
+        1791880018768861840,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-safeos",
+      "title": "onekey-f3-t-safeos",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-safeos/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880028638528228,
+        1791880028635350191,
+        0,
+        1791880028993956626,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-see-exactly",
+      "title": "onekey-f3-t-see-exactly",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-see-exactly/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880026864903358,
+        1791880026862571070,
+        0,
+        1791880027418657592,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-smoother",
+      "title": "onekey-f3-t-smoother",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-smoother/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880038327238713,
+        1791880038321921388,
+        0,
+        1791880038632088352,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-title",
+      "title": "onekey-f3-t-title",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-title/V_002/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880110385503720,
+        1791880110383790098,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-title-small",
+      "title": "onekey-f3-t-title-small",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-title-small/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880013524337785,
+        1791880013523664161,
+        0,
+        1791880013841483281,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-ultra-crips",
+      "title": "onekey-f3-t-ultra-crips",
+      "latest": "V_007",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-ultra-crips/V_007/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880021207632156,
+        1791880021203792078,
+        0,
+        1791880021662026868,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-unlock",
+      "title": "onekey-f3-t-unlock",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-unlock/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880009254113934,
+        1791880009253409018,
+        0,
+        1791880009578594460,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-t-with-a-touch",
+      "title": "onekey-f3-t-with-a-touch",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-t-with-a-touch/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880013423007017,
+        1791880013422172601,
+        0,
+        1791880013820095604,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-battery",
+      "title": "onekey-f3-ui-battery",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-battery/V_001/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791877376343942769,
+        1791877376341196894,
+        0,
+        1791877376362801638,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-battery-text",
+      "title": "onekey-f3-ui-battery-text",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-battery-text/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880030180987394,
+        1791880030178113815,
+        0,
+        1791880030350758521,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-bluetooth",
+      "title": "onekey-f3-ui-bluetooth",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-bluetooth/V_001/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791877356763123293,
+        1791877356759742690,
+        0,
+        1791877356767817545,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-onekey",
+      "title": "onekey-f3-ui-onekey",
+      "latest": "V_005",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-onekey/V_005/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791881832040165113,
+        1791881831972777246,
+        0,
+        1791967523381119259,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-padlock",
+      "title": "onekey-f3-ui-padlock",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-padlock/V_002/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880115004265980,
+        1791880114893229809,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "onekey-f3-ui-unlock-line",
+      "title": "onekey-f3-ui-unlock-line",
+      "latest": "V_003",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-f3-ui-unlock-line/V_003/render.mp4",
+      "poster": null,
+      "tags": [],
+      "recipe": null,
+      "duration": 0.0,
+      "updated": "13 October 2026",
+      "_sig": [
+        1791880045738018023,
+        1791880045735143611,
+        0,
+        1791880045888348845,
+        0
+      ]
+    },
+    {
+      "id": "onekey-p00080-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
       "dimensions": {
-        "image": 0.9922
+        "grade": 1.0,
+        "overlay_light": 0.0,
+        "overlay_typography": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 1.333333,
+        "end": 4.933333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00080-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00080-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 3.6,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798159972597266,
+        1791798159970301839,
+        1791798184060551794,
+        1791798189404200235,
+        1791805023373577358
+      ]
+    },
+    {
+      "id": "onekey-p00377-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9991,
+      "dimensions": {
+        "grade": 0.9991
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 6.283333,
+        "end": 7.45
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00377-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00377-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.1666666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798156515569778,
+        1791798156513584852,
+        1791798169829468571,
+        1791798170693750954,
+        1791805030522229880
+      ]
+    },
+    {
+      "id": "onekey-p00447-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9905,
+      "dimensions": {
+        "grade": 0.9905,
+        "overlay_light": 0.9999,
+        "overlay_typography": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 7.45,
+        "end": 8.733333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00447-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00447-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.2833333333333334,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798160035669770,
+        1791798159983304191,
+        1791798173684239715,
+        1791798175369503485,
+        1791805036904490261
+      ]
+    },
+    {
+      "id": "onekey-p00524-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 1.0,
+      "dimensions": {
+        "grade": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 8.733333,
+        "end": 10.2
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00524-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00524-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.4666666666666666,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798157161628930,
+        1791798157158654457,
+        1791798169860291049,
+        1791798170694471082,
+        1791805044966513524
+      ]
+    },
+    {
+      "id": "onekey-p00612-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0016,
+      "dimensions": {
+        "grade": 0.989,
+        "overlay_light": 0.0016,
+        "overlay_typography": 0.3793
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 10.2,
+        "end": 11.65
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00612-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00612-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.45,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798187221743959,
+        1791798187219939524,
+        1791798199134210139,
+        1791798200676278405,
+        1791805052830574905
+      ]
+    },
+    {
+      "id": "onekey-p00699-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9938,
+      "dimensions": {
+        "grade": 0.9938
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 11.65,
+        "end": 13.25
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00699-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00699-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.6,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798185067988857,
+        1791798185060085978,
+        1791798198056995881,
+        1791798198726114269,
+        1791842738592352915
+      ]
+    },
+    {
+      "id": "onekey-p00795-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9831,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.9836
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 13.25,
+        "end": 13.933333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00795-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00795-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 0.6833333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798192072925422,
+        1791798192071237607,
+        1791798202061801110,
+        1791798203400403461,
+        1791842754773922269
+      ]
+    },
+    {
+      "id": "onekey-p00836-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.5464,
+      "dimensions": {
+        "grade": 0.99,
+        "overlay_light": 0.5464,
+        "overlay_typography": 0.6473
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 13.933333,
+        "end": 14.6
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00836-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00836-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 0.6666666666666666,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798203038340344,
+        1791798203036408321,
+        1791798212794385030,
+        1791798213907536521,
+        1791842758071350880
+      ]
+    },
+    {
+      "id": "onekey-p00876-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9986,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.5761
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 14.6,
+        "end": 15.883333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00876-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00876-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.2833333333333334,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798213082725618,
+        1791798213081315841,
+        1791798225237050853,
+        1791798229721622500,
+        1791842764436547338
+      ]
+    },
+    {
+      "id": "onekey-p00953-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9974,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.9391
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 15.883333,
+        "end": 19.6
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00953-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p00953-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 3.716666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798217282425875,
+        1791798217277388002,
+        1791798240690042027,
+        1791798246553755312,
+        1791842768378854628
+      ]
+    },
+    {
+      "id": "onekey-p01176-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9486,
+      "dimensions": {
+        "grade": 0.9974,
+        "overlay_light": 0.9486,
+        "overlay_typography": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 19.6,
+        "end": 22.566667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01176-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01176-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.966666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798217661689493,
+        1791798217658582818,
+        1791798237121864988,
+        1791798240121829759,
+        1791842768539376418
+      ]
+    },
+    {
+      "id": "onekey-p01354-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_004",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004"
+      ],
+      "score": 0.6577,
+      "dimensions": {
+        "grade": 0.9966,
+        "overlay_light": 0.6577,
+        "overlay_typography": 0.9974
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 22.567,
+        "end": 25.4
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01354-plate/V_004/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01354-plate/V_004/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.8333333333333335,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798087209101113,
+        1791798087206916603,
+        1791798106298687424,
+        1791798107823118650,
+        1791842773679337578
+      ]
+    },
+    {
+      "id": "onekey-p01524-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 1.0,
+      "dimensions": {
+        "grade": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 25.4,
+        "end": 29.533333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01524-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01524-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 4.133333333333334,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797395710747095,
+        1791797395708488417,
+        1791797415592519326,
+        1791797416145586792,
+        1791842777181899167
+      ]
+    },
+    {
+      "id": "onekey-p01625-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0038,
+      "dimensions": {
+        "grade": 1.0,
+        "overlay_light": 0.9403,
+        "overlay_typography": 0.0038
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 27.083333,
+        "end": 27.183333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01625-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01625-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 0.1,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798229863138074,
+        1791798229855566955,
+        1791798236248621662,
+        1791798236956943645,
+        1791990005538056506
+      ]
+    },
+    {
+      "id": "onekey-p01772-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9964,
+        "overlay_light": 0.0663,
+        "overlay_typography": 0.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 29.533333,
+        "end": 31.8
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01772-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01772-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.2666666666666666,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798259462589142,
+        1791798259459446832,
+        1791798273514168689,
+        1791798275297321882,
+        1791842782692572595
+      ]
+    },
+    {
+      "id": "onekey-p01908-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9003,
+      "dimensions": {
+        "grade": 0.9914,
+        "overlay_light": 0.9003,
+        "overlay_typography": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 31.8,
+        "end": 34.566667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01908-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p01908-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.7666666666666666,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798265172731556,
+        1791798265171017796,
+        1791798278745165251,
+        1791798281131421651,
+        1791842790966254424
+      ]
+    },
+    {
+      "id": "onekey-p02074-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9962,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.9836
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 34.566667,
+        "end": 39.4
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02074-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02074-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 4.833333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798269730295928,
+        1791798269721469044,
+        1791798289993779579,
+        1791798295234269429,
+        1791842796358725945
+      ]
+    },
+    {
+      "id": "onekey-p02364-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9819,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 39.4,
+        "end": 44.25
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02364-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02364-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 4.85,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798284383097033,
+        1791798284379689848,
+        1791798315996093473,
+        1791798321275971964,
+        1791842801304853633
+      ]
+    },
+    {
+      "id": "onekey-p02655-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.7332,
+      "dimensions": {
+        "grade": 0.9968,
+        "overlay_light": 0.7332,
+        "overlay_typography": 0.9975
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 44.25,
+        "end": 50.2
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02655-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p02655-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 5.95,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798301755139586,
+        1791798301752500697,
+        1791798328648033164,
+        1791798333851552452,
+        1791989982707720121
+      ]
+    },
+    {
+      "id": "onekey-p03-plate-aluminium",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9991,
+      "dimensions": {
+        "grade": 0.9991
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 6.283,
+        "end": 7.45
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03-plate-aluminium/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03-plate-aluminium/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.1666666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797297027687423,
+        1791797297025738080,
+        1791797310612973405,
+        1791797311257572508,
+        1791989982794817719
+      ]
+    },
+    {
+      "id": "onekey-p03012-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9956,
+      "dimensions": {
+        "grade": 0.9956
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 50.2,
+        "end": 51.683333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03012-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03012-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.4833333333333334,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798302997390227,
+        1791798302995616467,
+        1791798312867175071,
+        1791798313372152052,
+        1791989982899598830
+      ]
+    },
+    {
+      "id": "onekey-p03101-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 1.0,
+        "overlay_light": 0.0,
+        "overlay_typography": 0.9974
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 51.683333,
+        "end": 54.05
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03101-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03101-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.3666666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798320189880941,
+        1791798320187393178,
+        1791798334482208049,
+        1791798337818427669,
+        1791989983015401833
+      ]
+    },
+    {
+      "id": "onekey-p03243-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.3883,
+      "dimensions": {
+        "grade": 1.0,
+        "overlay_light": 0.5167,
+        "overlay_typography": 0.3883
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 54.05,
+        "end": 55.366667
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03243-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03243-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.3166666666666667,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798339670967289,
+        1791798339668859070,
+        1791798350419325218,
+        1791798351649217032,
+        1791989983106241493
+      ]
+    },
+    {
+      "id": "onekey-p03322-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": 1.0,
+      "dimensions": {
+        "grade": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 55.366667,
+        "end": 58.0
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03322-plate/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03322-plate/V_001/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 2.6333333333333333,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791797440740306520,
+        1791797440737049213,
+        1791797454398855303,
+        1791797454979603816,
+        1791989983195386227
+      ]
+    },
+    {
+      "id": "onekey-p03480-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.4859,
+      "dimensions": {
+        "grade": 0.9923,
+        "overlay_light": 0.4859,
+        "overlay_typography": 0.9725
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 58.0,
+        "end": 59.533333
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03480-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03480-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.5333333333333334,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798347024733589,
+        1791798347022785871,
+        1791798359970086031,
+        1791798361156458904,
+        1791989983299516960
+      ]
+    },
+    {
+      "id": "onekey-p03572-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.9731,
+      "dimensions": {
+        "grade": 0.9731
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 59.533333,
+        "end": 60.8
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03572-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03572-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.2666666666666666,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798361129330802,
+        1791798361127318707,
+        1791798370455448458,
+        1791798370870812744,
+        1791989983415687465
+      ]
+    },
+    {
+      "id": "onekey-p03648-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 0.0,
+      "dimensions": {
+        "grade": 0.9922,
+        "overlay_light": 0.0474,
+        "overlay_typography": 0.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 60.8,
+        "end": 62.0
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03648-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03648-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 1.2,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798367148383841,
+        1791798367146593998,
+        1791798376671975123,
+        1791798377950407109,
+        1791989983510598356
+      ]
+    },
+    {
+      "id": "onekey-p03720-plate",
+      "title": "Plate colour animatic",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002"
+      ],
+      "score": 1.0,
+      "dimensions": {
+        "grade": 1.0
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 62.0,
+        "end": 68.0
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03720-plate/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-p03720-plate/V_002/poster.jpg",
+      "tags": [
+        "plate",
+        "slot",
+        "grade",
+        "onekey-pro-2"
+      ],
+      "recipe": "plate",
+      "duration": 6.0,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791798370928829177,
+        1791798370926339288,
+        1791798392551512470,
+        1791798393062459053,
+        1791989983587746025
+      ]
+    },
+    {
+      "id": "onekey-s01-orb-ignition",
+      "title": "Orb ignition, measured field",
+      "latest": "V_006",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004",
+        "V_005",
+        "V_006",
+        "V_007"
+      ],
+      "score": 0.4926,
+      "dimensions": {
+        "animation": 0.4926,
+        "image": 0.9014,
+        "colour": 1.0
       },
       "source": {
         "slug": "onekey-pro-2",
         "start": 0.0,
         "end": 1.333
       },
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s01-orb-ignition/V_005/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s01-orb-ignition/V_005/poster.jpg",
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s01-orb-ignition/V_006/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s01-orb-ignition/V_006/poster.jpg",
       "tags": [
         "orb",
         "glow",
@@ -324,12 +3775,19 @@
       ],
       "recipe": "graphic",
       "duration": 1.3333333333333333,
-      "updated": "12 October 2026"
+      "updated": "14 October 2026",
+      "_sig": [
+        1791994449089644750,
+        1791796899620347068,
+        1791796913770595690,
+        1791796916576766809,
+        1791796916634319829
+      ]
     },
     {
       "id": "onekey-s02-caption-shine",
       "title": "Caption scale-settle with light sweep",
-      "latest": "V_045",
+      "latest": "V_066",
       "versions": [
         "V_001",
         "V_002",
@@ -375,11 +3833,36 @@
         "V_042",
         "V_043",
         "V_044",
-        "V_045"
+        "V_045",
+        "V_046",
+        "V_047",
+        "V_048",
+        "V_049",
+        "V_050",
+        "V_051",
+        "V_052",
+        "V_053",
+        "V_054",
+        "V_055",
+        "V_056",
+        "V_057",
+        "V_058",
+        "V_059",
+        "V_060",
+        "V_061",
+        "V_062",
+        "V_063",
+        "V_064",
+        "V_065",
+        "V_066",
+        "V_067",
+        "V_068",
+        "V_069",
+        "V_070"
       ],
-      "score": 0.9897,
+      "score": 0.9784,
       "dimensions": {
-        "animation": 0.9897,
+        "animation": 0.9784,
         "image": 1.0,
         "colour": 1.0,
         "typography": 1.0
@@ -392,8 +3875,8 @@
           "S02"
         ]
       },
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s02-caption-shine/V_045/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s02-caption-shine/V_045/poster.jpg",
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s02-caption-shine/V_066/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s02-caption-shine/V_066/poster.jpg",
       "tags": [
         "caption",
         "shine",
@@ -402,7 +3885,89 @@
       ],
       "recipe": "textcard",
       "duration": 1.35,
-      "updated": "12 October 2026"
+      "updated": "14 October 2026",
+      "_sig": [
+        1791994608829334047,
+        1791796776984356488,
+        1791796784240950986,
+        1791796790053504616,
+        1791991713038101377
+      ]
+    },
+    {
+      "id": "onekey-s13-studio-backdrop",
+      "title": "Studio backdrop, shader",
+      "latest": "V_004",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003",
+        "V_004"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 19.6,
+        "end": 22.55
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-backdrop/V_004/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-backdrop/V_004/poster.jpg",
+      "tags": [
+        "shader",
+        "backdrop",
+        "onekey-pro-2"
+      ],
+      "recipe": "shader-backdrop",
+      "duration": 2.95,
+      "updated": "12 October 2026",
+      "_sig": [
+        1791819749515010052,
+        1791819749513235210,
+        1791819802896948462,
+        1791819804221756602,
+        1791989983714057877
+      ]
+    },
+    {
+      "id": "onekey-s13-studio-field",
+      "title": "Studio backdrop, shader field",
+      "latest": "V_002",
+      "versions": [
+        "V_001",
+        "V_002",
+        "V_003"
+      ],
+      "score": 0.94198,
+      "dimensions": {
+        "field": 0.94198,
+        "coverage": 0.8256,
+        "within1Jnd": 0.1345
+      },
+      "source": {
+        "slug": "onekey-pro-2",
+        "start": 19.6,
+        "end": 22.55
+      },
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_002/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_002/poster.jpg",
+      "tags": [
+        "shader",
+        "field",
+        "backdrop",
+        "onekey-pro-2"
+      ],
+      "recipe": "shader-field",
+      "duration": 2.95,
+      "updated": "14 October 2026",
+      "_sig": [
+        1792006003808091300,
+        1791991109754874871,
+        1791991151738138423,
+        1791991152478773612,
+        1791991151919074573
+      ]
     }
-  ]
+  ],
+  "errors": []
 }
