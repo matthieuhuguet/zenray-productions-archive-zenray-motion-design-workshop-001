@@ -1,7 +1,35 @@
 {
   "schema": "zrmd/catalog@1",
-  "updated": "15 October 2026, 14:03",
+  "updated": "15 October 2026, 21:28",
   "motions": [
+    {
+      "id": "claude-opus-5-5-motion",
+      "title": "claude-opus-5-5 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-opus-5-5-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/claude-opus-5-5-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "claude-opus-5-5",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 20.0,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533795216321,
+        1792085533795060363,
+        1792084921801356093,
+        0,
+        1792092529586419307
+      ]
+    },
     {
       "id": "claude-p00000-plate",
       "title": "Plate colour animatic",
@@ -1228,6 +1256,145 @@
       ]
     },
     {
+      "id": "film-de-lancement-30-s",
+      "title": "Film de lancement 30 s",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/film-de-lancement-30-s/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/film-de-lancement-30-s/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "9x16"
+      ],
+      "recipe": "motion-project",
+      "duration": 30.0,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533820491873,
+        1792085533820299373,
+        1792084976783420558,
+        0,
+        1792092529663248250
+      ]
+    },
+    {
+      "id": "fin-4-motion",
+      "title": "fin-4 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/fin-4-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/fin-4-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "fin-4",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 7.9,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792084911346954982,
+        1792084911346764357,
+        1792084885489960415,
+        0,
+        1792092529736674014
+      ]
+    },
+    {
+      "id": "flora-agents-on-canvas-motion",
+      "title": "flora-agents-on-canvas · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/flora-agents-on-canvas-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/flora-agents-on-canvas-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "flora-agents-on-canvas",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 51.433,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533852179469,
+        1792085533852007302,
+        1792085031259031465,
+        0,
+        1792092529812582620
+      ]
+    },
+    {
+      "id": "interface-motion",
+      "title": "interface · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/interface-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/interface-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "interface",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 90.067,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533893065652,
+        1792085533892909610,
+        1792085179079194480,
+        0,
+        1792092529896981341
+      ]
+    },
+    {
+      "id": "kardashev-0-7-motion",
+      "title": "kardashev-0-7 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/kardashev-0-7-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/kardashev-0-7-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "kardashev-0-7",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 67.433,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533926098998,
+        1792085533925938081,
+        1792085096042082183,
+        0,
+        1792092529974642453
+      ]
+    },
+    {
       "id": "kardashev-s09-horizon-field",
       "title": "Kardashev horizon, shader field",
       "latest": "V_001",
@@ -1262,6 +1429,90 @@
         1791990995178574262,
         1791990996026345074,
         1791990995419930572
+      ]
+    },
+    {
+      "id": "memo-motion",
+      "title": "memo · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/memo-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/memo-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "memo",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 44.367,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533958855428,
+        1792085533958700511,
+        1792085003562540936,
+        0,
+        1792092530054365698
+      ]
+    },
+    {
+      "id": "motion-opus-5-5-motion",
+      "title": "motion-opus-5-5 reproduit",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-5-5-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-5-5-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "motion-opus-5-5",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 29.933,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085533984736729,
+        1792085533984582521,
+        1792084957925380394,
+        0,
+        1792092530174493464
+      ]
+    },
+    {
+      "id": "motion-opus-5-5-preview",
+      "title": "motion-opus-5-5, fenêtre d'aperçu",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-5-5-preview/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/motion-opus-5-5-preview/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "motion-opus-5-5",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 16.433,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534009364697,
+        1792085534009209656,
+        1792084906473291506,
+        0,
+        1792092530245949721
       ]
     },
     {
@@ -3742,6 +3993,34 @@
       ]
     },
     {
+      "id": "onekey-pro-2-motion",
+      "title": "onekey-pro-2 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-pro-2-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-pro-2-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "onekey-pro-2",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 68.0,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534046129503,
+        1792085534045951712,
+        1792085133199308590,
+        0,
+        1792092530381391083
+      ]
+    },
+    {
       "id": "onekey-s01-orb-ignition",
       "title": "Orb ignition, measured field",
       "latest": "V_006",
@@ -3966,6 +4245,172 @@
         1791991291210273717,
         1791991291900400259,
         1791991291335228960
+      ]
+    },
+    {
+      "id": "paper-mono-code-motion",
+      "title": "paper-mono-code · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/paper-mono-code-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/paper-mono-code-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "paper-mono-code",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 60.567,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534073913306,
+        1792085534073770639,
+        1792085060840336006,
+        0,
+        1792092530466644599
+      ]
+    },
+    {
+      "id": "test-short-3d",
+      "title": "Test short 3D",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/test-short-3d/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/test-short-3d/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "9x16"
+      ],
+      "recipe": "motion-project",
+      "duration": 23.5,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534103576735,
+        1792085534103387651,
+        1792084940162332589,
+        0,
+        1792092530542425288
+      ]
+    },
+    {
+      "id": "vogun-titles-motion",
+      "title": "Titres Vogun électriques",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/vogun-titles-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/vogun-titles-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "1x1"
+      ],
+      "recipe": "motion-project",
+      "duration": 10.0,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792084911373682188,
+        1792084911373499063,
+        1792084893933602913,
+        0,
+        1792092530602632504
+      ]
+    },
+    {
+      "id": "x-anabology-2105325733312884869-motion",
+      "title": "x-anabology-2105325733312884869 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/x-anabology-2105325733312884869-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/x-anabology-2105325733312884869-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "x-anabology-2105325733312884869",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 191.567,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534158530048,
+        1792085534158357715,
+        1792085419751130918,
+        0,
+        1792092530681548872
+      ]
+    },
+    {
+      "id": "x-anabology-2106157622986748377-motion",
+      "title": "x-anabology-2106157622986748377 · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/x-anabology-2106157622986748377-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/x-anabology-2106157622986748377-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "x-anabology-2106157622986748377",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 181.3,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534200346190,
+        1792085534200148064,
+        1792085267303168365,
+        0,
+        1792092530762236745
+      ]
+    },
+    {
+      "id": "yt-4q-o-ylnvnc-motion",
+      "title": "yt-4Q-o_ylnVnc · base motion",
+      "latest": "V_001",
+      "versions": [
+        "V_001"
+      ],
+      "score": null,
+      "dimensions": null,
+      "source": null,
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/yt-4q-o-ylnvnc-motion/V_001/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/yt-4q-o-ylnvnc-motion/V_001/poster.jpg",
+      "tags": [
+        "motion",
+        "yt-4Q-o_ylnVnc",
+        "16x9"
+      ],
+      "recipe": "motion-project",
+      "duration": 181.833,
+      "updated": "15 October 2026",
+      "_sig": [
+        1792085534233954744,
+        1792085534233797786,
+        1792085324848488648,
+        0,
+        1792092530842237950
       ]
     }
   ],
