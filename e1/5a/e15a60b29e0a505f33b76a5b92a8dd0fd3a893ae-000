@@ -1,0 +1,100 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Film de lancement 30 s",
+ "format": "9x16",
+ "fps": 30,
+ "theme": {},
+ "scenes": [
+  {
+   "id": "s1",
+   "template": "title-card",
+   "duration": 4,
+   "params": {
+    "footnote": "Made with ZenRay",
+    "title": "Louisiana Bayou",
+    "titleFont": "Fraunces",
+    "titleSize": 150,
+    "accent": "#2f6fe4"
+   }
+  },
+  {
+   "id": "s2",
+   "template": "prompt-status",
+   "duration": 6,
+   "params": {}
+  },
+  {
+   "id": "s3",
+   "template": "kinetic-words",
+   "duration": 3,
+   "params": {}
+  },
+  {
+   "id": "s4",
+   "template": "big-count",
+   "duration": 2.5,
+   "params": {}
+  },
+  {
+   "id": "s5",
+   "template": "list-focus",
+   "duration": 3.5,
+   "params": {}
+  },
+  {
+   "id": "s6",
+   "template": "color-slam",
+   "duration": 1.5,
+   "params": {}
+  },
+  {
+   "id": "s7",
+   "template": "orbit-word",
+   "duration": 2,
+   "params": {}
+  },
+  {
+   "id": "s8",
+   "template": "gradient-word",
+   "duration": 2.5,
+   "params": {}
+  },
+  {
+   "id": "s9",
+   "template": "logo-merge",
+   "duration": 2,
+   "params": {}
+  },
+  {
+   "id": "s10",
+   "template": "end-card",
+   "duration": 3,
+   "params": {}
+  }
+ ],
+ "music": {
+  "mode": "bank",
+  "generate": {
+   "tempo": 124
+  },
+  "file": {},
+  "bank": {
+   "track": "flora-agents-on-canvas-m1",
+   "semitones": -1,
+   "drums": -10,
+   "tilt": -3,
+   "width": 0.9,
+   "fadeIn": 1.5,
+   "variation": "calm"
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "enabled": false
+ },
+ "id": "film-de-lancement-30-s",
+ "updated": "15 October 2026, 14:10",
+ "versionNote": "avant la passe de style maison du 15 octobre",
+ "versionSaved": "15 October 2026, 15:19",
+ "version": "V_003"
+}

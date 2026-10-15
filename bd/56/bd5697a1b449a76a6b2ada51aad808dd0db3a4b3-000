@@ -1,0 +1,42 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "fin-4 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "fin-4",
+ "doc": "15 October 2026: first motion base of fin-4: one scene per measured shot, the words and treatments read on the contact sheets; every filmed shot is redrawn as motion (illustrated-shot). To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "music": {
+  "mode": "none"
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": []
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "template": "flow-diagram",
+   "duration": 7.867,
+   "params": {
+    "title": "Introducing\nFin 4",
+    "nodes": "Customer > Customer agent > Helpdesk\nOperator",
+    "text": "Fin 4 brings major upgrades to every part of the system. A more capable Customer Agent, a more powerful Operator, and new ways for Fin to work with your team.",
+    "step": 2.4,
+    "titleSize": 120
+   }
+  }
+ ],
+ "id": "fin-4-motion",
+ "updated": "15 October 2026, 15:19",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 15:20",
+ "version": "V_006"
+}

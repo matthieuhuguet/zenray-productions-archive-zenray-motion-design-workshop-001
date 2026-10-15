@@ -1,0 +1,47 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "fin-4 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 1 shots of the reference fin-4 (7.9 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "fin-4",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "none"
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": []
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 7.8667,
+   "ref": {
+    "shot": "S01",
+    "family": "graphic",
+    "start": 0.0,
+    "description": "Plan unique fixe : sur un fond blanc coiffé d'un dégradé pastel en vague, le titre reste immobile tandis qu'un point lumineux parcourt le schéma et colore successivement une boîte en bleu, une barre en violet puis une boîte en vert."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#fbfbfb",
+    "ink": "#111111",
+    "accent": "#de8c8e"
+   }
+  }
+ ],
+ "id": "fin-4-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}

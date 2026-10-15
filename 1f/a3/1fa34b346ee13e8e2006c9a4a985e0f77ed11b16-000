@@ -1,0 +1,855 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "claude-opus-5-5 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "claude-opus-5-5",
+ "doc": "15 October 2026: first motion base of claude-opus-5-5: one scene per measured shot, the words and treatments read on the contact sheets; plates show an excerpt of the reference until a render replaces them. To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "claude-opus-5-5",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "claude-opus-5-5:E001",
+    "kind": "impact",
+    "t": 8.49
+   },
+   {
+    "id": "claude-opus-5-5:E002",
+    "kind": "keyboard",
+    "t": 9.025
+   },
+   {
+    "id": "claude-opus-5-5:E003",
+    "kind": "impact",
+    "t": 13.915
+   },
+   {
+    "id": "claude-opus-5-5:E004",
+    "kind": "keyboard",
+    "t": 15.075
+   },
+   {
+    "id": "claude-opus-5-5:E005",
+    "kind": "keyboard",
+    "t": 15.275
+   },
+   {
+    "id": "claude-opus-5-5:E006",
+    "kind": "swoosh",
+    "t": 15.725
+   },
+   {
+    "id": "claude-opus-5-5:E007",
+    "kind": "subdrop",
+    "t": 15.86
+   },
+   {
+    "id": "claude-opus-5-5:E008",
+    "kind": "impact",
+    "t": 17.26
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "media-text",
+   "duration": 1.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 0.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 1.04,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 1.24,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 1.24,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "media-text",
+   "duration": 1.04,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 2.28,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 2.28,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "media-text",
+   "duration": 0.44,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 3.32,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 3.32,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "media-text",
+   "duration": 0.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 3.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 3.76,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "media-text",
+   "duration": 0.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 4.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 4.0,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "media-text",
+   "duration": 0.52,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 4.24,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 4.24,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "media-text",
+   "duration": 0.6,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 4.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 4.76,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "media-text",
+   "duration": 0.52,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 5.36,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 5.36,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "media-text",
+   "duration": 0.56,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 5.88,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 5.88,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "media-text",
+   "duration": 0.6,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 6.44,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 6.44,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "media-text",
+   "duration": 0.52,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 7.04,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 7.04,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "media-text",
+   "duration": 0.56,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 7.56,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 7.56,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "media-text",
+   "duration": 0.6,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 8.12,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 8.12,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "media-text",
+   "duration": 0.08,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 8.72,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 8.72,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "media-text",
+   "duration": 0.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 8.8,
+    "style": "centre",
+    "text": "There's",
+    "font": "AnthropicSerif",
+    "size": 46,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "fondu",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 8.8,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "media-text",
+   "duration": 0.4,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.04,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 9.04,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "media-text",
+   "duration": 0.16,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.44,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 9.44,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 0.16,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.6,
+    "style": "centre",
+    "text": "There's",
+    "font": "AnthropicSerif",
+    "size": 46,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 9.6,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "media-text",
+   "duration": 0.44,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 9.76,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "media-text",
+   "duration": 0.3,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 10.2,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 10.2,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "media-text",
+   "duration": 0.18,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 10.5,
+    "style": "centre",
+    "text": "There's",
+    "font": "AnthropicSerif",
+    "size": 46,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 10.5,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "media-text",
+   "duration": 0.62,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 10.68,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 10.68,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "media-text",
+   "duration": 0.1,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 11.3,
+    "style": "centre",
+    "text": "more to",
+    "font": "AnthropicSerif",
+    "size": 46,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "fondu",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 11.3,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "media-text",
+   "duration": 0.32,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 11.4,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 11.4,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 0.32,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 11.72,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 11.72,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "media-text",
+   "duration": 0.06,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.04,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 12.04,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "media-text",
+   "duration": 0.38,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.1,
+    "style": "centre",
+    "text": "more to",
+    "font": "AnthropicSerif",
+    "size": 46,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 12.1,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 0.28,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.48,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 12.48,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s030",
+   "template": "media-text",
+   "duration": 0.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 12.76,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s031",
+   "template": "media-text",
+   "duration": 0.32,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.0,
+    "style": "centre",
+    "text": "discover",
+    "font": "AnthropicSerif",
+    "size": 64,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 13.0,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s032",
+   "template": "media-text",
+   "duration": 0.32,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.32,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 13.32,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s033",
+   "template": "media-text",
+   "duration": 0.16,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.64,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 13.64,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s034",
+   "template": "media-text",
+   "duration": 0.12,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.8,
+    "style": "centre",
+    "text": "discover",
+    "font": "AnthropicSerif",
+    "size": 64,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 13.8,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s035",
+   "template": "media-text",
+   "duration": 0.32,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.92,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 13.92,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s036",
+   "template": "media-text",
+   "duration": 0.24,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.24,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S30",
+    "start": 14.24,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s037",
+   "template": "media-text",
+   "duration": 0.22,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.48,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S31",
+    "start": 14.48,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s038",
+   "template": "media-text",
+   "duration": 0.06,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.7,
+    "style": "centre",
+    "text": "discover",
+    "font": "AnthropicSerif",
+    "size": 64,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S31",
+    "start": 14.7,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s039",
+   "template": "media-text",
+   "duration": 0.28,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S32",
+    "start": 14.76,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s040",
+   "template": "media-text",
+   "duration": 0.28,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.04,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S33",
+    "start": 15.04,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s041",
+   "template": "media-text",
+   "duration": 0.18,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.32,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S34",
+    "start": 15.32,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s042",
+   "template": "media-text",
+   "duration": 0.06,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.5,
+    "style": "centre",
+    "text": "discover",
+    "font": "AnthropicSerif",
+    "size": 64,
+    "weight": 400,
+    "y": 0.6,
+    "enter": "coupe",
+    "shadow": 0.3
+   },
+   "ref": {
+    "shot": "S34",
+    "start": 15.5,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s043",
+   "template": "media-text",
+   "duration": 0.2,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.56,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S35",
+    "start": 15.56,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s044",
+   "template": "media-text",
+   "duration": 0.2,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.76,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S36",
+    "start": 15.76,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s045",
+   "template": "media-text",
+   "duration": 0.34,
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.96,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S37",
+    "start": 15.96,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s046",
+   "template": "horizon-card",
+   "duration": 1.6,
+   "params": {
+    "bg": "#0e121b",
+    "glow": "#7aa7d9",
+    "glow2": "#2b4a7a",
+    "ink": "#f4efe6",
+    "font": "AnthropicSerif",
+    "title": "Opus 5.5",
+    "subtitle": "",
+    "size": 40,
+    "titleY": 0.48,
+    "horizon": 0.9
+   },
+   "ref": {
+    "shot": "S37",
+    "start": 16.3,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s047",
+   "template": "horizon-card",
+   "duration": 2.1,
+   "params": {
+    "bg": "#0e121b",
+    "glow": "#7aa7d9",
+    "glow2": "#2b4a7a",
+    "ink": "#f4efe6",
+    "font": "AnthropicSerif",
+    "title": "✳ Claude",
+    "subtitle": "",
+    "size": 40,
+    "titleY": 0.48,
+    "horizon": 0.9
+   },
+   "ref": {
+    "shot": "S37",
+    "start": 17.9,
+    "family": "plate"
+   }
+  }
+ ],
+ "id": "claude-opus-5-5-motion",
+ "updated": "15 October 2026, 14:33",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:34",
+ "version": "V_005"
+}

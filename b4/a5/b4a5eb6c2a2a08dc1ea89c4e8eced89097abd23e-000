@@ -1,0 +1,855 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "claude-opus-5-5 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 37 shots of the reference claude-opus-5-5 (20.0 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "claude-opus-5-5",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "claude-opus-5-5",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "claude-opus-5-5:E001",
+    "kind": "impact",
+    "t": 8.49
+   },
+   {
+    "id": "claude-opus-5-5:E002",
+    "kind": "keyboard",
+    "t": 9.025
+   },
+   {
+    "id": "claude-opus-5-5:E003",
+    "kind": "impact",
+    "t": 13.915
+   },
+   {
+    "id": "claude-opus-5-5:E004",
+    "kind": "keyboard",
+    "t": 15.075
+   },
+   {
+    "id": "claude-opus-5-5:E005",
+    "kind": "keyboard",
+    "t": 15.275
+   },
+   {
+    "id": "claude-opus-5-5:E006",
+    "kind": "swoosh",
+    "t": 15.725
+   },
+   {
+    "id": "claude-opus-5-5:E007",
+    "kind": "subdrop",
+    "t": 15.86
+   },
+   {
+    "id": "claude-opus-5-5:E008",
+    "kind": "impact",
+    "t": 17.26
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 1.24,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Courbe d'une planète vue de l'espace, liseré orange et bleu sur le noir, très lente poussée."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 1.04,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 1.24,
+    "description": "Bord d'un objet doré et bosselé, en macro, sur fond étoilé ; le bord reprend la courbe du plan précédent."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 1.24,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 1.04,
+   "ref": {
+    "shot": "S03",
+    "family": "plate",
+    "start": 2.28,
+    "description": "Grand arc orange uni sur fond noir, avec une minuscule silhouette posée sur la crête."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 2.28,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 0.44,
+   "ref": {
+    "shot": "S04",
+    "family": "montage",
+    "start": 3.32,
+    "description": "Dôme de matière brune et grumeleuse sur fond blanc, coupe rapide."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 3.32,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 0.24,
+   "ref": {
+    "shot": "S05",
+    "family": "montage",
+    "start": 3.76,
+    "description": "Surface orange vif bombée sous un ciel turquoise, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 3.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 0.24,
+   "ref": {
+    "shot": "S06",
+    "family": "montage",
+    "start": 4.0,
+    "description": "Sphère craquelée blanche et bleue sur fond sombre, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 4.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 0.52,
+   "ref": {
+    "shot": "S07",
+    "family": "graphic",
+    "start": 4.24,
+    "description": "Arc tracé en traits blancs sur fond bleu, comme un plan technique."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#38638b",
+    "accent": "#e2552f",
+    "size": 96
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S08",
+    "family": "plate",
+    "start": 4.76,
+    "description": "Surface lunaire en noir et blanc, bord courbe en haut de la matière."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 4.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 0.52,
+   "ref": {
+    "shot": "S09",
+    "family": "plate",
+    "start": 5.36,
+    "description": "Bord d'une feuille verte en macro sur fond crème."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 5.36,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 0.56,
+   "ref": {
+    "shot": "S10",
+    "family": "plate",
+    "start": 5.88,
+    "description": "Bord dentelé sombre d'une matière organique devant un fond bleu clair."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 5.88,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S11",
+    "family": "plate",
+    "start": 6.44,
+    "description": "Perles rouges alignées sur une surface magenta bombée, fond noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 6.44,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 0.52,
+   "ref": {
+    "shot": "S12",
+    "family": "plate",
+    "start": 7.04,
+    "description": "Bord d'une céramique ornée d'une frise, vue en macro."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 7.04,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 0.56,
+   "ref": {
+    "shot": "S13",
+    "family": "plate",
+    "start": 7.56,
+    "description": "Courbe d'une terre ocre dessinée, avec de petits personnages tracés sur le bord."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 7.56,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S14",
+    "family": "plate",
+    "start": 8.12,
+    "description": "Illustration ancienne de chevaux au galop au-dessus d'un arc vert."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 8.12,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S15",
+    "family": "montage",
+    "start": 8.72,
+    "description": "Horizon cuivré flou, un premier mot blanc apparaît en petit au-dessus de la courbe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 8.72,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s16",
+   "duration": 0.4,
+   "ref": {
+    "shot": "S16",
+    "family": "montage",
+    "start": 9.04,
+    "description": "Surface rouge texturée bombée, le mot reste à la même place."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.04,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s17",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S17",
+    "family": "montage",
+    "start": 9.44,
+    "description": "Matière fluorescente verte et violette, le mot persiste, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.44,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s18",
+   "duration": 0.44,
+   "ref": {
+    "shot": "S18",
+    "family": "montage",
+    "start": 9.76,
+    "description": "Gravure en noir et blanc d'un sol couvert de motifs, le mot au-dessus."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 9.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s19",
+   "duration": 0.48,
+   "ref": {
+    "shot": "S19",
+    "family": "montage",
+    "start": 10.2,
+    "description": "Bord d'une sphère bleu acier avec un reflet violet, le mot au-dessus."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 10.2,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s20",
+   "duration": 0.72,
+   "ref": {
+    "shot": "S20",
+    "family": "plate",
+    "start": 10.68,
+    "description": "Ciel rouge orangé sur une crête sombre, deux nouveaux mots remplacent le premier."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 10.68,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s21",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S21",
+    "family": "montage",
+    "start": 11.4,
+    "description": "Tissu à motifs rouges sous un fond de jean bleu, les mots au centre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 11.4,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s22",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S22",
+    "family": "montage",
+    "start": 11.72,
+    "description": "Bandes colorées jaunes et magenta, comme une image thermique, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 11.72,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s23",
+   "duration": 0.44,
+   "ref": {
+    "shot": "S23",
+    "family": "montage",
+    "start": 12.04,
+    "description": "Dentelle blanche sur fond noir, les mots au centre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.04,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s24",
+   "duration": 0.28,
+   "ref": {
+    "shot": "S24",
+    "family": "montage",
+    "start": 12.48,
+    "description": "Bord rose et noir sur fond violet, un mot en serif plus grand prend le relais."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.48,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s25",
+   "duration": 0.24,
+   "ref": {
+    "shot": "S25",
+    "family": "montage",
+    "start": 12.76,
+    "description": "Traits bleus au crayon sur papier bleu clair, le mot au centre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 12.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s26",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S26",
+    "family": "montage",
+    "start": 13.0,
+    "description": "Crête de matière dorée et velue sur fond noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s27",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S27",
+    "family": "montage",
+    "start": 13.32,
+    "description": "Crête blanche et rugueuse comme de la neige sur fond noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.32,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s28",
+   "duration": 0.28,
+   "ref": {
+    "shot": "S28",
+    "family": "montage",
+    "start": 13.64,
+    "description": "Matière crème tachée de brun, le mot en surimpression."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.64,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s29",
+   "duration": 0.32,
+   "ref": {
+    "shot": "S29",
+    "family": "montage",
+    "start": 13.92,
+    "description": "Strates noires sur fond jaune, comme une coupe géologique."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 13.92,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s30",
+   "duration": 0.24,
+   "ref": {
+    "shot": "S30",
+    "family": "montage",
+    "start": 14.24,
+    "description": "Collage de formes plates colorées sous le mot, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.24,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s31",
+   "duration": 0.28,
+   "ref": {
+    "shot": "S31",
+    "family": "montage",
+    "start": 14.48,
+    "description": "Coupe de cellules végétales vertes en microscopie."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.48,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s32",
+   "duration": 0.28,
+   "ref": {
+    "shot": "S32",
+    "family": "montage",
+    "start": 14.76,
+    "description": "Bord rouge granuleux sur noir constellé."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 14.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s33",
+   "duration": 0.28,
+   "ref": {
+    "shot": "S33",
+    "family": "montage",
+    "start": 15.04,
+    "description": "Dessin au trait d'un arc et de lignes rouges sur papier clair, comme un diagramme, puis une version griffonnée."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.04,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s34",
+   "duration": 0.24,
+   "ref": {
+    "shot": "S34",
+    "family": "montage",
+    "start": 15.32,
+    "description": "Un mot en lettres serif sur un papier craquelé, par-dessus un enchevêtrement de traits noirs à l'encre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.32,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s35",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S35",
+    "family": "montage",
+    "start": 15.56,
+    "description": "Fourrure blanche en contre-jour sur noir, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.56,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s36",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S36",
+    "family": "montage",
+    "start": 15.76,
+    "description": "Lamelles rouges en éventail sous le mot, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.76,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s37",
+   "duration": 4.04,
+   "ref": {
+    "shot": "S37",
+    "family": "plate",
+    "start": 15.96,
+    "description": "Retour à la courbe de planète du début, en fondu, qui clôt la boucle."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:claude-opus-5-5",
+    "mediaStart": 15.96,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  }
+ ],
+ "id": "claude-opus-5-5-motion",
+ "updated": "15 October 2026, 13:31",
+ "versionNote": "avant une nouvelle conversion",
+ "versionSaved": "15 October 2026, 13:40",
+ "version": "V_002"
+}

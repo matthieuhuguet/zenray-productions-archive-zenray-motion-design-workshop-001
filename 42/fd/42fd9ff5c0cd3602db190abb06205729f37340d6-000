@@ -1,0 +1,125 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "flora-agents-on-canvas · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "flora-agents-on-canvas",
+ "doc": "15 October 2026: first motion base of flora-agents-on-canvas: one scene per measured shot, the words and treatments read on the contact sheets; every filmed shot is redrawn as motion (illustrated-shot). To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "flora-agents-on-canvas-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "flora-agents-on-canvas-m1:E001",
+    "kind": "impact",
+    "t": 1.61
+   },
+   {
+    "id": "flora-agents-on-canvas-m1:E002",
+    "kind": "impact",
+    "t": 2.11
+   },
+   {
+    "id": "flora-agents-on-canvas-m1:E003",
+    "kind": "keyboard",
+    "t": 10.5
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "illustrated-shot",
+   "duration": 11.7,
+   "params": {
+    "subject": "écran",
+    "bg": "#010101",
+    "colour": "#f6f7f8",
+    "colour2": "#25211c",
+    "colour3": "#25211c",
+    "camX": 6,
+    "camY": 6,
+    "camZoom": 25,
+    "roll": 6,
+    "camEase": "power1.inOut",
+    "seed": 1,
+    "camAt": 10.63,
+    "camDur": 2.132
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "illustrated-shot",
+   "duration": 33.1,
+   "params": {
+    "subject": "matière",
+    "bg": "#f8f8f7",
+    "colour": "#010101",
+    "colour2": "#1e1e1e",
+    "colour3": "#b5b6b7",
+    "camX": -6,
+    "camY": -0.28,
+    "camZoom": 17.47,
+    "roll": -6,
+    "camEase": "power2.out",
+    "seed": 1171,
+    "camAt": 29.71,
+    "camDur": 0.768
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 11.7,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "illustrated-shot",
+   "duration": 6.6333,
+   "params": {
+    "subject": "logo",
+    "bg": "#000000",
+    "colour": "#e9e4da",
+    "colour2": "#8a8a8a",
+    "colour3": "#8a8a8a",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": 25,
+    "roll": -6,
+    "camEase": "power2.in",
+    "seed": 4481,
+    "camAt": 0.873,
+    "camDur": 0.67
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 44.8,
+    "family": "graphic"
+   }
+  }
+ ],
+ "id": "flora-agents-on-canvas-motion",
+ "updated": "15 October 2026, 15:21",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 15:23",
+ "version": "V_009"
+}

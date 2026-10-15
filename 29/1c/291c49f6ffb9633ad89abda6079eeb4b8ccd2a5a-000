@@ -1,0 +1,98 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Film de lancement 30 s",
+ "format": "16x9",
+ "fps": 30,
+ "theme": {},
+ "scenes": [
+  {
+   "id": "s1",
+   "template": "title-card",
+   "duration": 4,
+   "params": {
+    "footnote": "Made with ZenRay",
+    "title": "Louisiana Bayou",
+    "titleFont": "Fraunces",
+    "titleSize": 150,
+    "accent": "#2f6fe4"
+   }
+  },
+  {
+   "id": "s2",
+   "template": "prompt-status",
+   "duration": 6,
+   "params": {}
+  },
+  {
+   "id": "s3",
+   "template": "kinetic-words",
+   "duration": 3,
+   "params": {}
+  },
+  {
+   "id": "s4",
+   "template": "big-count",
+   "duration": 2.5,
+   "params": {}
+  },
+  {
+   "id": "s5",
+   "template": "list-focus",
+   "duration": 3.5,
+   "params": {}
+  },
+  {
+   "id": "s6",
+   "template": "color-slam",
+   "duration": 1.5,
+   "params": {}
+  },
+  {
+   "id": "s7",
+   "template": "orbit-word",
+   "duration": 2,
+   "params": {}
+  },
+  {
+   "id": "s8",
+   "template": "gradient-word",
+   "duration": 2.5,
+   "params": {}
+  },
+  {
+   "id": "s9",
+   "template": "logo-merge",
+   "duration": 2,
+   "params": {}
+  },
+  {
+   "id": "s10",
+   "template": "end-card",
+   "duration": 3,
+   "params": {}
+  }
+ ],
+ "music": {
+  "mode": "bank",
+  "generate": {
+   "tempo": 124
+  },
+  "file": {},
+  "bank": {
+   "track": "motion-opus-5-5-m1",
+   "semitones": 1,
+   "drums": 2,
+   "tilt": 2.5,
+   "width": 1.25,
+   "variation": "energy"
+  }
+ },
+ "sfx": {
+  "source": "banque"
+ },
+ "id": "film-de-lancement-30-s",
+ "updated": "15 October 2026, 13:27",
+ "versionNote": "musique reproduite opus, plus d'énergie, effets de la banque",
+ "versionSaved": "15 October 2026, 13:27",
+ "version": "V_001"
+}

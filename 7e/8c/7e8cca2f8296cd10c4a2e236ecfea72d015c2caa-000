@@ -1,0 +1,1377 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "interface en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 61 shots of the reference interface (90.1 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "interface",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "interface-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "interface-m1:E001",
+    "kind": "glitch",
+    "t": 0.43
+   },
+   {
+    "id": "interface-m1:E002",
+    "kind": "trigger",
+    "t": 2.93
+   },
+   {
+    "id": "interface-m1:E003",
+    "kind": "keyboard",
+    "t": 4.005
+   },
+   {
+    "id": "interface-m1:E004",
+    "kind": "keyboard",
+    "t": 10.395
+   },
+   {
+    "id": "interface-m1:E005",
+    "kind": "impact",
+    "t": 25.645
+   },
+   {
+    "id": "interface-m1:E006",
+    "kind": "impact",
+    "t": 25.995
+   },
+   {
+    "id": "interface-m1:E007",
+    "kind": "impact",
+    "t": 26.345
+   },
+   {
+    "id": "interface-m1:E008",
+    "kind": "impact",
+    "t": 26.69
+   },
+   {
+    "id": "interface-m1:E009",
+    "kind": "impact",
+    "t": 27.04
+   },
+   {
+    "id": "interface-m1:E011",
+    "kind": "impact",
+    "t": 28.075
+   },
+   {
+    "id": "interface-m1:E012",
+    "kind": "impact",
+    "t": 28.59
+   },
+   {
+    "id": "interface-m1:E013",
+    "kind": "impact",
+    "t": 29.115
+   },
+   {
+    "id": "interface-m1:E014",
+    "kind": "impact",
+    "t": 29.465
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Un jeune homme dans une rame de métro regarde son téléphone, couleurs chaudes."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 0.5,
+    "description": "Un visage endormi dans la pénombre bleue, en plan très serré."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 0.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 0.7917,
+   "ref": {
+    "shot": "S03",
+    "family": "plate",
+    "start": 1.1667,
+    "description": "Une jeune femme debout sur une plage consulte son téléphone, une petite bulle d'interface apparaît à côté d'elle."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 1.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S04",
+    "family": "plate",
+    "start": 1.9583,
+    "description": "Un homme sur une pelouse regarde son téléphone pendant qu'un ballon traverse le premier plan, bulle d'interface."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 1.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S05",
+    "family": "plate",
+    "start": 2.4583,
+    "description": "Deux personnes baignées d'une lumière bleue intense, une bulle d'interface s'affiche près d'elles."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 2.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 0.75,
+   "ref": {
+    "shot": "S06",
+    "family": "plate",
+    "start": 3.2917,
+    "description": "Raccord flou de l'œil vers le hublot rond d'une machine à laver turquoise."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 3.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S07",
+    "family": "plate",
+    "start": 4.0417,
+    "description": "Hublot d'une machine à laver qui tourne dans une laverie turquoise."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 4.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S08",
+    "family": "plate",
+    "start": 4.75,
+    "description": "Un homme à table dans un café, une bulle d'interface s'affiche au-dessus de ses mains."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 4.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S09",
+    "family": "plate",
+    "start": 5.5833,
+    "description": "Une femme pousse un enfant sur une balançoire dans un parc, bulle d'interface."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 5.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 0.7917,
+   "ref": {
+    "shot": "S10",
+    "family": "plate",
+    "start": 6.5,
+    "description": "Deux silhouettes à contre-jour devant un coucher de soleil sur la mer, bulle d'interface."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 6.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S11",
+    "family": "montage",
+    "start": 7.2917,
+    "description": "Transition sombre, reflets d'une vitre de train qui défile, puis un visage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 7.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 0.375,
+   "ref": {
+    "shot": "S12",
+    "family": "montage",
+    "start": 7.7083,
+    "description": "Une jeune femme dans un wagon, le visage éclairé par l'écran de son téléphone."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 7.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 0.3333,
+   "ref": {
+    "shot": "S13",
+    "family": "montage",
+    "start": 8.0833,
+    "description": "Une jeune femme près de la mer, regard baissé, ciel gris."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 8.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 0.375,
+   "ref": {
+    "shot": "S14",
+    "family": "montage",
+    "start": 8.4167,
+    "description": "La même jeune femme sur fond de montagnes au crépuscule."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 8.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 0.875,
+   "ref": {
+    "shot": "S15",
+    "family": "plate",
+    "start": 8.7917,
+    "description": "Une jeune femme dans une gare animée, regard vers la caméra."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 8.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s16",
+   "duration": 2.9583,
+   "ref": {
+    "shot": "S16",
+    "family": "plate",
+    "start": 9.6667,
+    "description": "Une femme marche dans un parc brumeux au lever du jour, la caméra la suit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 9.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s17",
+   "duration": 2.6667,
+   "ref": {
+    "shot": "S17",
+    "family": "plate",
+    "start": 12.625,
+    "description": "Un homme dort sur le côté dans un lit, lumière chaude du matin."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 12.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s18",
+   "duration": 1.375,
+   "ref": {
+    "shot": "S18",
+    "family": "plate",
+    "start": 15.2917,
+    "description": "Une main portant une bague touche une branche de feuillage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 15.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s19",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S19",
+    "family": "montage",
+    "start": 16.6667,
+    "description": "Gros plan sur la bague à un doigt, puis un homme âgé dans un jardin."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 16.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s20",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S20",
+    "family": "plate",
+    "start": 17.125,
+    "description": "Un homme âgé jardine au milieu des plantes, lumière douce."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 17.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s21",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S21",
+    "family": "plate",
+    "start": 18.9583,
+    "description": "Un arroseur automatique arrose un jardin potager, contre-jour."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 18.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s22",
+   "duration": 1.0417,
+   "ref": {
+    "shot": "S22",
+    "family": "plate",
+    "start": 19.9167,
+    "description": "Une main ouverte sous un jet d'eau devant un mur carrelé vert."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 19.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s23",
+   "duration": 2.2917,
+   "ref": {
+    "shot": "S23",
+    "family": "plate",
+    "start": 20.9583,
+    "description": "Un homme torse nu sous la douche dans une salle de bains carrelée."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 20.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s24",
+   "duration": 1.0,
+   "ref": {
+    "shot": "S24",
+    "family": "plate",
+    "start": 23.25,
+    "description": "Une main baguée tient la laisse d'un chien, plan serré dans la rue."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 23.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s25",
+   "duration": 0.7917,
+   "ref": {
+    "shot": "S25",
+    "family": "plate",
+    "start": 24.25,
+    "description": "Un petit chien trotte sur un trottoir mouillé, caméra au ras du sol."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 24.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s26",
+   "duration": 0.5417,
+   "ref": {
+    "shot": "S26",
+    "family": "plate",
+    "start": 25.0417,
+    "description": "Une main baguée dans la poche d'une veste kaki."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 25.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s27",
+   "duration": 1.2083,
+   "ref": {
+    "shot": "S27",
+    "family": "plate",
+    "start": 25.5833,
+    "description": "Une femme promène son chien dans une rue d'immeubles en briques."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 25.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s28",
+   "duration": 3.25,
+   "ref": {
+    "shot": "S28",
+    "family": "plate",
+    "start": 26.7917,
+    "description": "Deux étudiantes à une table, l'une écrit pendant que l'autre la regarde."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 26.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s29",
+   "duration": 1.2917,
+   "ref": {
+    "shot": "S29",
+    "family": "plate",
+    "start": 30.0417,
+    "description": "Plan large de la salle d'étude avec ses tables et ses lampes."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 30.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s30",
+   "duration": 1.875,
+   "ref": {
+    "shot": "S30",
+    "family": "plate",
+    "start": 31.3333,
+    "description": "Le panier de fleurs du vélo en gros plan dans la rue."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 31.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s31",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S31",
+    "family": "plate",
+    "start": 33.2083,
+    "description": "Un livreur à vélo boit en roulant devant des façades."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 33.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s32",
+   "duration": 0.5417,
+   "ref": {
+    "shot": "S32",
+    "family": "plate",
+    "start": 35.0417,
+    "description": "Une femme lit sur un banc dans un hall aux murs orangés, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 35.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s33",
+   "duration": 3.2917,
+   "ref": {
+    "shot": "S33",
+    "family": "plate",
+    "start": 35.5834,
+    "description": "Une femme pensive, la main près de la bouche, en plan serré."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 35.5834,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s34",
+   "duration": 3.6667,
+   "ref": {
+    "shot": "S34",
+    "family": "plate",
+    "start": 38.875,
+    "description": "Un homme rit en parlant à table dans un restaurant aux banquettes vertes."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 38.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s35",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S35",
+    "family": "plate",
+    "start": 42.5417,
+    "description": "Un versant de montagne rocheux dans les nuages."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 42.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s36",
+   "duration": 1.625,
+   "ref": {
+    "shot": "S36",
+    "family": "plate",
+    "start": 43.375,
+    "description": "Un randonneur avec un sac à dos orange fait une pause dans un pierrier."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 43.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s37",
+   "duration": 0.7917,
+   "ref": {
+    "shot": "S37",
+    "family": "plate",
+    "start": 45.0,
+    "description": "Des mains feuillettent des papiers sur une table de réunion."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 45.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s38",
+   "duration": 1.0,
+   "ref": {
+    "shot": "S38",
+    "family": "plate",
+    "start": 45.7917,
+    "description": "Des personnes en costume se lèvent autour d'une table de verre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 45.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s39",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S39",
+    "family": "plate",
+    "start": 46.7917,
+    "description": "La poignée de main vue de plus près."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 46.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s40",
+   "duration": 2.8333,
+   "ref": {
+    "shot": "S40",
+    "family": "plate",
+    "start": 47.625,
+    "description": "Une femme seule à une table de réunion qui relit un document."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 47.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s41",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S41",
+    "family": "plate",
+    "start": 50.4584,
+    "description": "Une personne remplit un lave-vaisselle, vue de l'intérieur."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 50.4584,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s42",
+   "duration": 1.0417,
+   "ref": {
+    "shot": "S42",
+    "family": "plate",
+    "start": 51.1667,
+    "description": "Une femme passe derrière un comptoir de cuisine carrelé de rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 51.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s43",
+   "duration": 1.5833,
+   "ref": {
+    "shot": "S43",
+    "family": "plate",
+    "start": 52.2084,
+    "description": "Gros plan sur des mains baguées qui se frôlent contre une hanche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 52.2084,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s44",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S44",
+    "family": "plate",
+    "start": 53.7917,
+    "description": "Un couple s'embrasse dans un lit, plan serré."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 53.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s45",
+   "duration": 1.25,
+   "ref": {
+    "shot": "S45",
+    "family": "plate",
+    "start": 54.4584,
+    "description": "Un tiroir rempli de câbles et de petits objets qu'une main fouille."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 54.4584,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s46",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S46",
+    "family": "plate",
+    "start": 55.7084,
+    "description": "Le couple s'embrasse dans le lit, plus près."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 55.7084,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s47",
+   "duration": 1.5,
+   "ref": {
+    "shot": "S47",
+    "family": "plate",
+    "start": 56.5417,
+    "description": "Pénombre bleue puis rayonnages de livres."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 56.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s48",
+   "duration": 1.125,
+   "ref": {
+    "shot": "S48",
+    "family": "plate",
+    "start": 58.0417,
+    "description": "Rayonnages d'une bibliothèque éclairés en bleu-vert."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 58.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s49",
+   "duration": 2.125,
+   "ref": {
+    "shot": "S49",
+    "family": "plate",
+    "start": 59.1667,
+    "description": "Très gros plan sur la peau et le nez d'un visage endormi."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 59.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s50",
+   "duration": 1.7083,
+   "ref": {
+    "shot": "S50",
+    "family": "plate",
+    "start": 61.2917,
+    "description": "Une personne allongée sur un canapé, la tête renversée, main baguée sur la joue."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 61.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s51",
+   "duration": 1.0,
+   "ref": {
+    "shot": "S51",
+    "family": "plate",
+    "start": 63.0,
+    "description": "Une personne allongée sur un lit dans une chambre éclairée par une lampe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 63.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s52",
+   "duration": 1.2083,
+   "ref": {
+    "shot": "S52",
+    "family": "plate",
+    "start": 64.0,
+    "description": "Un homme torse nu se rase devant un miroir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 64.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s53",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S53",
+    "family": "plate",
+    "start": 65.2084,
+    "description": "L'homme vu de face avec de la mousse à raser sur le visage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 65.2084,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s54",
+   "duration": 3.1667,
+   "ref": {
+    "shot": "S54",
+    "family": "plate",
+    "start": 66.125,
+    "description": "Une main baguée passe sur une joue rasée, puis l'homme se regarde."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 66.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s55",
+   "duration": 3.5,
+   "ref": {
+    "shot": "S55",
+    "family": "plate",
+    "start": 69.2917,
+    "description": "Des mains levées dans une salle de concert sous des lumières colorées."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 69.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s56",
+   "duration": 0.5417,
+   "ref": {
+    "shot": "S56",
+    "family": "plate",
+    "start": 72.7917,
+    "description": "Des mains baguées tapent sur un clavier d'ordinateur."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 72.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s57",
+   "duration": 1.3333,
+   "ref": {
+    "shot": "S57",
+    "family": "plate",
+    "start": 73.3334,
+    "description": "Plusieurs personnes au travail dans le même bureau, plan large."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 73.3334,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s58",
+   "duration": 0.8333,
+   "ref": {
+    "shot": "S58",
+    "family": "plate",
+    "start": 74.6667,
+    "description": "Un atelier sombre avec des bocaux et des outils sur un établi."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 74.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s59",
+   "duration": 4.0833,
+   "ref": {
+    "shot": "S59",
+    "family": "plate",
+    "start": 75.5,
+    "description": "Des mains sur un établi, puis l'artisan qui travaille, mise au point qui glisse."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 75.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s60",
+   "duration": 6.75,
+   "ref": {
+    "shot": "S60",
+    "family": "plate",
+    "start": 79.5834,
+    "description": "Un petit objet rond posé sur une table de bois en contre-jour, des titres en italique serif apparaissent puis s'effacent au-dessus."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:interface",
+    "mediaStart": 79.5834,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s61",
+   "duration": 3.75,
+   "ref": {
+    "shot": "S61",
+    "family": "textcard",
+    "start": 86.3334,
+    "description": "Carte de fin noire, une ligne en serif italique centrée qui s'éteint."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#000000",
+    "ink": "#babbba",
+    "accent": "#e2552f"
+   }
+  }
+ ],
+ "id": "interface-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}

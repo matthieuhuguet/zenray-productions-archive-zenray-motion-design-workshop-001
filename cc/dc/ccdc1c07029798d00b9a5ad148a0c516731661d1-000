@@ -1,0 +1,109 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "flora-agents-on-canvas en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 3 shots of the reference flora-agents-on-canvas (51.4 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "flora-agents-on-canvas",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "flora-agents-on-canvas-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "flora-agents-on-canvas-m1:E001",
+    "kind": "impact",
+    "t": 1.61
+   },
+   {
+    "id": "flora-agents-on-canvas-m1:E002",
+    "kind": "impact",
+    "t": 2.11
+   },
+   {
+    "id": "flora-agents-on-canvas-m1:E003",
+    "kind": "keyboard",
+    "t": 10.5
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 11.7,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Capture d'écran d'un canevas sombre : une image de tulipe et une carte en dégradé jaune rose apparaissent, puis une boîte de dialogue s'ouvre en gros plan et le bureau se dévoile avec plusieurs fenêtres."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:flora-agents-on-canvas",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 33.1,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 11.7,
+    "description": "Dézoom vers l'écran partagé complet, court plan de transition."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:flora-agents-on-canvas",
+    "mediaStart": 11.7,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 6.6333,
+   "ref": {
+    "shot": "S03",
+    "family": "graphic",
+    "start": 44.8,
+    "description": "Un petit logotype blanc à quatre pétales sur le noir se tord, rétrécit et disparaît, puis le noir tient jusqu'à la fin."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#000000",
+    "ink": "#111111",
+    "accent": "#e2552f"
+   }
+  }
+ ],
+ "id": "flora-agents-on-canvas-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}
