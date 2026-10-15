@@ -1,6 +1,6 @@
 {
   "schema": "zrmd/catalog@1",
-  "updated": "14 October 2026, 21:26",
+  "updated": "15 October 2026, 14:03",
   "motions": [
     {
       "id": "claude-p00000-plate",
@@ -3932,25 +3932,25 @@
     {
       "id": "onekey-s13-studio-field",
       "title": "Studio backdrop, shader field",
-      "latest": "V_002",
+      "latest": "V_003",
       "versions": [
         "V_001",
         "V_002",
         "V_003"
       ],
-      "score": 0.94198,
+      "score": 0.86042,
       "dimensions": {
-        "field": 0.94198,
-        "coverage": 0.8256,
-        "within1Jnd": 0.1345
+        "field": 0.86042,
+        "coverage": 0.0968,
+        "within1Jnd": 0.0001
       },
       "source": {
         "slug": "onekey-pro-2",
         "start": 19.6,
         "end": 22.55
       },
-      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_002/render.mp4",
-      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_002/poster.jpg",
+      "render": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_003/render.mp4",
+      "poster": "/Users/zenray/.claude/tmp/tmp-zenray-motion-design/motions/onekey-s13-studio-field/V_003/poster.jpg",
       "tags": [
         "shader",
         "field",
@@ -3961,11 +3961,11 @@
       "duration": 2.95,
       "updated": "14 October 2026",
       "_sig": [
-        1792006003808091300,
-        1791991109754874871,
-        1791991151738138423,
-        1791991152478773612,
-        1791991151919074573
+        1792006536101717281,
+        1791991242600646974,
+        1791991291210273717,
+        1791991291900400259,
+        1791991291335228960
       ]
     }
   ],
