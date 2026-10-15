@@ -1,0 +1,94 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Test short 3D",
+ "format": "9x16",
+ "fps": 30,
+ "theme": {
+  "bg": "#101112",
+  "panel": "#1b1c1e",
+  "ink": "#f4f3ee",
+  "muted": "#8f8e88",
+  "accent": "#e2552f",
+  "fontTitle": "AnthropicSerif",
+  "fontBody": "InterVariable",
+  "fontMono": "AnthropicMono"
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "template": "title-card",
+   "duration": 3,
+   "params": {
+    "title": "Louisiana Bayou",
+    "subtitle": "a procedural swamp",
+    "align": "center",
+    "y": 0.5
+   }
+  },
+  {
+   "id": "s2",
+   "template": "media-showcase",
+   "duration": 5,
+   "params": {
+    "caption": "The house",
+    "sub": "Houdini · procedural wood",
+    "media": "ChurchTurn.mp4"
+   }
+  },
+  {
+   "id": "s3",
+   "template": "media-showcase",
+   "duration": 5,
+   "params": {
+    "caption": "The porch",
+    "sub": "Copernicus textures",
+    "frame": "full",
+    "media": "ChurchTurn.mp4"
+   }
+  },
+  {
+   "id": "s4",
+   "template": "media-showcase",
+   "duration": 5,
+   "params": {
+    "caption": "At dusk",
+    "sub": "Unreal Engine 5",
+    "media": "ChurchTurn.mp4"
+   }
+  },
+  {
+   "id": "s5",
+   "template": "kinetic-words",
+   "duration": 2.5,
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": "Houdini\nCopernicus\nUnreal",
+    "badge": false,
+    "size": 96
+   }
+  },
+  {
+   "id": "s6",
+   "template": "end-card",
+   "duration": 3,
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "3D and motion",
+    "url": "@zenrayst",
+    "label": "follow"
+   }
+  }
+ ],
+ "music": {
+  "mode": "generate",
+  "generate": {
+   "mode": "minor",
+   "tempo": 92,
+   "energy": 0.45
+  },
+  "file": {}
+ },
+ "sfx": {},
+ "id": "test-short-3d",
+ "updated": "15 October 2026, 15:19"
+}

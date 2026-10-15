@@ -1,0 +1,431 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "kardashev-0-7 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 15 shots of the reference kardashev-0-7 (67.4 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "kardashev-0-7",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "kardashev-0-7-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "kardashev-0-7-m1:E001",
+    "kind": "trigger",
+    "t": 0.13
+   },
+   {
+    "id": "kardashev-0-7-m1:E002",
+    "kind": "impact",
+    "t": 0.305
+   },
+   {
+    "id": "kardashev-0-7-m1:E003",
+    "kind": "trigger",
+    "t": 0.72
+   },
+   {
+    "id": "kardashev-0-7-m1:E004",
+    "kind": "whoosh",
+    "t": 1.035
+   },
+   {
+    "id": "kardashev-0-7-m1:E005",
+    "kind": "trigger",
+    "t": 1.29
+   },
+   {
+    "id": "kardashev-0-7-m1:E006",
+    "kind": "impact",
+    "t": 1.34
+   },
+   {
+    "id": "kardashev-0-7-m1:E007",
+    "kind": "impact",
+    "t": 3.235
+   },
+   {
+    "id": "kardashev-0-7-m1:E008",
+    "kind": "impact",
+    "t": 4.645
+   },
+   {
+    "id": "kardashev-0-7-m1:E009",
+    "kind": "impact",
+    "t": 7.88
+   },
+   {
+    "id": "kardashev-0-7-m1:E010",
+    "kind": "impact",
+    "t": 11.125
+   },
+   {
+    "id": "kardashev-0-7-m1:E011",
+    "kind": "impact",
+    "t": 19.77
+   },
+   {
+    "id": "kardashev-0-7-m1:E012",
+    "kind": "impact",
+    "t": 23.01
+   },
+   {
+    "id": "kardashev-0-7-m1:E013",
+    "kind": "keyboard",
+    "t": 24.765
+   },
+   {
+    "id": "kardashev-0-7-m1:E014",
+    "kind": "keyboard",
+    "t": 25.785
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 4.9167,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Une femme parle face caméra devant un grand pont rouge et une colline, lumière dorée, sous-titre serif centré en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 0.375,
+   "ref": {
+    "shot": "S02",
+    "family": "montage",
+    "start": 4.9167,
+    "description": "Archive en noir et blanc d'une machine industrielle, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 4.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S03",
+    "family": "montage",
+    "start": 5.2917,
+    "description": "Archive sépia d'ouvriers qui portent une charge le long d'une rampe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 5.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S04",
+    "family": "montage",
+    "start": 5.7083,
+    "description": "Archive en noir et blanc de rangées d'opératrices à leurs postes."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 5.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S05",
+    "family": "montage",
+    "start": 6.125,
+    "description": "Archive en couleur d'une salle de contrôle remplie de pupitres, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S06",
+    "family": "montage",
+    "start": 6.5417,
+    "description": "Une fusée décolle dans un ciel bleu, archive, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 0.5417,
+   "ref": {
+    "shot": "S07",
+    "family": "plate",
+    "start": 6.9583,
+    "description": "Archive granuleuse d'un astronaute sur un sol lunaire."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 3.6667,
+   "ref": {
+    "shot": "S08",
+    "family": "plate",
+    "start": 7.5,
+    "description": "Retour à la femme face caméra ; une question en sous-titre, puis de très grands mots en serif clair s'inscrivent en travers de l'image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 7.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 8.0417,
+   "ref": {
+    "shot": "S09",
+    "family": "graphic",
+    "start": 11.1667,
+    "description": "Carte bleu nuit sur un horizon de planète orange : un nom de produit s'écrit en lettres qui se brouillent puis se fixent, une petite mention au-dessus et une ligne qui change dessous."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#f4f4f1",
+    "bg": "#161a28",
+    "accent": "#d28e76",
+    "size": 128.3
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 10.2917,
+   "ref": {
+    "shot": "S10",
+    "family": "plate",
+    "start": 19.2084,
+    "description": "Un homme et la femme côte à côte face caméra, même décor ; ils se présentent, sous-titres serif en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 19.2084,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 16.125,
+   "ref": {
+    "shot": "S11",
+    "family": "graphic",
+    "start": 29.5,
+    "description": "Même fond d'horizon : un sigle se décode, une grille de petits cercles se transforme en icônes variées, un chiffre et une légende apparaissent, puis des histogrammes à barres claires et une barre dorée se succèdent avec leurs titres."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Rendered in Unreal Engine {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#f0e4ce",
+    "bg": "#131724",
+    "accent": "#bc7e6a",
+    "size": 34.0
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 7.125,
+   "ref": {
+    "shot": "S12",
+    "family": "plate",
+    "start": 45.6251,
+    "description": "Retour au duo face caméra ; de très grands nombres en serif traversent l'image en surimpression derrière eux."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 45.6251,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 5.625,
+   "ref": {
+    "shot": "S13",
+    "family": "graphic",
+    "start": 52.7501,
+    "description": "Deux graphiques en courbe sur fond d'horizon : une ligne de points qui descend, titre décodé à chaque changement."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "From node to {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#d4c9ba",
+    "bg": "#131723",
+    "accent": "#e2552f",
+    "size": 101.9
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 4.875,
+   "ref": {
+    "shot": "S14",
+    "family": "plate",
+    "start": 58.3751,
+    "description": "Le duo face caméra conclut, deux sous-titres successifs."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 58.3751,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 4.1667,
+   "ref": {
+    "shot": "S15",
+    "family": "textcard",
+    "start": 63.2501,
+    "description": "Carte de fin sur l'horizon orange : un petit logotype, un appel en serif centré et une adresse en dessous."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#161a28",
+    "ink": "#76788b",
+    "accent": "#d18d74"
+   }
+  }
+ ],
+ "id": "kardashev-0-7-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}

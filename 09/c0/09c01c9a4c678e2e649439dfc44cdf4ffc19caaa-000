@@ -1,0 +1,49 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Titres Vogun électriques",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: the validated Vogun title (Vegetation Collection 01), yellow and white variants, from its template.",
+ "theme": {},
+ "scenes": [
+  {
+   "id": "s01",
+   "template": "vogun-title",
+   "duration": 5.0,
+   "label": "Vogun cyber yellow",
+   "params": {
+    "lines": "ZenRay Vegetation Collection 01\nFLEUR DE LYS",
+    "colour": "#FFFF00",
+    "appear": 1.5,
+    "disappear": 1.5,
+    "bg": "#f6f4ee",
+    "widthRatio": 0.92,
+    "lineGap": 110,
+    "amplitude": 90,
+    "frequency": 120
+   }
+  },
+  {
+   "id": "s02",
+   "template": "vogun-title",
+   "duration": 5.0,
+   "label": "Vogun cyber white",
+   "params": {
+    "lines": "ZenRay Vegetation Collection 01\nFLEUR DE LYS",
+    "colour": "#FFFFFF",
+    "appear": 1.5,
+    "disappear": 1.5,
+    "bg": "#111214",
+    "widthRatio": 0.92,
+    "lineGap": 110,
+    "amplitude": 90,
+    "frequency": 120
+   }
+  }
+ ],
+ "id": "vogun-titles-motion",
+ "updated": "15 October 2026, 15:18",
+ "versionNote": "avant la passe de style maison du 15 octobre",
+ "versionSaved": "15 October 2026, 15:19",
+ "version": "V_001"
+}

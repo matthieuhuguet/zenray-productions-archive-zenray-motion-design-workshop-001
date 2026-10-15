@@ -1,0 +1,112 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "motion-opus-5-5, fenêtre d'aperçu",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "motion-opus-5-5",
+ "doc": "15 October 2026: the child scenes of the preview window alone, compared with references/motion-opus-5-5/children/preview.mp4.",
+ "theme": {
+  "bg": "#f4f4ea",
+  "ink": "#1b1b19",
+  "accent": "#e2552f",
+  "fontTitle": "AnthropicSerif",
+  "fontBody": "InterVariable",
+  "fontMono": "AnthropicMono"
+ },
+ "music": {
+  "mode": "none"
+ },
+ "sfx": {
+  "enabled": false
+ },
+ "scenes": [
+  {
+   "id": "p01",
+   "template": "sentence-build",
+   "duration": 2.417,
+   "params": {
+    "tokens": "We now\n[connect]\n(link)\n[with]\nover\n(+)",
+    "times": "0\n0.5\n1.02\n1.1\n1.4\n1.47",
+    "slide": "0.5 1062\n0.9 1026\n1.0 993\n1.067 952\n1.133 900\n1.2 798\n1.267 742\n1.333 705\n1.4 676\n1.467 674\n1.533 658\n1.6 635\n1.667 563\n1.733 492\n1.8 470\n1.867 436\n1.933 391\n2.0 369\n2.067 365\n2.133 358",
+    "outro": "2.15 1\n2.267 1.6\n2.333 6.3\n2.417 9.1",
+    "ink": "#1b1b19"
+   }
+  },
+  {
+   "id": "p02",
+   "template": "big-count",
+   "duration": 3.0,
+   "params": {
+    "value": 450,
+    "label": "Tools",
+    "count": 1.6,
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p03",
+   "template": "list-focus",
+   "duration": 5.016,
+   "params": {
+    "lines": "Import designs with Figma\nConnect with your docs\nAdd SMS, voice calls\nCollect payments\nConnect to customer data\nAdd audio to your apps\nConnect to your content\nBuild workflows\nAutomate workflows\nBuild customer dashboards",
+    "step": 0.55,
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p04",
+   "template": "color-slam",
+   "duration": 0.967,
+   "params": {
+    "text": "And many",
+    "colour": "#e8360b",
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p05",
+   "template": "orbit-word",
+   "duration": 1.0,
+   "params": {
+    "word": "More",
+    "colour": "#1b1b19",
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p06",
+   "template": "gradient-word",
+   "duration": 1.5,
+   "params": {
+    "word": "What",
+    "phrase": "What are {pill}",
+    "pill": "you",
+    "colour": "#e8360b",
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p07",
+   "template": "kinetic-words",
+   "duration": 1.0,
+   "params": {
+    "sentence": "going to {pill}",
+    "pills": "build?",
+    "badge": false,
+    "bg": "#f4f4ea"
+   }
+  },
+  {
+   "id": "p08",
+   "template": "logo-merge",
+   "duration": 1.533,
+   "params": {
+    "name": "Replit",
+    "colour": "#e8360b",
+    "bg": "#f4f4ea"
+   }
+  }
+ ],
+ "id": "motion-opus-5-5-preview",
+ "updated": "15 October 2026, 15:19"
+}

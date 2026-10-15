@@ -1,0 +1,210 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "paper-mono-code · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "paper-mono-code",
+ "doc": "15 October 2026: first motion base of paper-mono-code: one scene per measured shot, the words and treatments read on the contact sheets; every filmed shot is redrawn as motion (illustrated-shot). To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "paper-mono-code-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "paper-mono-code-m1:E001",
+    "kind": "glitch",
+    "t": 0.425
+   },
+   {
+    "id": "paper-mono-code-m1:E002",
+    "kind": "keyboard",
+    "t": 1.07
+   },
+   {
+    "id": "paper-mono-code-m1:E003",
+    "kind": "swoosh",
+    "t": 2.165
+   },
+   {
+    "id": "paper-mono-code-m1:E004",
+    "kind": "impact",
+    "t": 2.38
+   },
+   {
+    "id": "paper-mono-code-m1:E005",
+    "kind": "keyboard",
+    "t": 2.715
+   },
+   {
+    "id": "paper-mono-code-m1:E006",
+    "kind": "impact",
+    "t": 5.205
+   },
+   {
+    "id": "paper-mono-code-m1:E007",
+    "kind": "impact",
+    "t": 5.53
+   },
+   {
+    "id": "paper-mono-code-m1:E008",
+    "kind": "trigger",
+    "t": 5.86
+   },
+   {
+    "id": "paper-mono-code-m1:E009",
+    "kind": "impact",
+    "t": 6.51
+   },
+   {
+    "id": "paper-mono-code-m1:E010",
+    "kind": "impact",
+    "t": 6.835
+   },
+   {
+    "id": "paper-mono-code-m1:E011",
+    "kind": "impact",
+    "t": 9.555
+   },
+   {
+    "id": "paper-mono-code-m1:E012",
+    "kind": "impact",
+    "t": 13.035
+   },
+   {
+    "id": "paper-mono-code-m1:E013",
+    "kind": "keyboard",
+    "t": 13.655
+   },
+   {
+    "id": "paper-mono-code-m1:E014",
+    "kind": "click",
+    "t": 15.725
+   },
+   {
+    "id": "paper-mono-code-m1:E015",
+    "kind": "whoosh",
+    "t": 15.77
+   },
+   {
+    "id": "paper-mono-code-m1:E016",
+    "kind": "impact",
+    "t": 16.515
+   },
+   {
+    "id": "paper-mono-code-m1:E017",
+    "kind": "keyboard",
+    "t": 17.135
+   },
+   {
+    "id": "paper-mono-code-m1:E018",
+    "kind": "impact",
+    "t": 20.645
+   },
+   {
+    "id": "paper-mono-code-m1:E019",
+    "kind": "impact",
+    "t": 23.47
+   },
+   {
+    "id": "paper-mono-code-m1:E020",
+    "kind": "swoosh",
+    "t": 23.905
+   },
+   {
+    "id": "paper-mono-code-m1:E021",
+    "kind": "impact",
+    "t": 24.12
+   },
+   {
+    "id": "paper-mono-code-m1:E022",
+    "kind": "impact",
+    "t": 25.21
+   },
+   {
+    "id": "paper-mono-code-m1:E023",
+    "kind": "impact",
+    "t": 26.945
+   },
+   {
+    "id": "paper-mono-code-m1:E024",
+    "kind": "impact",
+    "t": 27.38
+   },
+   {
+    "id": "paper-mono-code-m1:E025",
+    "kind": "impact",
+    "t": 27.595
+   },
+   {
+    "id": "paper-mono-code-m1:E026",
+    "kind": "whoosh",
+    "t": 28.085
+   },
+   {
+    "id": "paper-mono-code-m1:E027",
+    "kind": "impact",
+    "t": 28.25
+   },
+   {
+    "id": "paper-mono-code-m1:E028",
+    "kind": "impact",
+    "t": 28.9
+   },
+   {
+    "id": "paper-mono-code-m1:E029",
+    "kind": "swipe",
+    "t": 29.51
+   },
+   {
+    "id": "paper-mono-code-m1:E030",
+    "kind": "ding",
+    "t": 29.565
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "illustrated-shot",
+   "duration": 60.5501,
+   "params": {
+    "subject": "aucun",
+    "bg": "#fafbfc",
+    "colour": "#060708",
+    "colour2": "#8ba7d7",
+    "colour3": "#ebf0f6",
+    "camX": -2.17,
+    "camY": 7.18,
+    "camZoom": -8.85,
+    "roll": -2.63,
+    "camEase": "power1.inOut",
+    "seed": 1,
+    "camAt": 31.585,
+    "camDur": 0.333
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  }
+ ],
+ "id": "paper-mono-code-motion",
+ "updated": "15 October 2026, 15:19",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 15:20",
+ "version": "V_006"
+}

@@ -1,0 +1,757 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "kardashev-0-7 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "kardashev-0-7",
+ "doc": "15 October 2026: first motion base of kardashev-0-7: one scene per measured shot, the words and treatments read on the contact sheets; plates show an excerpt of the reference until a render replaces them. To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "kardashev-0-7-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "kardashev-0-7-m1:E001",
+    "kind": "trigger",
+    "t": 0.13
+   },
+   {
+    "id": "kardashev-0-7-m1:E002",
+    "kind": "impact",
+    "t": 0.305
+   },
+   {
+    "id": "kardashev-0-7-m1:E003",
+    "kind": "trigger",
+    "t": 0.72
+   },
+   {
+    "id": "kardashev-0-7-m1:E004",
+    "kind": "whoosh",
+    "t": 1.035
+   },
+   {
+    "id": "kardashev-0-7-m1:E005",
+    "kind": "trigger",
+    "t": 1.29
+   },
+   {
+    "id": "kardashev-0-7-m1:E006",
+    "kind": "impact",
+    "t": 1.34
+   },
+   {
+    "id": "kardashev-0-7-m1:E007",
+    "kind": "impact",
+    "t": 3.235
+   },
+   {
+    "id": "kardashev-0-7-m1:E008",
+    "kind": "impact",
+    "t": 4.645
+   },
+   {
+    "id": "kardashev-0-7-m1:E009",
+    "kind": "impact",
+    "t": 7.88
+   },
+   {
+    "id": "kardashev-0-7-m1:E010",
+    "kind": "impact",
+    "t": 11.125
+   },
+   {
+    "id": "kardashev-0-7-m1:E011",
+    "kind": "impact",
+    "t": 19.77
+   },
+   {
+    "id": "kardashev-0-7-m1:E012",
+    "kind": "impact",
+    "t": 23.01
+   },
+   {
+    "id": "kardashev-0-7-m1:E013",
+    "kind": "keyboard",
+    "t": 24.765
+   },
+   {
+    "id": "kardashev-0-7-m1:E014",
+    "kind": "keyboard",
+    "t": 25.785
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "media-text",
+   "duration": 1.4,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 0.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 1.4,
+    "style": "sous-titre",
+    "text": "For millennia,",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 1.4,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "media-text",
+   "duration": 0.717,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 4.2,
+    "style": "sous-titre",
+    "text": "working together.",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 4.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "media-text",
+   "duration": 0.375,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 4.917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 4.917,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "media-text",
+   "duration": 0.416,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 5.292,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 5.292,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "media-text",
+   "duration": 0.417,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 5.708,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 5.708,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "media-text",
+   "duration": 0.417,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 6.125,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "media-text",
+   "duration": 0.416,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.542,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 6.542,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "media-text",
+   "duration": 0.042,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 6.958,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 6.958,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "media-text",
+   "duration": 0.5,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 7.0,
+    "style": "aucun",
+    "bw": true
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 7.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "media-text",
+   "duration": 3.667,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 7.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 7.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "media-text",
+   "duration": 1.433,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 11.167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 11.167,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "horizon-card",
+   "duration": 2.8,
+   "params": {
+    "bg": "#151a2e",
+    "glow": "#f39a5c",
+    "glow2": "#6a86d6",
+    "ink": "#f4efe6",
+    "font": "PlayfairDisplay",
+    "eyebrow": "Banbury Road",
+    "title": "Kardashev-0.7",
+    "subtitle": ""
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 12.6,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "horizon-card",
+   "duration": 2.8,
+   "params": {
+    "bg": "#151a2e",
+    "glow": "#f39a5c",
+    "glow2": "#6a86d6",
+    "ink": "#f4efe6",
+    "font": "PlayfairDisplay",
+    "eyebrow": "Banbury Road",
+    "title": "Kardashev-0.7",
+    "subtitle": "The world's first trained swarm.",
+    "enter": "coupe"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 15.4,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "horizon-card",
+   "duration": 1.008,
+   "params": {
+    "bg": "#151a2e",
+    "glow": "#f39a5c",
+    "glow2": "#6a86d6",
+    "ink": "#f4efe6",
+    "font": "PlayfairDisplay",
+    "eyebrow": "Banbury Road",
+    "title": "Kardashev-0.7",
+    "subtitle": "32 distinct models",
+    "enter": "coupe"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 18.2,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "media-text",
+   "duration": 1.892,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 19.208,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 19.208,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 21.1,
+    "style": "sous-titre",
+    "text": "We're co-founders at Banbury Road.",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 21.1,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 23.9,
+    "style": "sous-titre",
+    "text": "Our team met as",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 23.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 26.7,
+    "style": "sous-titre",
+    "text": "and left PhD at Yale and UChicago",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 26.7,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 29.5,
+    "style": "sous-titre",
+    "text": "to scale intelligence horizontally.",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 29.5,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "dot-grid",
+   "duration": 2.8,
+   "params": {
+    "count": 32,
+    "label": "",
+    "caption": "",
+    "shape": "anneaux",
+    "accent": "#e7c88a",
+    "bg": "#151a2e"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 32.3,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "dot-grid",
+   "duration": 2.8,
+   "params": {
+    "count": 32,
+    "label": "distinct models",
+    "caption": "",
+    "shape": "anneaux",
+    "bg": "#151a2e"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 35.1,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "dot-grid",
+   "duration": 2.8,
+   "params": {
+    "count": 32,
+    "label": "distinct models",
+    "caption": "Complementary capabilities.",
+    "shape": "variés",
+    "bg": "#151a2e"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 37.9,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "bar-chart",
+   "duration": 2.8,
+   "params": {
+    "title": "SuperGPQA",
+    "subtitle": "Graduate-level knowledge · score (%)",
+    "values": "Kardashev-0.7 81.3\nGPT-5.5 72.7\nQwen 3.7 Max 73.6\nDeepSeek V4 Pro 69.9"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 40.7,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "bar-chart",
+   "duration": 2.125,
+   "params": {
+    "title": "IFBench",
+    "subtitle": "Instruction following · score (%)",
+    "values": "Kardashev-0.7 79.3\nGPT-5.5 75.9\nQwen 3.7 Max 79.1\nDeepSeek V4 Pro 77.0"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 43.5,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 0.675,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 45.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 45.625,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 46.3,
+    "style": "sous-titre",
+    "text": "For example,",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 46.3,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 49.1,
+    "style": "géant",
+    "text": "70-year-old",
+    "font": "PlayfairDisplay",
+    "weight": 400,
+    "size": 240,
+    "ink": "#f4efe6",
+    "text2": "",
+    "enter": "fondu",
+    "shadow": 0
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 49.1,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 0.85,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 51.9,
+    "style": "géant",
+    "text": "$500",
+    "font": "PlayfairDisplay",
+    "weight": 400,
+    "size": 420,
+    "ink": "#f4efe6",
+    "enter": "fondu",
+    "shadow": 0
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 51.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s030",
+   "template": "media-text",
+   "duration": 2.05,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 52.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 52.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s031",
+   "template": "line-chart",
+   "duration": 2.8,
+   "params": {
+    "title": "Model size",
+    "subtitle": "Test loss · lower is better",
+    "points": "0 5.6\n1 4.9\n2 4.5\n3 4.2\n4 4.0\n5 3.7\n6 3.5\n7 3.3"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 54.8,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s032",
+   "template": "line-chart",
+   "duration": 0.775,
+   "params": {
+    "title": "Model count",
+    "subtitle": "Test loss · lower is better",
+    "points": "1 0.40\n2 0.33\n4 0.27\n8 0.22\n16 0.18\n32 0.15"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 57.6,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s033",
+   "template": "media-text",
+   "duration": 2.025,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 58.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 58.375,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s034",
+   "template": "media-text",
+   "duration": 2.8,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 60.4,
+    "style": "sous-titre",
+    "text": "32 models is just the beginning.",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 60.4,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s035",
+   "template": "media-text",
+   "duration": 0.05,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 63.2,
+    "style": "sous-titre",
+    "text": "Be among the first to try Kardashev for yourself.",
+    "font": "PlayfairDisplay",
+    "size": 32,
+    "weight": 400,
+    "enter": "fondu",
+    "shadow": 0.5
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 63.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s036",
+   "template": "media-text",
+   "duration": 2.75,
+   "params": {
+    "media": "ref:kardashev-0-7",
+    "mediaStart": 63.25,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 63.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s037",
+   "template": "horizon-card",
+   "duration": 1.417,
+   "params": {
+    "bg": "#151a2e",
+    "glow": "#f39a5c",
+    "glow2": "#6a86d6",
+    "ink": "#f4efe6",
+    "font": "PlayfairDisplay",
+    "eyebrow": "Banbury Road",
+    "title": "Try Kardashev.",
+    "subtitle": "banburyroad.ai"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 66.0,
+    "family": "textcard"
+   }
+  }
+ ],
+ "id": "kardashev-0-7-motion",
+ "updated": "15 October 2026, 14:33",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:34",
+ "version": "V_005"
+}

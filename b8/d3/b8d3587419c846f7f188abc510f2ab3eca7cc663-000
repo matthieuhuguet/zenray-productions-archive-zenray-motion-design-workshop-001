@@ -1,0 +1,269 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "motion-opus-5-5 reproduit",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "motion-opus-5-5",
+ "doc": "15 October 2026: reproduction of motion-opus-5-5, one scene per beat at the instants read on the reference; every text and colour is a value.",
+ "theme": {
+  "bg": "#ecece2",
+  "ink": "#1b1b19",
+  "accent": "#e2552f",
+  "fontTitle": "AnthropicSerif",
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "motion-opus-5-5-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": true,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "motion-opus-5-5-m1:E001",
+    "kind": "impact",
+    "t": 4.465
+   },
+   {
+    "id": "motion-opus-5-5-m1:E009",
+    "kind": "impact",
+    "t": 27.755
+   },
+   {
+    "id": "motion-opus-5-5-m1:E010",
+    "kind": "impact",
+    "t": 29.1
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "b01",
+   "template": "title-card",
+   "duration": 4.03,
+   "params": {
+    "title": "Claude Opus 5.5",
+    "subtitle": "for launch videos",
+    "footnote": "Powered by Motion",
+    "footIcon": true,
+    "align": "left",
+    "mark": true,
+    "titleFont": "AnthropicSerifLight",
+    "bodyFont": "AnthropicSans",
+    "weight": 500,
+    "titleSize": 127,
+    "subtitleSize": 148.1,
+    "tracking": -0.025,
+    "x": 0.1245,
+    "y": 0.5597,
+    "lineGap": 23,
+    "footGap": 128,
+    "footSize": 35,
+    "start": 0.52,
+    "gap": 0.6,
+    "enter": 0.85,
+    "ease": "snappy",
+    "stagger": 0,
+    "footAt": 2.45,
+    "markSize": 203,
+    "markX": 0.815,
+    "markY": 0.2265,
+    "thickness": 8.9,
+    "irregular": 0.6,
+    "accent": "#cc7058"
+   },
+   "ref": {
+    "start": 0.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b02",
+   "template": "prompt-status",
+   "duration": 5.47,
+   "params": {
+    "prompt": "Create a launch video for Replit.",
+    "product": "Motion",
+    "steps": "Designing your launch video…\nAdding sound…\nRendering your launch video…",
+    "cps": 22
+   },
+   "ref": {
+    "start": 4.03,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b03",
+   "template": "kinetic-words",
+   "duration": 2.5,
+   "params": {
+    "sentence": "We now {pill} with over",
+    "pills": "connect\nship\nbuild",
+    "badge": true,
+    "size": 96
+   },
+   "ref": {
+    "start": 9.5,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b04",
+   "template": "big-count",
+   "duration": 4.0,
+   "params": {
+    "value": 450,
+    "label": "Tools",
+    "count": 3.0,
+    "size": 190,
+    "dots": 26
+   },
+   "ref": {
+    "start": 12.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b05",
+   "template": "list-focus",
+   "duration": 1.5,
+   "params": {
+    "lines": "Import designs with Figma\nConnect with your docs\nAdd SMS, voice calls\nBuild workflows",
+    "step": 0.35,
+    "size": 44
+   },
+   "ref": {
+    "start": 16.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b06",
+   "template": "prompt-status",
+   "duration": 3.53,
+   "params": {
+    "prompt": "Change that.",
+    "product": "Motion",
+    "steps": "Refining your launch video…",
+    "cps": 14
+   },
+   "ref": {
+    "start": 17.5,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b07",
+   "template": "list-focus",
+   "duration": 0.97,
+   "params": {
+    "lines": "Connect to customer data\nAdd audio to your apps\nConnect to your content\nBuild workflows\nAutomate workflows\nBuild customer dashboards",
+    "step": 0.16,
+    "size": 40
+   },
+   "ref": {
+    "start": 21.03,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b08",
+   "template": "color-slam",
+   "duration": 1.0,
+   "params": {
+    "text": "And many",
+    "size": 110
+   },
+   "ref": {
+    "start": 22.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b09",
+   "template": "orbit-word",
+   "duration": 1.0,
+   "params": {
+    "word": "More",
+    "tiles": 22,
+    "colour": "#1b1b19"
+   },
+   "ref": {
+    "start": 23.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b10",
+   "template": "gradient-word",
+   "duration": 1.5,
+   "params": {
+    "word": "What",
+    "phrase": "What are {pill}",
+    "pill": "you",
+    "split": 0.45
+   },
+   "ref": {
+    "start": 24.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b11",
+   "template": "kinetic-words",
+   "duration": 0.5,
+   "params": {
+    "sentence": "going to {pill}",
+    "pills": "build?",
+    "badge": false,
+    "size": 96,
+    "interval": 0.1
+   },
+   "ref": {
+    "start": 25.5,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b12",
+   "template": "logo-merge",
+   "duration": 1.03,
+   "params": {
+    "name": "Replit",
+    "shape": "blocks",
+    "merge": 0.5
+   },
+   "ref": {
+    "start": 26.0,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  },
+  {
+   "id": "b13",
+   "template": "end-card",
+   "duration": 2.87,
+   "params": {
+    "title": "Claude Opus 5.5",
+    "subtitle": "for launch videos",
+    "label": "available at",
+    "url": "motion.so",
+    "mark": true
+   },
+   "ref": {
+    "start": 27.03,
+    "note": "instant read on the contact sheet of the reference"
+   }
+  }
+ ],
+ "id": "motion-opus-5-5-motion",
+ "updated": "15 October 2026, 13:53",
+ "versionNote": "avant la reproduction calée sur la référence",
+ "versionSaved": "15 October 2026, 13:54",
+ "version": "V_007"
+}

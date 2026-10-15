@@ -1,0 +1,586 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "onekey-pro-2 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "onekey-pro-2",
+ "doc": "15 October 2026: first motion base of onekey-pro-2: one scene per measured shot, the words and treatments read on the contact sheets; plates show an excerpt of the reference until a render replaces them. To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "onekey-pro-2",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "onekey-pro-2:E001",
+    "kind": "impact",
+    "t": 20.66
+   },
+   {
+    "id": "onekey-pro-2:E005",
+    "kind": "keyboard",
+    "t": 28.695
+   },
+   {
+    "id": "onekey-pro-2:E006",
+    "kind": "impact",
+    "t": 28.785
+   },
+   {
+    "id": "onekey-pro-2:E007",
+    "kind": "ding",
+    "t": 40.48
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "media-text",
+   "duration": 3.0833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 0.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 1.85,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 3.0833,
+    "style": "centre",
+    "text": "OneKey Pro 2",
+    "font": "InterVariable",
+    "size": 130,
+    "weight": 500,
+    "ink": "#c9c9c9",
+    "y": 0.5,
+    "enter": "fondu",
+    "shadow": 0
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 3.0833,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "media-text",
+   "duration": 1.35,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 4.9333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 4.9333,
+    "family": "textcard"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "media-text",
+   "duration": 1.1667,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 6.2833,
+    "style": "centre",
+    "text": "Aluminum unibody",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 6.2833,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "media-text",
+   "duration": 1.2833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 7.45,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 7.45,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "media-text",
+   "duration": 1.4667,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 8.7333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 8.7333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "media-text",
+   "duration": 1.45,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 10.2,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 10.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "media-text",
+   "duration": 1.6,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 11.65,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 11.65,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "media-text",
+   "duration": 0.6833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 13.25,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 13.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "media-text",
+   "duration": 0.6667,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 13.9333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 13.9333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "media-text",
+   "duration": 1.2833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 14.6,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 14.6,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "media-text",
+   "duration": 1.4833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 15.8833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 15.8833,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "media-text",
+   "duration": 2.2333,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 17.3667,
+    "style": "centre",
+    "text": "Four secure elements",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 17.3667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "media-text",
+   "duration": 2.9667,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 19.6,
+    "style": "partagé",
+    "text": "Unlock",
+    "text2": "with a touch",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 19.6,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "media-text",
+   "duration": 2.8333,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 22.5667,
+    "style": "centre",
+    "text": "Clear signing",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 22.5667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "media-text",
+   "duration": 1.6833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 25.4,
+    "style": "centre",
+    "text": "See exactly what you sign",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.5,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 25.4,
+    "family": "textcard"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "media-text",
+   "duration": 1.35,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 27.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 27.0833,
+    "family": "textcard"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "media-text",
+   "duration": 1.0833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 28.4333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 28.4333,
+    "family": "textcard"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 2.2833,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 29.5167,
+    "style": "centre",
+    "text": "Works with Apple Find My",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 29.5167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "media-text",
+   "duration": 2.7667,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 31.8,
+    "style": "centre",
+    "text": "Charge wirelessly",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 31.8,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "media-text",
+   "duration": 4.8333,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 34.5667,
+    "style": "centre",
+    "text": "Backup with SeedCard",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 34.5667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "media-text",
+   "duration": 4.85,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 39.4,
+    "style": "centre",
+    "text": "Air-gap signing",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 39.4,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "media-text",
+   "duration": 5.95,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 44.25,
+    "style": "centre",
+    "text": "NFC Passkey",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 44.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "media-text",
+   "duration": 3.85,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 50.2,
+    "style": "centre",
+    "text": "On-device portfolio",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 400,
+    "y": 0.82,
+    "enter": "fondu",
+    "shadow": 0.4
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 50.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "media-text",
+   "duration": 1.3167,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 54.05,
+    "style": "légende gauche",
+    "text": "All new *safeOS 2*",
+    "font": "InterVariable",
+    "size": 56,
+    "weight": 400,
+    "y": 0.5,
+    "x": 0.18,
+    "accent": "#ffffff",
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 54.05,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 2.6333,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 55.3667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 55.3667,
+    "family": "textcard"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "media-text",
+   "duration": 4.0,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 58.0,
+    "style": "géant",
+    "text": "PRO",
+    "font": "InterVariable",
+    "size": 520,
+    "weight": 800,
+    "ink": "#e0763a",
+    "enter": "coupe",
+    "shadow": 0.6
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 58.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "media-text",
+   "duration": 4.2,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 62.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 62.0,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 1.8,
+   "params": {
+    "media": "ref:onekey-pro-2",
+    "mediaStart": 66.2,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 66.2,
+    "family": "graphic"
+   }
+  }
+ ],
+ "id": "onekey-pro-2-motion",
+ "updated": "15 October 2026, 14:33",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_004"
+}

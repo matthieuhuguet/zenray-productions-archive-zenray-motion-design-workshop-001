@@ -1,0 +1,2822 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "memo en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 131 shots of the reference memo (44.4 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "memo",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "memo-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "memo-m1:E001",
+    "kind": "impact",
+    "t": 4.055
+   },
+   {
+    "id": "memo-m1:E002",
+    "kind": "glitch",
+    "t": 4.635
+   },
+   {
+    "id": "memo-m1:E003",
+    "kind": "impact",
+    "t": 5.765
+   },
+   {
+    "id": "memo-m1:E004",
+    "kind": "impact",
+    "t": 6.4
+   },
+   {
+    "id": "memo-m1:E005",
+    "kind": "trigger",
+    "t": 6.83
+   },
+   {
+    "id": "memo-m1:E006",
+    "kind": "glitch",
+    "t": 7.37
+   },
+   {
+    "id": "memo-m1:E008",
+    "kind": "impact",
+    "t": 28.475
+   },
+   {
+    "id": "memo-m1:E009",
+    "kind": "impact",
+    "t": 29.33
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 2.5667,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Un homme de dos marche dans un atelier en noir et blanc, d'énormes mots orange se remplacent par paires devant lui."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 1.7,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 2.5667,
+    "description": "L'homme face caméra en noir et blanc, un mot orange géant puis deux autres le traversent."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 2.5667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 8.7,
+   "ref": {
+    "shot": "S03",
+    "family": "plate",
+    "start": 4.2667,
+    "description": "Plan plus serré de l'homme, un mot orange géant puis un second en travers de l'image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 4.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S04",
+    "family": "montage",
+    "start": 12.9667,
+    "description": "Le mot orange géant en capitales sur fond noir, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 12.9667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S05",
+    "family": "montage",
+    "start": 13.0333,
+    "description": "Le mot orange géant en surimpression sur une monoplace blanche en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.0333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S06",
+    "family": "montage",
+    "start": 13.0667,
+    "description": "Le mot orange géant seul sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.0667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S07",
+    "family": "montage",
+    "start": 13.1,
+    "description": "Le mot orange géant seul sur fond noir, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S08",
+    "family": "montage",
+    "start": 13.1667,
+    "description": "Le mot orange géant seul sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S09",
+    "family": "montage",
+    "start": 13.2,
+    "description": "Le mot orange géant en surimpression sur la monoplace en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.2,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S10",
+    "family": "montage",
+    "start": 13.2333,
+    "description": "Le mot orange géant seul sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S11",
+    "family": "montage",
+    "start": 13.2667,
+    "description": "Le mot orange en surimpression sur une monoplace en noir et blanc, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S12",
+    "family": "montage",
+    "start": 13.3333,
+    "description": "Le mot orange géant seul sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S13",
+    "family": "montage",
+    "start": 13.3667,
+    "description": "Le mot orange géant revient seul sur le noir, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.3667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S14",
+    "family": "montage",
+    "start": 13.4,
+    "description": "Le mot orange géant seul sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.4,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S15",
+    "family": "montage",
+    "start": 13.4333,
+    "description": "Le mot orange géant en surimpression sur la monoplace blanche qui prend un virage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.4333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s16",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S16",
+    "family": "montage",
+    "start": 13.5,
+    "description": "Le mot orange sur le noir puis sur la voiture, en alternance rapide."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s17",
+   "duration": 0.3333,
+   "ref": {
+    "shot": "S17",
+    "family": "montage",
+    "start": 13.5333,
+    "description": "Le mot orange sur la monoplace qui prend un virage, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.5333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s18",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S18",
+    "family": "montage",
+    "start": 13.8667,
+    "description": "Le mot orange géant seul sur fond noir, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.8667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s19",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S19",
+    "family": "montage",
+    "start": 13.9333,
+    "description": "Le mot orange géant sur la monoplace qui prend un virage, en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 13.9333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s20",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S20",
+    "family": "montage",
+    "start": 14.0,
+    "description": "Le mot orange alterne avec le noir et la voiture, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s21",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S21",
+    "family": "montage",
+    "start": 14.0333,
+    "description": "Le mot orange géant en surimpression sur la voiture, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.0333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s22",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S22",
+    "family": "montage",
+    "start": 14.0667,
+    "description": "Le mot orange géant seul sur fond noir, un petit éclat blanc au centre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.0667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s23",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S23",
+    "family": "montage",
+    "start": 14.1,
+    "description": "Un petit logo blanc sur noir puis une monoplace qui décolle d'un vibreur."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s24",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S24",
+    "family": "montage",
+    "start": 14.1667,
+    "description": "Petit logo blanc de la compétition sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s25",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S25",
+    "family": "montage",
+    "start": 14.2,
+    "description": "Monoplace blanche vue de côté en noir et blanc, penchée dans un virage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.2,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s26",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S26",
+    "family": "montage",
+    "start": 14.2333,
+    "description": "Petit logo blanc décentré sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s27",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S27",
+    "family": "montage",
+    "start": 14.2667,
+    "description": "Monoplace en noir et blanc, roue avant levée, plan fixe de deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s28",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S28",
+    "family": "montage",
+    "start": 14.3333,
+    "description": "Alternance du logo blanc sur noir et de la monoplace en l'air, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s29",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S29",
+    "family": "montage",
+    "start": 14.3667,
+    "description": "Monoplace en noir et blanc, roue avant levée, la même prise tenue."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.3667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s30",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S30",
+    "family": "montage",
+    "start": 14.4,
+    "description": "Petit logo blanc sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.4,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s31",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S31",
+    "family": "montage",
+    "start": 14.4333,
+    "description": "Monoplace blanche en gros plan, flanc et roue en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.4333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s32",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S32",
+    "family": "montage",
+    "start": 14.5,
+    "description": "Petit logo blanc sur fond noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s33",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S33",
+    "family": "montage",
+    "start": 14.5333,
+    "description": "Petit logo blanc sur noir, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.5333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s34",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S34",
+    "family": "montage",
+    "start": 14.5667,
+    "description": "Petit logo blanc sur fond noir, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.5667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s35",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S35",
+    "family": "montage",
+    "start": 14.6,
+    "description": "La monoplace en l'air, en noir et blanc, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s36",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S36",
+    "family": "montage",
+    "start": 14.9,
+    "description": "Noir presque total, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 14.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s37",
+   "duration": 0.1333,
+   "ref": {
+    "shot": "S37",
+    "family": "montage",
+    "start": 15.1,
+    "description": "Une monoplace vue de face sous les projecteurs, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 15.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s38",
+   "duration": 0.5333,
+   "ref": {
+    "shot": "S38",
+    "family": "plate",
+    "start": 15.2333,
+    "description": "Profil rapproché d'une monoplace qui file, flou de vitesse."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 15.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s39",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S39",
+    "family": "plate",
+    "start": 15.7667,
+    "description": "Filé de vitesse le long d'une piste, la voiture presque illisible."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 15.7667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s40",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S40",
+    "family": "plate",
+    "start": 16.2667,
+    "description": "Vue d'en haut d'une voiture qui sort d'un virage en laissant de la fumée."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 16.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s41",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S41",
+    "family": "plate",
+    "start": 16.8667,
+    "description": "Vue aérienne verticale de voitures entre deux tribunes noires de monde."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 16.8667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s42",
+   "duration": 0.5667,
+   "ref": {
+    "shot": "S42",
+    "family": "plate",
+    "start": 17.3667,
+    "description": "Gerbe d'étincelles sous une monoplace vue de l'arrière."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 17.3667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s43",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S43",
+    "family": "montage",
+    "start": 17.9333,
+    "description": "Monoplace noire sur une piste vue de côté, fumée au loin, en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 17.9333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s44",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S44",
+    "family": "montage",
+    "start": 18.0,
+    "description": "Gerbe d'étincelles sous une monoplace, arrière-train et pneu, un mot en lettres géantes derrière."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 18.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s45",
+   "duration": 0.4333,
+   "ref": {
+    "shot": "S45",
+    "family": "montage",
+    "start": 18.0333,
+    "description": "Monoplace en contre-jour qui passe devant un mur, flou de vitesse."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 18.0333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s46",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S46",
+    "family": "montage",
+    "start": 18.4667,
+    "description": "Monoplace qui traverse le cadre en panoramique filé."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 18.4667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s47",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S47",
+    "family": "montage",
+    "start": 18.7667,
+    "description": "Gros plan sur un casque de pilote puis noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 18.7667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s48",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S48",
+    "family": "montage",
+    "start": 19.0667,
+    "description": "Écran noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 19.0667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s49",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S49",
+    "family": "plate",
+    "start": 19.1,
+    "description": "Archive d'astronautes en combinaison blanche qui avancent dans un couloir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 19.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s50",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S50",
+    "family": "plate",
+    "start": 19.6,
+    "description": "Vue d'une capsule avec la Terre à travers le hublot, archive."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 19.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s51",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S51",
+    "family": "plate",
+    "start": 20.1,
+    "description": "Empreinte de semelle sur un sol poussiéreux, archive."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 20.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s52",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S52",
+    "family": "montage",
+    "start": 20.7667,
+    "description": "Contre-plongée sur une structure et un soleil voilé, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 20.7667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s53",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S53",
+    "family": "montage",
+    "start": 20.8333,
+    "description": "Salle de contrôle remplie d'opérateurs, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 20.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s54",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S54",
+    "family": "montage",
+    "start": 20.9,
+    "description": "Un engin spatial noir au-dessus des nuages, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 20.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s55",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S55",
+    "family": "montage",
+    "start": 21.0667,
+    "description": "Nuages de fumée au décollage d'une fusée, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.0667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s56",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S56",
+    "family": "montage",
+    "start": 21.2667,
+    "description": "Silhouette d'une tour de lancement dans la fumée, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s57",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S57",
+    "family": "montage",
+    "start": 21.3667,
+    "description": "Fumée de lancement en gros plan, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.3667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s58",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S58",
+    "family": "montage",
+    "start": 21.4667,
+    "description": "Fusée qui monte au-dessus d'un panache, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.4667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s59",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S59",
+    "family": "montage",
+    "start": 21.5333,
+    "description": "Foule qui regarde un lancement depuis la plage, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.5333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s60",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S60",
+    "family": "montage",
+    "start": 21.7333,
+    "description": "Foule dense qui lève les bras dans un hangar, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s61",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S61",
+    "family": "montage",
+    "start": 21.8333,
+    "description": "Panache de flammes et de fumée sous un lanceur, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 21.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s62",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S62",
+    "family": "montage",
+    "start": 22.0,
+    "description": "Foule de dos face à l'horizon, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 22.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s63",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S63",
+    "family": "montage",
+    "start": 22.1,
+    "description": "Plongée sur une flamme de propulsion et la plage, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 22.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s64",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S64",
+    "family": "montage",
+    "start": 22.2,
+    "description": "Fusée minuscule dans un ciel gris, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 22.2,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s65",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S65",
+    "family": "montage",
+    "start": 22.3,
+    "description": "Moteurs allumés au pied d'un lanceur, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 22.3,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s66",
+   "duration": 0.6333,
+   "ref": {
+    "shot": "S66",
+    "family": "plate",
+    "start": 22.6,
+    "description": "Vue aérienne d'un pas de tir avec son panache."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 22.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s67",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S67",
+    "family": "montage",
+    "start": 23.2333,
+    "description": "Rangées de pupitres de contrôle vus de dos."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s68",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S68",
+    "family": "montage",
+    "start": 23.5333,
+    "description": "Traînée de fumée sinueuse dans un ciel clair, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.5333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s69",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S69",
+    "family": "montage",
+    "start": 23.6333,
+    "description": "Un homme casqué sourit devant des écrans, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.6333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s70",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S70",
+    "family": "montage",
+    "start": 23.7333,
+    "description": "Un astronaute devant la courbe de la Terre, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s71",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S71",
+    "family": "montage",
+    "start": 23.8333,
+    "description": "Fusée qui s'élève avec sa traînée, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s72",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S72",
+    "family": "montage",
+    "start": 23.9333,
+    "description": "Rentrée atmosphérique enflammée sous un engin, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 23.9333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s73",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S73",
+    "family": "montage",
+    "start": 24.0,
+    "description": "Traînée lumineuse oblique dans le ciel, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s74",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S74",
+    "family": "montage",
+    "start": 24.1,
+    "description": "Foule en liesse sous une structure, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s75",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S75",
+    "family": "montage",
+    "start": 24.2,
+    "description": "Petit point lumineux sur fond noir, puis noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.2,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s76",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S76",
+    "family": "montage",
+    "start": 24.5,
+    "description": "Un drapeau national flotte, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s77",
+   "duration": 0.1333,
+   "ref": {
+    "shot": "S77",
+    "family": "montage",
+    "start": 24.6667,
+    "description": "Un enfant et un adulte devant un drapeau, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s78",
+   "duration": 0.1333,
+   "ref": {
+    "shot": "S78",
+    "family": "montage",
+    "start": 24.8,
+    "description": "Drapeau sur un mât dans un ciel clair, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.8,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s79",
+   "duration": 0.2333,
+   "ref": {
+    "shot": "S79",
+    "family": "montage",
+    "start": 24.9333,
+    "description": "Flou de mouvement indistinct, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 24.9333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s80",
+   "duration": 0.3667,
+   "ref": {
+    "shot": "S80",
+    "family": "montage",
+    "start": 25.1667,
+    "description": "Un marin sur un pont d'envol donne le signal de départ d'un avion."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 25.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s81",
+   "duration": 0.7,
+   "ref": {
+    "shot": "S81",
+    "family": "plate",
+    "start": 25.5333,
+    "description": "Pilote casqué vu de près dans son cockpit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 25.5333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s82",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S82",
+    "family": "plate",
+    "start": 26.2333,
+    "description": "Personnel de pont de dos devant des avions de chasse."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 26.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s83",
+   "duration": 0.2667,
+   "ref": {
+    "shot": "S83",
+    "family": "montage",
+    "start": 26.8333,
+    "description": "Avion de chasse qui catapulte, flou, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 26.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s84",
+   "duration": 0.5333,
+   "ref": {
+    "shot": "S84",
+    "family": "plate",
+    "start": 27.1,
+    "description": "Foule de visages masqués et casqués, en plan serré."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 27.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s85",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S85",
+    "family": "montage",
+    "start": 27.6333,
+    "description": "Avion vu de face au décollage, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 27.6333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s86",
+   "duration": 0.4,
+   "ref": {
+    "shot": "S86",
+    "family": "montage",
+    "start": 27.8333,
+    "description": "Patrouille de chasseurs en formation dans un ciel blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 27.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s87",
+   "duration": 0.2667,
+   "ref": {
+    "shot": "S87",
+    "family": "montage",
+    "start": 28.2333,
+    "description": "Formation serrée de chasseurs, plus près."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s88",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S88",
+    "family": "montage",
+    "start": 28.5,
+    "description": "Fond presque noir, grain à peine visible."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s89",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S89",
+    "family": "montage",
+    "start": 28.5667,
+    "description": "Des soldats casqués et masqués en noir et blanc sur une embarcation, une seule image entre deux images noires."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.5667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s90",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S90",
+    "family": "montage",
+    "start": 28.6,
+    "description": "Noir puis soldats équipés au bord de l'eau."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s91",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S91",
+    "family": "montage",
+    "start": 28.6333,
+    "description": "Deux soldats casqués et masqués en gros plan, noir et blanc, un navire au loin."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.6333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s92",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S92",
+    "family": "montage",
+    "start": 28.7,
+    "description": "Noir, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.7,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s93",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S93",
+    "family": "montage",
+    "start": 28.7333,
+    "description": "Deux soldats casqués et masqués en gros plan, noir et blanc, la même prise."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s94",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S94",
+    "family": "montage",
+    "start": 28.7667,
+    "description": "Fond presque noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.7667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s95",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S95",
+    "family": "montage",
+    "start": 28.8,
+    "description": "Soldats casqués et masqués en gros plan, noir et blanc, bord de mer."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.8,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s96",
+   "duration": 0.0333,
+   "ref": {
+    "shot": "S96",
+    "family": "montage",
+    "start": 28.8667,
+    "description": "Fond presque noir, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.8667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s97",
+   "duration": 0.3667,
+   "ref": {
+    "shot": "S97",
+    "family": "montage",
+    "start": 28.9,
+    "description": "Soldats casqués et masqués en gros plan, puis une plage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 28.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s98",
+   "duration": 0.3333,
+   "ref": {
+    "shot": "S98",
+    "family": "montage",
+    "start": 29.2667,
+    "description": "Même casque vu de plus loin, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 29.2667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s99",
+   "duration": 0.1333,
+   "ref": {
+    "shot": "S99",
+    "family": "montage",
+    "start": 29.6,
+    "description": "Soldat accroupi devant un mur rayé, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 29.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s100",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S100",
+    "family": "plate",
+    "start": 29.7333,
+    "description": "Un hélicoptère dépose des soldats dans la poussière."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 29.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s101",
+   "duration": 0.7667,
+   "ref": {
+    "shot": "S101",
+    "family": "plate",
+    "start": 30.4,
+    "description": "Hélicoptère et soldats qui courent sous le souffle des pales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 30.4,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s102",
+   "duration": 0.5667,
+   "ref": {
+    "shot": "S102",
+    "family": "plate",
+    "start": 31.1667,
+    "description": "Un ouvrier suspendu dans une structure métallique au-dessus du vide."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 31.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s103",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S103",
+    "family": "montage",
+    "start": 31.7333,
+    "description": "Ouvriers sur un pylône métallique en contre-plongée."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 31.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s104",
+   "duration": 0.3333,
+   "ref": {
+    "shot": "S104",
+    "family": "montage",
+    "start": 32.0333,
+    "description": "Ouvriers sur un pylône, autre angle."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 32.0333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s105",
+   "duration": 0.0667,
+   "ref": {
+    "shot": "S105",
+    "family": "montage",
+    "start": 32.3667,
+    "description": "Vue aérienne d'un territoire, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 32.3667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s106",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S106",
+    "family": "montage",
+    "start": 32.4333,
+    "description": "Gerbe de métal fondu dans une fonderie, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 32.4333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s107",
+   "duration": 0.4,
+   "ref": {
+    "shot": "S107",
+    "family": "montage",
+    "start": 32.6,
+    "description": "Engin de chantier au travail parmi des débris."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 32.6,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s108",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S108",
+    "family": "montage",
+    "start": 33.0,
+    "description": "Ouvriers casqués en action sur une machine."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s109",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S109",
+    "family": "montage",
+    "start": 33.3,
+    "description": "Une main trace une ligne au crayon sur une planche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.3,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s110",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S110",
+    "family": "montage",
+    "start": 33.4667,
+    "description": "Outil qui découpe une matière, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.4667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s111",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S111",
+    "family": "montage",
+    "start": 33.6333,
+    "description": "Étincelles d'une meuleuse, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.6333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s112",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S112",
+    "family": "montage",
+    "start": 33.7333,
+    "description": "Ouvriers qui portent une grande plaque, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s113",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S113",
+    "family": "montage",
+    "start": 33.9,
+    "description": "Structure d'acier en plongée, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 33.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s114",
+   "duration": 0.1,
+   "ref": {
+    "shot": "S114",
+    "family": "montage",
+    "start": 34.0,
+    "description": "Ouvrier au milieu de caisses sur un chantier, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 34.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s115",
+   "duration": 0.1333,
+   "ref": {
+    "shot": "S115",
+    "family": "montage",
+    "start": 34.1,
+    "description": "Échafaudages éclairés de nuit, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 34.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s116",
+   "duration": 0.2333,
+   "ref": {
+    "shot": "S116",
+    "family": "montage",
+    "start": 34.2333,
+    "description": "Machinerie industrielle et vapeur, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 34.2333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s117",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S117",
+    "family": "plate",
+    "start": 34.4667,
+    "description": "Vue aérienne d'un chantier dense."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 34.4667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s118",
+   "duration": 0.9333,
+   "ref": {
+    "shot": "S118",
+    "family": "plate",
+    "start": 34.9667,
+    "description": "Ouvrier casqué de dos devant un camarade, plan un peu plus long."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 34.9667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s119",
+   "duration": 0.4,
+   "ref": {
+    "shot": "S119",
+    "family": "montage",
+    "start": 35.9,
+    "description": "Vue aérienne d'un quartier de chantiers."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 35.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s120",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S120",
+    "family": "plate",
+    "start": 36.3,
+    "description": "Pompiers près d'une roue de camion, de nuit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 36.3,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s121",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S121",
+    "family": "montage",
+    "start": 36.8,
+    "description": "Engins de chantier vus de très haut sur un sol nu."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 36.8,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s122",
+   "duration": 0.2333,
+   "ref": {
+    "shot": "S122",
+    "family": "montage",
+    "start": 37.1,
+    "description": "Un bulldozer en contre-jour sur un remblai."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 37.1,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s123",
+   "duration": 0.3,
+   "ref": {
+    "shot": "S123",
+    "family": "montage",
+    "start": 37.3333,
+    "description": "Rue de ville la nuit avec des pompiers sur un passage piéton."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 37.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s124",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S124",
+    "family": "plate",
+    "start": 37.6333,
+    "description": "Pompier masqué en gros plan dans l'obscurité."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 37.6333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s125",
+   "duration": 0.6,
+   "ref": {
+    "shot": "S125",
+    "family": "plate",
+    "start": 38.1333,
+    "description": "Pompiers qui traversent la rue près d'un véhicule."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 38.1333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s126",
+   "duration": 0.2667,
+   "ref": {
+    "shot": "S126",
+    "family": "montage",
+    "start": 38.7333,
+    "description": "Pompiers casqués en plan serré, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 38.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s127",
+   "duration": 1.0667,
+   "ref": {
+    "shot": "S127",
+    "family": "plate",
+    "start": 39.0,
+    "description": "Rue de nuit avec des véhicules d'urgence et des lumières."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 39.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s128",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S128",
+    "family": "plate",
+    "start": 40.0667,
+    "description": "Silhouettes de pompiers devant un feu."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 40.0667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s129",
+   "duration": 1.1667,
+   "ref": {
+    "shot": "S129",
+    "family": "plate",
+    "start": 40.7333,
+    "description": "Gros plan d'un pompier casqué qui regarde vers le haut."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 40.7333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s130",
+   "duration": 0.2,
+   "ref": {
+    "shot": "S130",
+    "family": "montage",
+    "start": 41.9,
+    "description": "Camion de pompiers dans une rue, noir et blanc, panneaux lumineux au fond."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:memo",
+    "mediaStart": 41.9,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s131",
+   "duration": 2.2667,
+   "ref": {
+    "shot": "S131",
+    "family": "graphic",
+    "start": 42.1,
+    "description": "Logotype orange en minuscules arrondies centré sur fond noir, immobile."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#000000",
+    "ink": "#111111",
+    "accent": "#f06006"
+   }
+  }
+ ],
+ "id": "memo-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}

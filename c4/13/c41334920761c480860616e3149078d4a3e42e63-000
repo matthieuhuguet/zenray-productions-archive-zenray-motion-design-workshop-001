@@ -1,0 +1,142 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "motion-opus-5-5 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 4 shots of the reference motion-opus-5-5 (29.9 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "motion-opus-5-5",
+ "theme": {
+  "fontBody": "Geist"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "motion-opus-5-5-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "motion-opus-5-5-m1:E001",
+    "kind": "impact",
+    "t": 4.465
+   },
+   {
+    "id": "motion-opus-5-5-m1:E009",
+    "kind": "impact",
+    "t": 27.755
+   },
+   {
+    "id": "motion-opus-5-5-m1:E010",
+    "kind": "impact",
+    "t": 29.1
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 4.0333,
+   "ref": {
+    "shot": "S01",
+    "family": "textcard",
+    "start": 0.0,
+    "description": "Capture d'une fenêtre de messagerie sur fond crème : une carte de tâche avec une barre de progression rouge et un champ de réponse en bas."
+   },
+   "template": "title-card",
+   "params": {
+    "title": "Built in Houdini",
+    "subtitle": "",
+    "align": "center",
+    "mark": false,
+    "bg": "#ecece2",
+    "ink": "#111111",
+    "accent": "#e2552f",
+    "titleFont": "AnthropicSerif",
+    "bodyFont": "Geist",
+    "titleSize": 41.5
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 17.0,
+   "ref": {
+    "shot": "S02",
+    "family": "graphic",
+    "start": 4.0333,
+    "description": "Retour à la conversation : une nouvelle demande est tapée, puis une liste de capacités s'affiche avec un mot surligné qui change."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Rendered in Unreal Engine {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "Geist",
+    "ink": "#111111",
+    "bg": "#f0f2e7",
+    "accent": "#e2552f",
+    "size": 56.6
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 6.0,
+   "ref": {
+    "shot": "S03",
+    "family": "graphic",
+    "start": 21.0333,
+    "description": "Une question se construit mot à mot sur un dégradé rouge en cercle, le dernier mot dans une pastille rouge, puis deux formes rouges fusionnent en logotype à côté d'un nom."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "From node to {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "Geist",
+    "ink": "#111111",
+    "bg": "#f1f3e8",
+    "accent": "#e82d04",
+    "size": 164.2
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 2.8667,
+   "ref": {
+    "shot": "S04",
+    "family": "textcard",
+    "start": 27.0333,
+    "description": "Carte de fin crème : titre en serif, étoile rouge, adresse en dessous, immobile."
+   },
+   "template": "end-card",
+   "params": {
+    "title": "ZenRay",
+    "subtitle": "procedural 3D worlds",
+    "url": "matthieuhuguet.com",
+    "bg": "#ecece2",
+    "ink": "#111111",
+    "accent": "#e2552f"
+   }
+  }
+ ],
+ "id": "motion-opus-5-5-motion",
+ "updated": "15 October 2026, 13:31",
+ "versionNote": "avant une nouvelle conversion",
+ "versionSaved": "15 October 2026, 13:40",
+ "version": "V_002"
+}
