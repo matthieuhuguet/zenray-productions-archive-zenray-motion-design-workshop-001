@@ -1,0 +1,1106 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "x-anabology-2106157622986748377 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "x-anabology-2106157622986748377",
+ "doc": "15 October 2026: first motion base of x-anabology-2106157622986748377: one scene per measured shot, the words and treatments read on the contact sheets; every filmed shot is redrawn as motion (illustrated-shot). To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "x-anabology-2106157622986748377-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": []
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "illustrated-shot",
+   "duration": 3.8,
+   "params": {
+    "subject": "écran",
+    "bg": "#0d2f97",
+    "colour": "#c1d5e9",
+    "colour2": "#282ba2",
+    "colour3": "#5b79d5",
+    "camX": 3.25,
+    "camY": 1.95,
+    "camZoom": -4.63,
+    "roll": 0.33,
+    "camEase": "power2.in",
+    "seed": 1,
+    "camAt": 3.753,
+    "camDur": 0.227
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 0.242,
+   "params": {
+    "subject": "écran",
+    "bg": "#0d2f97",
+    "colour": "#c1d5e9",
+    "colour2": "#282ba2",
+    "colour3": "#5b79d5",
+    "camX": 3.25,
+    "camY": 1.95,
+    "camZoom": -4.63,
+    "roll": 0.33,
+    "camEase": "power2.in",
+    "seed": 1,
+    "camAt": 0.0,
+    "camDur": 0.227,
+    "text": "*welcome back.*",
+    "style": "centre",
+    "font": "InterVariable",
+    "size": 64,
+    "weight": 700,
+    "accent": "#ffffff",
+    "y": 0.55,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 3.8,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "illustrated-shot",
+   "duration": 7.258,
+   "params": {
+    "subject": "paysage",
+    "bg": "#3e6ae0",
+    "colour": "#f0f0e9",
+    "colour2": "#6d932c",
+    "colour3": "#7399ec",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": 25,
+    "roll": 0.03,
+    "camEase": "sine.inOut",
+    "seed": 405,
+    "camAt": 6.776,
+    "camDur": 0.212
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 4.042,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "ui-window",
+   "duration": 0.242,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Desktop Dancer",
+    "lines": "I've been dancing on your desktop all day.",
+    "x": 0.6,
+    "y": 0.72
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 11.3,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "illustrated-shot",
+   "duration": 22.458,
+   "params": {
+    "subject": "matière",
+    "bg": "#f4f6f9",
+    "colour": "#18274b",
+    "colour2": "#3c65d3",
+    "colour3": "#7a7476",
+    "camX": -6,
+    "camY": 6,
+    "camZoom": 25,
+    "roll": -3.69,
+    "camEase": "power1.inOut",
+    "seed": 1155,
+    "camAt": 3.832,
+    "camDur": 0.62
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 11.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "ui-window",
+   "duration": 3.417,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Claudia",
+    "lines": "It looks like you're trying to go outside.",
+    "x": 0.8,
+    "y": 0.35
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 34.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "illustrated-shot",
+   "duration": 7.5,
+   "params": {
+    "subject": "paysage",
+    "bg": "#3663db",
+    "colour": "#e0e2ea",
+    "colour2": "#6e9a26",
+    "colour3": "#35576e",
+    "camX": -6,
+    "camY": -5.13,
+    "camZoom": 25,
+    "roll": 0.99,
+    "camEase": "power2.out",
+    "seed": 3742,
+    "camAt": 3.202,
+    "camDur": 0.499
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 37.417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "illustrated-shot",
+   "duration": 2.5,
+   "params": {
+    "subject": "matière",
+    "bg": "#5e655a",
+    "colour": "#174ecc",
+    "colour2": "#567346",
+    "colour3": "#838588",
+    "camX": 0.45,
+    "camY": 0.44,
+    "camZoom": 6.92,
+    "roll": -0.13,
+    "camEase": "power1.inOut",
+    "seed": 4492,
+    "camAt": 2.323,
+    "camDur": 0.257
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 44.917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "illustrated-shot",
+   "duration": 1.783,
+   "params": {
+    "subject": "écran",
+    "bg": "#4b612a",
+    "colour": "#d7d8e1",
+    "colour2": "#6ba227",
+    "colour3": "#84a2e7",
+    "camX": -6,
+    "camY": 4.6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power2.in",
+    "seed": 4742,
+    "camAt": 10.171,
+    "camDur": 0.104
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 47.417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "ui-window",
+   "duration": 17.258,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Bliss is a real",
+    "lines": "Sonoma County, California. Photographed in January 1996.",
+    "x": 0.3,
+    "y": 0.3
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 49.2,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "illustrated-shot",
+   "duration": 3.917,
+   "params": {
+    "subject": "écran",
+    "bg": "#4b612a",
+    "colour": "#d7d8e1",
+    "colour2": "#6ba227",
+    "colour3": "#84a2e7",
+    "camX": -6,
+    "camY": 4.6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power2.in",
+    "seed": 4742,
+    "camAt": 0.0,
+    "camDur": 0.104
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 66.458,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "illustrated-shot",
+   "duration": 1.425,
+   "params": {
+    "subject": "écran",
+    "bg": "#b0bade",
+    "colour": "#3161d1",
+    "colour2": "#658d22",
+    "colour3": "#324823",
+    "camX": -0.56,
+    "camY": -0.41,
+    "camZoom": 0.18,
+    "roll": -0.03,
+    "camEase": "power1.inOut",
+    "seed": 7038,
+    "camAt": 0.0,
+    "camDur": 2.0,
+    "bubble": true
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 70.375,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "ui-window",
+   "duration": 0.075,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Claudia",
+    "lines": "And when you look away,",
+    "x": 0.6,
+    "y": 0.6
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 71.8,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "illustrated-shot",
+   "duration": 0.042,
+   "params": {
+    "subject": "écran",
+    "bg": "#5375b9",
+    "colour": "#f2f6e1",
+    "colour2": "#17286e",
+    "colour3": "#557991",
+    "camX": 0.0,
+    "camY": 0.0,
+    "camZoom": 0.0,
+    "roll": 0.0,
+    "camEase": "power1.inOut",
+    "seed": 7188,
+    "bubble": true
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 71.875,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "illustrated-shot",
+   "duration": 2.083,
+   "params": {
+    "subject": "matière",
+    "bg": "#305ed7",
+    "colour": "#e2e1dd",
+    "colour2": "#1b2562",
+    "colour3": "#171716",
+    "camX": 6,
+    "camY": 0.12,
+    "camZoom": 4.0,
+    "roll": -0.12,
+    "camEase": "power1.inOut",
+    "seed": 7192,
+    "camAt": 0.0,
+    "camDur": 0.253
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 71.917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "illustrated-shot",
+   "duration": 5.042,
+   "params": {
+    "subject": "écran",
+    "bg": "#1e2120",
+    "colour": "#f1f2ee",
+    "colour2": "#2958c2",
+    "colour3": "#aeb0bb",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": 25,
+    "roll": -3.31,
+    "camEase": "power1.inOut",
+    "seed": 7401,
+    "camAt": 3.369,
+    "camDur": 0.152
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 74.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "illustrated-shot",
+   "duration": 6.375,
+   "params": {
+    "subject": "écran",
+    "bg": "#0c0e0f",
+    "colour": "#e7eef3",
+    "colour2": "#6c9922",
+    "colour3": "#79aedb",
+    "camX": 6,
+    "camY": -4.13,
+    "camZoom": -15,
+    "roll": 0.17,
+    "camEase": "power1.inOut",
+    "seed": 7905,
+    "camAt": 0.767,
+    "camDur": 0.609
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 79.042,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "illustrated-shot",
+   "duration": 1.483,
+   "params": {
+    "subject": "paysage",
+    "bg": "#303526",
+    "colour": "#edf3c1",
+    "colour2": "#3965db",
+    "colour3": "#6a824b",
+    "camX": -2.44,
+    "camY": -6,
+    "camZoom": 25,
+    "roll": 6,
+    "camEase": "power2.out",
+    "seed": 8542,
+    "camAt": 11.016,
+    "camDur": 0.122
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 85.417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 7.6,
+   "params": {
+    "subject": "paysage",
+    "bg": "#303526",
+    "colour": "#edf3c1",
+    "colour2": "#3965db",
+    "colour3": "#6a824b",
+    "camX": -2.44,
+    "camY": -6,
+    "camZoom": 25,
+    "roll": 6,
+    "camEase": "power2.out",
+    "seed": 8542,
+    "camAt": 9.533,
+    "camDur": 0.122,
+    "text": "*yours*",
+    "style": "légende gauche",
+    "font": "InterVariable",
+    "size": 64,
+    "weight": 700,
+    "accent": "#ffffff",
+    "x": 0.75,
+    "y": 0.15
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 86.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "ui-window",
+   "duration": 5.667,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Claudia",
+    "lines": "It looks like you're trying to be happy.\n○ Open the door for me\n○ Remind me later",
+    "x": 0.3,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 94.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "illustrated-shot",
+   "duration": 1.833,
+   "params": {
+    "subject": "main",
+    "bg": "#26371c",
+    "colour": "#ebe8d2",
+    "colour2": "#2752c0",
+    "colour3": "#5c4130",
+    "camX": 6,
+    "camY": -1.6,
+    "camZoom": 6.88,
+    "roll": 0.31,
+    "camEase": "power1.inOut",
+    "seed": 18,
+    "camAt": 0.32,
+    "camDur": 4.117,
+    "bubble": true
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 100.167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "ui-window",
+   "duration": 1.875,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Found New Hardware",
+    "lines": "Your new hardware is installed and ready to use.",
+    "x": 0.35,
+    "y": 0.7
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 102.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "illustrated-shot",
+   "duration": 2.75,
+   "params": {
+    "subject": "téléphone",
+    "bg": "#386183",
+    "colour": "#1d4ec8",
+    "colour2": "#8f4e43",
+    "colour3": "#585e2d",
+    "camX": -2.71,
+    "camY": 6,
+    "camZoom": 14.11,
+    "roll": 0.54,
+    "camEase": "power1.inOut",
+    "seed": 389,
+    "camAt": 0.0,
+    "camDur": 1.487
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 103.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "illustrated-shot",
+   "duration": 2.975,
+   "params": {
+    "subject": "personne",
+    "bg": "#575084",
+    "colour": "#f1f1f2",
+    "colour2": "#1d55d2",
+    "colour3": "#4a5e2d",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power1.inOut",
+    "seed": 664,
+    "camAt": 3.429,
+    "camDur": 0.94
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 106.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "ui-window",
+   "duration": 7.6,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Bliss is a real place",
+    "lines": "",
+    "x": 0.33,
+    "y": 0.12
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 109.6,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 3.258,
+   "params": {
+    "subject": "personne",
+    "bg": "#575084",
+    "colour": "#f1f1f2",
+    "colour2": "#1d55d2",
+    "colour3": "#4a5e2d",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power1.inOut",
+    "seed": 664,
+    "camAt": 0.0,
+    "camDur": 0.94,
+    "text": "I went",
+    "style": "légende gauche",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 600,
+    "x": 0.05,
+    "y": 0.05
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 117.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "illustrated-shot",
+   "duration": 3.25,
+   "params": {
+    "subject": "personne",
+    "bg": "#575084",
+    "colour": "#f1f1f2",
+    "colour2": "#1d55d2",
+    "colour3": "#4a5e2d",
+    "camX": -6,
+    "camY": -6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power1.inOut",
+    "seed": 664,
+    "camAt": 0.0,
+    "camDur": 0.94
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 120.458,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "illustrated-shot",
+   "duration": 0.992,
+   "params": {
+    "subject": "écran",
+    "bg": "#273226",
+    "colour": "#eef3ed",
+    "colour2": "#4a6893",
+    "colour3": "#99727a",
+    "camX": 0.77,
+    "camY": 0.62,
+    "camZoom": 14.88,
+    "roll": 0.9,
+    "camEase": "sine.inOut",
+    "seed": 2047,
+    "camAt": 0.0,
+    "camDur": 3.75
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 123.708,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 1.3,
+   "params": {
+    "subject": "main",
+    "bg": "#192d99",
+    "colour": "#8f9a5b",
+    "colour2": "#63723b",
+    "colour3": "#40502c",
+    "camX": -6,
+    "camY": -5.39,
+    "camZoom": -6.15,
+    "roll": 4.77,
+    "camEase": "power1.inOut",
+    "seed": 2372,
+    "camAt": 0.0,
+    "camDur": 2.15,
+    "text": "*you can.*",
+    "style": "centre",
+    "font": "InterVariable",
+    "size": 90,
+    "weight": 800,
+    "accent": "#ffffff",
+    "y": 0.25
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 124.7,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s030",
+   "template": "illustrated-shot",
+   "duration": 5.542,
+   "params": {
+    "subject": "logo",
+    "bg": "#000000",
+    "colour": "#e9e4da",
+    "colour2": "#8a8a8a",
+    "colour3": "#8a8a8a",
+    "camX": -6,
+    "camY": 6,
+    "camZoom": -15,
+    "roll": -6,
+    "camEase": "power1.inOut",
+    "seed": 2602,
+    "camAt": 4.554,
+    "camDur": 1.352
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 126.0,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s031",
+   "template": "illustrated-shot",
+   "duration": 3.708,
+   "params": {
+    "subject": "personne",
+    "bg": "#000000",
+    "colour": "#babbbc",
+    "colour2": "#a39b98",
+    "colour3": "#a39b98",
+    "camX": 1.27,
+    "camY": 0.1,
+    "camZoom": 25,
+    "roll": -3.78,
+    "camEase": "power2.in",
+    "seed": 3156,
+    "camAt": 1.982,
+    "camDur": 1.275
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 131.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s032",
+   "template": "illustrated-shot",
+   "duration": 4.65,
+   "params": {
+    "subject": "écran",
+    "bg": "#192e9a",
+    "colour": "#f0d748",
+    "colour2": "#6685e5",
+    "colour3": "#87a0e5",
+    "camX": 6,
+    "camY": -6,
+    "camZoom": -15,
+    "roll": 0.36,
+    "camEase": "power2.out",
+    "seed": 3527,
+    "camAt": 0.012,
+    "camDur": 0.423
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 135.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s033",
+   "template": "media-text",
+   "duration": 0.475,
+   "params": {
+    "subject": "écran",
+    "bg": "#192e9a",
+    "colour": "#f0d748",
+    "colour2": "#6685e5",
+    "colour3": "#87a0e5",
+    "camX": 6,
+    "camY": -6,
+    "camZoom": -15,
+    "roll": 0.36,
+    "camEase": "power2.out",
+    "seed": 3527,
+    "camAt": 0.0,
+    "camDur": 0.423,
+    "text": "welcome",
+    "style": "centre",
+    "font": "InterVariable",
+    "size": 100,
+    "weight": 700,
+    "y": 0.5,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 139.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s034",
+   "template": "illustrated-shot",
+   "duration": 4.083,
+   "params": {
+    "subject": "écran",
+    "bg": "#3860cf",
+    "colour": "#dbe0eb",
+    "colour2": "#668b2b",
+    "colour3": "#8da6e3",
+    "camX": -6,
+    "camY": 6,
+    "camZoom": -15,
+    "roll": 6,
+    "camEase": "power1.inOut",
+    "seed": 4039,
+    "camAt": 3.333,
+    "camDur": 0.521
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 140.375,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s035",
+   "template": "illustrated-shot",
+   "duration": 10.542,
+   "params": {
+    "subject": "écran",
+    "bg": "#3860cf",
+    "colour": "#dbe0eb",
+    "colour2": "#668b2b",
+    "colour3": "#8da6e3",
+    "camX": -6,
+    "camY": 6,
+    "camZoom": -15,
+    "roll": 6,
+    "camEase": "power1.inOut",
+    "seed": 4039,
+    "camAt": 0.0,
+    "camDur": 0.521
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 144.458,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s036",
+   "template": "ui-window",
+   "duration": 0.542,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 30,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Bliss is a real place",
+    "lines": "",
+    "x": 0.33,
+    "y": 0.1
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 155.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s037",
+   "template": "illustrated-shot",
+   "duration": 3.708,
+   "params": {
+    "subject": "paysage",
+    "bg": "#3564db",
+    "colour": "#ecedea",
+    "colour2": "#6a9424",
+    "colour3": "#6f91e2",
+    "camX": 6,
+    "camY": -6,
+    "camZoom": -12.32,
+    "roll": -0.17,
+    "camEase": "power1.inOut",
+    "seed": 5556,
+    "camAt": 1.409,
+    "camDur": 0.397
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 155.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s038",
+   "template": "illustrated-shot",
+   "duration": 3.625,
+   "params": {
+    "subject": "téléphone",
+    "bg": "#3a422b",
+    "colour": "#d9d4d8",
+    "colour2": "#2956ca",
+    "colour3": "#69727a",
+    "camX": 0.12,
+    "camY": 2.82,
+    "camZoom": 2.99,
+    "roll": 0.84,
+    "camEase": "power1.inOut",
+    "seed": 5927,
+    "camAt": 0.0,
+    "camDur": 3.888
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 159.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s039",
+   "template": "illustrated-shot",
+   "duration": 2.833,
+   "params": {
+    "subject": "paysage",
+    "bg": "#3c4919",
+    "colour": "#ddccc3",
+    "colour2": "#7c991a",
+    "colour3": "#9ca6c4",
+    "camX": 0.89,
+    "camY": -0.15,
+    "camZoom": 8.72,
+    "roll": 0.1,
+    "camEase": "power1.inOut",
+    "seed": 6289,
+    "camAt": 0.08,
+    "camDur": 2.143
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 162.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s040",
+   "template": "illustrated-shot",
+   "duration": 6.292,
+   "params": {
+    "subject": "paysage",
+    "bg": "#3c4919",
+    "colour": "#ddccc3",
+    "colour2": "#7c991a",
+    "colour3": "#9ca6c4",
+    "camX": 0.89,
+    "camY": -0.15,
+    "camZoom": 8.72,
+    "roll": 0.1,
+    "camEase": "power1.inOut",
+    "seed": 6289,
+    "camAt": 0.0,
+    "camDur": 2.143
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 165.708,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s041",
+   "template": "illustrated-shot",
+   "duration": 5.6,
+   "params": {
+    "subject": "personne",
+    "bg": "#010101",
+    "colour": "#c4ccd0",
+    "colour2": "#626437",
+    "colour3": "#22341c",
+    "camX": 4.24,
+    "camY": -5.62,
+    "camZoom": 8.5,
+    "roll": 1.51,
+    "camEase": "power1.inOut",
+    "seed": 7202,
+    "camAt": 0.21,
+    "camDur": 0.11
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 172.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s042",
+   "template": "media-text",
+   "duration": 3.6917,
+   "params": {
+    "subject": "personne",
+    "bg": "#010101",
+    "colour": "#c4ccd0",
+    "colour2": "#626437",
+    "colour3": "#22341c",
+    "camX": 4.24,
+    "camY": -5.62,
+    "camZoom": 8.5,
+    "roll": 1.51,
+    "camEase": "power1.inOut",
+    "seed": 7202,
+    "camAt": 0.0,
+    "camDur": 0.11,
+    "text": "bliss",
+    "style": "géant",
+    "font": "InterVariable",
+    "size": 180,
+    "weight": 800,
+    "ink": "#ffffff",
+    "y": 0.2,
+    "x": 0.7
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 177.6,
+    "family": "plate"
+   }
+  }
+ ],
+ "id": "x-anabology-2106157622986748377-motion",
+ "updated": "15 October 2026, 15:21",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 15:21",
+ "version": "V_009"
+}

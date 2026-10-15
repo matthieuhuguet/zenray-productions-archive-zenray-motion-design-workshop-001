@@ -1,0 +1,630 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "x-anabology-2106157622986748377 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 28 shots of the reference x-anabology-2106157622986748377 (181.3 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "x-anabology-2106157622986748377",
+ "theme": {
+  "fontBody": "Manrope"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "x-anabology-2106157622986748377-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": []
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 4.0417,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Écran bleu d'ouverture de session d'un vieux système de bureau, une icône d'utilisateur et un message de bienvenue qui change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 7.5,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 4.0417,
+    "description": "La danseuse sur la colline, la barre des tâches et une date apparaissent en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 4.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 25.875,
+   "ref": {
+    "shot": "S03",
+    "family": "plate",
+    "start": 11.5417,
+    "description": "Pages de recherche empilées, la danseuse dans l'assistant."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 11.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 7.5,
+   "ref": {
+    "shot": "S04",
+    "family": "plate",
+    "start": 37.4167,
+    "description": "La jeune femme en robe imprimée de nuages tourne sur une colline réelle."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 37.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 2.5,
+   "ref": {
+    "shot": "S05",
+    "family": "plate",
+    "start": 44.9167,
+    "description": "Une flèche de curseur géante et un voilage qui flotte dans la pièce."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 44.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 19.0417,
+   "ref": {
+    "shot": "S06",
+    "family": "graphic",
+    "start": 47.4167,
+    "description": "Un économiseur d'écran de tuyaux colorés en 3D remplit l'image."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "Manrope",
+    "ink": "#a0b8f3",
+    "bg": "#4b612a",
+    "accent": "#3b65d2",
+    "size": 56.6
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 3.9167,
+   "ref": {
+    "shot": "S07",
+    "family": "plate",
+    "start": 66.4583,
+    "description": "Une fenêtre de code et des boîtes de copie de fichiers sur le bureau."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 66.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 1.5,
+   "ref": {
+    "shot": "S08",
+    "family": "plate",
+    "start": 70.375,
+    "description": "Une bulle de notification se met à jour en bas de l'écran."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 70.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S09",
+    "family": "montage",
+    "start": 71.875,
+    "description": "Fenêtre de jeu de flipper rétro avec une image de bulle translucide, et une bulle de notification en bas à droite sur un fond de prairie."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 71.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 2.0833,
+   "ref": {
+    "shot": "S10",
+    "family": "plate",
+    "start": 71.9167,
+    "description": "Même flipper, la danseuse plus proche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 71.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 5.0417,
+   "ref": {
+    "shot": "S11",
+    "family": "plate",
+    "start": 74.0,
+    "description": "Fenêtres de dialogue, puis la danseuse en robe argentée sur fond étoilé avec une phrase blanche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 74.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 6.375,
+   "ref": {
+    "shot": "S12",
+    "family": "plate",
+    "start": 79.0417,
+    "description": "Fenêtres de messagerie et deux danseuses sur la colline."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 79.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 14.75,
+   "ref": {
+    "shot": "S13",
+    "family": "plate",
+    "start": 85.4167,
+    "description": "La colline avec une palette de couleurs flottante, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 85.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 3.7083,
+   "ref": {
+    "shot": "S14",
+    "family": "plate",
+    "start": 100.1667,
+    "description": "La main se referme dans l'herbe, bulles d'aide."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 100.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 2.75,
+   "ref": {
+    "shot": "S15",
+    "family": "plate",
+    "start": 103.875,
+    "description": "Une main tient un vieux téléphone à clapet au-dessus de l'herbe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 103.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s16",
+   "duration": 13.8333,
+   "ref": {
+    "shot": "S16",
+    "family": "plate",
+    "start": 106.625,
+    "description": "Gros plan d'une jeune femme aux cheveux noirs dans une fourrure blanche, reflets colorés."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 106.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s17",
+   "duration": 3.25,
+   "ref": {
+    "shot": "S17",
+    "family": "plate",
+    "start": 120.4583,
+    "description": "La jeune femme en combinaison argentée pose la main contre l'écran."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 120.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s18",
+   "duration": 2.2917,
+   "ref": {
+    "shot": "S18",
+    "family": "plate",
+    "start": 123.7083,
+    "description": "Une main caresse l'herbe, deux mots blancs s'écrivent au-dessus."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 123.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s19",
+   "duration": 5.5417,
+   "ref": {
+    "shot": "S19",
+    "family": "graphic",
+    "start": 126.0,
+    "description": "Le logo et la barre de chargement grossissent puis disparaissent."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Rendered in Unreal Engine {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "Manrope",
+    "ink": "#e1d7df",
+    "bg": "#000000",
+    "accent": "#e2552f",
+    "size": 205.7
+   }
+  },
+  {
+   "id": "s20",
+   "duration": 3.7083,
+   "ref": {
+    "shot": "S20",
+    "family": "plate",
+    "start": 131.5417,
+    "description": "Une silhouette en tenue blanche flotte dans un champ d'étoiles."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 131.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s21",
+   "duration": 5.125,
+   "ref": {
+    "shot": "S21",
+    "family": "plate",
+    "start": 135.25,
+    "description": "Écran de bienvenue qui se fond vers le blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 135.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s22",
+   "duration": 4.0833,
+   "ref": {
+    "shot": "S22",
+    "family": "plate",
+    "start": 140.375,
+    "description": "Dernières fenêtres et la danseuse sur la colline, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 140.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s23",
+   "duration": 11.0833,
+   "ref": {
+    "shot": "S23",
+    "family": "plate",
+    "start": 144.4583,
+    "description": "Fin de la rotation face au ciel."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 144.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s24",
+   "duration": 3.7083,
+   "ref": {
+    "shot": "S24",
+    "family": "plate",
+    "start": 155.5417,
+    "description": "Des dizaines de petites danseuses alignées sur la colline."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 155.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s25",
+   "duration": 3.625,
+   "ref": {
+    "shot": "S25",
+    "family": "plate",
+    "start": 159.25,
+    "description": "Un vieux téléphone à clapet tenu dans l'herbe, écran allumé."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 159.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s26",
+   "duration": 2.8333,
+   "ref": {
+    "shot": "S26",
+    "family": "plate",
+    "start": 162.875,
+    "description": "Une flèche blanche géante pointe la danseuse en bleu sur la colline."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 162.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s27",
+   "duration": 6.2917,
+   "ref": {
+    "shot": "S27",
+    "family": "plate",
+    "start": 165.7083,
+    "description": "La boîte d'extinction de l'ordinateur sur un fond qui se désature."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 165.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s28",
+   "duration": 9.2917,
+   "ref": {
+    "shot": "S28",
+    "family": "plate",
+    "start": 172.0,
+    "description": "La jeune femme assise dans l'herbe face au moniteur, un mot en grand blanc apparaît."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 172.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "entrance": "coupe",
+    "showCaption": false,
+    "bg": "#000000"
+   }
+  }
+ ],
+ "id": "x-anabology-2106157622986748377-motion",
+ "updated": "15 October 2026, 13:40",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_003"
+}

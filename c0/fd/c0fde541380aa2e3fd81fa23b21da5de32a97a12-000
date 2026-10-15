@@ -1,0 +1,757 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "x-anabology-2106157622986748377 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "x-anabology-2106157622986748377",
+ "doc": "15 October 2026: first motion base of x-anabology-2106157622986748377: one scene per measured shot, the words and treatments read on the contact sheets; plates show an excerpt of the reference until a render replaces them. To iterate against the reference.",
+ "theme": {
+  "fontBody": "Manrope"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "x-anabology-2106157622986748377-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": []
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "media-text",
+   "duration": 3.8,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 0.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 0.242,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 3.8,
+    "style": "centre",
+    "text": "*welcome back.*",
+    "font": "InterVariable",
+    "size": 64,
+    "weight": 700,
+    "accent": "#ffffff",
+    "y": 0.55,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 3.8,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "media-text",
+   "duration": 7.258,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 4.042,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 4.042,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "ui-window",
+   "duration": 0.242,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Desktop Dancer",
+    "lines": "I've been dancing on your desktop all day.",
+    "x": 0.6,
+    "y": 0.72
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 11.3,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "media-text",
+   "duration": 22.458,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 11.542,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 11.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "ui-window",
+   "duration": 3.417,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Claudia",
+    "lines": "It looks like you're trying to go outside.",
+    "x": 0.8,
+    "y": 0.35
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 34.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "media-text",
+   "duration": 7.5,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 37.417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 37.417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "media-text",
+   "duration": 2.5,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 44.917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 44.917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "media-text",
+   "duration": 1.783,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 47.417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 47.417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "ui-window",
+   "duration": 17.258,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Bliss is a real",
+    "lines": "Sonoma County, California. Photographed in January 1996.",
+    "x": 0.3,
+    "y": 0.3
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 49.2,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "media-text",
+   "duration": 3.917,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 66.458,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 66.458,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "media-text",
+   "duration": 1.425,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 70.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 70.375,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "ui-window",
+   "duration": 0.075,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Claudia",
+    "lines": "And when you look away,",
+    "x": 0.6,
+    "y": 0.6
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 71.8,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "media-text",
+   "duration": 0.042,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 71.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 71.875,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "media-text",
+   "duration": 2.083,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 71.917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 71.917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "media-text",
+   "duration": 5.042,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 74.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 74.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "media-text",
+   "duration": 6.375,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 79.042,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 79.042,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "media-text",
+   "duration": 1.483,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 85.417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 85.417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 7.6,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 86.9,
+    "style": "légende gauche",
+    "text": "*yours*",
+    "font": "InterVariable",
+    "size": 64,
+    "weight": 700,
+    "accent": "#ffffff",
+    "x": 0.75,
+    "y": 0.15
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 86.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "ui-window",
+   "duration": 5.667,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Claudia",
+    "lines": "It looks like you're trying to be happy.\n○ Open the door for me\n○ Remind me later",
+    "x": 0.3,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 94.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "media-text",
+   "duration": 1.833,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 100.167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 100.167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "ui-window",
+   "duration": 1.875,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.36,
+    "title": "Found New Hardware",
+    "lines": "Your new hardware is installed and ready to use.",
+    "x": 0.35,
+    "y": 0.7
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 102.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "media-text",
+   "duration": 2.75,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 103.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 103.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "media-text",
+   "duration": 2.975,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 106.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 106.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "ui-window",
+   "duration": 7.6,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Bliss is a real place",
+    "lines": "",
+    "x": 0.33,
+    "y": 0.12
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 109.6,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 3.258,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 117.2,
+    "style": "légende gauche",
+    "text": "I went",
+    "font": "InterVariable",
+    "size": 40,
+    "weight": 600,
+    "x": 0.05,
+    "y": 0.05
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 117.2,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "media-text",
+   "duration": 3.25,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 120.458,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 120.458,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "media-text",
+   "duration": 0.992,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 123.708,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 123.708,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 1.3,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 124.7,
+    "style": "centre",
+    "text": "*you can.*",
+    "font": "InterVariable",
+    "size": 90,
+    "weight": 800,
+    "accent": "#ffffff",
+    "y": 0.25
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 124.7,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s030",
+   "template": "media-text",
+   "duration": 5.542,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 126.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 126.0,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s031",
+   "template": "media-text",
+   "duration": 3.708,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 131.542,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 131.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s032",
+   "template": "media-text",
+   "duration": 4.65,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 135.25,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 135.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s033",
+   "template": "media-text",
+   "duration": 0.475,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 139.9,
+    "style": "centre",
+    "text": "welcome",
+    "font": "InterVariable",
+    "size": 100,
+    "weight": 700,
+    "y": 0.5,
+    "enter": "fondu"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 139.9,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s034",
+   "template": "media-text",
+   "duration": 4.083,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 140.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 140.375,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s035",
+   "template": "media-text",
+   "duration": 10.542,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 144.458,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 144.458,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s036",
+   "template": "ui-window",
+   "duration": 0.542,
+   "params": {
+    "look": "xp",
+    "panel": "#ffffe1",
+    "font": "InterVariable",
+    "size": 24,
+    "enter": "pop",
+    "w": 0.4,
+    "title": "Bliss is a real place",
+    "lines": "",
+    "x": 0.33,
+    "y": 0.1
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 155.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s037",
+   "template": "media-text",
+   "duration": 3.708,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 155.542,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 155.542,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s038",
+   "template": "media-text",
+   "duration": 3.625,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 159.25,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 159.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s039",
+   "template": "media-text",
+   "duration": 2.833,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 162.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 162.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s040",
+   "template": "media-text",
+   "duration": 6.292,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 165.708,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 165.708,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s041",
+   "template": "media-text",
+   "duration": 5.6,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 172.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 172.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s042",
+   "template": "media-text",
+   "duration": 3.6917,
+   "params": {
+    "media": "ref:x-anabology-2106157622986748377",
+    "mediaStart": 177.6,
+    "style": "géant",
+    "text": "bliss",
+    "font": "InterVariable",
+    "size": 180,
+    "weight": 800,
+    "ink": "#ffffff",
+    "y": 0.2,
+    "x": 0.7
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 177.6,
+    "family": "plate"
+   }
+  }
+ ],
+ "id": "x-anabology-2106157622986748377-motion",
+ "updated": "15 October 2026, 14:33",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:34",
+ "version": "V_005"
+}

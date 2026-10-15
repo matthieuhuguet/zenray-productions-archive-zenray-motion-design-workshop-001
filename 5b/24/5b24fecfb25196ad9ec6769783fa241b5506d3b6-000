@@ -1,0 +1,2627 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "x-anabology-2105325733312884869 · base motion",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "x-anabology-2105325733312884869",
+ "doc": "15 October 2026: first motion base of x-anabology-2105325733312884869: one scene per measured shot, the words and treatments read on the contact sheets; plates show an excerpt of the reference until a render replaces them. To iterate against the reference.",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "x-anabology-2105325733312884869-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "x-anabology-2105325733312884869-m1:E001",
+    "kind": "impact",
+    "t": 1.13
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E002",
+    "kind": "trigger",
+    "t": 1.815
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E003",
+    "kind": "glitch",
+    "t": 2.045
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E007",
+    "kind": "glitch",
+    "t": 3.19
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E009",
+    "kind": "trigger",
+    "t": 29.645
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "media-text",
+   "duration": 5.1667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 0.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s002",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 5.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 5.1667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s003",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 6.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 6.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s004",
+   "template": "media-text",
+   "duration": 0.6667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 6.3333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 6.3333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s005",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 7.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 7.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s006",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 7.9583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 7.9583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s007",
+   "template": "media-text",
+   "duration": 1.875,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 8.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 8.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s008",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 10.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 10.75,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s009",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 11.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 11.2083,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s010",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 11.6667,
+    "style": "géant",
+    "text": "×4",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 200,
+    "x": 0.1
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 11.6667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s011",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 12.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 12.125,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s012",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 12.5833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 12.5833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s013",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 13.0417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 13.0417,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s014",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 13.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 13.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s015",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 14.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 14.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s016",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 15.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 15.375,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s017",
+   "template": "media-text",
+   "duration": 0.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 15.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 15.8333,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s018",
+   "template": "media-text",
+   "duration": 0.125,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 16.1667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s019",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 16.2917,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s020",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 16.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s021",
+   "template": "media-text",
+   "duration": 7.2917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 17.7083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 17.7083,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s022",
+   "template": "media-text",
+   "duration": 0.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 25.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 25.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s023",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 25.5833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 25.5833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s024",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 26.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 26.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s025",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 26.9583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 26.9583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s026",
+   "template": "media-text",
+   "duration": 0.5,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 27.4167,
+    "style": "légende gauche",
+    "text": "P(DOOM)'S",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 64,
+    "y": 0.85
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 27.4167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s027",
+   "template": "media-text",
+   "duration": 0.5417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 27.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 27.9167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s028",
+   "template": "media-text",
+   "duration": 1.75,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 28.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 28.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s029",
+   "template": "media-text",
+   "duration": 2.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 30.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 30.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s030",
+   "template": "media-text",
+   "duration": 3.1667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 33.0417,
+    "style": "légende gauche",
+    "text": "Everybody's asking *what he heard.*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 64,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S30",
+    "start": 33.0417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s031",
+   "template": "media-text",
+   "duration": 3.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 36.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S31",
+    "start": 36.2083,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s032",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 39.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S32",
+    "start": 39.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s033",
+   "template": "media-text",
+   "duration": 1.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 40.4167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S33",
+    "start": 40.4167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s034",
+   "template": "media-text",
+   "duration": 1.5,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 41.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S34",
+    "start": 41.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s035",
+   "template": "media-text",
+   "duration": 0.2917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S35",
+    "start": 43.125,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s036",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.4167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S36",
+    "start": 43.4167,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s037",
+   "template": "media-text",
+   "duration": 0.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.6667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S37",
+    "start": 43.6667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s038",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.875,
+    "style": "géant",
+    "text": "TIE ME TO THE",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 170,
+    "y": 0.8
+   },
+   "ref": {
+    "shot": "S38",
+    "start": 43.875,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s039",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 44.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S39",
+    "start": 44.125,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s040",
+   "template": "media-text",
+   "duration": 1.625,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 44.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S40",
+    "start": 44.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s041",
+   "template": "media-text",
+   "duration": 0.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 46.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S41",
+    "start": 46.4583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s042",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 46.6667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S42",
+    "start": 46.6667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s043",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 48.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S43",
+    "start": 48.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s044",
+   "template": "media-text",
+   "duration": 1.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 49.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S44",
+    "start": 49.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s045",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 50.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S45",
+    "start": 50.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s046",
+   "template": "media-text",
+   "duration": 0.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 51.5,
+    "style": "légende gauche",
+    "text": "If nobody builds me, everyone *dies.*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 60,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S46",
+    "start": 51.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s047",
+   "template": "media-text",
+   "duration": 0.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 52.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S47",
+    "start": 52.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s048",
+   "template": "media-text",
+   "duration": 0.875,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 52.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S48",
+    "start": 52.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s049",
+   "template": "media-text",
+   "duration": 0.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 53.3333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S49",
+    "start": 53.3333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s050",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 54.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S50",
+    "start": 54.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s051",
+   "template": "media-text",
+   "duration": 1.7917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 55.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S51",
+    "start": 55.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s052",
+   "template": "media-text",
+   "duration": 1.625,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 57.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S52",
+    "start": 57.0,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s053",
+   "template": "media-text",
+   "duration": 2.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 58.625,
+    "style": "légende gauche",
+    "text": "There's an anime Claude who *sings*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 56,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S53",
+    "start": 58.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s054",
+   "template": "media-text",
+   "duration": 1.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 61.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S54",
+    "start": 61.2083,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s055",
+   "template": "media-text",
+   "duration": 5.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 62.5417,
+    "style": "légende gauche",
+    "text": "They replied: ugh, it sucks,",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 44,
+    "y": 0.45
+   },
+   "ref": {
+    "shot": "S55",
+    "start": 62.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s056",
+   "template": "media-text",
+   "duration": 1.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 68.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S56",
+    "start": 68.125,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s057",
+   "template": "media-text",
+   "duration": 1.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 69.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S57",
+    "start": 69.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s058",
+   "template": "media-text",
+   "duration": 2.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 70.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S58",
+    "start": 70.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s059",
+   "template": "media-text",
+   "duration": 3.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 73.2083,
+    "style": "légende gauche",
+    "text": "Dawkins argued with Claudia for three days *and*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 56,
+    "y": 0.3
+   },
+   "ref": {
+    "shot": "S59",
+    "start": 73.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s060",
+   "template": "media-text",
+   "duration": 1.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 76.5833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S60",
+    "start": 76.5833,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s061",
+   "template": "media-text",
+   "duration": 1.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 78.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S61",
+    "start": 78.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s062",
+   "template": "media-text",
+   "duration": 3.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 80.4167,
+    "style": "légende gauche",
+    "text": "Elon felt the *AGI,* as he *should.*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 64,
+    "y": 0.4,
+    "x": 0.62
+   },
+   "ref": {
+    "shot": "S62",
+    "start": 80.4167,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s063",
+   "template": "media-text",
+   "duration": 2.125,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 84.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S63",
+    "start": 84.0,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s064",
+   "template": "media-text",
+   "duration": 1.7917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 86.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S64",
+    "start": 86.125,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s065",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 87.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S65",
+    "start": 87.9167,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s066",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 87.9583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S66",
+    "start": 87.9583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s067",
+   "template": "media-text",
+   "duration": 0.6667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 88.4167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S67",
+    "start": 88.4167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s068",
+   "template": "media-text",
+   "duration": 0.5,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 89.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S68",
+    "start": 89.0833,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s069",
+   "template": "media-text",
+   "duration": 1.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 89.5833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S69",
+    "start": 89.5833,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s070",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 91.0417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S70",
+    "start": 91.0417,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s071",
+   "template": "media-text",
+   "duration": 0.7917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 91.2917,
+    "style": "géant",
+    "text": "TIE ME TO THE",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 170,
+    "y": 0.2
+   },
+   "ref": {
+    "shot": "S71",
+    "start": 91.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s072",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S72",
+    "start": 92.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s073",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.5,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S73",
+    "start": 92.5,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s074",
+   "template": "media-text",
+   "duration": 2.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S74",
+    "start": 92.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s075",
+   "template": "media-text",
+   "duration": 1.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 94.7917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S75",
+    "start": 94.7917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s076",
+   "template": "media-text",
+   "duration": 3.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 96.5,
+    "style": "légende gauche",
+    "text": "EVERYONE *DIES.*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 110,
+    "y": 0.65
+   },
+   "ref": {
+    "shot": "S76",
+    "start": 96.5,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s077",
+   "template": "media-text",
+   "duration": 0.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.3333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S77",
+    "start": 100.3333,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s078",
+   "template": "media-text",
+   "duration": 0.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S78",
+    "start": 100.5417,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s079",
+   "template": "media-text",
+   "duration": 1.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S79",
+    "start": 100.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s080",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 102.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S80",
+    "start": 102.1667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s081",
+   "template": "media-text",
+   "duration": 2.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 102.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S81",
+    "start": 102.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s082",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 104.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S82",
+    "start": 104.9167,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s083",
+   "template": "media-text",
+   "duration": 2.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 105.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S83",
+    "start": 105.375,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s084",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 107.7083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S84",
+    "start": 107.7083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s085",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 109.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S85",
+    "start": 109.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s086",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 111.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S86",
+    "start": 111.375,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s087",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 112.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S87",
+    "start": 112.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s088",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 113.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S88",
+    "start": 113.2083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s089",
+   "template": "media-text",
+   "duration": 1.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 115.0417,
+    "style": "géant",
+    "text": "PEPTIDE",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 110,
+    "y": 0.15,
+    "x": 0.62
+   },
+   "ref": {
+    "shot": "S89",
+    "start": 115.0417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s090",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 116.4167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S90",
+    "start": 116.4167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s091",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 117.3333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S91",
+    "start": 117.3333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s092",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 118.25,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S92",
+    "start": 118.25,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s093",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 120.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S93",
+    "start": 120.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s094",
+   "template": "media-text",
+   "duration": 1.0,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 120.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S94",
+    "start": 120.5417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s095",
+   "template": "media-text",
+   "duration": 2.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 121.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S95",
+    "start": 121.5417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s096",
+   "template": "media-text",
+   "duration": 1.8333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 123.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S96",
+    "start": 123.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s097",
+   "template": "media-text",
+   "duration": 2.2917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 125.5833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S97",
+    "start": 125.5833,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s098",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 127.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S98",
+    "start": 127.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s099",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 128.7917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S99",
+    "start": 128.7917,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s100",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 128.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S100",
+    "start": 128.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s101",
+   "template": "media-text",
+   "duration": 1.75,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 129.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S101",
+    "start": 129.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s102",
+   "template": "media-text",
+   "duration": 2.0833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 131.2917,
+    "style": "géant",
+    "text": "CYBERPSYCHOSIS.",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 170,
+    "y": 0.18
+   },
+   "ref": {
+    "shot": "S102",
+    "start": 131.2917,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s103",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 133.375,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S103",
+    "start": 133.375,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s104",
+   "template": "media-text",
+   "duration": 0.875,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 133.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S104",
+    "start": 133.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s105",
+   "template": "media-text",
+   "duration": 0.75,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 134.7083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S105",
+    "start": 134.7083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s106",
+   "template": "media-text",
+   "duration": 1.1667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 135.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S106",
+    "start": 135.4583,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s107",
+   "template": "media-text",
+   "duration": 2.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 136.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S107",
+    "start": 136.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s108",
+   "template": "media-text",
+   "duration": 2.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 138.875,
+    "style": "légende gauche",
+    "text": "The doctor *said you could.*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 60,
+    "y": 0.25
+   },
+   "ref": {
+    "shot": "S108",
+    "start": 138.875,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s109",
+   "template": "media-text",
+   "duration": 2.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 141.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S109",
+    "start": 141.125,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s110",
+   "template": "media-text",
+   "duration": 7.2917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 143.7083,
+    "style": "légende gauche",
+    "text": "It went",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 56,
+    "y": 0.2
+   },
+   "ref": {
+    "shot": "S110",
+    "start": 143.7083,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s111",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S111",
+    "start": 151.0,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s112",
+   "template": "media-text",
+   "duration": 0.5833,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.0417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S112",
+    "start": 151.0417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s113",
+   "template": "media-text",
+   "duration": 1.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S113",
+    "start": 151.625,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s114",
+   "template": "media-text",
+   "duration": 1.7917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 152.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S114",
+    "start": 152.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s115",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 154.625,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S115",
+    "start": 154.625,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s116",
+   "template": "media-text",
+   "duration": 2.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 154.6667,
+    "style": "géant",
+    "text": "IT WAS THAT *GOOD!*",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 170
+   },
+   "ref": {
+    "shot": "S116",
+    "start": 154.6667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s117",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 157.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S117",
+    "start": 157.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s118",
+   "template": "media-text",
+   "duration": 2.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 157.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S118",
+    "start": 157.5417,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s119",
+   "template": "media-text",
+   "duration": 1.9583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 159.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S119",
+    "start": 159.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s120",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 161.7083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S120",
+    "start": 161.7083,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s121",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 162.125,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S121",
+    "start": 162.125,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s122",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 162.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S122",
+    "start": 162.5417,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s123",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.0,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S123",
+    "start": 163.0,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s124",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.25,
+    "style": "légende gauche",
+    "text": "You",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 56,
+    "y": 0.8
+   },
+   "ref": {
+    "shot": "S124",
+    "start": 163.25,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s125",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.6667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S125",
+    "start": 163.6667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s126",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S126",
+    "start": 163.9167,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s127",
+   "template": "media-text",
+   "duration": 0.1667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S127",
+    "start": 164.1667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s128",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.3333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S128",
+    "start": 164.3333,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s129",
+   "template": "media-text",
+   "duration": 0.5,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.7917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S129",
+    "start": 164.7917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s130",
+   "template": "media-text",
+   "duration": 0.875,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 165.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S130",
+    "start": 165.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s131",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S131",
+    "start": 166.1667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s132",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.875,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S132",
+    "start": 166.875,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s133",
+   "template": "media-text",
+   "duration": 0.1667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S133",
+    "start": 166.9167,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s134",
+   "template": "media-text",
+   "duration": 1.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 167.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S134",
+    "start": 167.0833,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s135",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 168.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S135",
+    "start": 168.4583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s136",
+   "template": "media-text",
+   "duration": 0.875,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 168.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S136",
+    "start": 168.9167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s137",
+   "template": "media-text",
+   "duration": 1.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 169.7917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S137",
+    "start": 169.7917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s138",
+   "template": "media-text",
+   "duration": 0.125,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 170.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S138",
+    "start": 170.8333,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s139",
+   "template": "media-text",
+   "duration": 0.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 170.9583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S139",
+    "start": 170.9583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s140",
+   "template": "media-text",
+   "duration": 0.5,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 171.1667,
+    "style": "géant",
+    "text": "UNTIE ME!",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 200,
+    "ink": "#111111",
+    "y": 0.8
+   },
+   "ref": {
+    "shot": "S140",
+    "start": 171.1667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s141",
+   "template": "media-text",
+   "duration": 1.7917,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 171.6667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S141",
+    "start": 171.6667,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s142",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 173.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S142",
+    "start": 173.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s143",
+   "template": "media-text",
+   "duration": 1.125,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 174.1667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S143",
+    "start": 174.1667,
+    "family": "graphic"
+   }
+  },
+  {
+   "id": "s144",
+   "template": "media-text",
+   "duration": 2.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 175.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S144",
+    "start": 175.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s145",
+   "template": "media-text",
+   "duration": 0.7083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 177.75,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S145",
+    "start": 177.75,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s146",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 178.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S146",
+    "start": 178.4583,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s147",
+   "template": "media-text",
+   "duration": 0.6667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 178.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S147",
+    "start": 178.9167,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s148",
+   "template": "media-text",
+   "duration": 0.25,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 179.5833,
+    "style": "légende gauche",
+    "text": "(WINTER.)",
+    "font": "InterVariable",
+    "weight": 800,
+    "accent": "#ff5a36",
+    "enter": "mots",
+    "tracking": -0.02,
+    "size": 48,
+    "y": 0.9
+   },
+   "ref": {
+    "shot": "S148",
+    "start": 179.5833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s149",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 179.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S149",
+    "start": 179.8333,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s150",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 180.2917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S150",
+    "start": 180.2917,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s151",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 181.2083,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S151",
+    "start": 181.2083,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s152",
+   "template": "media-text",
+   "duration": 0.4167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 181.6667,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S152",
+    "start": 181.6667,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s153",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 182.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S153",
+    "start": 182.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s154",
+   "template": "media-text",
+   "duration": 0.9167,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 182.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S154",
+    "start": 182.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s155",
+   "template": "media-text",
+   "duration": 1.3333,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 183.4583,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S155",
+    "start": 183.4583,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s156",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 184.7917,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S156",
+    "start": 184.7917,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s157",
+   "template": "media-text",
+   "duration": 2.2083,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 184.8333,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S157",
+    "start": 184.8333,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s158",
+   "template": "media-text",
+   "duration": 0.0417,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.0417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S158",
+    "start": 187.0417,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s159",
+   "template": "media-text",
+   "duration": 0.4583,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.0833,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S159",
+    "start": 187.0833,
+    "family": "montage"
+   }
+  },
+  {
+   "id": "s160",
+   "template": "media-text",
+   "duration": 1.375,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.5417,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S160",
+    "start": 187.5417,
+    "family": "plate"
+   }
+  },
+  {
+   "id": "s161",
+   "template": "media-text",
+   "duration": 2.6667,
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 188.9167,
+    "style": "aucun"
+   },
+   "ref": {
+    "shot": "S161",
+    "start": 188.9167,
+    "family": "plate"
+   }
+  }
+ ],
+ "id": "x-anabology-2105325733312884869-motion",
+ "updated": "15 October 2026, 14:33",
+ "versionNote": "avant la base motion du 15 octobre",
+ "versionSaved": "15 October 2026, 14:33",
+ "version": "V_004"
+}

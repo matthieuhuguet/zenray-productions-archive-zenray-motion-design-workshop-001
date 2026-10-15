@@ -1,0 +1,3519 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "x-anabology-2105325733312884869 en motion",
+ "format": "16x9",
+ "fps": 30,
+ "doc": "15 October 2026: 161 shots of the reference x-anabology-2105325733312884869 (191.6 s), one scene per shot at the measured durations; plates show an excerpt of the reference until a 3D render replaces them; words are ZenRay 3D lines; music and effects come from the 99.9 % banks.",
+ "reference": "x-anabology-2105325733312884869",
+ "theme": {
+  "fontBody": "InterVariable"
+ },
+ "music": {
+  "mode": "bank",
+  "bank": {
+   "track": "x-anabology-2105325733312884869-m1",
+   "volume": -6
+  }
+ },
+ "sfx": {
+  "source": "banque",
+  "volume": -8,
+  "sceneCues": false,
+  "refEvents": true,
+  "events": [
+   {
+    "id": "x-anabology-2105325733312884869-m1:E001",
+    "kind": "impact",
+    "t": 1.13
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E002",
+    "kind": "trigger",
+    "t": 1.815
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E003",
+    "kind": "glitch",
+    "t": 2.045
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E007",
+    "kind": "glitch",
+    "t": 3.19
+   },
+   {
+    "id": "x-anabology-2105325733312884869-m1:E009",
+    "kind": "trigger",
+    "t": 29.645
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "duration": 5.1667,
+   "ref": {
+    "shot": "S01",
+    "family": "plate",
+    "start": 0.0,
+    "description": "Mer agitée vue de haut, un tourbillon se forme, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 0.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s02",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S02",
+    "family": "plate",
+    "start": 5.1667,
+    "description": "Mer houleuse contre des rochers, compteur qui change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 5.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s03",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S03",
+    "family": "montage",
+    "start": 6.0833,
+    "description": "Un disque lumineux à la surface de la mer, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 6.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s04",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S04",
+    "family": "plate",
+    "start": 6.3333,
+    "description": "Vagues sombres contre la falaise."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 6.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s05",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S05",
+    "family": "plate",
+    "start": 7.0,
+    "description": "Une jeune femme en robe blanche bouffante, cheveux noirs, sur fond de mer, une barre de lecture en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 7.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s06",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S06",
+    "family": "plate",
+    "start": 7.9583,
+    "description": "La jeune femme de dos face à la mer, une icône d'alerte jaune s'affiche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 7.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s07",
+   "duration": 1.875,
+   "ref": {
+    "shot": "S07",
+    "family": "plate",
+    "start": 8.875,
+    "description": "Gros plan de la jeune femme, une question en capitales blanches et rouges se compose à gauche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 8.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s08",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S08",
+    "family": "montage",
+    "start": 10.75,
+    "description": "Image en négatif puis la jeune femme et ses doubles, un multiplicateur dans le coin."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 10.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s09",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S09",
+    "family": "montage",
+    "start": 11.2083,
+    "description": "Plusieurs copies de la jeune femme côte à côte, le multiplicateur double."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 11.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s10",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S10",
+    "family": "montage",
+    "start": 11.6667,
+    "description": "Encore plus de copies alignées, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 11.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s11",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S11",
+    "family": "montage",
+    "start": 12.125,
+    "description": "Une foule de copies en robe blanche, compteur qui grimpe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 12.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s12",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S12",
+    "family": "montage",
+    "start": 12.5833,
+    "description": "Des centaines de silhouettes en blanc de dos, le compteur s'emballe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 12.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s13",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S13",
+    "family": "montage",
+    "start": 13.0417,
+    "description": "Un anneau de silhouettes blanches sur un rocher en mer, compteur au millier."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 13.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s14",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S14",
+    "family": "plate",
+    "start": 13.5,
+    "description": "Les silhouettes alignées vers l'horizon nocturne, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 13.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s15",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S15",
+    "family": "plate",
+    "start": 14.4583,
+    "description": "Cercles concentriques à la surface d'une mer sombre devant un navire."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 14.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s16",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S16",
+    "family": "montage",
+    "start": 15.375,
+    "description": "Des marins barbus serrés dans la pénombre, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 15.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s17",
+   "duration": 0.3333,
+   "ref": {
+    "shot": "S17",
+    "family": "montage",
+    "start": 15.8333,
+    "description": "Très gros plan d'un bouchon rouge enfoncé dans une oreille, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 15.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s18",
+   "duration": 0.125,
+   "ref": {
+    "shot": "S18",
+    "family": "montage",
+    "start": 16.1667,
+    "description": "Un homme barbu au téléphone au milieu des rameurs, quatre images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s19",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S19",
+    "family": "montage",
+    "start": 16.2917,
+    "description": "Mer et affiche, puis image en négatif d'un navire."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s20",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S20",
+    "family": "plate",
+    "start": 16.75,
+    "description": "L'homme penché sur un écran lumineux au milieu de l'équipage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 16.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s21",
+   "duration": 7.2917,
+   "ref": {
+    "shot": "S21",
+    "family": "graphic",
+    "start": 17.7083,
+    "description": "Un autre message avec une silhouette en blanc, la jeune femme endormie à droite."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#c9aeac",
+    "bg": "#020303",
+    "accent": "#e2552f",
+    "size": 134.0
+   }
+  },
+  {
+   "id": "s22",
+   "duration": 0.5833,
+   "ref": {
+    "shot": "S22",
+    "family": "plate",
+    "start": 25.0,
+    "description": "Un homme allongé, le visage strié de lumière bleue, une phrase en surimpression."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 25.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s23",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S23",
+    "family": "montage",
+    "start": 25.5833,
+    "description": "Le même homme allongé les yeux ouverts, un compteur rouge descend."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 25.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s24",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S24",
+    "family": "plate",
+    "start": 26.0,
+    "description": "Un réveil à chiffres rouges sur une table de chevet, une heure tardive s'écrit dessous."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 26.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s25",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S25",
+    "family": "montage",
+    "start": 26.9583,
+    "description": "Très gros plan d'un œil où se reflète un écran, une jauge apparaît."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 26.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s26",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S26",
+    "family": "plate",
+    "start": 27.4167,
+    "description": "L'homme allongé dans la lumière bleue, un sigle en rouge en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 27.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s27",
+   "duration": 0.5417,
+   "ref": {
+    "shot": "S27",
+    "family": "plate",
+    "start": 27.9167,
+    "description": "Le réveil, puis un pourcentage rouge géant le remplace."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 27.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s28",
+   "duration": 1.75,
+   "ref": {
+    "shot": "S28",
+    "family": "plate",
+    "start": 28.4583,
+    "description": "Interface noire avec la miniature d'un navire dans la tempête et des titres."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 28.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s29",
+   "duration": 2.8333,
+   "ref": {
+    "shot": "S29",
+    "family": "plate",
+    "start": 30.2083,
+    "description": "L'homme hurle au mât, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 30.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s30",
+   "duration": 3.1667,
+   "ref": {
+    "shot": "S30",
+    "family": "graphic",
+    "start": 33.0417,
+    "description": "La phrase complète et le graphique en lame sur noir."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Rendered in Unreal Engine {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#d1c1be",
+    "bg": "#010101",
+    "accent": "#e2552f",
+    "size": 137.7
+   }
+  },
+  {
+   "id": "s31",
+   "duration": 3.25,
+   "ref": {
+    "shot": "S31",
+    "family": "graphic",
+    "start": 36.2083,
+    "description": "Grille de vignettes qui se décale, très bref."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "From node to {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#9c8584",
+    "bg": "#000000",
+    "accent": "#e2552f",
+    "size": 234.9
+   }
+  },
+  {
+   "id": "s32",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S32",
+    "family": "plate",
+    "start": 39.4583,
+    "description": "Vue aérienne d'un navire à voile carrée sur la mer au couchant, un tracé apparaît."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 39.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s33",
+   "duration": 1.2083,
+   "ref": {
+    "shot": "S33",
+    "family": "plate",
+    "start": 40.4167,
+    "description": "Un navire près d'une île, une question se tape en haut avec des mots masqués."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 40.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s34",
+   "duration": 1.5,
+   "ref": {
+    "shot": "S34",
+    "family": "plate",
+    "start": 41.625,
+    "description": "La jeune femme en robe blanche sur un rocher, la question se complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 41.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s35",
+   "duration": 0.2917,
+   "ref": {
+    "shot": "S35",
+    "family": "montage",
+    "start": 43.125,
+    "description": "Pictogramme d'un personnage attaché à un mât, mots en capitales blanches à côté."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s36",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S36",
+    "family": "montage",
+    "start": 43.4167,
+    "description": "La jeune femme sur le rocher, des mots en capitales s'ajoutent en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s37",
+   "duration": 0.2083,
+   "ref": {
+    "shot": "S37",
+    "family": "montage",
+    "start": 43.6667,
+    "description": "Les marins en t-shirts noirs, la phrase en capitales s'allonge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s38",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S38",
+    "family": "montage",
+    "start": 43.875,
+    "description": "La jeune femme sur le rocher, la phrase en capitales se termine en rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 43.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s39",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S39",
+    "family": "plate",
+    "start": 44.125,
+    "description": "La phrase floue, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 44.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s40",
+   "duration": 1.625,
+   "ref": {
+    "shot": "S40",
+    "family": "plate",
+    "start": 44.8333,
+    "description": "L'homme barbu assis à la proue, cordes autour de lui, sous-titre en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 44.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s41",
+   "duration": 0.2083,
+   "ref": {
+    "shot": "S41",
+    "family": "montage",
+    "start": 46.4583,
+    "description": "Pictogramme d'un personnage casqué sur fond crème, un mot noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 46.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s42",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S42",
+    "family": "plate",
+    "start": 46.6667,
+    "description": "L'oreille et le bouchon rouge, une courbe et des mots qui s'enchaînent."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 46.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s43",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S43",
+    "family": "plate",
+    "start": 48.5,
+    "description": "Une main qui se tend vers le bord du navire, mot en rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 48.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s44",
+   "duration": 1.3333,
+   "ref": {
+    "shot": "S44",
+    "family": "plate",
+    "start": 49.2083,
+    "description": "L'homme barbu ligoté au mât, une phrase s'écrit à gauche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 49.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s45",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S45",
+    "family": "plate",
+    "start": 50.5417,
+    "description": "La jeune femme chante en gros plan, compteur qui avance."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 50.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s46",
+   "duration": 0.5833,
+   "ref": {
+    "shot": "S46",
+    "family": "plate",
+    "start": 51.5,
+    "description": "L'homme ligoté, la phrase se termine et le compteur avance."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 51.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s47",
+   "duration": 0.375,
+   "ref": {
+    "shot": "S47",
+    "family": "montage",
+    "start": 52.0833,
+    "description": "Pictogramme d'un personnage barré dans un cercle, mot blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 52.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s48",
+   "duration": 0.875,
+   "ref": {
+    "shot": "S48",
+    "family": "plate",
+    "start": 52.4583,
+    "description": "La jeune femme chante devant des embruns, mots en capitales en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 52.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s49",
+   "duration": 0.9583,
+   "ref": {
+    "shot": "S49",
+    "family": "plate",
+    "start": 53.3333,
+    "description": "Un nœud de corde en gros plan, mots en capitales et mesure de distance."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 53.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s50",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S50",
+    "family": "plate",
+    "start": 54.2917,
+    "description": "Elle hurle face caméra, un mot en capitales, puis flou."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 54.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s51",
+   "duration": 1.7917,
+   "ref": {
+    "shot": "S51",
+    "family": "plate",
+    "start": 55.2083,
+    "description": "La proue d'un navire sur une mer calme, une citation se tape en haut."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 55.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s52",
+   "duration": 1.625,
+   "ref": {
+    "shot": "S52",
+    "family": "graphic",
+    "start": 57.0,
+    "description": "Un titre en capitales énormes texturé d'images sur noir, un sous-titre rouge."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Every asset is a {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#c3928a",
+    "bg": "#030303",
+    "accent": "#e2552f",
+    "size": 88.7
+   }
+  },
+  {
+   "id": "s53",
+   "duration": 2.5833,
+   "ref": {
+    "shot": "S53",
+    "family": "plate",
+    "start": 58.625,
+    "description": "Une figurine de personnage d'animation sur un rocher, une phrase se tape à côté."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 58.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s54",
+   "duration": 1.3333,
+   "ref": {
+    "shot": "S54",
+    "family": "graphic",
+    "start": 61.2083,
+    "description": "Mosaïque d'écrans de téléphone qui se multiplie, compteur."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Louisiana Bayou",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#020b05",
+    "accent": "#e2552f",
+    "size": 75.5
+   }
+  },
+  {
+   "id": "s55",
+   "duration": 5.5833,
+   "ref": {
+    "shot": "S55",
+    "family": "plate",
+    "start": 62.5417,
+    "description": "Un rameur en capuche dans l'ombre, une phrase s'écrit en blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 62.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s56",
+   "duration": 1.375,
+   "ref": {
+    "shot": "S56",
+    "family": "plate",
+    "start": 68.125,
+    "description": "Le bouchon rouge en gros plan, une phrase blanche à droite."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 68.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s57",
+   "duration": 1.3333,
+   "ref": {
+    "shot": "S57",
+    "family": "plate",
+    "start": 69.5,
+    "description": "Un mot rose géant au-dessus d'une foule de silhouettes blanches."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 69.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s58",
+   "duration": 2.375,
+   "ref": {
+    "shot": "S58",
+    "family": "plate",
+    "start": 70.8333,
+    "description": "La jeune femme qui chante, pourcentages et un mot rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 70.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s59",
+   "duration": 3.375,
+   "ref": {
+    "shot": "S59",
+    "family": "plate",
+    "start": 73.2083,
+    "description": "La jeune femme sur la mer, la phrase s'allonge puis un mot en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 73.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s60",
+   "duration": 1.9167,
+   "ref": {
+    "shot": "S60",
+    "family": "graphic",
+    "start": 76.5833,
+    "description": "Une image verticale minuscule au centre du noir, deux images."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "One artist, one {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#f0efef",
+    "bg": "#000100",
+    "accent": "#e2552f",
+    "size": 90.6
+   }
+  },
+  {
+   "id": "s61",
+   "duration": 1.9167,
+   "ref": {
+    "shot": "S61",
+    "family": "plate",
+    "start": 78.5,
+    "description": "L'homme barbu à bord, regard vers le haut, une phrase s'écrit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 78.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s62",
+   "duration": 3.5833,
+   "ref": {
+    "shot": "S62",
+    "family": "graphic",
+    "start": 80.4167,
+    "description": "Fil de messages avec la jeune femme chantant et une phrase avec un nom."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Procedural by {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#010000",
+    "accent": "#a45f56",
+    "size": 115.1
+   }
+  },
+  {
+   "id": "s63",
+   "duration": 2.125,
+   "ref": {
+    "shot": "S63",
+    "family": "plate",
+    "start": 84.0,
+    "description": "Un homme et la jeune femme allongés tête contre tête, phrase en rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 84.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s64",
+   "duration": 1.7917,
+   "ref": {
+    "shot": "S64",
+    "family": "plate",
+    "start": 86.125,
+    "description": "Un navire au loin entre des rochers, une phrase se tape en haut."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 86.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s65",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S65",
+    "family": "montage",
+    "start": 87.9167,
+    "description": "Pictogramme barré d'un plongeur sur noir, consigne en capitales, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 87.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s66",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S66",
+    "family": "montage",
+    "start": 87.9583,
+    "description": "Le navire près des rochers, un objet jaillit de l'eau."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 87.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s67",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S67",
+    "family": "plate",
+    "start": 88.4167,
+    "description": "Une ville sombre au bord de l'eau avec des flammes, multiplicateur qui grimpe."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 88.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s68",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S68",
+    "family": "graphic",
+    "start": 89.0833,
+    "description": "Interface noire avec de petites vignettes, une question se compose."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Change a value, not a {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#010603",
+    "accent": "#e2552f",
+    "size": 113.2
+   }
+  },
+  {
+   "id": "s69",
+   "duration": 1.4583,
+   "ref": {
+    "shot": "S69",
+    "family": "plate",
+    "start": 89.5833,
+    "description": "La jeune femme à genoux en robe argentée, la question se complète en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 89.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s70",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S70",
+    "family": "montage",
+    "start": 91.0417,
+    "description": "Pictogramme d'un personnage au mât, phrase et mot en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 91.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s71",
+   "duration": 0.7917,
+   "ref": {
+    "shot": "S71",
+    "family": "plate",
+    "start": 91.2917,
+    "description": "La jeune femme penchée devant des flammes, la phrase en capitales se termine."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 91.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s72",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S72",
+    "family": "montage",
+    "start": 92.0833,
+    "description": "Image en négatif puis la phrase en capitales sur la scène nocturne."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s73",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S73",
+    "family": "montage",
+    "start": 92.5,
+    "description": "La jeune femme hurle devant les flammes, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s74",
+   "duration": 2.0417,
+   "ref": {
+    "shot": "S74",
+    "family": "plate",
+    "start": 92.75,
+    "description": "La jeune femme dans l'ombre, des phrases blanches puis une gravure en négatif."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 92.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s75",
+   "duration": 1.7083,
+   "ref": {
+    "shot": "S75",
+    "family": "plate",
+    "start": 94.7917,
+    "description": "L'homme dans la pénombre verte, le mot en capitales répété."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 94.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s76",
+   "duration": 3.8333,
+   "ref": {
+    "shot": "S76",
+    "family": "plate",
+    "start": 96.5,
+    "description": "Un torrent dans une grotte avec une lueur, phrase qui se complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 96.5,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s77",
+   "duration": 0.2083,
+   "ref": {
+    "shot": "S77",
+    "family": "montage",
+    "start": 100.3333,
+    "description": "Pictogramme barré d'un personnage au mât, consigne en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s78",
+   "duration": 0.2083,
+   "ref": {
+    "shot": "S78",
+    "family": "montage",
+    "start": 100.5417,
+    "description": "La jeune femme crie au bord d'un trou, mot en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s79",
+   "duration": 1.4167,
+   "ref": {
+    "shot": "S79",
+    "family": "plate",
+    "start": 100.75,
+    "description": "L'eau tourbillonne, mot en capitales en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 100.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s80",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S80",
+    "family": "montage",
+    "start": 102.1667,
+    "description": "Une femme à la coupe au carré et un homme chauve et barbu face à face sur le pont d'un navire, en noir et blanc, mots en capitales en bas à gauche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 102.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s81",
+   "duration": 2.7083,
+   "ref": {
+    "shot": "S81",
+    "family": "plate",
+    "start": 102.2083,
+    "description": "L'homme barbu dans l'ombre, regard intense."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 102.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s82",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S82",
+    "family": "montage",
+    "start": 104.9167,
+    "description": "Titre en capitales énormes sur fond crème, sous-titre rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 104.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s83",
+   "duration": 2.3333,
+   "ref": {
+    "shot": "S83",
+    "family": "plate",
+    "start": 105.375,
+    "description": "Embruns sombres, une phrase en italique en haut."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 105.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s84",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S84",
+    "family": "plate",
+    "start": 107.7083,
+    "description": "Une barque sur une mer immobile au couchant, deux phrases s'écrivent."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 107.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s85",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S85",
+    "family": "plate",
+    "start": 109.5417,
+    "description": "Rameurs penchés sur leurs avirons, vu de près."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 109.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s86",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S86",
+    "family": "graphic",
+    "start": 111.375,
+    "description": "Un visage en trame de points sur noir, étiquettes rouges."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Made with {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#f0f0f1",
+    "bg": "#040607",
+    "accent": "#e2552f",
+    "size": 96
+   }
+  },
+  {
+   "id": "s87",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S87",
+    "family": "plate",
+    "start": 112.2917,
+    "description": "Très gros plan d'une oreille rougie puis noir."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 112.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s88",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S88",
+    "family": "plate",
+    "start": 113.2083,
+    "description": "La jeune femme en armure argentée, un mot rouge en bas à droite."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 113.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s89",
+   "duration": 1.375,
+   "ref": {
+    "shot": "S89",
+    "family": "plate",
+    "start": 115.0417,
+    "description": "La jeune femme en armure, sous-titre qui change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 115.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s90",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S90",
+    "family": "plate",
+    "start": 116.4167,
+    "description": "Le mot chromé et la silhouette, sous-titre en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 116.4167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s91",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S91",
+    "family": "plate",
+    "start": 117.3333,
+    "description": "La jeune femme en armure argentée, sous-titre qui s'allonge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 117.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s92",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S92",
+    "family": "plate",
+    "start": 118.25,
+    "description": "L'homme et la jeune femme, la phrase se termine en rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 118.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s93",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S93",
+    "family": "montage",
+    "start": 120.0833,
+    "description": "Une main sur l'épaule puis de l'eau qui coule, sous-titre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 120.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s94",
+   "duration": 1.0,
+   "ref": {
+    "shot": "S94",
+    "family": "graphic",
+    "start": 120.5417,
+    "description": "Formule chimique qui se construit pas à pas en traits blancs sur fond noir, phrase en bas à gauche dont un mot passe au rouge."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Built in {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#c0bfbe",
+    "bg": "#000000",
+    "accent": "#e2552f",
+    "size": 83.0
+   }
+  },
+  {
+   "id": "s95",
+   "duration": 2.2083,
+   "ref": {
+    "shot": "S95",
+    "family": "graphic",
+    "start": 121.5417,
+    "description": "Interface noire : une formule chimique et un téléphone, phrases successives."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Rendered in Unreal Engine {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#c4c2c2",
+    "bg": "#000000",
+    "accent": "#e2552f",
+    "size": 102.8
+   }
+  },
+  {
+   "id": "s96",
+   "duration": 1.8333,
+   "ref": {
+    "shot": "S96",
+    "family": "plate",
+    "start": 123.75,
+    "description": "Le couple, la phrase change, flou de mouvement."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 123.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s97",
+   "duration": 2.2917,
+   "ref": {
+    "shot": "S97",
+    "family": "plate",
+    "start": 125.5833,
+    "description": "Une porte lumineuse au bout d'un couloir sombre, un mot rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 125.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s98",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S98",
+    "family": "plate",
+    "start": 127.875,
+    "description": "Un couloir de toilettes sous une lumière froide, phrase qui s'écrit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 127.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s99",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S99",
+    "family": "montage",
+    "start": 128.7917,
+    "description": "Homme chauve et barbu en tee-shirt noir assis près de cordages, en noir et blanc, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 128.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s100",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S100",
+    "family": "plate",
+    "start": 128.8333,
+    "description": "Même couloir, la phrase se complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 128.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s101",
+   "duration": 1.75,
+   "ref": {
+    "shot": "S101",
+    "family": "plate",
+    "start": 129.5417,
+    "description": "Une main argentée sur un tissu, une phrase rouge et blanche."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 129.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s102",
+   "duration": 2.0833,
+   "ref": {
+    "shot": "S102",
+    "family": "graphic",
+    "start": 131.2917,
+    "description": "Des yeux qui brillent en très gros plan, un mot en capitales énorme en haut."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "From node to {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#040c06",
+    "accent": "#e2552f",
+    "size": 101.9
+   }
+  },
+  {
+   "id": "s103",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S103",
+    "family": "montage",
+    "start": 133.375,
+    "description": "L'homme barbu au téléphone dans l'ombre, un mot rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 133.375,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s104",
+   "duration": 0.875,
+   "ref": {
+    "shot": "S104",
+    "family": "plate",
+    "start": 133.8333,
+    "description": "La jeune femme éclairée de face, phrase qui s'écrit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 133.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s105",
+   "duration": 0.75,
+   "ref": {
+    "shot": "S105",
+    "family": "plate",
+    "start": 134.7083,
+    "description": "L'homme au téléphone, la phrase se termine."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 134.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s106",
+   "duration": 1.1667,
+   "ref": {
+    "shot": "S106",
+    "family": "graphic",
+    "start": 135.4583,
+    "description": "La spirale, très bref."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Every asset is a {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#f2f0ec",
+    "bg": "#010000",
+    "accent": "#e2552f",
+    "size": 142.5
+   }
+  },
+  {
+   "id": "s107",
+   "duration": 2.25,
+   "ref": {
+    "shot": "S107",
+    "family": "plate",
+    "start": 136.625,
+    "description": "Le couple enlacé, phrases successives en haut."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 136.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s108",
+   "duration": 2.25,
+   "ref": {
+    "shot": "S108",
+    "family": "plate",
+    "start": 138.875,
+    "description": "L'homme sous l'eau, la phrase change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 138.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s109",
+   "duration": 2.5833,
+   "ref": {
+    "shot": "S109",
+    "family": "graphic",
+    "start": 141.125,
+    "description": "L'homme puis un graphique de courbe sur noir et une phrase en capitales."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Louisiana Bayou",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#040506",
+    "accent": "#e2552f",
+    "size": 67.9
+   }
+  },
+  {
+   "id": "s110",
+   "duration": 7.2917,
+   "ref": {
+    "shot": "S110",
+    "family": "plate",
+    "start": 143.7083,
+    "description": "Tempête, deux images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 143.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s111",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S111",
+    "family": "montage",
+    "start": 151.0,
+    "description": "Gros plan du visage d'une jeune femme aux taches de rousseur, mèche noire brillante."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s112",
+   "duration": 0.5833,
+   "ref": {
+    "shot": "S112",
+    "family": "plate",
+    "start": 151.0417,
+    "description": "La jeune femme avec une étoile rouge, phrase en rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s113",
+   "duration": 1.2083,
+   "ref": {
+    "shot": "S113",
+    "family": "plate",
+    "start": 151.625,
+    "description": "Même plan, la phrase reste."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 151.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s114",
+   "duration": 1.7917,
+   "ref": {
+    "shot": "S114",
+    "family": "plate",
+    "start": 152.8333,
+    "description": "Des centaines d'yeux sur une surface sombre, phrase qui se complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 152.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s115",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S115",
+    "family": "montage",
+    "start": 154.625,
+    "description": "Page crème presque vide avec un mot noir en haut à gauche, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 154.625,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s116",
+   "duration": 2.4167,
+   "ref": {
+    "shot": "S116",
+    "family": "plate",
+    "start": 154.6667,
+    "description": "Les mots en capitales réapparaissent un par un en rouge puis blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 154.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s117",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S117",
+    "family": "montage",
+    "start": 157.0833,
+    "description": "Les mots empilés sur un nœud de corde."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 157.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s118",
+   "duration": 2.2083,
+   "ref": {
+    "shot": "S118",
+    "family": "graphic",
+    "start": 157.5417,
+    "description": "La phrase empilée puis une courbe avec flèches sur noir."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "One artist, one {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#161d1d",
+    "accent": "#e2552f",
+    "size": 103.8
+   }
+  },
+  {
+   "id": "s119",
+   "duration": 1.9583,
+   "ref": {
+    "shot": "S119",
+    "family": "plate",
+    "start": 159.75,
+    "description": "La jeune femme pâle ouvre la bouche, sous-titre qui change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 159.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s120",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S120",
+    "family": "montage",
+    "start": 161.7083,
+    "description": "Le couple sur le bateau, un mot en capitales apparaît en bas."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 161.7083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s121",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S121",
+    "family": "montage",
+    "start": 162.125,
+    "description": "Le couple en noir et blanc puis la jeune femme qui crie, mot en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 162.125,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s122",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S122",
+    "family": "montage",
+    "start": 162.5417,
+    "description": "Image en négatif puis la jeune femme qui crie, mot en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 162.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s123",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S123",
+    "family": "montage",
+    "start": 163.0,
+    "description": "Le couple en noir et blanc, phrase en capitales et pictogramme."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.0,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s124",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S124",
+    "family": "montage",
+    "start": 163.25,
+    "description": "La jeune femme et l'homme front contre front, sous-titre."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.25,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s125",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S125",
+    "family": "montage",
+    "start": 163.6667,
+    "description": "Le couple enlacé, sous-titre qui change."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s126",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S126",
+    "family": "montage",
+    "start": 163.9167,
+    "description": "La jeune femme pâle, sous-titre en blanc et rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 163.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s127",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S127",
+    "family": "montage",
+    "start": 164.1667,
+    "description": "Le couple sur le pont, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s128",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S128",
+    "family": "montage",
+    "start": 164.3333,
+    "description": "Le couple, sous-titre qui s'allonge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.3333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s129",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S129",
+    "family": "plate",
+    "start": 164.7917,
+    "description": "La jeune femme pâle, phrase complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 164.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s130",
+   "duration": 0.875,
+   "ref": {
+    "shot": "S130",
+    "family": "plate",
+    "start": 165.2917,
+    "description": "L'homme et un mot en capitales en noir et blanc."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 165.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s131",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S131",
+    "family": "plate",
+    "start": 166.1667,
+    "description": "Cordages en contre-jour orangé, mots en capitales qui s'ajoutent."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s132",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S132",
+    "family": "montage",
+    "start": 166.875,
+    "description": "Voile d'un navire devant une falaise rouge et une paroi bleutée, brume au centre, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.875,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s133",
+   "duration": 0.1667,
+   "ref": {
+    "shot": "S133",
+    "family": "montage",
+    "start": 166.9167,
+    "description": "Le navire entre des falaises rouges, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 166.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s134",
+   "duration": 1.375,
+   "ref": {
+    "shot": "S134",
+    "family": "plate",
+    "start": 167.0833,
+    "description": "La jeune femme en robe blanche dans une grotte marine, phrase qui s'écrit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 167.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s135",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S135",
+    "family": "montage",
+    "start": 168.4583,
+    "description": "Même plan, la phrase continue."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 168.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s136",
+   "duration": 0.875,
+   "ref": {
+    "shot": "S136",
+    "family": "plate",
+    "start": 168.9167,
+    "description": "La jeune femme bras ouverts, phrase complète."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 168.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s137",
+   "duration": 1.0417,
+   "ref": {
+    "shot": "S137",
+    "family": "plate",
+    "start": 169.7917,
+    "description": "L'homme ligoté qui grimace dans les embruns, phrase."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 169.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s138",
+   "duration": 0.125,
+   "ref": {
+    "shot": "S138",
+    "family": "montage",
+    "start": 170.8333,
+    "description": "La jeune femme qui chante, mot en capitales, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 170.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s139",
+   "duration": 0.2083,
+   "ref": {
+    "shot": "S139",
+    "family": "montage",
+    "start": 170.9583,
+    "description": "Les marins, mot en capitales, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 170.9583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s140",
+   "duration": 0.5,
+   "ref": {
+    "shot": "S140",
+    "family": "plate",
+    "start": 171.1667,
+    "description": "La jeune femme qui crie, mots en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 171.1667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s141",
+   "duration": 1.7917,
+   "ref": {
+    "shot": "S141",
+    "family": "plate",
+    "start": 171.6667,
+    "description": "La jeune femme bras levés devant les falaises, mots en capitales."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 171.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s142",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S142",
+    "family": "plate",
+    "start": 173.4583,
+    "description": "Le navire avance entre les falaises au soleil."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 173.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s143",
+   "duration": 1.125,
+   "ref": {
+    "shot": "S143",
+    "family": "graphic",
+    "start": 174.1667,
+    "description": "Titre en capitales énormes texturé d'images sur noir."
+   },
+   "template": "kinetic-words",
+   "params": {
+    "sentence": "Procedural by {pill}",
+    "pills": [
+     "Houdini",
+     "Unreal",
+     "Substance",
+     "Copernicus"
+    ],
+    "badge": false,
+    "font": "InterVariable",
+    "ink": "#ffffff",
+    "bg": "#030303",
+    "accent": "#e2552f",
+    "size": 88.7
+   }
+  },
+  {
+   "id": "s144",
+   "duration": 2.4583,
+   "ref": {
+    "shot": "S144",
+    "family": "plate",
+    "start": 175.2917,
+    "description": "Le navire, trois images."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 175.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s145",
+   "duration": 0.7083,
+   "ref": {
+    "shot": "S145",
+    "family": "plate",
+    "start": 177.75,
+    "description": "Le couple s'embrasse au bord du navire, un mot entre parenthèses."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 177.75,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s146",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S146",
+    "family": "montage",
+    "start": 178.4583,
+    "description": "Le couple, la jeune femme se retourne, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 178.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s147",
+   "duration": 0.6667,
+   "ref": {
+    "shot": "S147",
+    "family": "plate",
+    "start": 178.9167,
+    "description": "Le couple s'embrasse, mot entre parenthèses."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 178.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s148",
+   "duration": 0.25,
+   "ref": {
+    "shot": "S148",
+    "family": "montage",
+    "start": 179.5833,
+    "description": "Le couple, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 179.5833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s149",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S149",
+    "family": "montage",
+    "start": 179.8333,
+    "description": "Un nœud de corde serré en noir et blanc, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 179.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s150",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S150",
+    "family": "plate",
+    "start": 180.2917,
+    "description": "Le nœud et le pictogramme, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 180.2917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s151",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S151",
+    "family": "montage",
+    "start": 181.2083,
+    "description": "Le couple en noir et blanc, pictogramme et consigne."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 181.2083,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s152",
+   "duration": 0.4167,
+   "ref": {
+    "shot": "S152",
+    "family": "montage",
+    "start": 181.6667,
+    "description": "Image en négatif puis le nœud et le pictogramme."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 181.6667,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s153",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S153",
+    "family": "montage",
+    "start": 182.0833,
+    "description": "L'homme ligoté, pictogramme et un mot rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 182.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s154",
+   "duration": 0.9167,
+   "ref": {
+    "shot": "S154",
+    "family": "plate",
+    "start": 182.5417,
+    "description": "Le nœud, pictogramme et mot rouge."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 182.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s155",
+   "duration": 1.3333,
+   "ref": {
+    "shot": "S155",
+    "family": "plate",
+    "start": 183.4583,
+    "description": "La jeune femme attache l'homme au mât, un mot rouge vertical s'inscrit."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 183.4583,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s156",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S156",
+    "family": "montage",
+    "start": 184.7917,
+    "description": "Un grand mot rouge incliné traverse une scène de mât et de voile dans une brume verte, tenue une seule image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 184.7917,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s157",
+   "duration": 2.2083,
+   "ref": {
+    "shot": "S157",
+    "family": "plate",
+    "start": 184.8333,
+    "description": "Sillage, puis le navire de près, très bref."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 184.8333,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s158",
+   "duration": 0.0417,
+   "ref": {
+    "shot": "S158",
+    "family": "montage",
+    "start": 187.0417,
+    "description": "Navire sombre vu de près sur une mer scintillante, une image."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.0417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s159",
+   "duration": 0.4583,
+   "ref": {
+    "shot": "S159",
+    "family": "montage",
+    "start": 187.0833,
+    "description": "Nœud de corde en contre-jour doré."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.0833,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s160",
+   "duration": 1.375,
+   "ref": {
+    "shot": "S160",
+    "family": "plate",
+    "start": 187.5417,
+    "description": "L'homme couché, des lignes rouges dessinées sur son visage."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 187.5417,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  },
+  {
+   "id": "s161",
+   "duration": 2.6667,
+   "ref": {
+    "shot": "S161",
+    "family": "plate",
+    "start": 188.9167,
+    "description": "Gros plan d'un œil bleu avec une trace rouge, un encart de titre à droite."
+   },
+   "template": "media-showcase",
+   "params": {
+    "media": "ref:x-anabology-2105325733312884869",
+    "mediaStart": 188.9167,
+    "frame": "full",
+    "fit": "cover",
+    "zoom": 1,
+    "caption": "",
+    "sub": "",
+    "bg": "#000000"
+   }
+  }
+ ],
+ "id": "x-anabology-2105325733312884869-motion",
+ "updated": "15 October 2026, 13:31",
+ "versionNote": "avant une nouvelle conversion",
+ "versionSaved": "15 October 2026, 13:40",
+ "version": "V_002"
+}
