@@ -1,0 +1,21 @@
+{
+  "id": "paper-mono-code-motion",
+  "versions": [
+    "V_001"
+  ],
+  "title": "paper-mono-code · base motion",
+  "latest": "V_001",
+  "updated": "15 October 2026",
+  "recipe": "motion-project",
+  "rights": {
+    "cleared": true,
+    "by": "Matthieu",
+    "date": "15 October 2026",
+    "note": "publication de toutes les animations validée par Matthieu, textes, marques et musiques reproduites compris"
+  },
+  "tags": [
+    "motion",
+    "paper-mono-code",
+    "16x9"
+  ]
+}
