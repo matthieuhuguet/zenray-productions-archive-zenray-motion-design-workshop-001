@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c001-generique-de-journal-televise",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c001-generique-de-journal-televise [a7719915].mp4",
+ "sha256": "a77199153986e39f22717ef9f4f819b83aa66d01206893bf1a5a5fb7ca935d26",
+ "bytes": 27739450,
+ "vfr": false,
+ "r_fps": 30.0,
+ "duration_s": 61.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 30.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "001 Générique de journal télévisé",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

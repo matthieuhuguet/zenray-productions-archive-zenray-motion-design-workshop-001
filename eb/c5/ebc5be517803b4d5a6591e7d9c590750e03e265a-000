@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c026-teaser-minimaliste",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c026-teaser-minimaliste [9c765e28].mp4",
+ "sha256": "9c765e287d514c2ad6bd735ab68bbeb591a0a0e452a80ef5869091491fca8f3a",
+ "bytes": 4863964,
+ "vfr": false,
+ "r_fps": 23.976,
+ "duration_s": 47.005,
+ "video_codec": "h264",
+ "width": 854,
+ "height": 480,
+ "fps": 23.976,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "026 Teaser minimaliste",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

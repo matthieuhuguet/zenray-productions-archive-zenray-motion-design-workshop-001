@@ -1,0 +1,18 @@
+{
+ "tracks": [
+  {
+   "id": "c026-teaser-minimaliste",
+   "n": 26,
+   "title": "Teaser minimaliste",
+   "category": "Trailers et VFX",
+   "file": "c026-teaser-minimaliste.mp3",
+   "bytes": 1129890,
+   "tempoBpm": 115.38,
+   "loudnessLufs": -27.2,
+   "duration": 47.019,
+   "kind": "reference-audio",
+   "local": true,
+   "note": "audio de la référence rangé pour le montage ; local, jamais publié"
+  }
+ ]
+}

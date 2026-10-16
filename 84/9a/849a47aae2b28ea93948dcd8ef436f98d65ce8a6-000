@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c003-documentaire-d-opinion-en-collage",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c003-documentaire-d-opinion-en-collage [b1fcd8ba].mp4",
+ "sha256": "b1fcd8ba3e0038d8afb4a2fc739e05cd435ec1225aad0af7a9323911a92f87dc",
+ "bytes": 6857504,
+ "vfr": false,
+ "r_fps": 25.0,
+ "duration_s": 189.869,
+ "video_codec": "h264",
+ "width": 426,
+ "height": 240,
+ "fps": 25.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "003 Documentaire d'opinion en collage",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}
