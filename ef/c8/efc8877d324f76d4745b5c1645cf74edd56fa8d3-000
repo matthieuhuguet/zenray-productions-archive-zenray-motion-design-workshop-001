@@ -411,7 +411,7 @@
     "bg": "#fdfcfd",
     "keys": "0.04 S29-k00.svg\n0.617 S29-k01.svg",
     "fit": "cover",
-    "overlays": "0.0 7.17 20.5 50 22 500 0.18 #adadad | MATHIJS LUIJTEN\n0.0 7.17 78.4 50 22 500 0.18 #adadad | MOTION DESIGNER"
+    "overlays": "0.0 7.17 21.1 51.2 34 400 0.22 #0a0a0a | MATHIJS LUIJTEN\n0.0 7.17 78.58 51.2 34 400 0.24 #0a0a0a | MOTION DESIGNER"
    },
    "ref": {
     "shot": "S29",
@@ -429,5 +429,5 @@
   }
  },
  "id": "c065-reel-buck-motion",
- "updated": "16 October 2026, 05:20"
+ "updated": "16 October 2026, 05:22"
 }
