@@ -1,0 +1,449 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Reel Oddfellows · reproduction",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "c067-reel-oddfellows",
+ "doc": "16 October 2026: one reference reproduced as vector motion (motion/reproduce.py): every cut is a vector-shot scene (stacked SVG keyframes, one palette per shot), texts kept editable by the per-video recipe.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "vector-shot",
+   "duration": 8.0833,
+   "params": {
+    "bg": "#0e0e0e",
+    "keys": "0.04 S01-k00.svg\n0.167 S01-k01.svg\n0.2 S01-k02.svg\n0.267 S01-k03.svg\n0.3 S01-k04.svg\n0.333 S01-k05.svg\n0.367 S01-k06.svg\n0.433 S01-k07.svg\n0.467 S01-k08.svg\n0.5 S01-k09.svg\n0.533 S01-k10.svg\n0.6 S01-k11.svg\n0.633 S01-k12.svg\n0.667 S01-k13.svg\n0.7 S01-k14.svg\n0.767 S01-k15.svg\n0.8 S01-k16.svg\n0.833 S01-k17.svg\n0.867 S01-k18.svg\n0.933 S01-k19.svg\n0.967 S01-k20.svg\n1.0 S01-k21.svg\n1.033 S01-k22.svg\n1.1 S01-k23.svg\n1.133 S01-k24.svg\n1.167 S01-k25.svg\n1.2 S01-k26.svg\n1.267 S01-k27.svg\n1.3 S01-k28.svg\n1.333 S01-k29.svg\n1.367 S01-k30.svg\n1.433 S01-k31.svg\n1.467 S01-k32.svg\n1.5 S01-k33.svg\n1.533 S01-k34.svg\n1.6 S01-k35.svg\n1.633 S01-k36.svg\n1.667 S01-k37.svg\n1.7 S01-k38.svg\n1.767 S01-k39.svg\n1.8 S01-k40.svg\n1.833 S01-k41.svg\n1.867 S01-k42.svg\n1.933 S01-k43.svg\n1.967 S01-k44.svg\n2.0 S01-k45.svg\n2.033 S01-k46.svg\n2.1 S01-k47.svg\n2.133 S01-k48.svg\n2.167 S01-k49.svg\n2.2 S01-k50.svg\n2.267 S01-k51.svg\n2.3 S01-k52.svg\n2.333 S01-k53.svg\n2.367 S01-k54.svg\n2.433 S01-k55.svg\n2.467 S01-k56.svg\n2.5 S01-k57.svg\n2.533 S01-k58.svg\n2.6 S01-k59.svg\n2.633 S01-k60.svg\n2.667 S01-k61.svg\n2.7 S01-k62.svg\n2.767 S01-k63.svg\n2.8 S01-k64.svg\n2.833 S01-k65.svg\n2.867 S01-k66.svg\n2.933 S01-k67.svg\n2.967 S01-k68.svg\n3.0 S01-k69.svg\n3.033 S01-k70.svg\n3.1 S01-k71.svg\n3.133 S01-k72.svg\n3.167 S01-k73.svg\n3.2 S01-k74.svg\n3.267 S01-k75.svg\n3.3 S01-k76.svg\n3.333 S01-k77.svg\n3.367 S01-k78.svg\n3.433 S01-k79.svg\n3.467 S01-k80.svg\n3.5 S01-k81.svg\n3.533 S01-k82.svg\n3.6 S01-k83.svg\n3.633 S01-k84.svg\n3.667 S01-k85.svg\n3.7 S01-k86.svg\n3.767 S01-k87.svg\n3.8 S01-k88.svg\n3.833 S01-k89.svg\n3.867 S01-k90.svg\n3.933 S01-k91.svg\n3.967 S01-k92.svg\n4.0 S01-k93.svg\n4.033 S01-k94.svg\n4.1 S01-k95.svg\n4.133 S01-k96.svg\n4.167 S01-k97.svg\n4.2 S01-k98.svg\n4.267 S01-k99.svg\n4.333 S01-k100.svg\n4.5 S01-k101.svg\n4.767 S01-k102.svg\n5.1 S01-k103.svg\n5.433 S01-k104.svg\n5.767 S01-k105.svg\n6.033 S01-k106.svg\n6.167 S01-k107.svg\n6.467 S01-k108.svg\n6.8 S01-k109.svg\n7.2 S01-k110.svg\n7.633 S01-k111.svg\n8.033 S01-k112.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0
+   }
+  },
+  {
+   "id": "s002",
+   "template": "vector-shot",
+   "duration": 3.875,
+   "params": {
+    "bg": "#51a8eb",
+    "keys": "0.04 S02-k00.svg\n0.083 S02-k01.svg\n0.117 S02-k02.svg\n0.183 S02-k03.svg\n0.217 S02-k04.svg\n0.25 S02-k05.svg\n0.283 S02-k06.svg\n0.35 S02-k07.svg\n0.383 S02-k08.svg\n0.417 S02-k09.svg\n0.45 S02-k10.svg\n0.517 S02-k11.svg\n0.55 S02-k12.svg\n0.583 S02-k13.svg\n0.617 S02-k14.svg\n0.683 S02-k15.svg\n0.717 S02-k16.svg\n0.75 S02-k17.svg\n0.783 S02-k18.svg\n0.85 S02-k19.svg\n0.883 S02-k20.svg\n0.917 S02-k21.svg\n0.95 S02-k22.svg\n1.017 S02-k23.svg\n1.05 S02-k24.svg\n1.083 S02-k25.svg\n1.117 S02-k26.svg\n1.183 S02-k27.svg\n1.217 S02-k28.svg\n1.25 S02-k29.svg\n1.283 S02-k30.svg\n1.35 S02-k31.svg\n1.383 S02-k32.svg\n1.417 S02-k33.svg\n1.517 S02-k34.svg\n1.55 S02-k35.svg\n1.583 S02-k36.svg\n1.617 S02-k37.svg\n1.683 S02-k38.svg\n1.717 S02-k39.svg\n1.75 S02-k40.svg\n1.783 S02-k41.svg\n1.85 S02-k42.svg\n1.883 S02-k43.svg\n1.917 S02-k44.svg\n1.95 S02-k45.svg\n2.017 S02-k46.svg\n2.05 S02-k47.svg\n2.083 S02-k48.svg\n2.117 S02-k49.svg\n2.183 S02-k50.svg\n2.217 S02-k51.svg\n2.25 S02-k52.svg\n2.283 S02-k53.svg\n2.35 S02-k54.svg\n2.383 S02-k55.svg\n2.417 S02-k56.svg\n2.45 S02-k57.svg\n2.517 S02-k58.svg\n2.55 S02-k59.svg\n2.583 S02-k60.svg\n2.617 S02-k61.svg\n2.683 S02-k62.svg\n2.717 S02-k63.svg\n2.75 S02-k64.svg\n2.783 S02-k65.svg\n2.85 S02-k66.svg\n2.883 S02-k67.svg\n2.917 S02-k68.svg\n2.95 S02-k69.svg\n3.017 S02-k70.svg\n3.05 S02-k71.svg\n3.083 S02-k72.svg\n3.117 S02-k73.svg\n3.217 S02-k74.svg\n3.283 S02-k75.svg\n3.417 S02-k76.svg\n3.45 S02-k77.svg\n3.517 S02-k78.svg\n3.55 S02-k79.svg\n3.583 S02-k80.svg\n3.617 S02-k81.svg\n3.683 S02-k82.svg\n3.717 S02-k83.svg\n3.75 S02-k84.svg\n3.783 S02-k85.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 8.0833
+   }
+  },
+  {
+   "id": "s003",
+   "template": "vector-shot",
+   "duration": 4.2084,
+   "params": {
+    "bg": "#fbfbfb",
+    "keys": "0.04 S03-k00.svg\n0.075 S03-k01.svg\n0.142 S03-k02.svg\n0.175 S03-k03.svg\n0.208 S03-k04.svg\n0.242 S03-k05.svg\n0.308 S03-k06.svg\n0.342 S03-k07.svg\n0.375 S03-k08.svg\n0.408 S03-k09.svg\n0.475 S03-k10.svg\n0.508 S03-k11.svg\n0.542 S03-k12.svg\n0.575 S03-k13.svg\n0.642 S03-k14.svg\n0.675 S03-k15.svg\n0.708 S03-k16.svg\n0.742 S03-k17.svg\n0.808 S03-k18.svg\n0.842 S03-k19.svg\n0.875 S03-k20.svg\n0.908 S03-k21.svg\n0.975 S03-k22.svg\n1.008 S03-k23.svg\n1.042 S03-k24.svg\n1.075 S03-k25.svg\n1.142 S03-k26.svg\n1.175 S03-k27.svg\n1.208 S03-k28.svg\n1.242 S03-k29.svg\n1.308 S03-k30.svg\n1.342 S03-k31.svg\n1.375 S03-k32.svg\n1.408 S03-k33.svg\n1.475 S03-k34.svg\n1.508 S03-k35.svg\n1.542 S03-k36.svg\n1.575 S03-k37.svg\n1.642 S03-k38.svg\n1.675 S03-k39.svg\n1.708 S03-k40.svg\n1.742 S03-k41.svg\n1.808 S03-k42.svg\n1.842 S03-k43.svg\n1.875 S03-k44.svg\n1.908 S03-k45.svg\n1.975 S03-k46.svg\n2.008 S03-k47.svg\n2.042 S03-k48.svg\n2.075 S03-k49.svg\n2.142 S03-k50.svg\n2.175 S03-k51.svg\n2.208 S03-k52.svg\n2.242 S03-k53.svg\n2.308 S03-k54.svg\n2.342 S03-k55.svg\n2.375 S03-k56.svg\n2.408 S03-k57.svg\n2.475 S03-k58.svg\n2.508 S03-k59.svg\n2.542 S03-k60.svg\n2.575 S03-k61.svg\n2.642 S03-k62.svg\n2.675 S03-k63.svg\n2.708 S03-k64.svg\n2.742 S03-k65.svg\n2.808 S03-k66.svg\n2.842 S03-k67.svg\n2.875 S03-k68.svg\n2.908 S03-k69.svg\n2.975 S03-k70.svg\n3.008 S03-k71.svg\n3.042 S03-k72.svg\n3.075 S03-k73.svg\n3.142 S03-k74.svg\n3.175 S03-k75.svg\n3.208 S03-k76.svg\n3.242 S03-k77.svg\n3.308 S03-k78.svg\n3.342 S03-k79.svg\n3.375 S03-k80.svg\n3.408 S03-k81.svg\n3.475 S03-k82.svg\n3.508 S03-k83.svg\n3.542 S03-k84.svg\n3.575 S03-k85.svg\n3.642 S03-k86.svg\n3.675 S03-k87.svg\n3.708 S03-k88.svg\n3.742 S03-k89.svg\n3.808 S03-k90.svg\n3.842 S03-k91.svg\n3.875 S03-k92.svg\n3.908 S03-k93.svg\n3.975 S03-k94.svg\n4.008 S03-k95.svg\n4.042 S03-k96.svg\n4.075 S03-k97.svg\n4.142 S03-k98.svg\n4.175 S03-k99.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 11.9583
+   }
+  },
+  {
+   "id": "s004",
+   "template": "vector-shot",
+   "duration": 4.0,
+   "params": {
+    "bg": "#e9e5e1",
+    "keys": "0.04 S04-k00.svg\n0.1 S04-k01.svg\n0.133 S04-k02.svg\n0.167 S04-k03.svg\n0.2 S04-k04.svg\n0.267 S04-k05.svg\n0.3 S04-k06.svg\n0.333 S04-k07.svg\n0.367 S04-k08.svg\n0.433 S04-k09.svg\n0.467 S04-k10.svg\n0.5 S04-k11.svg\n0.533 S04-k12.svg\n0.6 S04-k13.svg\n0.667 S04-k14.svg\n0.7 S04-k15.svg\n0.8 S04-k16.svg\n0.867 S04-k17.svg\n0.967 S04-k18.svg\n1.033 S04-k19.svg\n1.133 S04-k20.svg\n1.2 S04-k21.svg\n1.3 S04-k22.svg\n1.367 S04-k23.svg\n1.433 S04-k24.svg\n1.5 S04-k25.svg\n1.533 S04-k26.svg\n1.6 S04-k27.svg\n1.633 S04-k28.svg\n1.667 S04-k29.svg\n1.7 S04-k30.svg\n1.767 S04-k31.svg\n1.8 S04-k32.svg\n1.833 S04-k33.svg\n1.867 S04-k34.svg\n1.933 S04-k35.svg\n1.967 S04-k36.svg\n2.0 S04-k37.svg\n2.033 S04-k38.svg\n2.1 S04-k39.svg\n2.133 S04-k40.svg\n2.167 S04-k41.svg\n2.2 S04-k42.svg\n2.267 S04-k43.svg\n2.3 S04-k44.svg\n2.333 S04-k45.svg\n2.367 S04-k46.svg\n2.433 S04-k47.svg\n2.467 S04-k48.svg\n2.5 S04-k49.svg\n2.533 S04-k50.svg\n2.6 S04-k51.svg\n2.633 S04-k52.svg\n2.667 S04-k53.svg\n2.7 S04-k54.svg\n2.8 S04-k55.svg\n2.967 S04-k56.svg\n3.267 S04-k57.svg\n3.633 S04-k58.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 16.1667
+   }
+  },
+  {
+   "id": "s005",
+   "template": "vector-shot",
+   "duration": 2.0416,
+   "params": {
+    "bg": "#f7f7f7",
+    "keys": "0.04 S05-k00.svg\n0.3 S05-k01.svg\n0.333 S05-k02.svg\n0.367 S05-k03.svg\n0.433 S05-k04.svg\n0.467 S05-k05.svg\n0.5 S05-k06.svg\n0.533 S05-k07.svg\n0.6 S05-k08.svg\n0.633 S05-k09.svg\n0.667 S05-k10.svg\n0.7 S05-k11.svg\n0.767 S05-k12.svg\n0.8 S05-k13.svg\n0.833 S05-k14.svg\n0.933 S05-k15.svg\n0.967 S05-k16.svg\n1.0 S05-k17.svg\n1.033 S05-k18.svg\n1.1 S05-k19.svg\n1.133 S05-k20.svg\n1.167 S05-k21.svg\n1.2 S05-k22.svg\n1.267 S05-k23.svg\n1.3 S05-k24.svg\n1.333 S05-k25.svg\n1.367 S05-k26.svg\n1.433 S05-k27.svg\n1.467 S05-k28.svg\n1.5 S05-k29.svg\n1.533 S05-k30.svg\n1.6 S05-k31.svg\n1.633 S05-k32.svg\n1.667 S05-k33.svg\n1.7 S05-k34.svg\n1.767 S05-k35.svg\n1.8 S05-k36.svg\n1.833 S05-k37.svg\n1.867 S05-k38.svg\n1.933 S05-k39.svg\n1.967 S05-k40.svg\n2.0 S05-k41.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 20.1667
+   }
+  },
+  {
+   "id": "s006",
+   "template": "vector-shot",
+   "duration": 1.9584,
+   "params": {
+    "bg": "#f7f7f7",
+    "keys": "0.04 S06-k00.svg\n0.092 S06-k01.svg\n0.125 S06-k02.svg\n0.158 S06-k03.svg\n0.225 S06-k04.svg\n0.258 S06-k05.svg\n0.292 S06-k06.svg\n0.325 S06-k07.svg\n0.392 S06-k08.svg\n0.425 S06-k09.svg\n0.458 S06-k10.svg\n0.492 S06-k11.svg\n0.558 S06-k12.svg\n0.592 S06-k13.svg\n0.625 S06-k14.svg\n0.658 S06-k15.svg\n0.725 S06-k16.svg\n0.758 S06-k17.svg\n0.792 S06-k18.svg\n0.825 S06-k19.svg\n0.892 S06-k20.svg\n0.925 S06-k21.svg\n0.958 S06-k22.svg\n0.992 S06-k23.svg\n1.058 S06-k24.svg\n1.092 S06-k25.svg\n1.125 S06-k26.svg\n1.158 S06-k27.svg\n1.225 S06-k28.svg\n1.258 S06-k29.svg\n1.292 S06-k30.svg\n1.325 S06-k31.svg\n1.392 S06-k32.svg\n1.425 S06-k33.svg\n1.458 S06-k34.svg\n1.492 S06-k35.svg\n1.558 S06-k36.svg\n1.592 S06-k37.svg\n1.625 S06-k38.svg\n1.658 S06-k39.svg\n1.725 S06-k40.svg\n1.758 S06-k41.svg\n1.792 S06-k42.svg\n1.825 S06-k43.svg\n1.892 S06-k44.svg\n1.925 S06-k45.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 22.2083
+   }
+  },
+  {
+   "id": "s007",
+   "template": "vector-shot",
+   "duration": 2.25,
+   "params": {
+    "bg": "#c6dadf",
+    "keys": "0.04 S07-k00.svg\n0.1 S07-k01.svg\n0.133 S07-k02.svg\n0.167 S07-k03.svg\n0.2 S07-k04.svg\n0.267 S07-k05.svg\n0.3 S07-k06.svg\n0.333 S07-k07.svg\n0.367 S07-k08.svg\n0.433 S07-k09.svg\n0.467 S07-k10.svg\n0.5 S07-k11.svg\n0.533 S07-k12.svg\n0.6 S07-k13.svg\n0.667 S07-k14.svg\n0.767 S07-k15.svg\n0.833 S07-k16.svg\n1.0 S07-k17.svg\n1.2 S07-k18.svg\n1.267 S07-k19.svg\n1.367 S07-k20.svg\n1.433 S07-k21.svg\n1.467 S07-k22.svg\n1.5 S07-k23.svg\n1.533 S07-k24.svg\n1.6 S07-k25.svg\n1.633 S07-k26.svg\n1.667 S07-k27.svg\n1.7 S07-k28.svg\n1.767 S07-k29.svg\n1.833 S07-k30.svg\n1.933 S07-k31.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 24.1667
+   }
+  },
+  {
+   "id": "s008",
+   "template": "vector-shot",
+   "duration": 1.7083,
+   "params": {
+    "bg": "#ea952f",
+    "keys": "0.04 S08-k00.svg\n0.083 S08-k01.svg\n0.117 S08-k02.svg\n0.183 S08-k03.svg\n0.217 S08-k04.svg\n0.25 S08-k05.svg\n0.283 S08-k06.svg\n0.35 S08-k07.svg\n0.383 S08-k08.svg\n0.417 S08-k09.svg\n0.45 S08-k10.svg\n0.517 S08-k11.svg\n0.55 S08-k12.svg\n0.583 S08-k13.svg\n0.617 S08-k14.svg\n0.683 S08-k15.svg\n0.717 S08-k16.svg\n0.75 S08-k17.svg\n0.783 S08-k18.svg\n0.85 S08-k19.svg\n0.883 S08-k20.svg\n0.917 S08-k21.svg\n0.95 S08-k22.svg\n1.017 S08-k23.svg\n1.05 S08-k24.svg\n1.083 S08-k25.svg\n1.117 S08-k26.svg\n1.183 S08-k27.svg\n1.217 S08-k28.svg\n1.25 S08-k29.svg\n1.283 S08-k30.svg\n1.35 S08-k31.svg\n1.383 S08-k32.svg\n1.417 S08-k33.svg\n1.45 S08-k34.svg\n1.517 S08-k35.svg\n1.55 S08-k36.svg\n1.583 S08-k37.svg\n1.617 S08-k38.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 26.4167
+   }
+  },
+  {
+   "id": "s009",
+   "template": "vector-shot",
+   "duration": 4.0,
+   "params": {
+    "bg": "#b2cace",
+    "keys": "0.04 S09-k00.svg\n0.075 S09-k01.svg\n0.142 S09-k02.svg\n0.175 S09-k03.svg\n0.208 S09-k04.svg\n0.242 S09-k05.svg\n0.308 S09-k06.svg\n0.342 S09-k07.svg\n0.375 S09-k08.svg\n0.408 S09-k09.svg\n0.475 S09-k10.svg\n0.508 S09-k11.svg\n0.542 S09-k12.svg\n0.575 S09-k13.svg\n0.642 S09-k14.svg\n0.675 S09-k15.svg\n0.708 S09-k16.svg\n0.742 S09-k17.svg\n0.808 S09-k18.svg\n0.842 S09-k19.svg\n0.875 S09-k20.svg\n0.908 S09-k21.svg\n0.975 S09-k22.svg\n1.008 S09-k23.svg\n1.042 S09-k24.svg\n1.075 S09-k25.svg\n1.142 S09-k26.svg\n1.175 S09-k27.svg\n1.208 S09-k28.svg\n1.242 S09-k29.svg\n1.308 S09-k30.svg\n1.342 S09-k31.svg\n1.375 S09-k32.svg\n1.408 S09-k33.svg\n1.475 S09-k34.svg\n1.508 S09-k35.svg\n1.542 S09-k36.svg\n1.575 S09-k37.svg\n1.642 S09-k38.svg\n1.675 S09-k39.svg\n1.708 S09-k40.svg\n1.742 S09-k41.svg\n1.808 S09-k42.svg\n1.842 S09-k43.svg\n1.875 S09-k44.svg\n1.908 S09-k45.svg\n1.975 S09-k46.svg\n2.008 S09-k47.svg\n2.042 S09-k48.svg\n2.075 S09-k49.svg\n2.142 S09-k50.svg\n2.175 S09-k51.svg\n2.208 S09-k52.svg\n2.242 S09-k53.svg\n2.308 S09-k54.svg\n2.342 S09-k55.svg\n2.375 S09-k56.svg\n2.408 S09-k57.svg\n2.475 S09-k58.svg\n2.508 S09-k59.svg\n2.542 S09-k60.svg\n2.575 S09-k61.svg\n2.642 S09-k62.svg\n2.675 S09-k63.svg\n2.708 S09-k64.svg\n2.742 S09-k65.svg\n2.808 S09-k66.svg\n2.842 S09-k67.svg\n2.875 S09-k68.svg\n2.908 S09-k69.svg\n2.975 S09-k70.svg\n3.008 S09-k71.svg\n3.042 S09-k72.svg\n3.075 S09-k73.svg\n3.142 S09-k74.svg\n3.175 S09-k75.svg\n3.208 S09-k76.svg\n3.242 S09-k77.svg\n3.308 S09-k78.svg\n3.342 S09-k79.svg\n3.375 S09-k80.svg\n3.408 S09-k81.svg\n3.475 S09-k82.svg\n3.508 S09-k83.svg\n3.542 S09-k84.svg\n3.575 S09-k85.svg\n3.642 S09-k86.svg\n3.675 S09-k87.svg\n3.708 S09-k88.svg\n3.742 S09-k89.svg\n3.808 S09-k90.svg\n3.842 S09-k91.svg\n3.875 S09-k92.svg\n3.908 S09-k93.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 28.125
+   }
+  },
+  {
+   "id": "s010",
+   "template": "vector-shot",
+   "duration": 2.0417,
+   "params": {
+    "bg": "#eaeae9",
+    "keys": "0.04 S10-k00.svg\n0.075 S10-k01.svg\n0.142 S10-k02.svg\n0.175 S10-k03.svg\n0.208 S10-k04.svg\n0.242 S10-k05.svg\n0.308 S10-k06.svg\n0.342 S10-k07.svg\n0.375 S10-k08.svg\n0.408 S10-k09.svg\n0.475 S10-k10.svg\n0.508 S10-k11.svg\n0.542 S10-k12.svg\n0.575 S10-k13.svg\n0.642 S10-k14.svg\n0.675 S10-k15.svg\n0.708 S10-k16.svg\n0.742 S10-k17.svg\n0.808 S10-k18.svg\n0.842 S10-k19.svg\n0.875 S10-k20.svg\n0.908 S10-k21.svg\n0.975 S10-k22.svg\n1.008 S10-k23.svg\n1.042 S10-k24.svg\n1.075 S10-k25.svg\n1.142 S10-k26.svg\n1.175 S10-k27.svg\n1.208 S10-k28.svg\n1.242 S10-k29.svg\n1.308 S10-k30.svg\n1.342 S10-k31.svg\n1.375 S10-k32.svg\n1.408 S10-k33.svg\n1.475 S10-k34.svg\n1.508 S10-k35.svg\n1.542 S10-k36.svg\n1.575 S10-k37.svg\n1.642 S10-k38.svg\n1.675 S10-k39.svg\n1.708 S10-k40.svg\n1.742 S10-k41.svg\n1.808 S10-k42.svg\n1.842 S10-k43.svg\n1.875 S10-k44.svg\n1.908 S10-k45.svg\n1.975 S10-k46.svg\n2.008 S10-k47.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 32.125
+   }
+  },
+  {
+   "id": "s011",
+   "template": "vector-shot",
+   "duration": 1.9583,
+   "params": {
+    "bg": "#c4c1c0",
+    "keys": "0.04 S11-k00.svg\n0.1 S11-k01.svg\n0.133 S11-k02.svg\n0.167 S11-k03.svg\n0.2 S11-k04.svg\n0.267 S11-k05.svg\n0.3 S11-k06.svg\n0.333 S11-k07.svg\n0.367 S11-k08.svg\n0.433 S11-k09.svg\n0.467 S11-k10.svg\n0.5 S11-k11.svg\n0.533 S11-k12.svg\n0.6 S11-k13.svg\n0.633 S11-k14.svg\n0.667 S11-k15.svg\n0.7 S11-k16.svg\n0.767 S11-k17.svg\n0.8 S11-k18.svg\n0.833 S11-k19.svg\n0.867 S11-k20.svg\n0.933 S11-k21.svg\n0.967 S11-k22.svg\n1.0 S11-k23.svg\n1.033 S11-k24.svg\n1.1 S11-k25.svg\n1.133 S11-k26.svg\n1.167 S11-k27.svg\n1.2 S11-k28.svg\n1.267 S11-k29.svg\n1.3 S11-k30.svg\n1.333 S11-k31.svg\n1.367 S11-k32.svg\n1.433 S11-k33.svg\n1.467 S11-k34.svg\n1.5 S11-k35.svg\n1.533 S11-k36.svg\n1.6 S11-k37.svg\n1.633 S11-k38.svg\n1.667 S11-k39.svg\n1.7 S11-k40.svg\n1.767 S11-k41.svg\n1.8 S11-k42.svg\n1.833 S11-k43.svg\n1.867 S11-k44.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 34.1667
+   }
+  },
+  {
+   "id": "s012",
+   "template": "vector-shot",
+   "duration": 1.0,
+   "params": {
+    "bg": "#c9d7dd",
+    "keys": "0.04 S12-k00.svg\n0.075 S12-k01.svg\n0.142 S12-k02.svg\n0.175 S12-k03.svg\n0.208 S12-k04.svg\n0.242 S12-k05.svg\n0.308 S12-k06.svg\n0.342 S12-k07.svg\n0.375 S12-k08.svg\n0.408 S12-k09.svg\n0.475 S12-k10.svg\n0.508 S12-k11.svg\n0.542 S12-k12.svg\n0.575 S12-k13.svg\n0.642 S12-k14.svg\n0.675 S12-k15.svg\n0.708 S12-k16.svg\n0.742 S12-k17.svg\n0.808 S12-k18.svg\n0.842 S12-k19.svg\n0.875 S12-k20.svg\n0.908 S12-k21.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 36.125
+   }
+  },
+  {
+   "id": "s013",
+   "template": "vector-shot",
+   "duration": 2.9583,
+   "params": {
+    "bg": "#37686b",
+    "keys": "0.04 S13-k00.svg\n0.075 S13-k01.svg\n0.142 S13-k02.svg\n0.175 S13-k03.svg\n0.208 S13-k04.svg\n0.242 S13-k05.svg\n0.308 S13-k06.svg\n0.342 S13-k07.svg\n0.375 S13-k08.svg\n0.408 S13-k09.svg\n0.475 S13-k10.svg\n0.508 S13-k11.svg\n0.575 S13-k12.svg\n0.675 S13-k13.svg\n0.742 S13-k14.svg\n0.842 S13-k15.svg\n0.908 S13-k16.svg\n1.008 S13-k17.svg\n1.075 S13-k18.svg\n1.175 S13-k19.svg\n1.242 S13-k20.svg\n1.342 S13-k21.svg\n1.375 S13-k22.svg\n1.408 S13-k23.svg\n1.475 S13-k24.svg\n1.508 S13-k25.svg\n1.575 S13-k26.svg\n1.642 S13-k27.svg\n1.675 S13-k28.svg\n1.742 S13-k29.svg\n1.875 S13-k30.svg\n1.975 S13-k31.svg\n2.075 S13-k32.svg\n2.408 S13-k33.svg\n2.542 S13-k34.svg\n2.642 S13-k35.svg\n2.708 S13-k36.svg\n2.742 S13-k37.svg\n2.808 S13-k38.svg\n2.842 S13-k39.svg\n2.875 S13-k40.svg\n2.908 S13-k41.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 37.125
+   }
+  },
+  {
+   "id": "s014",
+   "template": "vector-shot",
+   "duration": 1.25,
+   "params": {
+    "bg": "#e8eef3",
+    "keys": "0.04 S14-k00.svg\n0.083 S14-k01.svg\n0.117 S14-k02.svg\n0.183 S14-k03.svg\n0.217 S14-k04.svg\n0.25 S14-k05.svg\n0.283 S14-k06.svg\n0.35 S14-k07.svg\n0.383 S14-k08.svg\n0.417 S14-k09.svg\n0.45 S14-k10.svg\n0.517 S14-k11.svg\n0.55 S14-k12.svg\n0.583 S14-k13.svg\n0.617 S14-k14.svg\n0.683 S14-k15.svg\n0.717 S14-k16.svg\n0.75 S14-k17.svg\n0.783 S14-k18.svg\n0.85 S14-k19.svg\n0.883 S14-k20.svg\n0.917 S14-k21.svg\n0.95 S14-k22.svg\n1.017 S14-k23.svg\n1.05 S14-k24.svg\n1.083 S14-k25.svg\n1.117 S14-k26.svg\n1.183 S14-k27.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 40.0833
+   }
+  },
+  {
+   "id": "s015",
+   "template": "vector-shot",
+   "duration": 2.8334,
+   "params": {
+    "bg": "#e9eef4",
+    "keys": "0.04 S15-k00.svg\n0.1 S15-k01.svg\n0.133 S15-k02.svg\n0.167 S15-k03.svg\n0.2 S15-k04.svg\n0.267 S15-k05.svg\n0.3 S15-k06.svg\n0.333 S15-k07.svg\n0.367 S15-k08.svg\n0.433 S15-k09.svg\n0.467 S15-k10.svg\n0.5 S15-k11.svg\n0.533 S15-k12.svg\n0.6 S15-k13.svg\n0.633 S15-k14.svg\n0.667 S15-k15.svg\n0.7 S15-k16.svg\n0.767 S15-k17.svg\n0.8 S15-k18.svg\n0.833 S15-k19.svg\n0.867 S15-k20.svg\n0.933 S15-k21.svg\n0.967 S15-k22.svg\n1.0 S15-k23.svg\n1.033 S15-k24.svg\n1.1 S15-k25.svg\n1.133 S15-k26.svg\n1.167 S15-k27.svg\n1.2 S15-k28.svg\n1.267 S15-k29.svg\n1.3 S15-k30.svg\n1.333 S15-k31.svg\n1.367 S15-k32.svg\n1.433 S15-k33.svg\n1.467 S15-k34.svg\n1.5 S15-k35.svg\n1.533 S15-k36.svg\n1.6 S15-k37.svg\n1.633 S15-k38.svg\n1.667 S15-k39.svg\n1.7 S15-k40.svg\n1.767 S15-k41.svg\n1.8 S15-k42.svg\n1.833 S15-k43.svg\n1.867 S15-k44.svg\n1.933 S15-k45.svg\n1.967 S15-k46.svg\n2.0 S15-k47.svg\n2.033 S15-k48.svg\n2.1 S15-k49.svg\n2.133 S15-k50.svg\n2.167 S15-k51.svg\n2.2 S15-k52.svg\n2.267 S15-k53.svg\n2.3 S15-k54.svg\n2.333 S15-k55.svg\n2.367 S15-k56.svg\n2.433 S15-k57.svg\n2.467 S15-k58.svg\n2.5 S15-k59.svg\n2.533 S15-k60.svg\n2.6 S15-k61.svg\n2.667 S15-k62.svg\n2.7 S15-k63.svg\n2.767 S15-k64.svg\n2.8 S15-k65.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 41.3333
+   }
+  },
+  {
+   "id": "s016",
+   "template": "vector-shot",
+   "duration": 2.9583,
+   "params": {
+    "bg": "#edeced",
+    "keys": "0.04 S16-k00.svg\n0.1 S16-k01.svg\n0.133 S16-k02.svg\n0.167 S16-k03.svg\n0.2 S16-k04.svg\n0.267 S16-k05.svg\n0.3 S16-k06.svg\n0.333 S16-k07.svg\n0.367 S16-k08.svg\n0.433 S16-k09.svg\n0.467 S16-k10.svg\n0.5 S16-k11.svg\n0.533 S16-k12.svg\n0.6 S16-k13.svg\n0.633 S16-k14.svg\n0.667 S16-k15.svg\n0.7 S16-k16.svg\n0.767 S16-k17.svg\n0.8 S16-k18.svg\n0.833 S16-k19.svg\n0.867 S16-k20.svg\n0.933 S16-k21.svg\n0.967 S16-k22.svg\n1.0 S16-k23.svg\n1.033 S16-k24.svg\n1.1 S16-k25.svg\n1.133 S16-k26.svg\n1.167 S16-k27.svg\n1.3 S16-k28.svg\n1.333 S16-k29.svg\n1.367 S16-k30.svg\n1.433 S16-k31.svg\n1.467 S16-k32.svg\n1.5 S16-k33.svg\n1.533 S16-k34.svg\n1.6 S16-k35.svg\n1.633 S16-k36.svg\n1.667 S16-k37.svg\n1.7 S16-k38.svg\n1.767 S16-k39.svg\n1.8 S16-k40.svg\n1.833 S16-k41.svg\n1.867 S16-k42.svg\n1.933 S16-k43.svg\n1.967 S16-k44.svg\n2.0 S16-k45.svg\n2.033 S16-k46.svg\n2.1 S16-k47.svg\n2.133 S16-k48.svg\n2.2 S16-k49.svg\n2.3 S16-k50.svg\n2.467 S16-k51.svg\n2.633 S16-k52.svg\n2.767 S16-k53.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 44.1667
+   }
+  },
+  {
+   "id": "s017",
+   "template": "vector-shot",
+   "duration": 1.7083,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S17-k00.svg\n0.242 S17-k01.svg\n0.542 S17-k02.svg\n0.875 S17-k03.svg\n0.908 S17-k04.svg\n0.975 S17-k05.svg\n1.008 S17-k06.svg\n1.042 S17-k07.svg\n1.075 S17-k08.svg\n1.142 S17-k09.svg\n1.175 S17-k10.svg\n1.208 S17-k11.svg\n1.242 S17-k12.svg\n1.308 S17-k13.svg\n1.342 S17-k14.svg\n1.375 S17-k15.svg\n1.408 S17-k16.svg\n1.475 S17-k17.svg\n1.508 S17-k18.svg\n1.542 S17-k19.svg\n1.575 S17-k20.svg\n1.642 S17-k21.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 47.125
+   }
+  },
+  {
+   "id": "s018",
+   "template": "vector-shot",
+   "duration": 2.125,
+   "params": {
+    "bg": "#2757c4",
+    "keys": "0.04 S18-k00.svg\n1.3 S18-k01.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 48.8333
+   }
+  },
+  {
+   "id": "s019",
+   "template": "vector-shot",
+   "duration": 2.4167,
+   "params": {
+    "bg": "#52aabc",
+    "keys": "0.04 S19-k00.svg\n0.075 S19-k01.svg\n0.142 S19-k02.svg\n0.175 S19-k03.svg\n0.208 S19-k04.svg\n0.242 S19-k05.svg\n0.308 S19-k06.svg\n0.342 S19-k07.svg\n0.375 S19-k08.svg\n0.408 S19-k09.svg\n0.475 S19-k10.svg\n0.508 S19-k11.svg\n0.542 S19-k12.svg\n0.575 S19-k13.svg\n0.642 S19-k14.svg\n0.675 S19-k15.svg\n0.708 S19-k16.svg\n0.742 S19-k17.svg\n0.808 S19-k18.svg\n0.842 S19-k19.svg\n0.875 S19-k20.svg\n0.908 S19-k21.svg\n0.975 S19-k22.svg\n1.008 S19-k23.svg\n1.042 S19-k24.svg\n1.075 S19-k25.svg\n1.142 S19-k26.svg\n1.175 S19-k27.svg\n1.208 S19-k28.svg\n1.242 S19-k29.svg\n1.308 S19-k30.svg\n1.342 S19-k31.svg\n1.375 S19-k32.svg\n1.408 S19-k33.svg\n1.475 S19-k34.svg\n1.508 S19-k35.svg\n1.542 S19-k36.svg\n1.575 S19-k37.svg\n1.642 S19-k38.svg\n1.675 S19-k39.svg\n1.808 S19-k40.svg\n1.975 S19-k41.svg\n2.008 S19-k42.svg\n2.042 S19-k43.svg\n2.075 S19-k44.svg\n2.142 S19-k45.svg\n2.175 S19-k46.svg\n2.208 S19-k47.svg\n2.242 S19-k48.svg\n2.308 S19-k49.svg\n2.342 S19-k50.svg\n2.375 S19-k51.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 50.9583
+   }
+  },
+  {
+   "id": "s020",
+   "template": "vector-shot",
+   "duration": 0.1667,
+   "params": {
+    "bg": "#2166a0",
+    "keys": "0.04 S20-k00.svg\n0.092 S20-k01.svg\n0.125 S20-k02.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 53.375
+   }
+  },
+  {
+   "id": "s021",
+   "template": "vector-shot",
+   "duration": 2.625,
+   "params": {
+    "bg": "#fbfbfb",
+    "keys": "0.04 S21-k00.svg\n0.092 S21-k01.svg\n0.125 S21-k02.svg\n0.158 S21-k03.svg\n0.225 S21-k04.svg\n0.258 S21-k05.svg\n0.292 S21-k06.svg\n0.325 S21-k07.svg\n0.392 S21-k08.svg\n0.425 S21-k09.svg\n0.458 S21-k10.svg\n0.492 S21-k11.svg\n0.558 S21-k12.svg\n0.592 S21-k13.svg\n0.625 S21-k14.svg\n0.658 S21-k15.svg\n0.725 S21-k16.svg\n0.758 S21-k17.svg\n0.792 S21-k18.svg\n0.825 S21-k19.svg\n0.892 S21-k20.svg\n0.925 S21-k21.svg\n0.958 S21-k22.svg\n0.992 S21-k23.svg\n1.092 S21-k24.svg\n1.158 S21-k25.svg\n1.258 S21-k26.svg\n1.292 S21-k27.svg\n1.392 S21-k28.svg\n1.458 S21-k29.svg\n1.558 S21-k30.svg\n1.592 S21-k31.svg\n1.658 S21-k32.svg\n1.758 S21-k33.svg\n1.792 S21-k34.svg\n1.925 S21-k35.svg\n1.958 S21-k36.svg\n2.058 S21-k37.svg\n2.092 S21-k38.svg\n2.158 S21-k39.svg\n2.225 S21-k40.svg\n2.258 S21-k41.svg\n2.325 S21-k42.svg\n2.392 S21-k43.svg\n2.458 S21-k44.svg\n2.492 S21-k45.svg\n2.592 S21-k46.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 53.5417
+   }
+  },
+  {
+   "id": "s022",
+   "template": "vector-shot",
+   "duration": 2.0416,
+   "params": {
+    "bg": "#c38c88",
+    "keys": "0.04 S22-k00.svg\n0.1 S22-k01.svg\n0.133 S22-k02.svg\n0.167 S22-k03.svg\n0.2 S22-k04.svg\n0.267 S22-k05.svg\n0.3 S22-k06.svg\n0.333 S22-k07.svg\n0.367 S22-k08.svg\n0.433 S22-k09.svg\n0.467 S22-k10.svg\n0.5 S22-k11.svg\n0.533 S22-k12.svg\n0.6 S22-k13.svg\n0.633 S22-k14.svg\n0.667 S22-k15.svg\n0.7 S22-k16.svg\n0.767 S22-k17.svg\n0.833 S22-k18.svg\n0.867 S22-k19.svg\n0.967 S22-k20.svg\n1.1 S22-k21.svg\n1.267 S22-k22.svg\n1.433 S22-k23.svg\n1.533 S22-k24.svg\n1.6 S22-k25.svg\n1.633 S22-k26.svg\n1.667 S22-k27.svg\n1.7 S22-k28.svg\n1.767 S22-k29.svg\n1.8 S22-k30.svg\n1.833 S22-k31.svg\n1.867 S22-k32.svg\n1.933 S22-k33.svg\n1.967 S22-k34.svg\n2.0 S22-k35.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 56.1667
+   }
+  },
+  {
+   "id": "s023",
+   "template": "vector-shot",
+   "duration": 1.4584,
+   "params": {
+    "bg": "#dfdfdf",
+    "keys": "0.04 S23-k00.svg\n0.092 S23-k01.svg\n0.125 S23-k02.svg\n0.158 S23-k03.svg\n0.225 S23-k04.svg\n0.258 S23-k05.svg\n0.292 S23-k06.svg\n0.325 S23-k07.svg\n0.392 S23-k08.svg\n0.425 S23-k09.svg\n0.458 S23-k10.svg\n0.492 S23-k11.svg\n0.558 S23-k12.svg\n0.592 S23-k13.svg\n0.625 S23-k14.svg\n0.658 S23-k15.svg\n0.725 S23-k16.svg\n0.758 S23-k17.svg\n0.792 S23-k18.svg\n0.825 S23-k19.svg\n0.892 S23-k20.svg\n0.925 S23-k21.svg\n0.958 S23-k22.svg\n0.992 S23-k23.svg\n1.058 S23-k24.svg\n1.092 S23-k25.svg\n1.125 S23-k26.svg\n1.158 S23-k27.svg\n1.225 S23-k28.svg\n1.258 S23-k29.svg\n1.292 S23-k30.svg\n1.325 S23-k31.svg\n1.392 S23-k32.svg\n1.425 S23-k33.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 58.2083
+   }
+  },
+  {
+   "id": "s024",
+   "template": "vector-shot",
+   "duration": 2.5,
+   "params": {
+    "bg": "#2f66d6",
+    "keys": "0.04 S24-k00.svg\n0.1 S24-k01.svg\n0.133 S24-k02.svg\n0.167 S24-k03.svg\n0.2 S24-k04.svg\n0.267 S24-k05.svg\n0.3 S24-k06.svg\n0.333 S24-k07.svg\n0.367 S24-k08.svg\n0.433 S24-k09.svg\n0.467 S24-k10.svg\n0.5 S24-k11.svg\n0.533 S24-k12.svg\n0.6 S24-k13.svg\n0.633 S24-k14.svg\n0.667 S24-k15.svg\n0.7 S24-k16.svg\n0.767 S24-k17.svg\n0.833 S24-k18.svg\n0.967 S24-k19.svg\n1.2 S24-k20.svg\n1.633 S24-k21.svg\n1.967 S24-k22.svg\n2.133 S24-k23.svg\n2.167 S24-k24.svg\n2.2 S24-k25.svg\n2.267 S24-k26.svg\n2.3 S24-k27.svg\n2.333 S24-k28.svg\n2.367 S24-k29.svg\n2.433 S24-k30.svg\n2.467 S24-k31.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 59.6667
+   }
+  },
+  {
+   "id": "s025",
+   "template": "vector-shot",
+   "duration": 0.7916,
+   "params": {
+    "bg": "#e2d3b3",
+    "keys": "0.04 S25-k00.svg\n0.133 S25-k01.svg\n0.2 S25-k02.svg\n0.3 S25-k03.svg\n0.367 S25-k04.svg\n0.5 S25-k05.svg\n0.533 S25-k06.svg\n0.6 S25-k07.svg\n0.633 S25-k08.svg\n0.7 S25-k09.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 62.1667
+   }
+  },
+  {
+   "id": "s026",
+   "template": "vector-shot",
+   "duration": 1.6667,
+   "params": {
+    "bg": "#ded5cc",
+    "keys": "0.04 S26-k00.svg\n0.075 S26-k01.svg\n0.142 S26-k02.svg\n0.175 S26-k03.svg\n0.208 S26-k04.svg\n0.242 S26-k05.svg\n0.308 S26-k06.svg\n0.342 S26-k07.svg\n0.375 S26-k08.svg\n0.408 S26-k09.svg\n0.475 S26-k10.svg\n0.508 S26-k11.svg\n0.542 S26-k12.svg\n0.575 S26-k13.svg\n0.675 S26-k14.svg\n0.708 S26-k15.svg\n0.742 S26-k16.svg\n0.842 S26-k17.svg\n0.875 S26-k18.svg\n0.908 S26-k19.svg\n0.975 S26-k20.svg\n1.008 S26-k21.svg\n1.042 S26-k22.svg\n1.075 S26-k23.svg\n1.142 S26-k24.svg\n1.175 S26-k25.svg\n1.208 S26-k26.svg\n1.242 S26-k27.svg\n1.308 S26-k28.svg\n1.342 S26-k29.svg\n1.375 S26-k30.svg\n1.475 S26-k31.svg\n1.508 S26-k32.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 62.9583
+   }
+  },
+  {
+   "id": "s027",
+   "template": "vector-shot",
+   "duration": 1.0833,
+   "params": {
+    "bg": "#ececec",
+    "keys": "0.04 S27-k00.svg\n0.075 S27-k01.svg\n0.742 S27-k02.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 64.625
+   }
+  },
+  {
+   "id": "s028",
+   "template": "vector-shot",
+   "duration": 2.4167,
+   "params": {
+    "bg": "#0d202a",
+    "keys": "0.04 S28-k00.svg\n0.092 S28-k01.svg\n0.125 S28-k02.svg\n0.158 S28-k03.svg\n0.225 S28-k04.svg\n0.258 S28-k05.svg\n0.292 S28-k06.svg\n0.325 S28-k07.svg\n0.392 S28-k08.svg\n0.425 S28-k09.svg\n0.458 S28-k10.svg\n0.492 S28-k11.svg\n0.558 S28-k12.svg\n0.592 S28-k13.svg\n0.625 S28-k14.svg\n0.658 S28-k15.svg\n0.725 S28-k16.svg\n0.758 S28-k17.svg\n0.825 S28-k18.svg\n0.892 S28-k19.svg\n0.925 S28-k20.svg\n0.958 S28-k21.svg\n0.992 S28-k22.svg\n1.058 S28-k23.svg\n1.092 S28-k24.svg\n1.125 S28-k25.svg\n1.158 S28-k26.svg\n1.225 S28-k27.svg\n1.258 S28-k28.svg\n1.292 S28-k29.svg\n1.392 S28-k30.svg\n1.425 S28-k31.svg\n1.458 S28-k32.svg\n1.492 S28-k33.svg\n1.558 S28-k34.svg\n1.592 S28-k35.svg\n1.658 S28-k36.svg\n1.725 S28-k37.svg\n1.758 S28-k38.svg\n1.792 S28-k39.svg\n1.825 S28-k40.svg\n1.925 S28-k41.svg\n1.992 S28-k42.svg\n2.158 S28-k43.svg\n2.325 S28-k44.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 65.7083
+   }
+  },
+  {
+   "id": "s029",
+   "template": "vector-shot",
+   "duration": 5.0,
+   "params": {
+    "bg": "#e7e7e7",
+    "keys": "0.04 S29-k00.svg\n0.075 S29-k01.svg\n0.142 S29-k02.svg\n0.175 S29-k03.svg\n0.208 S29-k04.svg\n0.242 S29-k05.svg\n0.308 S29-k06.svg\n0.342 S29-k07.svg\n0.375 S29-k08.svg\n0.408 S29-k09.svg\n0.475 S29-k10.svg\n0.508 S29-k11.svg\n0.542 S29-k12.svg\n0.575 S29-k13.svg\n0.642 S29-k14.svg\n0.675 S29-k15.svg\n0.708 S29-k16.svg\n0.742 S29-k17.svg\n0.842 S29-k18.svg\n0.908 S29-k19.svg\n1.008 S29-k20.svg\n1.075 S29-k21.svg\n1.175 S29-k22.svg\n1.242 S29-k23.svg\n1.342 S29-k24.svg\n1.408 S29-k25.svg\n1.508 S29-k26.svg\n1.642 S29-k27.svg\n1.742 S29-k28.svg\n1.908 S29-k29.svg\n2.075 S29-k30.svg\n2.308 S29-k31.svg\n2.542 S29-k32.svg\n2.842 S29-k33.svg\n3.175 S29-k34.svg\n3.542 S29-k35.svg\n4.075 S29-k36.svg\n4.808 S29-k37.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 68.125
+   }
+  },
+  {
+   "id": "s030",
+   "template": "vector-shot",
+   "duration": 0.875,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S30-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S30",
+    "start": 73.125
+   }
+  }
+ ],
+ "sfx": {
+  "source": "none"
+ },
+ "music": {
+  "mode": "file",
+  "file": {
+   "file": "music.mp3"
+  }
+ },
+ "id": "c067-reel-oddfellows-motion",
+ "updated": "16 October 2026, 08:25",
+ "versionNote": "avant la reproduction du 16 octobre",
+ "versionSaved": "16 October 2026, 08:34",
+ "version": "V_002"
+}
