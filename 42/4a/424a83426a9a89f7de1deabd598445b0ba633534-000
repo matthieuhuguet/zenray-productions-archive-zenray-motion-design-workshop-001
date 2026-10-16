@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c076-reel-fortiche",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c076-reel-fortiche [effa8d7e].mp4",
+ "sha256": "effa8d7e2af1bb654c0275fee62a95be06afee095ae6302ea9351fa89be972fb",
+ "bytes": 31585893,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 90.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "076 Reel Fortiche",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

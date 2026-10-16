@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c075-reel-michael-marczewski",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c075-reel-michael-marczewski [cd1e2424].mp4",
+ "sha256": "cd1e2424906b5b87b5839d8f1629b2245829338ae713a2de31cb30b45c251e50",
+ "bytes": 25180864,
+ "vfr": false,
+ "r_fps": 30.0,
+ "duration_s": 74.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 30.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "075 Reel Michael Marczewski",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

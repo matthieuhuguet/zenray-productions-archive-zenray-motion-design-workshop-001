@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c070-reel-antibody-patrick-clair",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c070-reel-antibody-patrick-clair [151f7923].mp4",
+ "sha256": "151f79233a702c3c42dc23615565d9a5dbb0fbffb01e81988e7f38146bf3e585",
+ "bytes": 22985304,
+ "vfr": false,
+ "r_fps": 29.97,
+ "duration_s": 88.618,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 29.97,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "070 Reel Antibody (Patrick Clair)",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

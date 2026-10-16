@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c068-reel-ash-thorp",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c068-reel-ash-thorp [eb49a68a].mp4",
+ "sha256": "eb49a68aa0216bd4a37b85c2caa085a7510ff744d73566983f00380b3ac39f0d",
+ "bytes": 110163510,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 178.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 800,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "068 Reel Ash Thorp",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

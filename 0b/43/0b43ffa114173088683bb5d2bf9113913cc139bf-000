@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c069-gmunk",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c069-gmunk [8a4918c2].mp4",
+ "sha256": "8a4918c2cf65fc08269cfb3ef693dcbe1b56621d566e128e26d8dbb9d50e0336",
+ "bytes": 57660713,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 240.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "069 GMUNK",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

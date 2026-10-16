@@ -470,6 +470,166 @@
    "has_audio": true,
    "brand": null,
    "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c015-course-neon-synthwave",
+   "title": "015 Course néon synthwave",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 116.68,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c016-arbre-de-competences",
+   "title": "016 Arbre de compétences",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 15.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c066-reel-manvsmachine",
+   "title": "066 Reel ManvsMachine",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 41.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c067-reel-oddfellows",
+   "title": "067 Reel Oddfellows",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 74.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c068-reel-ash-thorp",
+   "title": "068 Reel Ash Thorp",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 178.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c069-gmunk",
+   "title": "069 GMUNK",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 240.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c070-reel-antibody-patrick-clair",
+   "title": "070 Reel Antibody (Patrick Clair)",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 88.618,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c071-reel-tendril",
+   "title": "071 Reel Tendril",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 81.042,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c072-reel-imaginary-forces",
+   "title": "072 Reel Imaginary Forces",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 60.042,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c073-reel-zeitguised",
+   "title": "073 Reel Zeitguised",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 109.08,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c075-reel-michael-marczewski",
+   "title": "075 Reel Michael Marczewski",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 74.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c076-reel-fortiche",
+   "title": "076 Reel Fortiche",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 90.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c077-reel-the-mill",
+   "title": "077 Reel The Mill",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 127.042,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c078-reel-golden-wolf",
+   "title": "078 Reel Golden Wolf",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 60.042,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c079-reel-sarofsky",
+   "title": "079 Reel Sarofsky",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 97.014,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c080-reel-giant-ant",
+   "title": "080 Reel Giant Ant",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 67.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
   }
  ]
 }

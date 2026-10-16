@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c072-reel-imaginary-forces",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c072-reel-imaginary-forces [d742e00a].mp4",
+ "sha256": "d742e00a7e925d9f10df02aa422d6c82fa2b5f49ef7f6d9684b9f5b3805f6de3",
+ "bytes": 38753261,
+ "vfr": false,
+ "r_fps": 23.976,
+ "duration_s": 60.042,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 23.976,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "072 Reel Imaginary Forces",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

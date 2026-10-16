@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c073-reel-zeitguised",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c073-reel-zeitguised [66f2218e].mp4",
+ "sha256": "66f2218efc1792c7b8874c98d6024d713d29eaca4bfb6e6c944b9a324e75afda",
+ "bytes": 14527153,
+ "vfr": false,
+ "r_fps": 25.0,
+ "duration_s": 109.08,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 25.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 44100,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "073 Reel Zeitguised",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c077-reel-the-mill",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c077-reel-the-mill [2bcc0f70].mp4",
+ "sha256": "2bcc0f70cba9c36d93efe2a2b83ac3c358d40e93dc82565a8efc38531c2a4114",
+ "bytes": 81371119,
+ "vfr": false,
+ "r_fps": 25.0,
+ "duration_s": 127.042,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 25.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "077 Reel The Mill",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c067-reel-oddfellows",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c067-reel-oddfellows [ae581a64].mp4",
+ "sha256": "ae581a64f981bf2c0dbb0e74326d319aa722dadd29b74acb72002dd290a63c4e",
+ "bytes": 32300823,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 74.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "067 Reel Oddfellows",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

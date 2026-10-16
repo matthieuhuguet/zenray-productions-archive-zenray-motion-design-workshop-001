@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c080-reel-giant-ant",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c080-reel-giant-ant [dafe536b].mp4",
+ "sha256": "dafe536b78c1283f97f90fb1e87e74019ab9572ed4e6c2014ec61c429567af94",
+ "bytes": 23128447,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 67.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 900,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "080 Reel Giant Ant",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}
