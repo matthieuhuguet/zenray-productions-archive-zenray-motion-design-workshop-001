@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "factory-environments",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "factory-environments [6516bcb6].mp4",
+ "sha256": "6516bcb6a289eea79ef40454b1893298f6c0cb9dfa67c5c16d3a39a577fef151",
+ "bytes": 9113541,
+ "vfr": false,
+ "r_fps": 30.0,
+ "duration_s": 33.6,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 30.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "Factory Environments (What Ships)",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}
