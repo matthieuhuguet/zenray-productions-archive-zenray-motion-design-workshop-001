@@ -1,0 +1,1174 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Reel ManvsMachine · reproduction",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "c066-reel-manvsmachine",
+ "doc": "16 October 2026: one reference reproduced as vector motion (motion/reproduce.py): every cut is a vector-shot scene (stacked SVG keyframes, one palette per shot), texts kept editable by the per-video recipe.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "vector-shot",
+   "duration": 0.7333,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S01-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0
+   }
+  },
+  {
+   "id": "s002",
+   "template": "vector-shot",
+   "duration": 0.5,
+   "params": {
+    "bg": "#e8c1fb",
+    "keys": "0.04 S02-k00.svg\n0.1 S02-k01.svg\n0.133 S02-k02.svg\n0.167 S02-k03.svg\n0.2 S02-k04.svg\n0.233 S02-k05.svg\n0.267 S02-k06.svg\n0.3 S02-k07.svg\n0.333 S02-k08.svg\n0.367 S02-k09.svg\n0.4 S02-k10.svg\n0.433 S02-k11.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 0.7333
+   }
+  },
+  {
+   "id": "s003",
+   "template": "vector-shot",
+   "duration": 0.2334,
+   "params": {
+    "bg": "#f5f5f5",
+    "keys": "0.04 S03-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 1.2333
+   }
+  },
+  {
+   "id": "s004",
+   "template": "vector-shot",
+   "duration": 0.2333,
+   "params": {
+    "bg": "#efd3ea",
+    "keys": "0.04 S04-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 1.4667
+   }
+  },
+  {
+   "id": "s005",
+   "template": "vector-shot",
+   "duration": 0.2667,
+   "params": {
+    "bg": "#eba4b6",
+    "keys": "0.04 S05-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 1.7
+   }
+  },
+  {
+   "id": "s006",
+   "template": "vector-shot",
+   "duration": 0.3333,
+   "params": {
+    "bg": "#365059",
+    "keys": "0.04 S06-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 1.9667
+   }
+  },
+  {
+   "id": "s007",
+   "template": "vector-shot",
+   "duration": 0.2333,
+   "params": {
+    "bg": "#eae6da",
+    "keys": "0.04 S07-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 2.3
+   }
+  },
+  {
+   "id": "s008",
+   "template": "vector-shot",
+   "duration": 0.3334,
+   "params": {
+    "bg": "#0f75f2",
+    "keys": "0.04 S08-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 2.5333
+   }
+  },
+  {
+   "id": "s009",
+   "template": "vector-shot",
+   "duration": 0.3333,
+   "params": {
+    "bg": "#2c5851",
+    "keys": "0.04 S09-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 2.8667
+   }
+  },
+  {
+   "id": "s010",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#fbfafa",
+    "keys": "0.04 S10-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 3.2
+   }
+  },
+  {
+   "id": "s011",
+   "template": "vector-shot",
+   "duration": 0.6667,
+   "params": {
+    "bg": "#050606",
+    "keys": "0.04 S11-k00.svg\n0.1 S11-k01.svg\n0.133 S11-k02.svg\n0.167 S11-k03.svg\n0.2 S11-k04.svg\n0.233 S11-k05.svg\n0.267 S11-k06.svg\n0.3 S11-k07.svg\n0.333 S11-k08.svg\n0.367 S11-k09.svg\n0.4 S11-k10.svg\n0.433 S11-k11.svg\n0.467 S11-k12.svg\n0.5 S11-k13.svg\n0.533 S11-k14.svg\n0.567 S11-k15.svg\n0.6 S11-k16.svg\n0.633 S11-k17.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 3.5
+   }
+  },
+  {
+   "id": "s012",
+   "template": "vector-shot",
+   "duration": 0.4333,
+   "params": {
+    "bg": "#aeaeae",
+    "keys": "0.04 S12-k00.svg\n0.1 S12-k01.svg\n0.133 S12-k02.svg\n0.167 S12-k03.svg\n0.2 S12-k04.svg\n0.233 S12-k05.svg\n0.267 S12-k06.svg\n0.3 S12-k07.svg\n0.333 S12-k08.svg\n0.367 S12-k09.svg\n0.4 S12-k10.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 4.1667
+   }
+  },
+  {
+   "id": "s013",
+   "template": "vector-shot",
+   "duration": 0.4,
+   "params": {
+    "bg": "#6c6c6c",
+    "keys": "0.04 S13-k00.svg\n0.1 S13-k01.svg\n0.133 S13-k02.svg\n0.167 S13-k03.svg\n0.2 S13-k04.svg\n0.233 S13-k05.svg\n0.267 S13-k06.svg\n0.3 S13-k07.svg\n0.333 S13-k08.svg\n0.367 S13-k09.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 4.6
+   }
+  },
+  {
+   "id": "s014",
+   "template": "vector-shot",
+   "duration": 0.6667,
+   "params": {
+    "bg": "#8ea3ad",
+    "keys": "0.04 S14-k00.svg\n0.1 S14-k01.svg\n0.133 S14-k02.svg\n0.167 S14-k03.svg\n0.2 S14-k04.svg\n0.233 S14-k05.svg\n0.267 S14-k06.svg\n0.3 S14-k07.svg\n0.333 S14-k08.svg\n0.367 S14-k09.svg\n0.4 S14-k10.svg\n0.433 S14-k11.svg\n0.467 S14-k12.svg\n0.5 S14-k13.svg\n0.533 S14-k14.svg\n0.567 S14-k15.svg\n0.6 S14-k16.svg\n0.633 S14-k17.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 5.0
+   }
+  },
+  {
+   "id": "s015",
+   "template": "vector-shot",
+   "duration": 0.2666,
+   "params": {
+    "bg": "#888888",
+    "keys": "0.04 S15-k00.svg\n0.1 S15-k01.svg\n0.133 S15-k02.svg\n0.167 S15-k03.svg\n0.2 S15-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 5.6667
+   }
+  },
+  {
+   "id": "s016",
+   "template": "vector-shot",
+   "duration": 0.8,
+   "params": {
+    "bg": "#595959",
+    "keys": "0.04 S16-k00.svg\n0.567 S16-k01.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 5.9333
+   }
+  },
+  {
+   "id": "s017",
+   "template": "vector-shot",
+   "duration": 0.3667,
+   "params": {
+    "bg": "#565656",
+    "keys": "0.04 S17-k00.svg\n0.1 S17-k01.svg\n0.133 S17-k02.svg\n0.167 S17-k03.svg\n0.2 S17-k04.svg\n0.233 S17-k05.svg\n0.267 S17-k06.svg\n0.3 S17-k07.svg\n0.333 S17-k08.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 6.7333
+   }
+  },
+  {
+   "id": "s018",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#98a6ae",
+    "keys": "0.04 S18-k00.svg\n0.133 S18-k01.svg\n0.233 S18-k02.svg\n0.3 S18-k03.svg\n0.333 S18-k04.svg\n0.4 S18-k05.svg\n0.433 S18-k06.svg\n0.5 S18-k07.svg\n0.567 S18-k08.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 7.1
+   }
+  },
+  {
+   "id": "s019",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#fcfdfd",
+    "keys": "0.04 S19-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 7.7
+   }
+  },
+  {
+   "id": "s020",
+   "template": "vector-shot",
+   "duration": 0.2333,
+   "params": {
+    "bg": "#bcc0c6",
+    "keys": "0.04 S20-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 8.0
+   }
+  },
+  {
+   "id": "s021",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#344d56",
+    "keys": "0.04 S21-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 8.2333
+   }
+  },
+  {
+   "id": "s022",
+   "template": "vector-shot",
+   "duration": 0.1667,
+   "params": {
+    "bg": "#2b64a4",
+    "keys": "0.04 S22-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 8.5333
+   }
+  },
+  {
+   "id": "s023",
+   "template": "vector-shot",
+   "duration": 0.2667,
+   "params": {
+    "bg": "#dbd5d6",
+    "keys": "0.04 S23-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 8.7
+   }
+  },
+  {
+   "id": "s024",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#926f56",
+    "keys": "0.04 S24-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 8.9667
+   }
+  },
+  {
+   "id": "s025",
+   "template": "vector-shot",
+   "duration": 0.2666,
+   "params": {
+    "bg": "#dacbb6",
+    "keys": "0.04 S25-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 9.2667
+   }
+  },
+  {
+   "id": "s026",
+   "template": "vector-shot",
+   "duration": 0.1,
+   "params": {
+    "bg": "#4f8965",
+    "keys": "0.04 S26-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 9.5333
+   }
+  },
+  {
+   "id": "s027",
+   "template": "vector-shot",
+   "duration": 0.2334,
+   "params": {
+    "bg": "#558b75",
+    "keys": "0.04 S27-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 9.6333
+   }
+  },
+  {
+   "id": "s028",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#0c12a8",
+    "keys": "0.04 S28-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 9.8667
+   }
+  },
+  {
+   "id": "s029",
+   "template": "vector-shot",
+   "duration": 0.6333,
+   "params": {
+    "bg": "#5a5a5a",
+    "keys": "0.04 S29-k00.svg\n0.1 S29-k01.svg\n0.133 S29-k02.svg\n0.167 S29-k03.svg\n0.2 S29-k04.svg\n0.233 S29-k05.svg\n0.3 S29-k06.svg\n0.333 S29-k07.svg\n0.367 S29-k08.svg\n0.467 S29-k09.svg\n0.533 S29-k10.svg\n0.567 S29-k11.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 10.1667
+   }
+  },
+  {
+   "id": "s030",
+   "template": "vector-shot",
+   "duration": 0.5333,
+   "params": {
+    "bg": "#5a5a5a",
+    "keys": "0.04 S30-k00.svg\n0.1 S30-k01.svg\n0.133 S30-k02.svg\n0.167 S30-k03.svg\n0.233 S30-k04.svg\n0.267 S30-k05.svg\n0.367 S30-k06.svg\n0.4 S30-k07.svg\n0.433 S30-k08.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S30",
+    "start": 10.8
+   }
+  },
+  {
+   "id": "s031",
+   "template": "vector-shot",
+   "duration": 0.8667,
+   "params": {
+    "bg": "#fcfcfc",
+    "keys": "0.04 S31-k00.svg\n0.1 S31-k01.svg\n0.133 S31-k02.svg\n0.167 S31-k03.svg\n0.2 S31-k04.svg\n0.233 S31-k05.svg\n0.267 S31-k06.svg\n0.3 S31-k07.svg\n0.333 S31-k08.svg\n0.367 S31-k09.svg\n0.4 S31-k10.svg\n0.433 S31-k11.svg\n0.467 S31-k12.svg\n0.5 S31-k13.svg\n0.533 S31-k14.svg\n0.567 S31-k15.svg\n0.6 S31-k16.svg\n0.633 S31-k17.svg\n0.667 S31-k18.svg\n0.7 S31-k19.svg\n0.733 S31-k20.svg\n0.767 S31-k21.svg\n0.8 S31-k22.svg\n0.833 S31-k23.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S31",
+    "start": 11.3333
+   }
+  },
+  {
+   "id": "s032",
+   "template": "vector-shot",
+   "duration": 2.1333,
+   "params": {
+    "bg": "#909090",
+    "keys": "0.04 S32-k00.svg\n0.1 S32-k01.svg\n0.133 S32-k02.svg\n0.167 S32-k03.svg\n0.2 S32-k04.svg\n0.233 S32-k05.svg\n0.267 S32-k06.svg\n0.333 S32-k07.svg\n0.367 S32-k08.svg\n0.4 S32-k09.svg\n0.433 S32-k10.svg\n0.533 S32-k11.svg\n0.567 S32-k12.svg\n0.6 S32-k13.svg\n0.733 S32-k14.svg\n0.8 S32-k15.svg\n0.9 S32-k16.svg\n0.933 S32-k17.svg\n0.967 S32-k18.svg\n1.0 S32-k19.svg\n1.033 S32-k20.svg\n1.067 S32-k21.svg\n1.1 S32-k22.svg\n1.133 S32-k23.svg\n1.167 S32-k24.svg\n1.2 S32-k25.svg\n1.233 S32-k26.svg\n1.267 S32-k27.svg\n1.3 S32-k28.svg\n1.333 S32-k29.svg\n1.367 S32-k30.svg\n1.4 S32-k31.svg\n1.433 S32-k32.svg\n1.467 S32-k33.svg\n1.5 S32-k34.svg\n1.533 S32-k35.svg\n1.567 S32-k36.svg\n1.6 S32-k37.svg\n1.633 S32-k38.svg\n1.667 S32-k39.svg\n1.7 S32-k40.svg\n1.733 S32-k41.svg\n1.767 S32-k42.svg\n1.8 S32-k43.svg\n1.833 S32-k44.svg\n1.867 S32-k45.svg\n1.9 S32-k46.svg\n1.933 S32-k47.svg\n1.967 S32-k48.svg\n2.0 S32-k49.svg\n2.033 S32-k50.svg\n2.067 S32-k51.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S32",
+    "start": 12.2
+   }
+  },
+  {
+   "id": "s033",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#666666",
+    "keys": "0.04 S33-k00.svg\n0.1 S33-k01.svg\n0.3 S33-k02.svg\n0.367 S33-k03.svg\n0.467 S33-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S33",
+    "start": 14.3333
+   }
+  },
+  {
+   "id": "s034",
+   "template": "vector-shot",
+   "duration": 0.3334,
+   "params": {
+    "bg": "#5669ba",
+    "keys": "0.04 S34-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S34",
+    "start": 14.9333
+   }
+  },
+  {
+   "id": "s035",
+   "template": "vector-shot",
+   "duration": 2.3333,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S35-k00.svg\n0.1 S35-k01.svg\n0.133 S35-k02.svg\n0.167 S35-k03.svg\n0.2 S35-k04.svg\n0.233 S35-k05.svg\n0.267 S35-k06.svg\n0.3 S35-k07.svg\n0.333 S35-k08.svg\n0.367 S35-k09.svg\n0.4 S35-k10.svg\n0.433 S35-k11.svg\n0.467 S35-k12.svg\n0.5 S35-k13.svg\n0.533 S35-k14.svg\n0.567 S35-k15.svg\n0.6 S35-k16.svg\n0.633 S35-k17.svg\n0.667 S35-k18.svg\n0.7 S35-k19.svg\n0.733 S35-k20.svg\n0.767 S35-k21.svg\n0.8 S35-k22.svg\n0.833 S35-k23.svg\n0.867 S35-k24.svg\n0.9 S35-k25.svg\n0.933 S35-k26.svg\n0.967 S35-k27.svg\n1.0 S35-k28.svg\n1.033 S35-k29.svg\n1.067 S35-k30.svg\n1.1 S35-k31.svg\n1.133 S35-k32.svg\n1.167 S35-k33.svg\n1.2 S35-k34.svg\n1.233 S35-k35.svg\n1.267 S35-k36.svg\n1.3 S35-k37.svg\n1.333 S35-k38.svg\n1.367 S35-k39.svg\n1.4 S35-k40.svg\n1.433 S35-k41.svg\n1.467 S35-k42.svg\n1.5 S35-k43.svg\n1.533 S35-k44.svg\n1.567 S35-k45.svg\n1.6 S35-k46.svg\n1.633 S35-k47.svg\n1.667 S35-k48.svg\n1.7 S35-k49.svg\n1.733 S35-k50.svg\n1.767 S35-k51.svg\n1.8 S35-k52.svg\n1.833 S35-k53.svg\n1.867 S35-k54.svg\n1.9 S35-k55.svg\n1.933 S35-k56.svg\n1.967 S35-k57.svg\n2.0 S35-k58.svg\n2.033 S35-k59.svg\n2.067 S35-k60.svg\n2.1 S35-k61.svg\n2.133 S35-k62.svg\n2.167 S35-k63.svg\n2.2 S35-k64.svg\n2.233 S35-k65.svg\n2.267 S35-k66.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S35",
+    "start": 15.2667
+   }
+  },
+  {
+   "id": "s036",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#5a5a5a",
+    "keys": "0.04 S36-k00.svg\n0.133 S36-k01.svg\n0.2 S36-k02.svg\n0.3 S36-k03.svg\n0.367 S36-k04.svg\n0.4 S36-k05.svg\n0.433 S36-k06.svg\n0.467 S36-k07.svg\n0.5 S36-k08.svg\n0.567 S36-k09.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S36",
+    "start": 17.6
+   }
+  },
+  {
+   "id": "s037",
+   "template": "vector-shot",
+   "duration": 1.2333,
+   "params": {
+    "bg": "#8f7675",
+    "keys": "0.04 S37-k00.svg\n0.1 S37-k01.svg\n0.133 S37-k02.svg\n0.167 S37-k03.svg\n0.2 S37-k04.svg\n0.233 S37-k05.svg\n0.267 S37-k06.svg\n0.3 S37-k07.svg\n0.333 S37-k08.svg\n0.367 S37-k09.svg\n0.4 S37-k10.svg\n0.433 S37-k11.svg\n0.467 S37-k12.svg\n0.5 S37-k13.svg\n0.533 S37-k14.svg\n0.567 S37-k15.svg\n0.6 S37-k16.svg\n0.633 S37-k17.svg\n0.667 S37-k18.svg\n0.7 S37-k19.svg\n0.733 S37-k20.svg\n0.767 S37-k21.svg\n0.8 S37-k22.svg\n0.833 S37-k23.svg\n0.867 S37-k24.svg\n0.9 S37-k25.svg\n0.933 S37-k26.svg\n0.967 S37-k27.svg\n1.0 S37-k28.svg\n1.033 S37-k29.svg\n1.067 S37-k30.svg\n1.1 S37-k31.svg\n1.133 S37-k32.svg\n1.167 S37-k33.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S37",
+    "start": 18.2
+   }
+  },
+  {
+   "id": "s038",
+   "template": "vector-shot",
+   "duration": 0.4334,
+   "params": {
+    "bg": "#010101",
+    "keys": "0.04 S38-k00.svg\n0.1 S38-k01.svg\n0.133 S38-k02.svg\n0.167 S38-k03.svg\n0.2 S38-k04.svg\n0.233 S38-k05.svg\n0.267 S38-k06.svg\n0.3 S38-k07.svg\n0.333 S38-k08.svg\n0.367 S38-k09.svg\n0.4 S38-k10.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S38",
+    "start": 19.4333
+   }
+  },
+  {
+   "id": "s039",
+   "template": "vector-shot",
+   "duration": 1.3666,
+   "params": {
+    "bg": "#7d93a9",
+    "keys": "0.04 S39-k00.svg\n0.233 S39-k01.svg\n0.267 S39-k02.svg\n0.3 S39-k03.svg\n0.367 S39-k04.svg\n0.433 S39-k05.svg\n0.5 S39-k06.svg\n0.567 S39-k07.svg\n0.6 S39-k08.svg\n0.633 S39-k09.svg\n0.667 S39-k10.svg\n0.7 S39-k11.svg\n0.733 S39-k12.svg\n0.767 S39-k13.svg\n0.8 S39-k14.svg\n0.833 S39-k15.svg\n0.867 S39-k16.svg\n0.9 S39-k17.svg\n0.933 S39-k18.svg\n0.967 S39-k19.svg\n1.0 S39-k20.svg\n1.033 S39-k21.svg\n1.067 S39-k22.svg\n1.1 S39-k23.svg\n1.133 S39-k24.svg\n1.167 S39-k25.svg\n1.2 S39-k26.svg\n1.233 S39-k27.svg\n1.267 S39-k28.svg\n1.3 S39-k29.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S39",
+    "start": 19.8667
+   }
+  },
+  {
+   "id": "s040",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#929292",
+    "keys": "0.04 S40-k00.svg\n0.1 S40-k01.svg\n0.167 S40-k02.svg\n0.233 S40-k03.svg\n0.267 S40-k04.svg\n0.3 S40-k05.svg\n0.333 S40-k06.svg\n0.367 S40-k07.svg\n0.4 S40-k08.svg\n0.433 S40-k09.svg\n0.5 S40-k10.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S40",
+    "start": 21.2333
+   }
+  },
+  {
+   "id": "s041",
+   "template": "vector-shot",
+   "duration": 0.9334,
+   "params": {
+    "bg": "#bcc7c9",
+    "keys": "0.04 S41-k00.svg\n0.133 S41-k01.svg\n0.233 S41-k02.svg\n0.3 S41-k03.svg\n0.333 S41-k04.svg\n0.367 S41-k05.svg\n0.4 S41-k06.svg\n0.433 S41-k07.svg\n0.467 S41-k08.svg\n0.5 S41-k09.svg\n0.533 S41-k10.svg\n0.567 S41-k11.svg\n0.6 S41-k12.svg\n0.633 S41-k13.svg\n0.667 S41-k14.svg\n0.7 S41-k15.svg\n0.733 S41-k16.svg\n0.767 S41-k17.svg\n0.8 S41-k18.svg\n0.833 S41-k19.svg\n0.867 S41-k20.svg\n0.9 S41-k21.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S41",
+    "start": 21.8333
+   }
+  },
+  {
+   "id": "s042",
+   "template": "vector-shot",
+   "duration": 0.4,
+   "params": {
+    "bg": "#899faa",
+    "keys": "0.04 S42-k00.svg\n0.133 S42-k01.svg\n0.2 S42-k02.svg\n0.267 S42-k03.svg\n0.333 S42-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S42",
+    "start": 22.7667
+   }
+  },
+  {
+   "id": "s043",
+   "template": "vector-shot",
+   "duration": 1.0,
+   "params": {
+    "bg": "#b6c3c5",
+    "keys": "0.04 S43-k00.svg\n0.233 S43-k01.svg\n0.3 S43-k02.svg\n0.367 S43-k03.svg\n0.433 S43-k04.svg\n0.467 S43-k05.svg\n0.533 S43-k06.svg\n0.567 S43-k07.svg\n0.6 S43-k08.svg\n0.633 S43-k09.svg\n0.667 S43-k10.svg\n0.733 S43-k11.svg\n0.767 S43-k12.svg\n0.833 S43-k13.svg\n0.933 S43-k14.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S43",
+    "start": 23.1667
+   }
+  },
+  {
+   "id": "s044",
+   "template": "vector-shot",
+   "duration": 0.7333,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S44-k00.svg\n0.167 S44-k01.svg\n0.4 S44-k02.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S44",
+    "start": 24.1667
+   }
+  },
+  {
+   "id": "s045",
+   "template": "vector-shot",
+   "duration": 0.6333,
+   "params": {
+    "bg": "#dddddd",
+    "keys": "0.04 S45-k00.svg\n0.1 S45-k01.svg\n0.133 S45-k02.svg\n0.167 S45-k03.svg\n0.2 S45-k04.svg\n0.233 S45-k05.svg\n0.267 S45-k06.svg\n0.3 S45-k07.svg\n0.333 S45-k08.svg\n0.367 S45-k09.svg\n0.4 S45-k10.svg\n0.433 S45-k11.svg\n0.467 S45-k12.svg\n0.5 S45-k13.svg\n0.533 S45-k14.svg\n0.567 S45-k15.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S45",
+    "start": 24.9
+   }
+  },
+  {
+   "id": "s046",
+   "template": "vector-shot",
+   "duration": 0.7667,
+   "params": {
+    "bg": "#919191",
+    "keys": "0.04 S46-k00.svg\n0.1 S46-k01.svg\n0.133 S46-k02.svg\n0.167 S46-k03.svg\n0.2 S46-k04.svg\n0.233 S46-k05.svg\n0.267 S46-k06.svg\n0.3 S46-k07.svg\n0.333 S46-k08.svg\n0.367 S46-k09.svg\n0.4 S46-k10.svg\n0.433 S46-k11.svg\n0.467 S46-k12.svg\n0.5 S46-k13.svg\n0.533 S46-k14.svg\n0.567 S46-k15.svg\n0.6 S46-k16.svg\n0.633 S46-k17.svg\n0.667 S46-k18.svg\n0.7 S46-k19.svg\n0.733 S46-k20.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S46",
+    "start": 25.5333
+   }
+  },
+  {
+   "id": "s047",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#839ba6",
+    "keys": "0.04 S47-k00.svg\n0.167 S47-k01.svg\n0.267 S47-k02.svg\n0.333 S47-k03.svg\n0.467 S47-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S47",
+    "start": 26.3
+   }
+  },
+  {
+   "id": "s048",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#d0dade",
+    "keys": "0.04 S48-k00.svg\n0.167 S48-k01.svg\n0.3 S48-k02.svg\n0.4 S48-k03.svg\n0.567 S48-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S48",
+    "start": 26.9
+   }
+  },
+  {
+   "id": "s049",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#394439",
+    "keys": "0.04 S49-k00.svg\n0.1 S49-k01.svg\n0.133 S49-k02.svg\n0.167 S49-k03.svg\n0.2 S49-k04.svg\n0.233 S49-k05.svg\n0.267 S49-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S49",
+    "start": 27.5
+   }
+  },
+  {
+   "id": "s050",
+   "template": "vector-shot",
+   "duration": 0.6667,
+   "params": {
+    "bg": "#b0b3b5",
+    "keys": "0.04 S50-k00.svg\n0.1 S50-k01.svg\n0.167 S50-k02.svg\n0.233 S50-k03.svg\n0.3 S50-k04.svg\n0.367 S50-k05.svg\n0.433 S50-k06.svg\n0.5 S50-k07.svg\n0.567 S50-k08.svg\n0.633 S50-k09.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S50",
+    "start": 27.8
+   }
+  },
+  {
+   "id": "s051",
+   "template": "vector-shot",
+   "duration": 0.5,
+   "params": {
+    "bg": "#7791a0",
+    "keys": "0.04 S51-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S51",
+    "start": 28.4667
+   }
+  },
+  {
+   "id": "s052",
+   "template": "vector-shot",
+   "duration": 0.6333,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S52-k00.svg\n0.1 S52-k01.svg\n0.133 S52-k02.svg\n0.167 S52-k03.svg\n0.2 S52-k04.svg\n0.233 S52-k05.svg\n0.267 S52-k06.svg\n0.3 S52-k07.svg\n0.333 S52-k08.svg\n0.367 S52-k09.svg\n0.4 S52-k10.svg\n0.433 S52-k11.svg\n0.467 S52-k12.svg\n0.5 S52-k13.svg\n0.533 S52-k14.svg\n0.567 S52-k15.svg\n0.6 S52-k16.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S52",
+    "start": 28.9667
+   }
+  },
+  {
+   "id": "s053",
+   "template": "vector-shot",
+   "duration": 0.7,
+   "params": {
+    "bg": "#919191",
+    "keys": "0.04 S53-k00.svg\n0.2 S53-k01.svg\n0.367 S53-k02.svg\n0.533 S53-k03.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S53",
+    "start": 29.6
+   }
+  },
+  {
+   "id": "s054",
+   "template": "vector-shot",
+   "duration": 0.4667,
+   "params": {
+    "bg": "#575757",
+    "keys": "0.04 S54-k00.svg\n0.133 S54-k01.svg\n0.2 S54-k02.svg\n0.3 S54-k03.svg\n0.367 S54-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S54",
+    "start": 30.3
+   }
+  },
+  {
+   "id": "s055",
+   "template": "vector-shot",
+   "duration": 0.3333,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S55-k00.svg\n0.1 S55-k01.svg\n0.133 S55-k02.svg\n0.167 S55-k03.svg\n0.2 S55-k04.svg\n0.233 S55-k05.svg\n0.267 S55-k06.svg\n0.3 S55-k07.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S55",
+    "start": 30.7667
+   }
+  },
+  {
+   "id": "s056",
+   "template": "vector-shot",
+   "duration": 0.2667,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S56-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S56",
+    "start": 31.1
+   }
+  },
+  {
+   "id": "s057",
+   "template": "vector-shot",
+   "duration": 0.3333,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S57-k00.svg\n0.1 S57-k01.svg\n0.133 S57-k02.svg\n0.167 S57-k03.svg\n0.233 S57-k04.svg\n0.267 S57-k05.svg\n0.3 S57-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S57",
+    "start": 31.3667
+   }
+  },
+  {
+   "id": "s058",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#010101",
+    "keys": "0.04 S58-k00.svg\n0.167 S58-k01.svg\n0.267 S58-k02.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S58",
+    "start": 31.7
+   }
+  },
+  {
+   "id": "s059",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S59-k00.svg\n0.1 S59-k01.svg\n0.133 S59-k02.svg\n0.167 S59-k03.svg\n0.2 S59-k04.svg\n0.233 S59-k05.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S59",
+    "start": 32.0
+   }
+  },
+  {
+   "id": "s060",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#010101",
+    "keys": "0.04 S60-k00.svg\n0.1 S60-k01.svg\n0.167 S60-k02.svg\n0.233 S60-k03.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S60",
+    "start": 32.3
+   }
+  },
+  {
+   "id": "s061",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#808181",
+    "keys": "0.04 S61-k00.svg\n0.1 S61-k01.svg\n0.133 S61-k02.svg\n0.167 S61-k03.svg\n0.2 S61-k04.svg\n0.233 S61-k05.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S61",
+    "start": 32.6
+   }
+  },
+  {
+   "id": "s062",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S62-k00.svg\n0.1 S62-k01.svg\n0.133 S62-k02.svg\n0.167 S62-k03.svg\n0.2 S62-k04.svg\n0.233 S62-k05.svg\n0.267 S62-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S62",
+    "start": 32.9
+   }
+  },
+  {
+   "id": "s063",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S63-k00.svg\n0.1 S63-k01.svg\n0.133 S63-k02.svg\n0.167 S63-k03.svg\n0.2 S63-k04.svg\n0.233 S63-k05.svg\n0.267 S63-k06.svg\n0.3 S63-k07.svg\n0.333 S63-k08.svg\n0.367 S63-k09.svg\n0.4 S63-k10.svg\n0.433 S63-k11.svg\n0.467 S63-k12.svg\n0.5 S63-k13.svg\n0.533 S63-k14.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S63",
+    "start": 33.2
+   }
+  },
+  {
+   "id": "s064",
+   "template": "vector-shot",
+   "duration": 0.3667,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S64-k00.svg\n0.1 S64-k01.svg\n0.133 S64-k02.svg\n0.2 S64-k03.svg\n0.233 S64-k04.svg\n0.267 S64-k05.svg\n0.333 S64-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S64",
+    "start": 33.8
+   }
+  },
+  {
+   "id": "s065",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#010101",
+    "keys": "0.04 S65-k00.svg\n0.1 S65-k01.svg\n0.133 S65-k02.svg\n0.2 S65-k03.svg\n0.233 S65-k04.svg\n0.267 S65-k05.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S65",
+    "start": 34.1667
+   }
+  },
+  {
+   "id": "s066",
+   "template": "vector-shot",
+   "duration": 0.5,
+   "params": {
+    "bg": "#fcfcfd",
+    "keys": "0.04 S66-k00.svg\n0.1 S66-k01.svg\n0.133 S66-k02.svg\n0.167 S66-k03.svg\n0.2 S66-k04.svg\n0.233 S66-k05.svg\n0.3 S66-k06.svg\n0.333 S66-k07.svg\n0.367 S66-k08.svg\n0.4 S66-k09.svg\n0.467 S66-k10.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S66",
+    "start": 34.4667
+   }
+  },
+  {
+   "id": "s067",
+   "template": "vector-shot",
+   "duration": 0.3666,
+   "params": {
+    "bg": "#000000",
+    "keys": "0.04 S67-k00.svg\n0.1 S67-k01.svg\n0.133 S67-k02.svg\n0.167 S67-k03.svg\n0.2 S67-k04.svg\n0.233 S67-k05.svg\n0.3 S67-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S67",
+    "start": 34.9667
+   }
+  },
+  {
+   "id": "s068",
+   "template": "vector-shot",
+   "duration": 0.2667,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S68-k00.svg\n0.1 S68-k01.svg\n0.133 S68-k02.svg\n0.167 S68-k03.svg\n0.2 S68-k04.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S68",
+    "start": 35.3333
+   }
+  },
+  {
+   "id": "s069",
+   "template": "vector-shot",
+   "duration": 0.6,
+   "params": {
+    "bg": "#1f2f16",
+    "keys": "0.04 S69-k00.svg\n0.1 S69-k01.svg\n0.133 S69-k02.svg\n0.167 S69-k03.svg\n0.2 S69-k04.svg\n0.233 S69-k05.svg\n0.267 S69-k06.svg\n0.3 S69-k07.svg\n0.333 S69-k08.svg\n0.367 S69-k09.svg\n0.4 S69-k10.svg\n0.433 S69-k11.svg\n0.467 S69-k12.svg\n0.5 S69-k13.svg\n0.533 S69-k14.svg\n0.567 S69-k15.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S69",
+    "start": 35.6
+   }
+  },
+  {
+   "id": "s070",
+   "template": "vector-shot",
+   "duration": 0.8333,
+   "params": {
+    "bg": "#979797",
+    "keys": "0.04 S70-k00.svg\n0.1 S70-k01.svg\n0.167 S70-k02.svg\n0.267 S70-k03.svg\n0.333 S70-k04.svg\n0.4 S70-k05.svg\n0.433 S70-k06.svg\n0.5 S70-k07.svg\n0.533 S70-k08.svg\n0.567 S70-k09.svg\n0.6 S70-k10.svg\n0.633 S70-k11.svg\n0.667 S70-k12.svg\n0.7 S70-k13.svg\n0.733 S70-k14.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S70",
+    "start": 36.2
+   }
+  },
+  {
+   "id": "s071",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#a09e9f",
+    "keys": "0.04 S71-k00.svg\n0.1 S71-k01.svg\n0.133 S71-k02.svg\n0.167 S71-k03.svg\n0.2 S71-k04.svg\n0.233 S71-k05.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S71",
+    "start": 37.0333
+   }
+  },
+  {
+   "id": "s072",
+   "template": "vector-shot",
+   "duration": 0.3334,
+   "params": {
+    "bg": "#cacaca",
+    "keys": "0.04 S72-k00.svg\n0.1 S72-k01.svg\n0.133 S72-k02.svg\n0.167 S72-k03.svg\n0.2 S72-k04.svg\n0.233 S72-k05.svg\n0.267 S72-k06.svg\n0.3 S72-k07.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S72",
+    "start": 37.3333
+   }
+  },
+  {
+   "id": "s073",
+   "template": "vector-shot",
+   "duration": 0.3333,
+   "params": {
+    "bg": "#929292",
+    "keys": "0.04 S73-k00.svg\n0.1 S73-k01.svg\n0.133 S73-k02.svg\n0.167 S73-k03.svg\n0.2 S73-k04.svg\n0.233 S73-k05.svg\n0.267 S73-k06.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S73",
+    "start": 37.6667
+   }
+  },
+  {
+   "id": "s074",
+   "template": "vector-shot",
+   "duration": 0.3,
+   "params": {
+    "bg": "#8eb4e1",
+    "keys": "0.04 S74-k00.svg\n0.133 S74-k01.svg\n0.2 S74-k02.svg\n0.267 S74-k03.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S74",
+    "start": 38.0
+   }
+  },
+  {
+   "id": "s075",
+   "template": "vector-shot",
+   "duration": 0.0667,
+   "params": {
+    "bg": "#a8222f",
+    "keys": "0.033 S75-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S75",
+    "start": 38.3
+   }
+  },
+  {
+   "id": "s076",
+   "template": "vector-shot",
+   "duration": 0.1333,
+   "params": {
+    "bg": "#abaaab",
+    "keys": "0.04 S76-k00.svg\n0.1 S76-k01.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S76",
+    "start": 38.3667
+   }
+  },
+  {
+   "id": "s077",
+   "template": "vector-shot",
+   "duration": 0.0667,
+   "params": {
+    "bg": "#adacad",
+    "keys": "0.033 S77-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S77",
+    "start": 38.5
+   }
+  },
+  {
+   "id": "s078",
+   "template": "vector-shot",
+   "duration": 0.0666,
+   "params": {
+    "bg": "#fafafb",
+    "keys": "0.033 S78-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S78",
+    "start": 38.5667
+   }
+  },
+  {
+   "id": "s079",
+   "template": "vector-shot",
+   "duration": 0.0667,
+   "params": {
+    "bg": "#8b8b8c",
+    "keys": "0.033 S79-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S79",
+    "start": 38.6333
+   }
+  },
+  {
+   "id": "s080",
+   "template": "vector-shot",
+   "duration": 0.2667,
+   "params": {
+    "bg": "#8a8a8a",
+    "keys": "0.04 S80-k00.svg\n0.133 S80-k01.svg\n0.233 S80-k02.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S80",
+    "start": 38.7
+   }
+  },
+  {
+   "id": "s081",
+   "template": "vector-shot",
+   "duration": 1.1,
+   "params": {
+    "bg": "#a0b1b6",
+    "keys": "0.04 S81-k00.svg\n0.1 S81-k01.svg\n0.167 S81-k02.svg\n0.2 S81-k03.svg\n0.233 S81-k04.svg\n0.367 S81-k05.svg\n0.5 S81-k06.svg\n0.567 S81-k07.svg\n0.667 S81-k08.svg\n0.733 S81-k09.svg\n0.833 S81-k10.svg\n0.9 S81-k11.svg\n1.0 S81-k12.svg\n1.067 S81-k13.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S81",
+    "start": 38.9667
+   }
+  },
+  {
+   "id": "s082",
+   "template": "vector-shot",
+   "duration": 0.9333,
+   "params": {
+    "bg": "#4256a6",
+    "keys": "0.04 S82-k00.svg",
+    "fit": "contain"
+   },
+   "ref": {
+    "shot": "S82",
+    "start": 40.0667
+   }
+  }
+ ],
+ "sfx": {
+  "source": "none"
+ },
+ "music": {
+  "mode": "file",
+  "file": {
+   "file": "music.mp3"
+  }
+ },
+ "id": "c066-reel-manvsmachine-motion",
+ "updated": "16 October 2026, 07:29"
+}
