@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c013-annonce-inde-dessinee-a-la-main",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c013-annonce-inde-dessinee-a-la-main [74d28f60].mp4",
+ "sha256": "74d28f60dad9b339345313d93e225431ebcbf98ac246fc2a045d08e630544dd2",
+ "bytes": 6937455,
+ "vfr": false,
+ "r_fps": 29.97,
+ "duration_s": 35.573,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 29.97,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 44100,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "013 Annonce indé dessinée à la main",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

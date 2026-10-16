@@ -1,0 +1,240 @@
+# Bible graphique de la référence c004-titrage-d-archives-noir-et-blanc (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 191,46 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 24,000 images par seconde |
+| Cadence du contenu | 24,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 50 plans et 49 coupes, soit 15,4 coupes par minute ; un plan dure 2,96 s en médiane et 3,83 s en moyenne, du plus court (0,25 s) au plus long (16,71 s), avec un coefficient de variation de 0,92. 3 plans durent moins d'une demi-seconde et 22 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 18 %, et celle des coupes tombant sur une attaque sonore 49 %. Le plan médian dure 6,57 temps.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 86,6 % |
+| graphique | 12,8 % |
+| montage | 0,5 % |
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 87,2 %, graphique 12,8 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#0d0e0d` | 21,8 % | 3,8 | 0,5 |
+| `#282727` | 10,9 % | 15,8 | 0,6 |
+| `#b0b0b0` | 7,2 % | 71,8 | 0,1 |
+| `#3e3e3e` | 7,2 % | 26,1 | 0,1 |
+| `#78797a` | 6,1 % | 50,7 | 0,6 |
+| `#565656` | 5,5 % | 36,5 | 0,2 |
+| `#d5d4d3` | 4,8 % | 85,1 | 0,7 |
+| `#929292` | 4,4 % | 60,5 | 0,1 |
+| `#6f3922` | 3,0 % | 30,4 | 33,0 |
+| `#442b1c` | 2,9 % | 20,1 | 17,5 |
+| `#6b6a6a` | 2,3 % | 44,9 | 0,5 |
+| `#8e5535` | 1,7 % | 42,1 | 35,0 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#010102` (44 %), `#231c19` (8 %), `#c2c2c2` (8 %), `#7c7c7c` (5 %) |
+| accent | `#ba7f4d` (9 %), `#c99d65` (4 %), `#c3b372` (3 %), `#7c482f` (3 %) |
+| texte | `#3b4142` (4 %), `#131313` (4 %), `#727272` (2 %), `#969696` (2 %) |
+
+## Typographie
+
+15 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 14,0 à 171,0 pixels, médiane 25,0 ; la densité de trait médiane vaut 0,673. On compte 9 lignes en capitales et 6 en bas de casse, et 47 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#181a1c`, `#191c1e`, `#202725`, `#484848`, `#494949`, `#5a646c`, `#5e5e5e`, `#5f5f5f`.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `none` | 6 |
+| `expo.in` | 5 |
+| `back.inOut(3.5)` | 5 |
+| `css.ease-out` | 4 |
+| `material.accelerate` | 3 |
+| `css.ease-in-out` | 2 |
+| `elastic.inOut(1,0.3)` | 2 |
+| `circ.out` | 2 |
+| `back.inOut(1.70158)` | 2 |
+| `material.decelerate` | 2 |
+| `bounce.inOut` | 2 |
+| `power2.in` | 2 |
+| `bounce.in` | 2 |
+| `power1.in` | 2 |
+
+Un mouvement d'élément dure 0,24 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| panoramique | 25 |
+| roulis | 18 |
+| travelling vertical | 17 |
+| zoom avant | 13 |
+| fixe | 8 |
+| zoom arrière | 6 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 47 |
+| ouverture | 1 |
+| fondu enchaîné | 1 |
+| coupe franche après passage au noir | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 87,2 % du temps, dont 29 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| plusieurs couches en parallaxe (2,5D) | 18 |
+| calque 2D | 16 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 13 |
+| immobile | 2 |
+| scène 3D rigide en profondeur | 1 |
+
+## Son
+
+Sonie intégrée -25,2 LUFS, centroïde spectral médian 1520 Hz, part harmonique 68 %. Le détecteur d'attaques relève 643 événements (attaque médium 623, clic aigu 20) et le détecteur de houles 5 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 13,15 s | attaque médium | -21,6 dB |
+| 26,43 s | attaque médium | -26,1 dB |
+| 38,95 s | attaque médium | -27,6 dB |
+| 43,41 s | attaque médium | -21,4 dB |
+| 56,30 s | attaque médium | -24,0 dB |
+| 72,18 s | attaque médium | -25,3 dB |
+| 79,94 s | attaque médium | -40,2 dB |
+| 146,31 s | attaque médium | -30,6 dB |
+| 156,10 s | attaque médium | -47,4 dB |
+| 160,59 s | attaque médium | -25,9 dB |
+| 161,54 s | attaque médium | -31,1 dB |
+| 168,62 s | attaque médium | -30,4 dB |
+
+Houles : 1,16 s (montée 0,24 s), 52,84 s (montée 0,20 s), 91,69 s (montée 0,42 s), 103,58 s (montée 0,21 s), 113,61 s (montée 0,23 s).
+
+## Musique
+
+Tempo estimé 133,3 BPM, 382 temps détectés, régularité de la grille 0,114 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 6,70 s | -31,4 dB |
+| 2 | 6,70 s | 10,80 s | -43,8 dB |
+| 3 | 10,80 s | 15,40 s | -48,5 dB |
+| 4 | 15,40 s | 20,35 s | -35,0 dB |
+| 5 | 20,35 s | 25,50 s | -37,3 dB |
+| 6 | 25,50 s | 29,80 s | -37,7 dB |
+| 7 | 29,80 s | 32,85 s | -32,7 dB |
+| 8 | 32,85 s | 35,85 s | -32,2 dB |
+| 9 | 35,85 s | 38,85 s | -44,1 dB |
+| 10 | 38,85 s | 42,20 s | -37,4 dB |
+| 11 | 42,20 s | 47,15 s | -36,2 dB |
+| 12 | 47,15 s | 51,85 s | -40,1 dB |
+| 13 | 51,85 s | 55,95 s | -38,1 dB |
+| 14 | 55,95 s | 59,05 s | -31,6 dB |
+| 15 | 59,05 s | 63,05 s | -35,0 dB |
+| 16 | 63,05 s | 66,75 s | -44,2 dB |
+| 17 | 66,75 s | 69,75 s | -34,2 dB |
+| 18 | 69,75 s | 73,20 s | -35,4 dB |
+| 19 | 73,20 s | 76,55 s | -37,4 dB |
+| 20 | 76,55 s | 79,80 s | -37,0 dB |
+| 21 | 79,80 s | 83,80 s | -46,7 dB |
+| 22 | 83,80 s | 94,05 s | -22,6 dB |
+| 23 | 94,05 s | 97,05 s | -31,6 dB |
+| 24 | 97,05 s | 100,95 s | -40,2 dB |
+| 25 | 100,95 s | 103,95 s | -26,6 dB |
+| 26 | 103,95 s | 107,35 s | -39,7 dB |
+| 27 | 107,35 s | 114,60 s | -40,1 dB |
+| 28 | 114,60 s | 118,60 s | -37,6 dB |
+| 29 | 118,60 s | 122,30 s | -46,2 dB |
+| 30 | 122,30 s | 130,30 s | -37,5 dB |
+| 31 | 130,30 s | 134,00 s | -33,5 dB |
+| 32 | 134,00 s | 137,80 s | -41,8 dB |
+| 33 | 137,80 s | 142,85 s | -30,4 dB |
+| 34 | 142,85 s | 146,20 s | -28,6 dB |
+| 35 | 146,20 s | 149,75 s | -35,4 dB |
+| 36 | 149,75 s | 152,75 s | -39,3 dB |
+| 37 | 152,75 s | 157,15 s | -35,4 dB |
+| 38 | 157,15 s | 160,30 s | -34,6 dB |
+| 39 | 160,30 s | 164,25 s | -45,8 dB |
+| 40 | 164,25 s | 170,75 s | -35,4 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 4,04 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #5b6a69, mouvement global : fixe (description automatique). |
+| S02 | 4,04 s | 3,38 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #acb9b0, mouvement global : zoom arrière, panoramique (description automatique). |
+| S03 | 7,42 s | 7,50 s | graphique | Plan graphique sur un fond dominant #010102, 2 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S04 | 14,92 s | 4,25 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #a1a1a1, mouvement global : travelling vertical (description automatique). |
+| S05 | 19,17 s | 2,21 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #b2dbcc, mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S06 | 21,38 s | 3,83 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #b5cfc7, mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S07 | 25,21 s | 2,96 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #6b989b, mouvement global : fixe (description automatique). |
+| S08 | 28,17 s | 5,25 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #7c7c7c, mouvement global : panoramique, roulis (description automatique). |
+| S09 | 33,42 s | 11,08 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #231c19, mouvement global : fixe (description automatique). |
+| S10 | 44,50 s | 1,54 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #525252, mouvement global : panoramique (description automatique). |
+| S11 | 46,04 s | 3,46 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #414141, mouvement global : travelling vertical, roulis (description automatique). |
+| S12 | 49,50 s | 4,17 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #494949, mouvement global : travelling vertical, roulis (description automatique). |
+| S13 | 53,67 s | 1,83 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #c2c2c2, mouvement global : fixe (description automatique). |
+| S14 | 55,50 s | 0,88 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #2d2d2d, mouvement global : fixe (description automatique). |
+| S15 | 56,38 s | 2,96 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #191919, mouvement global : zoom arrière, travelling vertical (description automatique). |
+| S16 | 59,33 s | 3,29 s | graphique | Plan graphique sur un fond dominant #ababab, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : fixe (description automatique). |
+| S17 | 62,62 s | 0,96 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #191919, mouvement global : travelling vertical (description automatique). |
+| S18 | 63,58 s | 1,17 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #131313, mouvement global : panoramique (description automatique). |
+| S19 | 64,75 s | 3,79 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #b6b6b6, mouvement global : panoramique (description automatique). |
+| S20 | 68,54 s | 4,04 s | graphique | Plan graphique sur un fond dominant #8d8d8d, 3 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S21 | 72,58 s | 1,83 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #c0c0c0, mouvement global : panoramique (description automatique). |
+| S22 | 74,42 s | 2,25 s | graphique | Plan graphique sur un fond dominant #4d4d4d, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+| S23 | 76,67 s | 1,67 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #161616, mouvement global : panoramique, roulis (description automatique). |
+| S24 | 78,33 s | 0,33 s | montage | Plan montage sur un fond dominant #151515, mouvement global : fixe (description automatique). |
+| S25 | 78,67 s | 0,25 s | montage | Plan montage sur un fond dominant #8f8f8f, mouvement global : panoramique (description automatique). |
+| S26 | 78,92 s | 0,46 s | montage | Plan montage sur un fond dominant #b3b3b3, mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S27 | 79,38 s | 1,62 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #2f2f2f, mouvement global : panoramique (description automatique). |
+| S28 | 81,00 s | 1,58 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #b3b3b3, mouvement global : panoramique (description automatique). |
+| S29 | 82,58 s | 1,21 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #bfbfbf, mouvement global : travelling vertical (description automatique). |
+| S30 | 83,79 s | 16,71 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #0a100e, mouvement global : zoom arrière, travelling vertical, roulis (description automatique). |
+| S31 | 100,50 s | 15,21 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #0f0e0c, mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+| S32 | 115,71 s | 8,50 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #101010, mouvement global : zoom arrière, travelling vertical (description automatique). |
+| S33 | 124,21 s | 3,00 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #2d3138, mouvement global : panoramique (description automatique). |
+| S34 | 127,21 s | 1,62 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #3d3d3d, mouvement global : panoramique (description automatique). |
+| S35 | 128,83 s | 2,12 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #2f2f2f, mouvement global : travelling vertical (description automatique). |
+| S36 | 130,96 s | 1,58 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #909090, mouvement global : travelling vertical, roulis (description automatique). |
+| S37 | 132,54 s | 1,71 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #727272, mouvement global : panoramique (description automatique). |
+| S38 | 134,25 s | 3,46 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #6f6f6f, mouvement global : panoramique (description automatique). |
+| S39 | 137,71 s | 1,17 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #191919, mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+| S40 | 138,88 s | 3,33 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #c1c1c1, mouvement global : panoramique (description automatique). |
+| S41 | 142,21 s | 1,83 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #808080, mouvement global : panoramique (description automatique). |
+| S42 | 144,04 s | 2,83 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #3b3b3b, mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+| S43 | 146,88 s | 1,00 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #c5c5c5, mouvement global : panoramique (description automatique). |
+| S44 | 147,88 s | 1,75 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #827a72, mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+| S45 | 149,62 s | 6,50 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #09100d, mouvement global : zoom arrière, travelling vertical, roulis (description automatique). |
+| S46 | 156,12 s | 2,96 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #080306, mouvement global : zoom arrière, panoramique (description automatique). |
+| S47 | 159,08 s | 8,04 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #72412c, mouvement global : zoom avant, travelling vertical (description automatique). |
+| S48 | 167,12 s | 6,25 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #050605, mouvement global : fixe (description automatique). |
+| S49 | 173,38 s | 10,62 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #040303, mouvement global : zoom avant, panoramique (description automatique). |
+| S50 | 184,00 s | 7,46 s | graphique | Plan graphique sur un fond dominant #010102, 2 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, panoramique, roulis (description automatique). |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

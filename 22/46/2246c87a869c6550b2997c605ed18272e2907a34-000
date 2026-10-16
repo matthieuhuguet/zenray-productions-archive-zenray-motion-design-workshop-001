@@ -1,0 +1,147 @@
+# Bible graphique de la référence c005-soiree-electorale (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 47,00 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 30,000 images par seconde |
+| Cadence du contenu | 30,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 4 plans et 3 coupes, soit 3,8 coupes par minute ; un plan dure 4,55 s en médiane et 11,75 s en moyenne, du plus court (1,77 s) au plus long (36,13 s), avec un coefficient de variation de 1,21. 0 plans durent moins d'une demi-seconde et 2 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 33 %, et celle des coupes tombant sur une attaque sonore 100 %. Le plan médian dure 9,29 temps.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 100,0 % |
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : plaque 3D ou prise de vue 100,0 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#151118` | 29,2 % | 5,6 | 5,7 |
+| `#21103e` | 18,3 % | 9,5 | 33,4 |
+| `#4c3a3b` | 13,6 % | 26,4 | 8,6 |
+| `#8e756e` | 8,5 % | 51,4 | 11,3 |
+| `#c4cacb` | 7,4 % | 81,0 | 2,4 |
+| `#583c95` | 4,3 % | 32,8 | 56,2 |
+| `#3d1b67` | 4,1 % | 18,9 | 50,8 |
+| `#ce7657` | 2,8 % | 58,7 | 45,2 |
+| `#1b0c29` | 2,3 % | 5,9 | 21,5 |
+| `#26151e` | 2,1 % | 9,2 | 10,8 |
+| `#78303a` | 1,7 % | 30,5 | 34,1 |
+| `#8a6cf8` | 1,4 % | 55,0 | 79,8 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#120815` (81 %), `#3b1663` (15 %), `#1b0c29` (4 %) |
+| accent | `#583c95` (77 %), `#8a6cf8` (15 %), `#7557d9` (4 %), `#e4d96c` (4 %) |
+
+## Typographie
+
+Aucune ligne de texte mesurable dans les plans carte texte ou graphique.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `none` | 5 |
+| `css.ease` | 2 |
+| `power1.out` | 2 |
+| `bounce.inOut` | 2 |
+| `circ.inOut` | 1 |
+| `expo.out` | 1 |
+| `material.decelerate` | 1 |
+| `back.out(3.5)` | 1 |
+| `back.in(1.70158)` | 1 |
+| `power1.inOut` | 1 |
+| `material.standard` | 1 |
+| `bounce.in` | 1 |
+| `power3.inOut` | 1 |
+| `bounce.out` | 1 |
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| zoom arrière | 2 |
+| roulis | 2 |
+| zoom avant | 2 |
+| travelling vertical | 1 |
+| panoramique | 1 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 3 |
+| ouverture | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 100,0 % du temps, dont 2 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 1 |
+| calque 2D | 1 |
+| immobile | 1 |
+| plusieurs couches en parallaxe (2,5D) | 1 |
+
+## Son
+
+Sonie intégrée -19,2 LUFS, centroïde spectral médian 1813 Hz, part harmonique 96 %. Le détecteur d'attaques relève 111 événements (attaque médium 111) et le détecteur de houles 3 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 4,81 s | attaque médium | -21,5 dB |
+| 7,08 s | attaque médium | -19,3 dB |
+| 8,35 s | attaque médium | -20,6 dB |
+| 12,68 s | attaque médium | -21,4 dB |
+| 12,86 s | attaque médium | -23,3 dB |
+| 13,72 s | attaque médium | -21,1 dB |
+| 14,95 s | attaque médium | -19,5 dB |
+| 21,59 s | attaque médium | -21,6 dB |
+| 21,84 s | attaque médium | -21,1 dB |
+| 25,64 s | attaque médium | -24,7 dB |
+| 29,73 s | attaque médium | -20,2 dB |
+| 34,60 s | attaque médium | -19,5 dB |
+
+Houles : 2,65 s (montée 0,33 s), 41,31 s (montée 0,28 s), 44,81 s (montée 0,45 s).
+
+## Musique
+
+Tempo estimé 122,5 BPM, 81 temps détectés, régularité de la grille 0,100 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 3,00 s | -35,7 dB |
+| 2 | 3,00 s | 47,05 s | -22,7 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 7,07 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #3b1663, mouvement global : zoom arrière, travelling vertical, roulis (description automatique). |
+| S02 | 7,07 s | 2,03 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #120815, mouvement global : zoom avant (description automatique). |
+| S03 | 9,10 s | 1,77 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #1b0c29, mouvement global : zoom arrière (description automatique). |
+| S04 | 10,87 s | 36,13 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #151119, mouvement global : zoom avant, panoramique, roulis (description automatique). |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

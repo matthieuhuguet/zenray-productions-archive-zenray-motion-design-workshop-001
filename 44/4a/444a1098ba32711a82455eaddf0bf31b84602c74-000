@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c005-soiree-electorale",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c005-soiree-electorale [142f60eb].mp4",
+ "sha256": "142f60eb4261cfe28d2b53d250ab75045dc413bcc2ceff787686a977e6f459c0",
+ "bytes": 21406765,
+ "vfr": false,
+ "r_fps": 30.0,
+ "duration_s": 47.0,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 30.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "005 Soirée électorale",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

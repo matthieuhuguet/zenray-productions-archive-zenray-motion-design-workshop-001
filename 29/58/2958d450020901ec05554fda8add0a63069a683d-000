@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c011-ecran-titre-jrpg-et-pixel-art",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c011-ecran-titre-jrpg-et-pixel-art [a5d82caf].mp4",
+ "sha256": "a5d82caf85ae5c050ab4dc2c515cf8d7910f03a069fc6850b076e80c0c0aed6c",
+ "bytes": 6894571,
+ "vfr": false,
+ "r_fps": 29.97,
+ "duration_s": 240.006,
+ "video_codec": "h264",
+ "width": 298,
+ "height": 224,
+ "fps": 29.97,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "011 Écran titre JRPG et pixel art",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

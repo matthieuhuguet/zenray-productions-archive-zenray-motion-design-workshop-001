@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c006-une-de-journal-animee",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c006-une-de-journal-animee [096f7f3c].mp4",
+ "sha256": "096f7f3c98821a2cf244cee975ab7877c9129b5f2252901f316d7b3be5cd1dea",
+ "bytes": 90585068,
+ "vfr": false,
+ "r_fps": 23.976,
+ "duration_s": 240.031,
+ "video_codec": "h264",
+ "width": 1480,
+ "height": 1080,
+ "fps": 23.976,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "006 Une de journal animée",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

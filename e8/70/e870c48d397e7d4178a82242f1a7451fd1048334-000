@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c009-revelation-aaa-sombre",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c009-revelation-aaa-sombre [5c225253].mp4",
+ "sha256": "5c225253731c3efd28f745d0ff0c94a65ef00dbe7574a2a6409f8b064e714d08",
+ "bytes": 28688858,
+ "vfr": false,
+ "r_fps": 30.0,
+ "duration_s": 133.9,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 30.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "009 Révélation AAA sombre",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

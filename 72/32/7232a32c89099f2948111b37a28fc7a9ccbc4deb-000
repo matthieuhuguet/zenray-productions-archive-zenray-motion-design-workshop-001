@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c002-explainer-de-data-journalisme",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c002-explainer-de-data-journalisme [6acdf8fe].mp4",
+ "sha256": "6acdf8fe6de17ee9cf1f12675a5ddcf699a2c45118f62544c5f856143b0d6b52",
+ "bytes": 17262695,
+ "vfr": false,
+ "r_fps": 25.0,
+ "duration_s": 240.0,
+ "video_codec": "h264",
+ "width": 854,
+ "height": 480,
+ "fps": 25.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 44100,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "002 Explainer de data-journalisme",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

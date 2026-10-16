@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c012-bandeau-arcade",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c012-bandeau-arcade [571704c6].mp4",
+ "sha256": "571704c6c5c3dad997c1370406c68ef6a8efa069cb9ff48ab85ac44dbbf034c2",
+ "bytes": 32738002,
+ "vfr": false,
+ "r_fps": 15.0,
+ "duration_s": 240.0,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 15.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "012 Bandeau arcade",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

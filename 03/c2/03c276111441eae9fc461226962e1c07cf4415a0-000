@@ -1,0 +1,3079 @@
+{
+ "schema": "zrmd/bible@1",
+ "date": "12 October 2026",
+ "slug": "c005-soiree-electorale",
+ "source": {
+  "duration_s": 47.0,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "has_audio": true,
+  "page_url": null
+ },
+ "cadence": {
+  "fps": 30.0,
+  "factor": 1,
+  "duplicate_ratio": 0.009
+ },
+ "frames": 1410,
+ "fps": 30.0,
+ "cuts": [
+  {
+   "frame": 212,
+   "t": 7.066666666666666,
+   "kind": "hard",
+   "source": "detector"
+  },
+  {
+   "frame": 273,
+   "t": 9.1,
+   "kind": "hard",
+   "source": "detector"
+  },
+  {
+   "frame": 326,
+   "t": 10.866666666666667,
+   "kind": "hard",
+   "source": "detector"
+  }
+ ],
+ "detected": {
+  "shots": 4,
+  "cuts": 3
+ },
+ "review": {
+  "file": null,
+  "added_cuts": 0,
+  "removed_cuts": 0,
+  "cut_corrections_superseded": 0,
+  "shots_described": 0,
+  "family_agreement": null,
+  "unmatched_entries": []
+ },
+ "summary": {
+  "families_time_share": {
+   "plate": 1.0
+  },
+  "content_time_share": {
+   "plate": 1.0
+  },
+  "palette": [
+   {
+    "hex": "#151118",
+    "share": 0.292,
+    "lab": [
+     5.6,
+     3.8,
+     -4.3
+    ],
+    "chroma": 5.7
+   },
+   {
+    "hex": "#21103e",
+    "share": 0.183,
+    "lab": [
+     9.5,
+     20.8,
+     -26.1
+    ],
+    "chroma": 33.4
+   },
+   {
+    "hex": "#4c3a3b",
+    "share": 0.136,
+    "lab": [
+     26.4,
+     8.2,
+     2.3
+    ],
+    "chroma": 8.6
+   },
+   {
+    "hex": "#8e756e",
+    "share": 0.085,
+    "lab": [
+     51.4,
+     8.5,
+     7.4
+    ],
+    "chroma": 11.3
+   },
+   {
+    "hex": "#c4cacb",
+    "share": 0.074,
+    "lab": [
+     81.0,
+     -2.1,
+     -1.2
+    ],
+    "chroma": 2.4
+   },
+   {
+    "hex": "#583c95",
+    "share": 0.043,
+    "lab": [
+     32.8,
+     33.7,
+     -45.0
+    ],
+    "chroma": 56.2
+   },
+   {
+    "hex": "#3d1b67",
+    "share": 0.041,
+    "lab": [
+     18.9,
+     33.4,
+     -38.3
+    ],
+    "chroma": 50.8
+   },
+   {
+    "hex": "#ce7657",
+    "share": 0.028,
+    "lab": [
+     58.7,
+     31.9,
+     32.1
+    ],
+    "chroma": 45.2
+   },
+   {
+    "hex": "#1b0c29",
+    "share": 0.023,
+    "lab": [
+     5.9,
+     14.1,
+     -16.2
+    ],
+    "chroma": 21.5
+   },
+   {
+    "hex": "#26151e",
+    "share": 0.021,
+    "lab": [
+     9.2,
+     10.4,
+     -2.8
+    ],
+    "chroma": 10.8
+   },
+   {
+    "hex": "#78303a",
+    "share": 0.017,
+    "lab": [
+     30.5,
+     32.6,
+     10.1
+    ],
+    "chroma": 34.1
+   },
+   {
+    "hex": "#8a6cf8",
+    "share": 0.014,
+    "lab": [
+     55.0,
+     44.6,
+     -66.2
+    ],
+    "chroma": 79.8
+   }
+  ],
+  "roles": {
+   "background": [
+    {
+     "hex": "#120815",
+     "share_of_time": 0.812
+    },
+    {
+     "hex": "#3b1663",
+     "share_of_time": 0.15
+    },
+    {
+     "hex": "#1b0c29",
+     "share_of_time": 0.038
+    }
+   ],
+   "accent": [
+    {
+     "hex": "#583c95",
+     "share_of_time": 0.769
+    },
+    {
+     "hex": "#8a6cf8",
+     "share_of_time": 0.15
+    },
+    {
+     "hex": "#7557d9",
+     "share_of_time": 0.043
+    },
+    {
+     "hex": "#e4d96c",
+     "share_of_time": 0.038
+    }
+   ]
+  },
+  "eases": {
+   "none": 5,
+   "css.ease": 2,
+   "power1.out": 2,
+   "bounce.inOut": 2,
+   "circ.inOut": 1,
+   "expo.out": 1,
+   "material.decelerate": 1,
+   "back.out(3.5)": 1,
+   "back.in(1.70158)": 1,
+   "power1.inOut": 1,
+   "material.standard": 1,
+   "bounce.in": 1,
+   "power3.inOut": 1,
+   "bounce.out": 1
+  },
+  "element_move_median_s": null,
+  "camera_kinds": {
+   "zoom arrière": 2,
+   "travelling vertical": 1,
+   "roulis": 2,
+   "zoom avant": 2,
+   "panoramique": 1
+  },
+  "transitions": {
+   "coupe franche": 3,
+   "ouverture": 1
+  },
+  "typography": {},
+  "rhythm": {
+   "shots": 4,
+   "cuts": 3,
+   "duration": 47.0,
+   "cuts_per_minute": 3.8,
+   "shot_mean_s": 11.75,
+   "shot_median_s": 4.55,
+   "shot_min_s": 1.767,
+   "shot_max_s": 36.133,
+   "shot_cv": 1.212,
+   "under_0_5s": 0,
+   "over_3s": 2,
+   "cuts_on_beat": 0.333,
+   "cuts_on_attack": 1.0,
+   "shot_median_beats": 9.29
+  },
+  "three_d": {
+   "plate_share": 1.0,
+   "plate_3d_shots": 2,
+   "probe_classes": {
+    "complex": 1,
+    "layer_2d": 1,
+    "static": 1,
+    "parallax_2_5d": 1
+   }
+  }
+ },
+ "sound": {
+  "duration": 47.019,
+  "tempo_bpm": 122.45,
+  "beats": 81,
+  "beat_regularity": 0.1,
+  "loudness_lufs": -19.2,
+  "harmonic_share": 0.963,
+  "centroid_hz": 1813.1,
+  "main_events": [
+   "E037",
+   "E087",
+   "E065",
+   "E018",
+   "E036",
+   "E019",
+   "E066",
+   "E042",
+   "E010",
+   "E040",
+   "E071",
+   "E091"
+  ],
+  "swells": [
+   {
+    "t": 2.65,
+    "peak_t": 2.975,
+    "rise_s": 0.325,
+    "level_db": 32.9
+   },
+   {
+    "t": 41.315,
+    "peak_t": 41.595,
+    "rise_s": 0.28,
+    "level_db": 33.3
+   },
+   {
+    "t": 44.81,
+    "peak_t": 45.255,
+    "rise_s": 0.445,
+    "level_db": 31.8
+   }
+  ],
+  "cuts_on_beat": 0.333,
+  "cuts_on_attack": 1.0,
+  "sections": [
+   {
+    "start": 0.0,
+    "end": 3.0,
+    "level_db": -35.7
+   },
+   {
+    "start": 3.0,
+    "end": 47.05,
+    "level_db": -22.7
+   }
+  ],
+  "loudness_curve_1s": [
+   -41.7,
+   -36.3,
+   -33.3,
+   -22.4,
+   -23.4,
+   -24.3,
+   -24.5,
+   -26.7,
+   -20.5,
+   -28.2,
+   -22.1,
+   -21.8,
+   -29.1,
+   -21.4,
+   -22.1,
+   -19.8,
+   -21.0,
+   -21.2,
+   -21.0,
+   -24.3,
+   -21.6,
+   -21.8,
+   -22.2,
+   -21.0,
+   -23.9,
+   -25.2,
+   -24.1,
+   -23.5,
+   -23.3,
+   -23.6,
+   -25.1,
+   -22.3,
+   -22.4,
+   -21.6,
+   -23.7,
+   -23.8,
+   -23.1,
+   -24.5,
+   -28.6,
+   -22.6,
+   -23.7,
+   -21.9,
+   -22.7,
+   -22.1,
+   -20.2,
+   -20.1,
+   -27.5,
+   -43.6
+  ],
+  "beats_t": [
+   3.165,
+   3.525,
+   4.175,
+   4.68,
+   5.185,
+   5.655,
+   6.13,
+   6.63,
+   7.15,
+   7.64,
+   8.135,
+   8.61,
+   9.105,
+   9.6,
+   10.085,
+   10.575,
+   11.03,
+   11.395,
+   12.04,
+   12.56,
+   13.07,
+   13.535,
+   14.0,
+   14.475,
+   14.975,
+   15.425,
+   15.965,
+   16.485,
+   16.975,
+   17.46,
+   17.945,
+   18.445,
+   18.9,
+   19.26,
+   19.91,
+   20.375,
+   20.86,
+   21.39,
+   21.87,
+   22.345,
+   22.81,
+   23.3,
+   23.81,
+   24.35,
+   24.85,
+   25.34,
+   25.835,
+   26.33,
+   26.765,
+   27.12,
+   27.745,
+   28.265,
+   28.785,
+   29.29,
+   29.77,
+   30.285,
+   30.755,
+   31.235,
+   31.725,
+   32.225,
+   32.735,
+   33.22,
+   33.705,
+   34.17,
+   34.635,
+   35.17,
+   35.66,
+   36.16,
+   36.655,
+   37.13,
+   37.605,
+   38.105,
+   38.57,
+   39.035,
+   39.515,
+   40.01,
+   40.505,
+   41.0,
+   41.5,
+   42.01,
+   42.505
+  ]
+ },
+ "sound_events": [
+  {
+   "id": "E001",
+   "t": 0.02,
+   "dur": 2.51,
+   "peak_db": -38.98,
+   "strength": 0.0,
+   "centroid_hz": 1630.1,
+   "flatness": 0.0,
+   "percussive_ratio": 0.01,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E002",
+   "t": 2.53,
+   "dur": 0.295,
+   "peak_db": -25.11,
+   "strength": 0.239,
+   "centroid_hz": 1388.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.016,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E003",
+   "t": 2.825,
+   "dur": 0.295,
+   "peak_db": -20.49,
+   "strength": 0.335,
+   "centroid_hz": 1404.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.031,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E004",
+   "t": 3.12,
+   "dur": 0.37,
+   "peak_db": -19.38,
+   "strength": 0.423,
+   "centroid_hz": 2408.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.033,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E005",
+   "t": 3.49,
+   "dur": 0.16,
+   "peak_db": -21.52,
+   "strength": 0.631,
+   "centroid_hz": 2563.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.046,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E006",
+   "t": 3.65,
+   "dur": 0.175,
+   "peak_db": -23.23,
+   "strength": 0.354,
+   "centroid_hz": 2256.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.031,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E007",
+   "t": 3.825,
+   "dur": 0.155,
+   "peak_db": -24.15,
+   "strength": 0.694,
+   "centroid_hz": 2219.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.022,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E008",
+   "t": 3.98,
+   "dur": 0.145,
+   "peak_db": -23.08,
+   "strength": 0.574,
+   "centroid_hz": 2040.1,
+   "flatness": 0.0,
+   "percussive_ratio": 0.046,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E009",
+   "t": 4.125,
+   "dur": 0.685,
+   "peak_db": -22.21,
+   "strength": 0.337,
+   "centroid_hz": 2217.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E010",
+   "t": 4.81,
+   "dur": 0.145,
+   "peak_db": -21.54,
+   "strength": 0.965,
+   "centroid_hz": 1725.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E011",
+   "t": 4.955,
+   "dur": 0.125,
+   "peak_db": -21.53,
+   "strength": 0.534,
+   "centroid_hz": 1767.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.011,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E012",
+   "t": 5.08,
+   "dur": 0.07,
+   "peak_db": -20.76,
+   "strength": 0.049,
+   "centroid_hz": 1281.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.019,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E013",
+   "t": 5.15,
+   "dur": 0.475,
+   "peak_db": -20.04,
+   "strength": 0.355,
+   "centroid_hz": 1570.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E014",
+   "t": 5.625,
+   "dur": 0.225,
+   "peak_db": -20.82,
+   "strength": 0.456,
+   "centroid_hz": 1432.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.027,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E015",
+   "t": 5.85,
+   "dur": 0.24,
+   "peak_db": -21.72,
+   "strength": 0.472,
+   "centroid_hz": 1423.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.031,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E016",
+   "t": 6.09,
+   "dur": 0.505,
+   "peak_db": -21.24,
+   "strength": 0.784,
+   "centroid_hz": 1425.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.018,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E017",
+   "t": 6.595,
+   "dur": 0.485,
+   "peak_db": -19.82,
+   "strength": 0.513,
+   "centroid_hz": 1297.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.023,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E018",
+   "t": 7.08,
+   "dur": 1.265,
+   "peak_db": -19.26,
+   "strength": 1.136,
+   "centroid_hz": 1366.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.01,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E019",
+   "t": 8.345,
+   "dur": 0.735,
+   "peak_db": -20.63,
+   "strength": 1.045,
+   "centroid_hz": 1396.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.023,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E020",
+   "t": 9.08,
+   "dur": 0.47,
+   "peak_db": -18.58,
+   "strength": 0.552,
+   "centroid_hz": 1466.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E021",
+   "t": 9.55,
+   "dur": 0.165,
+   "peak_db": -21.86,
+   "strength": 0.411,
+   "centroid_hz": 1392.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.008,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E022",
+   "t": 9.715,
+   "dur": 0.155,
+   "peak_db": -21.42,
+   "strength": 0.285,
+   "centroid_hz": 1415.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.004,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E023",
+   "t": 9.87,
+   "dur": 0.17,
+   "peak_db": -21.58,
+   "strength": 0.124,
+   "centroid_hz": 1261.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.006,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E024",
+   "t": 10.04,
+   "dur": 0.16,
+   "peak_db": -21.45,
+   "strength": 0.233,
+   "centroid_hz": 1484.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.007,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E025",
+   "t": 10.2,
+   "dur": 0.17,
+   "peak_db": -21.12,
+   "strength": 0.029,
+   "centroid_hz": 1402.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.008,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E026",
+   "t": 10.37,
+   "dur": 0.16,
+   "peak_db": -20.91,
+   "strength": 0.187,
+   "centroid_hz": 1513.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.01,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E027",
+   "t": 10.53,
+   "dur": 0.165,
+   "peak_db": -20.86,
+   "strength": 0.083,
+   "centroid_hz": 1384.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.022,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E028",
+   "t": 10.695,
+   "dur": 0.16,
+   "peak_db": -21.31,
+   "strength": 0.171,
+   "centroid_hz": 1492.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.019,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E029",
+   "t": 10.855,
+   "dur": 0.14,
+   "peak_db": -20.43,
+   "strength": 0.21,
+   "centroid_hz": 1597.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.037,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E030",
+   "t": 10.995,
+   "dur": 0.22,
+   "peak_db": -18.75,
+   "strength": 0.104,
+   "centroid_hz": 2363.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.031,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E031",
+   "t": 11.215,
+   "dur": 0.145,
+   "peak_db": -23.16,
+   "strength": 0.283,
+   "centroid_hz": 2489.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.02,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E032",
+   "t": 11.36,
+   "dur": 0.32,
+   "peak_db": -22.97,
+   "strength": 0.451,
+   "centroid_hz": 2316.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.027,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E033",
+   "t": 11.68,
+   "dur": 0.165,
+   "peak_db": -23.11,
+   "strength": 0.252,
+   "centroid_hz": 2160.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.018,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E034",
+   "t": 11.845,
+   "dur": 0.155,
+   "peak_db": -23.52,
+   "strength": 0.566,
+   "centroid_hz": 2017.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.05,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E035",
+   "t": 12.0,
+   "dur": 0.68,
+   "peak_db": -21.8,
+   "strength": 0.632,
+   "centroid_hz": 2236.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E036",
+   "t": 12.68,
+   "dur": 0.18,
+   "peak_db": -21.41,
+   "strength": 1.107,
+   "centroid_hz": 1675.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.011,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E037",
+   "t": 12.86,
+   "dur": 0.155,
+   "peak_db": -23.28,
+   "strength": 1.302,
+   "centroid_hz": 1670.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E038",
+   "t": 13.015,
+   "dur": 0.48,
+   "peak_db": -19.55,
+   "strength": 0.506,
+   "centroid_hz": 1698.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E039",
+   "t": 13.495,
+   "dur": 0.23,
+   "peak_db": -21.02,
+   "strength": 0.663,
+   "centroid_hz": 1576.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.036,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E040",
+   "t": 13.725,
+   "dur": 0.215,
+   "peak_db": -21.07,
+   "strength": 0.93,
+   "centroid_hz": 1561.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.038,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E041",
+   "t": 13.94,
+   "dur": 1.01,
+   "peak_db": -21.99,
+   "strength": 0.714,
+   "centroid_hz": 1668.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.022,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E042",
+   "t": 14.95,
+   "dur": 1.215,
+   "peak_db": -19.48,
+   "strength": 0.99,
+   "centroid_hz": 1504.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.011,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E043",
+   "t": 16.165,
+   "dur": 0.7,
+   "peak_db": -21.08,
+   "strength": 0.306,
+   "centroid_hz": 1497.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.006,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E044",
+   "t": 16.865,
+   "dur": 0.08,
+   "peak_db": -19.5,
+   "strength": 0.476,
+   "centroid_hz": 1182.1,
+   "flatness": 0.0,
+   "percussive_ratio": 0.115,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E045",
+   "t": 16.945,
+   "dur": 0.485,
+   "peak_db": -18.57,
+   "strength": 0.425,
+   "centroid_hz": 1500.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.016,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E046",
+   "t": 17.43,
+   "dur": 0.165,
+   "peak_db": -21.25,
+   "strength": 0.833,
+   "centroid_hz": 1356.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.009,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E047",
+   "t": 17.595,
+   "dur": 0.13,
+   "peak_db": -20.84,
+   "strength": 0.692,
+   "centroid_hz": 1417.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.004,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E048",
+   "t": 17.725,
+   "dur": 0.185,
+   "peak_db": -20.66,
+   "strength": 0.108,
+   "centroid_hz": 1189.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.006,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E049",
+   "t": 17.91,
+   "dur": 0.15,
+   "peak_db": -20.52,
+   "strength": 0.305,
+   "centroid_hz": 1498.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.007,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E050",
+   "t": 18.06,
+   "dur": 0.18,
+   "peak_db": -20.62,
+   "strength": 0.07,
+   "centroid_hz": 1370.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.005,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E051",
+   "t": 18.24,
+   "dur": 0.17,
+   "peak_db": -20.28,
+   "strength": 0.232,
+   "centroid_hz": 1446.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E052",
+   "t": 18.41,
+   "dur": 0.155,
+   "peak_db": -19.57,
+   "strength": 0.259,
+   "centroid_hz": 1625.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.02,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E053",
+   "t": 18.565,
+   "dur": 0.165,
+   "peak_db": -20.54,
+   "strength": 0.27,
+   "centroid_hz": 1500.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.019,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E054",
+   "t": 18.73,
+   "dur": 0.135,
+   "peak_db": -20.78,
+   "strength": 0.239,
+   "centroid_hz": 1683.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.041,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E055",
+   "t": 18.865,
+   "dur": 0.36,
+   "peak_db": -19.19,
+   "strength": 0.187,
+   "centroid_hz": 3104.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.028,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E056",
+   "t": 19.225,
+   "dur": 0.315,
+   "peak_db": -22.08,
+   "strength": 0.353,
+   "centroid_hz": 2807.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.032,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E057",
+   "t": 19.54,
+   "dur": 0.155,
+   "peak_db": -23.84,
+   "strength": 0.39,
+   "centroid_hz": 2694.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E058",
+   "t": 19.695,
+   "dur": 0.18,
+   "peak_db": -23.08,
+   "strength": 0.326,
+   "centroid_hz": 2475.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.018,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E059",
+   "t": 19.875,
+   "dur": 0.46,
+   "peak_db": -20.15,
+   "strength": 0.357,
+   "centroid_hz": 2342.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.004,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E060",
+   "t": 20.335,
+   "dur": 0.21,
+   "peak_db": -17.82,
+   "strength": 0.417,
+   "centroid_hz": 1522.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.034,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E061",
+   "t": 20.545,
+   "dur": 0.155,
+   "peak_db": -20.56,
+   "strength": 0.485,
+   "centroid_hz": 1598.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.012,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E062",
+   "t": 20.7,
+   "dur": 0.185,
+   "peak_db": -20.77,
+   "strength": 0.232,
+   "centroid_hz": 1626.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.018,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E063",
+   "t": 20.885,
+   "dur": 0.47,
+   "peak_db": -20.97,
+   "strength": 0.412,
+   "centroid_hz": 1442.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.012,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E064",
+   "t": 21.355,
+   "dur": 0.24,
+   "peak_db": -19.67,
+   "strength": 0.299,
+   "centroid_hz": 1430.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.016,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E065",
+   "t": 21.595,
+   "dur": 0.24,
+   "peak_db": -21.55,
+   "strength": 1.26,
+   "centroid_hz": 1691.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.021,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E066",
+   "t": 21.835,
+   "dur": 0.49,
+   "peak_db": -21.13,
+   "strength": 1.017,
+   "centroid_hz": 1654.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.016,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E067",
+   "t": 22.325,
+   "dur": 0.45,
+   "peak_db": -20.57,
+   "strength": 0.517,
+   "centroid_hz": 1640.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E068",
+   "t": 22.775,
+   "dur": 1.29,
+   "peak_db": -19.58,
+   "strength": 0.605,
+   "centroid_hz": 1721.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.017,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E069",
+   "t": 24.065,
+   "dur": 0.66,
+   "peak_db": -22.32,
+   "strength": 0.326,
+   "centroid_hz": 1755.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E070",
+   "t": 24.725,
+   "dur": 0.91,
+   "peak_db": -18.24,
+   "strength": 0.176,
+   "centroid_hz": 1964.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.017,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E071",
+   "t": 25.635,
+   "dur": 0.105,
+   "peak_db": -24.69,
+   "strength": 0.895,
+   "centroid_hz": 2160.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.007,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E072",
+   "t": 25.74,
+   "dur": 0.185,
+   "peak_db": -19.54,
+   "strength": 0.259,
+   "centroid_hz": 1449.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.019,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E073",
+   "t": 25.925,
+   "dur": 0.33,
+   "peak_db": -21.95,
+   "strength": 0.306,
+   "centroid_hz": 1785.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E074",
+   "t": 26.255,
+   "dur": 0.19,
+   "peak_db": -20.21,
+   "strength": 0.18,
+   "centroid_hz": 1526.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.025,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E075",
+   "t": 26.445,
+   "dur": 0.165,
+   "peak_db": -21.76,
+   "strength": 0.511,
+   "centroid_hz": 1814.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E076",
+   "t": 26.61,
+   "dur": 0.125,
+   "peak_db": -21.42,
+   "strength": 0.654,
+   "centroid_hz": 2095.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.036,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E077",
+   "t": 26.735,
+   "dur": 0.195,
+   "peak_db": -20.23,
+   "strength": 0.382,
+   "centroid_hz": 1704.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.034,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E078",
+   "t": 26.93,
+   "dur": 0.14,
+   "peak_db": -22.45,
+   "strength": 0.298,
+   "centroid_hz": 1496.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.023,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E079",
+   "t": 27.07,
+   "dur": 0.145,
+   "peak_db": -21.83,
+   "strength": 0.401,
+   "centroid_hz": 1671.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.045,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E080",
+   "t": 27.215,
+   "dur": 0.135,
+   "peak_db": -22.18,
+   "strength": 0.376,
+   "centroid_hz": 1559.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.018,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E081",
+   "t": 27.35,
+   "dur": 0.165,
+   "peak_db": -20.99,
+   "strength": 0.051,
+   "centroid_hz": 1340.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E082",
+   "t": 27.515,
+   "dur": 0.185,
+   "peak_db": -23.01,
+   "strength": 0.308,
+   "centroid_hz": 1469.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.025,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E083",
+   "t": 27.7,
+   "dur": 0.985,
+   "peak_db": -21.92,
+   "strength": 0.476,
+   "centroid_hz": 1789.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.012,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E084",
+   "t": 28.685,
+   "dur": 0.555,
+   "peak_db": -19.22,
+   "strength": 0.361,
+   "centroid_hz": 1207.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.007,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E085",
+   "t": 29.24,
+   "dur": 0.235,
+   "peak_db": -19.16,
+   "strength": 0.501,
+   "centroid_hz": 1203.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E086",
+   "t": 29.475,
+   "dur": 0.26,
+   "peak_db": -21.83,
+   "strength": 0.512,
+   "centroid_hz": 1416.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.03,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E087",
+   "t": 29.735,
+   "dur": 0.51,
+   "peak_db": -20.22,
+   "strength": 1.29,
+   "centroid_hz": 1553.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.009,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E088",
+   "t": 30.245,
+   "dur": 0.39,
+   "peak_db": -21.58,
+   "strength": 0.722,
+   "centroid_hz": 1587.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.007,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E089",
+   "t": 30.635,
+   "dur": 2.055,
+   "peak_db": -20.23,
+   "strength": 0.155,
+   "centroid_hz": 1768.5,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E090",
+   "t": 32.69,
+   "dur": 1.915,
+   "peak_db": -20.05,
+   "strength": 0.684,
+   "centroid_hz": 1798.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.009,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E091",
+   "t": 34.605,
+   "dur": 0.7,
+   "peak_db": -19.47,
+   "strength": 0.89,
+   "centroid_hz": 3027.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.031,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E092",
+   "t": 35.305,
+   "dur": 0.145,
+   "peak_db": -23.06,
+   "strength": 0.423,
+   "centroid_hz": 2414.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.019,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E093",
+   "t": 35.45,
+   "dur": 0.18,
+   "peak_db": -22.22,
+   "strength": 0.77,
+   "centroid_hz": 2157.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.027,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E094",
+   "t": 35.63,
+   "dur": 0.43,
+   "peak_db": -21.32,
+   "strength": 0.878,
+   "centroid_hz": 2261.6,
+   "flatness": 0.0,
+   "percussive_ratio": 0.008,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E095",
+   "t": 36.06,
+   "dur": 1.01,
+   "peak_db": -20.82,
+   "strength": 0.362,
+   "centroid_hz": 1492.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E096",
+   "t": 37.07,
+   "dur": 0.16,
+   "peak_db": -19.62,
+   "strength": 0.287,
+   "centroid_hz": 1730.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.02,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E097",
+   "t": 37.23,
+   "dur": 0.33,
+   "peak_db": -23.85,
+   "strength": 0.11,
+   "centroid_hz": 1874.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E098",
+   "t": 37.56,
+   "dur": 0.35,
+   "peak_db": -19.55,
+   "strength": 0.669,
+   "centroid_hz": 1994.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E099",
+   "t": 37.91,
+   "dur": 0.135,
+   "peak_db": -24.07,
+   "strength": 0.295,
+   "centroid_hz": 2202.9,
+   "flatness": 0.0,
+   "percussive_ratio": 0.011,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E100",
+   "t": 38.045,
+   "dur": 0.35,
+   "peak_db": -17.75,
+   "strength": 0.168,
+   "centroid_hz": 1789.0,
+   "flatness": 0.0,
+   "percussive_ratio": 0.022,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E101",
+   "t": 38.395,
+   "dur": 0.145,
+   "peak_db": -22.81,
+   "strength": 0.229,
+   "centroid_hz": 1965.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.011,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E102",
+   "t": 38.54,
+   "dur": 2.965,
+   "peak_db": -18.84,
+   "strength": 0.146,
+   "centroid_hz": 2031.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.013,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E103",
+   "t": 41.505,
+   "dur": 0.47,
+   "peak_db": -19.85,
+   "strength": 0.587,
+   "centroid_hz": 1679.2,
+   "flatness": 0.0,
+   "percussive_ratio": 0.01,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E104",
+   "t": 41.975,
+   "dur": 0.19,
+   "peak_db": -21.59,
+   "strength": 0.456,
+   "centroid_hz": 2352.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.06,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E105",
+   "t": 42.165,
+   "dur": 0.165,
+   "peak_db": -22.46,
+   "strength": 0.226,
+   "centroid_hz": 1932.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.016,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E106",
+   "t": 42.33,
+   "dur": 0.135,
+   "peak_db": -23.83,
+   "strength": 0.441,
+   "centroid_hz": 2367.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.01,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E107",
+   "t": 42.465,
+   "dur": 0.36,
+   "peak_db": -19.45,
+   "strength": 0.181,
+   "centroid_hz": 2868.8,
+   "flatness": 0.0,
+   "percussive_ratio": 0.044,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E108",
+   "t": 42.825,
+   "dur": 1.82,
+   "peak_db": -22.02,
+   "strength": 0.318,
+   "centroid_hz": 2071.7,
+   "flatness": 0.0,
+   "percussive_ratio": 0.014,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E109",
+   "t": 44.645,
+   "dur": 0.475,
+   "peak_db": -23.08,
+   "strength": 0.459,
+   "centroid_hz": 2400.4,
+   "flatness": 0.0,
+   "percussive_ratio": 0.015,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E110",
+   "t": 45.12,
+   "dur": 1.87,
+   "peak_db": -20.21,
+   "strength": 0.292,
+   "centroid_hz": 2714.3,
+   "flatness": 0.0,
+   "percussive_ratio": 0.022,
+   "kind": "attaque médium"
+  },
+  {
+   "id": "E111",
+   "t": 46.99,
+   "dur": 0.025,
+   "peak_db": -42.26,
+   "strength": 0.709,
+   "centroid_hz": 1784.7,
+   "flatness": 0.0001,
+   "percussive_ratio": 0.096,
+   "kind": "attaque médium"
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 7.0667,
+   "duration": 7.0667,
+   "start_frame": 0,
+   "end_frame": 212,
+   "enter": "start",
+   "cut_source": "start",
+   "sample_fps": 30.0,
+   "frames_measured": 212,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "3d",
+   "features": {
+    "text_cover": 0.0,
+    "nonflat_entropy": 4.46,
+    "flat_share": 0.702,
+    "texture": 0.88,
+    "colourfulness": 85.0,
+    "edge_density": 0.071
+   },
+   "palette": [
+    {
+     "lab": [
+      12.03,
+      20.87,
+      -24.72
+     ],
+     "share": 0.28,
+     "hex": "#291542",
+     "chroma": 32.4,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      17.37,
+      34.62,
+      -38.61
+     ],
+     "share": 0.1985,
+     "hex": "#3b1663",
+     "chroma": 51.9,
+     "role": "background"
+    },
+    {
+     "lab": [
+      9.19,
+      10.45,
+      -2.76
+     ],
+     "share": 0.1368,
+     "hex": "#26151e",
+     "chroma": 10.8,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      30.87,
+      33.34,
+      11.34
+     ],
+     "share": 0.0946,
+     "hex": "#7b3039",
+     "chroma": 35.2,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      54.96,
+      44.63,
+      -66.15
+     ],
+     "share": 0.0904,
+     "hex": "#8a6cf8",
+     "chroma": 79.8,
+     "role": "accent"
+    },
+    {
+     "lab": [
+      89.16,
+      -47.53,
+      28.59
+     ],
+     "share": 0.0744,
+     "hex": "#8bf6a7",
+     "chroma": 55.5,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      74.34,
+      16.34,
+      2.28
+     ],
+     "share": 0.07,
+     "hex": "#d6acb3",
+     "chroma": 16.5,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      61.09,
+      65.64,
+      -15.49
+     ],
+     "share": 0.0553,
+     "hex": "#f15bb1",
+     "chroma": 67.4,
+     "role": "secondary"
+    }
+   ],
+   "roles": {
+    "background": "#3b1663",
+    "accent": "#8a6cf8",
+    "secondary": [
+     "#291542",
+     "#26151e",
+     "#7b3039",
+     "#8bf6a7",
+     "#d6acb3",
+     "#f15bb1"
+    ]
+   },
+   "border_lab_std": 31.97,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": 2.141,
+      "range": 16.019,
+      "moves": [
+       {
+        "start": -0.1928,
+        "duration": 2.629,
+        "from": 0.5607,
+        "to": -13.7514,
+        "ease": "css.ease",
+        "rms": 0.0983,
+        "rms_rel": 0.0073,
+        "amplitude": 13.4792,
+        "ties": [
+         "css.ease"
+        ],
+        "snr": 333.0,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       },
+       {
+        "start": 0.98,
+        "duration": 6.5453,
+        "from": -16.674,
+        "to": 1.316,
+        "ease": "circ.inOut",
+        "rms": 0.6685,
+        "rms_rel": 0.0413,
+        "amplitude": 16.1771,
+        "ties": [
+         "circ.inOut"
+        ],
+        "snr": 1126.1,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "y": {
+      "total": -11.757,
+      "range": 11.757,
+      "moves": [
+       {
+        "start": 0.0765,
+        "duration": 6.0008,
+        "from": -0.0991,
+        "to": -4.5428,
+        "ease": "expo.out",
+        "rms": 0.0384,
+        "rms_rel": 0.009,
+        "amplitude": 4.2611,
+        "ties": [
+         "expo.out"
+        ],
+        "snr": 414.5,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       },
+       {
+        "start": 3.873,
+        "duration": 7.5667,
+        "from": -4.5334,
+        "to": -13.5652,
+        "ease": "material.decelerate",
+        "rms": 0.1711,
+        "rms_rel": 0.0245,
+        "amplitude": 6.9703,
+        "ties": [
+         "material.decelerate"
+        ],
+        "snr": 432.0,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "zoom": {
+      "total": -6.454,
+      "range": 59.875,
+      "moves": [
+       {
+        "start": 0.1724,
+        "duration": 2.8911,
+        "from": -2.0677,
+        "to": -58.7696,
+        "ease": "power1.out",
+        "rms": 0.6396,
+        "rms_rel": 0.0113,
+        "amplitude": 56.7019,
+        "ties": [
+         "power1.out"
+        ],
+        "snr": 259.2,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       },
+       {
+        "start": 3.7739,
+        "duration": 5.8712,
+        "from": -57.4004,
+        "to": 4.7175,
+        "ease": "power1.out",
+        "rms": 1.2919,
+        "rms_rel": 0.0259,
+        "amplitude": 49.8263,
+        "ties": [
+         "power1.out"
+        ],
+        "snr": 381.0,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "roll": {
+      "total": 1.192,
+      "range": 4.661,
+      "moves": [],
+      "rejected_moves": 1
+     }
+    },
+    "kind": [
+     "zoom arrière",
+     "travelling vertical",
+     "roulis"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 211,
+     "moving_pairs_fraction": 0.948,
+     "sim": 0.8155272670124155,
+     "aff": 0.8233095035088871,
+     "hom": 0.8644798136645964,
+     "fun": 0.9626449654073963,
+     "layers": 1.0,
+     "layers_explained": 0.9175900552047341,
+     "residual": 0.0544,
+     "residual_p90": 0.1136,
+     "ecc_pairs": 0,
+     "class": "complex"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 70,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [
+    {
+     "start": 0.0,
+     "end": 0.967,
+     "thumb": "S01-p01.jpg"
+    },
+    {
+     "start": 1.0,
+     "end": 1.967,
+     "thumb": "S01-p02.jpg"
+    },
+    {
+     "start": 2.0,
+     "end": 3.0,
+     "thumb": "S01-p03.jpg"
+    },
+    {
+     "start": 3.033,
+     "end": 4.2,
+     "thumb": "S01-p04.jpg"
+    },
+    {
+     "start": 4.233,
+     "end": 5.2,
+     "thumb": "S01-p05.jpg"
+    },
+    {
+     "start": 5.233,
+     "end": 7.033,
+     "thumb": "S01-p06.jpg"
+    }
+   ],
+   "thumbs": {
+    "in": "S01-in.jpg",
+    "mid": "S01-mid.jpg",
+    "out": "S01-out.jpg"
+   },
+   "first_lab": [
+    37.31,
+    15.49,
+    -16.88
+   ],
+   "last_lab": [
+    25.42,
+    29.77,
+    -19.44
+   ],
+   "transition_in": {
+    "kind": "ouverture"
+   },
+   "sound": {
+    "events_count": 17,
+    "events": [
+     {
+      "t": 4.81,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -21.54
+     },
+     {
+      "t": 6.09,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -21.24
+     },
+     {
+      "t": 3.825,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -24.15
+     },
+     {
+      "t": 3.49,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -21.52
+     }
+    ],
+    "swells": [
+     {
+      "t": 2.65,
+      "peak_t": 2.975,
+      "rise_s": 0.325,
+      "level_db": 32.9
+     }
+    ]
+   }
+  },
+  {
+   "id": "S02",
+   "start": 7.0667,
+   "end": 9.1,
+   "duration": 2.0333,
+   "start_frame": 212,
+   "end_frame": 273,
+   "enter": "hard",
+   "cut_source": "detector",
+   "sample_fps": 30.0,
+   "frames_measured": 61,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "image",
+   "features": {
+    "text_cover": 0.004,
+    "nonflat_entropy": 4.15,
+    "flat_share": 0.487,
+    "texture": 3.18,
+    "colourfulness": 67.7,
+    "edge_density": 0.0763
+   },
+   "palette": [
+    {
+     "lab": [
+      3.32,
+      5.59,
+      -5.33
+     ],
+     "share": 0.3153,
+     "hex": "#120815",
+     "chroma": 7.7,
+     "role": "background"
+    },
+    {
+     "lab": [
+      10.16,
+      17.12,
+      -18.83
+     ],
+     "share": 0.2791,
+     "hex": "#251435",
+     "chroma": 25.4,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      23.88,
+      29.31,
+      -36.41
+     ],
+     "share": 0.1839,
+     "hex": "#452a70",
+     "chroma": 46.7,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      46.37,
+      43.74,
+      -62.78
+     ],
+     "share": 0.0715,
+     "hex": "#7557d9",
+     "chroma": 76.5,
+     "role": "accent"
+    },
+    {
+     "lab": [
+      28.84,
+      28.98,
+      4.27
+     ],
+     "share": 0.0697,
+     "hex": "#6e303e",
+     "chroma": 29.3,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      60.36,
+      70.66,
+      -21.89
+     ],
+     "share": 0.0347,
+     "hex": "#f252ba",
+     "chroma": 74.0,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      73.21,
+      28.34,
+      -10.7
+     ],
+     "share": 0.0282,
+     "hex": "#dea2c8",
+     "chroma": 30.3,
+     "role": "secondary"
+    }
+   ],
+   "roles": {
+    "background": "#120815",
+    "accent": "#7557d9",
+    "secondary": [
+     "#251435",
+     "#452a70",
+     "#6e303e",
+     "#f252ba",
+     "#dea2c8"
+    ]
+   },
+   "border_lab_std": 19.02,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": -0.017,
+      "range": 0.023,
+      "moves": []
+     },
+     "y": {
+      "total": 0.023,
+      "range": 0.032,
+      "moves": []
+     },
+     "zoom": {
+      "total": 9.439,
+      "range": 9.439,
+      "moves": [
+       {
+        "start": 0.0506,
+        "duration": 1.9394,
+        "from": 0.0323,
+        "to": 9.4395,
+        "ease": "none",
+        "rms": 0.0646,
+        "rms_rel": 0.0069,
+        "amplitude": 9.4072,
+        "ties": [
+         "none"
+        ],
+        "snr": 201.6,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "roll": {
+      "total": -0.029,
+      "range": 0.034,
+      "moves": []
+     }
+    },
+    "kind": [
+     "zoom avant"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 60,
+     "moving_pairs_fraction": 0.45,
+     "sim": 1.0,
+     "aff": 1.0,
+     "hom": 1.0,
+     "fun": 1.0,
+     "layers": 1.0,
+     "layers_explained": 1.0,
+     "residual": 0.0198,
+     "residual_p90": 0.0257,
+     "ecc_pairs": 0,
+     "class": "layer_2d"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 170,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [],
+   "thumbs": {
+    "in": "S02-in.jpg",
+    "mid": "S02-mid.jpg",
+    "out": "S02-out.jpg"
+   },
+   "first_lab": [
+    15.74,
+    17.01,
+    -18.13
+   ],
+   "last_lab": [
+    22.29,
+    22.03,
+    -16.21
+   ],
+   "transition_in": {
+    "kind": "coupe franche",
+    "frame": 212,
+    "same_tone": false,
+    "delta_e_mean": 9.5
+   },
+   "sound": {
+    "events_count": 3,
+    "events": [
+     {
+      "t": 7.08,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -19.26
+     },
+     {
+      "t": 8.345,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -20.63
+     },
+     {
+      "t": 9.08,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -18.58
+     }
+    ],
+    "swells": []
+   }
+  },
+  {
+   "id": "S03",
+   "start": 9.1,
+   "end": 10.8667,
+   "duration": 1.7667,
+   "start_frame": 273,
+   "end_frame": 326,
+   "enter": "hard",
+   "cut_source": "detector",
+   "sample_fps": 30.0,
+   "frames_measured": 53,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "image",
+   "features": {
+    "text_cover": 0.052,
+    "nonflat_entropy": 4.28,
+    "flat_share": 0.709,
+    "texture": 1.36,
+    "colourfulness": 44.3,
+    "edge_density": 0.0328
+   },
+   "palette": [
+    {
+     "lab": [
+      5.88,
+      14.09,
+      -16.18
+     ],
+     "share": 0.613,
+     "hex": "#1b0c29",
+     "chroma": 21.5,
+     "role": "background"
+    },
+    {
+     "lab": [
+      4.32,
+      5.37,
+      -4.92
+     ],
+     "share": 0.1175,
+     "hex": "#150c17",
+     "chroma": 7.3,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      21.4,
+      32.11,
+      -39.58
+     ],
+     "share": 0.0807,
+     "hex": "#3f226f",
+     "chroma": 51.0,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      32.17,
+      25.82,
+      -10.13
+     ],
+     "share": 0.071,
+     "hex": "#6c3c5c",
+     "chroma": 27.7,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      77.48,
+      20.06,
+      30.57
+     ],
+     "share": 0.0423,
+     "hex": "#f5b088",
+     "chroma": 36.6,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      26.09,
+      -0.62,
+      20.83
+     ],
+     "share": 0.0283,
+     "hex": "#473d1e",
+     "chroma": 20.8,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      80.15,
+      16.41,
+      -9.31
+     ],
+     "share": 0.0257,
+     "hex": "#debdd8",
+     "chroma": 18.9,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      85.49,
+      -10.01,
+      54.01
+     ],
+     "share": 0.0217,
+     "hex": "#e4d96c",
+     "chroma": 54.9,
+     "role": "accent"
+    }
+   ],
+   "roles": {
+    "background": "#1b0c29",
+    "accent": "#e4d96c",
+    "secondary": [
+     "#150c17",
+     "#3f226f",
+     "#6c3c5c",
+     "#f5b088",
+     "#473d1e",
+     "#debdd8"
+    ]
+   },
+   "border_lab_std": 16.41,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": -0.372,
+      "range": 0.372,
+      "moves": []
+     },
+     "y": {
+      "total": -0.087,
+      "range": 0.087,
+      "moves": []
+     },
+     "zoom": {
+      "total": -6.932,
+      "range": 6.932,
+      "moves": [
+       {
+        "start": -0.1227,
+        "duration": 1.8336,
+        "from": 0.5312,
+        "to": -6.9317,
+        "ease": "none",
+        "rms": 0.0336,
+        "rms_rel": 0.0048,
+        "amplitude": 6.9634,
+        "ties": [
+         "none"
+        ],
+        "snr": 320.3,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "roll": {
+      "total": -0.135,
+      "range": 0.142,
+      "moves": []
+     }
+    },
+    "kind": [
+     "zoom arrière"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 52,
+     "moving_pairs_fraction": 0.038,
+     "sim": 0.9838709677419355,
+     "aff": 0.9691650853889944,
+     "hom": 0.9691650853889944,
+     "fun": 1.0,
+     "layers": 1.0,
+     "layers_explained": 0.9691650853889944,
+     "residual": 0.0117,
+     "residual_p90": 0.0169,
+     "ecc_pairs": 0,
+     "class": "static"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 45,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [],
+   "thumbs": {
+    "in": "S03-in.jpg",
+    "mid": "S03-mid.jpg",
+    "out": "S03-out.jpg"
+   },
+   "first_lab": [
+    13.66,
+    13.83,
+    -13.23
+   ],
+   "last_lab": [
+    17.78,
+    15.35,
+    -9.68
+   ],
+   "transition_in": {
+    "kind": "coupe franche",
+    "frame": 273,
+    "same_tone": false,
+    "delta_e_mean": 7.67
+   },
+   "sound": {
+    "events_count": 9,
+    "events": [
+     {
+      "t": 9.55,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -21.86
+     },
+     {
+      "t": 9.715,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -21.42
+     },
+     {
+      "t": 10.04,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -21.45
+     },
+     {
+      "t": 10.855,
+      "kind": "attaque médium",
+      "main": false,
+      "peak_db": -20.43
+     }
+    ],
+    "swells": []
+   }
+  },
+  {
+   "id": "S04",
+   "start": 10.8667,
+   "end": 47.0,
+   "duration": 36.1333,
+   "start_frame": 326,
+   "end_frame": 1410,
+   "enter": "hard",
+   "cut_source": "detector",
+   "sample_fps": 14.945,
+   "frames_measured": 540,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "3d",
+   "features": {
+    "text_cover": 0.0,
+    "nonflat_entropy": 4.51,
+    "flat_share": 0.397,
+    "texture": 4.94,
+    "colourfulness": 44.5,
+    "edge_density": 0.0853
+   },
+   "palette": [
+    {
+     "lab": [
+      5.72,
+      3.65,
+      -4.22
+     ],
+     "share": 0.355,
+     "hex": "#151119",
+     "chroma": 5.6,
+     "role": "background"
+    },
+    {
+     "lab": [
+      26.43,
+      8.25,
+      2.3
+     ],
+     "share": 0.1768,
+     "hex": "#4c3a3b",
+     "chroma": 8.6,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      8.56,
+      21.13,
+      -27.3
+     ],
+     "share": 0.1662,
+     "hex": "#1e0f3e",
+     "chroma": 34.5,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      51.44,
+      8.47,
+      7.41
+     ],
+     "share": 0.1101,
+     "hex": "#8e756e",
+     "chroma": 11.3,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      81.03,
+      -2.07,
+      -1.23
+     ],
+     "share": 0.0964,
+     "hex": "#c4cacb",
+     "chroma": 2.4,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      32.79,
+      33.68,
+      -45.03
+     ],
+     "share": 0.0559,
+     "hex": "#583c95",
+     "chroma": 56.2,
+     "role": "accent"
+    },
+    {
+     "lab": [
+      58.71,
+      31.86,
+      32.13
+     ],
+     "share": 0.0357,
+     "hex": "#ce7657",
+     "chroma": 45.2,
+     "role": "secondary"
+    }
+   ],
+   "roles": {
+    "background": "#151119",
+    "accent": "#583c95",
+    "secondary": [
+     "#4c3a3b",
+     "#1e0f3e",
+     "#8e756e",
+     "#c4cacb",
+     "#ce7657"
+    ]
+   },
+   "border_lab_std": 17.13,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": -59.543,
+      "range": 102.072,
+      "moves": [
+       {
+        "start": 1.4882,
+        "duration": 29.3402,
+        "from": 32.2628,
+        "to": -91.9468,
+        "ease": "bounce.inOut",
+        "rms": 4.5172,
+        "rms_rel": 0.043,
+        "amplitude": 104.9739,
+        "ties": [
+         "bounce.inOut"
+        ],
+        "snr": 843.0,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 17.8308,
+        "duration": 30.1604,
+        "from": -99.5739,
+        "to": -24.1371,
+        "ease": "bounce.inOut",
+        "rms": 1.2096,
+        "rms_rel": 0.03,
+        "amplitude": 40.3753,
+        "ties": [
+         "bounce.inOut"
+        ],
+        "snr": 587.7,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "y": {
+      "total": 14.938,
+      "range": 29.998,
+      "moves": [
+       {
+        "start": -0.25,
+        "duration": 31.4156,
+        "from": 0.2849,
+        "to": 26.4933,
+        "ease": "css.ease",
+        "rms": 0.1743,
+        "rms_rel": 0.0132,
+        "amplitude": 13.2269,
+        "ties": [
+         "css.ease"
+        ],
+        "snr": 1741.1,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       },
+       {
+        "start": 9.2207,
+        "duration": 1.5429,
+        "from": 13.3983,
+        "to": 15.1599,
+        "ease": "back.out(3.5)",
+        "rms": 0.0165,
+        "rms_rel": 0.0071,
+        "amplitude": 2.314,
+        "ties": [
+         "back.out(3.5)",
+         "back.out(2.5)"
+        ],
+        "snr": 123.8,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 1
+     },
+     "zoom": {
+      "total": 52.501,
+      "range": 189.337,
+      "moves": [
+       {
+        "start": -0.25,
+        "duration": 31.458,
+        "from": 6.0314,
+        "to": -1504.4769,
+        "ease": "back.in(1.70158)",
+        "rms": 2.0935,
+        "rms_rel": 0.0154,
+        "amplitude": 135.7781,
+        "ties": [
+         "back.in(1.70158)",
+         "back.in(3.5)",
+         "back.in(2.5)",
+         "css.ease"
+        ],
+        "snr": 1619.1,
+        "confidence": "low",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       },
+       {
+        "start": 13.1797,
+        "duration": 2.0567,
+        "from": 139.946,
+        "to": 86.8499,
+        "ease": "power1.inOut",
+        "rms": 1.0717,
+        "rms_rel": 0.0202,
+        "amplitude": 53.0961,
+        "ties": [
+         "power1.inOut",
+         "css.ease-in-out"
+        ],
+        "snr": 78.8,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 17.9944,
+        "duration": 2.2361,
+        "from": 87.928,
+        "to": 191.2358,
+        "ease": "material.standard",
+        "rms": 1.6822,
+        "rms_rel": 0.0164,
+        "amplitude": 102.2836,
+        "ties": [
+         "material.standard"
+        ],
+        "snr": 586.4,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 20.4469,
+        "duration": 0.9566,
+        "from": 188.7577,
+        "to": 153.8793,
+        "ease": "none",
+        "rms": 0.5698,
+        "rms_rel": 0.0163,
+        "amplitude": 34.8784,
+        "ties": [
+         "none"
+        ],
+        "snr": 234.5,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 16.1306,
+        "duration": 17.2222,
+        "from": 165.5618,
+        "to": 55.835,
+        "ease": "bounce.in",
+        "rms": 2.8154,
+        "rms_rel": 0.0257,
+        "amplitude": 109.3818,
+        "ties": [
+         "bounce.in"
+        ],
+        "snr": 695.2,
+        "confidence": "high",
+        "flag": "linear_segment",
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 0
+     },
+     "roll": {
+      "total": -6.317,
+      "range": 9.383,
+      "moves": [
+       {
+        "start": 5.8738,
+        "duration": 2.0891,
+        "from": -0.0692,
+        "to": 0.4665,
+        "ease": "power3.inOut",
+        "rms": 0.0106,
+        "rms_rel": 0.0223,
+        "amplitude": 0.4735,
+        "ties": [
+         "power3.inOut",
+         "power2.inOut",
+         "back.inOut(0.5)",
+         "back.inOut(1)",
+         "back.inOut(1.70158)",
+         "material.standard"
+        ],
+        "snr": 31.4,
+        "confidence": "low",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 17.3652,
+        "duration": 0.7684,
+        "from": -1.9027,
+        "to": -0.3136,
+        "ease": "none",
+        "rms": 0.062,
+        "rms_rel": 0.039,
+        "amplitude": 1.5891,
+        "ties": [
+         "none",
+         "material.accelerate",
+         "css.ease-in",
+         "sine.in"
+        ],
+        "snr": 72.3,
+        "confidence": "low",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 18.8838,
+        "duration": 0.2735,
+        "from": -0.4109,
+        "to": -0.1087,
+        "ease": "none",
+        "rms": 0.0084,
+        "rms_rel": 0.0277,
+        "amplitude": 0.3023,
+        "ties": [
+         "none"
+        ],
+        "snr": 44.0,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       },
+       {
+        "start": 24.2473,
+        "duration": 8.5783,
+        "from": 0.8925,
+        "to": -7.2824,
+        "ease": "bounce.out",
+        "rms": 0.3664,
+        "rms_rel": 0.0448,
+        "amplitude": 8.1724,
+        "ties": [
+         "bounce.out"
+        ],
+        "snr": 165.2,
+        "confidence": "high",
+        "flag": null,
+        "library": "3.14.2"
+       }
+      ],
+      "rejected_moves": 3
+     }
+    },
+    "kind": [
+     "zoom avant",
+     "panoramique",
+     "roulis"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 539,
+     "moving_pairs_fraction": 0.917,
+     "sim": 0.7785251885756655,
+     "aff": 0.7825641202664917,
+     "hom": 0.7996023856858847,
+     "fun": 0.9274084999140844,
+     "layers": 2.0,
+     "layers_explained": 0.8890320733104238,
+     "residual": 0.08,
+     "residual_p90": 0.2692,
+     "ecc_pairs": 0,
+     "class": "parallax_2_5d"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 936,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [
+    {
+     "start": 10.867,
+     "end": 16.019,
+     "thumb": "S04-p01.jpg"
+    },
+    {
+     "start": 16.086,
+     "end": 19.499,
+     "thumb": "S04-p02.jpg"
+    },
+    {
+     "start": 19.565,
+     "end": 21.506,
+     "thumb": "S04-p03.jpg"
+    },
+    {
+     "start": 21.573,
+     "end": 23.513,
+     "thumb": "S04-p04.jpg"
+    },
+    {
+     "start": 23.58,
+     "end": 26.524,
+     "thumb": "S04-p05.jpg"
+    },
+    {
+     "start": 26.591,
+     "end": 28.532,
+     "thumb": "S04-p06.jpg"
+    },
+    {
+     "start": 28.599,
+     "end": 31.543,
+     "thumb": "S04-p07.jpg"
+    },
+    {
+     "start": 31.61,
+     "end": 34.688,
+     "thumb": "S04-p08.jpg"
+    },
+    {
+     "start": 34.755,
+     "end": 36.695,
+     "thumb": "S04-p09.jpg"
+    },
+    {
+     "start": 36.762,
+     "end": 39.706,
+     "thumb": "S04-p10.jpg"
+    },
+    {
+     "start": 39.773,
+     "end": 46.063,
+     "thumb": "S04-p11.jpg"
+    },
+    {
+     "start": 46.13,
+     "end": 46.933,
+     "thumb": "S04-p12.jpg"
+    }
+   ],
+   "thumbs": {
+    "in": "S04-in.jpg",
+    "mid": "S04-mid.jpg",
+    "out": "S04-out.jpg"
+   },
+   "first_lab": [
+    11.23,
+    11.06,
+    -13.16
+   ],
+   "last_lab": [
+    25.25,
+    16.72,
+    -14.34
+   ],
+   "transition_in": {
+    "kind": "coupe franche",
+    "frame": 326,
+    "same_tone": false,
+    "delta_e_mean": 6.32
+   },
+   "sound": {
+    "events_count": 82,
+    "events": [
+     {
+      "t": 12.86,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -23.28
+     },
+     {
+      "t": 29.735,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -20.22
+     },
+     {
+      "t": 21.595,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -21.55
+     },
+     {
+      "t": 12.68,
+      "kind": "attaque médium",
+      "main": true,
+      "peak_db": -21.41
+     }
+    ],
+    "swells": [
+     {
+      "t": 41.315,
+      "peak_t": 41.595,
+      "rise_s": 0.28,
+      "level_db": 33.3
+     },
+     {
+      "t": 44.81,
+      "peak_t": 45.255,
+      "rise_s": 0.445,
+      "level_db": 31.8
+     }
+    ]
+   }
+  }
+ ],
+ "engine": {
+  "eases": "GSAP 3.14.2 exact table",
+  "settings": "settings.json analysis.bible, camera, easefit, sound"
+ }
+}

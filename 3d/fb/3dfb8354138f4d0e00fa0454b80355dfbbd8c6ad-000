@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c014-carte-du-monde-et-progression",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c014-carte-du-monde-et-progression [fd865f7d].mp4",
+ "sha256": "fd865f7d2ecbdbcb983f6613377b79cfe36c9a742e9ec60e4939e4d08709c624",
+ "bytes": 3716430,
+ "vfr": false,
+ "r_fps": 29.97,
+ "duration_s": 55.022,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 29.97,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "014 Carte du monde et progression",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

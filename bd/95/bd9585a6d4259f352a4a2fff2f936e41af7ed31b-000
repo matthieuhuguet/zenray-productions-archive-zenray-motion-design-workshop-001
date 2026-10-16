@@ -1,0 +1,404 @@
+{
+ "schema": "zrmd/bible@1",
+ "date": "12 October 2026",
+ "slug": "c008-carte-tactique-de-reportage",
+ "source": {
+  "duration_s": 24.0,
+  "width": 1920,
+  "height": 1080,
+  "fps": 25.0,
+  "has_audio": true,
+  "page_url": null
+ },
+ "cadence": {
+  "fps": 25.0,
+  "factor": 1,
+  "duplicate_ratio": 0.204
+ },
+ "frames": 600,
+ "fps": 25.0,
+ "cuts": [],
+ "detected": {
+  "shots": 1,
+  "cuts": 0
+ },
+ "review": {
+  "file": null,
+  "added_cuts": 0,
+  "removed_cuts": 0,
+  "cut_corrections_superseded": 0,
+  "shots_described": 0,
+  "family_agreement": null,
+  "unmatched_entries": []
+ },
+ "summary": {
+  "families_time_share": {
+   "plate": 1.0
+  },
+  "content_time_share": {
+   "plate": 1.0
+  },
+  "palette": [
+   {
+    "hex": "#22284d",
+    "share": 0.405,
+    "lab": [
+     17.3,
+     9.8,
+     -24.2
+    ],
+    "chroma": 26.1
+   },
+   {
+    "hex": "#3d4471",
+    "share": 0.177,
+    "lab": [
+     30.2,
+     10.3,
+     -27.1
+    ],
+    "chroma": 29.0
+   },
+   {
+    "hex": "#646ea2",
+    "share": 0.141,
+    "lab": [
+     47.6,
+     9.6,
+     -29.4
+    ],
+    "chroma": 31.0
+   },
+   {
+    "hex": "#000000",
+    "share": 0.127,
+    "lab": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "chroma": 0.0
+   },
+   {
+    "hex": "#111932",
+    "share": 0.125,
+    "lab": [
+     9.4,
+     5.4,
+     -17.3
+    ],
+    "chroma": 18.2
+   },
+   {
+    "hex": "#c38a80",
+    "share": 0.026,
+    "lab": [
+     62.9,
+     20.3,
+     14.4
+    ],
+    "chroma": 24.9
+   }
+  ],
+  "roles": {
+   "background": [
+    {
+     "hex": "#1b2044",
+     "share_of_time": 1.0
+    }
+   ],
+   "accent": [
+    {
+     "hex": "#646ea2",
+     "share_of_time": 1.0
+    }
+   ]
+  },
+  "eases": {},
+  "element_move_median_s": null,
+  "camera_kinds": {
+   "fixe": 1
+  },
+  "transitions": {
+   "ouverture": 1
+  },
+  "typography": {},
+  "rhythm": {
+   "shots": 1,
+   "cuts": 0,
+   "duration": 24.0,
+   "cuts_per_minute": 0.0,
+   "shot_mean_s": 24.0,
+   "shot_median_s": 24.0,
+   "shot_min_s": 24.0,
+   "shot_max_s": 24.0,
+   "shot_cv": 0.0,
+   "under_0_5s": 0,
+   "over_3s": 1,
+   "cuts_on_beat": null,
+   "cuts_on_attack": null
+  },
+  "three_d": {
+   "plate_share": 1.0,
+   "plate_3d_shots": 0,
+   "probe_classes": {
+    "static": 1
+   }
+  }
+ },
+ "sound": {
+  "duration": 24.0,
+  "tempo_bpm": 0.0,
+  "beats": 0,
+  "beat_regularity": null,
+  "loudness_lufs": -70.0,
+  "harmonic_share": 0.0,
+  "centroid_hz": 0.0,
+  "main_events": [],
+  "swells": [],
+  "cuts_on_beat": null,
+  "cuts_on_attack": null,
+  "sections": [
+   {
+    "start": 0.0,
+    "end": 24.05,
+    "level_db": -120.0
+   }
+  ],
+  "loudness_curve_1s": [
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0,
+   -120.0
+  ],
+  "beats_t": []
+ },
+ "sound_events": [],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 24.0,
+   "duration": 24.0,
+   "start_frame": 0,
+   "end_frame": 600,
+   "enter": "start",
+   "cut_source": "start",
+   "sample_fps": 22.5,
+   "frames_measured": 540,
+   "family": "plate",
+   "content": "plate",
+   "plate_kind": "image",
+   "features": {
+    "text_cover": 0.002,
+    "nonflat_entropy": 4.14,
+    "flat_share": 0.653,
+    "texture": 1.76,
+    "colourfulness": 35.1,
+    "edge_density": 0.0501
+   },
+   "palette": [
+    {
+     "lab": [
+      13.84,
+      9.99,
+      -23.32
+     ],
+     "share": 0.2208,
+     "hex": "#1b2044",
+     "chroma": 25.4,
+     "role": "background"
+    },
+    {
+     "lab": [
+      21.65,
+      9.62,
+      -25.3
+     ],
+     "share": 0.1777,
+     "hex": "#2a3159",
+     "chroma": 27.1,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      30.24,
+      10.28,
+      -27.1
+     ],
+     "share": 0.174,
+     "hex": "#3d4471",
+     "chroma": 29.0,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      47.57,
+      9.6,
+      -29.43
+     ],
+     "share": 0.1393,
+     "hex": "#646ea2",
+     "chroma": 31.0,
+     "role": "accent"
+    },
+    {
+     "lab": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "share": 0.125,
+     "hex": "#000000",
+     "chroma": 0.0,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      9.44,
+      5.44,
+      -17.33
+     ],
+     "share": 0.1227,
+     "hex": "#111932",
+     "chroma": 18.2,
+     "role": "secondary"
+    },
+    {
+     "lab": [
+      62.93,
+      20.33,
+      14.39
+     ],
+     "share": 0.0253,
+     "hex": "#c38a80",
+     "chroma": 24.9,
+     "role": "secondary"
+    }
+   ],
+   "roles": {
+    "background": "#1b2044",
+    "accent": "#646ea2",
+    "secondary": [
+     "#2a3159",
+     "#3d4471",
+     "#000000",
+     "#111932",
+     "#c38a80"
+    ]
+   },
+   "border_lab_std": 7.18,
+   "camera": {
+    "channels": {
+     "x": {
+      "total": 0.044,
+      "range": 0.045,
+      "moves": []
+     },
+     "y": {
+      "total": -0.02,
+      "range": 0.034,
+      "moves": []
+     },
+     "zoom": {
+      "total": -0.291,
+      "range": 0.417,
+      "moves": []
+     },
+     "roll": {
+      "total": 0.114,
+      "range": 0.114,
+      "moves": []
+     }
+    },
+    "kind": [
+     "fixe"
+    ],
+    "units": {
+     "x": "% largeur",
+     "y": "% largeur",
+     "zoom": "% échelle",
+     "roll": "degrés"
+    },
+    "probe": {
+     "pairs": 539,
+     "moving_pairs_fraction": 0.013,
+     "sim": 0.7666666666666667,
+     "aff": 0.75,
+     "hom": 0.8421052631578947,
+     "fun": 0.9298245614035088,
+     "layers": 1.0,
+     "layers_explained": 0.8421052631578947,
+     "residual": 0.0032,
+     "residual_p90": 0.0077,
+     "ecc_pairs": 2,
+     "class": "static"
+    }
+   },
+   "elements": [],
+   "elements_tracked": 196,
+   "text_lines": [],
+   "text_frame_t": null,
+   "phases": [
+    {
+     "start": 0.0,
+     "end": 23.244,
+     "thumb": "S01-p01.jpg"
+    },
+    {
+     "start": 23.289,
+     "end": 23.956,
+     "thumb": "S01-p02.jpg"
+    }
+   ],
+   "thumbs": {
+    "in": "S01-in.jpg",
+    "mid": "S01-mid.jpg",
+    "out": "S01-out.jpg"
+   },
+   "first_lab": [
+    24.89,
+    9.17,
+    -24.68
+   ],
+   "last_lab": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "transition_in": {
+    "kind": "ouverture"
+   },
+   "sound": {
+    "events_count": 0,
+    "events": [],
+    "swells": []
+   }
+  }
+ ],
+ "engine": {
+  "eases": "GSAP 3.14.2 exact table",
+  "settings": "settings.json analysis.bible, camera, easefit, sound"
+ }
+}

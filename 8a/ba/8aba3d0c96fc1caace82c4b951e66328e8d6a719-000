@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "c010-hud-de-jeu-de-tir",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "c010-hud-de-jeu-de-tir [65b24fd0].mp4",
+ "sha256": "65b24fd0f42a1a5917021677cb9e9dc4b8e674cf2c2f85c20811f61e7527457e",
+ "bytes": 6024163,
+ "vfr": false,
+ "r_fps": 24.0,
+ "duration_s": 43.904,
+ "video_codec": "h264",
+ "width": 1280,
+ "height": 720,
+ "fps": 24.0,
+ "has_audio": true,
+ "audio_codec": "aac",
+ "sample_rate_hz": 48000,
+ "channels": 2,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "010 HUD de jeu de tir",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

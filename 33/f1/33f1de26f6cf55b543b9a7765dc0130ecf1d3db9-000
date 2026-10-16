@@ -1,0 +1,578 @@
+{
+ "fps": 25.0,
+ "cadence": {
+  "fps": 25.0,
+  "factor": 1,
+  "duplicate_ratio": 0.001
+ },
+ "frames": 6000,
+ "duration": 240.0,
+ "width": 854,
+ "height": 480,
+ "cuts": [
+  {
+   "frame": 183,
+   "score": 0.998,
+   "U": 0.984,
+   "F": 1.0,
+   "E": 0.944,
+   "kind": "hard",
+   "t": 7.32
+  },
+  {
+   "frame": 279,
+   "score": 0.995,
+   "U": 1.0,
+   "F": 1.0,
+   "E": 0.711,
+   "kind": "hard",
+   "t": 11.16
+  },
+  {
+   "frame": 369,
+   "score": 0.932,
+   "U": 0.983,
+   "F": 1.0,
+   "E": 0.964,
+   "kind": "hard",
+   "t": 14.76
+  },
+  {
+   "frame": 407,
+   "score": 0.94,
+   "U": 0.982,
+   "F": 1.0,
+   "E": 0.851,
+   "kind": "hard",
+   "t": 16.28
+  },
+  {
+   "frame": 465,
+   "score": 0.998,
+   "U": 0.967,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 18.6
+  },
+  {
+   "frame": 560,
+   "score": 0.997,
+   "U": 0.989,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 22.4
+  },
+  {
+   "frame": 660,
+   "score": 0.998,
+   "U": 0.857,
+   "F": 1.0,
+   "E": 0.916,
+   "kind": "hard",
+   "t": 26.4
+  },
+  {
+   "frame": 718,
+   "score": 0.96,
+   "U": 0.981,
+   "F": 1.0,
+   "E": 0.847,
+   "kind": "hard",
+   "t": 28.72
+  },
+  {
+   "frame": 792,
+   "score": 0.996,
+   "U": 0.97,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 31.68
+  },
+  {
+   "frame": 1558,
+   "score": 0.994,
+   "U": 0.894,
+   "F": 1.0,
+   "E": 0.996,
+   "kind": "hard",
+   "t": 62.32
+  },
+  {
+   "frame": 1722,
+   "score": 0.998,
+   "U": 0.959,
+   "F": 1.0,
+   "E": 0.933,
+   "kind": "hard",
+   "t": 68.88
+  },
+  {
+   "frame": 1925,
+   "score": 0.996,
+   "U": 0.978,
+   "F": 1.0,
+   "E": 0.975,
+   "kind": "hard",
+   "t": 77.0
+  },
+  {
+   "frame": 2070,
+   "score": 0.997,
+   "U": 0.973,
+   "F": 0.995,
+   "E": 0.918,
+   "kind": "hard",
+   "t": 82.8
+  },
+  {
+   "frame": 2235,
+   "score": 0.999,
+   "U": 0.872,
+   "F": 1.0,
+   "E": 0.916,
+   "kind": "hard",
+   "t": 89.4
+  },
+  {
+   "frame": 2271,
+   "score": 0.994,
+   "U": 0.936,
+   "F": 1.0,
+   "E": 0.96,
+   "kind": "hard",
+   "t": 90.84
+  },
+  {
+   "frame": 2587,
+   "score": 0.991,
+   "U": 0.947,
+   "F": 1.0,
+   "E": 0.994,
+   "kind": "hard",
+   "t": 103.48
+  },
+  {
+   "frame": 2745,
+   "score": 0.993,
+   "U": 0.893,
+   "F": 1.0,
+   "E": 0.957,
+   "kind": "hard",
+   "t": 109.8
+  },
+  {
+   "frame": 2951,
+   "score": 0.995,
+   "U": 0.955,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 118.04
+  },
+  {
+   "frame": 3052,
+   "score": 0.999,
+   "U": 0.869,
+   "F": 1.0,
+   "E": 0.955,
+   "kind": "hard",
+   "t": 122.08
+  },
+  {
+   "frame": 3393,
+   "score": 0.998,
+   "U": 0.982,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 135.72
+  },
+  {
+   "frame": 3471,
+   "score": 0.981,
+   "U": 0.989,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 138.84
+  },
+  {
+   "frame": 4270,
+   "score": 0.998,
+   "U": 0.99,
+   "F": 1.0,
+   "E": 0.958,
+   "kind": "hard",
+   "t": 170.8
+  },
+  {
+   "frame": 4345,
+   "score": 0.997,
+   "U": 0.982,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 173.8
+  },
+  {
+   "frame": 5057,
+   "score": 0.991,
+   "U": 0.955,
+   "F": 0.99,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 202.28
+  },
+  {
+   "frame": 5123,
+   "score": 0.988,
+   "U": 0.96,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 204.92
+  },
+  {
+   "frame": 5349,
+   "score": 0.69,
+   "U": 0.929,
+   "F": 0.995,
+   "E": 0.859,
+   "kind": "hard",
+   "t": 213.96
+  },
+  {
+   "frame": 5487,
+   "score": 0.998,
+   "U": 0.932,
+   "F": 1.0,
+   "E": 0.982,
+   "kind": "hard",
+   "t": 219.48
+  },
+  {
+   "frame": 5539,
+   "score": 0.999,
+   "U": 0.937,
+   "F": 1.0,
+   "E": 1.0,
+   "kind": "hard",
+   "t": 221.56
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start_frame": 0,
+   "end_frame": 183,
+   "start": 0.0,
+   "end": 7.32,
+   "duration": 7.32,
+   "enter": "start",
+   "enter_score": null
+  },
+  {
+   "id": "S02",
+   "start_frame": 183,
+   "end_frame": 279,
+   "start": 7.32,
+   "end": 11.16,
+   "duration": 3.84,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S03",
+   "start_frame": 279,
+   "end_frame": 369,
+   "start": 11.16,
+   "end": 14.76,
+   "duration": 3.6,
+   "enter": "hard",
+   "enter_score": 0.995
+  },
+  {
+   "id": "S04",
+   "start_frame": 369,
+   "end_frame": 407,
+   "start": 14.76,
+   "end": 16.28,
+   "duration": 1.52,
+   "enter": "hard",
+   "enter_score": 0.932
+  },
+  {
+   "id": "S05",
+   "start_frame": 407,
+   "end_frame": 465,
+   "start": 16.28,
+   "end": 18.6,
+   "duration": 2.32,
+   "enter": "hard",
+   "enter_score": 0.94
+  },
+  {
+   "id": "S06",
+   "start_frame": 465,
+   "end_frame": 560,
+   "start": 18.6,
+   "end": 22.4,
+   "duration": 3.8,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S07",
+   "start_frame": 560,
+   "end_frame": 660,
+   "start": 22.4,
+   "end": 26.4,
+   "duration": 4.0,
+   "enter": "hard",
+   "enter_score": 0.997
+  },
+  {
+   "id": "S08",
+   "start_frame": 660,
+   "end_frame": 718,
+   "start": 26.4,
+   "end": 28.72,
+   "duration": 2.32,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S09",
+   "start_frame": 718,
+   "end_frame": 792,
+   "start": 28.72,
+   "end": 31.68,
+   "duration": 2.96,
+   "enter": "hard",
+   "enter_score": 0.96
+  },
+  {
+   "id": "S10",
+   "start_frame": 792,
+   "end_frame": 1558,
+   "start": 31.68,
+   "end": 62.32,
+   "duration": 30.64,
+   "enter": "hard",
+   "enter_score": 0.996
+  },
+  {
+   "id": "S11",
+   "start_frame": 1558,
+   "end_frame": 1722,
+   "start": 62.32,
+   "end": 68.88,
+   "duration": 6.56,
+   "enter": "hard",
+   "enter_score": 0.994
+  },
+  {
+   "id": "S12",
+   "start_frame": 1722,
+   "end_frame": 1925,
+   "start": 68.88,
+   "end": 77.0,
+   "duration": 8.12,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S13",
+   "start_frame": 1925,
+   "end_frame": 2070,
+   "start": 77.0,
+   "end": 82.8,
+   "duration": 5.8,
+   "enter": "hard",
+   "enter_score": 0.996
+  },
+  {
+   "id": "S14",
+   "start_frame": 2070,
+   "end_frame": 2235,
+   "start": 82.8,
+   "end": 89.4,
+   "duration": 6.6,
+   "enter": "hard",
+   "enter_score": 0.997
+  },
+  {
+   "id": "S15",
+   "start_frame": 2235,
+   "end_frame": 2271,
+   "start": 89.4,
+   "end": 90.84,
+   "duration": 1.44,
+   "enter": "hard",
+   "enter_score": 0.999
+  },
+  {
+   "id": "S16",
+   "start_frame": 2271,
+   "end_frame": 2587,
+   "start": 90.84,
+   "end": 103.48,
+   "duration": 12.64,
+   "enter": "hard",
+   "enter_score": 0.994
+  },
+  {
+   "id": "S17",
+   "start_frame": 2587,
+   "end_frame": 2745,
+   "start": 103.48,
+   "end": 109.8,
+   "duration": 6.32,
+   "enter": "hard",
+   "enter_score": 0.991
+  },
+  {
+   "id": "S18",
+   "start_frame": 2745,
+   "end_frame": 2951,
+   "start": 109.8,
+   "end": 118.04,
+   "duration": 8.24,
+   "enter": "hard",
+   "enter_score": 0.993
+  },
+  {
+   "id": "S19",
+   "start_frame": 2951,
+   "end_frame": 3052,
+   "start": 118.04,
+   "end": 122.08,
+   "duration": 4.04,
+   "enter": "hard",
+   "enter_score": 0.995
+  },
+  {
+   "id": "S20",
+   "start_frame": 3052,
+   "end_frame": 3393,
+   "start": 122.08,
+   "end": 135.72,
+   "duration": 13.64,
+   "enter": "hard",
+   "enter_score": 0.999
+  },
+  {
+   "id": "S21",
+   "start_frame": 3393,
+   "end_frame": 3471,
+   "start": 135.72,
+   "end": 138.84,
+   "duration": 3.12,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S22",
+   "start_frame": 3471,
+   "end_frame": 4270,
+   "start": 138.84,
+   "end": 170.8,
+   "duration": 31.96,
+   "enter": "hard",
+   "enter_score": 0.981
+  },
+  {
+   "id": "S23",
+   "start_frame": 4270,
+   "end_frame": 4345,
+   "start": 170.8,
+   "end": 173.8,
+   "duration": 3.0,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S24",
+   "start_frame": 4345,
+   "end_frame": 5057,
+   "start": 173.8,
+   "end": 202.28,
+   "duration": 28.48,
+   "enter": "hard",
+   "enter_score": 0.997
+  },
+  {
+   "id": "S25",
+   "start_frame": 5057,
+   "end_frame": 5123,
+   "start": 202.28,
+   "end": 204.92,
+   "duration": 2.64,
+   "enter": "hard",
+   "enter_score": 0.991
+  },
+  {
+   "id": "S26",
+   "start_frame": 5123,
+   "end_frame": 5349,
+   "start": 204.92,
+   "end": 213.96,
+   "duration": 9.04,
+   "enter": "hard",
+   "enter_score": 0.988
+  },
+  {
+   "id": "S27",
+   "start_frame": 5349,
+   "end_frame": 5487,
+   "start": 213.96,
+   "end": 219.48,
+   "duration": 5.52,
+   "enter": "hard",
+   "enter_score": 0.69
+  },
+  {
+   "id": "S28",
+   "start_frame": 5487,
+   "end_frame": 5539,
+   "start": 219.48,
+   "end": 221.56,
+   "duration": 2.08,
+   "enter": "hard",
+   "enter_score": 0.998
+  },
+  {
+   "id": "S29",
+   "start_frame": 5539,
+   "end_frame": 6000,
+   "start": 221.56,
+   "end": 240.0,
+   "duration": 18.44,
+   "enter": "hard",
+   "enter_score": 0.999
+  }
+ ],
+ "rhythm": {
+  "engine": "zrmd/rhythm@1",
+  "boundaries_measured": 3416,
+  "flashes": [],
+  "transitions": "learned",
+  "v1": {
+   "sensitivity": 0.5,
+   "min_shot_s": 0.0,
+   "flashes": "ignore",
+   "transitions": "typed",
+   "dissolves": true,
+   "dissolve_min_change": 0.06,
+   "dissolve_fit": 0.022,
+   "fade_around_min": 0.05,
+   "whips": true,
+   "whip_around_min": 0.08,
+   "flash_return": 0.45,
+   "tracked_veto": 0.0
+  }
+ }
+}

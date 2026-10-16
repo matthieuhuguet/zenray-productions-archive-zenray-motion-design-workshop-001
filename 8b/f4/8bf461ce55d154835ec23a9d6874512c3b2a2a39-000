@@ -1,0 +1,167 @@
+# Bible graphique de la référence c007-habillage-de-chaine-et-bandeaux (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 54,00 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 25,000 images par seconde |
+| Cadence du contenu | 25,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 6 plans et 5 coupes, soit 5,6 coupes par minute ; un plan dure 11,44 s en médiane et 9,00 s en moyenne, du plus court (0,04 s) au plus long (16,36 s), avec un coefficient de variation de 0,73. 2 plans durent moins d'une demi-seconde et 4 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 20 %, et celle des coupes tombant sur une attaque sonore 20 %. Le plan médian dure 19,90 temps.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| plaque 3D ou prise de vue | 81,7 % |
+| graphique | 17,8 % |
+| montage | 0,5 % |
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : graphique 18,3 %, plaque 3D ou prise de vue 81,7 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#0c0507` | 25,1 % | 1,9 | 1,9 |
+| `#eaeceb` | 18,0 % | 93,2 | 0,8 |
+| `#deddce` | 15,2 % | 87,9 | 8,0 |
+| `#c6c4c0` | 9,0 % | 79,3 | 2,3 |
+| `#48443e` | 6,3 % | 29,0 | 4,0 |
+| `#a59f99` | 4,2 % | 65,7 | 3,9 |
+| `#4d4f51` | 4,1 % | 33,6 | 1,4 |
+| `#410a0c` | 3,2 % | 11,7 | 29,4 |
+| `#d0c7b7` | 2,1 % | 80,6 | 9,4 |
+| `#141422` | 2,0 % | 6,8 | 11,0 |
+| `#bcbc86` | 2,0 % | 75,1 | 28,7 |
+| `#2c3e5b` | 1,9 % | 26,1 | 19,8 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#0f0101` (55 %), `#f7f8f7` (27 %), `#cdc6bd` (18 %), `#000000` (0 %) |
+| texte | `#c3baae` (18 %) |
+| accent | `#6ab737` (30 %) |
+
+## Typographie
+
+4 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 7,0 à 76,0 pixels, médiane 8,8 ; la densité de trait médiane vaut 0,256. On compte 3 lignes en capitales et 1 en bas de casse, et 25 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#b0a699`, `#b6a99e`, `#bab1a1`, `#e2d9d0`.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `elastic.inOut(1,0.3)` | 5 |
+| `sine.in` | 4 |
+| `material.accelerate` | 4 |
+| `none` | 4 |
+| `elastic.inOut(1,0.45)` | 3 |
+| `elastic.in(1,0.3)` | 2 |
+| `circ.out` | 2 |
+| `power1.inOut` | 2 |
+| `expo.in` | 2 |
+| `power3.inOut` | 2 |
+| `elastic.in(1.5,0.4)` | 2 |
+| `power2.inOut` | 1 |
+| `power2.in` | 1 |
+| `css.ease-out` | 1 |
+
+Un mouvement d'élément dure 0,17 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| fixe | 4 |
+| panoramique | 2 |
+| roulis | 2 |
+| zoom avant | 1 |
+| zoom arrière | 1 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| coupe franche | 2 |
+| ouverture | 1 |
+| balayage | 1 |
+| coupe franche vers un noir | 1 |
+| coupe franche après passage au noir | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 81,7 % du temps, dont 1 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 4 |
+| mouvement complexe (déformation, fluide ou rendu 3D éclairé) | 2 |
+
+## Son
+
+Sonie intégrée -22,3 LUFS, centroïde spectral médian 1230 Hz, part harmonique 98 %. Le détecteur d'attaques relève 100 événements (attaque médium 92, impact grave 7, clic aigu 1) et le détecteur de houles 9 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 4,76 s | attaque médium | -28,3 dB |
+| 5,68 s | attaque médium | -24,5 dB |
+| 11,49 s | attaque médium | -30,9 dB |
+| 13,97 s | impact grave | -20,0 dB |
+| 14,78 s | impact grave | -18,9 dB |
+| 16,32 s | attaque médium | -38,5 dB |
+| 24,82 s | attaque médium | -34,8 dB |
+| 26,48 s | attaque médium | -32,7 dB |
+| 41,56 s | attaque médium | -27,5 dB |
+| 42,59 s | attaque médium | -15,0 dB |
+| 49,47 s | attaque médium | -26,8 dB |
+| 49,72 s | attaque médium | -29,9 dB |
+
+Houles : 0,73 s (montée 0,26 s), 15,76 s (montée 0,36 s), 25,54 s (montée 0,23 s), 32,41 s (montée 0,27 s), 36,48 s (montée 0,45 s), 38,53 s (montée 0,28 s), 39,53 s (montée 0,34 s), 47,17 s (montée 0,25 s), 50,93 s (montée 0,20 s).
+
+## Musique
+
+Tempo estimé 104,3 BPM, 67 temps détectés, régularité de la grille 0,070 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 3,20 s | -47,0 dB |
+| 2 | 3,20 s | 8,50 s | -25,5 dB |
+| 3 | 8,50 s | 11,50 s | -42,0 dB |
+| 4 | 11,50 s | 15,10 s | -20,4 dB |
+| 5 | 15,10 s | 18,10 s | -40,2 dB |
+| 6 | 18,10 s | 23,75 s | -28,3 dB |
+| 7 | 23,75 s | 27,50 s | -39,6 dB |
+| 8 | 27,50 s | 31,65 s | -20,7 dB |
+| 9 | 31,65 s | 36,05 s | -23,9 dB |
+| 10 | 36,05 s | 39,05 s | -28,1 dB |
+| 11 | 39,05 s | 42,05 s | -33,3 dB |
+| 12 | 42,05 s | 46,10 s | -16,6 dB |
+| 13 | 46,10 s | 49,50 s | -34,6 dB |
+| 14 | 49,50 s | 54,05 s | -26,0 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 9,60 s | graphique | Plan graphique sur un fond dominant #cdc6bd, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, panoramique, roulis (description automatique). |
+| S02 | 9,60 s | 14,48 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #f7f8f7, mouvement global : fixe (description automatique). |
+| S03 | 24,08 s | 0,04 s | montage | Plan montage sur un fond dominant #191919, mouvement global : fixe (description automatique). |
+| S04 | 24,12 s | 16,36 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #0f0101, mouvement global : zoom arrière, panoramique, roulis (description automatique). |
+| S05 | 40,48 s | 0,24 s | montage | Plan montage sur un fond dominant #000000, mouvement global : fixe (description automatique). |
+| S06 | 40,72 s | 13,28 s | plaque 3D ou prise de vue | Plan plaque 3D ou prise de vue sur un fond dominant #010003, mouvement global : fixe (description automatique). |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).

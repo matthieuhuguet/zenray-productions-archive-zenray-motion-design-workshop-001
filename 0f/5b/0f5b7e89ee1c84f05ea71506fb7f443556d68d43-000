@@ -340,6 +340,136 @@
    "has_audio": true,
    "brand": null,
    "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c002-explainer-de-data-journalisme",
+   "title": "002 Explainer de data-journalisme",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 240.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c004-titrage-d-archives-noir-et-blanc",
+   "title": "004 Titrage d'archives noir et blanc",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 191.458,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c005-soiree-electorale",
+   "title": "005 Soirée électorale",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 47.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c007-habillage-de-chaine-et-bandeaux",
+   "title": "007 Habillage de chaîne et bandeaux",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 54.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c008-carte-tactique-de-reportage",
+   "title": "008 Carte tactique de reportage",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 24.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c010-hud-de-jeu-de-tir",
+   "title": "010 HUD de jeu de tir",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 43.904,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c006-une-de-journal-animee",
+   "title": "006 Une de journal animée",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 240.031,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c009-revelation-aaa-sombre",
+   "title": "009 Révélation AAA sombre",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 133.9,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c011-ecran-titre-jrpg-et-pixel-art",
+   "title": "011 Écran titre JRPG et pixel art",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 240.006,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c065-reel-buck",
+   "title": "065 Reel BUCK",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 59.968,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c012-bandeau-arcade",
+   "title": "012 Bandeau arcade",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 240.0,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c013-annonce-inde-dessinee-a-la-main",
+   "title": "013 Annonce indé dessinée à la main",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 35.573,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "c014-carte-du-monde-et-progression",
+   "title": "014 Carte du monde et progression",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 55.022,
+   "has_audio": true,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
   }
  ]
 }
