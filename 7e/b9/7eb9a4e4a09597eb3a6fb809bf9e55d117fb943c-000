@@ -1,0 +1,84 @@
+{
+ "fps": 29.999721930543547,
+ "cadence": {
+  "fps": 29.999721930543547,
+  "factor": 1,
+  "duplicate_ratio": 0.127
+ },
+ "frames": 1180,
+ "duration": 39.333697916666665,
+ "width": 1920,
+ "height": 1080,
+ "cuts": [
+  {
+   "kind": "fade",
+   "start": 577,
+   "end": 579,
+   "frame": 578,
+   "score": 0.99,
+   "model": "solid",
+   "t": 19.266845250706215
+  },
+  {
+   "kind": "whip",
+   "start": 660,
+   "end": 673,
+   "frame": 667,
+   "score": 0.999,
+   "model": "run",
+   "t": 22.233539415607343
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start_frame": 0,
+   "end_frame": 578,
+   "start": 0.0,
+   "end": 19.266845250706215,
+   "duration": 19.266845250706215,
+   "enter": "start",
+   "enter_score": null
+  },
+  {
+   "id": "S02",
+   "start_frame": 578,
+   "end_frame": 667,
+   "start": 19.266845250706215,
+   "end": 22.233539415607343,
+   "duration": 2.96669416490113,
+   "enter": "fade",
+   "enter_score": 0.99
+  },
+  {
+   "id": "S03",
+   "start_frame": 667,
+   "end_frame": 1180,
+   "start": 22.233539415607343,
+   "end": 39.333697916666665,
+   "duration": 17.100158501059322,
+   "enter": "whip",
+   "enter_score": 0.999
+  }
+ ],
+ "rhythm": {
+  "engine": "zrmd/rhythm@1",
+  "boundaries_measured": 447,
+  "flashes": [],
+  "transitions": "learned",
+  "v1": {
+   "sensitivity": 0.5,
+   "min_shot_s": 0.0,
+   "flashes": "ignore",
+   "transitions": "typed",
+   "dissolves": true,
+   "dissolve_min_change": 0.06,
+   "dissolve_fit": 0.022,
+   "fade_around_min": 0.05,
+   "whips": true,
+   "whip_around_min": 0.08,
+   "flash_return": 0.45,
+   "tracked_veto": 0.0
+  }
+ }
+}

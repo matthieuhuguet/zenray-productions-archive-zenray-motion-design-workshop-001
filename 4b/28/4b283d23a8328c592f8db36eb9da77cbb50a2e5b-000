@@ -1,0 +1,138 @@
+# Bible graphique de la référence agentplay (12 October 2026)
+
+Bible mesurée par `zrmd.bible` le 12 October 2026, à partir du fichier du cache local ; aucun pixel ni aucun échantillon de la référence n'entre dans ce document, qui ne porte que des nombres et des descriptions paraphrasées. Storyboard : [storyboard.html](storyboard.html). Données : [bible.json](bible.json). (12 October 2026)
+
+## Identité
+
+| Mesure | Valeur |
+|---|---|
+| Durée | 39,36 s |
+| Format | 1920 x 1080 |
+| Cadence du fichier | 30,000 images par seconde |
+| Cadence du contenu | 30,00 images par seconde |
+| Son | oui |
+
+## Rythme de montage
+
+La référence compte 3 plans et 2 coupes, soit 3,1 coupes par minute ; un plan dure 17,10 s en médiane et 13,11 s en moyenne, du plus court (2,97 s) au plus long (19,27 s), avec un coefficient de variation de 0,55. 0 plans durent moins d'une demi-seconde et 2 plus de trois secondes. La part des coupes tombant à 50 ms près d'un temps de la grille vaut 0 %, et celle des coupes tombant sur une attaque sonore 50 %. Le plan médian dure 32,27 temps.
+
+## Familles de plans
+
+| Famille | Part du temps |
+|---|---|
+| graphique | 100,0 % |
+
+La famille « montage » regroupe les plans de moins d'une demi-seconde, quel que soit leur contenu ; la part du contenu seul est : graphique 100,0 %.
+
+## Couleurs
+
+Palette globale (regroupement Lab, fusion sous 6 unités CIEDE2000, pondérée par la surface et la durée) :
+
+| Couleur | Part | L* | Chroma |
+|---|---|---|---|
+| `#f8f8f8` | 58,5 % | 97,6 | 0,2 |
+| `#0d100d` | 34,1 % | 4,5 | 1,9 |
+| `#a8a8a8` | 5,5 % | 69,0 | 0,2 |
+| `#757575` | 1,9 % | 49,2 | 0,3 |
+
+Rôles (part du temps où la couleur tient ce rôle) :
+
+| Rôle | Couleurs |
+|---|---|
+| fond | `#fcfcfc` (92 %), `#0a0d0a` (8 %) |
+| texte | `#c7cbc6` (49 %), `#838482` (44 %), `#757575` (8 %) |
+
+## Typographie
+
+12 lignes de texte ont été mesurées sur l'image où le texte est le plus présent de chaque plan carte texte ou graphique. La hauteur d'x, ramenée à une image de 1080 pixels de haut, va de 18,0 à 60,0 pixels, médiane 27,0 ; la densité de trait médiane vaut 0,242. On compte 5 lignes en capitales et 7 en bas de casse, et 33 % des lignes sont claires sur fond sombre. Couleurs de texte relevées : `#4b4c4b`, `#535653`, `#5a5a5a`, `#747476`, `#747677`, `#767878`, `#8b8d8e`, `#949291`.
+
+## Mouvements et courbes
+
+Courbes identifiées contre la table exacte de GSAP 3.14.2 (une courbe n'est gardée que si elle explique le mouvement à 6 % de l'amplitude près et que le mouvement dépasse dix fois le bruit de mesure) :
+
+| Ease | Occurrences |
+|---|---|
+| `power3.inOut` | 6 |
+| `elastic.inOut(1,0.3)` | 5 |
+| `bounce.inOut` | 3 |
+| `material.standard` | 3 |
+| `circ.inOut` | 3 |
+| `expo.in` | 3 |
+| `bounce.in` | 3 |
+| `circ.in` | 2 |
+| `expo.out` | 2 |
+| `elastic.out(1,0.45)` | 2 |
+| `power4.inOut` | 2 |
+| `power4.out` | 1 |
+| `bounce.out` | 1 |
+| `elastic.inOut(1.2,0.3)` | 1 |
+
+Un mouvement d'élément dure 0,28 s en médiane.
+
+Mouvement global de l'image (similarité chaînée image après image ; sur un fond uni, il suit le calque dominant) :
+
+| Mouvement | Plans |
+|---|---|
+| roulis | 3 |
+| zoom arrière | 2 |
+| travelling vertical | 2 |
+| zoom avant | 1 |
+
+## Transitions
+
+| Transition d'entrée | Plans |
+|---|---|
+| ouverture | 1 |
+| fondu par une couleur unie | 1 |
+| balayage | 1 |
+
+## Usage de la 3D
+
+Les plaques (rendu 3D ou prise de vue) occupent 0,0 % du temps, dont 0 plans que la sonde géométrique classe comme 3D (perspective, parallaxe, scène rigide, apparence changeante ou mouvement complexe). La sonde répond juste quand elle dit 3D, mais elle manque les objets 3D qui glissent comme un calque (R04, section 10) ; les descriptions plan par plan corrigent ce point à l'œil.
+
+| Classe de la sonde | Plans |
+|---|---|
+| immobile | 2 |
+| calque 2D | 1 |
+
+## Son
+
+Sonie intégrée -21,4 LUFS, centroïde spectral médian 3306 Hz, part harmonique 74 %. Le détecteur d'attaques relève 223 événements (attaque médium 201, clic aigu 22) et le détecteur de houles 4 montées ou souffles longs.
+
+Événements principaux (les plus forts) :
+
+| Instant | Nature | Crête |
+|---|---|---|
+| 5,07 s | attaque médium | -24,8 dB |
+| 7,75 s | attaque médium | -28,7 dB |
+| 15,15 s | attaque médium | -21,9 dB |
+| 17,05 s | clic aigu | -23,0 dB |
+| 17,30 s | attaque médium | -24,3 dB |
+| 17,55 s | attaque médium | -19,2 dB |
+| 20,36 s | attaque médium | -20,8 dB |
+| 21,28 s | attaque médium | -23,1 dB |
+| 22,62 s | attaque médium | -18,4 dB |
+| 24,61 s | attaque médium | -20,5 dB |
+| 27,93 s | attaque médium | -22,0 dB |
+| 32,58 s | attaque médium | -23,5 dB |
+
+Houles : 5,51 s (montée 0,37 s), 12,44 s (montée 0,42 s), 29,69 s (montée 0,28 s), 31,59 s (montée 0,30 s).
+
+## Musique
+
+Tempo estimé 113,2 BPM, 75 temps détectés, régularité de la grille 0,128 (écart type relatif des intervalles, 0 pour une grille parfaite). La musique ne se reprend jamais note à note : seuls le tempo, la grille, les sections, l'énergie et la production servent.
+
+| Section | Début | Fin | Niveau médian |
+|---|---|---|---|
+| 1 | 0,00 s | 13,95 s | -28,1 dB |
+| 2 | 13,95 s | 39,40 s | -25,3 dB |
+
+## Plans
+
+| Plan | Début | Durée | Famille | Description |
+|---|---|---|---|---|
+| S01 | 0,00 s | 19,27 s | graphique | Plan graphique sur un fond dominant #fcfcfc, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom arrière, travelling vertical, roulis (description automatique). |
+| S02 | 19,27 s | 2,97 s | graphique | Plan graphique sur un fond dominant #0a0d0a, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom arrière, roulis (description automatique). |
+| S03 | 22,23 s | 17,10 s | graphique | Plan graphique sur un fond dominant #fbfcfb, 4 ligne(s) de texte mesurée(s), 3 élément(s) animé(s) suivi(s), mouvement global : zoom avant, travelling vertical, roulis (description automatique). |
+
+Paramètres : `settings.json`, sections `analysis.bible`, `analysis.camera`, `analysis.easefit`, `analysis.sound` (12 October 2026).
