@@ -1,0 +1,436 @@
+{
+ "schema": "zrmd/motion-project@1",
+ "title": "Reel BUCK · reproduction",
+ "format": "16x9",
+ "fps": 30,
+ "reference": "c065-reel-buck",
+ "doc": "16 October 2026: one reference reproduced as vector motion (motion/reproduce.py): every cut is a vector-shot scene (stacked SVG keyframes, one palette per shot), texts kept editable by the per-video recipe.",
+ "theme": {
+  "fontBody": "InterVariable",
+  "fontTitle": "AnthropicSerif",
+  "fontMono": "AnthropicMono"
+ },
+ "scenes": [
+  {
+   "id": "s001",
+   "template": "vector-shot",
+   "duration": 11.7333,
+   "params": {
+    "bg": "#fdfdfd",
+    "keys": "0.04 S01-k00.svg\n1.5 S01-k01.svg\n1.583 S01-k02.svg\n1.667 S01-k03.svg\n1.75 S01-k04.svg\n1.833 S01-k05.svg\n2.0 S01-k06.svg\n2.25 S01-k07.svg\n3.167 S01-k08.svg\n3.25 S01-k09.svg\n3.333 S01-k10.svg\n3.417 S01-k11.svg\n3.5 S01-k12.svg\n3.667 S01-k13.svg\n3.917 S01-k14.svg\n4.5 S01-k15.svg\n4.75 S01-k16.svg\n4.833 S01-k17.svg\n4.917 S01-k18.svg\n5.167 S01-k19.svg\n5.25 S01-k20.svg\n5.333 S01-k21.svg\n5.667 S01-k22.svg\n5.75 S01-k23.svg\n5.833 S01-k24.svg\n6.083 S01-k25.svg\n6.167 S01-k26.svg\n6.25 S01-k27.svg\n6.5 S01-k28.svg\n6.583 S01-k29.svg\n6.667 S01-k30.svg\n7.0 S01-k31.svg\n7.083 S01-k32.svg\n7.167 S01-k33.svg\n7.333 S01-k34.svg\n7.417 S01-k35.svg\n7.5 S01-k36.svg\n7.833 S01-k37.svg\n7.917 S01-k38.svg\n8.0 S01-k39.svg\n8.083 S01-k40.svg\n8.167 S01-k41.svg\n8.25 S01-k42.svg\n8.333 S01-k43.svg\n8.417 S01-k44.svg\n8.5 S01-k45.svg\n8.667 S01-k46.svg\n8.917 S01-k47.svg\n9.167 S01-k48.svg\n9.333 S01-k49.svg\n9.583 S01-k50.svg\n9.75 S01-k51.svg\n9.833 S01-k52.svg\n11.583 S01-k53.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S01",
+    "start": 0.0
+   }
+  },
+  {
+   "id": "s002",
+   "template": "vector-shot",
+   "duration": 3.8667,
+   "params": {
+    "bg": "#eee5de",
+    "keys": "0.04 S02-k00.svg\n0.183 S02-k01.svg\n0.267 S02-k02.svg\n0.35 S02-k03.svg\n0.433 S02-k04.svg\n0.517 S02-k05.svg\n0.6 S02-k06.svg\n0.683 S02-k07.svg\n0.767 S02-k08.svg\n0.85 S02-k09.svg\n0.933 S02-k10.svg\n1.017 S02-k11.svg\n1.1 S02-k12.svg\n1.183 S02-k13.svg\n1.267 S02-k14.svg\n1.35 S02-k15.svg\n1.433 S02-k16.svg\n1.517 S02-k17.svg\n1.6 S02-k18.svg\n1.683 S02-k19.svg\n1.767 S02-k20.svg\n1.85 S02-k21.svg\n1.933 S02-k22.svg\n2.017 S02-k23.svg\n2.1 S02-k24.svg\n2.183 S02-k25.svg\n2.267 S02-k26.svg\n2.35 S02-k27.svg\n2.433 S02-k28.svg\n2.517 S02-k29.svg\n2.6 S02-k30.svg\n2.683 S02-k31.svg\n2.767 S02-k32.svg\n2.85 S02-k33.svg\n2.933 S02-k34.svg\n3.017 S02-k35.svg\n3.1 S02-k36.svg\n3.183 S02-k37.svg\n3.267 S02-k38.svg\n3.35 S02-k39.svg\n3.433 S02-k40.svg\n3.517 S02-k41.svg\n3.6 S02-k42.svg\n3.683 S02-k43.svg\n3.767 S02-k44.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S02",
+    "start": 11.7333
+   }
+  },
+  {
+   "id": "s003",
+   "template": "vector-shot",
+   "duration": 0.3667,
+   "params": {
+    "bg": "#efe6de",
+    "keys": "0.04 S03-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S03",
+    "start": 15.6
+   }
+  },
+  {
+   "id": "s004",
+   "template": "vector-shot",
+   "duration": 0.4,
+   "params": {
+    "bg": "#eee6de",
+    "keys": "0.04 S04-k00.svg\n0.283 S04-k01.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S04",
+    "start": 15.9667
+   }
+  },
+  {
+   "id": "s005",
+   "template": "vector-shot",
+   "duration": 0.3666,
+   "params": {
+    "bg": "#eee6de",
+    "keys": "0.04 S05-k00.svg\n0.217 S05-k01.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S05",
+    "start": 16.3667
+   }
+  },
+  {
+   "id": "s006",
+   "template": "vector-shot",
+   "duration": 1.9,
+   "params": {
+    "bg": "#efe6de",
+    "keys": "0.04 S06-k00.svg\n0.183 S06-k01.svg\n0.267 S06-k02.svg\n0.35 S06-k03.svg\n0.433 S06-k04.svg\n0.517 S06-k05.svg\n0.6 S06-k06.svg\n0.683 S06-k07.svg\n0.767 S06-k08.svg\n0.85 S06-k09.svg\n0.933 S06-k10.svg\n1.017 S06-k11.svg\n1.1 S06-k12.svg\n1.183 S06-k13.svg\n1.267 S06-k14.svg\n1.35 S06-k15.svg\n1.433 S06-k16.svg\n1.517 S06-k17.svg\n1.6 S06-k18.svg\n1.683 S06-k19.svg\n1.767 S06-k20.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S06",
+    "start": 16.7333
+   }
+  },
+  {
+   "id": "s007",
+   "template": "vector-shot",
+   "duration": 1.8,
+   "params": {
+    "bg": "#ededf3",
+    "keys": "0.04 S07-k00.svg\n0.2 S07-k01.svg\n0.283 S07-k02.svg\n0.367 S07-k03.svg\n0.45 S07-k04.svg\n0.533 S07-k05.svg\n0.617 S07-k06.svg\n0.7 S07-k07.svg\n0.783 S07-k08.svg\n0.867 S07-k09.svg\n1.033 S07-k10.svg\n1.2 S07-k11.svg\n1.367 S07-k12.svg\n1.533 S07-k13.svg\n1.7 S07-k14.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S07",
+    "start": 18.6333
+   }
+  },
+  {
+   "id": "s008",
+   "template": "vector-shot",
+   "duration": 1.6,
+   "params": {
+    "bg": "#eeedf3",
+    "keys": "0.04 S08-k00.svg\n0.15 S08-k01.svg\n0.233 S08-k02.svg\n0.317 S08-k03.svg\n0.4 S08-k04.svg\n0.483 S08-k05.svg\n0.567 S08-k06.svg\n0.733 S08-k07.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S08",
+    "start": 20.4333
+   }
+  },
+  {
+   "id": "s009",
+   "template": "vector-shot",
+   "duration": 2.5334,
+   "params": {
+    "bg": "#ed9088",
+    "keys": "0.04 S09-k00.svg\n1.55 S09-k01.svg\n1.633 S09-k02.svg\n1.717 S09-k03.svg\n1.967 S09-k04.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S09",
+    "start": 22.0333
+   }
+  },
+  {
+   "id": "s010",
+   "template": "vector-shot",
+   "duration": 2.6666,
+   "params": {
+    "bg": "#fbbe00",
+    "keys": "0.04 S10-k00.svg\n1.1 S10-k01.svg\n1.35 S10-k02.svg\n2.1 S10-k03.svg\n2.183 S10-k04.svg\n2.433 S10-k05.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S10",
+    "start": 24.5667
+   }
+  },
+  {
+   "id": "s011",
+   "template": "vector-shot",
+   "duration": 1.6667,
+   "params": {
+    "bg": "#3f7ec2",
+    "keys": "0.04 S11-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S11",
+    "start": 27.2333
+   }
+  },
+  {
+   "id": "s012",
+   "template": "vector-shot",
+   "duration": 1.7,
+   "params": {
+    "bg": "#efd3c3",
+    "keys": "0.04 S12-k00.svg\n0.183 S12-k01.svg\n0.433 S12-k02.svg\n0.6 S12-k03.svg\n0.85 S12-k04.svg\n0.933 S12-k05.svg\n1.1 S12-k06.svg\n1.267 S12-k07.svg\n1.433 S12-k08.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S12",
+    "start": 28.9
+   }
+  },
+  {
+   "id": "s013",
+   "template": "vector-shot",
+   "duration": 4.5,
+   "params": {
+    "bg": "#fb92b0",
+    "keys": "0.04 S13-k00.svg\n0.4 S13-k01.svg\n0.483 S13-k02.svg\n0.567 S13-k03.svg\n0.65 S13-k04.svg\n0.733 S13-k05.svg\n0.817 S13-k06.svg\n0.9 S13-k07.svg\n0.983 S13-k08.svg\n1.067 S13-k09.svg\n1.233 S13-k10.svg\n1.317 S13-k11.svg\n1.4 S13-k12.svg\n1.483 S13-k13.svg\n1.567 S13-k14.svg\n1.65 S13-k15.svg\n1.733 S13-k16.svg\n1.817 S13-k17.svg\n1.9 S13-k18.svg\n1.983 S13-k19.svg\n2.067 S13-k20.svg\n2.15 S13-k21.svg\n2.233 S13-k22.svg\n2.317 S13-k23.svg\n2.4 S13-k24.svg\n2.483 S13-k25.svg\n2.567 S13-k26.svg\n2.65 S13-k27.svg\n2.733 S13-k28.svg\n2.817 S13-k29.svg\n2.9 S13-k30.svg\n2.983 S13-k31.svg\n3.067 S13-k32.svg\n3.15 S13-k33.svg\n3.233 S13-k34.svg\n3.317 S13-k35.svg\n3.4 S13-k36.svg\n3.483 S13-k37.svg\n3.65 S13-k38.svg\n3.733 S13-k39.svg\n3.817 S13-k40.svg\n3.9 S13-k41.svg\n3.983 S13-k42.svg\n4.067 S13-k43.svg\n4.15 S13-k44.svg\n4.233 S13-k45.svg\n4.4 S13-k46.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S13",
+    "start": 30.6
+   }
+  },
+  {
+   "id": "s014",
+   "template": "vector-shot",
+   "duration": 2.0,
+   "params": {
+    "bg": "#e6e170",
+    "keys": "0.04 S14-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S14",
+    "start": 35.1
+   }
+  },
+  {
+   "id": "s015",
+   "template": "vector-shot",
+   "duration": 2.0333,
+   "params": {
+    "bg": "#598a58",
+    "keys": "0.04 S15-k00.svg\n0.65 S15-k01.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S15",
+    "start": 37.1
+   }
+  },
+  {
+   "id": "s016",
+   "template": "vector-shot",
+   "duration": 3.3334,
+   "params": {
+    "bg": "#0d0809",
+    "keys": "0.04 S16-k00.svg\n0.2 S16-k01.svg\n0.283 S16-k02.svg\n0.367 S16-k03.svg\n0.45 S16-k04.svg\n0.533 S16-k05.svg\n0.617 S16-k06.svg\n0.7 S16-k07.svg\n0.783 S16-k08.svg\n0.867 S16-k09.svg\n0.95 S16-k10.svg\n1.033 S16-k11.svg\n1.117 S16-k12.svg\n1.2 S16-k13.svg\n1.283 S16-k14.svg\n1.367 S16-k15.svg\n1.45 S16-k16.svg\n1.533 S16-k17.svg\n1.617 S16-k18.svg\n1.7 S16-k19.svg\n1.783 S16-k20.svg\n1.867 S16-k21.svg\n1.95 S16-k22.svg\n2.033 S16-k23.svg\n2.117 S16-k24.svg\n2.2 S16-k25.svg\n2.283 S16-k26.svg\n2.367 S16-k27.svg\n2.45 S16-k28.svg\n2.533 S16-k29.svg\n2.617 S16-k30.svg\n2.7 S16-k31.svg\n2.783 S16-k32.svg\n2.867 S16-k33.svg\n2.95 S16-k34.svg\n3.033 S16-k35.svg\n3.117 S16-k36.svg\n3.2 S16-k37.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S16",
+    "start": 39.1333
+   }
+  },
+  {
+   "id": "s017",
+   "template": "vector-shot",
+   "duration": 3.1666,
+   "params": {
+    "bg": "#faede0",
+    "keys": "0.04 S17-k00.svg\n0.2 S17-k01.svg\n0.367 S17-k02.svg\n0.533 S17-k03.svg\n0.7 S17-k04.svg\n0.783 S17-k05.svg\n0.867 S17-k06.svg\n0.95 S17-k07.svg\n1.033 S17-k08.svg\n1.117 S17-k09.svg\n1.2 S17-k10.svg\n1.283 S17-k11.svg\n1.367 S17-k12.svg\n1.45 S17-k13.svg\n1.533 S17-k14.svg\n1.617 S17-k15.svg\n1.7 S17-k16.svg\n1.783 S17-k17.svg\n1.867 S17-k18.svg\n1.95 S17-k19.svg\n2.033 S17-k20.svg\n2.117 S17-k21.svg\n2.2 S17-k22.svg\n2.283 S17-k23.svg\n2.367 S17-k24.svg\n2.45 S17-k25.svg\n2.533 S17-k26.svg\n2.617 S17-k27.svg\n2.7 S17-k28.svg\n2.783 S17-k29.svg\n2.867 S17-k30.svg\n2.95 S17-k31.svg\n3.033 S17-k32.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S17",
+    "start": 42.4667
+   }
+  },
+  {
+   "id": "s018",
+   "template": "vector-shot",
+   "duration": 1.3334,
+   "params": {
+    "bg": "#0a050a",
+    "keys": "0.04 S18-k00.svg\n0.45 S18-k01.svg\n0.533 S18-k02.svg\n0.617 S18-k03.svg\n0.7 S18-k04.svg\n0.783 S18-k05.svg\n0.867 S18-k06.svg\n1.033 S18-k07.svg\n1.117 S18-k08.svg\n1.2 S18-k09.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S18",
+    "start": 45.6333
+   }
+  },
+  {
+   "id": "s019",
+   "template": "vector-shot",
+   "duration": 0.1,
+   "params": {
+    "bg": "#0a050a",
+    "keys": "0.04 S19-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S19",
+    "start": 46.9667
+   }
+  },
+  {
+   "id": "s020",
+   "template": "vector-shot",
+   "duration": 0.0666,
+   "params": {
+    "bg": "#0a050a",
+    "keys": "0.033 S20-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S20",
+    "start": 47.0667
+   }
+  },
+  {
+   "id": "s021",
+   "template": "vector-shot",
+   "duration": 0.4667,
+   "params": {
+    "bg": "#090408",
+    "keys": "0.04 S21-k00.svg\n0.2 S21-k01.svg\n0.283 S21-k02.svg\n0.367 S21-k03.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S21",
+    "start": 47.1333
+   }
+  },
+  {
+   "id": "s022",
+   "template": "vector-shot",
+   "duration": 0.7333,
+   "params": {
+    "bg": "#090409",
+    "keys": "0.04 S22-k00.svg\n0.15 S22-k01.svg\n0.233 S22-k02.svg\n0.317 S22-k03.svg\n0.4 S22-k04.svg\n0.483 S22-k05.svg\n0.567 S22-k06.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S22",
+    "start": 47.6
+   }
+  },
+  {
+   "id": "s023",
+   "template": "vector-shot",
+   "duration": 0.4334,
+   "params": {
+    "bg": "#191419",
+    "keys": "0.04 S23-k00.svg\n0.167 S23-k01.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S23",
+    "start": 48.3333
+   }
+  },
+  {
+   "id": "s024",
+   "template": "vector-shot",
+   "duration": 0.1,
+   "params": {
+    "bg": "#0a050a",
+    "keys": "0.04 S24-k00.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S24",
+    "start": 48.7667
+   }
+  },
+  {
+   "id": "s025",
+   "template": "vector-shot",
+   "duration": 0.5333,
+   "params": {
+    "bg": "#0b050d",
+    "keys": "0.04 S25-k00.svg\n0.133 S25-k01.svg\n0.217 S25-k02.svg\n0.3 S25-k03.svg\n0.383 S25-k04.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S25",
+    "start": 48.8667
+   }
+  },
+  {
+   "id": "s026",
+   "template": "vector-shot",
+   "duration": 0.8,
+   "params": {
+    "bg": "#ba1f2d",
+    "keys": "0.04 S26-k00.svg\n0.183 S26-k01.svg\n0.267 S26-k02.svg\n0.433 S26-k03.svg\n0.6 S26-k04.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S26",
+    "start": 49.4
+   }
+  },
+  {
+   "id": "s027",
+   "template": "vector-shot",
+   "duration": 1.3333,
+   "params": {
+    "bg": "#992b3a",
+    "keys": "0.04 S27-k00.svg\n0.467 S27-k01.svg\n0.717 S27-k02.svg\n0.883 S27-k03.svg\n1.05 S27-k04.svg\n1.133 S27-k05.svg\n1.217 S27-k06.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S27",
+    "start": 50.2
+   }
+  },
+  {
+   "id": "s028",
+   "template": "vector-shot",
+   "duration": 1.2667,
+   "params": {
+    "bg": "#3b535d",
+    "keys": "0.04 S28-k00.svg\n0.133 S28-k01.svg\n0.217 S28-k02.svg\n0.3 S28-k03.svg\n0.383 S28-k04.svg\n0.467 S28-k05.svg\n0.55 S28-k06.svg\n0.633 S28-k07.svg\n0.717 S28-k08.svg\n0.8 S28-k09.svg\n0.883 S28-k10.svg\n0.967 S28-k11.svg\n1.05 S28-k12.svg\n1.133 S28-k13.svg",
+    "fit": "cover"
+   },
+   "ref": {
+    "shot": "S28",
+    "start": 51.5333
+   }
+  },
+  {
+   "id": "s029",
+   "template": "vector-shot",
+   "duration": 7.1667,
+   "params": {
+    "bg": "#fdfcfd",
+    "keys": "0.04 S29-k00.svg\n0.617 S29-k01.svg",
+    "fit": "cover",
+    "overlays": "0.0 7.17 20.5 50 22 500 0.18 #adadad | MATHIJS LUIJTEN\n0.0 7.17 78.4 50 22 500 0.18 #adadad | MOTION DESIGNER"
+   },
+   "ref": {
+    "shot": "S29",
+    "start": 52.8
+   }
+  }
+ ],
+ "sfx": {
+  "source": "none"
+ },
+ "music": {
+  "mode": "file",
+  "file": {
+   "file": "music.mp3"
+  }
+ },
+ "id": "c065-reel-buck-motion",
+ "updated": "16 October 2026, 05:19",
+ "versionNote": "avant la reproduction du 16 octobre",
+ "versionSaved": "16 October 2026, 05:20",
+ "version": "V_002"
+}
