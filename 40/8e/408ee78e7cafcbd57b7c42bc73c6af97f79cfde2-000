@@ -1,0 +1,28 @@
+{
+ "schema": "zenray-motion-design/reference@1",
+ "slug": "cinematic-shot",
+ "page_url": null,
+ "media_url": null,
+ "date": "16 October 2026",
+ "file_name": "cinematic-shot [8ea449ab].mp4",
+ "sha256": "8ea449ab48e3c435b17af5ef49921fe2f917ea50df7251d024ed88d261d34fc2",
+ "bytes": 7027920,
+ "vfr": false,
+ "r_fps": 60.0,
+ "duration_s": 51.383,
+ "video_codec": "h264",
+ "width": 1920,
+ "height": 1080,
+ "fps": 60.0,
+ "has_audio": false,
+ "audio_codec": null,
+ "sample_rate_hz": null,
+ "channels": null,
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "normalized": false,
+ "family": "dropped",
+ "title": "cinematic-shot (What Ships)",
+ "notes": [
+  "Dropped into the orchestrator; the media stays in the reference cache (never archived or published)."
+ ]
+}

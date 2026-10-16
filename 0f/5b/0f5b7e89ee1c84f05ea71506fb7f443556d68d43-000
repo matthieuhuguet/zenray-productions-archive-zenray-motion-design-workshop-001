@@ -660,6 +660,16 @@
    "has_audio": true,
    "brand": null,
    "focus": "dropped in the orchestrator"
+  },
+  {
+   "slug": "cinematic-shot",
+   "title": "cinematic-shot (What Ships)",
+   "page_url": null,
+   "origin": "dropped",
+   "duration_s": 51.383,
+   "has_audio": false,
+   "brand": null,
+   "focus": "dropped in the orchestrator"
   }
  ]
 }
